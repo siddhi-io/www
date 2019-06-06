@@ -2,67 +2,67 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
      <loc>http://siddhi.io/</loc>
-     <lastmod>2019-06-10</lastmod>
+     <lastmod>2019-06-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/documentation/features/</loc>
-     <lastmod>2019-06-10</lastmod>
+     <lastmod>2019-06-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/documentation/download/</loc>
-     <lastmod>2019-06-10</lastmod>
+     <lastmod>2019-06-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/documentation/quckstart-5.x/</loc>
-     <lastmod>2019-06-10</lastmod>
+     <lastmod>2019-06-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/documentation/query-guide-5.x/</loc>
-     <lastmod>2019-06-10</lastmod>
+     <lastmod>2019-06-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/documentation/api-5.0.0/</loc>
-     <lastmod>2019-06-10</lastmod>
+     <lastmod>2019-06-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/documentation/extensions/</loc>
-     <lastmod>2019-06-10</lastmod>
+     <lastmod>2019-06-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/documentation/user-guide/user-guide-introduction-5.x/</loc>
-     <lastmod>2019-06-10</lastmod>
+     <lastmod>2019-06-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/documentation/user-guide/siddhi-as-a-java-library-5.x/</loc>
-     <lastmod>2019-06-10</lastmod>
+     <lastmod>2019-06-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/documentation/user-guide/siddhi-as-a-local-microservice-5.x/</loc>
-     <lastmod>2019-06-10</lastmod>
+     <lastmod>2019-06-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/documentation/user-guide/siddhi-as-a-docker-microservice-5.x/</loc>
-     <lastmod>2019-06-10</lastmod>
+     <lastmod>2019-06-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/documentation/user-guide/siddhi-as-a-kubernetes-microservice-5.x/</loc>
-     <lastmod>2019-06-10</lastmod>
+     <lastmod>2019-06-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/documentation/config-guide-5.x/</loc>
-     <lastmod>2019-06-10</lastmod>
+     <lastmod>2019-06-06</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
