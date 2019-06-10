@@ -56,43 +56,17 @@ extra:
     link: https://github.com/siddhi-io/siddhi
   - type: linkedin
     link: https://www.linkedin.com/groups/13553064
-  site_version: 5.0.0
+  site_version: versions
 
 # Google Analytics
 google_analytics:
   - UA-103065-28
   - auto
 
-
 # Extensions
 markdown_extensions:
-  - markdown.extensions.admonition
-  - markdown.extensions.codehilite:
-      linenums: true
-      use_pygments: false
-      guess_lang: false
-  - markdown.extensions.def_list
-  - markdown.extensions.attr_list
-  - markdown.extensions.footnotes
-  - markdown.extensions.meta
-  - markdown.extensions.toc:
-      permalink: true
-  - pymdownx.arithmatex
-  - pymdownx.betterem:
-      smart_enable: all
-  - pymdownx.caret
-  - pymdownx.critic
-  - pymdownx.details
-  - pymdownx.emoji:
-      emoji_generator: !!python/name:pymdownx.emoji.to_svg
-  - pymdownx.inlinehilite
-  - pymdownx.keys
-  - pymdownx.mark
-  - pymdownx.smartsymbols
-  - pymdownx.superfences
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - pymdownx.tilde
+    - fenced_code
+    - codehilite
 
 # Navigation
 nav:
