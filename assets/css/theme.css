@@ -95,7 +95,7 @@
 }
 
 html .md-typeset .superfences-tabs > label:hover {
-    color: #ff7043;
+    color: #009688;
 }
 
 .md-search__input {
@@ -132,7 +132,7 @@ html .md-typeset .superfences-tabs > label:hover {
 
 [data-md-color-primary=deep-orange] .md-nav-link-wrapper a:focus,
 [data-md-color-primary=deep-orange] .md-nav-link-wrapper a:hover {
-    color: #ff7043;
+    color: #009688;
 }
 
 .md-version-select {
@@ -237,7 +237,7 @@ html .md-typeset .superfences-tabs > label:hover {
 
 .hljs-title,
 .hljs-section {
-    color: #ff7043;
+    color: #009688;
     font-weight: normal;
 }
 
@@ -249,7 +249,7 @@ html .md-typeset .superfences-tabs > label:hover {
 .hljs-quote,
 .hljs-template-tag,
 .hljs-deletion {
-    color: #ff7043;
+    color: #009688;
 }
 
 .home_icon {
@@ -389,7 +389,7 @@ html .md-typeset .superfences-tabs > label:hover {
     width: 40px;
     box-shadow: 0 0 10px rgba(0,0,0,0.05);
     background: url(../lib/backtotop/img/cd-top-arrow.svg) no-repeat center 50%;
-    background-color: hsla(5, 76%, 62%, 0.8);
+    background-color: hsla(174, 100%, 29%, 0.8);
 }
 
 .js .cd-top {
@@ -408,7 +408,7 @@ html .md-typeset .superfences-tabs > label:hover {
 }
 
 .js .cd-top:hover {
-    background-color: hsl(5, 76%, 62%);
+    background-color: hsl(174, 100%, 29%);
     opacity: 1
 }
 
