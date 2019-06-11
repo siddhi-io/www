@@ -36,7 +36,7 @@ theme:
   palette:
     primary: teal
     accent: teal
-  custom_dir: docs/theme/material
+  custom_dir: theme/material
   feature:
     tabs: true
   language: 'en'
