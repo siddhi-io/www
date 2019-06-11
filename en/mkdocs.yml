@@ -31,8 +31,8 @@ copyright: Siddhi - Documentation
 # Configuration
 theme:
   name: material
-  logo: theme/material/images/siddhi-logo.svg
-  favicon: theme/material/images/favicon.ico
+  logo: images/siddhi-logo.svg
+  favicon: images/favicon.ico
   palette:
     primary: teal
     accent: teal
