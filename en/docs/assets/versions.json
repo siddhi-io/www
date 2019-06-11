@@ -7,6 +7,10 @@
     "4.5.0"
   ],
   "all": {
+    "5.1.0": {
+      "doc": "5.0.0",
+      "notes": "https://docs.wso2.com/display/IS560/About+this+Release"
+    },
     "5.0.0": {
       "doc": "5.0.0",
       "notes": "https://docs.wso2.com/display/IS560/About+this+Release"
