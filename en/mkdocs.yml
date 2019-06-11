@@ -36,7 +36,7 @@ theme:
   palette:
     primary: teal
     accent: teal
-  custom_dir: docs/theme/material
+  custom_dir: theme/material
   feature:
     tabs: true
   language: 'en'
@@ -67,24 +67,3 @@ google_analytics:
 markdown_extensions:
     - fenced_code
     - codehilite
-
-# Navigation
-nav:
-  - Welcome to Siddhi: index.md
-  - Features:
-    - documentation/features.md
-  - Download:
-    - documentation/download.md
-  - Quick Start:
-    - documentation/quckstart-5.x.md
-  - Developer Guide:
-    - Query Guide: documentation/query-guide-5.x.md
-    - API Guide: documentation/api-5.0.0.md
-    - Extension Guide: documentation/extensions.md
-  - Deployment Guide:
-    - Introduction: documentation/user-guide/user-guide-introduction-5.x.md
-    - Siddhi Java library: documentation/user-guide/siddhi-as-a-java-library-5.x.md
-    - Siddhi Local Microservice: documentation/user-guide/siddhi-as-a-local-microservice-5.x.md
-    - Siddhi Docker Microservice: documentation/user-guide/siddhi-as-a-docker-microservice-5.x.md
-    - Siddhi Kubernetes Microservice: documentation/user-guide/siddhi-as-a-kubernetes-microservice-5.x.md
-    - Configuration Guide: documentation/config-guide-5.x.md
