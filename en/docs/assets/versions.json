@@ -8,11 +8,11 @@
   "all": {
     "5.0.0": {
       "doc": "5.0.0",
-      "notes": "https://docs.wso2.com/display/IS560/About+this+Release"
+      "notes": "https://github.com/siddhi-io/siddhi/releases/tag/v5.0.0"
     },
     "4.5.0": {
       "doc": "4.5.0",
-      "notes": "https://docs.wso2.com/display/IS560/About+this+Release"
+      "notes": "https://github.com/siddhi-io/siddhi/releases/tag/v4.5.0"
     }
   }
 }
