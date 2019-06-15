@@ -23,7 +23,7 @@ site_url: http://siddhi.io
 # Repository
 repo_name: Siddhi
 repo_url: https://github.com/siddhi-io/siddhi
-edit_uri: https://github.com/siddhi-io/siddhi/edit/master/docs/
+edit_uri: https://github.com/siddhi-io/www/tree/5.0.0/en/docs
 
 # Copyright
 copyright: Siddhi - Documentation
@@ -31,8 +31,8 @@ copyright: Siddhi - Documentation
 # Configuration
 theme:
   name: material
-  logo: theme/material/images/siddhi-logo.svg
-  favicon: theme/material/images/favicon.ico
+  logo: images/siddhi-logo.svg
+  favicon: images/favicon.ico
   palette:
     primary: teal
     accent: teal
@@ -56,7 +56,7 @@ extra:
     link: https://github.com/siddhi-io/siddhi
   - type: linkedin
     link: https://www.linkedin.com/groups/13553064
-  site_version: 5.0.0
+  site_version: 5.1.0
 
 # Google Analytics
 google_analytics:
