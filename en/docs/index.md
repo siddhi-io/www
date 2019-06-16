@@ -51,14 +51,27 @@ These are the latest changes that have yet to be released.
                 <a id="pre-release-version-documentation-link">Documentation</a>
             </td>
             <td>
-                <a href="https://github.com/wso2/docs-is/tree/master" target="_blank">
-                    <div class="md-source-code-icon">
-                        <svg viewBox="0 0 24 24" width="24" height="24">
-                          <use xlink:href="#__github" width="24" height="24"></use>
+                <a href="https://github.com/siddhi-io/siddhi/tree/master" target="_blank">
+                    <div class="md-source-code-icon" style="display:inline-block;vertical-align: top;">
+                        <svg viewBox="0 0 20 20" width="20" height="20">
+                          <use xlink:href="#__github" width="20" height="20"></use>
                         </svg>
-                    </div> Source Code
+                    </div><div style="display:inline-block;vertical-align:top;padding-left: 0.25rem;">
+                    Siddhi Source Code
+                    </div>
                 </a>
             </td>
+           <td>
+               <a href="https://github.com/siddhi-io/distribution/tree/master" target="_blank">
+                   <div class="md-source-code-icon" style="display:inline-block;vertical-align: top;">
+                       <svg viewBox="0 0 20 20" width="20" height="20">
+                         <use xlink:href="#__github" width="20" height="20"></use>
+                       </svg>
+                   </div><div style="display:inline-block;vertical-align:top;padding-left: 0.25rem;">
+                   Distribution Source Code
+                   </div>
+               </a>
+           </td>
         </tr>
     </tbody>
 </table>
