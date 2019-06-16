@@ -36,6 +36,8 @@ build(){
     done
 }
 
+   echo clean dist
+   rm -rf ../dist/*
    echo build triggered manually
    
    #obtain branch names in a git repo     
