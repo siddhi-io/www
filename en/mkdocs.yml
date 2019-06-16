@@ -23,7 +23,7 @@ site_url: http://siddhi.io
 # Repository
 repo_name: Siddhi
 repo_url: https://github.com/siddhi-io/siddhi
-edit_uri: https://github.com/siddhi-io/www/edit/v5.0/en/docs/
+edit_uri: https://github.com/siddhi-io/www/edit/v4.x/en/docs/
 
 # Copyright
 copyright: Siddhi - Documentation
@@ -56,7 +56,7 @@ extra:
     link: https://github.com/siddhi-io/siddhi
   - type: linkedin
     link: https://www.linkedin.com/groups/13553064
-  site_version: v5.0
+  site_version: v4.x
 
 # Google Analytics
 google_analytics:
