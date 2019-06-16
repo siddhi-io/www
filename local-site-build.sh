@@ -57,8 +57,8 @@ build(){
     done   
    done 
   #these branches must build in each trigger    
-   build "versions"
    build "master"
-   
+   build "versions"
+
 
      
