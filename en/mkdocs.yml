@@ -23,7 +23,7 @@ site_url: http://siddhi.io
 # Repository
 repo_name: Siddhi
 repo_url: https://github.com/siddhi-io/siddhi
-edit_uri: https://github.com/siddhi-io/www/edit/5.0.0/en/docs/
+edit_uri: https://github.com/siddhi-io/www/edit/v5.0/en/docs/
 
 # Copyright
 copyright: Siddhi - Documentation
