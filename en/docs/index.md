@@ -26,7 +26,7 @@ template: templates/single-column.html
 !!! Note
     Find the latest version of Siddhi from [http://siddhi.io](http://siddhi.io)
 
-Siddhi 4.x is a **_Streaming_** and **_Complex Event Processing_** engine that understands **Streaming SQL queries** in order to capture events from diverse data sources, process them, detect complex conditions, and publish output to various endpoints in real time.
+Siddhi 4.x is a fully open source **_Streaming_** and **_Complex Event Processing_** engine that understands **Streaming SQL queries** in order to capture events from diverse data sources, process them, detect complex conditions, and publish output to various endpoints in real time.
 
 Siddhi can run as an embedded [Java](documentation/siddhi-5.x/siddhi-as-a-java-library-5.x/) or [Python](https://github.com/siddhi-io/PySiddhi/tree/4.x) as a library, and run as a server with [WSO2 Stream Processor](https://wso2.com/analytics-and-stream-processing/). 
 
@@ -36,42 +36,41 @@ Siddhi can run as an embedded [Java](documentation/siddhi-5.x/siddhi-as-a-java-l
 
 ![](images/siddhi-overview.png?raw=true "Overview")
 
-**Siddhi supports:**
- 
-* **Streaming Data Integration** 
-    * Retrieving data from various event sources (NATS, Kafka, JMS, HTTP, CDC, etc)
-    * Map events to and from multiple event formats (JSON, XML, Text, Avro, etc)
+## Supported Use Cases 
+
+* **Streaming Data Integration**
+    * Retrieve data from various event sources (Kafka, JMS, HTTP, CDC, etc)
+    * Transform events to and from multiple event formats (JSON, XML, Text, Avro, etc)
     * Data preprocessing & cleaning
-    * Joining multiple data streams 
-    * Integrate streaming data with databases (RDBMS, Cassandra, HBase, Redis, etc)
-    * Integrate with external services
-    * Publish data to multiple event sinks (Email, JMS, HTTP, etc)
-    
+    * Join multiple data streams
+    * Integrate streaming data with databases (RDBMS, Cassandra, HBase, Redis, etc) and services
+
 * **Streaming Data Analytics**
-    * Generating alerts based on thresholds
-    * Calculate aggregations over a short windows (time, length, session, unique, etc) or a long time period
-    * Calculate aggregations over long time periods with seconds, minutes, hours, days, months & years granularity  
-    * Correlating data while finding missing and erroneous events
-    * Detecting temporal event patterns
-    * Analyzing trends (rise, fall, turn, tipple bottom)
-    * Run pretreated machine learning models (PMML, Tensorflow) 
+    * Calculate aggregations over windows such as time, length, and session
+    * Long duration time series  aggregations with granularities from seconds to years. 
+    * Analyze trends (rise, fall, turn, tipple bottom)
+    * Realtime predictions with pre trained machine learning models (PMML, Tensorflow)
     * Learn and predict at runtime using online machine learning models
 
-* **Adaptive Intelligence**
-    * Static rule processing 
-    * Stateful rule processing 
-    * Decision making through synchronous stream processing  
-    * Query tables, windows and aggregations  
+* **Alerts & Notifications**
+    * Generate alerts based on thresholds
+    * Correlate data to find missing and erroneous events
+    * Detect temporal event patterns
+    * Publish data to multiple event sinks (Email, messaging systems, services, databases)
+
+* **Adaptive Decision Making** 
+    * Static rule processing
+    * Adaptive stateful rule processing
+    * Decision making through synchronous RPC.
+    * Query state from tables, windows and aggregations.
       
 * And many more ...  For more information, see <a target="_blank" href="http://www.kdnuggets.com/2015/08/patterns-streaming-realtime-analytics.html">Patterns of Streaming Realtime Analytics</a>
-
-Siddhi is free and open source, released under **Apache Software License v2.0**.
 
 ## Why use Siddhi ? 
 
 * **Fast**. <a target="_blank" href="http://wso2.com/library/conference/2017/2/wso2con-usa-2017-scalable-real-time-complex-event-processing-at-uber?utm_source=gitanalytics&utm_campaign=gitanalytics_Jul17">UBER</a> uses it to process 20 Billion events per day (300,000 events per second). 
 * **Lightweight** (core Siddhi libs are <2MB), and embeddable in Android, Python and RaspberryPi.
-* Has **over 50 <a target="_blank" href="https://siddhi-io.github.io/siddhi/extensions/">Siddhi Extensions</a>**
+* Has **over 50 <a target="_blank" href="extensions/">Siddhi Extensions</a>**
 * **Used by over 60 companies including many Fortune 500 companies** in production. Following are some examples:
     * **WSO2** uses Siddhi for the following purposes:
         * To provide **distributed and high available** stream processing capabilities via <a target="_blank" href="http://wso2.com/analytics?utm_source=gitanalytics&utm_campaign=gitanalytics_Jul17">WSO2 Stream Processor</a>. It is named as a strong performer in <a target="_blank" href="https://go.forrester.com/blogs/16-04-16-15_true_streaming_analytics_platforms_for_real_time_everything/">The Forrester Wave: Big Data Streaming Analytics, Q1 2016</a> (<a target="_blank" href="https://www.forrester.com/report/The+Forrester+Wave+Big+Data+Streaming+Analytics+Q1+2016/-/E-RES129023">Report</a>).
@@ -90,29 +89,21 @@ If you are a Siddhi user, we would love to hear more on how you use Siddhi? Plea
 
 Get started with Siddhi 4.x in a few minutes by following the <a target="_blank" href="quckstart/">Siddhi Quick Start Guide</a>
 
-## Siddhi Development Environment 
+## Development Environment 
 
 **Siddhi Tooling**
 
-Siddhi provides siddhi-tooling that supports following features to develop and test stream processing applications: 
+[WSO2 Stream Processor](https://wso2.com/analytics-and-stream-processing/) provides features to develop and test stream processing applications : 
 
 * **Text Query Editor** with syntax highlighting and advanced auto completion support.
 * **Event Simulator and Debugger** to test Siddhi Applications.
-    ![](https://raw.githubusercontent.com/siddhi-io/siddhi/master/docs/images/editor/source-editor.png "Source Editor")
-
 * **Graphical Query Editor** with drag and drop query building support.
-    ![](https://raw.githubusercontent.com/siddhi-io/siddhi/master/docs/images/editor/graphical-editor.png "Graphical Query Editor")
 
-**IntelliJ IDEA Plugin** 
-
-Install <a target="_blank" href="https://siddhi-io.github.io/siddhi-plugin-idea/">IDEA plugin</a> to get the following features:
-
-* **Siddhi Query Editor** with syntax highlighting and with basic auto completion
-* **Siddhi Runner and Debugger** support to test Siddhi Application
+<iframe width="1083" height="450" src="https://www.youtube.com/embed/U5yYyUTx2bA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Siddhi 4.x Versions
 
-* **Latest Stable Release of Siddhi v4.x** : **v4.5.11** _built on Java 8. (Recommended for production use)_
+* **Latest Stable Release of Siddhi v4.x** : [**v4.5.11**](api/latest/) _built on Java 8. (Recommended for production use)_
      
     Find the released Siddhi libraries <a target="_blank" href="http://maven.wso2.org/nexus/content/groups/wso2-public/org/wso2/siddhi/">here</a>.
 
@@ -120,9 +111,6 @@ Install <a target="_blank" href="https://siddhi-io.github.io/siddhi-plugin-idea/
     
     <a target="_blank" href="http://siddhi.io/documentation/siddhi-4.x/architecture-4.x/">Architecture</a> of Siddhi v4.x.x
 
-## Latest API Docs 
-
-Latest API Docs is <a target="_blank" href="https://siddhi-io.github.io/siddhi/api/5.0.0/">5.0.0</a>.
 
 ## Contact us 
 * Post your questions with the <a target="_blank" href="http://stackoverflow.com/search?q=siddhi">"Siddhi"</a> tag in <a target="_blank" href="http://stackoverflow.com/search?q=siddhi">Stackoverflow</a>. 
