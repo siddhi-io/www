@@ -96,21 +96,35 @@ markdown_extensions:
 
 # Navigation
 nav:
-  - Welcome to Siddhi: index.md
+  - Welcome to Siddhi 4.x: index.md
   - Features:
     - features.md
   - Download:
     - download.md
   - Quick Start:
-    - quckstart-5.x.md
+    - quckstart.md
   - Developer Guide:
-    - Query Guide: query-guide-5.x.md
-    - API Guide: api-5.0.0.md
+    - User Guide: user-guide.md
+    - Query Guide: query-guide.md
+    - Siddhi core API Guide: api/latest.md
     - Extension Guide: extensions.md
-  - Deployment Guide:
-    - Introduction: user-guide/user-guide-introduction-5.x.md
-    - Siddhi Java library: user-guide/siddhi-as-a-java-library-5.x.md
-    - Siddhi Local Microservice: user-guide/siddhi-as-a-local-microservice-5.x.md
-    - Siddhi Docker Microservice: user-guide/siddhi-as-a-docker-microservice-5.x.md
-    - Siddhi Kubernetes Microservice: user-guide/siddhi-as-a-kubernetes-microservice-5.x.md
-    - Configuration Guide: config-guide-5.x.md
+  - Siddhi Core APIS
+    - latest: api/latest.md
+    - 4.5.11: api/4.5.11.md
+    - 4.5.10: api/4.5.10.md
+    - 4.5.9: api/4.5.9.md
+    - 4.5.0: api/4.5.0.md
+    - 4.4.8: api/4.4.8.md
+    - 4.4.0: api/4.4.0.md
+    - 4.3.19: api/4.3.19.md
+    - 4.3.0: api/4.3.0.md
+    - 4.2.40: api/4.2.40.md
+    - 4.2.20: api/4.2.20.md
+    - 4.2.0: api/4.2.0.md
+    - 4.1.64: api/4.1.64.md
+    - 4.1.46: api/4.1.46.md
+    - 4.1.7: api/4.1.7.md
+    - 4.1.0: api/4.1.0.md
+    - 4.0.9: api/4.0.9.md
+    - 4.0.0: api/4.0.0.md
+
