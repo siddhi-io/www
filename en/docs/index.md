@@ -32,20 +32,20 @@ template: templates/single-column.html
 
 Siddhi is a cloud native **_Streaming_** and **_Complex Event Processing_** engine that understands **Streaming SQL queries** in order to capture events from diverse data sources, process them, detect complex conditions, and publish output to various endpoints in real time.
 
-Siddhi can run as an embedded [Java library](../siddhi-as-a-java-library/), and as a microservice on [bare metal, VM](../siddhi-as-a-local-microservice/), [Docker](../siddhi-as-a-docker-microservice/) and natively in [Kubernetes](../siddhi-as-a-kubernetes-microservice/). It also has a [graphical and text editor](#siddhi-development-environment) for building Streaming Data Integration and Streaming Analytics applications.
+Siddhi can run as an embedded [Java library](siddhi-as-a-java-library/), and as a microservice on [bare metal, VM](siddhi-as-a-local-microservice/), [Docker](siddhi-as-a-docker-microservice/) and natively in [Kubernetes](siddhi-as-a-kubernetes-microservice/). It also has a [graphical and text editor](#siddhi-development-environment) for building Streaming Data Integration and Streaming Analytics applications.
 
 ## Distributions
 
-<a href="../siddhi-as-a-kubernetes-microservice/" rel="nofollow">
+<a href="siddhi-as-a-kubernetes-microservice/" rel="nofollow">
  <img src="https://raw.githubusercontent.com/siddhi-io/siddhi/master/docs/images/distributions/kubernetes.png?raw=true" alt="Kubernetes" width="19%">
 </a>
-<a href="../siddhi-as-a-docker-microservice/" rel="nofollow">
+<a href="siddhi-as-a-docker-microservice/" rel="nofollow">
  <img src="https://raw.githubusercontent.com/siddhi-io/siddhi/master/docs/images/distributions/docker.png?raw=true" alt="Docker" width="19%">
 </a>
-<a href="../siddhi-as-a-local-microservice/" rel="nofollow">
+<a href="siddhi-as-a-local-microservice/" rel="nofollow">
  <img src="https://raw.githubusercontent.com/siddhi-io/siddhi/master/docs/images/distributions/binary.png?raw=true" alt="Binary" width="19%">
 </a>
-<a href="../siddhi-as-a-java-library/" rel="nofollow">
+<a href="siddhi-as-a-java-library/" rel="nofollow">
  <img src="https://raw.githubusercontent.com/siddhi-io/siddhi/master/docs/images/distributions/java.png?raw=true" alt="Java" width="19%">
 </a>
 <a href="contribution/#obtaining-the-source-code-and-building-the-project" rel="nofollow">
