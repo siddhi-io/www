@@ -63,7 +63,6 @@ google_analytics:
   - UA-103065-28
   - auto
 
-
 # Extensions
 markdown_extensions:
   - markdown.extensions.admonition
@@ -108,7 +107,7 @@ nav:
     - Query Guide: query-guide.md
     - Siddhi core API Guide: api/latest.md
     - Extension Guide: extensions.md
-  - Siddhi Core APIS:
+  - Siddhi Core APIs:
     - latest: api/latest.md
     - 4.5.11: api/4.5.11.md
     - 4.5.10: api/4.5.10.md

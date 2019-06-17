@@ -34,7 +34,9 @@ Siddhi can run as an embedded [Java](documentation/siddhi-5.x/siddhi-as-a-java-l
 
 ## Overview 
 
-![](images/siddhi-overview.png?raw=true "Overview")
+<p style="text-align: center;">
+<img alt="" src="images/siddhi-overview.png?raw=true" title="Overview" style="max-width: 75%;">
+</p>
 
 ## Supported Use Cases 
 
@@ -112,24 +114,18 @@ Get started with Siddhi 4.x in a few minutes by following the <a target="_blank"
 
 ## Development Environment 
 
+<iframe style="float: right;" width="300" height="170" src="https://www.youtube.com/embed/U5yYyUTx2bA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 [WSO2 Stream Processor](https://wso2.com/analytics-and-stream-processing/) provides features to develop and test stream processing applications : 
 
 * **Text Query Editor** with syntax highlighting and advanced auto completion support.
 * **Event Simulator and Debugger** to test Siddhi Applications.
 * **Graphical Query Editor** with drag and drop query building support.
 
-<iframe style="float: right;"  width="540" height="225" src="https://www.youtube.com/embed/U5yYyUTx2bA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 ## Siddhi 4.x Versions
 
 * **Latest Stable Release of Siddhi v4.x** : [**v4.5.11**](api/latest/) _built on Java 8. (Recommended for production use)_
-     
-    Find the released Siddhi libraries <a target="_blank" href="http://maven.wso2.org/nexus/content/groups/wso2-public/org/wso2/siddhi/">here</a>.
-
-    <a target="_blank" href="http://siddhi.io/documentation/siddhi-4.x/query-guide-4.x/">Siddhi Query Guide</a> for Siddhi v4.x.x
-    
-    <a target="_blank" href="http://siddhi.io/documentation/siddhi-4.x/architecture-4.x/">Architecture</a> of Siddhi v4.x.x
-
+* Get all released Siddhi libraries from <a target="_blank" href="download/">here</a>.
 
 ## Contact us 
 * Post your questions with the <a target="_blank" href="http://stackoverflow.com/search?q=siddhi">"Siddhi"</a> tag in <a target="_blank" href="http://stackoverflow.com/search?q=siddhi">Stackoverflow</a>. 
@@ -137,7 +133,7 @@ Get started with Siddhi 4.x in a few minutes by following the <a target="_blank"
 * Engage in community development through [Siddhi dev Google group](https://groups.google.com/forum/#!forum/siddhi-dev). 
 
 ## How to Contribute
-Find the detail information on asking questions, providing feedback, reporting issues, building and contributing code on [How to contribute?](https://siddhi-io.github.io/siddhi/contribution/) section.
+Find the detail information on asking questions, providing feedback, reporting issues, building and contributing code on [How to contribute?](contribution/) section.
 
 ## Support 
 [WSO2](https://wso2.com/) provides production, and query support for Siddhi and its <a target="_blank" href="https://siddhi-io.github.io/siddhi/extensions/">extensions</a>. For more details contact via <a target="_blank" href="http://wso2.com/support?utm_source=gitanalytics&utm_campaign=gitanalytics_Jul17">http://wso2.com/support/</a>
