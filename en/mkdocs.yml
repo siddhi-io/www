@@ -99,10 +99,11 @@ nav:
   - Features:
     - features.md
   - Download:
-    - download.md
+    - Download: download.md
+    - Release Notes: release-notes.md
   - Quick Start:
     - quckstart.md
-  - Developer Guide:
+  - Guides:
     - User Guide: user-guide.md
     - Query Guide: query-guide.md
     - Siddhi core API Guide: api/latest.md

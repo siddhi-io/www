@@ -1,5 +1,11 @@
 # Siddhi 4.x User Guide
 
+Siddhi 4.x can run in multiple environments as follows.
+
+* [Using Siddhi in WSO2 Stream Processor](#using-siddhi-in-wso2-stream-processor)
+* [As a Java Library](#using-siddhi-as-a-java-library)
+* [As a Python Library](#using-siddhi-as-a-python-library)
+
 ## **Using Siddhi in <a target="_blank" href="https://wso2.com/analytics-and-stream-processing/">WSO2 Stream Processor</a>**
 
 * You can use Siddhi in the latest <a target="_blank" href="https://wso2.com/analytics-and-stream-processing/">WSO2 Stream 
@@ -13,7 +19,7 @@ convert them to OSGi bundles by following <a target="_blank" href="https://docs.
 
 * Refer <a target="_blank" href="https://docs.wso2.com/display/SP4xx">WSO2 Stream Processor Documentation</a> for more information.
  
-## **Using Siddhi as a java library**
+## **Using Siddhi as a Java library**
 
 * To embed Siddhi as a java library into your project and to get a working sample, follow the bellow steps:
 
@@ -133,7 +139,7 @@ Find the executable Java code of this example [here](https://github.com/siddhi-i
 
 For more code examples, see [quick start samples for Siddhi](https://github.com/siddhi-io/siddhi/tree/4.x.x/modules/siddhi-samples/quick-start-samples).
 
-## **Using Siddhi with Python**
+## **Using Siddhi as a Python library**
 
 To use Siddhi in Python and to get a working sample follow the bellow sample:
 
