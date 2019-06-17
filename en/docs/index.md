@@ -112,29 +112,13 @@ Get started with Siddhi 4.x in a few minutes by following the <a target="_blank"
 
 ## Development Environment 
 
-<table style="border: 0px">
-    <tbody>
-    <tr>
-        <td style="vertical-align: center">
-            <p>[WSO2 Stream Processor](https://wso2.com/analytics-and-stream-processing/) provides features to develop and test stream processing applications:</p> 
-            <ul>
-              <li><b>Text Query Editor</b> with syntax highlighting and advanced auto completion support.</li>
-              <li><b>Event Simulator and Debugger</b> to test Siddhi Applications.</li>
-              <li><b>Graphical Query Editor</b> with drag and drop query building support.</li>
-            </ul>  
-        </td>
-        <td style="vertical-align: center">
-           <iframe width="1083" height="450" src="https://www.youtube.com/embed/U5yYyUTx2bA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-       </td>
-    </tr>
-</tbody></table>
-
 [WSO2 Stream Processor](https://wso2.com/analytics-and-stream-processing/) provides features to develop and test stream processing applications : 
 
 * **Text Query Editor** with syntax highlighting and advanced auto completion support.
 * **Event Simulator and Debugger** to test Siddhi Applications.
 * **Graphical Query Editor** with drag and drop query building support.
 
+<iframe width="80%" src="https://www.youtube.com/embed/U5yYyUTx2bA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Siddhi 4.x Versions
 
