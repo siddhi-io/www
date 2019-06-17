@@ -38,29 +38,74 @@ Siddhi can run as an embedded [Java](documentation/siddhi-5.x/siddhi-as-a-java-l
 
 ## Supported Use Cases 
 
+<div class="md-typeset__table"><table>
+    <tbody><tr>
+        <th>Streaming Data Integration</th>
+        <th>Streaming Data Analytics</th>
+        <th>Alerts & Notifications</th>
+        <th>Adaptive Decision Making</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">
+            <ul>
+              <li>Retrieve data from various event sources (Kafka, JMS, HTTP, CDC, etc).</li>
+              <li>Transform events to and from multiple event formats (JSON, XML, Text, Avro, etc).</li>
+              <li>Data preprocessing & cleaning.</li>
+              <li>Join multiple data streams.</li>
+              <li>Integrate streaming data with databases (RDBMS, Cassandra, HBase, Redis, etc) and services.</li>
+            </ul>  
+        </td>
+        <td style="vertical-align: top">
+            <ul>
+              <li>Calculate aggregations over windows such as time, length, and session.</li>
+              <li>Long duration time series  aggregations with granularities from seconds to years.</li>
+              <li>Analyze trends (rise, fall, turn, tipple bottom).</li>
+              <li>Realtime predictions with pre trained machine learning models (PMML, Tensorflow).</li>
+              <li>Learn and predict at runtime using online machine learning models.</li>
+            </ul>  
+       </td>
+        <td style="vertical-align: top">
+            <ul>
+              <li>Generate alerts based on thresholds.</li>
+              <li>Correlate data to find missing and erroneous events.</li>
+              <li>Detect temporal event patterns.</li>
+              <li>Publish data to multiple event sinks (Email, messaging systems, services, databases).</li>
+            </ul>  
+        </td>
+        <td style="vertical-align: top">
+            <ul>
+              <li>Static rule processing.</li>
+              <li>Adaptive stateful rule processing.</li>
+              <li>Decision making through synchronous RPC.</li>
+              <li>Query state from tables, windows and aggregations.</li>
+            </ul>  
+        </td>
+    </tr>
+</tbody></table></div>
+
 * **Streaming Data Integration**
-    * Retrieve data from various event sources (Kafka, JMS, HTTP, CDC, etc)
-    * Transform events to and from multiple event formats (JSON, XML, Text, Avro, etc)
-    * Data preprocessing & cleaning
-    * Join multiple data streams
-    * Integrate streaming data with databases (RDBMS, Cassandra, HBase, Redis, etc) and services
+    * Retrieve data from various event sources (Kafka, JMS, HTTP, CDC, etc).
+    * Transform events to and from multiple event formats (JSON, XML, Text, Avro, etc).
+    * Data preprocessing & cleaning.
+    * Join multiple data streams.
+    * Integrate streaming data with databases (RDBMS, Cassandra, HBase, Redis, etc) and services.
 
 * **Streaming Data Analytics**
-    * Calculate aggregations over windows such as time, length, and session
+    * Calculate aggregations over windows such as time, length, and session.
     * Long duration time series  aggregations with granularities from seconds to years. 
-    * Analyze trends (rise, fall, turn, tipple bottom)
-    * Realtime predictions with pre trained machine learning models (PMML, Tensorflow)
-    * Learn and predict at runtime using online machine learning models
+    * Analyze trends (rise, fall, turn, tipple bottom).
+    * Realtime predictions with pre trained machine learning models (PMML, Tensorflow).
+    * Learn and predict at runtime using online machine learning models.
 
 * **Alerts & Notifications**
-    * Generate alerts based on thresholds
-    * Correlate data to find missing and erroneous events
-    * Detect temporal event patterns
-    * Publish data to multiple event sinks (Email, messaging systems, services, databases)
+    * Generate alerts based on thresholds.
+    * Correlate data to find missing and erroneous events.
+    * Detect temporal event patterns.
+    * Publish data to multiple event sinks (Email, messaging systems, services, databases).
 
 * **Adaptive Decision Making** 
-    * Static rule processing
-    * Adaptive stateful rule processing
+    * Static rule processing.
+    * Adaptive stateful rule processing.
     * Decision making through synchronous RPC.
     * Query state from tables, windows and aggregations.
       
