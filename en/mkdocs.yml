@@ -96,15 +96,15 @@ markdown_extensions:
 
 # Navigation
 nav:
-  - Welcome to Siddhi: index.md
+  - Siddhi 5.0: index.md
   - Features:
     - features.md
   - Download:
     - download.md
   - Quick Start:
-    - quckstart-5.x.md
+    - quckstart.md
   - Developer Guide:
-    - Query Guide: query-guide-5.x.md
+    - Query Guide: query-guide.md
     - API Guide: api-5.0.0.md
     - Extension Guide: extensions.md
   - Deployment Guide:
