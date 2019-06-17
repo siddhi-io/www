@@ -9,7 +9,7 @@ Siddhi 5.0 ([Distribution 0.1.0](https://github.com/siddhi-io/distribution/relea
 * [Siddhi Tooling](https://github.com/siddhi-io/distribution/releases/download/v0.1.0/siddhi-tooling-0.1.0.zip)
 * [Siddhi Runner](https://github.com/siddhi-io/distribution/releases/download/v0.1.0/siddhi-runner-0.1.0.zip) 
 
-Refer the user guide to use [Siddhi as a Local Microservice](deployment/siddhi-as-a-local-microservice/)
+Refer the user guide to use [Siddhi as a Local Microservice](../deployment/siddhi-as-a-local-microservice/)
 
 ##Siddhi Docker 
 
@@ -19,7 +19,7 @@ Siddhi 5.0 (based on Distribution 0.1.0)
 * [Siddhi Runner - Alpine](https://hub.docker.com/r/siddhiio/siddhi-runner-alpine) 
 * [Siddhi Runner - Ubuntu](https://hub.docker.com/r/siddhiio/siddhi-runner-ubuntu) 
 
-Refer the user guide to use [Siddhi as a Docker Microservice](deployment/siddhi-as-a-docker-microservice/)
+Refer the user guide to use [Siddhi as a Docker Microservice](../deployment/siddhi-as-a-docker-microservice/)
 
 ##Siddhi Kubernetes 
 
@@ -27,7 +27,7 @@ Siddhi 5.0 (based on Distribution 0.1.0)
 
 * [Siddhi CRD](https://github.com/siddhi-io/siddhi-operator.git)
 
-Refer the user guide to use [Siddhi as Kubernetes Microservice](deployment/siddhi-as-a-kubernetes-microservice/)
+Refer the user guide to use [Siddhi as Kubernetes Microservice](../deployment/siddhi-as-a-kubernetes-microservice/)
 
 ##Siddhi Libs 
 
@@ -38,5 +38,5 @@ Siddhi 5.0.x
 * [Siddhi Query Compiler](https://mvnrepository.com/artifact/io.siddhi/siddhi-annotations?repo=wso2-public)
 * [Siddhi Annotation](https://mvnrepository.com/artifact/io.siddhi/siddhi-query-compiler?repo=wso2-public)
 
-Refer the user guide to use [Siddhi as a Java library](deployment/siddhi-as-a-java-library/)
+Refer the user guide to use [Siddhi as a Java library](../deployment/siddhi-as-a-java-library/)
 
