@@ -30,24 +30,24 @@ template: templates/single-column.html
   [![codecov](https://codecov.io/gh/siddhi-io/siddhi/branch/master/graph/badge.svg)](https://codecov.io/gh/siddhi-io/siddhi)
   [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-[Geting Started](documentation/siddhi-5.x/quckstart-5.x/) | [Download](https://siddhi-io.github.io/siddhi/download/) | [User Guide](documentation/siddhi-5.x/user-guide-introduction-5.x/) | [Contribute](https://siddhi-io.github.io/siddhi/contribution/)
+[Geting Started](../quckstart/) | [Download](https://siddhi-io.github.io/siddhi/download/) | [User Guide](../user-guide-introduction/) | [Contribute](https://siddhi-io.github.io/siddhi/contribution/)
 
 Siddhi is a cloud native **_Streaming_** and **_Complex Event Processing_** engine that understands **Streaming SQL queries** in order to capture events from diverse data sources, process them, detect complex conditions, and publish output to various endpoints in real time.
 
-Siddhi can run as an embedded [Java library](documentation/siddhi-5.x/siddhi-as-a-java-library-5.x/), and as a microservice on [bare metal, VM](documentation/siddhi-5.x/siddhi-as-a-local-microservice-5.x/), [Docker](documentation/siddhi-5.x/siddhi-as-a-docker-microservice-5.x/) and natively in [Kubernetes](documentation/siddhi-5.x/siddhi-as-a-kubernetes-microservice-5.x/). It also has a [graphical and text editor](#siddhi-development-environment) for building Streaming Data Integration and Streaming Analytics applications.
+Siddhi can run as an embedded [Java library](../siddhi-as-a-java-library/), and as a microservice on [bare metal, VM](../siddhi-as-a-local-microservice/), [Docker](../siddhi-as-a-docker-microservice/) and natively in [Kubernetes](../siddhi-as-a-kubernetes-microservice/). It also has a [graphical and text editor](#siddhi-development-environment) for building Streaming Data Integration and Streaming Analytics applications.
 
 ## Distributions
 
-<a href="documentation/siddhi-5.x/siddhi-as-a-kubernetes-microservice-5.x/" rel="nofollow">
+<a href="../siddhi-as-a-kubernetes-microservice/" rel="nofollow">
  <img src="https://raw.githubusercontent.com/siddhi-io/siddhi/master/docs/images/distributions/kubernetes.png?raw=true" alt="Kubernetes" width="19%">
 </a>
-<a href="documentation/siddhi-5.x/siddhi-as-a-docker-microservice-5.x/" rel="nofollow">
+<a href="../siddhi-as-a-docker-microservice/" rel="nofollow">
  <img src="https://raw.githubusercontent.com/siddhi-io/siddhi/master/docs/images/distributions/docker.png?raw=true" alt="Docker" width="19%">
 </a>
-<a href="documentation/siddhi-5.x/siddhi-as-a-local-microservice-5.x/" rel="nofollow">
+<a href="../siddhi-as-a-local-microservice/" rel="nofollow">
  <img src="https://raw.githubusercontent.com/siddhi-io/siddhi/master/docs/images/distributions/binary.png?raw=true" alt="Binary" width="19%">
 </a>
-<a href="documentation/siddhi-5.x/siddhi-as-a-java-library-5.x/" rel="nofollow">
+<a href="../siddhi-as-a-java-library/" rel="nofollow">
  <img src="https://raw.githubusercontent.com/siddhi-io/siddhi/master/docs/images/distributions/java.png?raw=true" alt="Java" width="19%">
 </a>
 <a href="contribution/#obtaining-the-source-code-and-building-the-project" rel="nofollow">
@@ -112,7 +112,7 @@ If you are a Siddhi user, we would love to hear more on how you use Siddhi? Plea
 
 ## Get Started!
 
-Get started with Siddhi in a few minutes by following the <a target="_blank" href="documentation/siddhi-5.x/quckstart-5.x/">Siddhi Quick Start Guide</a>
+Get started with Siddhi in a few minutes by following the <a target="_blank" href="../quckstart/">Siddhi Quick Start Guide</a>
 
 ## Siddhi Development Environment 
 
@@ -142,9 +142,9 @@ Install <a target="_blank" href="https://siddhi-io.github.io/siddhi-plugin-idea/
      
     Find the released Siddhi libraries <a target="_blank" href="https://mvnrepository.com/artifact/io.siddhi/">here</a>.
 
-    <a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/">Siddhi Query Guide</a> for Siddhi v5.x.x
+    <a target="_blank" href="http://siddhi.io/../query-guide/">Siddhi Query Guide</a> for Siddhi v5.x.x
     
-    <a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/architecture-5.x/">Architecture</a> of Siddhi v5.x.x
+    <a target="_blank" href="http://siddhi.io/../architecture/">Architecture</a> of Siddhi v5.x.x
 
 * **Latest Stable Release of Siddhi v4.x.x** : **v4.4.8** _built on Java 8. (Recommended for production use)_
      

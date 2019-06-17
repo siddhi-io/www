@@ -1,7 +1,4 @@
-# Siddhi 5.x Streaming SQL Guide
-
-!!! info
-    Please find the [Siddhi 4.x Streaming SQL Guide here](https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/)
+# Siddhi 5.0 Streaming SQL Guide
 
 ## Introduction
 

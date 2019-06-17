@@ -16,10 +16,10 @@ For writing Siddhi Application using Streaming SQL refer [Siddhi Query Guide](..
 
 Siddhi can run in multiple environments as follows.
 
-* [As a Java Library](siddhi-as-a-java-library/)
-* [As a Local Microservice](siddhi-as-a-local-microservice/)
-* [As a Docker Microservice](siddhi-as-a-docker-microservice/)
-* [As a Kubernetes Microservice](siddhi-as-a-kubernetes-microservice/)
+* [As a Java Library](../siddhi-as-a-java-library/)
+* [As a Local Microservice](../siddhi-as-a-local-microservice/)
+* [As a Docker Microservice](../siddhi-as-a-docker-microservice/)
+* [As a Kubernetes Microservice](../siddhi-as-a-kubernetes-microservice/)
 * As a Python Library _(WIP)_
 
 ## System Requirements

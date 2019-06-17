@@ -62,7 +62,7 @@ This can be created using a SiddhiProcess YAML file as given below.
 <script src="https://gist.github.com/BuddhiWathsala/f029d671f4f6d7719dce59500b970815.js"></script>
 
 !!! Tip "Siddhi Tooling"
-    You can also use the powerful [Siddhi Editor](../quckstart-5.x/#3-using-siddhi-for-the-first-time) to implement and test steam processing applications. 
+    You can also use the powerful [Siddhi Editor](../quckstart/#3-using-siddhi-for-the-first-time) to implement and test steam processing applications. 
 
 !!! Info "Configuring Siddhi"
     To configure databases, extensions, authentication, periodic state persistence, and statistics for Siddhi as Kubernetes Microservice refer [Siddhi Config Guide](../config-guide-5.x/). 
@@ -348,7 +348,7 @@ Here we will creating a very simple Siddhi application as follows, that consumes
 <script src="https://gist.github.com/BuddhiWathsala/8687a2b73bb003a8ae7bcf3d3f63b78e.js"></script>
 
 !!! Tip "Siddhi Tooling"
-    You can also use the powerful [Siddhi Editor](../quckstart-5.x/#3-using-siddhi-for-the-first-time) to implement and test steam processing applications. 
+    You can also use the powerful [Siddhi Editor](../quckstart/#3-using-siddhi-for-the-first-time) to implement and test steam processing applications. 
 
 Save the above Siddhi App file as `MonitorApp.siddhi`, and use this file to create a Kubernetes config map with the name `monitor-app-cm`.
 This can be achieved by running the following command. 
