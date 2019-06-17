@@ -95,7 +95,7 @@ markdown_extensions:
 
 # Navigation
 nav:
-  - Welcome to Siddhi 4.x: index.md
+  - Siddhi 4.x: index.md
   - Features:
     - features.md
   - Download:
