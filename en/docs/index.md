@@ -40,10 +40,10 @@ Siddhi can run as an embedded [Java](documentation/siddhi-5.x/siddhi-as-a-java-l
 
 <div class="md-typeset__table"><table>
     <tbody><tr>
-        <th>Streaming Data Integration</th>
-        <th>Streaming Data Analytics</th>
-        <th>Alerts & Notifications</th>
-        <th>Adaptive Decision Making</th>
+        <th width="25%">Streaming Data Integration</th>
+        <th width="25%">Streaming Data Analytics</th>
+        <th width="25%">Alerts & Notifications</th>
+        <th width="25%">Adaptive Decision Making</th>
     </tr>
     <tr>
         <td style="vertical-align: top">
@@ -69,6 +69,7 @@ Siddhi can run as an embedded [Java](documentation/siddhi-5.x/siddhi-as-a-java-l
               <li>Generate alerts based on thresholds.</li>
               <li>Correlate data to find missing and erroneous events.</li>
               <li>Detect temporal event patterns.</li>
+              <li>Detect non-occurrence of events.</li>
               <li>Publish data to multiple event sinks (Email, messaging systems, services, databases).</li>
             </ul>  
         </td>
@@ -78,6 +79,7 @@ Siddhi can run as an embedded [Java](documentation/siddhi-5.x/siddhi-as-a-java-l
               <li>Adaptive stateful rule processing.</li>
               <li>Decision making through synchronous RPC.</li>
               <li>Query state from tables, windows and aggregations.</li>
+              <li>Static and online machine learning based decision making.</li>
             </ul>  
         </td>
     </tr>
