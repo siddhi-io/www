@@ -23,7 +23,7 @@ Refer the user guide to use [Siddhi as a Docker Microservice](../deployment/sidd
 
 ##Siddhi Kubernetes 
 
-Siddhi 5.0 (based on Distribution 0.1.0)
+Siddhi 5.0 (based on Distribution 0.1.1)
 
 * [Siddhi CRD](https://github.com/siddhi-io/siddhi-operator.git)
 
@@ -33,10 +33,10 @@ Refer the user guide to use [Siddhi as Kubernetes Microservice](../deployment/si
 
 Siddhi 5.0.x 
 
-* [Siddhi Core](https://mvnrepository.com/artifact/io.siddhi/siddhi-core?repo=wso2-public)
-* [Siddhi Query API](https://mvnrepository.com/artifact/io.siddhi/siddhi-query-api?repo=wso2-public)
-* [Siddhi Query Compiler](https://mvnrepository.com/artifact/io.siddhi/siddhi-annotations?repo=wso2-public)
-* [Siddhi Annotation](https://mvnrepository.com/artifact/io.siddhi/siddhi-query-compiler?repo=wso2-public)
+* [Siddhi Core](https://mvnrepository.com/artifact/io.siddhi/siddhi-core)
+* [Siddhi Query API](https://mvnrepository.com/artifact/io.siddhi/siddhi-query-api)
+* [Siddhi Query Compiler](https://mvnrepository.com/artifact/io.siddhi/siddhi-annotations)
+* [Siddhi Annotation](https://mvnrepository.com/artifact/io.siddhi/siddhi-query-compiler)
 
 Refer the user guide to use [Siddhi as a Java library](../deployment/siddhi-as-a-java-library/)
 
