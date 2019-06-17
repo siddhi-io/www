@@ -8,9 +8,9 @@ A self contained stream processing logic can be written as a Siddhi Application 
 
 It is recommended to have different business usecase in separate Siddhi Applications, where it allow users to selectively deploy the applications based on business needs.
 It is also recommended to move the repeated steam processing logic that exist in multiple Siddhi Applications, such as message retrieval and preprocessing, to a common Siddhi Application, whereby reducing code duplication and improving maintainability.
-In this case, to pass the events from one Siddhi App to another, configure them using a common topic using [In-Memory Sink](http://siddhi-io.github.io/siddhi/api/latest/#inmemory-sink) and [In-Memory Source](http://siddhi-io.github.io/siddhi/api/latest/#inmemory-source).
+In this case, to pass the events from one Siddhi App to another, configure them using a common topic using [In-Memory Sink](../../api/latest/#inmemory-sink) and [In-Memory Source](../../api/latest/#inmemory-source).
 
-For writing Siddhi Application using Streaming SQL refer [Siddhi Query Guide](../query-guide/)
+For writing Siddhi Application using Streaming SQL refer [Siddhi Query Guide](../../query-guide/)
 
 ## Execution Environments
 

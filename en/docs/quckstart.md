@@ -245,7 +245,7 @@ implementations done in Siddhi  to reduce the memory consumption. For more infor
 
 ## 7. Running streaming application as a microservice
 
-This step we will run above developed Siddhi application as a microservice utilizing Docker. For other available options please refer [here](../user-guide-introduction/#execution-environments). Here we will use siddhi-runner docker distribution. Follow below steps.
+This step we will run above developed Siddhi application as a microservice utilizing Docker. For other available options please refer [here](../deployment/introduction/#execution-environments). Here we will use siddhi-runner docker distribution. Follow below steps.
 
 * Install docker in your machine and start the daemon.([https://docs.docker.com/install/](https://docs.docker.com/install/))
 * Pull the latest siddhi-runner image by executing below command
