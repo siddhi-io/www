@@ -118,7 +118,7 @@ Get started with Siddhi 4.x in a few minutes by following the <a target="_blank"
 * **Event Simulator and Debugger** to test Siddhi Applications.
 * **Graphical Query Editor** with drag and drop query building support.
 
-<iframe width="80%" src="https://www.youtube.com/embed/U5yYyUTx2bA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe style="float: right;"  width="540" height="225" src="https://www.youtube.com/embed/U5yYyUTx2bA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Siddhi 4.x Versions
 
