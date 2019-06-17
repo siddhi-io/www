@@ -40,10 +40,10 @@ Siddhi can run as an embedded [Java](documentation/siddhi-5.x/siddhi-as-a-java-l
 
 <div class="md-typeset__table"><table>
     <tbody><tr>
-        <th width="25%">Streaming Data Integration</th>
-        <th width="25%">Streaming Data Analytics</th>
-        <th width="25%">Alerts & Notifications</th>
-        <th width="25%">Adaptive Decision Making</th>
+        <th width="25%" align="center">Streaming Data Integration</th>
+        <th width="25%" align="center">Streaming Data Analytics</th>
+        <th width="25%" align="center">Alerts & Notifications</th>
+        <th width="25%" align="center">Adaptive Decision Making</th>
     </tr>
     <tr>
         <td style="vertical-align: top">
