@@ -343,7 +343,7 @@ The aggregations results are calculated by [IncrementalAttributeAggregator](http
 and stored in such a way that allows proper data composition upon retrial, for example, `avg()` is stored as `sum` and `count`. 
 This allows data composition across various granularity time durations when retrieving, for example, results for `avg()` composed by returning sum of `sum`s divided by the sum of `count`s. 
 Aggregation can also work in a distributed manner and across system restarts. This is done by storing node specific IDs and granularity time duration information in the tables. 
-To make sure tables do not go out of memory [IncrementalDataPurging](https://github.com/siddhi-io/siddhi/blob/master/modules/siddhi-core/src/main/java/io/siddhi/core/aggregation/IncrementalDataPurging.java) 
+To make sure tables do not go out of memory [IncrementalDataPurger](https://github.com/siddhi-io/siddhi/blob/master/modules/siddhi-core/src/main/java/io/siddhi/core/aggregation/IncrementalDataPurger.java) 
 is used to purge old data. 
 
 When aggregation is queried through join or store query for a given time granularity it reads the data 
