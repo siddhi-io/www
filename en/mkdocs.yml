@@ -110,11 +110,11 @@ nav:
     - Extension Guide: extensions.md
     - Architecture Guide: architecture.md
   - Deployment Guide:
-    - Introduction: deployment/user-guide-introduction-5.x.md
-    - Siddhi Java library: deployment/siddhi-as-a-java-library-5.x.md
-    - Siddhi Local Microservice: deployment/siddhi-as-a-local-microservice-5.x.md
-    - Siddhi Docker Microservice: deployment/siddhi-as-a-docker-microservice-5.x.md
-    - Siddhi Kubernetes Microservice: deployment/siddhi-as-a-kubernetes-microservice-5.x.md
-    - Configuration Guide: deployment/config-guide-5.x.md
+    - Introduction: deployment/user-guide-introduction.md
+    - Siddhi Java library: deployment/siddhi-as-a-java-library.md
+    - Siddhi Local Microservice: deployment/siddhi-as-a-local-microservice.md
+    - Siddhi Docker Microservice: deployment/siddhi-as-a-docker-microservice.md
+    - Siddhi Kubernetes Microservice: deployment/siddhi-as-a-kubernetes-microservice.md
+    - Configuration Guide: deployment/config-guide.md
   - Contribution:
     - contribution.md
