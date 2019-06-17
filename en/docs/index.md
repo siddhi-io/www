@@ -91,8 +91,6 @@ Get started with Siddhi 4.x in a few minutes by following the <a target="_blank"
 
 ## Development Environment 
 
-**Siddhi Tooling**
-
 [WSO2 Stream Processor](https://wso2.com/analytics-and-stream-processing/) provides features to develop and test stream processing applications : 
 
 * **Text Query Editor** with syntax highlighting and advanced auto completion support.
