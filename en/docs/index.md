@@ -135,7 +135,7 @@ If you are a Siddhi user, we would love to hear more on how you use Siddhi? Plea
 
 ## Get Started!
 
-Get started with Siddhi in a few minutes by following the <a target="_blank" href="../quckstart/">Siddhi Quick Start Guide</a>
+Get started with Siddhi in a few minutes by following the <a target="_blank" href="quckstart/">Siddhi Quick Start Guide</a>
 
 ## Siddhi Development Environment 
 
