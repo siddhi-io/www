@@ -100,17 +100,21 @@ nav:
   - Features:
     - features.md
   - Download:
-    - download.md
+    - Download: download.md
+    - Release Notes: release-notes.md
   - Quick Start:
     - quckstart.md
   - Developer Guide:
     - Query Guide: query-guide.md
-    - API Guide: api-5.0.0.md
+    - API Guide: api/latest.md
     - Extension Guide: extensions.md
+    - Architecture Guide: architecture.md
   - Deployment Guide:
-    - Introduction: user-guide/user-guide-introduction-5.x.md
-    - Siddhi Java library: user-guide/siddhi-as-a-java-library-5.x.md
-    - Siddhi Local Microservice: user-guide/siddhi-as-a-local-microservice-5.x.md
-    - Siddhi Docker Microservice: user-guide/siddhi-as-a-docker-microservice-5.x.md
-    - Siddhi Kubernetes Microservice: user-guide/siddhi-as-a-kubernetes-microservice-5.x.md
-    - Configuration Guide: config-guide-5.x.md
+    - Introduction: deployment/user-guide-introduction-5.x.md
+    - Siddhi Java library: deployment/siddhi-as-a-java-library-5.x.md
+    - Siddhi Local Microservice: deployment/siddhi-as-a-local-microservice-5.x.md
+    - Siddhi Docker Microservice: deployment/siddhi-as-a-docker-microservice-5.x.md
+    - Siddhi Kubernetes Microservice: deployment/siddhi-as-a-kubernetes-microservice-5.x.md
+    - Configuration Guide: deployment/config-guide-5.x.md
+  - Contribution:
+    - contribution.md
