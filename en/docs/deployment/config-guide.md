@@ -122,13 +122,13 @@ siddhi:
 ```
 For each separate refs you want to configure, add a sub-section named `ref` under the `refs` subsection.
 
-The ref configured in Siddhi Configuration yaml can be referred from a Siddhi Application [Source](../query-guide/#source) as follows.
+The ref configured in Siddhi Configuration yaml can be referred from a Siddhi Application [Source](../../query-guide/#source) as follows.
 ```
 @Source(ref='<name>',
         @map(type='json', @attributes( name='$.name', amount='$.quantity')))
 define stream SweetProductionStream (name string, amount double);
 ```
-Similarly [Sinks](../query-guide/#sink) and [Store Tables](../query-guide/#store) can also be configured and referred from Siddhi Apps.
+Similarly [Sinks](../../query-guide/#sink) and [Store Tables](../../query-guide/#store) can also be configured and referred from Siddhi Apps.
 
 For each separate refs you want to configure, add a sub-section named `ref` under the `refs` subsection.
 
@@ -252,7 +252,7 @@ A sample on adding `siddhi-io-http` extension to the Maven `pom.xml` is as follo
 </dependency>   
 ```
 
-Refer [guide](siddhi-as-a-java-library/) for more details on using Siddhi as a Java Library.
+Refer [guide](../siddhi-as-a-java-library/) for more details on using Siddhi as a Java Library.
 
 ### Adding to Siddhi Local Microservice
 
@@ -265,7 +265,7 @@ Since Local Microservice is OSGi-based, when adding libraries/drivers they need 
 !!! Tip "Converting Jars to OSGi Bundles.."
     If the database driver is not an OSGi bundle, then it should be converted to OSGi. Please refer [Converting Jars to OSGi Bundles](#converting-jars-to-osgi-bundles) documentation for details.
 
-Refer [guide](siddhi-as-a-local-microservice/) for more details on using Siddhi as Local Microservice.
+Refer [guide](../siddhi-as-a-local-microservice/) for more details on using Siddhi as Local Microservice.
 
 ### Adding to Siddhi Docker Microservice
 
@@ -283,13 +283,13 @@ The necessary OSGi jars and extensions that need to be added to the Siddhi Docke
 !!! Tip "Converting Jars to OSGi Bundles"
     If the database driver is not an OSGi bundle, then it should be converted to OSGi. Please refer [Converting Jars to OSGi Bundles](#converting-jars-to-osgi-bundles) documentation for details.
 
-Refer [guide](siddhi-as-a-docker-microservice/) for more details on using Siddhi as Docker Microservice.
+Refer [guide](../siddhi-as-a-docker-microservice/) for more details on using Siddhi as Docker Microservice.
 
 ### Adding to Siddhi Kubernetes Microservice
 
 To add or update Siddhi extensions and/or third-party dependencies, a custom docker image has to be created using the steps described in [Adding to Siddhi Docker Microservice](#adding-to-siddhi-docker-microservice) documentation including the necessary extensions and dependencies. The created image can be then referenced in the `sepc.pod` subsection in the `SiddhiProcess` Kubernetes artifact created to deploy Siddhi in Kubernetes.
 
-For details on creating the Kubernetes artifacts refer [Using Siddhi as Kubernetes Microservice](siddhi-as-a-kubernetes-microservice/) documentation.
+For details on creating the Kubernetes artifacts refer [Using Siddhi as Kubernetes Microservice](../siddhi-as-a-kubernetes-microservice/) documentation.
 
 ## Configuring Statistics
 
@@ -298,7 +298,7 @@ For details on creating the Kubernetes artifacts refer [Using Siddhi as Kubernet
 
 Siddhi uses [dropwizard](https://metrics.dropwizard.io/) metrics library to calculate Siddhi and JVM statistics, and it can report the results via JMX Mbeans, console or database.
 
-To enable statistics, the relevant configuration should be added to the Siddhi Configuration yaml as follows, and at the same time the statistics collection should be enabled in the Siddhi Application which is being monitored. Refer [Siddhi Application Statistics](../query-guide/#statistics) documentation for enabling Siddhi Application level statistics.
+To enable statistics, the relevant configuration should be added to the Siddhi Configuration yaml as follows, and at the same time the statistics collection should be enabled in the Siddhi Application which is being monitored. Refer [Siddhi Application Statistics](../../query-guide/#statistics) documentation for enabling Siddhi Application level statistics.
 
 To enable statistics the relevant matrics related configurations should be added under `wso2.metrics` section in the Siddhi Configurations yaml file, and pass that during startup.
 
