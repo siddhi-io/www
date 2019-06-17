@@ -1,4 +1,4 @@
-# Siddhi 5.x Quick Start Guide
+# Siddhi Quick Start Guide
 
 Siddhi is a 100% open source Streaming engine that listens to events from various data streams, detects complex conditions described via a Streaming SQL language, and triggers actions. It's highly optimized for performance and performs stream processing, complex event processing, streaming data integration, and adaptive intelligence for mission-critical systems.
 
@@ -18,7 +18,7 @@ This quick start guide contains the following six sections:
 Siddhi is an event driven system where all the data it consumes, processes and sends are modeled as events. Therefore Siddhi can play a vital part in any system built using event-driven architecture.   
 
 As Siddhi works with events first let's understand what an event is through an example. **If we consider the transactions carried out via an ATM as a data stream, one withdrawal from it can be considered an event**. This event contains data about the amount, time, account number etc. Many such transactions form a stream.
-![](../../images/quickstart/event-stream.png?raw=true "Event Stream")
+![](images/quickstart/event-stream.png?raw=true "Event Stream")
 Siddhi provides following functionalities,
 
 * Streaming data analytics<br/>
@@ -40,7 +40,7 @@ Siddhi provides following functionalities,
 
 Basically, Siddhi receives data event-by-event and processes them in real time to produce meaningful information.
 
-![](../../images/quickstart/siddhi-basic.png?raw=true "Siddhi Basic Representation")
+![](images/quickstart/siddhi-basic.png?raw=true "Siddhi Basic Representation")
 
 Using the above Siddhi can be used to solve may use-cases as follows:
 
@@ -53,7 +53,7 @@ Using the above Siddhi can be used to solve may use-cases as follows:
 
 ## 2. Overview of Siddhi architecture
 
-![](../../images/siddhi-overview.png?raw=true "Overview")
+![](images/siddhi-overview.png?raw=true "Overview")
 
 As indicated above, Siddhi can:
 
@@ -89,7 +89,7 @@ For Linux: ./tooling.sh
 
 After successfully starting the Siddhi Editor, the terminal should look like as shown below:
 
-![](../../images/quickstart/after-starting-editor.png?raw=true "Terminal after starting Siddhi Editor")
+![](images/quickstart/after-starting-editor.png?raw=true "Terminal after starting Siddhi Editor")
 
 After starting the Siddhi Editor, access the Editor GUI by visiting the following link in your browser.
 ```
@@ -97,19 +97,19 @@ http://localhost:9390/editor
 ```
 This takes you to the Siddhi Editor landing page.
 
-![](../../images/quickstart/siddhi-editor.png?raw=true "Siddhi Editor")
+![](images/quickstart/siddhi-editor.png?raw=true "Siddhi Editor")
 
 ## 4. Siddhi ‘Hello World!’
 
 Siddhi Streaming SQL is a rich, compact, easy-to-learn SQL-like language. **Let's first learn how to find the total** of values
 coming into a data stream and output the current running total value with each event. Siddhi has lot of in-built functions and extensions
 available for complex analysis, but to get started, let's use a simple one. You can find more information about the Siddhi grammar
-and its functions in the [Siddhi Query Guide](../query-guide-5.x/).
+and its functions in the [Siddhi Query Guide](../query-guide/).
 
 Let's **consider a scenario where we are loading cargo boxes into a ship**. We need to keep track of the total
 weight of the cargo added. **Measuring the weight of a cargo box when loading is considered an event**.
 
-![](../../images/quickstart/loading-ship.jpeg?raw=true "Loading Cargo on Ship")
+![](images/quickstart/loading-ship.jpeg?raw=true "Loading Cargo on Ship")
 
 We can write a Siddhi program for the above scenario which has **4 parts**.
 
@@ -123,7 +123,7 @@ _“HelloWorldApp”_
 The event data attributes are expressed as name and type pairs. Also we need to attach a_"source"_  to the 
 created stream so that we can send events to that stream. (**Source is the Siddhi way to consume streams from 
 external systems.** This particular `http` type source will spin up a HTTP endpoint and keep on listening to events 
-though that endpoint. To learn more about sources, see [source](../query-guide-5.x/#source))
+though that endpoint. To learn more about sources, see [source](../query-guide/#source))
 
 
 In this example:
@@ -144,7 +144,7 @@ define stream CargoStream (weight int);
 _totalWeight_ attribute that contains the total weight calculated so far. Here, we need to add a
 _"sink"_  to log the `OutputStream` so that we can observe the output values. (**Sink is the Siddhi way to publish
 streams to external systems.** This particular `log` type sink just logs the stream events. To learn more about sinks, see
-[sink](../query-guide-5.x/#sink))
+[sink](../query-guide/#sink))
 ```
 @sink(type='log', prefix='LOGGER')
 define stream OutputStream(weight int, totalWeight long);
@@ -164,7 +164,7 @@ select weight, sum(weight) as totalWeight
 insert into OutputStream;
 ```
 Final Siddhi application in the editor will look like below.
-![](../../images/quickstart/hello-query.png?raw=true "Hello World in Stream Processor Studio")
+![](images/quickstart/hello-query.png?raw=true "Hello World in Stream Processor Studio")
 
 You can copy the final Siddhi app from below.
 <script src="https://gist.github.com/tishan89/dafb25a494add587b7259c077ac49914.js"></script>
@@ -177,7 +177,7 @@ The Siddhi Editor has in-built support to simulate events. You can do it via the
 panel at the left of the Siddhi Editor. You should save your _HelloWorldApp_ by browsing to **File** ->
 **Save** before you run event simulation. Then click  **Event Simulator** and configure it as shown below.
 
-![](../../images/quickstart/event-simulation.png?raw=true "Simulating Events in Stream Processor Studio")
+![](images/quickstart/event-simulation.png?raw=true "Simulating Events in Stream Processor Studio")
 
 **Step 1 — Configurations:**
 
@@ -194,7 +194,7 @@ _“HelloWorldApp.siddhi Started Successfully!”_
 You can see a log that contains _“outputData=[2, 2]”_. Click **Send** again and observe a log with
 _“outputData=[2, 4]”_. You can change the value of the weight and send it to see how the sum of the weight is updated.
 
-![](../../images/quickstart/log.png?raw=true "Terminal after sending 2 twice")
+![](images/quickstart/log.png?raw=true "Terminal after sending 2 twice")
 
 Bravo! You have successfully completed creating Siddhi Hello World!
 
@@ -205,7 +205,7 @@ This section will improve our Siddhi app to demonstrates how to carry out **temp
 Up to this point, we have been carrying out the processing by having only the running sum value in-memory.
 No events were stored during this process.
 
-[Window processing](../query-guide-5.x/#window)
+[Window processing](../query-guide/#window)
 is a method that allows us to store some events in-memory for a given period so that we can perform operations
 such as calculating the average, maximum, etc values within them.
 
@@ -213,7 +213,7 @@ Let's imagine that when we are loading cargo boxes into the ship **we need to ke
 the recently loaded boxes** so that we can balance the weight across the ship.
 For this purpose, let's try to find the **average weight of last three boxes** of each event.
 
-![](../../images/quickstart/siddhi-windows.png?raw=true "Terminal after sending 2 twice")
+![](images/quickstart/siddhi-windows.png?raw=true "Terminal after sending 2 twice")
 
 For window processing, we need to modify our query as follows:
 ```
@@ -241,11 +241,11 @@ cargo events.
 
 It is also notable that the defined `length window` only keeps 3 events in-memory. When the 4th event arrives, the
 first event in the window is removed from memory. This ensures that the memory usage does not grow beyond a specific limit. There are also other
-implementations done in Siddhi  to reduce the memory consumption. For more information, see [Siddhi Architecture](../architecture-5.x/).
+implementations done in Siddhi  to reduce the memory consumption. For more information, see [Siddhi Architecture](../architecture/).
 
 ## 7. Running streaming application as a microservice
 
-This step we will run above developed Siddhi application as a microservice utilizing Docker. For other available options please refer [here](../user-guide-introduction-5.x/#execution-environments). Here we will use siddhi-runner docker distribution. Follow below steps.
+This step we will run above developed Siddhi application as a microservice utilizing Docker. For other available options please refer [here](../user-guide-introduction/#execution-environments). Here we will use siddhi-runner docker distribution. Follow below steps.
 
 * Install docker in your machine and start the daemon.([https://docs.docker.com/install/](https://docs.docker.com/install/))
 * Pull the latest siddhi-runner image by executing below command
@@ -273,7 +273,7 @@ curl -X POST http://localhost:8006/cargo \
 [2019-04-24 08:56:25,307]  INFO {io.siddhi.core.stream.output.sink.LogSink} - LOGGER : Event{timestamp=1556096185307, data=[2, 4, 2.0], isExpired=false}
 ```
 
-To learn more about the Siddhi functionality, see [Siddhi Query Guide](../query-guide-5.x/).
+To learn more about the Siddhi functionality, see [Siddhi Query Guide](../query-guide/).
 
 Feel free to try out Siddhi and event simulation to understand Siddhi better.
 
