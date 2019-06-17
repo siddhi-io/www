@@ -107,6 +107,7 @@ nav:
     - Query Guide: query-guide.md
     - Siddhi core API Guide: api/latest.md
     - Extension Guide: extensions.md
+    - Architecture Guide: architecture.md
   - Siddhi Core APIs:
     - latest: api/latest.md
     - 4.5.11: api/4.5.11.md

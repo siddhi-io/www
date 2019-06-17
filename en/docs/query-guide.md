@@ -17,9 +17,10 @@ together as a `SiddhiApp` in a single file.
 Each Siddhi Application is an isolated processing unit that allows you to deploy and execute queries independent of other Siddhi applications in the system.
 
 The following diagram depicts how **event flows** work with some of the key Siddhi Streaming SQL elements 
+The following diagram depicts how **event flows** work with some of the key Siddhi Streaming SQL elements 
 of the Siddhi Application.
 
-![Event Flow](../../images/event-flow.png?raw=true "Event Flow")
+![Event Flow](images/event-flow.png?raw=true "Event Flow")
 
 Below table provides brief description of a few key elements in the Siddhi Streaming SQL Language.
 
