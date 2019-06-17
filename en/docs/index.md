@@ -28,7 +28,7 @@ template: templates/single-column.html
 
 Siddhi 4.x is a fully open source **_Streaming_** and **_Complex Event Processing_** engine that understands **Streaming SQL queries** in order to capture events from diverse data sources, process them, detect complex conditions, and publish output to various endpoints in real time.
 
-Siddhi can run as an embedded [Java](documentation/siddhi-5.x/siddhi-as-a-java-library-5.x/) or [Python](https://github.com/siddhi-io/PySiddhi/tree/4.x) as a library, and run as a server with [WSO2 Stream Processor](https://wso2.com/analytics-and-stream-processing/). 
+Siddhi can run as an embedded [Java](user-guide/#using-siddhi-as-a-java-library) or [Python](https://github.com/siddhi-io/PySiddhi/tree/4.x) as a library, and run as a server with [WSO2 Stream Processor](https://wso2.com/analytics-and-stream-processing/). 
 
 [WSO2 Stream Processor](https://wso2.com/analytics-and-stream-processing/) also provides a [graphical and text editor](https://docs.wso2.com/display/SP440/Understanding+the+Development+Environment) for building Streaming Data Integration and Streaming Analytics applications.
 
