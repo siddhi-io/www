@@ -116,5 +116,8 @@ nav:
     - Siddhi Docker Microservice: deployment/siddhi-as-a-docker-microservice.md
     - Siddhi Kubernetes Microservice: deployment/siddhi-as-a-kubernetes-microservice.md
     - Configuration Guide: deployment/config-guide.md
+  - Siddhi APIs:
+    - latest: api/latest.md
+    - 5.0.0: api/5.0.0.md
   - Contribution:
     - contribution.md

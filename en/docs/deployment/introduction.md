@@ -1,4 +1,4 @@
-# Siddhi 5.x User Guide
+# Siddhi Deployment Guide
 
 This section provides information on developing and running Siddhi.
 
@@ -10,16 +10,16 @@ It is recommended to have different business usecase in separate Siddhi Applicat
 It is also recommended to move the repeated steam processing logic that exist in multiple Siddhi Applications, such as message retrieval and preprocessing, to a common Siddhi Application, whereby reducing code duplication and improving maintainability.
 In this case, to pass the events from one Siddhi App to another, configure them using a common topic using [In-Memory Sink](http://siddhi-io.github.io/siddhi/api/latest/#inmemory-sink) and [In-Memory Source](http://siddhi-io.github.io/siddhi/api/latest/#inmemory-source).
 
-For writing Siddhi Application using Streaming SQL refer [Siddhi Query Guide](../query-guide-5.x/)
+For writing Siddhi Application using Streaming SQL refer [Siddhi Query Guide](../query-guide/)
 
 ## Execution Environments
 
 Siddhi can run in multiple environments as follows.
 
-* [As a Java Library](../siddhi-as-a-java-library-5.x/)
-* [As a Local Microservice](../siddhi-as-a-local-microservice-5.x/)
-* [As a Docker Microservice](../siddhi-as-a-docker-microservice-5.x/)
-* [As a Kubernetes Microservice](../siddhi-as-a-kubernetes-microservice-5.x/)
+* [As a Java Library](siddhi-as-a-java-library/)
+* [As a Local Microservice](siddhi-as-a-local-microservice/)
+* [As a Docker Microservice](siddhi-as-a-docker-microservice/)
+* [As a Kubernetes Microservice](siddhi-as-a-kubernetes-microservice/)
 * As a Python Library _(WIP)_
 
 ## System Requirements

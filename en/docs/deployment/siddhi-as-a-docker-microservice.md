@@ -1,4 +1,4 @@
-# Siddhi 5.x as a Docker Microservice
+# Siddhi as a Docker Microservice
 
 This section provides information on running [Siddhi Apps](../user-guide-introduction-5.x/#siddhi-application) on Docker. 
 

@@ -1,6 +1,6 @@
-# Siddhi 5.x as a Kubernetes Microservice
+# Siddhi as a Kubernetes Microservice
 
-This section provides information on running [Siddhi Apps](../user-guide-introduction-5.x/#siddhi-application) natively in Kubernetes via Siddhi Kubernetes Operator. 
+This section provides information on running [Siddhi Apps](introduction/#siddhi-application) natively in Kubernetes via Siddhi Kubernetes Operator. 
 
 Siddhi can be configured in `SiddhiProcess` kind and passed to the CRD for deployment.
 Here, the Siddhi applications containing stream processing logic can be written inline in `SiddhiProcess` yaml or passed as `.siddhi` files via configmaps. `SiddhiProcess` yaml can also be configured with the necessary system configurations. 
