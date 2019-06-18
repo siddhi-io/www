@@ -1,0 +1,123 @@
+# Copyright (c) 2019, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+#
+# WSO2 Inc. licenses this file to you under the Apache License,
+# Version 2.0 (the "License"); you may not use this file except
+# in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied. See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+# Project information
+site_name: Siddhi
+site_description: Cloud Native Stream Processor
+site_author: WSO2
+site_url: http://siddhi.io
+
+# Repository
+repo_name: Siddhi
+repo_url: https://github.com/siddhi-io/siddhi
+edit_uri: https://github.com/siddhi-io/www/edit/master/en/docs/
+
+# Copyright
+copyright: Siddhi - Documentation
+
+# Configuration
+theme:
+  name: material
+  logo: images/siddhi-logo.svg
+  favicon: images/favicon.ico
+  palette:
+    primary: teal
+    accent: teal
+  custom_dir: theme/material
+  feature:
+    tabs: true
+  language: 'en'
+
+# Customization
+extra_css:
+  - assets/lib/highlightjs/default.min.css
+  - assets/css/theme.css
+extra_javascript:
+  - assets/lib/highlightjs/highlight.min.js
+  - assets/js/theme.js
+  - assets/lib/backtotop/js/util.js
+  - assets/lib/backtotop/js/main.js
+extra:
+  social:
+  - type: github
+    link: https://github.com/siddhi-io/siddhi
+  - type: linkedin
+    link: https://www.linkedin.com/groups/13553064
+  site_version: v5.1
+
+# Google Analytics
+google_analytics:
+  - UA-103065-28
+  - auto
+
+
+# Extensions
+markdown_extensions:
+  - markdown.extensions.admonition
+  - markdown.extensions.codehilite:
+      linenums: true
+      use_pygments: false
+      guess_lang: false
+  - markdown.extensions.def_list
+  - markdown.extensions.attr_list
+  - markdown.extensions.footnotes
+  - markdown.extensions.meta
+  - markdown.extensions.toc:
+      permalink: true
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+# Navigation
+nav:
+  - Siddhi 5.1: index.md
+  - Features:
+    - features.md
+  - Downloads:
+    - Download: download.md
+    - Release Notes: release-notes.md
+  - Quick Start:
+    - quckstart.md
+  - Developer Guides:
+    - Query Guide: query-guide.md
+    - API Guide: api/latest.md
+    - Extension Guide: extensions.md
+    - Architecture Guide: architecture.md
+  - Deployment Guides:
+    - Introduction: deployment/introduction.md
+    - Siddhi Java library: deployment/siddhi-as-a-java-library.md
+    - Siddhi Local Microservice: deployment/siddhi-as-a-local-microservice.md
+    - Siddhi Docker Microservice: deployment/siddhi-as-a-docker-microservice.md
+    - Siddhi Kubernetes Microservice: deployment/siddhi-as-a-kubernetes-microservice.md
+    - Configuration Guide: deployment/config-guide.md
+  - Siddhi APIs:
+    - latest: api/latest.md
+    - 5.1.0: api/5.1.0.md
+  - Contribution:
+    - contribution.md

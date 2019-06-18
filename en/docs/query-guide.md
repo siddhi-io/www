@@ -1,7 +1,4 @@
-# Siddhi 5.x Streaming SQL Guide
-
-!!! info
-    Please find the [Siddhi 4.x Streaming SQL Guide here](https://siddhi-io.github.io/siddhi/documentation/siddhi-4.x/query-guide-4.x/)
+# Siddhi 5.1 Streaming SQL Guide
 
 ## Introduction
 
@@ -40,7 +37,7 @@ processing logic and easily manage addition and removal of various use cases.
 The following diagram depicts some of the key Siddhi Streaming SQL elements of Siddhi Application and
 how **event flows** through the elements.
 
-![Event Flow](../../images/event-flow.png?raw=true "Event Flow")
+![Event Flow](images/event-flow.png?raw=true "Event Flow")
 
 Below table provides brief description of a few key elements in the Siddhi Streaming SQL Language.
 

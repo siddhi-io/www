@@ -55,6 +55,9 @@
 
 .md-header-nav__topic {
     top: 0;
+    margin-top: .2rem;
+    font-weight: bold;
+    color: darkslategray;
 }
 
 /*White header*/
@@ -177,7 +180,7 @@ html .md-typeset .superfences-tabs > label:hover {
 }
 
 .md-header__version-select {
-    overflow: visible;   
+    overflow: visible;
 }
 
 .mb-tabs__dropdown .mb-tabs__dropdown-content {
@@ -214,7 +217,7 @@ html .md-typeset .superfences-tabs > label:hover {
     transition: all .4s;
     opacity: 1;
     transform: translate(0, 0);
-  height: auto;
+    height: auto;
 }
 
 .mb-tabs__dropdown ul li a {
@@ -260,11 +263,11 @@ html .md-typeset .superfences-tabs > label:hover {
 }
 
 .home_icon a {
-    margin-top: 4px; 
+    margin-top: 4px;
 }
 
 .home_icon a i {
-    font-size: 25px; 
+    font-size: 25px;
 }
 
 .md-nav__link[data-md-state=blur] {
