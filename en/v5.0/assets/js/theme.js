@@ -59,9 +59,15 @@ for (var i = 0; i < dropdowns.length; i++) {
 var pageHeader = document.getElementById('page-header');
 var docSetLang = pageHeader.getAttribute('data-lang');
 
-(window.location.pathname.split('/')[1] !== docSetLang) ? 
-    docSetLang = '' :
-    docSetLang = docSetLang + '/';
+if (window.location.pathname.split('/')[1] === 'www') {
+    (window.location.pathname.split('/')[2] !== docSetLang) ?
+        docSetLang = '' :
+        docSetLang = docSetLang + '/';
+} else {
+    (window.location.pathname.split('/')[1] !== docSetLang) ?
+        docSetLang = '' :
+        docSetLang = docSetLang + '/';
+}
 
 var docSetUrl = window.location.origin + '/' + docSetLang;
 var request = new XMLHttpRequest();
