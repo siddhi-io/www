@@ -65,6 +65,7 @@ build(){
    cp ./_config.yml ../dist/_config.yml
    cp -R ./redirect/* ../dist/redirect/
    cp ./en/index.html ../dist/en/index.html
+   cp ./CNAME ../dist/CNAME
 
    build "master"
 
