@@ -121,3 +121,5 @@ nav:
     - 5.1.0: api/5.1.0.md
   - Contribution:
     - contribution.md
+  - License:
+    - license.md
