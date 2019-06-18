@@ -20,8 +20,8 @@ template: templates/single-column.html
  * under the License.
 -->
 
-**Siddhi** - Cloud native stream processing 
-===========================================
+**Siddhi** - Cloud Native Streaming
+===================================
 
   [![Jenkins Build Status](https://wso2.org/jenkins/view/wso2-dependencies/job/siddhi/job/siddhi/badge/icon)](https://wso2.org/jenkins/view/wso2-dependencies/job/siddhi/job/siddhi)
   [![GitHub (pre-)release](https://img.shields.io/github/release/siddhi-io/siddhi/all.svg)](https://github.com/siddhi-io/siddhi/releases)
