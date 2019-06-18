@@ -26,7 +26,7 @@ var urlSplit = window.location.pathname.split('/');
 if (urlSplit[1] + '/' + urlSplit[2] === 'www/en') {
     docSetLang = '/www/en/';
 } else if (urlSplit[1] === 'www') {
-    if (urlSplit[2] !== undefined) {
+    if (urlSplit[2] !== '') {
         docSetLang = '/www/' + urlSplit[2] + '/';
     } else {
         docSetLang = '/www/en/';
