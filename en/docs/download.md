@@ -84,6 +84,6 @@ If the library has been installed as explained above, it could be uninstalled us
 pip uninstall pysiddhi4
 ```
 
-Refer the [user guide](user-guide/) for using Siddhi in Python.
+Refer the [user guide](../user-guide/) for using Siddhi in Python.
 
 
