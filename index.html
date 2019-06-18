@@ -15,9 +15,20 @@
   ~ specific language governing permissions and limitations
   ~ under the License.
   -->
+<!DOCTYPE html>
+<html>
+<body>
 
+<h2>Redirect to a Webpage</h2>
+<p>The replace() method replaces the current document with a new one:</p>
 
-window.location.href = "http://www.w3schools.com";
+<button onclick="myFunction()">Replace document</button>
 
-// Simulate an HTTP redirect:
-window.location.replace("http://www.w3schools.com");
+<script>
+    function myFunction() {
+        location.replace("https://www.w3schools.com")
+    }
+</script>
+
+</body>
+</html>
