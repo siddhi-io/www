@@ -60,5 +60,10 @@ build(){
    build "versions"
    build "master"
 
+   git checkout gh-pages
+   rm -rf ./*
+   cp -R ../dist/* .
+   git add -A
+
 
      
