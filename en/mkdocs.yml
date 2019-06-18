@@ -54,6 +54,8 @@ extra:
   social:
   - type: github
     link: https://github.com/siddhi-io/siddhi
+  - type: medium
+    link: https://medium.com/siddhi-io
   - type: linkedin
     link: https://www.linkedin.com/groups/13553064
   site_version: v4.x
@@ -116,6 +118,7 @@ nav:
     - 4.5.9: api/4.5.9.md
     - 4.5.0: api/4.5.0.md
     - 4.4.8: api/4.4.8.md
+    - 4.4.8: api/4.4.3.md
     - 4.4.0: api/4.4.0.md
     - 4.3.19: api/4.3.19.md
     - 4.3.0: api/4.3.0.md
@@ -128,6 +131,7 @@ nav:
     - 4.1.0: api/4.1.0.md
     - 4.0.9: api/4.0.9.md
     - 4.0.0: api/4.0.0.md
-  - Contribute:
+  - Contribution:
     - contribution.md
-
+  - License:
+    - license.md
