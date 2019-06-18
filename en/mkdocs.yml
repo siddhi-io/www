@@ -99,17 +99,17 @@ nav:
   - Siddhi 5.0: index.md
   - Features:
     - features.md
-  - Download:
+  - Downloads:
     - Download: download.md
     - Release Notes: release-notes.md
   - Quick Start:
     - quckstart.md
-  - Developer Guide:
+  - Developer Guides:
     - Query Guide: query-guide.md
     - API Guide: api/latest.md
     - Extension Guide: extensions.md
     - Architecture Guide: architecture.md
-  - Deployment Guide:
+  - Deployment Guides:
     - Introduction: deployment/introduction.md
     - Siddhi Java library: deployment/siddhi-as-a-java-library.md
     - Siddhi Local Microservice: deployment/siddhi-as-a-local-microservice.md

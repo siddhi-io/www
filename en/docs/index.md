@@ -20,8 +20,8 @@ template: templates/single-column.html
  * under the License.
 -->
 
-**Siddhi** - Cloud native stream processing 
-===========================================
+**Siddhi** - Cloud Native Streaming
+===================================
 
   [![Jenkins Build Status](https://wso2.org/jenkins/view/wso2-dependencies/job/siddhi/job/siddhi/badge/icon)](https://wso2.org/jenkins/view/wso2-dependencies/job/siddhi/job/siddhi)
   [![GitHub (pre-)release](https://img.shields.io/github/release/siddhi-io/siddhi/all.svg)](https://github.com/siddhi-io/siddhi/releases)
@@ -36,16 +36,16 @@ Siddhi can run as an embedded [Java library](deployment/siddhi-as-a-java-library
 
 ## Distributions
 
-<a href="siddhi-as-a-kubernetes-microservice/" rel="nofollow">
+<a href="deployment/siddhi-as-a-kubernetes-microservice/" rel="nofollow">
  <img src="https://raw.githubusercontent.com/siddhi-io/siddhi/master/docs/images/distributions/kubernetes.png?raw=true" alt="Kubernetes" width="19%">
 </a>
-<a href="siddhi-as-a-docker-microservice/" rel="nofollow">
+<a href="deployment/siddhi-as-a-docker-microservice/" rel="nofollow">
  <img src="https://raw.githubusercontent.com/siddhi-io/siddhi/master/docs/images/distributions/docker.png?raw=true" alt="Docker" width="19%">
 </a>
-<a href="siddhi-as-a-local-microservice/" rel="nofollow">
+<a href="deployment/siddhi-as-a-local-microservice/" rel="nofollow">
  <img src="https://raw.githubusercontent.com/siddhi-io/siddhi/master/docs/images/distributions/binary.png?raw=true" alt="Binary" width="19%">
 </a>
-<a href="siddhi-as-a-java-library/" rel="nofollow">
+<a href="deployment/siddhi-as-a-java-library/" rel="nofollow">
  <img src="https://raw.githubusercontent.com/siddhi-io/siddhi/master/docs/images/distributions/java.png?raw=true" alt="Java" width="19%">
 </a>
 <a href="contribution/#obtaining-the-source-code-and-building-the-project" rel="nofollow">
