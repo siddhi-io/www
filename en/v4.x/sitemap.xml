@@ -81,6 +81,11 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>http://siddhi.io/api/4.4.3/</loc>
+     <lastmod>2019-06-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>http://siddhi.io/api/4.4.0/</loc>
      <lastmod>2019-06-18</lastmod>
      <changefreq>daily</changefreq>
@@ -142,6 +147,11 @@
     </url>
     <url>
      <loc>http://siddhi.io/contribution/</loc>
+     <lastmod>2019-06-18</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>http://siddhi.io/license/</loc>
      <lastmod>2019-06-18</lastmod>
      <changefreq>daily</changefreq>
     </url>
