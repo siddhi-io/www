@@ -173,15 +173,9 @@ The following is the list of source types supported by Siddhi:
 | <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-http/">HTTP</a> | Expose an HTTP service to consume messages.|
 | <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-kafka/">Kafka</a> | Subscribe to Kafka topic to consume events.|
 | <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-tcp/">TCP</a> | Expose a TCP service to consume messages.|
-| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-wso2event/">WSO2Event</a> | Expose a Thrift and TCP services to consume events formatted as WSO2Events.|
 | <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-email/">Email</a> | Consume emails via POP3 and IMAP protocols.|
 | <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-jms/">JMS</a> | Subscribe to JMS topic or queue to consume events.|
 | <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-file/">File</a> | Reads files by tailing or as a whole to extract events out of them.|
-| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-rabbitmq/">RabbitMQ</a> | Subscribe to RabbitMQ topic to consume events.|
-| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-mqtt/">MQTT</a> | Subscribe to MQTT brokers to consume events.|
-| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-websocket/">WebSocket</a> | Create a web-socket connection or expose a service to consume messages.|
-| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-twitter/">Twitter</a> | Subscribe to Twitter to consume tweets.|
-| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-sqs/">Amazon SQS</a> | Subscribe to Amazon SQS to consume events.|
 | <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-cdc/">CDC</a> | Perform change data capture on databases.|
 | <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-prometheus/">Prometheus</a> | Consume data from Prometheus agent.|
 
@@ -222,7 +216,6 @@ The following is the list of source mapping types supported by Siddhi:
 | <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-xml/">XML</a> | Converts XML messages to Siddhi events.|
 | <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-text/">TEXT</a> | Converts plain text messages to Siddhi events.|
 | <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-avro/">Avro</a> | Converts Avro events to Siddhi events.|
-| <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-wso2event/">WSO2Event</a> | Converts WSO2Events to Siddhi events.|
 | <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-binary/">Binary</a> | Converts Siddhi specific binary events to Siddhi events.|
 | <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-keyvalue/">Key Value</a> | Converts key-value HashMaps to Siddhi events.|
 | <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-csv/">CSV</a> | Converts CSV like delimiter separated events to Siddhi events.|
@@ -348,14 +341,9 @@ The following is a list of sink types supported by Siddhi:
 | <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-http/">HTTP</a> | Publish events to an HTTP endpoint.|
 | <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-kafka/">Kafka</a> | Publish events to Kafka topic. |
 | <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-tcp/">TCP</a> | Publish events to a TCP service. |
-| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-wso2event/">WSO2Event</a> | Publish WSO2Events via Thrift or TCP protocols.|
 | <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-email/">Email</a> | Send emails via SMTP protocols.|
 | <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-jms/">JMS</a> | Publish events to JMS topics or queues. |
 | <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-file/">File</a> | Writes events to files.|
-| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-rabbitmq/">RabbitMQ</a>| Publish events to RabbitMQ topics. |
-| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-mqtt/">MQTT</a> | Publish events to MQTT topics. |
-| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-websocket/">WebSocket</a> | Create a web-socket connection or expose a service to publish messages.|
-| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-sqs/">Amazon SQS</a> | Publish events to Amazon SQS.|
 | <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-prometheus/">Prometheus</a> | Expose data through Prometheus agent.|
 
 #### Distributed Sink
@@ -2047,11 +2035,7 @@ define table RoomTypeTable ( roomNo int, type string );
 The following is a list of currently supported store types:
 
 * <a target="_blank" href="https://siddhi-io.github.io/siddhi-store-rdbms">RDBMS (MySQL, Oracle, SQL Server, PostgreSQL, DB2, H2)</a>
-* <a target="_blank" href="https://siddhi-io.github.io/siddhi-store-solr">Solr</a>
 * <a target="_blank" href="https://siddhi-io.github.io/siddhi-store-mongodb">MongoDB</a>
-* <a target="_blank" href="https://siddhi-io.github.io/siddhi-store-hbase">HBase</a>
-* <a target="_blank" href="https://siddhi-io.github.io/siddhi-store-redis">Redis</a>
-* <a target="_blank" href="https://siddhi-io.github.io/siddhi-store-cassandra">Cassandra</a>
 
 **Operators on Table (and Store)**
 
