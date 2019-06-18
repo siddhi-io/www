@@ -21,20 +21,31 @@
  */
 
 var request = new XMLHttpRequest();
+var docSetLang = "";
+var urlSplit = window.location.pathname.split('/');
+if (urlSplit[1] + '/' + urlSplit[2] === 'www/en') {
+    docSetLang = '/www/en/';
+} else if (urlSplit[1] === 'www') {
+    if (urlSplit[2] !== undefined) {
+        docSetLang = '/www/' + urlSplit[2] + '/';
+    } else {
+        docSetLang = '/www/en/';
+    }
+}
 
-request.open('GET', '/en/versions/assets/versions.json', true);
+request.open('GET', docSetLang + 'versions/assets/versions.json', true);
 
 request.onload = function () {
     if (request.status >= 200 && request.status < 400) {
         var data = JSON.parse(request.responseText);
         console.error("Current version " + data.current);
-        window.location = "/en/"+data.current;
+        window.location = "/en/" + data.current;
     } else {
         console.error("We reached our target server, but it returned an error");
     }
 };
 
-request.onerror = function() {
+request.onerror = function () {
     console.error("There was a connection error of some sort");
 };
 
