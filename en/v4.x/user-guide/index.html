@@ -792,7 +792,7 @@ convert them to OSGi bundles by following <a target="_blank" href="https://docs.
      &lt;version&gt;4.x.x&lt;/version&gt;
    &lt;/dependency&gt;   </code></pre>
 
-<p><strong>Note</strong>: You can create the Java project using any method you prefer. The required dependencies can be downloaded from <a href="download/">here</a>.</p>
+<p><strong>Note</strong>: You can create the Java project using any method you prefer. The required dependencies can be downloaded from <a href="../download/">here</a>.</p>
 <ul>
 <li>Create a new Java class in the Maven project.</li>
 </ul>
@@ -883,7 +883,7 @@ from time import sleep</code></pre>
 siddhiApp = "define stream StockEventStream (symbol string, price float, volume long); " + \
 "@info(name = 'query1') from StockEventStream[volume &lt; 150] select symbol,price insert into OutputStream;"</code></pre>
 This Siddhi query query to detect stock records having volume less than 150, and then inserts the results into a stream named <code>OutputStream</code>. </p>
-<p>For more details on Siddhi Query Language, refer <a href="query-guide/">Siddhi Query Language Guide</a>.</p>
+<p>For more details on Siddhi Query Language, refer <a href="../query-guide/">Siddhi Query Language Guide</a>.</p>
 <h3 id="step-3-creating-siddhi-application-runtime_1">Step 3: Creating Siddhi Application Runtime<a class="headerlink" href="#step-3-creating-siddhi-application-runtime_1" title="Permanent link">&para;</a></h3>
 <p>This step involves creating a runtime representation of a Siddhi application.</p>
 <pre class="codehilite"><code class="language-python linenums"># Generate runtime
