@@ -33,7 +33,7 @@ To file non-security issues:
 
 ### Accepting Contributor License Agreement (CLA)
 
-Before you submit your first contribution please accept our Contributor License Agreement (CLA) here. When you send your first Pull Request (PR), GitHub will ask you to accept the CLA.
+Before you submit your first contribution please accept our Contributor License Agreement (CLA). When you send your first Pull Request (PR), GitHub will ask you to accept the CLA.
 
 There is no need to do this before you send your first PR.
 
