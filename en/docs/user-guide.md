@@ -50,7 +50,7 @@ convert them to OSGi bundles by following <a target="_blank" href="https://docs.
    </dependency>   
 ```
 
-**Note**: You can create the Java project using any method you prefer. The required dependencies can be downloaded from [here](download/).
+**Note**: You can create the Java project using any method you prefer. The required dependencies can be downloaded from [here](../download/).
 
 * Create a new Java class in the Maven project.
 
@@ -170,7 +170,7 @@ siddhiApp = "define stream StockEventStream (symbol string, price float, volume 
 ```
 This Siddhi query query to detect stock records having volume less than 150, and then inserts the results into a stream named `OutputStream`. 
 
-For more details on Siddhi Query Language, refer [Siddhi Query Language Guide](query-guide/).
+For more details on Siddhi Query Language, refer [Siddhi Query Language Guide](../query-guide/).
 
 ### Step 3: Creating Siddhi Application Runtime
 This step involves creating a runtime representation of a Siddhi application.
