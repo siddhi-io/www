@@ -1,0 +1,23 @@
+{
+  "next": "v5.1",
+  "current": "v5.0",
+  "list": [
+    "v5.0",
+    "v4.x",
+    "v3.x"
+  ],
+  "all": {
+    "v5.0": {
+      "doc": "v5.0",
+      "notes": "https://github.com/siddhi-io/siddhi/releases/tag/v5.0.0"
+    },
+    "v4.x": {
+      "doc": "v4.x",
+      "notes": "https://github.com/siddhi-io/siddhi/releases/tag/v4.5.0"
+    },
+    "v3.x": {
+      "doc": "https://docs.wso2.com/display/DAS320/Siddhi+Query+Language",
+      "notes": "https://docs.wso2.com/display/DAS320/DAS+Features"
+    }
+  }
+}
