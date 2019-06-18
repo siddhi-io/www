@@ -1,8 +1,5 @@
 # Siddhi 4.x Streaming SQL Guide
 
-!!! info
-    Please find the latest Siddhi Streaming SQL Guide [here](https://siddhi-io.github.io/siddhi/documentation/siddhi-5.x/query-guide-5.x/)
-
 ## Introduction
 
 Siddhi Streaming SQL is designed to process event streams in a streaming manner, detect complex event occurrences, 
