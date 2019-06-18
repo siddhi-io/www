@@ -59,12 +59,13 @@ for (var i = 0; i < dropdowns.length; i++) {
 var pageHeader = document.getElementById('page-header');
 var docSetLang = pageHeader.getAttribute('data-lang');
 
-if (window.location.pathname.split('/')[1] === 'www') {
-    (window.location.pathname.split('/')[2] !== docSetLang) ?
+var urlSplit = window.location.pathname.split('/');
+if (urlSplit[1] === 'www') {
+    (urlSplit[1] + '/' + urlSplit[2] !== 'www/' + docSetLang) ?
         docSetLang = '' :
-        docSetLang = docSetLang + '/';
+        docSetLang = 'www/' + docSetLang + '/';
 } else {
-    (window.location.pathname.split('/')[1] !== docSetLang) ?
+    (urlSplit[1] !== docSetLang) ?
         docSetLang = '' :
         docSetLang = docSetLang + '/';
 }
