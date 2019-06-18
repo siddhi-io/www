@@ -19,6 +19,38 @@
 
 <html>
 <body>
-<script src="en/versions/assets/js/redirect-4.0.4.js"></script>
+<!--<script src="en/versions/assets/js/redirect-4.0.4.js"></script>-->
+<script>
+    var request = new XMLHttpRequest();
+    var docSetLang = "/en/";
+    var urlSplit = window.location.pathname.split('/');
+    if (urlSplit[1] + '/' + urlSplit[2] === 'www/en') {
+        docSetLang = '/www/en/';
+    } else if (urlSplit[1] === 'www') {
+        if (urlSplit[2] !== '') {
+            docSetLang = '/www/' + urlSplit[2] + '/';
+        } else {
+            docSetLang = '/www/en/';
+        }
+    }
+
+    request.open('GET', docSetLang + 'versions/assets/versions.json', true);
+
+    request.onload = function () {
+        if (request.status >= 200 && request.status < 400) {
+            var data = JSON.parse(request.responseText);
+            console.error("Current version " + data.current);
+            window.location = docSetLang + data.current + "/404.html";
+        } else {
+            console.error("We reached our target server, but it returned an error");
+        }
+    };
+
+    request.onerror = function () {
+        console.error("There was a connection error of some sort");
+    };
+
+    request.send();
+</script>
 </body>
 </html>
