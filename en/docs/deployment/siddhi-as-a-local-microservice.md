@@ -24,7 +24,7 @@ Steps to Run Siddhi Local Microservice is as follows.
     You can also use the powerful [Siddhi Editor](../../quckstart/#3-using-siddhi-for-the-first-time) to implement and test steam processing applications. 
 
 !!! Info "Configuring Siddhi"
-    To configure databases, extensions, authentication, periodic state persistence, and statistics for Siddhi as Local Microservice refer [Siddhi Config Guide](../config-guide-5.x/). 
+    To configure databases, extensions, authentication, periodic state persistence, and statistics for Siddhi as Local Microservice refer [Siddhi Config Guide](../config-guide/). 
 
 ## Samples
 
