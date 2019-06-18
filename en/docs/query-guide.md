@@ -428,7 +428,6 @@ The following is a list of sink mapping types supported by Siddhi:
 | <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-xml/">XML</a> | Converts Siddhi events to XML messages.|
 | <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-text/">TEXT</a> | Converts Siddhi events to plain text messages.|
 | <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-avro/">Avro</a> | Converts Siddhi events to Avro Events.|
-| <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-wso2event/">WSO2Event</a> | Converts Siddhi events to WSO2Event events.|
 | <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-binary/">Binary</a> | Converts Siddhi events to Siddhi specific binary events.|
 | <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-keyvalue/">Key Value</a> | Converts Siddhi events to key-value HashMaps.|
 | <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-csv/">CSV</a> | Converts Siddhi events to CSV like delimiter separated events.|
