@@ -957,7 +957,7 @@ depends on the source type selected, some of the the parameters are optional. </
 <li><a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-http/">HTTP</a></li>
 <li><a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-kafka/">Kafka</a></li>
 <li><a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-tcp/">TCP</a></li>
-<li><a target="_blank" href="http://siddhi.io/api/latest/#inmemory-source">In-memory</a></li>
+<li><a target="_blank" href="../api/latest/#inmemory-source">In-memory</a></li>
 <li><a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-wso2event/">WSO2Event</a></li>
 <li><a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-email/">Email</a></li>
 <li><a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-jms/">JMS</a></li>
@@ -1049,8 +1049,8 @@ depends on the sink type selected. Some of these parameters are optional, and so
 <li><a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-http/">HTTP</a></li>
 <li><a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-kafka/">Kafka</a></li>
 <li><a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-tcp/">TCP</a></li>
-<li><a target="_blank" href="http://siddhi.io/api/latest/#inmemory-sink">In-memory</a></li>
-<li><a target="_blank" href="http://siddhi.io/api/latest/#log-sink">Log</a></li>
+<li><a target="_blank" href="../api/latest/#inmemory-sink">In-memory</a></li>
+<li><a target="_blank" href="../api/latest/#log-sink">Log</a></li>
 <li><a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-wso2event/">WSO2Event</a></li>
 <li><a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-email/">Email</a> </li>
 <li><a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-jms/">JMS</a> </li>
@@ -1422,24 +1422,24 @@ Following are the supported unit types. Upon execution, time returns the value i
 <p class="admonition-title">Note</p>
 <p>Functions, mathematical expressions, and logical expressions can be used in a nested manner.</p>
 </div>
-<p>Following are some inbuilt functions shipped with Siddhi, for more functions refer execution <a target="_blank" href="http://siddhi.io/extensions/">extensions</a>.</p>
+<p>Following are some inbuilt functions shipped with Siddhi, for more functions refer execution <a target="_blank" href="../extensions/">extensions</a>.</p>
 <ul>
-<li><a href="http://siddhi.io/api/latest/#eventtimestamp-function">eventTimestamp</a></li>
-<li><a href="http://siddhi.io/api/latest/#log-stream-processor">log</a></li>
-<li><a href="http://siddhi.io/api/latest/#uuid-function">UUID</a></li>
-<li><a href="http://siddhi.io/api/latest/#default-function">default</a></li>
-<li><a href="http://siddhi.io/api/latest/#cast-function">cast</a></li>
-<li><a href="http://siddhi.io/api/latest/#convert-function">convert</a></li>
-<li><a href="http://siddhi.io/api/latest/#ifthenelse-function">ifThenElse</a></li>
-<li><a href="http://siddhi.io/api/latest/#minimum-function">minimum</a></li>
-<li><a href="http://siddhi.io/api/latest/#maximum-function">maximum</a></li>
-<li><a href="http://siddhi.io/api/latest/#coalesce-function">coalesce</a></li>
-<li><a href="http://siddhi.io/api/latest/#instanceofboolean-function">instanceOfBoolean</a></li>
-<li><a href="http://siddhi.io/api/latest/#instanceofdouble-function">instanceOfDouble</a></li>
-<li><a href="http://siddhi.io/api/latest/#instanceoffloat-function">instanceOfFloat</a></li>
-<li><a href="http://siddhi.io/api/latest/#instanceofinteger-function">instanceOfInteger</a></li>
-<li><a href="http://siddhi.io/api/latest/#instanceoflong-function">instanceOfLong</a></li>
-<li><a href="http://siddhi.io/api/latest/#instanceofstring-function">instanceOfString</a></li>
+<li><a href="../api/latest/#eventtimestamp-function">eventTimestamp</a></li>
+<li><a href="../api/latest/#log-stream-processor">log</a></li>
+<li><a href="../api/latest/#uuid-function">UUID</a></li>
+<li><a href="../api/latest/#default-function">default</a></li>
+<li><a href="../api/latest/#cast-function">cast</a></li>
+<li><a href="../api/latest/#convert-function">convert</a></li>
+<li><a href="../api/latest/#ifthenelse-function">ifThenElse</a></li>
+<li><a href="../api/latest/#minimum-function">minimum</a></li>
+<li><a href="../api/latest/#maximum-function">maximum</a></li>
+<li><a href="../api/latest/#coalesce-function">coalesce</a></li>
+<li><a href="../api/latest/#instanceofboolean-function">instanceOfBoolean</a></li>
+<li><a href="../api/latest/#instanceofdouble-function">instanceOfDouble</a></li>
+<li><a href="../api/latest/#instanceoffloat-function">instanceOfFloat</a></li>
+<li><a href="../api/latest/#instanceofinteger-function">instanceOfInteger</a></li>
+<li><a href="../api/latest/#instanceoflong-function">instanceOfLong</a></li>
+<li><a href="../api/latest/#instanceofstring-function">instanceOfString</a></li>
 </ul>
 <p><strong>Example</strong></p>
 <p>The following configuration converts the <code>roomNo</code> to <code>string</code> and adds a <code>messageID</code> to each event using the <code>convert</code> and <code>UUID</code> functions.
@@ -1541,22 +1541,22 @@ insert into MaxTempStream;</code></pre>
 <p>Similar operations can be done based on time via <code>time</code> windows and <code>timeBatch</code> windows and for others. 
 Code segments such as <code>#window.time(10 min)</code> considers events that arrive during the last 10 minutes in a sliding manner, and the <code>#window.timeBatch(2 min)</code> considers events that arrive every 2 minutes in a tumbling manner. </p>
 </div>
-<p>Following are some inbuilt windows shipped with Siddhi. For more window types, see execution <a target="_blank" href="http://siddhi.io/extensions/">extensions</a>.</p>
+<p>Following are some inbuilt windows shipped with Siddhi. For more window types, see execution <a target="_blank" href="../extensions/">extensions</a>.</p>
 <ul>
-<li><a href="http://siddhi.io/api/latest/#time-window">time</a></li>
-<li><a href="http://siddhi.io/api/latest/#timebatch-window">timeBatch</a></li>
-<li><a href="http://siddhi.io/api/latest/#batch-window">batch</a></li>
-<li><a href="http://siddhi.io/api/latest/#timelength-window">timeLength</a></li>
-<li><a href="http://siddhi.io/api/latest/#length-window">length</a></li>
-<li><a href="http://siddhi.io/api/latest/#lengthbatch-window">lengthBatch</a></li>
-<li><a href="http://siddhi.io/api/latest/#sort-window">sort</a></li>
-<li><a href="http://siddhi.io/api/latest/#frequent-window">frequent</a></li>
-<li><a href="http://siddhi.io/api/latest/#lossyfrequent-window">lossyFrequent</a></li>
-<li><a href="http://siddhi.io/api/latest/#session-window">session</a></li>
-<li><a href="http://siddhi.io/api/latest/#cron-window">cron</a></li>
-<li><a href="http://siddhi.io/api/latest/#externaltime-window">externalTime</a></li>
-<li><a href="http://siddhi.io/api/latest/#externaltimebatch-window">externalTimeBatch</a></li>
-<li><a href="http://siddhi.io/api/latest/#delay-window">delay</a></li>
+<li><a href="../api/latest/#time-window">time</a></li>
+<li><a href="../api/latest/#timebatch-window">timeBatch</a></li>
+<li><a href="../api/latest/#batch-window">batch</a></li>
+<li><a href="../api/latest/#timelength-window">timeLength</a></li>
+<li><a href="../api/latest/#length-window">length</a></li>
+<li><a href="../api/latest/#lengthbatch-window">lengthBatch</a></li>
+<li><a href="../api/latest/#sort-window">sort</a></li>
+<li><a href="../api/latest/#frequent-window">frequent</a></li>
+<li><a href="../api/latest/#lossyfrequent-window">lossyFrequent</a></li>
+<li><a href="../api/latest/#session-window">session</a></li>
+<li><a href="../api/latest/#cron-window">cron</a></li>
+<li><a href="../api/latest/#externaltime-window">externalTime</a></li>
+<li><a href="../api/latest/#externaltimebatch-window">externalTimeBatch</a></li>
+<li><a href="../api/latest/#delay-window">delay</a></li>
 </ul>
 <p><strong>Output event types</strong><a id="output-event-types" class='anchor' aria-hidden='true'></a> </p>
 <p>Projection of the query depends on the output event types such as, <code>current</code> and <code>expired</code> event types.
@@ -1609,17 +1609,17 @@ Aggregate parameters configured in a query  depends on the aggregate function be
 <p><pre class="codehilite"><code class="language-sql linenums">from TempStream#window.time(10 min)
 select avg(temp) as avgTemp, roomNo, deviceID
 insert into AvgTempStream;</code></pre>
-Following are some inbuilt aggregation functions shipped with Siddhi, for more aggregation functions, see execution <a target="_blank" href="http://siddhi.io/extensions/">extensions</a>.</p>
+Following are some inbuilt aggregation functions shipped with Siddhi, for more aggregation functions, see execution <a target="_blank" href="../extensions/">extensions</a>.</p>
 <ul>
-<li><a href="http://siddhi.io/api/latest/#avg-aggregate-function">avg</a></li>
-<li><a href="http://siddhi.io/api/latest/#sum-aggregate-function">sum</a></li>
-<li><a href="http://siddhi.io/api/latest/#max-aggregate-function">max</a></li>
-<li><a href="http://siddhi.io/api/latest/#min-aggregate-function">min</a></li>
-<li><a href="http://siddhi.io/api/latest/#count-aggregate-function">count</a></li>
-<li><a href="http://siddhi.io/api/latest/#distinctcount-aggregate-function">distinctCount</a></li>
-<li><a href="http://siddhi.io/api/latest/#maxforever-aggregate-function">maxForever</a></li>
-<li><a href="http://siddhi.io/api/latest/#minforever-aggregate-function">minForever</a></li>
-<li><a href="http://siddhi.io/api/latest/#stddev-aggregate-function">stdDev</a></li>
+<li><a href="../api/latest/#avg-aggregate-function">avg</a></li>
+<li><a href="../api/latest/#sum-aggregate-function">sum</a></li>
+<li><a href="../api/latest/#max-aggregate-function">max</a></li>
+<li><a href="../api/latest/#min-aggregate-function">min</a></li>
+<li><a href="../api/latest/#count-aggregate-function">count</a></li>
+<li><a href="../api/latest/#distinctcount-aggregate-function">distinctCount</a></li>
+<li><a href="../api/latest/#maxforever-aggregate-function">maxForever</a></li>
+<li><a href="../api/latest/#minforever-aggregate-function">minForever</a></li>
+<li><a href="../api/latest/#stddev-aggregate-function">stdDev</a></li>
 </ul>
 <h3 id="group-by">Group By<a class="headerlink" href="#group-by" title="Permanent link">&para;</a></h3>
 <p>Group By allows you to group the aggregate based on specified attributes.</p>
@@ -3402,7 +3402,7 @@ select symbol, price
 insert into StockQuote</code></pre>
 
 <p><strong>Available Extensions</strong></p>
-<p>Siddhi currently has several pre written extensions that are available <strong><a target="_blank" href="http://siddhi.io/extensions/">here</a></strong></p>
+<p>Siddhi currently has several pre written extensions that are available <strong><a target="_blank" href="../extensions/">here</a></strong></p>
 <p><em>We value your contribution on improving Siddhi and its extensions further.</em></p>
 <h3 id="writing-custom-extensions">Writing Custom Extensions<a class="headerlink" href="#writing-custom-extensions" title="Permanent link">&para;</a></h3>
 <p>Custom extensions can be written in order to cater use case specific logic that are not available in Siddhi out of the box or as an existing extension.</p>

@@ -801,10 +801,6 @@
     </ul>
   </nav>  </div></div></div><div class="md-sidebar md-sidebar--secondary" data-md-component="toc"><div class="md-sidebar__scrollwrap"><div class="md-sidebar__inner"><nav class="md-nav md-nav--secondary"><label class="md-nav__title" for="__toc">On this page</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="#1-stream-processing-and-complex-event-processing-cep-overview" title="1. Stream Processing and Complex Event Processing (CEP) Overview" class="md-nav__link">1. Stream Processing and Complex Event Processing (CEP) Overview</a></li><li class="md-nav__item"><a href="#2-overview-of-siddhi" title="2. Overview of Siddhi" class="md-nav__link">2. Overview of Siddhi</a></li><li class="md-nav__item"><a href="#3-using-siddhi-for-the-first-time" title="3. Using Siddhi for the First Time" class="md-nav__link">3. Using Siddhi for the First Time</a></li><li class="md-nav__item"><a href="#4-siddhi-hello-world-your-first-siddhi-application" title="4. Siddhi ‘Hello World!’ — Your First Siddhi Application" class="md-nav__link">4. Siddhi ‘Hello World!’ — Your First Siddhi Application</a></li><li class="md-nav__item"><a href="#5-simulating-events" title="5. Simulating Events" class="md-nav__link">5. Simulating Events</a></li><li class="md-nav__item"><a href="#6-a-bit-of-stream-processing-temporal-event-processing" title="6. A Bit of Stream Processing - temporal event processing" class="md-nav__link">6. A Bit of Stream Processing - temporal event processing</a></li></ul></nav></div></div></div><div class="md-content"><article class="md-content__inner md-typeset">
   <a href="https://github.com/siddhi-io/www/edit/v4.x/en/docs/quckstart.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a><h1 id="siddhi-4x-quick-start-guide">Siddhi 4.x Quick Start Guide<a class="headerlink" href="#siddhi-4x-quick-start-guide" title="Permanent link">&para;</a></h1>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-<p>Please find the latest Siddhi Quick Start Guide <a href="https://siddhi-io.github.io/siddhi/documentation/siddhi-5.x/quckstart-5.x/">here</a></p>
-</div>
 <p><a href="https://github.com/wso2/siddhi">Siddhi</a> is a 100% open source Java library that is thoroughly optimized for high performance. 
 It performs <strong><em>Stream Processing</em></strong> and <strong><em>Complex Event Processing</em></strong> on real time data streams. </p>
 <p>Siddhi is used by many companies including Uber and eBay (via Apache Eagle). <strong>Uber processes more than 20 billion 
@@ -889,7 +885,7 @@ This takes you to the Stream Processor Studio landing page.</p>
 <p>Siddhi Streaming SQL is a rich, compact, easy-to-learn SQL-like language. <strong>Let's first learn how to find the total</strong> of values 
 coming into a data stream and output the current running total value with each event. Siddhi has lot of in-built functions and extensions 
 available for complex analysis, but to get started, let's use a simple one. You can find more information about the Siddhi grammar 
-and its functions in the <a href="http://siddhi.io/documentation/siddhi-4.x/query-guide-4.x/">Siddhi Query Guide</a>.</p>
+and its functions in the <a href="../query-guide/">Siddhi Query Guide</a>.</p>
 <p>Let's <strong>consider a scenario where we are loading cargo boxes into a ship</strong>. We need to keep track of the total 
 weight of the cargo added. <strong>Measuring the weight of a cargo box when loading is considered an event</strong>.</p>
 <p><img alt="" src="../images/quickstart/loading-ship.jpeg?raw=true" title="Loading Cargo on Ship" /></p>
@@ -910,7 +906,7 @@ This contains only one data attribute:</li>
 <em>totalWeight</em> attribute that contains the total weight calculated so far. Here, we need to add a 
 <em>"sink"</em>  to log the <code>OutputStream</code> so that we can observe the output values. (<strong>Sink is the Siddhi way to publish 
 streams to external systems.</strong> This particular <code>log</code> type sink just logs the stream events. To learn more about sinks, see 
-<a href="http://siddhi.io/documentation/siddhi-4.x/query-guide-4.x/#sink">sink</a>)
+<a href="../query-guide/#sink">sink</a>)
 <pre class="codehilite"><code class="linenums">@sink(type='log', prefix='LOGGER')
 define stream OutputStream(weight int, totalWeight long);</code></pre>
 <strong>Part 4 — The actual Siddhi query.</strong> Here we need to specify the following:</p>
@@ -951,7 +947,7 @@ You can see a log that contains <em>“outputData=[2, 2]”</em>. Click <strong>
 <p>This section demonstrates how to carry out <strong>temporal window processing</strong> with Siddhi.</p>
 <p>Up to this point, we have been carrying out the processing by having only the running sum value in-memory. 
 No events were stored during this process. </p>
-<p><a href="http://siddhi.io/documentation/siddhi-4.x/query-guide-4.x/#window">Window processing</a>
+<p><a href="../query-guide/#window">Window processing</a>
 is a method that allows us to store some events in-memory for a given period so that we can perform operations 
 such as calculating the average, maximum, etc values within them.</p>
 <p>Let's imagine that when we are loading cargo boxes into the ship <strong>we need to keep track of the average weight of 
@@ -977,8 +973,8 @@ average value as <em>"averageWeight"</em> (Note: Now the <code>sum</code> also c
 cargo events.</p>
 <p>It is also notable that the defined <code>length window</code> only keeps 3 events in-memory. When the 4<sup>th</sup> event arrives, the 
 first event in the window is removed from memory. This ensures that the memory usage does not grow beyond a specific limit. There are also other 
-implementations done in Siddhi  to reduce the memory consumption. For more information, see <a href="http://siddhi.io/documentation/siddhi-4.x/architecture-4.x/">Siddhi Architecture</a>.</p>
-<p>To learn more about the Siddhi functionality, see <a href="http://siddhi.io/documentation/siddhi-4.x/query-guide-4.x/">Siddhi Query Guide</a>.</p>
+implementations done in Siddhi  to reduce the memory consumption. For more information, see <a href="../architecture/">Siddhi Architecture</a>.</p>
+<p>To learn more about the Siddhi functionality, see <a href="../query-guide/">Siddhi Query Guide</a>.</p>
 <p>Feel free to try out Siddhi and event simulation to understand Siddhi better.</p>
 <p>If you have questions please post them to the <a target="_blank" href="http://stackoverflow.com/search?q=siddhi">Stackoverflow</a> with <a target="_blank" href="http://stackoverflow.com/search?q=siddhi">"Siddhi"</a> tag.</p>
   <a href="#" class="cd-top text--replace js-cd-top">Top</a>

@@ -896,10 +896,6 @@ some of its parameters can be optional.</p>
 <td>Expose a TCP service to consume messages.</td>
 </tr>
 <tr>
-<td><a target="_blank" href="https://siddhi-io.github.io/siddhi-io-wso2event/">WSO2Event</a></td>
-<td>Expose a Thrift and TCP services to consume events formatted as WSO2Events.</td>
-</tr>
-<tr>
 <td><a target="_blank" href="https://siddhi-io.github.io/siddhi-io-email/">Email</a></td>
 <td>Consume emails via POP3 and IMAP protocols.</td>
 </tr>
@@ -910,26 +906,6 @@ some of its parameters can be optional.</p>
 <tr>
 <td><a target="_blank" href="https://siddhi-io.github.io/siddhi-io-file/">File</a></td>
 <td>Reads files by tailing or as a whole to extract events out of them.</td>
-</tr>
-<tr>
-<td><a target="_blank" href="https://siddhi-io.github.io/siddhi-io-rabbitmq/">RabbitMQ</a></td>
-<td>Subscribe to RabbitMQ topic to consume events.</td>
-</tr>
-<tr>
-<td><a target="_blank" href="https://siddhi-io.github.io/siddhi-io-mqtt/">MQTT</a></td>
-<td>Subscribe to MQTT brokers to consume events.</td>
-</tr>
-<tr>
-<td><a target="_blank" href="https://siddhi-io.github.io/siddhi-io-websocket/">WebSocket</a></td>
-<td>Create a web-socket connection or expose a service to consume messages.</td>
-</tr>
-<tr>
-<td><a target="_blank" href="https://siddhi-io.github.io/siddhi-io-twitter/">Twitter</a></td>
-<td>Subscribe to Twitter to consume tweets.</td>
-</tr>
-<tr>
-<td><a target="_blank" href="https://siddhi-io.github.io/siddhi-io-sqs/">Amazon SQS</a></td>
-<td>Subscribe to Amazon SQS to consume events.</td>
 </tr>
 <tr>
 <td><a target="_blank" href="https://siddhi-io.github.io/siddhi-io-cdc/">CDC</a></td>
@@ -992,10 +968,6 @@ By adding the <code>@attributes</code> annotation, users can selectively extract
 <tr>
 <td><a target="_blank" href="https://siddhi-io.github.io/siddhi-map-avro/">Avro</a></td>
 <td>Converts Avro events to Siddhi events.</td>
-</tr>
-<tr>
-<td><a target="_blank" href="https://siddhi-io.github.io/siddhi-map-wso2event/">WSO2Event</a></td>
-<td>Converts WSO2Events to Siddhi events.</td>
 </tr>
 <tr>
 <td><a target="_blank" href="https://siddhi-io.github.io/siddhi-map-binary/">Binary</a></td>
@@ -1122,10 +1094,6 @@ some of its parameters can be optional and/or dynamic.</p>
 <td>Publish events to a TCP service.</td>
 </tr>
 <tr>
-<td><a target="_blank" href="https://siddhi-io.github.io/siddhi-io-wso2event/">WSO2Event</a></td>
-<td>Publish WSO2Events via Thrift or TCP protocols.</td>
-</tr>
-<tr>
 <td><a target="_blank" href="https://siddhi-io.github.io/siddhi-io-email/">Email</a></td>
 <td>Send emails via SMTP protocols.</td>
 </tr>
@@ -1136,22 +1104,6 @@ some of its parameters can be optional and/or dynamic.</p>
 <tr>
 <td><a target="_blank" href="https://siddhi-io.github.io/siddhi-io-file/">File</a></td>
 <td>Writes events to files.</td>
-</tr>
-<tr>
-<td><a target="_blank" href="https://siddhi-io.github.io/siddhi-io-rabbitmq/">RabbitMQ</a></td>
-<td>Publish events to RabbitMQ topics.</td>
-</tr>
-<tr>
-<td><a target="_blank" href="https://siddhi-io.github.io/siddhi-io-mqtt/">MQTT</a></td>
-<td>Publish events to MQTT topics.</td>
-</tr>
-<tr>
-<td><a target="_blank" href="https://siddhi-io.github.io/siddhi-io-websocket/">WebSocket</a></td>
-<td>Create a web-socket connection or expose a service to publish messages.</td>
-</tr>
-<tr>
-<td><a target="_blank" href="https://siddhi-io.github.io/siddhi-io-sqs/">Amazon SQS</a></td>
-<td>Publish events to Amazon SQS.</td>
 </tr>
 <tr>
 <td><a target="_blank" href="https://siddhi-io.github.io/siddhi-io-prometheus/">Prometheus</a></td>
@@ -2782,11 +2734,7 @@ define table RoomTypeTable ( roomNo int, type string );</code></pre>
 <p>The following is a list of currently supported store types:</p>
 <ul>
 <li><a target="_blank" href="https://siddhi-io.github.io/siddhi-store-rdbms">RDBMS (MySQL, Oracle, SQL Server, PostgreSQL, DB2, H2)</a></li>
-<li><a target="_blank" href="https://siddhi-io.github.io/siddhi-store-solr">Solr</a></li>
 <li><a target="_blank" href="https://siddhi-io.github.io/siddhi-store-mongodb">MongoDB</a></li>
-<li><a target="_blank" href="https://siddhi-io.github.io/siddhi-store-hbase">HBase</a></li>
-<li><a target="_blank" href="https://siddhi-io.github.io/siddhi-store-redis">Redis</a></li>
-<li><a target="_blank" href="https://siddhi-io.github.io/siddhi-store-cassandra">Cassandra</a></li>
 </ul>
 <p><strong>Operators on Table (and Store)</strong></p>
 <p>The following operators can be performed on tables (and stores).</p>
