@@ -169,23 +169,23 @@ The following is the list of source types supported by Siddhi:
 
 |Source type | Description|
 | ------------- |-------------|
-| <a target="_blank" href="http://siddhi.io/api/latest/#inmemory-source">In-memory</a> | Allow SiddhiApp to consume events from other SiddhiApps running on the same JVM. |
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-http/">HTTP</a> | Expose an HTTP service to consume messages.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-kafka/">Kafka</a> | Subscribe to Kafka topic to consume events.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-tcp/">TCP</a> | Expose a TCP service to consume messages.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-wso2event/">WSO2Event</a> | Expose a Thrift and TCP services to consume events formatted as WSO2Events.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-email/">Email</a> | Consume emails via POP3 and IMAP protocols.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-jms/">JMS</a> | Subscribe to JMS topic or queue to consume events.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-file/">File</a> | Reads files by tailing or as a whole to extract events out of them.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-rabbitmq/">RabbitMQ</a> | Subscribe to RabbitMQ topic to consume events.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-mqtt/">MQTT</a> | Subscribe to MQTT brokers to consume events.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-websocket/">WebSocket</a> | Create a web-socket connection or expose a service to consume messages.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-twitter/">Twitter</a> | Subscribe to Twitter to consume tweets.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-sqs/">Amazon SQS</a> | Subscribe to Amazon SQS to consume events.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-cdc/">CDC</a> | Perform change data capture on databases.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-prometheus/">Prometheus</a> | Consume data from Prometheus agent.|
+| <a target="_blank" href="../api/latest/#inmemory-source">In-memory</a> | Allow SiddhiApp to consume events from other SiddhiApps running on the same JVM. |
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-http/">HTTP</a> | Expose an HTTP service to consume messages.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-kafka/">Kafka</a> | Subscribe to Kafka topic to consume events.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-tcp/">TCP</a> | Expose a TCP service to consume messages.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-wso2event/">WSO2Event</a> | Expose a Thrift and TCP services to consume events formatted as WSO2Events.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-email/">Email</a> | Consume emails via POP3 and IMAP protocols.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-jms/">JMS</a> | Subscribe to JMS topic or queue to consume events.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-file/">File</a> | Reads files by tailing or as a whole to extract events out of them.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-rabbitmq/">RabbitMQ</a> | Subscribe to RabbitMQ topic to consume events.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-mqtt/">MQTT</a> | Subscribe to MQTT brokers to consume events.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-websocket/">WebSocket</a> | Create a web-socket connection or expose a service to consume messages.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-twitter/">Twitter</a> | Subscribe to Twitter to consume tweets.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-sqs/">Amazon SQS</a> | Subscribe to Amazon SQS to consume events.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-cdc/">CDC</a> | Perform change data capture on databases.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-prometheus/">Prometheus</a> | Consume data from Prometheus agent.|
 
- [In-memory](http://siddhi.io/api/latest/#inmemory-source) is the only source inbuilt in Siddhi, and all other source types are implemented as extensions.   
+ [In-memory](../api/latest/#inmemory-source) is the only source inbuilt in Siddhi, and all other source types are implemented as extensions.   
 
 #### Source Mapper
 
@@ -217,20 +217,20 @@ The following is the list of source mapping types supported by Siddhi:
 
 |Source mapping type | Description|
 | ------------- |-------------|
-| <a target="_blank" href="http://siddhi.io/api/latest/#passthrough-source-mapper">PassThrough</a> | Omits data conversion on Siddhi events.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-map-json/">JSON</a> | Converts JSON messages to Siddhi events.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-map-xml/">XML</a> | Converts XML messages to Siddhi events.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-map-text/">TEXT</a> | Converts plain text messages to Siddhi events.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-map-avro/">Avro</a> | Converts Avro events to Siddhi events.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-map-wso2event/">WSO2Event</a> | Converts WSO2Events to Siddhi events.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-map-binary/">Binary</a> | Converts Siddhi specific binary events to Siddhi events.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-map-keyvalue/">Key Value</a> | Converts key-value HashMaps to Siddhi events.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-map-csv/">CSV</a> | Converts CSV like delimiter separated events to Siddhi events.|
+| <a target="_blank" href="../api/latest/#passthrough-source-mapper">PassThrough</a> | Omits data conversion on Siddhi events.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-json/">JSON</a> | Converts JSON messages to Siddhi events.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-xml/">XML</a> | Converts XML messages to Siddhi events.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-text/">TEXT</a> | Converts plain text messages to Siddhi events.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-avro/">Avro</a> | Converts Avro events to Siddhi events.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-wso2event/">WSO2Event</a> | Converts WSO2Events to Siddhi events.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-binary/">Binary</a> | Converts Siddhi specific binary events to Siddhi events.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-keyvalue/">Key Value</a> | Converts key-value HashMaps to Siddhi events.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-csv/">CSV</a> | Converts CSV like delimiter separated events to Siddhi events.|
 
 !!! tip
     When the `@map` annotation is not provided `@map(type='passThrough')` is used as default, that passes the consumed Siddhi events directly to the streams without any data conversion.
 
- [PassThrough](http://siddhi.io/api/latest/#passthrough-source-mapper) is the only source mapper inbuilt in Siddhi, and all other source mappers are implemented as extensions.
+ [PassThrough](../api/latest/#passthrough-source-mapper) is the only source mapper inbuilt in Siddhi, and all other source mappers are implemented as extensions.
 
 **Example 1**
 
@@ -343,20 +343,20 @@ The following is a list of sink types supported by Siddhi:
 
 |Source type | Description|
 | ------------- |-------------|
-| <a target="_blank" href="http://siddhi.io/api/latest/#inmemory-sink">In-memory</a> | Allow SiddhiApp to publish events to other SiddhiApps running on the same JVM. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#log-sink">Log</a>| Logs the events appearing on the streams. |
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-http/">HTTP</a> | Publish events to an HTTP endpoint.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-kafka/">Kafka</a> | Publish events to Kafka topic. |
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-tcp/">TCP</a> | Publish events to a TCP service. |
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-wso2event/">WSO2Event</a> | Publish WSO2Events via Thrift or TCP protocols.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-email/">Email</a> | Send emails via SMTP protocols.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-jms/">JMS</a> | Publish events to JMS topics or queues. |
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-file/">File</a> | Writes events to files.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-rabbitmq/">RabbitMQ</a>| Publish events to RabbitMQ topics. |
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-mqtt/">MQTT</a> | Publish events to MQTT topics. |
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-websocket/">WebSocket</a> | Create a web-socket connection or expose a service to publish messages.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-sqs/">Amazon SQS</a> | Publish events to Amazon SQS.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-io-prometheus/">Prometheus</a> | Expose data through Prometheus agent.|
+| <a target="_blank" href="../api/latest/#inmemory-sink">In-memory</a> | Allow SiddhiApp to publish events to other SiddhiApps running on the same JVM. |
+| <a target="_blank" href="../api/latest/#log-sink">Log</a>| Logs the events appearing on the streams. |
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-http/">HTTP</a> | Publish events to an HTTP endpoint.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-kafka/">Kafka</a> | Publish events to Kafka topic. |
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-tcp/">TCP</a> | Publish events to a TCP service. |
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-wso2event/">WSO2Event</a> | Publish WSO2Events via Thrift or TCP protocols.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-email/">Email</a> | Send emails via SMTP protocols.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-jms/">JMS</a> | Publish events to JMS topics or queues. |
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-file/">File</a> | Writes events to files.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-rabbitmq/">RabbitMQ</a>| Publish events to RabbitMQ topics. |
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-mqtt/">MQTT</a> | Publish events to MQTT topics. |
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-websocket/">WebSocket</a> | Create a web-socket connection or expose a service to publish messages.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-sqs/">Amazon SQS</a> | Publish events to Amazon SQS.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-prometheus/">Prometheus</a> | Expose data through Prometheus agent.|
 
 #### Distributed Sink
 
@@ -435,20 +435,20 @@ The following is a list of sink mapping types supported by Siddhi:
 
 |Sink mapping type | Description|
 | ------------- |-------------|
-| <a target="_blank" href="http://siddhi.io/api/latest/#passthrough-sink-mapper">PassThrough</a> | Omits data conversion on outgoing Siddhi events.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-map-json/">JSON</a> | Converts Siddhi events to JSON messages.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-map-xml/">XML</a> | Converts Siddhi events to XML messages.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-map-text/">TEXT</a> | Converts Siddhi events to plain text messages.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-map-avro/">Avro</a> | Converts Siddhi events to Avro Events.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-map-wso2event/">WSO2Event</a> | Converts Siddhi events to WSO2Event events.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-map-binary/">Binary</a> | Converts Siddhi events to Siddhi specific binary events.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-map-keyvalue/">Key Value</a> | Converts Siddhi events to key-value HashMaps.|
-| <a target="_blank" href="https://wso2-extensions.github.io/siddhi-map-csv/">CSV</a> | Converts Siddhi events to CSV like delimiter separated events.|
+| <a target="_blank" href="../api/latest/#passthrough-sink-mapper">PassThrough</a> | Omits data conversion on outgoing Siddhi events.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-json/">JSON</a> | Converts Siddhi events to JSON messages.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-xml/">XML</a> | Converts Siddhi events to XML messages.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-text/">TEXT</a> | Converts Siddhi events to plain text messages.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-avro/">Avro</a> | Converts Siddhi events to Avro Events.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-wso2event/">WSO2Event</a> | Converts Siddhi events to WSO2Event events.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-binary/">Binary</a> | Converts Siddhi events to Siddhi specific binary events.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-keyvalue/">Key Value</a> | Converts Siddhi events to key-value HashMaps.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-csv/">CSV</a> | Converts Siddhi events to CSV like delimiter separated events.|
 
 !!! tip
     When the `@map` annotation is not provided `@map(type='passThrough')` is used as default, that passes the outgoing Siddhi events directly to the sinks without any data conversion.
 
- [PassThrough](http://siddhi.io/api/latest/#passthrough-sink-mapper) is the only sink mapper inbuilt in Siddhi, and all other sink mappers are implemented as extensions.
+ [PassThrough](../api/latest/#passthrough-sink-mapper) is the only sink mapper inbuilt in Siddhi, and all other sink mappers are implemented as extensions.
 
 **Example 1**
 
@@ -990,28 +990,28 @@ add(1 hour and 25 minutes, startTime + 56)
 
 **Inbuilt functions**
 
-Following are some inbuilt Siddhi functions, for more functions refer [execution extensions](http://siddhi.io/extensions/) .
+Following are some inbuilt Siddhi functions, for more functions refer [execution extensions](../extensions/) .
 
 |Inbuilt function | Description|
 | ------------- |-------------|
-| <a target="_blank" href="http://siddhi.io/api/latest/#eventtimestamp-function">eventTimestamp</a> | Returns event's timestamp. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#currenttimemillis-function">currentTimeMillis</a> | Returns current time of SiddhiApp runtime. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#default-function">default</a> | Returns a default value if the parameter is null. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#ifthenelse-function">ifThenElse</a> | Returns parameters based on a conditional parameter. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#uuid-function">UUID</a> | Generates a UUID. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#cast-function">cast</a> | Casts parameter type. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#convert-function">convert</a> | Converts parameter type. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#coalesce-function">coalesce</a> | Returns first not null input parameter. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#maximum-function">maximum</a> | Returns the maximum value of all parameters. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#minimum-function">minimum</a> | Returns the minimum value of all parameters. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#instanceofboolean-function">instanceOfBoolean</a> | Checks if the parameter is an instance of Boolean. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#instanceofdouble-function">instanceOfDouble</a> | Checks if the parameter is an instance of Double. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#instanceoffloat-function">instanceOfFloat</a> | Checks if the parameter is an instance of Float. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#instanceofinteger-function">instanceOfInteger</a> | Checks if the parameter is an instance of Integer. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#instanceoflong-function">instanceOfLong</a> | Checks if the parameter is an instance of Long. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#instanceofstring-function">instanceOfString</a> | Checks if the parameter is an instance of String. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#createset-function">createSet</a> | Creates  HashSet with given input parameters. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#minimum-function">sizeOfSet</a> | Returns number of items in the HashSet, that's passed as a parameter. |
+| <a target="_blank" href="../api/latest/#eventtimestamp-function">eventTimestamp</a> | Returns event's timestamp. |
+| <a target="_blank" href="../api/latest/#currenttimemillis-function">currentTimeMillis</a> | Returns current time of SiddhiApp runtime. |
+| <a target="_blank" href="../api/latest/#default-function">default</a> | Returns a default value if the parameter is null. |
+| <a target="_blank" href="../api/latest/#ifthenelse-function">ifThenElse</a> | Returns parameters based on a conditional parameter. |
+| <a target="_blank" href="../api/latest/#uuid-function">UUID</a> | Generates a UUID. |
+| <a target="_blank" href="../api/latest/#cast-function">cast</a> | Casts parameter type. |
+| <a target="_blank" href="../api/latest/#convert-function">convert</a> | Converts parameter type. |
+| <a target="_blank" href="../api/latest/#coalesce-function">coalesce</a> | Returns first not null input parameter. |
+| <a target="_blank" href="../api/latest/#maximum-function">maximum</a> | Returns the maximum value of all parameters. |
+| <a target="_blank" href="../api/latest/#minimum-function">minimum</a> | Returns the minimum value of all parameters. |
+| <a target="_blank" href="../api/latest/#instanceofboolean-function">instanceOfBoolean</a> | Checks if the parameter is an instance of Boolean. |
+| <a target="_blank" href="../api/latest/#instanceofdouble-function">instanceOfDouble</a> | Checks if the parameter is an instance of Double. |
+| <a target="_blank" href="../api/latest/#instanceoffloat-function">instanceOfFloat</a> | Checks if the parameter is an instance of Float. |
+| <a target="_blank" href="../api/latest/#instanceofinteger-function">instanceOfInteger</a> | Checks if the parameter is an instance of Integer. |
+| <a target="_blank" href="../api/latest/#instanceoflong-function">instanceOfLong</a> | Checks if the parameter is an instance of Long. |
+| <a target="_blank" href="../api/latest/#instanceofstring-function">instanceOfString</a> | Checks if the parameter is an instance of String. |
+| <a target="_blank" href="../api/latest/#createset-function">createSet</a> | Creates  HashSet with given input parameters. |
+| <a target="_blank" href="../api/latest/#minimum-function">sizeOfSet</a> | Returns number of items in the HashSet, that's passed as a parameter. |
 
 **Example**
 
@@ -1117,23 +1117,23 @@ insert into MaxTempStream;
     Similar operations can be done based on time via `time` windows and `timeBatch` windows and for others.
     Code segments such as `#window.time(10 min)` considers events that arrive during the last 10 minutes in a sliding manner, and the `#window.timeBatch(2 min)` considers events that arrive every 2 minutes in a tumbling manner.
 
-Following are some inbuilt windows shipped with Siddhi. For more window types, see execution <a target="_blank" href="http://siddhi.io/extensions/">extensions</a>.
+Following are some inbuilt windows shipped with Siddhi. For more window types, see execution <a target="_blank" href="../extensions/">extensions</a>.
 
-* [time](http://siddhi.io/api/latest/#time-window)
-* [timeBatch](http://siddhi.io/api/latest/#timebatch-window)
-* [batch](http://siddhi.io/api/latest/#batch-window)
-* [timeLength](http://siddhi.io/api/latest/#timelength-window)
-* [length](http://siddhi.io/api/latest/#length-window)
-* [lengthBatch](http://siddhi.io/api/latest/#lengthbatch-window)
-* [sort](http://siddhi.io/api/latest/#sort-window)
-* [frequent](http://siddhi.io/api/latest/#frequent-window)
-* [lossyFrequent](http://siddhi.io/api/latest/#lossyfrequent-window)
-* [session](http://siddhi.io/api/latest/#session-window)
-* [cron](http://siddhi.io/api/latest/#cron-window)
-* [externalTime](http://siddhi.io/api/latest/#externaltime-window)
+* [time](../api/latest/#time-window)
+* [timeBatch](../api/latest/#timebatch-window)
+* [batch](../api/latest/#batch-window)
+* [timeLength](../api/latest/#timelength-window)
+* [length](../api/latest/#length-window)
+* [lengthBatch](../api/latest/#lengthbatch-window)
+* [sort](../api/latest/#sort-window)
+* [frequent](../api/latest/#frequent-window)
+* [lossyFrequent](../api/latest/#lossyfrequent-window)
+* [session](../api/latest/#session-window)
+* [cron](../api/latest/#cron-window)
+* [externalTime](../api/latest/#externaltime-window)
 <a class="headerlink" name="output-event-types" href="#output-event-types" title="Permanent link"></a>
-* [externalTimeBatch](http://siddhi.io/api/latest/#externaltimebatch-window)
-* [delay](http://siddhi.io/api/latest/#delay-window)
+* [externalTimeBatch](../api/latest/#externaltimebatch-window)
+* [delay](../api/latest/#delay-window)
 
 **Output event types**
 
@@ -1190,17 +1190,17 @@ from TempStream#window.time(10 min)
 select avg(temp) as avgTemp, roomNo, deviceID
 insert into AvgTempStream;
 ```
-Following are some inbuilt aggregation functions shipped with Siddhi, for more aggregation functions, see execution <a target="_blank" href="http://siddhi.io/extensions/">extensions</a>.
+Following are some inbuilt aggregation functions shipped with Siddhi, for more aggregation functions, see execution <a target="_blank" href="../extensions/">extensions</a>.
 
-+ [avg](http://siddhi.io/api/latest/#avg-aggregate-function)
-+ [sum](http://siddhi.io/api/latest/#sum-aggregate-function)
-+ [max](http://siddhi.io/api/latest/#max-aggregate-function)
-+ [min](http://siddhi.io/api/latest/#min-aggregate-function)
-+ [count](http://siddhi.io/api/latest/#count-aggregate-function)
-+ [distinctCount](http://siddhi.io/api/latest/#distinctcount-aggregate-function)
-+ [maxForever](http://siddhi.io/api/latest/#maxforever-aggregate-function)
-+ [minForever](http://siddhi.io/api/latest/#minforever-aggregate-function)
-+ [stdDev](http://siddhi.io/api/latest/#stddev-aggregate-function)
++ [avg](../api/latest/#avg-aggregate-function)
++ [sum](../api/latest/#sum-aggregate-function)
++ [max](../api/latest/#max-aggregate-function)
++ [min](../api/latest/#min-aggregate-function)
++ [count](../api/latest/#count-aggregate-function)
++ [distinctCount](../api/latest/#distinctcount-aggregate-function)
++ [maxForever](../api/latest/#maxforever-aggregate-function)
++ [minForever](../api/latest/#minforever-aggregate-function)
++ [stdDev](../api/latest/#stddev-aggregate-function)
 
 ### Group By
 
@@ -2046,12 +2046,12 @@ define table RoomTypeTable ( roomNo int, type string );
 
 The following is a list of currently supported store types:
 
-* <a target="_blank" href="https://wso2-extensions.github.io/siddhi-store-rdbms">RDBMS (MySQL, Oracle, SQL Server, PostgreSQL, DB2, H2)</a>
-* <a target="_blank" href="https://wso2-extensions.github.io/siddhi-store-solr">Solr</a>
-* <a target="_blank" href="https://wso2-extensions.github.io/siddhi-store-mongodb">MongoDB</a>
-* <a target="_blank" href="https://wso2-extensions.github.io/siddhi-store-hbase">HBase</a>
-* <a target="_blank" href="https://wso2-extensions.github.io/siddhi-store-redis">Redis</a>
-* <a target="_blank" href="https://wso2-extensions.github.io/siddhi-store-cassandra">Cassandra</a>
+* <a target="_blank" href="https://siddhi-io.github.io/siddhi-store-rdbms">RDBMS (MySQL, Oracle, SQL Server, PostgreSQL, DB2, H2)</a>
+* <a target="_blank" href="https://siddhi-io.github.io/siddhi-store-solr">Solr</a>
+* <a target="_blank" href="https://siddhi-io.github.io/siddhi-store-mongodb">MongoDB</a>
+* <a target="_blank" href="https://siddhi-io.github.io/siddhi-store-hbase">HBase</a>
+* <a target="_blank" href="https://siddhi-io.github.io/siddhi-store-redis">Redis</a>
+* <a target="_blank" href="https://siddhi-io.github.io/siddhi-store-cassandra">Cassandra</a>
 
 **Operators on Table (and Store)**
 
@@ -3176,7 +3176,7 @@ insert into StockQuote
 
 **Available Extensions**
 
-Siddhi currently has several pre written extensions that are available **<a target="_blank" href="http://siddhi.io/extensions/">here</a>**
+Siddhi currently has several pre written extensions that are available **<a target="_blank" href="../extensions/">here</a>**
 
 _We value your contribution on improving Siddhi and its extensions further._
 
