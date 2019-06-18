@@ -9,7 +9,7 @@ Get all released Siddhi 4.x libraries from the Maven repository:
 * [Siddhi Query Compiler](https://mvnrepository.com/artifact/org.wso2.siddhi/siddhi-query-compiler)
 * [Siddhi Annotation](https://mvnrepository.com/artifact/org.wso2.siddhi/siddhi-annotations)
 
-Refer the [user guide](user-guide/) for using Siddhi as a Java library.
+Refer the [user guide](../user-guide/) for using Siddhi as a Java library.
 
 ##Siddhi in Python (PySiddhi4)
 
