@@ -121,7 +121,9 @@ nav:
   - Siddhi APIs:
     - latest: api/latest.md
     - 5.0.0: api/5.0.0.md
-  - Contribution:
-    - contribution.md
+  - Community:
+    - Support and Contribution: community/support-contribution.md
+    - Code Contribution: community/code-contribution.md
+    - Siddhi Logos: community/siddhi-logos.md
   - License:
     - license.md
