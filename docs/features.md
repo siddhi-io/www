@@ -18,6 +18,7 @@
 <!DOCTYPE html>
 <html>
 <body>
-<script src="../assets/js/redirect.js"></script>
+Foo
+<!--script src="../assets/js/redirect.js"></script-->
 </body>
 </html>
