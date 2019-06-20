@@ -18,9 +18,7 @@
 
 var request = new XMLHttpRequest();
 var docSetLang = "/en/";
-request.open('GET', 'https://siddhi.io/en/versions/assets/versions.json', true);
-
-// request.open('GET', docSetLang + 'versions/assets/versions.json', true);
+request.open('GET', '../en/versions/assets/versions.json', true);
 
 request.onload = function () {
     if (request.status >= 200 && request.status < 400) {
