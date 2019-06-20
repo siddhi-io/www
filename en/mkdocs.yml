@@ -106,12 +106,12 @@ nav:
     - Release Notes: release-notes.md
   - Quick Start:
     - quckstart.md
-  - Developer Guides:
+  - Documentation:
     - Query Guide: query-guide.md
     - API Guide: api/latest.md
     - Extension Guide: extensions.md
     - Architecture Guide: architecture.md
-  - Deployment Guides:
+  - Development:
     - Introduction: deployment/introduction.md
     - Siddhi Java library: deployment/siddhi-as-a-java-library.md
     - Siddhi Local Microservice: deployment/siddhi-as-a-local-microservice.md
