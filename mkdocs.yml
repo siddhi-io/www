@@ -100,17 +100,17 @@ markdown_extensions:
 nav:
   - Siddhi: index.md
   - Download:
-    - download.md
+    - en/_latest_version_/download/
   - Quick Start:
-    - quick-start.md
+    - en/_latest_version_/quick-start/
   - Documentation:
-    - documentation.md
+    - en/_latest_version_/documentation/
   - Community:
     - Support : community/index.md
     - Contribution : community/contribution.md
     - Events : community/events.md
     - Siddhi Logos : community/siddhi-logos.md
   - Development:
-    - Development : development.md
+    - en/_latest_version_/development/
   - License:
     - license.md
