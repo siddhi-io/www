@@ -37,7 +37,7 @@ processing logic and easily manage addition and removal of various use cases.
 The following diagram depicts some of the key Siddhi Streaming SQL elements of Siddhi Application and
 how **event flows** through the elements.
 
-![Event Flow](images/event-flow.png?raw=true "Event Flow")
+![Event Flow](../images/event-flow.png?raw=true "Event Flow")
 
 Below table provides brief description of a few key elements in the Siddhi Streaming SQL Language.
 
