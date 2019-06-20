@@ -104,7 +104,7 @@ nav:
   - Quick Start:
     - en/_latest_version_/quick-start/
   - Documentation:
-    - en/_latest_version_/documentation/
+    - en/_latest_version_/docs/
   - Community:
     - Support : community/index.md
     - Contribution : community/contribution.md
