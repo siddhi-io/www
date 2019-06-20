@@ -15,24 +15,5 @@
   ~ specific language governing permissions and limitations
   ~ under the License.
   -->
+<script src="http://localhost:8000/assets/js/redirect.js"></script>
 <!--meta http-equiv="refresh" content="0; url=http://www.google.com" /-->
-<html>
-    <head>
-        <meta http-equiv="refresh" content="5;url=test.jsp"/>
-        <title>JSP Page</title>
-    <script>
-         function change()
-                {
-                    window.location.href = 'http://www.google.com';
-        
-                    // Use a timeout if you want to delay the redirection:
-                    // setTimeout('window.location.href = \'test.jsp\';', 5000);
-                }
-    </script>
-    </head>
- 
-    
-    <body onload="change()">
-        <h2>Hello World!</h2>
-    </body>
-</html>

@@ -19,32 +19,32 @@
 /*
  * Reading to current
  */
-
-var request = new XMLHttpRequest();
-var docSetLang = "/en/";
-var urlSplit = window.location.pathname.split('/');
-if (urlSplit[1] + '/' + urlSplit[2] === 'www/en') {
-    docSetLang = '/www/en/';
-} else if (urlSplit[1] === 'www') {
-    docSetLang = '/www/en/';
-}
+//
+// var request = new XMLHttpRequest();
+// var docSetLang = "/en/";
+// var urlSplit = window.location.pathname.split('/');
+// if (urlSplit[1] + '/' + urlSplit[2] === 'www/en') {
+//     docSetLang = '/www/en/';
+// } else if (urlSplit[1] === 'www') {
+//     docSetLang = '/www/en/';
+// }
 
 window.location = "http://www.youtube.com";
-
-request.open('GET', docSetLang + 'versions/assets/versions.json', true);
-
-request.onload = function () {
-    if (request.status >= 200 && request.status < 400) {
-        var data = JSON.parse(request.responseText);
-        console.error("Current version " + data.current);
-        window.location = docSetLang + data.current;
-    } else {
-        console.error("We reached our target server, but it returned an error");
-    }
-};
-
-request.onerror = function () {
-    console.error("There was a connection error of some sort");
-};
-
-request.send();
+//
+// request.open('GET', docSetLang + 'versions/assets/versions.json', true);
+//
+// request.onload = function () {
+//     if (request.status >= 200 && request.status < 400) {
+//         var data = JSON.parse(request.responseText);
+//         console.error("Current version " + data.current);
+//         window.location = docSetLang + data.current;
+//     } else {
+//         console.error("We reached our target server, but it returned an error");
+//     }
+// };
+//
+// request.onerror = function () {
+//     console.error("There was a connection error of some sort");
+// };
+//
+// request.send();
