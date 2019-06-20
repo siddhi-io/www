@@ -165,12 +165,12 @@ for (var i = 0; i < dropdowns.length; i++) {
 //       console.error("We reached our target server, but it returned an error");
 //   }
 // };
-
-request.onerror = function() {
-    console.error("There was a connection error of some sort");
-};
-
-request.send();
+//
+// request.onerror = function() {
+//     console.error("There was a connection error of some sort");
+// };
+//
+// request.send();
 
 /* 
  * Initialize highlightjs 
