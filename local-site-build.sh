@@ -36,6 +36,17 @@ build(){
     done
 }
 
+build_landing(){
+
+	git checkout landing
+    version=landing
+
+    mkdocs build
+    mv site/*  ../dist
+    rm -rf site/
+    cp -R theme/  ../dist/theme/
+}
+
    echo clean dist
    rm -rf ../dist/*
    echo build triggered manually
@@ -69,7 +80,7 @@ build(){
 
    build "master"
 
-   build "landing"
+   build_landing
 
    git checkout gh-pages
    rm -rf ./*
