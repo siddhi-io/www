@@ -1,5 +1,7 @@
 # Download Siddhi
 
+<script src="assets/js/redirect-download.js"></script>
+
 Select the appropriate Siddhi distribution for your use case. 
 
 ##Siddhi Distribution 
@@ -22,6 +24,5 @@ Siddhi Java Libraries.
 
 Setting up Siddhi in Python.
 
-<script src="http://localhost:8000/assets/js/redirect.js"></script>
 
 

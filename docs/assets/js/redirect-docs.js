@@ -25,7 +25,7 @@ request.open('GET', 'https://siddhi.io/en/versions/assets/versions.json', true);
 request.onload = function () {
     if (request.status >= 200 && request.status < 400) {
         var data = JSON.parse(request.responseText);
-        window.location = docSetLang + data.current;
+        window.location = docSetLang + data.current + "/docs";
     } else {
         console.error("We reached our target server, but it returned an error");
     }

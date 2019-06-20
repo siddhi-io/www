@@ -1,5 +1,7 @@
 # Documentation
 
+<script src="assets/js/redirect-docs.js"></script>
+
 Siddhi documentation.
 
 ## Siddhi in Java
@@ -12,4 +14,3 @@ Siddhi documentation.
 
 ## Siddhi as a Microservice in Kubernetes
 
-<script src="http://localhost:8000/assets/js/redirect.js"></script>
