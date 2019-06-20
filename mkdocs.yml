@@ -101,8 +101,10 @@ nav:
   - Siddhi: index.md
   - Download:
     - download.md
+  - Quick Start:
+    - quick-start.md
   - Documentation:
-    - Documentation : documentation.md
+    - documentation.md
   - Community:
     - Support and Contribution : community/index.md
     - Code Contribution : community/code-contribution.md
