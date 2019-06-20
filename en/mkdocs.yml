@@ -119,6 +119,7 @@ nav:
     - Siddhi Kubernetes Microservice: docs/siddhi-as-a-kubernetes-microservice.md
     - Configuration Guide: docs/config-guide.md
   - Development:
+    - Introduction: deployment/index.md
     - Architecture: deployment/architecture.md
     - Source: deployment/source.md
   - Siddhi APIs:
