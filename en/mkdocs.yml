@@ -120,11 +120,11 @@ nav:
     - Siddhi Docker Microservice: docs/siddhi-as-a-docker-microservice.md
     - Siddhi Kubernetes Microservice: docs/siddhi-as-a-kubernetes-microservice.md
     - Configuration Guide: docs/config-guide.md
+  - Community:
+    - community.md
   - Development:
     - Introduction: development/index.md
     - Architecture: development/architecture.md
     - Source: development/source.md
-  - Community:
-    - community.md
   - License:
     - license.md
