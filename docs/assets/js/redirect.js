@@ -37,7 +37,7 @@ request.onload = function () {
     if (request.status >= 200 && request.status < 400) {
         var data = JSON.parse(request.responseText);
         console.error("Current version " + data.current);
-        window.location = docSetLang + '4.x';
+        window.location = docSetLang + data.current;
     } else {
         console.error("We reached our target server, but it returned an error");
     }
