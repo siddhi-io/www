@@ -106,8 +106,9 @@ nav:
   - Documentation:
     - documentation.md
   - Community:
-    - Support and Contribution : community/index.md
-    - Code Contribution : community/code-contribution.md
+    - Support : community/index.md
+    - Contribution : community/contribution.md
+    - Events : community/events.md
     - Siddhi Logos : community/siddhi-logos.md
   - Development:
     - Development : development.md
