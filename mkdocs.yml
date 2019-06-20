@@ -102,7 +102,9 @@ nav:
   - Download:
     - download.md
   - Documentation:
-    - documentation.md
+    - Support and Contribution : community/support-contribution.md
+    - Code Contribution : community/code-contribution.md
+    - Siddhi Logos : community/siddhi-logos.md
   - Community:
     - community.md
   - License:
