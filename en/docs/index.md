@@ -20,6 +20,9 @@ template: templates/single-column.html
  * under the License.
 -->
 
+<meta http-equiv="refresh" content="0; url=/" />
+
+
 **Siddhi** - Cloud Native Stream Processor
 ===========================================
 
