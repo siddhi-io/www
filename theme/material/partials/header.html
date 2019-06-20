@@ -36,7 +36,9 @@
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
           {% if config.site_name == page.title %}
+            <span class="md-header-nav__topic">
             {{ config.site_name }}
+            </span>
           {% else %}
             <span class="md-header-nav__topic">
               {{ config.site_name | replace('WSO2', '') }}
