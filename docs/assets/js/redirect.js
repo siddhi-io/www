@@ -16,27 +16,15 @@
  * under the License.
  */
 
-/*
- * Reading to current
- */
-
 var request = new XMLHttpRequest();
 var docSetLang = "/en/";
-// var urlSplit = window.location.pathname.split('/');
-// if (urlSplit[1] + '/' + urlSplit[2] === 'www/en') {
-//     docSetLang = '/www/en/';
-// } else if (urlSplit[1] === 'www') {
-//     docSetLang = '/www/en/';
-// }
+request.open('GET', 'https://siddhi.io/en/versions/assets/versions.json', true);
 
-// window.location = "http://www.youtube.com";
-
-request.open('GET', docSetLang + 'versions/assets/versions.json', true);
+// request.open('GET', docSetLang + 'versions/assets/versions.json', true);
 
 request.onload = function () {
     if (request.status >= 200 && request.status < 400) {
         var data = JSON.parse(request.responseText);
-        console.error("Current version " + data.current);
         window.location = docSetLang + data.current;
     } else {
         console.error("We reached our target server, but it returned an error");

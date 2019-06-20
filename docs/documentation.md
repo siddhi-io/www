@@ -12,3 +12,4 @@ Siddhi documentation.
 
 ## Siddhi as a Microservice in Kubernetes
 
+<script src="http://localhost:8000/assets/js/redirect.js"></script>

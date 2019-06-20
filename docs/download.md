@@ -22,3 +22,6 @@ Siddhi Java Libraries.
 
 Setting up Siddhi in Python.
 
+<script src="http://localhost:8000/assets/js/redirect.js"></script>
+
+

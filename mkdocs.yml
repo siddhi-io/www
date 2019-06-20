@@ -98,12 +98,12 @@ markdown_extensions:
 
 # Navigation
 nav:
-  - Siddhi 5.0: index.md
-  - Features:
-    - features.md
+  - Siddhi: index.md
+  - Download:
+    - download.md
+  - Documentation:
+    - documentation.md
   - Community:
-    - Support and Contribution: community/support-contribution.md
-    - Code Contribution: community/code-contribution.md
-    - Siddhi Logos: community/siddhi-logos.md
+    - community.md
   - License:
     - license.md
