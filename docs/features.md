@@ -18,6 +18,6 @@
 <!DOCTYPE html>
 <html>
 <body>
-<script src="versions/assets/js/redirect.js"></script>
+<script src="../assets/js/redirect.js"></script>
 </body>
 </html>
