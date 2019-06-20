@@ -98,7 +98,7 @@ markdown_extensions:
 
 # Navigation
 nav:
-  - Siddhi 5.0: index.md
+  - Siddhi 5.0: /
   - Downloads:
     - Download: download.md
     - Extensions: extensions.md
@@ -121,10 +121,10 @@ nav:
     - Siddhi Kubernetes Microservice: docs/siddhi-as-a-kubernetes-microservice.md
     - Configuration Guide: docs/config-guide.md
   - Community:
-    - community.md
+    - /community/
   - Development:
     - Introduction: development/index.md
     - Architecture: development/architecture.md
     - Source: development/source.md
   - License:
-    - license.md
+    - /license/
