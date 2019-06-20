@@ -52,7 +52,7 @@ Siddhi can run as an embedded [Java library](deployment/siddhi-as-a-java-library
  <img src="https://raw.githubusercontent.com/siddhi-io/siddhi/master/docs/images/distributions/source.png?raw=true" alt="Source" width="19%">
 </a>
 
-And more [installation options](https://siddhi-io.github.io/siddhi/download/) 
+And more [installation options](download/) 
 
 ## Overview 
 
@@ -159,7 +159,7 @@ Siddhi provides tooling that supports following features to develop and test str
 * Engage in community development through [Siddhi dev Google group](https://groups.google.com/forum/#!forum/siddhi-dev). 
 
 ## How to Contribute
-Find the detail information on asking questions, providing feedback, reporting issues, building and contributing code on [How to contribute?](https://siddhi-io.github.io/siddhi/contribution/) section.
+Find the detail information on asking questions, providing feedback, reporting issues, building and contributing code on [How to contribute?](contribution/) section.
 
 ## Roadmap 
 
@@ -174,6 +174,6 @@ Find the detail information on asking questions, providing feedback, reporting i
 - [ ] Support distributed Siddhi deployment with NATS via Kubernetes CRD
 
 ## Support 
-[WSO2](https://wso2.com/) provides production, and query support for Siddhi and its <a target="_blank" href="https://siddhi-io.github.io/siddhi/extensions/">extensions</a>. For more details contact via <a target="_blank" href="http://wso2.com/support?utm_source=gitanalytics&utm_campaign=gitanalytics_Jul17">http://wso2.com/support/</a>
+[WSO2](https://wso2.com/) provides production, and query support for Siddhi and its <a target="_blank" href="extensions/">extensions</a>. For more details contact via <a target="_blank" href="http://wso2.com/support?utm_source=gitanalytics&utm_campaign=gitanalytics_Jul17">http://wso2.com/support/</a>
 
 Siddhi is joint research project initiated by <a target="_blank" href="http://wso2.com/">WSO2</a> and <a target="_blank" href="http://www.mrt.ac.lk/web/">University of Moratuwa</a>, Sri Lanka.

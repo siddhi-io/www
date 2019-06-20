@@ -36,6 +36,17 @@ build(){
     done
 }
 
+build_landing(){
+
+	git checkout landing
+    version=landing
+
+    mkdocs build
+    mv site/*  ../dist
+    rm -rf site/
+    cp -R theme/  ../dist/theme/
+}
+
    echo clean dist
    rm -rf ../dist/*
    echo build triggered manually
@@ -60,18 +71,21 @@ build(){
    build "versions"
 
    #copy redirection
-   cp ./index.html ../dist/index.html
-   cp ./404.html ../dist/404.html
-   cp ./_config.yml ../dist/_config.yml
-   cp -R ./redirect/* ../dist/redirect/
-   cp ./en/index.html ../dist/en/index.html
+#  cp ./index.html ../dist/index.html
+#  cp ./404.html ../dist/404.html
+#   cp ./_config.yml ../dist/_config.yml
+#   cp -R ./redirect/* ../dist/redirect/
+#   cp ./en/index.html ../dist/en/index.html
+  cp ./CNAME ../dist/CNAME
 
    build "master"
 
-   git checkout gh-pages
-   rm -rf ./*
-   cp -R ../dist/* .
-   git add -A
+   build_landing
+
+  # git checkout gh-pages
+  # rm -rf ./*
+  # cp -R ../dist/* .
+  # git add -A
 
 
      
