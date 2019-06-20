@@ -148,7 +148,7 @@ request.onload = function () {
 
         var hrefList = document.querySelectorAll("[href]");
         for (var aHref of hrefList) {
-            if (aHref.href.contains("_latest_version_")) {
+            if (aHref.href.includes("_latest_version_")) {
                 aHref.href = aHref.href.replace("_latest_version_", data.current);
             }
         }
