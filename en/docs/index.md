@@ -20,7 +20,7 @@ template: templates/single-column.html
  * under the License.
 -->
 
-<meta http-equiv="refresh" content="0; url=/" />
+<meta http-equiv="refresh" content="0; url=https://www.siddhi.io" />
 
 
 **Siddhi** - Cloud Native Stream Processor
