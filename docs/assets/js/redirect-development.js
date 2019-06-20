@@ -23,7 +23,7 @@ request.open('GET', '../en/versions/assets/versions.json', true);
 request.onload = function () {
     if (request.status >= 200 && request.status < 400) {
         var data = JSON.parse(request.responseText);
-        window.location = docSetLang + data.current + "/download";
+        window.location = docSetLang + data.current + "/development";
     } else {
         console.error("We reached our target server, but it returned an error");
     }
