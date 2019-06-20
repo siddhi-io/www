@@ -108,7 +108,7 @@ nav:
   - Quick Start:
     - docs/quckstart.md
   - Documentation:
-    - Introduction: docs/introduction.md
+    - Introduction: docs/index.md
     - Quick Start: docs/quckstart.md
     - Query Guide: query-guide.md
     - API Guide: api/latest.md
