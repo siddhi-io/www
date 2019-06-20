@@ -111,7 +111,9 @@ nav:
     - Introduction: docs/index.md
     - Quick Start: docs/quckstart.md
     - Query Guide: query-guide.md
-    - API Guide: api/latest.md
+    - Siddhi APIs:
+      - latest: api/latest.md
+      - 5.0.0: api/5.0.0.md
     - Extensions: extensions.md
     - Siddhi Java library: docs/siddhi-as-a-java-library.md
     - Siddhi Local Microservice: docs/siddhi-as-a-local-microservice.md
@@ -122,9 +124,6 @@ nav:
     - Introduction: development/index.md
     - Architecture: development/architecture.md
     - Source: development/source.md
-  - Siddhi APIs:
-    - latest: api/latest.md
-    - 5.0.0: api/5.0.0.md
   - Community:
     - community.md
   - License:
