@@ -69,6 +69,8 @@ build(){
 
    build "master"
 
+   build "landing"
+
    git checkout gh-pages
    rm -rf ./*
    cp -R ../dist/* .
