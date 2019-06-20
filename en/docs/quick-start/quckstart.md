@@ -18,7 +18,7 @@ This quick start guide contains the following six sections:
 Siddhi is an event driven system where all the data it consumes, processes and sends are modeled as events. Therefore Siddhi can play a vital part in any system built using event-driven architecture.   
 
 As Siddhi works with events first let's understand what an event is through an example. **If we consider the transactions carried out via an ATM as a data stream, one withdrawal from it can be considered an event**. This event contains data about the amount, time, account number etc. Many such transactions form a stream.
-![](../docs/images/quickstart/event-stream.png?raw=true "Event Stream")
+![](../images/quickstart/event-stream.png?raw=true "Event Stream")
 Siddhi provides following functionalities,
 
 * Streaming data analytics<br/>
@@ -40,7 +40,7 @@ Siddhi provides following functionalities,
 
 Basically, Siddhi receives data event-by-event and processes them in real time to produce meaningful information.
 
-![](../docs/images/quickstart/siddhi-basic.png?raw=true "Siddhi Basic Representation")
+![](../images/quickstart/siddhi-basic.png?raw=true "Siddhi Basic Representation")
 
 Using the above Siddhi can be used to solve may use-cases as follows:
 
@@ -53,7 +53,7 @@ Using the above Siddhi can be used to solve may use-cases as follows:
 
 ## 2. Overview of Siddhi architecture
 
-![](../docs/images/siddhi-overview.png?raw=true "Overview")
+![](../images/siddhi-overview.png?raw=true "Overview")
 
 As indicated above, Siddhi can:
 
@@ -89,7 +89,7 @@ For Linux: ./tooling.sh
 
 After successfully starting the Siddhi Editor, the terminal should look like as shown below:
 
-![](../docs/images/quickstart/after-starting-editor.png?raw=true "Terminal after starting Siddhi Editor")
+![](../images/quickstart/after-starting-editor.png?raw=true "Terminal after starting Siddhi Editor")
 
 After starting the Siddhi Editor, access the Editor GUI by visiting the following link in your browser.
 ```
@@ -97,7 +97,7 @@ http://localhost:9390/editor
 ```
 This takes you to the Siddhi Editor landing page.
 
-![](../docs/images/quickstart/siddhi-editor.png?raw=true "Siddhi Editor")
+![](../images/quickstart/siddhi-editor.png?raw=true "Siddhi Editor")
 
 ## 4. Siddhi ‘Hello World!’
 
@@ -109,7 +109,7 @@ and its functions in the [Siddhi Query Guide](../query-guide/).
 Let's **consider a scenario where we are loading cargo boxes into a ship**. We need to keep track of the total
 weight of the cargo added. **Measuring the weight of a cargo box when loading is considered an event**.
 
-![](../docs/images/quickstart/loading-ship.jpeg?raw=true "Loading Cargo on Ship")
+![](../images/quickstart/loading-ship.jpeg?raw=true "Loading Cargo on Ship")
 
 We can write a Siddhi program for the above scenario which has **4 parts**.
 
@@ -164,7 +164,7 @@ select weight, sum(weight) as totalWeight
 insert into OutputStream;
 ```
 Final Siddhi application in the editor will look like below.
-![](../docs/images/quickstart/hello-query.png?raw=true "Hello World in Stream Processor Studio")
+![](../images/quickstart/hello-query.png?raw=true "Hello World in Stream Processor Studio")
 
 You can copy the final Siddhi app from below.
 <script src="https://gist.github.com/tishan89/dafb25a494add587b7259c077ac49914.js"></script>
@@ -177,7 +177,7 @@ The Siddhi Editor has in-built support to simulate events. You can do it via the
 panel at the left of the Siddhi Editor. You should save your _HelloWorldApp_ by browsing to **File** ->
 **Save** before you run event simulation. Then click  **Event Simulator** and configure it as shown below.
 
-![](../docs/images/quickstart/event-simulation.png?raw=true "Simulating Events in Stream Processor Studio")
+![](../images/quickstart/event-simulation.png?raw=true "Simulating Events in Stream Processor Studio")
 
 **Step 1 — Configurations:**
 
@@ -194,7 +194,7 @@ _“HelloWorldApp.siddhi Started Successfully!”_
 You can see a log that contains _“outputData=[2, 2]”_. Click **Send** again and observe a log with
 _“outputData=[2, 4]”_. You can change the value of the weight and send it to see how the sum of the weight is updated.
 
-![](../docs/images/quickstart/log.png?raw=true "Terminal after sending 2 twice")
+![](../images/quickstart/log.png?raw=true "Terminal after sending 2 twice")
 
 Bravo! You have successfully completed creating Siddhi Hello World!
 
@@ -213,7 +213,7 @@ Let's imagine that when we are loading cargo boxes into the ship **we need to ke
 the recently loaded boxes** so that we can balance the weight across the ship.
 For this purpose, let's try to find the **average weight of last three boxes** of each event.
 
-![](../docs/images/quickstart/siddhi-windows.png?raw=true "Terminal after sending 2 twice")
+![](../images/quickstart/siddhi-windows.png?raw=true "Terminal after sending 2 twice")
 
 For window processing, we need to modify our query as follows:
 ```
