@@ -82,10 +82,10 @@ build_landing(){
 
    build_landing
 
-   git checkout gh-pages
-   rm -rf ./*
-   cp -R ../dist/* .
-   git add -A
+  # git checkout gh-pages
+  # rm -rf ./*
+  # cp -R ../dist/* .
+  # git add -A
 
 
      
