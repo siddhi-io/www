@@ -2,7 +2,7 @@
 
 We welcome new members to join the community and contribute. 
 
-You can contribute to Siddhi as follows.
+Following are some ways of contributing to Siddhi.
 
 ## Reporting Issues
 
@@ -18,17 +18,17 @@ To file non-security issues:
 
 ## Contributing Code 
 
-## Obtaining the Source Code and Building the Project
+### Obtaining the Source Code and Building the Project
 
 Refer [Source & Build](../development/) section for details on obtaining the source code, building the projects, and for their relevant prerequisites.
 
-## Making Code Changes and Sending PRs
+### Making Code Changes and Sending PRs
 
-You can use your preferred IDEs (eg: IntelliJ IDEA, Eclipse) for development. Make sure, the IDE is configured with proper JDK and Maven settings (for working on java projects). 
+You can use your preferred IDEs (eg: IntelliJ IDEA, Eclipse) for development. Make sure, your IDE is configured with proper JDK and Maven settings (for working on java projects). 
 
-You can import the source code to IDE, do code changes, and add the necessary unit tests. Finally, build the complete Siddhi project with tests, once build is successful, commit the changes to your Github folk following the bellow guidelines, and then send the pull request to the relevant Siddhi.io Repo.
+You can import the source code to IDE, do code changes, and add the necessary unit tests. Finally, build the complete Siddhi project with tests, once build is successful, commit the changes to your Github folk following the below guidelines, and then send the pull request to the relevant Siddhi.io Repo.
 
-## Code Commit Guidelines
+### Code Commit Guidelines
 
 We follow these commit message guidelines:
 
@@ -42,7 +42,7 @@ We follow these commit message guidelines:
 
 Please find details at: [https://chris.beams.io/posts/git-commit/](https://chris.beams.io/posts/git-commit/)
 
-## Accepting Contributor License Agreement (CLA)
+### Accepting Contributor License Agreement (CLA)
 
 Before you submit your first contribution please accept our Contributor License Agreement (CLA). When you send your first Pull Request (PR), GitHub will ask you to accept the CLA.
 
@@ -50,3 +50,8 @@ There is no need to do this before you send your first PR. Subsequent PRs will n
 
 If for some (unlikely) reason at any time CLA changes, you will get presented with the new CLA text on your first PR after the change.
 
+## Proposing Changes or Improvements
+
+You can propose changes or improvements by reporting an issue in the [Siddhi GitHub repository](https://github.com/siddhi-io/siddhi/issues) with the label `type/improvement` or `type/new-feature`. 
+
+You can also start a thread in the [Siddhi-Dev Google Group](https://groups.google.com/forum/#!forum/siddhi-dev) to continue the discussion in detail.

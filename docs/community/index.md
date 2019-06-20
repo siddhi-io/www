@@ -2,7 +2,7 @@
 
 Siddhi an open-source project under [Apache License](../../license/) built by hundreds of contributors. We always welcome new members to the community and appreciate their support. 
 
-You can get help for Siddhi in the following ways.
+You can get help on Siddhi in the following ways.
 
 ## Asking Questions
 
