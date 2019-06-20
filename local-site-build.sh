@@ -71,12 +71,12 @@ build_landing(){
    build "versions"
 
    #copy redirection
-   cp ./index.html ../dist/index.html
-   cp ./404.html ../dist/404.html
-   cp ./_config.yml ../dist/_config.yml
-   cp -R ./redirect/* ../dist/redirect/
-   cp ./en/index.html ../dist/en/index.html
-   cp ./CNAME ../dist/CNAME
+#  cp ./index.html ../dist/index.html
+#  cp ./404.html ../dist/404.html
+#   cp ./_config.yml ../dist/_config.yml
+#   cp -R ./redirect/* ../dist/redirect/
+#   cp ./en/index.html ../dist/en/index.html
+  cp ./CNAME ../dist/CNAME
 
    build "master"
 
