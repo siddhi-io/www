@@ -15,10 +15,4 @@
   ~ specific language governing permissions and limitations
   ~ under the License.
   -->
-<!DOCTYPE html>
-<html>
-<body>
-Foo
-<script src="http://localhost:8000/assets/js/redirect.js"></script>
-</body>
-</html>
+<meta http-equiv="refresh" content="0; url=http://www.google.com" />
