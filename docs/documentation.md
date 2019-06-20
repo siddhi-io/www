@@ -1,6 +1,6 @@
 # Documentation
 
-<script src="assets/js/redirect-docs.js"></script>
+<script src="../assets/js/redirect-docs.js"></script>
 
 Siddhi documentation.
 

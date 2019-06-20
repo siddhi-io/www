@@ -1,6 +1,6 @@
 # Download Siddhi
 
-<script src="assets/js/redirect-download.js"></script>
+<script src="../assets/js/redirect-download.js"></script>
 
 Select the appropriate Siddhi distribution for your use case. 
 
