@@ -105,8 +105,6 @@ nav:
     - Download: download.md
     - Extensions: extensions.md
     - Release Notes: release-notes.md
-  - Quick Start:
-    - docs/quckstart.md
   - Documentation:
     - Introduction: docs/index.md
     - Quick Start: docs/quckstart.md
