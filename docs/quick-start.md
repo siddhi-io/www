@@ -1,8 +1,8 @@
-# Documentation
+# Quick Start
 
 <script src="../assets/js/redirect-quick-start.js"></script>
 
-Siddhi documentation.
+Siddhi Quick Start documentation.
 
 ## Siddhi in Java
 
