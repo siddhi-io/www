@@ -99,7 +99,7 @@ markdown_extensions:
 # Navigation
 nav:
   - Siddhi: index.md
-  - Download:
+  - Downloads:
     - en/_latest_version_/download/
   - Quick Start:
     - en/_latest_version_/quick-start/
