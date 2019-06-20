@@ -19,6 +19,6 @@
 <html>
 <body>
 Foo
-<!--script src="../assets/js/redirect.js"></script-->
+<!--script src="http://localhost:8000/assets/js/redirect.js"></script-->
 </body>
 </html>
