@@ -104,8 +104,7 @@ nav:
     - Extensions: extensions.md
     - Release Notes: release-notes.md
   - Quick Start:
-    - Introduction: quick-start/index.md
-    - Siddhi Java: quick-start/quckstart.md
+    - Quick Start: quick-start/index.md
   - Documentation:
     - Introduction: docs/index.md
     - Features: docs/features.md
