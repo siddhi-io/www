@@ -27,3 +27,6 @@ The Docker wrapper for the Siddhi Tooling and Siddhi Runtime. This depends on th
 
 The Siddhi Kubernetes CRD repo deploying Siddhi on Kubernetes. This depends on the `siddhi-io/siddhi`, `siddhi-io/distribution` and `siddhi-io/docker-siddhi` repos.
 
+### Siddhi Extensions
+
+Find the supported Siddhi extensions and source [here](../docs/extensions) 

@@ -14,9 +14,9 @@ In this case, to pass the events from one Siddhi App to another, users can confi
 
 To write Siddhi Applications using Siddhi Streaming SQL refer [Siddhi Query Guide](query-guide) for details.
 
-For specific API information on Siddhi functions and features refer [Siddhi API Guide](/api/latest).
+For specific API information on Siddhi functions and features refer [Siddhi API Guide](api/latest).
 
-Find out about the supported Siddhi extensions and their versions [here](/../extensions).
+Find out about the supported Siddhi extensions and their versions [here](extensions).
 
 ## Executing Siddhi Applications
 
