@@ -104,11 +104,11 @@ nav:
     - Extensions: extensions.md
     - Release Notes: release-notes.md
   - Quick Start:
-    - Quick Start: quick-start/index.md
+    - Quick Start: docs/quick-start/index.md
   - Documentation:
     - Introduction: docs/index.md
     - Features: docs/features.md
-    - Quick Start: docs/quckstart.md
+    - Quick Start: docs/quick-start/index.md
     - Query Guide: query-guide.md
     - Siddhi APIs:
       - latest: api/latest.md
