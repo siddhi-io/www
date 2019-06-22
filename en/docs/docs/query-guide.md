@@ -179,7 +179,7 @@ The following is the list of source types supported by Siddhi:
 | <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-cdc/">CDC</a> | Perform change data capture on databases.|
 | <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-prometheus/">Prometheus</a> | Consume data from Prometheus agent.|
 
- [In-memory](../api/latest/#inmemory-source) is the only source inbuilt in Siddhi, and all other source types are implemented as extensions.   
+ [In-memory](api/latest/#inmemory-source) is the only source inbuilt in Siddhi, and all other source types are implemented as extensions.   
 
 #### Source Mapper
 
@@ -223,7 +223,7 @@ The following is the list of source mapping types supported by Siddhi:
 !!! tip
     When the `@map` annotation is not provided `@map(type='passThrough')` is used as default, that passes the consumed Siddhi events directly to the streams without any data conversion.
 
- [PassThrough](../api/latest/#passthrough-source-mapper) is the only source mapper inbuilt in Siddhi, and all other source mappers are implemented as extensions.
+ [PassThrough](api/latest/#passthrough-source-mapper) is the only source mapper inbuilt in Siddhi, and all other source mappers are implemented as extensions.
 
 **Example 1**
 
@@ -435,7 +435,7 @@ The following is a list of sink mapping types supported by Siddhi:
 !!! tip
     When the `@map` annotation is not provided `@map(type='passThrough')` is used as default, that passes the outgoing Siddhi events directly to the sinks without any data conversion.
 
- [PassThrough](../api/latest/#passthrough-sink-mapper) is the only sink mapper inbuilt in Siddhi, and all other sink mappers are implemented as extensions.
+ [PassThrough](api/latest/#passthrough-sink-mapper) is the only sink mapper inbuilt in Siddhi, and all other sink mappers are implemented as extensions.
 
 **Example 1**
 
@@ -1106,21 +1106,21 @@ insert into MaxTempStream;
 
 Following are some inbuilt windows shipped with Siddhi. For more window types, see execution <a target="_blank" href="../extensions/">extensions</a>.
 
-* [time](../api/latest/#time-window)
-* [timeBatch](../api/latest/#timebatch-window)
-* [batch](../api/latest/#batch-window)
-* [timeLength](../api/latest/#timelength-window)
-* [length](../api/latest/#length-window)
-* [lengthBatch](../api/latest/#lengthbatch-window)
-* [sort](../api/latest/#sort-window)
-* [frequent](../api/latest/#frequent-window)
-* [lossyFrequent](../api/latest/#lossyfrequent-window)
-* [session](../api/latest/#session-window)
-* [cron](../api/latest/#cron-window)
-* [externalTime](../api/latest/#externaltime-window)
+* [time](api/latest/#time-window)
+* [timeBatch](api/latest/#timebatch-window)
+* [batch](api/latest/#batch-window)
+* [timeLength](api/latest/#timelength-window)
+* [length](api/latest/#length-window)
+* [lengthBatch](api/latest/#lengthbatch-window)
+* [sort](api/latest/#sort-window)
+* [frequent](api/latest/#frequent-window)
+* [lossyFrequent](api/latest/#lossyfrequent-window)
+* [session](api/latest/#session-window)
+* [cron](api/latest/#cron-window)
+* [externalTime](api/latest/#externaltime-window)
 <a class="headerlink" name="output-event-types" href="#output-event-types" title="Permanent link"></a>
-* [externalTimeBatch](../api/latest/#externaltimebatch-window)
-* [delay](../api/latest/#delay-window)
+* [externalTimeBatch](api/latest/#externaltimebatch-window)
+* [delay](api/latest/#delay-window)
 
 **Output event types**
 
@@ -1179,15 +1179,15 @@ insert into AvgTempStream;
 ```
 Following are some inbuilt aggregation functions shipped with Siddhi, for more aggregation functions, see execution <a target="_blank" href="../extensions/">extensions</a>.
 
-+ [avg](../api/latest/#avg-aggregate-function)
-+ [sum](../api/latest/#sum-aggregate-function)
-+ [max](../api/latest/#max-aggregate-function)
-+ [min](../api/latest/#min-aggregate-function)
-+ [count](../api/latest/#count-aggregate-function)
-+ [distinctCount](../api/latest/#distinctcount-aggregate-function)
-+ [maxForever](../api/latest/#maxforever-aggregate-function)
-+ [minForever](../api/latest/#minforever-aggregate-function)
-+ [stdDev](../api/latest/#stddev-aggregate-function)
++ [avg](api/latest/#avg-aggregate-function)
++ [sum](api/latest/#sum-aggregate-function)
++ [max](api/latest/#max-aggregate-function)
++ [min](api/latest/#min-aggregate-function)
++ [count](api/latest/#count-aggregate-function)
++ [distinctCount](api/latest/#distinctcount-aggregate-function)
++ [maxForever](api/latest/#maxforever-aggregate-function)
++ [minForever](api/latest/#minforever-aggregate-function)
++ [stdDev](api/latest/#stddev-aggregate-function)
 
 ### Group By
 

@@ -109,10 +109,10 @@ nav:
     - Introduction: docs/index.md
     - Features: docs/features.md
     - Quick Start: docs/quick-start/index.md
-    - Query Guide: query-guide.md
+    - Query Guide: docs/query-guide.md
     - Siddhi APIs:
-      - latest: api/latest.md
-      - 5.0.0: api/5.0.0.md
+      - latest: docs/api/latest.md
+      - 5.0.0: docs/api/5.0.0.md
     - Extensions: extensions.md
     - Siddhi Java library: docs/siddhi-as-a-java-library.md
     - Siddhi Local Microservice: docs/siddhi-as-a-local-microservice.md
