@@ -1,4 +1,4 @@
-# Siddhi as a Local Microservice
+# Siddhi 5.0 as a Local Microservice
 
 This section provides information on running [Siddhi Apps](../introduction/#siddhi-application) on Bare Metal or VM. 
 
