@@ -2,31 +2,14 @@
 
 ## Obtaining and Building Project Source code 
 
-Find the project source code and the instruction to build the project repos here [here](source).
-
-## Building the project 
-
-### Building Java Repos
-
-#### Prerequisites
-* [Oracle JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html), [OpenJDK 8](http://openjdk.java.net/install/), or JDK 11 (Java 8 should be used for building in order to support both Java 8 and Java 11 at runtime)
-* [Maven 3.5.x or later version](https://maven.apache.org/install.html)
-
-#### Steps to Build
-1. Get a clone or download source from Github Repo, E.g.
-
-    ```bash
-    git clone https://github.com/siddhi-io/siddhi.git
-    ```
-    
-2. Run the Maven command ``mvn clean install`` from the root directory
- 
-  Command | Description
-  --- | ---
-  `mvn clean install` | Build and install the artifacts into the local repository.
-  `mvn clean install -Dmaven.test.skip=true` | Build and install the artifacts into the local repository, without running any of the unit tests.
+Find the project source code [here](source) and the instruction to building the project repos [here](build).
 
 ## Getting Involved in Project Development
 
+Siddhi design-related discussions are carried out in the [Siddhi-Dev Google Group](https://groups.google.com/forum/#!forum/siddhi-dev), you can subscribe to it to get notifications on the discussions and please feel free to get involved by contributing and sharing your thoughts and ideas.  
 
- 
+You can also propose changes or improvements by starting a thread in the Siddhi-Dev Google Group, and also by reporting issues in the [Siddhi GitHub repository](https://github.com/siddhi-io/siddhi/issues) with the label `type/improvement` or `type/new-feature`. 
+
+## Project Architecture 
+
+Find out about the architecture of Siddhi for the [Siddhi Architecture](architecture) documentation. 

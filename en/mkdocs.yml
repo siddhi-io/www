@@ -123,7 +123,8 @@ nav:
     - /community/
   - Development:
     - Introduction: development/index.md
-    - Architecture: development/architecture.md
     - Source: development/source.md
+    - Build: development/build.md
+    - Architecture: development/architecture.md
   - License:
     - /license/
