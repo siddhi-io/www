@@ -112,25 +112,25 @@ nav:
     - Tooling: docs/tooling.md
     - Query Guide: docs/query-guide.md
     - Siddhi Core APIs:
-      - latest: api/latest.md
-      - 4.5.11: api/4.5.11.md
-      - 4.5.10: api/4.5.10.md
-      - 4.5.9: api/4.5.9.md
-      - 4.5.0: api/4.5.0.md
-      - 4.4.8: api/4.4.8.md
-      - 4.4.8: api/4.4.3.md
-      - 4.4.0: api/4.4.0.md
-      - 4.3.19: api/4.3.19.md
-      - 4.3.0: api/4.3.0.md
-      - 4.2.40: api/4.2.40.md
-      - 4.2.20: api/4.2.20.md
-      - 4.2.0: api/4.2.0.md
-      - 4.1.64: api/4.1.64.md
-      - 4.1.46: api/4.1.46.md
-      - 4.1.7: api/4.1.7.md
-      - 4.1.0: api/4.1.0.md
-      - 4.0.9: api/4.0.9.md
-      - 4.0.0: api/4.0.0.md
+      - latest: docs/api/latest.md
+      - 4.5.11: docs/api/4.5.11.md
+      - 4.5.10: docs/api/4.5.10.md
+      - 4.5.9: docs/api/4.5.9.md
+      - 4.5.0: docs/api/4.5.0.md
+      - 4.4.8: docs/api/4.4.8.md
+      - 4.4.8: docs/api/4.4.3.md
+      - 4.4.0: docs/api/4.4.0.md
+      - 4.3.19: docs/api/4.3.19.md
+      - 4.3.0: docs/api/4.3.0.md
+      - 4.2.40: docs/api/4.2.40.md
+      - 4.2.20: docs/api/4.2.20.md
+      - 4.2.0: docs/api/4.2.0.md
+      - 4.1.64: docs/api/4.1.64.md
+      - 4.1.46: docs/api/4.1.46.md
+      - 4.1.7: docs/api/4.1.7.md
+      - 4.1.0: docs/api/4.1.0.md
+      - 4.0.9: docs/api/4.0.9.md
+      - 4.0.0: docs/api/4.0.0.md
     - Extensions: docs/extensions.md
     - Siddhi in WSO2 Stream Processor: docs/siddhi-in-wso2-stream-processor.md
     - Siddhi Java library: docs/siddhi-as-a-java-library.md

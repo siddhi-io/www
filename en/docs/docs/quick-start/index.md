@@ -96,7 +96,7 @@ For more details about WSO2 Stream Processor, see its [Quick Start Guide](https:
 
 After successfully starting the Stream Processor Studio, the terminal in Linux should look like as shown below:
 
-![](images/quickstart/after-starting-sp.png?raw=true "Terminal after starting WSO2 Stream Processor Text Editor")
+![](../../images/quickstart/after-starting-sp.png?raw=true "Terminal after starting WSO2 Stream Processor Text Editor")
 
 After starting the WSO2 Stream Processor, access the Stream Processor Studio by visiting the following link in your browser.
 ```
@@ -104,7 +104,7 @@ http://localhost:9390/editor
 ```
 This takes you to the Stream Processor Studio landing page.
 
-![](images/quickstart/sp-studio.png?raw=true "Stream Processor Studio")
+![](../../images/quickstart/sp-studio.png?raw=true "Stream Processor Studio")
 
 ## 4. Siddhi ‘Hello World!’ 
 
@@ -116,7 +116,7 @@ and its functions in the [Siddhi Query Guide](../query-guide/).
 Let's **consider a scenario where we are loading cargo boxes into a ship**. We need to keep track of the total 
 weight of the cargo added. **Measuring the weight of a cargo box when loading is considered an event**.
 
-![](images/quickstart/loading-ship.jpeg?raw=true "Loading Cargo on Ship")
+![](../../images/quickstart/loading-ship.jpeg?raw=true "Loading Cargo on Ship")
 
 We can write a Siddhi program for the above scenario which has **4 parts**.
 
@@ -161,7 +161,7 @@ select weight, sum(weight) as totalWeight
 insert into OutputStream;
 ```
 
-![](images/quickstart/hello-query.png?raw=true "Hello World in Stream Processor Studio")
+![](../../images/quickstart/hello-query.png?raw=true "Hello World in Stream Processor Studio")
 
 ## 5. Simulating Events
 
@@ -169,7 +169,7 @@ The Stream Processor Studio has in-built support to simulate events. You can do 
 panel at the left of the Stream Processor Studio. You should save your _HelloWorldApp_ by browsing to **File** -> 
 **Save** before you run event simulation. Then click  **Event Simulator** and configure it as shown below.
 
-![](images/quickstart/event-simulation.png?raw=true "Simulating Events in Stream Processor Studio")
+![](../../images/quickstart/event-simulation.png?raw=true "Simulating Events in Stream Processor Studio")
 
 **Step 1 — Configurations:**
 
@@ -186,7 +186,7 @@ _“HelloWorldApp.siddhi Started Successfully!”_
 You can see a log that contains _“outputData=[2, 2]”_. Click **Send** again and observe a log with 
 _“outputData=[2, 4]”_. You can change the value of the weight and send it to see how the sum of the weight is updated.
 
-![](images/quickstart/log.png?raw=true "Terminal after sending 2 twice")
+![](../../images/quickstart/log.png?raw=true "Terminal after sending 2 twice")
 
 Bravo! You have successfully completed creating Siddhi Hello World! 
 
@@ -205,7 +205,7 @@ Let's imagine that when we are loading cargo boxes into the ship **we need to ke
 the recently loaded boxes** so that we can balance the weight across the ship. 
 For this purpose, let's try to find the **average weight of last three boxes** of each event.
 
-![](images/quickstart/siddhi-windows.png?raw=true "Terminal after sending 2 twice")
+![](../../images/quickstart/siddhi-windows.png?raw=true "Terminal after sending 2 twice")
 
 For window processing, we need to modify our query as follows:
 ```
@@ -227,7 +227,7 @@ define stream OutputStream(weight int, totalWeight long, averageWeight double);
 
 The updated Siddhi Application should look as shown below:
 
-![](images/quickstart/window-processing-app.png?raw=true "Window Processing with Siddhi")
+![](../../images/quickstart/window-processing-app.png?raw=true "Window Processing with Siddhi")
 
 Now you can send events using the Event Simulator and observe the log to see the sum and average of the weights of the last three 
 cargo events.
