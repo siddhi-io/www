@@ -59,8 +59,7 @@ build_landing(){
      GIT_BRANCH_NAME="$(cut -d'/' -f3 <<<"$BRANCH")"  
    #obtain branch names from versions.json and check with the git branches
    CURRENT_VERSION=$(cat en/docs/assets/versions.json | jq -r '.current');
-   echo CURRENT_VERSION1 : $CURRENT_VERSION;
-   for version in $(cat en/docs/assets/versions.json | jq -r '.all' | jq -r 'keys[]'); do 
+   for version in $(cat en/docs/assets/versions.json | jq -r '.all' | jq -r 'keys[]'); do
 
      if [ "$GIT_BRANCH_NAME" == "${version}" ]; then 
 
@@ -85,6 +84,9 @@ build_landing(){
    echo CURRENT_VERSION : $CURRENT_VERSION;
 
    build_landing
+
+   LC_ALL=C find . -type f -exec sed -i '' s/_latest_version_/$CURRENT_VERSION/g {} +
+
 
   # git checkout gh-pages
   # rm -rf ./*
