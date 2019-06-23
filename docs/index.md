@@ -36,19 +36,19 @@ Siddhi can run as an embedded [Java library](deployment/siddhi-as-a-java-library
 
 ## Distributions
 
-<a href="deployment/siddhi-as-a-kubernetes-microservice/" rel="nofollow">
+<a href="en/_latest_version_/download/#siddhi-kubernetes" rel="nofollow">
  <img src="https://raw.githubusercontent.com/siddhi-io/siddhi/master/docs/images/distributions/kubernetes.png?raw=true" alt="Kubernetes" width="19%">
 </a>
-<a href="deployment/siddhi-as-a-docker-microservice/" rel="nofollow">
+<a href="en/_latest_version_/download/#siddhi-docker" rel="nofollow">
  <img src="https://raw.githubusercontent.com/siddhi-io/siddhi/master/docs/images/distributions/docker.png?raw=true" alt="Docker" width="19%">
 </a>
-<a href="deployment/siddhi-as-a-local-microservice/" rel="nofollow">
+<a href="en/_latest_version_/download/#siddhi-distribution" rel="nofollow">
  <img src="https://raw.githubusercontent.com/siddhi-io/siddhi/master/docs/images/distributions/binary.png?raw=true" alt="Binary" width="19%">
 </a>
-<a href="deployment/siddhi-as-a-java-library/" rel="nofollow">
+<a href="en/_latest_version_/download/#siddhi-libs" rel="nofollow">
  <img src="https://raw.githubusercontent.com/siddhi-io/siddhi/master/docs/images/distributions/java.png?raw=true" alt="Java" width="19%">
 </a>
-<a href="contribution/#obtaining-the-source-code-and-building-the-project" rel="nofollow">
+<a href="en/_latest_version_/development/source/" rel="nofollow">
  <img src="https://raw.githubusercontent.com/siddhi-io/siddhi/master/docs/images/distributions/source.png?raw=true" alt="Source" width="19%">
 </a>
 
@@ -118,7 +118,7 @@ Siddhi is free and open source, released under **Apache Software License v2.0**.
 
 * **Fast**. <a target="_blank" href="http://wso2.com/library/conference/2017/2/wso2con-usa-2017-scalable-real-time-complex-event-processing-at-uber?utm_source=gitanalytics&utm_campaign=gitanalytics_Jul17">UBER</a> uses it to process 20 Billion events per day (300,000 events per second). 
 * **Lightweight** (core Siddhi libs are <2MB), and embeddable in Android, Python and RaspberryPi.
-* Has **over 50 <a target="_blank" href="extensions/">Siddhi Extensions</a>**
+* Has **over 50 <a target="_blank" href="en/_latest_version_/docs/extensions/">Siddhi Extensions</a>**
 * **Used by over 60 companies including many Fortune 500 companies** in production. Following are some examples:
     * **WSO2** uses Siddhi for the following purposes:
         * To provide **distributed and high available** stream processing capabilities via <a target="_blank" href="http://wso2.com/analytics?utm_source=gitanalytics&utm_campaign=gitanalytics_Jul17">WSO2 Stream Processor</a>. It is named as a strong performer in <a target="_blank" href="https://go.forrester.com/blogs/16-04-16-15_true_streaming_analytics_platforms_for_real_time_everything/">The Forrester Wave: Big Data Streaming Analytics, Q1 2016</a> (<a target="_blank" href="https://www.forrester.com/report/The+Forrester+Wave+Big+Data+Streaming+Analytics+Q1+2016/-/E-RES129023">Report</a>).
@@ -135,7 +135,7 @@ If you are a Siddhi user, we would love to hear more on how you use Siddhi? Plea
 
 ## Get Started!
 
-Get started with Siddhi in a few minutes by following the <a target="_blank" href="quckstart/">Siddhi Quick Start Guide</a>
+Get started with Siddhi in a few minutes by following the <a target="_blank" href="en/_latest_version_/docs/quick-start/">Siddhi Quick Start Guide</a>
 
 ## Development Environment 
 
@@ -159,7 +159,7 @@ Siddhi provides tooling that supports following features to develop and test str
 ## Siddhi Versions
 
 * **Latest Stable Release of Siddhi v5.1.x** : [**v5.1.0**](en/_latest_version_/api/latest/) _built on Java 8 & 11._ 
-* Get Siddhi API information <a target="_blank" href="api/latest/">here</a>.
+* Get Siddhi API information <a target="_blank" href="en/_latest_version_/api/latest/">here</a>.
 
 ## Contact us 
 * Post your questions with the <a target="_blank" href="http://stackoverflow.com/search?q=siddhi">"Siddhi"</a> tag in <a target="_blank" href="http://stackoverflow.com/search?q=siddhi">Stackoverflow</a>. 
