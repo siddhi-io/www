@@ -146,13 +146,6 @@ request.onload = function () {
                 .setAttribute('href', docSetUrl + 'next/');
         }
 
-        var hrefList = document.querySelectorAll("[href]");
-        for (var aHref of hrefList) {
-            if (aHref.href.includes("_latest_version_")) {
-                aHref.href = aHref.href.replace("_latest_version_", data.current);
-            }
-        }
-
     } else {
         console.error("We reached our target server, but it returned an error");
     }
