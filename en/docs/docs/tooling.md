@@ -1,4 +1,6 @@
-## Tooling  
+# Tooling  
+
+## WSO2 Stream Processor Studio
 
 <iframe style="float: right;" width="300" height="170" src="https://www.youtube.com/embed/U5yYyUTx2bA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
