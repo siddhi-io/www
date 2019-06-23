@@ -133,7 +133,7 @@ request.onload = function() {
                   previousVersions.push('<tr>' +
                     '<th>' + key + '</th>' +
                         '<td>' +
-                            '<a href="' + data.all[key].doc + '" target="' + 
+                            '<a href="' + data.all[key].doc + '/docs" target="' +
                                 target + '">Documentation</a>' +
                         '</td>' +
                         '<td>' +
@@ -152,13 +152,13 @@ request.onload = function() {
           document.getElementById('current-version-number').innerHTML = 
                   data.current;
           document.getElementById('current-version-documentation-link')
-                  .setAttribute('href', docSetUrl + data.all[data.current].doc);
+                  .setAttribute('href', docSetUrl + data.all[data.current].doc +"/docs");
           document.getElementById('current-version-release-notes-link')
                   .setAttribute('href', docSetUrl + data.all[data.current].notes);
         
           // Pre-release version update
           document.getElementById('pre-release-version-documentation-link')
-              .setAttribute('href', docSetUrl + 'next/');
+              .setAttribute('href', docSetUrl + 'next/docs');
       }
       
   } else {
