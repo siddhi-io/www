@@ -58,7 +58,7 @@ build_landing(){
      git checkout versions
      GIT_BRANCH_NAME="$(cut -d'/' -f3 <<<"$BRANCH")"  
    #obtain branch names from versions.json and check with the git branches
-   CURRENT_VERSION=$(cat en/versions/assets/versions.json | jq -r '.current');
+   CURRENT_VERSION=$(cat en/docs/assets/versions.json | jq -r '.current');
    echo CURRENT_VERSION1 : $CURRENT_VERSION;
    for version in $(cat en/docs/assets/versions.json | jq -r '.all' | jq -r 'keys[]'); do 
 
