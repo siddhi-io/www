@@ -124,7 +124,7 @@ Get started with Siddhi 4.x in a few minutes by following the <a target="_blank"
 
 ## Siddhi 4.x Versions
 
-* **Latest Stable Release of Siddhi v4.x** : [**v4.5.11**](api/latest/) _built on Java 8. (Recommended for production use)_
+* **Latest Stable Release of Siddhi v4.x** : [**v4.5.11**](docs/api/latest/) _built on Java 8. (Recommended for production use)_
 * Get all released Siddhi libraries from <a target="_blank" href="download/">here</a>.
 
 ## Contact us 

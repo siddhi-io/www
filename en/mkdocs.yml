@@ -65,6 +65,7 @@ google_analytics:
   - UA-103065-28
   - auto
 
+
 # Extensions
 markdown_extensions:
   - markdown.extensions.admonition
@@ -98,40 +99,47 @@ markdown_extensions:
 # Navigation
 nav:
   - Siddhi 4.x: index.md
-  - Features:
-    - features.md
   - Download:
     - Download: download.md
+    - Extensions: docs/extensions.md
     - Release Notes: release-notes.md
   - Quick Start:
-    - quckstart.md
-  - Guides:
-    - User Guide: user-guide.md
-    - Query Guide: query-guide.md
-    - Siddhi core API Guide: api/latest.md
-    - Extension Guide: extensions.md
-    - Architecture Guide: architecture.md
-  - Siddhi Core APIs:
-    - latest: api/latest.md
-    - 4.5.11: api/4.5.11.md
-    - 4.5.10: api/4.5.10.md
-    - 4.5.9: api/4.5.9.md
-    - 4.5.0: api/4.5.0.md
-    - 4.4.8: api/4.4.8.md
-    - 4.4.8: api/4.4.3.md
-    - 4.4.0: api/4.4.0.md
-    - 4.3.19: api/4.3.19.md
-    - 4.3.0: api/4.3.0.md
-    - 4.2.40: api/4.2.40.md
-    - 4.2.20: api/4.2.20.md
-    - 4.2.0: api/4.2.0.md
-    - 4.1.64: api/4.1.64.md
-    - 4.1.46: api/4.1.46.md
-    - 4.1.7: api/4.1.7.md
-    - 4.1.0: api/4.1.0.md
-    - 4.0.9: api/4.0.9.md
-    - 4.0.0: api/4.0.0.md
-  - Contribution:
-    - contribution.md
+    - Quick Start: docs/quick-start/index.md
+  - Documentation:
+    - Introduction: docs/index.md
+    - Features: docs/features.md
+    - Quick Start: docs/quick-start/index.md
+    - Query Guide: docs/query-guide.md
+    - Siddhi Core APIs:
+      - latest: api/latest.md
+      - 4.5.11: api/4.5.11.md
+      - 4.5.10: api/4.5.10.md
+      - 4.5.9: api/4.5.9.md
+      - 4.5.0: api/4.5.0.md
+      - 4.4.8: api/4.4.8.md
+      - 4.4.8: api/4.4.3.md
+      - 4.4.0: api/4.4.0.md
+      - 4.3.19: api/4.3.19.md
+      - 4.3.0: api/4.3.0.md
+      - 4.2.40: api/4.2.40.md
+      - 4.2.20: api/4.2.20.md
+      - 4.2.0: api/4.2.0.md
+      - 4.1.64: api/4.1.64.md
+      - 4.1.46: api/4.1.46.md
+      - 4.1.7: api/4.1.7.md
+      - 4.1.0: api/4.1.0.md
+      - 4.0.9: api/4.0.9.md
+      - 4.0.0: api/4.0.0.md
+    - Extensions: docs/extensions.md
+    - Siddhi in WSO2 Stream Processor: docs/siddhi-in-wso2-stream-processor.md
+    - Siddhi Java library: docs/siddhi-as-a-java-library.md
+    - Siddhi Python library: docs/siddhi-as-a-python-library.md
+  - Community:
+    - /community/
+  - Development:
+    - Introduction: development/index.md
+    - Source: development/source.md
+    - Build: development/build.md
+    - Architecture: development/architecture.md
   - License:
-    - license.md
+    - /license/

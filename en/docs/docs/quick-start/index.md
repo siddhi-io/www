@@ -1,77 +1,80 @@
 # Siddhi 4.x Quick Start Guide
 
-[Siddhi](https://github.com/wso2/siddhi) is a 100% open source Java library that is thoroughly optimized for high performance. 
-It performs **_Stream Processing_** and **_Complex Event Processing_** on real time data streams. 
+Siddhi is a cloud native Streaming and Complex Event Processing engine that understands Streaming SQL queries in order to capture events from diverse data sources, process them, detect complex conditions, and publish output to various endpoints in real time.
 
-Siddhi is used by many companies including Uber and eBay (via Apache Eagle). **Uber processes more than 20 billion 
-events per day using Siddhi** for fraud analytics, and Siddhi is used in Apache Eagle as a policy enforcement engine.
+Siddhi is used by many companies including Uber, eBay, PayPal (via Apache Eagle), here [**Uber processed more than 20 billion events per day using Siddhi**](http://wso2.com/library/conference/2017/2/wso2con-usa-2017-scalable-real-time-complex-event-processing-at-uber?utm_source=gitanalytics&utm_campaign=gitanalytics_Jul17) for their fraud analytics use cases. Siddhi is also used in various analytics and integration platforms such as [Apache Eagle](https://eagle.apache.org/) as a policy enforcement engine, [WSO2 API Manager](https://wso2.com/api-management/) as analytics and throttling engine, [WSO2 Identity Server](https://wso2.com/identity-and-access-management/) as an adaptive authorization engine.
 
 This quick start guide contains the following six sections:
 
-1. Stream Processing and Complex Event Processing Overview - about the **domain** of Siddhi
-2. An Overview of Siddhi - Explaining the basic **architecture**
-3. Using Siddhi for the First Time - how to **set up** the software
-4. Siddhi ‘Hello World!’ - Your **First Siddhi Application**
-5. Simulating Events - **Testing** your query with simulated events
-6. A Bit of Stream Processing - **temporal event processing**
+1. **Domain** of Siddhi
+2. Overview of Siddhi **architecture**
+3. Using Siddhi for the first time
+4. Siddhi ‘Hello World!’
+5. Simulating Events
+6. A bit of Stream Processing
 
-## 1. Stream Processing and Complex Event Processing (CEP) Overview
+## 1. Domain of Siddhi
 
-Before diving into using Siddhi, let's first discuss Stream Processing 
-and Complex Event Processing in brief so that we can identify the use-cases where Siddhi can be used.
+Siddhi is an event driven system where all the data it consumes, processes and sends are modeled as events. Therefore, Siddhi can play a vital part in any event-driven architecture.   
 
-First let's understand what an event is through an example. **If we consider the transactions carried out via an ATM as a data 
-stream, one withdrawal from it can be considered an event**. This event contains data about the amount, time, account number etc. 
-Many such transactions form a stream.
+As Siddhi works with events, first let's understand what an event is through an example. **If we consider transactions carried out via an ATM as a data stream, one withdrawal from it can be considered as an event**. This event contains data such as amount, time, account number, etc. Many such transactions form a stream.
+![](../../images/quickstart/event-stream.png?raw=true "Event Stream")
 
-![](images/quickstart/event-stream.png?raw=true "Event Stream")
+Siddhi provides following functionalities,
 
-[Forrester](https://reprints.forrester.com/#/assets/2/202/'RES136545'/reports) defines Streaming Analytics as:
+* Streaming Data Analytics<br/>
+  [Forrester](https://reprints.forrester.com/#/assets/2/202/'RES136545'/reports) defines Streaming Analytics as:<br/>
+  > Software that provides analytical operators to **orchestrate data flow**, **calculate analytics**, and **detect patterns** on event data **from multiple, disparate live data sources** to allow developers to build applications that **sense, think, and act in real time**.
 
-> Software that provides analytical operators to **orchestrate data flow**, **calculate analytics**, and **detect patterns** on 
-event data **from multiple, disparate live data sources** to allow developers to build applications that **sense, think, 
-and act in real time**.
+* Complex Event Processing (CEP)<br/>
+  [Gartner’s IT Glossary](https://www.gartner.com/it-glossary/complex-event-processing) defines CEP as follows:<br/>
+  >"CEP is a kind of computing in which **incoming data about events is distilled into more useful, higher level “complex” event data** that provides insight into what is happening."
+  >
+  >"**CEP is event-driven** because the computation is triggered by the receipt of event data. CEP is used for highly demanding, continuous-intelligence applications that enhance situation awareness and support real-time decisions."
 
-[Gartner’s IT Glossary](https://www.gartner.com/it-glossary/complex-event-processing) defines CEP as follows:
+* Streaming Data Integration<br/>
+  > Streaming data integration is a way of integrating several systems by processing, correlating, and analyzing the data in memory, while continuously moving data in real-time from one system to another.
 
->"CEP is a kind of computing in which **incoming data about events is distilled into more useful, higher level “complex” 
-event data** that provides insight into what is happening."
->
->"**CEP is event-driven** because the computation is triggered by the receipt of event data. CEP is used for highly 
-demanding, continuous-intelligence applications that enhance situation awareness and support real-time decisions."
+* Alerts & Notifications
+  > The system to continuously monitor event streams, and send alerts and notifications, based on defined KPIs and other analytics.
 
-![](images/quickstart/siddhi-basic.png?raw=true "Siddhi Basic Representation")
+* Adaptive Decision Making
+  > A way to dynamically making real-time decisions based on predefined rules, the current state of the connected systems, and machine learning techniques.
 
-Basically, Siddhi receives data event-by-event and processes them in real time to produce meaningful information.
+Basically, Siddhi receives data event-by-event and processes them in real-time to produce meaningful information.
 
-Siddhi Can be used in the following use-cases:
+![](../../images/quickstart/siddhi-basic.png?raw=true "Siddhi Basic Representation")
 
-* Fraud Analytics 
-* Monitoring 
+Using the above Siddhi can be used to solve may use-cases as follows:
+
+* Fraud Analytics
+* Monitoring
+* System Integration
 * Anomaly Detection
 * Sentiment Analysis
-* Processing Customer Behaviour
+* Processing Customer Behavior
 * .. etc
 
-## 2. Overview of Siddhi
+## 2. Overview of Siddhi architecture
 
-![](images/siddhi-overview.png?raw=true "Overview")
+![](../../images/siddhi-overview.png?raw=true "Overview")
 
 As indicated above, Siddhi can:
 
-+ accept event inputs from many different types of sources
-+ process them to generate insights
-+ publish them to many types of sinks.
++ Accept event inputs from many different types of sources.
++ Process them to transform, enrich, and generate insights.
++ Publish them to multiple types of sinks.
 
-To use Siddhi, you need to write the processing logic as a **Siddhi Application** in the **Siddhi Streaming SQL** 
-language which is discussed in the 4th section. After writing and starting **a Siddhi application**, it:
+To use Siddhi, you need to write the processing logic as a **Siddhi Application** in the **Siddhi Streaming SQL** language which is discussed in the [section 4](#4-writing-first-siddhi-application). Here a Siddhi Application is a script file that contains business logic for a scenario.
 
-1. Takes data one-by-one as events
-2. Processes the data in each event
-3. Generates new high level events based on the processing done so far
-4. Sends newly generated events as the output to streams.
+When the **Siddhi application** is started, it:
 
-## 3. Using Siddhi for the First Time
+1. Consumes data one-by-one as events.
+2. Pipe the events to queries through various streams for processing.
+3. Generates new events based on the processing done at the queries.
+4. Finally, Sends newly generated events through output to streams.
+
+## 3. Using Siddhi for the first time
 
 In this section, we will be using the WSO2 Stream Processor(referred to as SP in the rest of this guide) — a server version of Siddhi that has a
 sophisticated editor with a GUI (referred to as _**“Stream Processor Studio”**_) where you can write your query and simulate events
@@ -103,7 +106,7 @@ This takes you to the Stream Processor Studio landing page.
 
 ![](images/quickstart/sp-studio.png?raw=true "Stream Processor Studio")
 
-## 4. Siddhi ‘Hello World!’ — Your First Siddhi Application
+## 4. Siddhi ‘Hello World!’ 
 
 Siddhi Streaming SQL is a rich, compact, easy-to-learn SQL-like language. **Let's first learn how to find the total** of values 
 coming into a data stream and output the current running total value with each event. Siddhi has lot of in-built functions and extensions 
@@ -187,7 +190,7 @@ _“outputData=[2, 4]”_. You can change the value of the weight and send it to
 
 Bravo! You have successfully completed creating Siddhi Hello World! 
 
-## 6. A Bit of Stream Processing - **temporal event processing**
+## 6. A bit of Stream Processing
 
 This section demonstrates how to carry out **temporal window processing** with Siddhi.
 
@@ -233,8 +236,6 @@ It is also notable that the defined `length window` only keeps 3 events in-memor
 first event in the window is removed from memory. This ensures that the memory usage does not grow beyond a specific limit. There are also other 
 implementations done in Siddhi  to reduce the memory consumption. For more information, see [Siddhi Architecture](../architecture/).
 
-To learn more about the Siddhi functionality, see [Siddhi Query Guide](../query-guide/).
+To learn more about the Siddhi functionality, see [Siddhi Documentation](../).
 
-Feel free to try out Siddhi and event simulation to understand Siddhi better.
-
-If you have questions please post them to the <a target="_blank" href="http://stackoverflow.com/search?q=siddhi">Stackoverflow</a> with <a target="_blank" href="http://stackoverflow.com/search?q=siddhi">"Siddhi"</a> tag.
+If you have questions please post them on<a target="_blank" href="http://stackoverflow.com/search?q=siddhi">Stackoverflow</a> with <a target="_blank" href="http://stackoverflow.com/search?q=siddhi">"Siddhi"</a> tag.

@@ -1,4 +1,4 @@
-# Download Siddhi
+# Siddhi 4.x Download
 
 ##Siddhi Java Library 
 
@@ -51,9 +51,9 @@ PySiddhi4 can be installed using one of the following methods.
 - Download siddhi-sdk release (1.x versions) from [here](https://github.com/wso2/siddhi-sdk/releases) and set the SIDDHISDK_HOME as an environment variable. <br/> `export SIDDHISDK_HOME="<path-to-siddhi-sdk>"`
 - Download siddhi-python-api-proxy-4-x.x.x.jar from [here](https://github.com/wso2/PySiddhi/releases) and copy to `<SIDDHISDK_HOME>/lib` directory
 
-####Install PySiddhi4 
+####Installing PySiddhi4 
 
-##### Install PySiddhi4 via Python Package Management
+##### Installing PySiddhi4 via Python Package Management
 
 PySiddhi4 can be installed via PIP command as bellow.
 
@@ -61,7 +61,7 @@ PySiddhi4 can be installed via PIP command as bellow.
 pip install pysiddhi4
 ```
 
-##### Install PySiddhi4 from Online Code
+##### Installing PySiddhi4 from Online Code
 
 Using the following PIP command, PySiddhi4 can be directly installed from online code available in GitHub.
 ```
@@ -69,7 +69,7 @@ pip install git+https://github.com/siddhi-io/PySiddhi/tree/4.x
 ```
 *Note: In case of permission errors, use `sudo`*
 
-##### Install from Downloaded Code
+##### Installing from Downloaded Code
 Switch to the branch `master` of PySiddhi4.
 Navigate to source code root directory and execute the following PIP command.
 
@@ -78,7 +78,7 @@ pip install .
 ```
 *Note the period (.) at end of command. In case of permission errors, use `sudo`*
 
-#### Uninstall PySiddhi4
+#### Uninstalling PySiddhi4
 If the library has been installed as explained above, it could be uninstalled using the following pip command.
 ```
 pip uninstall pysiddhi4
