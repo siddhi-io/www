@@ -109,6 +109,7 @@ nav:
     - Introduction: docs/index.md
     - Features: docs/features.md
     - Quick Start: docs/quick-start/index.md
+    - Tooling: docs/tooling.md
     - Query Guide: docs/query-guide.md
     - Siddhi Core APIs:
       - latest: api/latest.md
