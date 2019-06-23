@@ -98,30 +98,33 @@ markdown_extensions:
 
 # Navigation
 nav:
-  - Siddhi 5.1: index.md
-  - Features:
-    - features.md
+  - Siddhi: index.md
   - Downloads:
     - Download: download.md
+    - Extensions: docs/extensions.md
     - Release Notes: release-notes.md
   - Quick Start:
-    - quckstart.md
-  - Developer Guides:
-    - Query Guide: query-guide.md
-    - API Guide: api/latest.md
-    - Extension Guide: extensions.md
-    - Architecture Guide: architecture.md
-  - Deployment Guides:
-    - Introduction: deployment/introduction.md
-    - Siddhi Java library: deployment/siddhi-as-a-java-library.md
-    - Siddhi Local Microservice: deployment/siddhi-as-a-local-microservice.md
-    - Siddhi Docker Microservice: deployment/siddhi-as-a-docker-microservice.md
-    - Siddhi Kubernetes Microservice: deployment/siddhi-as-a-kubernetes-microservice.md
-    - Configuration Guide: deployment/config-guide.md
-  - Siddhi APIs:
-    - latest: api/latest.md
-    - 5.1.0: api/5.1.0.md
-  - Contribution:
-    - contribution.md
+    - Quick Start: docs/quick-start/index.md
+  - Documentation:
+    - Introduction: docs/index.md
+    - Features: docs/features.md
+    - Quick Start: docs/quick-start/index.md
+    - Query Guide: docs/query-guide.md
+    - Siddhi APIs:
+      - latest: docs/api/latest.md
+      - 5.1.0: docs/api/5.1.0.md
+    - Extensions: docs/extensions.md
+    - Siddhi Java library: docs/siddhi-as-a-java-library.md
+    - Siddhi Local Microservice: docs/siddhi-as-a-local-microservice.md
+    - Siddhi Docker Microservice: docs/siddhi-as-a-docker-microservice.md
+    - Siddhi Kubernetes Microservice: docs/siddhi-as-a-kubernetes-microservice.md
+    - Configuration Guide: docs/config-guide.md
+  - Community:
+    - /community/
+  - Development:
+    - Introduction: development/index.md
+    - Source: development/source.md
+    - Build: development/build.md
+    - Architecture: development/architecture.md
   - License:
-    - license.md
+    - /license/

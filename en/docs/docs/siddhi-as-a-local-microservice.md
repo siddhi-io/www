@@ -1,27 +1,20 @@
-# Siddhi as a Docker Microservice
+# Siddhi 5.1 as a Local Microservice
 
-This section provides information on running [Siddhi Apps](../introduction/#siddhi-application) on Docker. 
+This section provides information on running [Siddhi Apps](../introduction/#siddhi-application) on Bare Metal or VM. 
 
 Siddhi Microservice can run one or more Siddhi Applications with required system configurations.
 Here, the Siddhi application (`.siddhi` file) contains stream processing logic and the necessary system configurations can be passed via the Siddhi configuration `.yaml` file. 
 
-Steps to Run Siddhi Docker Microservice is as follows.
+Steps to Run Siddhi Local Microservice is as follows.
 
-* Pull the the latest Siddhi Runner image from [Siddhiio Docker Hub](https://hub.docker.com/u/siddhiio).
-```
-docker pull siddhiio/siddhi-runner-alpine:latest
-```
-* Start SiddhiApps with the runner config by executing the following docker command.<br/>
-```
-docker run -it -v <local-siddhi-file-path>:<siddhi-file-mount-path> -v <local-conf-file-path>:<conf-file-mount-path> siddhiio/siddhi-runner-alpine:latest -Dapps=<siddhi-file-mount-path> -Dconfig=<conf-file-mount-path>
-```
-E.g.,
-```
-docker run -it -v /home/me/siddhi-apps:/apps -v /home/me/siddhi-configs:/configs siddhiio/siddhi-runner-alpine:latest -Dapps=/apps/Foo.siddhi -Dconfig=/configs/siddhi-config.yaml
-```
+* Download the latest [Siddhi Runner distribution](https://github.com/siddhi-io/distribution/releases/download/v0.1.0/siddhi-runner-0.1.0.zip) 
+* Unzip the siddhi-runner-x.x.x.zip
+* Start SiddhiApps with the runner config by executing the following commands from the distribution directory<br/>
+  Linux/Mac : `./bin/runner.sh -Dapps=<siddhi-file> -Dconfig=<config-yaml-file>`<br/>
+  Windows : `bin\runner.bat -Dapps=<siddhi-file> -Dconfig=<config-yaml-file>`
 
-!!! Tip "Running multiple SiddhiApps in one runner instance."
-    To run multiple SiddhiApps in one runtime instance, have all SiddhiApps in a directory, mount the directory and pass its location through `-Dapps` parameter as follows,<br/>
+!!! Tip "Running Multiple SiddhiApps in one runner."
+    To run multiple SiddhiApps in one runtime, have all SiddhiApps in a directory and pass its location through `-Dapps` parameter as follows,<br/>
     `-Dapps=<siddhi-apps-directory>`
 
 !!! Note "Always use **absolute path** for SiddhiApps and runner configs."
@@ -31,11 +24,11 @@ docker run -it -v /home/me/siddhi-apps:/apps -v /home/me/siddhi-configs:/configs
     You can also use the powerful [Siddhi Editor](../../quckstart/#3-using-siddhi-for-the-first-time) to implement and test steam processing applications. 
 
 !!! Info "Configuring Siddhi"
-    To configure databases, extensions, authentication, periodic state persistence, and statistics for Siddhi as Docker Microservice refer [Siddhi Config Guide](../config-guide/). 
+    To configure databases, extensions, authentication, periodic state persistence, and statistics for Siddhi as Local Microservice refer [Siddhi Config Guide](../config-guide/). 
 
 ## Samples
 
-###Running Siddhi App
+### Running Siddhi App
 
 Following SiddhiApp collects events via HTTP and logs the number of events arrived during last 15 seconds.  
 
@@ -45,9 +38,11 @@ Following SiddhiApp collects events via HTTP and logs the number of events arriv
     <li>Copy the above SiddhiApp, and create the SiddhiApp file <code>CountOverTime.siddhi</code>.</li>
     <li>Run the SiddhiApp by executing following commands from the distribution directory
         <ul>
-            <li>
-            <pre style="white-space:pre-wrap;">docker run -it -p 8006:8006 -v &lt;local-absolute-siddhi-file-path&gt;/CountOverTime.siddhi:/apps/CountOverTime.siddhi siddhiio/siddhi-runner-alpine -Dapps=/apps/CountOverTime.siddhi
-</pre>
+            <li>Linux/Mac :
+            <pre style="white-space:pre-wrap;">./bin/runner.sh -Dapps=&lt;absolute-siddhi-file-path&gt;/CountOverTime.siddhi</pre>
+            </li>
+            <li>Windows :
+            <pre style="white-space:pre-wrap;">bin\runner.bat -Dapps=&lt;absolute-siddhi-file-path&gt;\CountOverTime.siddhi</pre>
             </li>
         </ul>
     </li>
@@ -94,16 +89,21 @@ Following SiddhiApp collects events via HTTP and store them in H2 Database.
 
 <script src="https://gist.github.com/suhothayan/2413a6f886219befe736bf4447af02de.js"></script>
 
-The runner config can be configured with the relevant datasource information and passed when starting the runner
+The runner config can by configured with the relevant datasource information and passed when starting the runner
 
 <script src="https://gist.github.com/suhothayan/015ae003d4ba8d4aeaadc19e4c9516fd.js"></script>
 
 <ul>
     <li>Copy the above SiddhiApp, & config yaml, and create corresponding the SiddhiApp file <code>ConsumeAndStore.siddhi</code> and <code>TestDb.yaml</code> files.</li>
-    <li>Run the SiddhiApp by executing following command
+    <li>Run the SiddhiApp by executing following commands from the distribution directory
         <ul>
-            <li>
-             <pre style="white-space:pre-wrap;">docker run -it -p 8006:8006 -p 9443:9443 -v &lt;local-absolute-siddhi-file-path&gt;/ConsumeAndStore.siddhi:/apps/ConsumeAndStore.siddhi -v &lt;local-absolute-config-yaml-path&gt;/TestDb.yaml:/conf/TestDb.yaml siddhiio/siddhi-runner-alpine -Dapps=/apps/ConsumeAndStore.siddhi -Dconfig=/conf/TestDb.yaml</pre>
+            <li>Linux/Mac :
+            <pre style="white-space:pre-wrap;">./bin/runner.sh -Dapps=&lt;absolute-siddhi-file-path&gt;/ConsumeAndStore.siddhi \
+  -Dconfig=&lt;absolute-config-yaml-path&gt;/TestDb.yaml</pre>
+            </li>
+            <li>Windows :
+            <pre style="white-space:pre-wrap;">bin\runner.sh -Dapps=&lt;absolute-siddhi-file-path&gt;\ConsumeAndStore.siddhi ^
+  -Dconfig=&lt;absolute-config-yaml-path&gt;\TestDb.yaml</pre>
             </li>
         </ul>
     </li>
@@ -171,7 +171,6 @@ curl -X POST https://localhost:9443/stores/query \
 </ul>
 
 ### Running with environmental/system variables
-
 Templating SiddhiApps allows users to provide environment/system variables to siddhiApps at runtime. This can help users to migrate SiddhiApps from one environment to another (E.g from dev, test and to prod).
 
 Following templated SiddhiApp collects events via HTTP, filters them based on `amount` greater than a given threshold value, and only sends the filtered events via email.
@@ -187,23 +186,29 @@ The runner config is configured with a gmail account to send email messages in `
 <ul>
     <li>Copy the above SiddhiApp, & config yaml, and create corresponding the SiddhiApp file <code>TemplatedFilterAndEmail.siddhi</code> and <code>EmailConfig.yaml</code> files.</li>
     
-    <li>Set the below environment variables by passing them during the docker run command: 
+    <li>Set environment variables by running following in the termial Siddhi is about to run: 
          <pre style="white-space:pre-wrap;">
- THRESHOLD=20
- TO_EMAIL=&lt;to email address&gt; 
- EMAIL_ADDRESS=&lt;gmail address&gt;
- EMAIL_USERNAME=&lt;gmail username&gt;
- EMAIL_PASSWORD=&lt;gmail password&gt;</pre>
-        Or they can also be passed as system variables by adding them to the end of the docker run command .
+export THRESHOLD=20
+export TO_EMAIL=&lt;to email address&gt; 
+export EMAIL_ADDRESS=&lt;gmail address&gt;
+export EMAIL_USERNAME=&lt;gmail username&gt;
+export EMAIL_PASSWORD=&lt;gmail password&gt;</pre>
+        Or they can also be passed as system variables by adding 
         <pre style="white-space:pre-wrap;">-DTHRESHOLD=20 -DTO_EMAIL=&gt;to email address&gt; -DEMAIL_ADDRESS=&lt;gmail address&gt; 
  -DEMAIL_USERNAME=&lt;gmail username&gt; -DEMAIL_PASSWORD=&lt;gmail password&gt;</pre>
-
+        to the end of the runner startup script.
     </li>
-        <li>Run the SiddhiApp by executing following command.
+        <li>Run the SiddhiApp by executing following commands from the distribution directory
         <ul>
-            <li>
-            <pre style="white-space:pre-wrap;">docker run -it -p 8006:8006 -v &lt;local-absolute-siddhi-file-path&gt;/TemplatedFilterAndEmail.siddhi:/apps/TemplatedFilterAndEmail.siddhi -v &lt;local-absolute-config-yaml-path&gt;/EmailConfig.yaml:/conf/EmailConfig.yaml -e THRESHOLD=20 -e TO_EMAIL=&lt;to email address&gt; -e EMAIL_ADDRESS=&lt;gmail address&gt; -e EMAIL_USERNAME=&lt;gmail username&gt; -e EMAIL_PASSWORD=&lt;gmail password&gt; siddhiio/siddhi-runner-alpine -Dapps=/apps/TemplatedFilterAndEmail.siddhi -Dconfig=/conf/EmailConfig.yaml </pre>
-
+            <li>Linux/Mac :
+            <pre style="white-space:pre-wrap;">
+./bin/runner.sh -Dapps=&lt;absolute-file-path&gt;/TemplatedFilterAndEmail.siddhi \
+  -Dconfig=&lt;absolute-config-yaml-path&gt;/EmailConfig.yaml</pre>
+            </li>
+            <li>Windows :
+            <pre style="white-space:pre-wrap;">
+bin\runner.bat -Dapps=&lt;absolute-file-path&gt;\TemplatedFilterAndEmail.siddhi ^
+  -Dconfig=&lt;absolute-config-yaml-path&gt;\EmailConfig.yaml</pre>
             </li>
         </ul>
     </li>
