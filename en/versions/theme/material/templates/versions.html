@@ -18,7 +18,25 @@
 
 {% extends "base.html" %}
 
-{% block site_nav %}<!-- Removed Nav -->{% endblock %}
+{% block styles %}
+{{ super() }}
+<style>
+    .md-main .md-content {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    @media (min-width: 1220px) {
+        .md-main .md-sidebar.md-sidebar--primary {
+            width: 0;
+        }
+    }
+
+    .md-main .md-sidebar.md-sidebar--secondary {
+        width: 0;
+    }
+</style>
+{% endblock %}
 
 {% block content %}
     {{ page.content }}
