@@ -32,7 +32,7 @@ template: templates/single-column.html
 
 Siddhi is a cloud native **_Streaming_** and **_Complex Event Processing_** engine that understands **Streaming SQL queries** in order to capture events from diverse data sources, process them, detect complex conditions, and publish output to various endpoints in real time.
 
-Siddhi can run as an embedded [Java library](deployment/siddhi-as-a-java-library/), and as a microservice on [bare metal, VM](deployment/siddhi-as-a-local-microservice/), [Docker](deployment/siddhi-as-a-docker-microservice/) and natively in [Kubernetes](deployment/siddhi-as-a-kubernetes-microservice/). It also has a [graphical and text editor](#siddhi-development-environment) for building Streaming Data Integration and Streaming Analytics applications.
+Siddhi can run as an embedded [Java library](en/_latest_version_/docs/siddhi-as-a-java-library/), and as a microservice on [bare metal, VM](en/_latest_version_/docs/siddhi-as-a-local-microservice/), [Docker](en/_latest_version_/docs/siddhi-as-a-docker-microservice/) and natively in [Kubernetes](en/_latest_version_/docs/siddhi-as-a-kubernetes-microservice/). It also has a [graphical and text editor](#development-environment) for building Streaming Data Integration and Streaming Analytics applications.
 
 ## Distributions
 
