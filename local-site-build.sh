@@ -71,12 +71,9 @@ build_landing(){
    #these branches must build in each trigger
    build "versions"
 
-   #copy redirection
-#  cp ./index.html ../dist/index.html
-#  cp ./404.html ../dist/404.html
-#  cp ./_config.yml ../dist/_config.yml
-#  cp -R ./redirect/* ../dist/redirect/
-#  cp ./en/index.html ../dist/en/index.html
+   #copy redirection and cname
+   cp ./_config.yml ../dist/_config.yml
+   cp -R ./redirect/* ../dist/redirect/
    cp ./CNAME ../dist/CNAME
 
    build "master"
