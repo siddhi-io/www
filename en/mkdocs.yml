@@ -135,11 +135,11 @@ nav:
     - Siddhi Java library: docs/siddhi-as-a-java-library.md
     - Siddhi Python library: docs/siddhi-as-a-python-library.md
   - Community:
-    - /community/
+    - Community: /community/
   - Development:
     - Introduction: development/index.md
     - Source: development/source.md
     - Build: development/build.md
     - Architecture: development/architecture.md
   - License:
-    - /license/
+    - License: /license/
