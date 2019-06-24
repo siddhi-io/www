@@ -16,4 +16,4 @@ You can get help on Siddhi in the following ways.
 
 ## Production Support
 
-[WSO2](https://wso2.com/) provides production support for Siddhi and its <a target="_blank" href="../../extensions/">extensions</a>. For more details contact via <a target="_blank" href="http://wso2.com/support?utm_source=gitanalytics&utm_campaign=gitanalytics_Jul17">http://wso2.com/support/</a>
+[WSO2](https://wso2.com/) provides production support for Siddhi and its <a target="_blank" href="../en/_latest_version_/extensions/">extensions</a>. For more details contact via <a target="_blank" href="http://wso2.com/support?utm_source=gitanalytics&utm_campaign=gitanalytics_Jul17">http://wso2.com/support/</a>
