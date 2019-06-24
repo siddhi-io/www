@@ -98,8 +98,7 @@ markdown_extensions:
 
 # Navigation
 nav:
-  - Siddhi: docs/index.md
-  - Downloads:
+  - Download:
     - Download: download.md
     - Extensions: extensions.md
     - Release Notes: release-notes.md
