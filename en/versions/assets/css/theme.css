@@ -511,11 +511,12 @@ html .md-typeset .superfences-tabs > label:hover {
 }
 
 .md-header-nav__button.md-logo {
-
+    padding: 0;
 }
 
 .md-header-nav__button.md-logo img {
-    width: 100px;
+    width: 140px;
+    height: 33px;
     margin-right: 0;
 }
 

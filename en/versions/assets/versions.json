@@ -9,14 +9,17 @@
   "all": {
     "v5.0": {
       "doc": "v5.0",
-      "notes": "https://github.com/siddhi-io/siddhi/releases/tag/v5.0.0"
+      "download": "v5.0",
+      "notes": "v5.0"
     },
     "v4.x": {
       "doc": "v4.x",
-      "notes": "https://github.com/siddhi-io/siddhi/releases/tag/v4.5.0"
+      "download": "v4.x",
+      "notes": "v4.x"
     },
     "v3.x": {
       "doc": "https://docs.wso2.com/display/DAS320/Siddhi+Query+Language",
+      "download": "https://wso2.com/analytics-and-stream-processing/previous-releases/",
       "notes": "https://docs.wso2.com/display/DAS320/DAS+Features"
     }
   }

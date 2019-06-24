@@ -1,0 +1,610 @@
+<!--
+ * Copyright (c) 2019, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ *
+ * WSO2 Inc. licenses this file to you under the Apache License,
+ * Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+-->
+
+<!doctype html><html lang="en" class="no-js"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="x-ua-compatible" content="ie=edge"><meta name="description" content="Cloud Native Stream Processor"><link rel="canonical" href="http://siddhi.io/community/contribution/"><meta name="author" content="WSO2"><meta name="lang:clipboard.copy" content="Copy to clipboard"><meta name="lang:clipboard.copied" content="Copied to clipboard"><meta name="lang:search.language" content="en"><meta name="lang:search.pipeline.stopwords" content="True"><meta name="lang:search.pipeline.trimmer" content="True"><meta name="lang:search.result.none" content="No matching documents"><meta name="lang:search.result.one" content="1 matching document"><meta name="lang:search.result.other" content="# matching documents"><meta name="lang:search.tokenizer" content="[\s\-]+"><link rel="shortcut icon" href="../../images/favicon.ico"><meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.3.0"><title>Contribution - Siddhi</title><link rel="stylesheet" href="../../assets/stylesheets/application.4031d38b.css"><link rel="stylesheet" href="../../assets/stylesheets/application-palette.224b79ff.css"><meta name="theme-color" content="#009688"><script src="../../assets/javascripts/modernizr.74668098.js"></script><link href="https://fonts.gstatic.com" rel="preconnect" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=swap"><style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style><link rel="stylesheet" href="../../assets/fonts/material-icons.css"><link rel="stylesheet" href="../../assets/lib/highlightjs/default.min.css"><link rel="stylesheet" href="../../assets/css/theme.css"><script>window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-103065-28", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })</script><script async src="https://www.google-analytics.com/analytics.js"></script></head><body dir="ltr" data-md-color-primary="teal" data-md-color-accent="teal"><svg class="md-svg"><defs><svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg></defs></svg> <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off"> <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off"> <label class="md-overlay" data-md-component="overlay" for="__drawer"></label><a href="#contribution" tabindex="1" class="md-skip">Skip to content </a><!--
+ * Copyright (c) 2019, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ *
+ * WSO2 Inc. licenses this file to you under the Apache License,
+ * Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+-->
+
+<header class="md-header" data-md-component="header" id="page-header" data-url=""
+        data-lang="en">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="http://siddhi.io" title="Siddhi"
+           class="md-header-nav__button md-logo">
+          
+            <img src="../../images/siddhi-logo.svg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Siddhi
+            </span>
+            <span class="md-header-nav__topic">
+              Contribution
+            </span>
+          
+        </div>
+        <!--<div class="md-flex__ellipsis md-header__version-select">-->
+            <!--<div class="mb-tabs__dropdown version-select">-->
+                <!--<a class="md-tabs__link md-tabs__dropdown-link" href="#!" data-target="version-select-dropdown">-->
+                  <!--v5.0</a>-->
+                <!--<ul id="version-select-dropdown" class="mb-tabs__dropdown-content" tabindex="0">-->
+                    <!--&lt;!&ndash; Versions will added here dynamically &ndash;&gt;-->
+                    <!--<li class="md-tabs__item mb-tabs__dropdown">-->
+                        <!--<a href="#" id="show-all-versions-link">Show all</a>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+        <!--</div>-->
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          <div class="md-search" data-md-component="search" role="dialog"><label class="md-search__overlay" for="__search"></label><div class="md-search__inner" role="search"><form class="md-search__form" name="search"><input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active"> <label class="md-icon md-search__icon" for="__search"></label> <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">&#xE5CD;</button></form><div class="md-search__output"><div class="md-search__scrollwrap" data-md-scrollfix><div class="md-search-result" data-md-component="result"><div class="md-search-result__meta">Type to start searching</div><ol class="md-search-result__list"></ol></div></div></div></div></div>
+        
+      </div>
+      
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <div class="md-header-nav__source">
+          <a href="https://github.com/siddhi-io/siddhi/" title="Go to repository" class="md-source" data-md-source="github"><div class="md-source__icon"><svg viewBox="0 0 24 24" width="24" height="24"><use xlink:href="#__github" width="24" height="24"></use></svg></div><div class="md-source__repository">Siddhi</div></a>
+        </div>
+      </div>
+      
+    </div>
+  </nav>
+</header><div class="md-container">
+
+  
+
+<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  <li class="md-tabs__item home_icon">
+    
+      <a href="../.." title="Siddhi" class="md-tabs__link">
+          <i class="fa fa-home"></i>
+      </a>
+    
+  </li>
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../en/v5.0/download/" title="Download" class="md-tabs__link">
+          Download
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../en/v5.0/docs/quick-start/" title="Quick Start" class="md-tabs__link">
+          Quick Start
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../en/v5.0/docs/" title="Documentation" class="md-tabs__link">
+          Documentation
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../" title="Community" class="md-tabs__link md-tabs__link--active">
+          Community
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../en/v5.0/development/" title="Development" class="md-tabs__link">
+          Development
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../license/" title="License" class="md-tabs__link">
+          License
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+    <div class="quick_links">
+        
+        <a href="https://github.com/siddhi-io/www/edit/landing/community/contribution.md" target="blank" id="editIcon" title="Edit this page"
+           title="Edit this page" class="md-icon md-content__icon nav_link edit_link"></a>
+        
+    </div>
+  </div>
+</nav><main class="md-main"><div class="md-main__inner md-grid" data-md-component="container"><div class="md-sidebar md-sidebar--primary" data-md-component="navigation"><div class="md-sidebar__scrollwrap"><div class="md-sidebar__inner"><nav class="md-nav md-nav--primary" data-md-level="0">
+    <label class="md-nav__title md-nav__title--site" for="__drawer">
+      <a href="http://siddhi.io" title="Siddhi"
+         class="md-nav__button md-logo">
+        
+          <img src="../../images/siddhi-logo.svg" width="48" height="48">
+        
+      </a>
+      Siddhi
+    </label>
+    
+      <div class="md-nav__source">
+        <a href="https://github.com/siddhi-io/siddhi/" title="Go to repository" class="md-source" data-md-source="github"><div class="md-source__icon"><svg viewBox="0 0 24 24" width="24" height="24"><use xlink:href="#__github" width="24" height="24"></use></svg></div><div class="md-source__repository">Siddhi</div></a>
+      </div>
+    
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        
+        
+        
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Siddhi" class="md-nav__link">
+      Siddhi
+    </a>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Download
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        Download
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../en/v5.0/download/" title="None" class="md-nav__link">
+      None
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Quick Start
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Quick Start
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../en/v5.0/docs/quick-start/" title="None" class="md-nav__link">
+      None
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Documentation
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Documentation
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../en/v5.0/docs/" title="None" class="md-nav__link">
+      None
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
+    
+    <label class="md-nav__link" for="nav-5">
+      Community
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        Community
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Support" class="md-nav__link">
+      Support
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Contribution
+      </label>
+    
+    <a href="./" title="Contribution" class="md-nav__link md-nav__link--active">
+      Contribution
+    </a>
+    
+      <nav class="md-nav md-nav--secondary"><label class="md-nav__title" for="__toc">On this page</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="#reporting-issues" title="Reporting Issues" class="md-nav__link">Reporting Issues</a></li><li class="md-nav__item"><a href="#contributing-code" title="Contributing Code" class="md-nav__link">Contributing Code</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#obtaining-the-source-code-and-building-the-project" title="Obtaining the Source Code and Building the Project" class="md-nav__link">Obtaining the Source Code and Building the Project</a></li><li class="md-nav__item"><a href="#making-code-changes-and-sending-prs" title="Making Code Changes and Sending PRs" class="md-nav__link">Making Code Changes and Sending PRs</a></li><li class="md-nav__item"><a href="#code-commit-guidelines" title="Code Commit Guidelines" class="md-nav__link">Code Commit Guidelines</a></li><li class="md-nav__item"><a href="#accepting-contributor-license-agreement-cla" title="Accepting Contributor License Agreement (CLA)" class="md-nav__link">Accepting Contributor License Agreement (CLA)</a></li></ul></nav></li><li class="md-nav__item"><a href="#proposing-changes-or-improvements" title="Proposing Changes or Improvements" class="md-nav__link">Proposing Changes or Improvements</a></li></ul></nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../events/" title="Events" class="md-nav__link">
+      Events
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../siddhi-logos/" title="Siddhi Logos" class="md-nav__link">
+      Siddhi Logos
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Development
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        Development
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../en/v5.0/development/" title="None" class="md-nav__link">
+      None
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+        
+        
+        
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      License
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        License
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../license/" title="License" class="md-nav__link">
+      License
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+      
+    </ul>
+  </nav>  </div></div></div><div class="md-sidebar md-sidebar--secondary" data-md-component="toc"><div class="md-sidebar__scrollwrap"><div class="md-sidebar__inner"><nav class="md-nav md-nav--secondary"><label class="md-nav__title" for="__toc">On this page</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="#reporting-issues" title="Reporting Issues" class="md-nav__link">Reporting Issues</a></li><li class="md-nav__item"><a href="#contributing-code" title="Contributing Code" class="md-nav__link">Contributing Code</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#obtaining-the-source-code-and-building-the-project" title="Obtaining the Source Code and Building the Project" class="md-nav__link">Obtaining the Source Code and Building the Project</a></li><li class="md-nav__item"><a href="#making-code-changes-and-sending-prs" title="Making Code Changes and Sending PRs" class="md-nav__link">Making Code Changes and Sending PRs</a></li><li class="md-nav__item"><a href="#code-commit-guidelines" title="Code Commit Guidelines" class="md-nav__link">Code Commit Guidelines</a></li><li class="md-nav__item"><a href="#accepting-contributor-license-agreement-cla" title="Accepting Contributor License Agreement (CLA)" class="md-nav__link">Accepting Contributor License Agreement (CLA)</a></li></ul></nav></li><li class="md-nav__item"><a href="#proposing-changes-or-improvements" title="Proposing Changes or Improvements" class="md-nav__link">Proposing Changes or Improvements</a></li></ul></nav></div></div></div><div class="md-content"><article class="md-content__inner md-typeset">
+  <a href="https://github.com/siddhi-io/www/edit/landing/community/contribution.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a><h1 id="contribution">Contribution<a class="headerlink" href="#contribution" title="Permanent link">&para;</a></h1>
+<p>We welcome new members to join the community and contribute. </p>
+<p>Following are some ways of contributing to Siddhi.</p>
+<h2 id="reporting-issues">Reporting Issues<a class="headerlink" href="#reporting-issues" title="Permanent link">&para;</a></h2>
+<p>If you are unsure whether you have found a bug, please consider searching existing <a href="https://github.com/issues?utf8=%E2%9C%93&amp;q=is%3Aopen+is%3Aissue+archived%3Afalse+user%3Asiddhi-io">issues in Siddhi.io GitHub repo</a> or ask questions in <a href="https://groups.google.com/forum/#!forum/siddhi-dev">Siddhi-Dev Google Group</a>.</p>
+<p>To file non-security issues:</p>
+<ol>
+<li>
+<p>Click the <strong>Issues</strong> tab in the relevant <a href="https://github.com/siddhi-io">Siddhi.io GitHub repository</a>.</p>
+</li>
+<li>
+<p>Click the <strong>New Issue</strong> button.</p>
+</li>
+<li>
+<p>Fill out all relevant sections in the issue template and submit.</p>
+</li>
+</ol>
+<h2 id="contributing-code">Contributing Code<a class="headerlink" href="#contributing-code" title="Permanent link">&para;</a></h2>
+<h3 id="obtaining-the-source-code-and-building-the-project">Obtaining the Source Code and Building the Project<a class="headerlink" href="#obtaining-the-source-code-and-building-the-project" title="Permanent link">&para;</a></h3>
+<p>Refer <a href="../../development/">Source &amp; Build</a> section for details on obtaining the source code, building the projects, and for their relevant prerequisites.</p>
+<h3 id="making-code-changes-and-sending-prs">Making Code Changes and Sending PRs<a class="headerlink" href="#making-code-changes-and-sending-prs" title="Permanent link">&para;</a></h3>
+<p>You can use your preferred IDEs (eg: IntelliJ IDEA, Eclipse) for development. Make sure, your IDE is configured with proper JDK and Maven settings (for working on java projects). </p>
+<p>You can import the source code to IDE, do code changes, and add the necessary unit tests. Finally, build the complete Siddhi project with tests, once build is successful, commit the changes to your Github folk following the below guidelines, and then send the pull request to the relevant Siddhi.io Repo.</p>
+<h3 id="code-commit-guidelines">Code Commit Guidelines<a class="headerlink" href="#code-commit-guidelines" title="Permanent link">&para;</a></h3>
+<p>We follow these commit message guidelines:</p>
+<ul>
+<li>Separate subject from body with a blank line</li>
+<li>Limit the subject line to 50 characters</li>
+<li>Capitalize the subject line</li>
+<li>Do not end the subject line with a period</li>
+<li>Use the imperative mood in the subject line</li>
+<li>Wrap the body at 72 characters</li>
+<li>Use the body to explain what and why vs. how</li>
+</ul>
+<p>Please find details at: <a href="https://chris.beams.io/posts/git-commit/">https://chris.beams.io/posts/git-commit/</a></p>
+<h3 id="accepting-contributor-license-agreement-cla">Accepting Contributor License Agreement (CLA)<a class="headerlink" href="#accepting-contributor-license-agreement-cla" title="Permanent link">&para;</a></h3>
+<p>Before you submit your first contribution please accept our Contributor License Agreement (CLA). When you send your first Pull Request (PR), GitHub will ask you to accept the CLA.</p>
+<p>There is no need to do this before you send your first PR. Subsequent PRs will not require CLA acceptance.</p>
+<p>If for some (unlikely) reason at any time CLA changes, you will get presented with the new CLA text on your first PR after the change.</p>
+<h2 id="proposing-changes-or-improvements">Proposing Changes or Improvements<a class="headerlink" href="#proposing-changes-or-improvements" title="Permanent link">&para;</a></h2>
+<p>You can propose changes or improvements by reporting an issue in the <a href="https://github.com/siddhi-io/siddhi/issues">Siddhi GitHub repository</a> with the label <code>type/improvement</code> or <code>type/new-feature</code>. </p>
+<p>You can also start a thread in the <a href="https://groups.google.com/forum/#!forum/siddhi-dev">Siddhi-Dev Google Group</a> to continue the discussion in detail.</p>
+  <a href="#" class="cd-top text--replace js-cd-top">Top</a>
+</article></div></div></main>
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../" title="Support" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Support
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../events/" title="Events" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Events
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Siddhi - Documentation
+          </div>
+        
+        &copy;2019 <a href="https://wso2.com/">WSO2</a>
+      </div>
+      
+      <div class="md-footer-social"><link rel="stylesheet" href="../../assets/fonts/font-awesome.css"> <a href="https://github.com/siddhi-io/siddhi" class="md-footer-social__link fa fa-github"></a>  <a href="https://medium.com/siddhi-io" class="md-footer-social__link fa fa-medium"></a>  <a href="https://www.linkedin.com/groups/13553064" class="md-footer-social__link fa fa-linkedin"></a> </div>
+      
+    </div>
+  </div>
+</footer></div><script src="../../assets/javascripts/application.b260a35d.js"></script><script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script><script src="../../assets/lib/highlightjs/highlight.min.js"></script><script src="../../assets/js/theme.js"></script><script src="../../assets/lib/backtotop/js/util.js"></script><script src="../../assets/lib/backtotop/js/main.js"></script></body></html>
