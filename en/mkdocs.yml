@@ -72,14 +72,14 @@ markdown_extensions:
 
 nav:
   - Download:
-      - en/_latest_version_/download/
+    - /en/_latest_version_/download/
   - Quick Start:
-      - en/_latest_version_/docs/quick-start/
+    - /en/_latest_version_/docs/quick-start/
   - Documentation:
-      - en/_latest_version_/docs/
+    - /en/_latest_version_/docs/
   - Community:
     - /community/
   - Development:
-      - en/_latest_version_/development/
+    - /en/_latest_version_/development/
   - License:
     - /license/
