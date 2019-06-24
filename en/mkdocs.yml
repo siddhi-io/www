@@ -69,3 +69,17 @@ google_analytics:
 markdown_extensions:
   - fenced_code
   - codehilite
+
+nav:
+  - Download:
+      - en/_latest_version_/download/
+  - Quick Start:
+      - en/_latest_version_/docs/quick-start/
+  - Documentation:
+      - en/_latest_version_/docs/
+  - Community:
+    - /community/
+  - Development:
+      - en/_latest_version_/development/
+  - License:
+    - /license/
