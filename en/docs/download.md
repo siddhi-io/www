@@ -9,7 +9,7 @@ Get all released Siddhi 4.x libraries from the Maven repository:
 * [Siddhi Query Compiler](https://mvnrepository.com/artifact/org.wso2.siddhi/siddhi-query-compiler)
 * [Siddhi Annotation](https://mvnrepository.com/artifact/org.wso2.siddhi/siddhi-annotations)
 
-Refer the [user guide](../user-guide/) for using Siddhi as a Java library.
+Refer the [user guide](../docs/siddhi-as-a-java-library/) for using Siddhi as a Java library.
 
 ##Siddhi in Python (PySiddhi4)
 
@@ -84,7 +84,7 @@ If the library has been installed as explained above, it could be uninstalled us
 pip uninstall pysiddhi4
 ```
 
-Refer the [user guide](../user-guide/) for using Siddhi in Python.
+Refer the [user guide](../docs/siddhi-as-a-python-library/) for using Siddhi in Python.
 
 
 !!! Info "For other Siddhi Versions refer the [Download Archives](../../versions/)"

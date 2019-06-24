@@ -10,7 +10,7 @@ Writing steam processing logic in Siddhi is all about building Siddhi Applicatio
 
 It is recommended to have different business usecase in separate Siddhi Applications, where it allow users to selectively deploy the applications based on business needs.
 It is also recommended to move the repeated steam processing logics that exist in multiple Siddhi Applications, such as message retrieval and preprocessing, to a common Siddhi Application, whereby reducing code duplication and improving maintainability.
-In this case, to pass the events from one Siddhi App to another, users can configure common topic using [In-Memory Sink](../../api/latest/#inmemory-sink) and [In-Memory Source](../../api/latest/#inmemory-source) in order to communicate between them.
+In this case, to pass the events from one Siddhi App to another, users can configure common topic using [In-Memory Sink](api/latest/#inmemory-sink) and [In-Memory Source](api/latest/#inmemory-source) in order to communicate between them.
 
 To write Siddhi Applications using Siddhi Streaming SQL refer [Siddhi Query Guide](query-guide) for details.
 

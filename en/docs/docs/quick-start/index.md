@@ -234,7 +234,7 @@ cargo events.
 
 It is also notable that the defined `length window` only keeps 3 events in-memory. When the 4th event arrives, the 
 first event in the window is removed from memory. This ensures that the memory usage does not grow beyond a specific limit. There are also other 
-implementations done in Siddhi  to reduce the memory consumption. For more information, see [Siddhi Architecture](../architecture/).
+implementations done in Siddhi  to reduce the memory consumption. For more information, see [Siddhi Architecture](../../development/architecture/).
 
 To learn more about the Siddhi functionality, see [Siddhi Documentation](../).
 
