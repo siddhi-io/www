@@ -87,4 +87,4 @@ pip uninstall pysiddhi4
 Refer the [user guide](../user-guide/) for using Siddhi in Python.
 
 
-!!! Info "For other Siddhi Versions refer the [Download Archives](../versions/)"
+!!! Info "For other Siddhi Versions refer the [Download Archives](../../versions/)"
