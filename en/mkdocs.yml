@@ -98,7 +98,7 @@ markdown_extensions:
 
 # Navigation
 nav:
-  - Download:
+  - Downloads:
     - Download: download.md
     - Extensions: docs/extensions.md
     - Release Notes: release-notes.md
