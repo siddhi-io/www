@@ -158,7 +158,7 @@ Siddhi provides tooling that supports following features to develop and test str
 
 ## Siddhi Versions
 
-* **Latest Stable Release of Siddhi v5.1.x** : [**v5.1.0**](en/_latest_version_/docs/api/latest/) _built on Java 8 & 11._ 
+* **Latest Stable Release of Siddhi v5.x.x** : [**v5.0.0**](en/_latest_version_/docs/api/latest/) _built on Java 8 & 11._ 
 * Get Siddhi API information <a target="_blank" href="en/_latest_version_/docs/api/latest/">here</a>.
 
 ## Contact us 
