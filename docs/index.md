@@ -167,7 +167,7 @@ Siddhi provides tooling that supports following features to develop and test str
 * Engage in community development through [Siddhi dev Google group](https://groups.google.com/forum/#!forum/siddhi-dev). 
 
 ## How to Contribute
-Find the detail information on asking questions, providing feedback, reporting issues, building and contributing code on [How to contribute?](/contribution/) section.
+Find the detail information on asking questions, providing feedback, reporting issues, building and contributing code on [How to contribute?](/community/contribution/) section.
 
 ## Roadmap 
 
