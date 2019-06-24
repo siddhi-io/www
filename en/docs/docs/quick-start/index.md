@@ -265,7 +265,7 @@ In the earlier scenario when the window is not used, the system only stored the 
 
 ## 7. Running Siddhi Application as a Docker microservice
 
-In this step we will run above developed Siddhi application as a microservice utilizing Docker. For other available options please refer [here](../deployment/introduction/#execution-environments). Here we will use siddhi-runner docker distribution. Follow the below steps to obtain the docker.
+In this step we will run above developed Siddhi application as a microservice utilizing Docker. For other available options please refer [here](../#executing-siddhi-applications). Here we will use siddhi-runner docker distribution. Follow the below steps to obtain the docker.
 
 * Install docker in your machine and start the daemon ([https://docs.docker.com/install/](https://docs.docker.com/install/)).
 * Pull the latest siddhi-runner image by executing below command.
