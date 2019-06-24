@@ -10,7 +10,7 @@ build(){
 
 	git checkout $1  
     version=$1
-#rename master to next     
+    #rename master to next
     if [ "$1" == "master" ]; then
       version="next"  
     fi
@@ -22,10 +22,10 @@ build(){
     for dir in */; do  
   
       if [ -d ${f} ]; then
-        dir=${dir%*/}
-        dirName=${dir##*/}      
+         dir=${dir%*/}
+         dirName=${dir##*/}
          cd ${dir}
-          mkdocs build
+         mkdocs build
          cd ..   
          mkdir -p ../dist/$dirName/$version
          ls      
@@ -57,8 +57,9 @@ build_landing(){
       
      git checkout versions
      GIT_BRANCH_NAME="$(cut -d'/' -f3 <<<"$BRANCH")"  
-   #obtain branch names from versions.json and check with the git branches             
-   for version in $(cat en/docs/assets/versions.json | jq -r '.all' | jq -r 'keys[]'); do 
+   #obtain branch names from versions.json and check with the git branches
+   CURRENT_VERSION=$(cat en/docs/assets/versions.json | jq -r '.current');
+   for version in $(cat en/docs/assets/versions.json | jq -r '.all' | jq -r 'keys[]'); do
 
      if [ "$GIT_BRANCH_NAME" == "${version}" ]; then 
 
@@ -67,25 +68,26 @@ build_landing(){
      fi   
     done   
    done 
-  #these branches must build in each trigger    
+   #these branches must build in each trigger
    build "versions"
 
-   #copy redirection
-#  cp ./index.html ../dist/index.html
-#  cp ./404.html ../dist/404.html
-#   cp ./_config.yml ../dist/_config.yml
-#   cp -R ./redirect/* ../dist/redirect/
-#   cp ./en/index.html ../dist/en/index.html
-  cp ./CNAME ../dist/CNAME
+   #copy redirection and cname
+   cp ./_config.yml ../dist/_config.yml
+   cp -R ./redirect/* ../dist/redirect/
+   cp ./CNAME ../dist/CNAME
 
    build "master"
 
+   echo CURRENT_VERSION : $CURRENT_VERSION;
+
    build_landing
 
-  # git checkout gh-pages
-  # rm -rf ./*
-  # cp -R ../dist/* .
-  # git add -A
+   LC_ALL=C find ../dist/ -type f -exec sed -i '' s/_latest_version_/$CURRENT_VERSION/g {} +
+
+   git checkout gh-pages
+   rm -rf ./*
+   cp -R ../dist/* .
+   git add -A
 
 
      

@@ -5,6 +5,11 @@
 <nav class="{{ class }}" data-md-component="tabs">
   <div class="md-tabs__inner md-grid">
     <ul class="md-tabs__list">
+        <li class="md-tabs__item home_icon">
+            <a href="/" title="Siddhi Home" class="md-tabs__link md-tabs__link--active">
+                <i class="fa fa-home"></i>
+            </a>
+        </li>
       {% for nav_item in nav %}
         {% include "partials/tabs-item.html" %}
       {% endfor %}
