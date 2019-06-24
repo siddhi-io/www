@@ -82,14 +82,14 @@ request.onload = function() {
       var data = JSON.parse(request.responseText);
       var dropdown =  document.getElementById('version-select-dropdown');
       var checkVersionsPage = document.getElementById('current-version-stable');
-      
-      /* 
-       * Appending versions to the version selector dropdown 
+
+      /*
+       * Appending versions to the version selector dropdown
        */
       if (dropdown){
           data.list.sort().forEach(function(key, index){
               var versionData = data.all[key];
-              
+
               if(versionData) {
                   var liElem = document.createElement('li');
                   var docLinkType = data.all[key].doc.split(':')[0];
@@ -104,7 +104,7 @@ request.onload = function() {
                   }
 
                   liElem.className = 'md-tabs__item mb-tabs__dropdown';
-                  liElem.innerHTML =  '<a href="' + url + '" target="' + 
+                  liElem.innerHTML =  '<a href="' + url + '" target="' +
                       target + '">' + key + '</a>';
 
                   dropdown.insertBefore(liElem, dropdown.firstChild);
@@ -114,8 +114,8 @@ request.onload = function() {
           document.getElementById('show-all-versions-link')
               .setAttribute('href', docSetUrl + 'versions');
       }
-      
-      /* 
+
+      /*
        * Appending versions to the version tables in versions page
        */
       if (checkVersionsPage){
@@ -123,44 +123,68 @@ request.onload = function() {
 
           Object.keys(data.all).forEach(function(key, index){
               if ((key !== data.current) && (key !== data['pre-release'])) {
-                  var docLinkType = data.all[key].doc.split(':')[0];
-                  var target = '_self';
 
-                  if ((docLinkType == 'https') || (docLinkType == 'http')) {
-                      target = '_blank'
+                  var docLinkType = data.all[key].doc.split(':')[0];
+                  var docTarget = '_self';
+                  var docLink = docSetUrl + data.all[key].doc + "/docs";
+                  if ((docLinkType === 'https') || (docLinkType === 'http')) {
+                      docTarget = '_blank';
+                      docLink =  data.all[key].doc;
+                  }
+
+                  var downloadLinkType = data.all[key].download.split(':')[0];
+                  var downloadTarget = '_self';
+                  var downloadLink = docSetUrl + data.all[key].download + "/download";
+                  if ((downloadLinkType === 'https') || (downloadLinkType === 'http')) {
+                      downloadTarget = '_blank';
+                      downloadLink =  data.all[key].download;
+                  }
+
+                  var notesLinkType = data.all[key].notes.split(':')[0];
+                  var notesTarget = '_self';
+                  var notesLink = docSetUrl + data.all[key].notes + "/release-notes";
+                  if ((notesLinkType === 'https') || (notesLinkType === 'http')) {
+                      notesTarget = '_blank';
+                      notesLink =  data.all[key].notes;
                   }
 
                   previousVersions.push('<tr>' +
                     '<th>' + key + '</th>' +
                         '<td>' +
-                            '<a href="' + data.all[key].doc + '" target="' + 
-                                target + '">Documentation</a>' +
+                            '<a href="' + downloadLink + '" target="' +
+                                downloadTarget + '">Download</a>' +
                         '</td>' +
                         '<td>' +
-                            '<a href="' + data.all[key].notes + '" target="' + 
-                                target + '">Release Notes</a>' +
+                            '<a href="' + docLink + '" target="' +
+                                docTarget + '">Documentation</a>' +
+                        '</td>' +
+                        '<td>' +
+                            '<a href="' + notesLink + '" target="' +
+                                notesTarget + '">Release Notes</a>' +
                         '</td>' +
                     '</tr>');
               }
           });
 
           // Past releases update
-          document.getElementById('previous-versions').innerHTML = 
+          document.getElementById('previous-versions').innerHTML =
                   previousVersions.join(' ');
 
           // Current released version update
-          document.getElementById('current-version-number').innerHTML = 
+          document.getElementById('current-version-number').innerHTML =
                   data.current;
+          document.getElementById('current-version-download-link')
+                  .setAttribute('href', docSetUrl + data.all[data.current].download + "/download");
           document.getElementById('current-version-documentation-link')
-                  .setAttribute('href', docSetUrl + data.all[data.current].doc);
+                  .setAttribute('href', docSetUrl + data.all[data.current].doc + "/docs");
           document.getElementById('current-version-release-notes-link')
-                  .setAttribute('href', docSetUrl + data.all[data.current].notes);
-        
+                  .setAttribute('href', docSetUrl + data.all[data.current].notes + "/release-notes");
+
           // Pre-release version update
           document.getElementById('pre-release-version-documentation-link')
               .setAttribute('href', docSetUrl + 'next/');
       }
-      
+
   } else {
       console.error("We reached our target server, but it returned an error");
   }
@@ -188,7 +212,7 @@ var config = { attributes: true, childList: true, subtree: true };
 var callback = function(mutationsList, observer) {
     for(var mutation of mutationsList) {
         if (mutation.type == 'attributes') {
-            mutation.target.parentNode.setAttribute(mutation.attributeName, 
+            mutation.target.parentNode.setAttribute(mutation.attributeName,
                 mutation.target.getAttribute(mutation.attributeName));
             scrollerPosition(mutation);
         }
@@ -201,7 +225,7 @@ listElems[0].classList.add('active');
 for (var i = 0; i < observeeList.length; i++) {
     var el = observeeList[i];
 
-    observer.observe(el, config); 
+    observer.observe(el, config);
 
     el.onclick = function(e) {
         listElems.forEach(function(elm) {

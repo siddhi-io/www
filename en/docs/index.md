@@ -27,6 +27,9 @@ template: templates/versions.html
         <tr>
             <th id="current-version-number"><!-- latest-version --></th>
             <td>
+                <a id="current-version-download-link">Download</a>
+            </td>
+            <td>
                 <a id="current-version-documentation-link">Documentation</a>
             </td>
             <td>
