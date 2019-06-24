@@ -158,8 +158,8 @@ Siddhi provides tooling that supports following features to develop and test str
 
 ## Siddhi Versions
 
-* **Latest Stable Release of Siddhi v5.1.x** : [**v5.1.0**](en/_latest_version_/api/latest/) _built on Java 8 & 11._ 
-* Get Siddhi API information <a target="_blank" href="en/_latest_version_/api/latest/">here</a>.
+* **Latest Stable Release of Siddhi v5.1.x** : [**v5.1.0**](en/_latest_version_/docs/api/latest/) _built on Java 8 & 11._ 
+* Get Siddhi API information <a target="_blank" href="en/_latest_version_/docs/api/latest/">here</a>.
 
 ## Contact us 
 * Post your questions with the <a target="_blank" href="http://stackoverflow.com/search?q=siddhi">"Siddhi"</a> tag in <a target="_blank" href="http://stackoverflow.com/search?q=siddhi">Stackoverflow</a>. 
@@ -167,7 +167,7 @@ Siddhi provides tooling that supports following features to develop and test str
 * Engage in community development through [Siddhi dev Google group](https://groups.google.com/forum/#!forum/siddhi-dev). 
 
 ## How to Contribute
-Find the detail information on asking questions, providing feedback, reporting issues, building and contributing code on [How to contribute?](en/_latest_version_/contribution/) section.
+Find the detail information on asking questions, providing feedback, reporting issues, building and contributing code on [How to contribute?](/contribution/) section.
 
 ## Roadmap 
 
