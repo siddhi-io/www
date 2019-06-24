@@ -29,4 +29,4 @@ The Siddhi Kubernetes CRD repo deploying Siddhi on Kubernetes. This depends on t
 
 ### Siddhi Extensions
 
-Find the supported Siddhi extensions and source [here](../docs/extensions) 
+Find the supported Siddhi extensions and source [here](../../docs/extensions) 

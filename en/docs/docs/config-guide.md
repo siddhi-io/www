@@ -122,13 +122,13 @@ siddhi:
 ```
 For each separate refs you want to configure, add a sub-section named `ref` under the `refs` subsection.
 
-The ref configured in Siddhi Configuration yaml can be referred from a Siddhi Application [Source](../../query-guide/#source) as follows.
+The ref configured in Siddhi Configuration yaml can be referred from a Siddhi Application [Source](../query-guide/#source) as follows.
 ```
 @Source(ref='<name>',
         @map(type='json', @attributes( name='$.name', amount='$.quantity')))
 define stream SweetProductionStream (name string, amount double);
 ```
-Similarly [Sinks](../../query-guide/#sink) and [Store Tables](../../query-guide/#store) can also be configured and referred from Siddhi Apps.
+Similarly [Sinks](../query-guide/#sink) and [Store Tables](../query-guide/#store) can also be configured and referred from Siddhi Apps.
 
 For each separate refs you want to configure, add a sub-section named `ref` under the `refs` subsection.
 
@@ -298,7 +298,7 @@ For details on creating the Kubernetes artifacts refer [Using Siddhi as Kubernet
 
 Siddhi uses [dropwizard](https://metrics.dropwizard.io/) metrics library to calculate Siddhi and JVM statistics, and it can report the results via JMX Mbeans, console or database.
 
-To enable statistics, the relevant configuration should be added to the Siddhi Configuration yaml as follows, and at the same time the statistics collection should be enabled in the Siddhi Application which is being monitored. Refer [Siddhi Application Statistics](../../query-guide/#statistics) documentation for enabling Siddhi Application level statistics.
+To enable statistics, the relevant configuration should be added to the Siddhi Configuration yaml as follows, and at the same time the statistics collection should be enabled in the Siddhi Application which is being monitored. Refer [Siddhi Application Statistics](../query-guide/#statistics) documentation for enabling Siddhi Application level statistics.
 
 To enable statistics the relevant matrics related configurations should be added under `wso2.metrics` section in the Siddhi Configurations yaml file, and pass that during startup.
 
