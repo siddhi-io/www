@@ -70,7 +70,7 @@ Name | Description | Latest <br/>Tested <br/>Version
 ### Store Extensions
 Name | Description | Latest <br/>Tested <br/>Version
 :-- | :-- | :--
-<a target="_blank" href="https://wso2-extensions.github.io/siddhi-store-rdbms">store-rdbms</a> | Persist and retrieve events to/from RDBMS databases such as MySQL, MS SQL, Postgresql, H2 and Oracle. | [foo](https://mvnrepository.com/artifact/org.wso2.extension.siddhi.store.rdbms/siddhi-store-rdbms/foo)
+<a target="_blank" href="https://wso2-extensions.github.io/siddhi-store-rdbms">store-rdbms</a> | Persist and retrieve events to/from RDBMS databases such as MySQL, MS SQL, Postgresql, H2 and Oracle. | [5.1.7](https://mvnrepository.com/artifact/org.wso2.extension.siddhi.store.rdbms/siddhi-store-rdbms/5.1.7)
 <a target="_blank" href="https://wso2-extensions.github.io/siddhi-store-mongodb">store-mongodb</a> | Persist and retrieve events to/from MongoDB. | [1.1.0](https://mvnrepository.com/artifact/org.wso2.extension.siddhi.store.mongodb/siddhi-store-mongodb/1.1.0)
 <a target="_blank" href="https://wso2-extensions.github.io/siddhi-store-redis">store-redis</a> | Persist and retrieve events to/from Redis. | [2.1.0](https://mvnrepository.com/artifact/org.wso2.extension.siddhi.store.redis/siddhi-store-redis/2.1.0)
 <a target="_blank" href="https://wso2-extensions.github.io/siddhi-store-cassandra">store-cassandra</a> | Persist and retrieve events to/from Cassandra. | [1.1.1](https://mvnrepository.com/artifact/org.wso2.extension.siddhi.store.cassandra/siddhi-store-cassandra/1.1.1)
