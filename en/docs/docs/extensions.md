@@ -1,36 +1,60 @@
-# Siddhi 5.1 Extensions
+# Siddhi Extensions
 
-## Available Extensions
+Following are some supported Siddhi extensions;
 
-Following are some pre-written extensions that are supported with Siddhi;
+## Extensions released under Apache 2.0 License
 
-### Extensions released under Apache 2.0 License
-Name | Description
-:-- | :--
-<a target="_blank" href="https://siddhi-io.github.io/siddhi-execution-map">execution-map</a> | The siddhi-execution-map extension is an extension to Siddhi that provides the capability to send a map object inside Siddhi stream definitions and use it inside queries. The following are the functions of the map extension..
-<a target="_blank" href="https://siddhi-io.github.io/siddhi-execution-math">execution-math</a> | The siddhi-execution-math is an extension to Siddhi, which provides useful mathematical functions that can make your siddhi queries more flexible.
-<a target="_blank" href="https://siddhi-io.github.io/siddhi-execution-regex">execution-regex</a> | The siddhi-execution-regex extension is an extension to Siddhi that provides basic RegEx execution capabilities.
-<a target="_blank" href="https://siddhi-io.github.io/siddhi-execution-reorder">execution-reorder</a> | The siddhi-execution-reorder extension is an extension to Siddhi that is used for reordering events from an unordered event stream. Reorder extension is implemented using the K-Slack and alpha K-Stack algorithms.
-<a target="_blank" href="https://siddhi-io.github.io/siddhi-execution-streamingml">execution-streamingml</a> | The siddhi-execution-streamingml is an extension to Siddhi that performs streaming machine learning on event streams.
-<a target="_blank" href="https://siddhi-io.github.io/siddhi-execution-string">execution-string</a> | The siddhi-execution-string is an extension to Siddhi that provides basic string handling capabilities such as con-cat, length, convert to lowercase, and replace all.
-<a target="_blank" href="https://siddhi-io.github.io/siddhi-execution-tensorflow">execution-tensorflow</a> | The siddhi-execution-tensorflow is an extension to Siddhi that adds support for inferences from pre-built TensorFlow SavedModels using Siddhi.
-<a target="_blank" href="https://siddhi-io.github.io/siddhi-execution-time">execution-time</a> | The siddhi-execution-time extension is an extension to Siddhi that provides time related functionality to Siddhi such as getting current time, current date, manipulating/formatting dates and etc.
-<a target="_blank" href="https://siddhi-io.github.io/siddhi-execution-unique">execution-unique</a> | The siddhi-execution-unique extension is an extension to Siddhi that processes event streams based on unique events. Different types of unique windows are available to hold unique events based on the given unique key parameter.
-<a target="_blank" href="https://siddhi-io.github.io/siddhi-execution-unitconversion">execution-unitconversion</a> | The siddhi-execution-unitconversion extension is an extension to Siddhi that enables conversions of length, mass, time and volume units.
-<a target="_blank" href="https://siddhi-io.github.io/siddhi-io-cdc">io-cdc</a> | The siddhi-io-cdc extension is an extension to Siddhi. It receives change data from MySQL, MS SQL Server, Postgresql, H2 and Oracle in the key-value format.
-<a target="_blank" href="https://siddhi-io.github.io/siddhi-io-email">io-email</a> | The siddhi-io-email extension is an extension to Siddhi that receives and publishes events via email. Using the extension, events can be published through smtp mail server and received through 'pop3' or 'imap' mail serves.
-<a target="_blank" href="https://siddhi-io.github.io/siddhi-io-file">io-file</a> | The siddhi-io-file extension is an extension to Siddhi which is used to receive/publish event data from/to file. It supports both binary and text formats.
-<a target="_blank" href="https://siddhi-io.github.io/siddhi-io-http">io-http</a> | The siddhi-io-http extension is an extension to Siddhi that allows you to receive and publish events via http and https transports and also allow you perform synchronous request and response. This extension works with WSO2 Stream Processor and with standalone Siddhi.
-<a target="_blank" href="https://siddhi-io.github.io/siddhi-io-jms">io-jms</a> | The siddhi-io-jms extension is an extension to Siddhi that used to receive and publishe events via JMS Message. This extension allows users to subscribe to a JMS broker and receive/publish JMS messages.
-<a target="_blank" href="https://siddhi-io.github.io/siddhi-io-kafka">io-kafka</a> | The siddhi-io-kafka extension is an extension to Siddhi. This implements siddhi kafka source and sink that can be used to receive events from a kafka cluster and to publish events to a kafka cluster.
-<a target="_blank" href="https://siddhi-io.github.io/siddhi-io-prometheus">io-prometheus</a> | The siddhi-io-prometheus extension is an extension to Siddhi. The Prometheus-sink publishes Siddhi events as Prometheus metrics and expose them to Prometheus server. The Prometheus-source retrieves Prometheus metrics from an endpoint and send them as Siddhi events.
-<a target="_blank" href="https://siddhi-io.github.io/siddhi-io-tcp">io-tcp</a> | The siddhi-io-tcp extension is an extension to Siddhi that allows to receive and publish events through TCP.
-<a target="_blank" href="https://siddhi-io.github.io/siddhi-map-binary">map-binary</a> | The siddhi-map-binary extension is an extension to Siddhi that can be used to convert binary events to/from Siddhi events.
-<a target="_blank" href="https://siddhi-io.github.io/siddhi-map-csv">map-csv</a> | The siddhi-map-csv extension is an extension to Siddhi that supports mapping incoming events with csv format to a stream at the source, and mapping a stream to csv format events at the sink.
-<a target="_blank" href="https://siddhi-io.github.io/siddhi-map-json">map-json</a> | The siddhi-map-json extension is an extension to Siddhi which is used to convert JSON message to/from Siddhi events.
-<a target="_blank" href="https://siddhi-io.github.io/siddhi-map-keyvalue">map-keyvalue</a> | The siddhi-map-keyvalue extension is an extension to Siddhi that supports mapping incoming events with Key-Value map format to a stream at the source, and mapping a stream to Key-Value map events at the sink.
-<a target="_blank" href="https://siddhi-io.github.io/siddhi-map-text">map-text</a> | The siddhi-map-text extension is an extension to Siddhi that supports mapping incoming text messages to a stream at the source, and mapping a stream to text messages at the sink.
-<a target="_blank" href="https://siddhi-io.github.io/siddhi-map-xml">map-xml</a> | The siddhi-map-xml extension is an extension to Siddhi that supports mapping incoming XML events to a stream at the source, and mapping a stream to XML events at the sink.
-<a target="_blank" href="https://siddhi-io.github.io/siddhi-script-js">script-js</a> | The siddhi-script-js is an extension to Siddhi that allows to include JavaScript functions within the Siddhi Query Language.
-<a target="_blank" href="https://siddhi-io.github.io/siddhi-store-mongodb">store-mongodb</a> | The siddhi-store-mongodb extension is an extension to Siddhi that can be used to persist events to a MongoDB instance of the users choice. Find some useful links below:
-<a target="_blank" href="https://siddhi-io.github.io/siddhi-store-rdbms">store-rdbms</a> | The siddhi-store-rdbms extension is an extension to Siddhi that can be used to persist events to an RDBMS instance of the user's choice.
+### Execution Extensions
+
+Name | Description | Latest <br/>Tested <br/>Version 
+:-- | :-- | :--
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-execution-string">execution-string</a> | Provides basic string handling capabilities such as concat, length, replace all, etc. | [5.0.3](https://mvnrepository.com/artifact/io.siddhi.extension.execution.string/siddhi-execution-string/5.0.3)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-execution-regex">execution-regex</a> | Provides basic RegEx execution capabilities. | [5.0.3](https://mvnrepository.com/artifact/io.siddhi.extension.execution.regex/siddhi-execution-regex/5.0.3)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-execution-math">execution-math</a> | Provides useful mathematical functions. | [5.0.1](https://mvnrepository.com/artifact/io.siddhi.extension.execution.math/siddhi-execution-math/5.0.1)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-execution-time">execution-time</a> | Provides time related functionality such as getting current time, current date, manipulating/formatting dates, etc. | [5.0.2](https://mvnrepository.com/artifact/io.siddhi.extension.execution.time/siddhi-execution-time/5.0.2)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-execution-map">execution-map</a> | Provides the capability to generate and manipulate map data objects. | [5.0.2](https://mvnrepository.com/artifact/io.siddhi.extension.execution.map/siddhi-execution-map/5.0.2)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-execution-json">execution-json</a> | Provides the capability to retrieve, insert, and modify JSON elements. | [2.0.1](https://mvnrepository.com/artifact/io.siddhi.extension.execution.json/siddhi-execution-json/2.0.1)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-execution-unitconversion">execution-unitconversion</a> | Converts various units such as length, mass, time and volume. | [2.0.1](https://mvnrepository.com/artifact/io.siddhi.extension.execution.unitconversion/siddhi-execution-unitconversion/2.0.1)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-execution-reorder">execution-reorder</a> | Orders out-of-order event arrivals using algorithms such as K-Slack and alpha K-Stack. |  [5.0.0](https://mvnrepository.com/artifact/io.siddhi.extension.execution.reorder/siddhi-execution-reorder/5.0.0)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-execution-unique">execution-unique</a> | Retains and process unique events based on the given parameters. |[5.0.0](https://mvnrepository.com/artifact/io.siddhi.extension.execution.unique/siddhi-execution-unique/5.0.0)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-execution-streamingml">execution-streamingml</a> | Performs streaming machine learning (clustering, classification and regression) on event streams. | [2.0.1](https://mvnrepository.com/artifact/io.siddhi.extension.execution.streamingml/siddhi-execution-streamingml/2.0.1)
+
+### Input/Output Extensions
+
+Name | Description | Latest <br/>Tested <br/>Version
+:-- | :-- | :--
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-io-http">io-http</a> | Receives and publishes events via http and https transports, calls external services, and serves incoming requests and provide synchronous responses. | [2.0.6](https://mvnrepository.com/artifact/io.siddhi.extension.io.http/siddhi-io-http/2.0.6)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-io-nats">io-nats</a> | Receives and publishes events from/to NATS. | [2.0.3](https://mvnrepository.com/artifact/io.siddhi.extension.io.nats/siddhi-io-nats/2.0.3)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-io-kafka">io-kafka</a> | Receives and publishes events from/to Kafka. |  [5.0.1](https://mvnrepository.com/artifact/io.siddhi.extension.io.kafka/siddhi-io-kafka/5.0.1)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-io-email">io-email</a> | Receives and publishes events via email using `smtp`, `pop3` and `imap` protocols. | [2.0.2](https://mvnrepository.com/artifact/io.siddhi.extension.io.email/siddhi-io-email/2.0.2)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-io-cdc">io-cdc</a> | Captures change data from databases such as MySQL, MS SQL, Postgresql, H2 and Oracle. | [2.0.1](https://mvnrepository.com/artifact/io.siddhi.extension.io.cdc/siddhi-io-cdc/2.0.1)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-io-tcp">io-tcp</a> | Receives and publishes events through TCP transport. | [3.0.2](https://mvnrepository.com/artifact/io.siddhi.extension.io.tcp/siddhi-io-tcp/3.0.2)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-io-googlepubsub">io-googlepubsub</a> | Receives and publishes events through Google Pub/Sub.| [2.0.1](https://mvnrepository.com/artifact/io.siddhi.extension.io.googlepubsub/siddhi-io-googlepubsub/2.0.1)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-io-file">io-file</a> | Receives and publishes event data from/to files. | [2.0.1](https://mvnrepository.com/artifact/io.siddhi.extension.io.file/siddhi-io-file/2.0.1)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-io-jms">io-jms</a> | Receives and publishes events via Java Message Service (JMS), supporting Message brokers such as ActiveMQ | [2.0.2](https://mvnrepository.com/artifact/io.siddhi.extension.io.jms/siddhi-io-jms/2.0.2)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-io-prometheus">io-prometheus</a> | Consumes and expose Prometheus metrics from/to Prometheus server. | [2.0.1](https://mvnrepository.com/artifact/io.siddhi.extension.io.prometheus/siddhi-io-prometheus/2.0.1)
+
+### Data Mapping Extensions
+
+Name | Description | Latest <br/>Tested <br/>Version
+:-- | :-- | :--
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-map-json">map-json</a> | Converts JSON messages to/from Siddhi events. | [5.0.3](https://mvnrepository.com/artifact/io.siddhi.extension.map.json/siddhi-map-json/5.0.3)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-map-xml">map-xml</a> | Converts XML messages to/from Siddhi events. | [5.0.3](https://mvnrepository.com/artifact/io.siddhi.extension.map.xml/siddhi-map-xml/5.0.3)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-map-text">map-text</a> | Converts text messages to/from Siddhi events. | [2.0.2](https://mvnrepository.com/artifact/io.siddhi.extension.map.text/siddhi-map-text/2.0.2)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-map-avro">map-avro</a> | Converts AVRO messages to/from Siddhi events. | [2.0.1](https://mvnrepository.com/artifact/io.siddhi.extension.map.avro/siddhi-map-avro/2.0.1)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-map-keyvalue">map-keyvalue</a> | Converts events having Key-Value maps to/from Siddhi events. | [2.0.2](https://mvnrepository.com/artifact/io.siddhi.extension.map.keyvalue/siddhi-map-keyvalue/2.0.2)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-map-csv">map-csv</a> | Converts messages with CSV format to/from Siddhi events. | [2.0.2](https://mvnrepository.com/artifact/io.siddhi.extension.map.csv/siddhi-map-csv/2.0.2)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-map-binary">map-binary</a> | Converts binary events to/from Siddhi events. | [2.0.2](https://mvnrepository.com/artifact/io.siddhi.extension.map.binary/siddhi-map-binary/2.0.2)
+
+### Store Extensions
+Name | Description | Latest <br/>Tested <br/>Version
+:-- | :-- | :--
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-store-rdbms">store-rdbms</a> | Persist and retrieve events to/from RDBMS databases such as MySQL, MS SQL, Postgresql, H2 and Oracle. | [6.0.1](https://mvnrepository.com/artifact/io.siddhi.extension.store.rdbms/siddhi-store-rdbms/6.0.1)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-store-mongodb">store-mongodb</a> | Persist and retrieve events to/from MongoDB. | [2.0.1](https://mvnrepository.com/artifact/io.siddhi.extension.store.mongodb/siddhi-store-mongodb/2.0.1)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-store-elasticsearch">store-elasticsearch</a> | Persist and retrieve events to/from Elasticsearch. | [3.0.0](https://mvnrepository.com/artifact/io.siddhi.extension.store.elasticsearch/siddhi-store-elasticsearch/3.0.0)
+
+### Script Extensions
+Name | Description | Latest <br/>Tested <br/>Version
+:-- | :-- | :--
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-script-js">script-js</a> | Provide JavaScript function support within Siddhi Apps. |[5.0.1](https://mvnrepository.com/artifact/io.siddhi.extension.script.js/siddhi-script-js/5.0.1)
+
