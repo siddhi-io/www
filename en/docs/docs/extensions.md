@@ -65,7 +65,7 @@ Name | Description | Latest <br/>Tested <br/>Version
 <a target="_blank" href="https://wso2-extensions.github.io/siddhi-map-avro">map-avro</a> | Converts AVRO messages to/from Siddhi events. | [1.0.67](https://mvnrepository.com/artifact/org.wso2.extension.siddhi.map.avro/siddhi-map-avro/1.0.67)
 <a target="_blank" href="https://wso2-extensions.github.io/siddhi-map-keyvalue">map-keyvalue</a> | Converts events having Key-Value maps to/from Siddhi events. | [1.1.2](https://mvnrepository.com/artifact/org.wso2.extension.siddhi.map.keyvalue/siddhi-map-keyvalue/1.1.2 )
 <a target="_blank" href="https://wso2-extensions.github.io/siddhi-map-csv">map-csv</a> | Converts messages with CSV format to/from Siddhi events. | [1.1.1](https://mvnrepository.com/artifact/org.wso2.extension.siddhi.map.csv/siddhi-map-csv/1.1.1)
-<a target="_blank" href="https://wso2-extensions.github.io/siddhi-map-binary">map-binary</a> | Converts binary events to/from Siddhi events. | [1.1.1](https://mvnrepository.com/artifact/org.wso2.extension.siddhi.map.binary/siddhi-map-binary/1.1.1)
+<a target="_blank" href="https://wso2-extensions.github.io/siddhi-map-binary">map-binary</a> | Converts binary events that adheres to Siddhi format to/from Siddhi events. | [1.1.1](https://mvnrepository.com/artifact/org.wso2.extension.siddhi.map.binary/siddhi-map-binary/1.1.1)
 <a target="_blank" href="https://wso2-extensions.github.io/siddhi-map-wso2event">map-wso2event</a> | Converts WSO2 events to/from Siddhi events. | [4.1.1](https://mvnrepository.com/artifact/org.wso2.extension.siddhi.map.wso2event/siddhi-map-wso2event/4.1.1)
 
 ### Store Extensions
@@ -83,7 +83,7 @@ Name | Description | Latest <br/>Tested <br/>Version
 ### Script Extensions
 Name | Description | Latest <br/>Tested <br/>Version
 :-- | :-- | :--
-<a target="_blank" href="https://wso2-extensions.github.io/siddhi-script-js">script-js</a> | Provide JavaScript function support within Siddhi Apps. |[4.1.1](https://mvnrepository.com/artifact/org.wso2.extension.siddhi.script.js/siddhi-script-js/4.1.1)
+<a target="_blank" href="https://wso2-extensions.github.io/siddhi-script-js">script-js</a> | Allows writing user defined JavaScript functions within Siddhi Applications to process events. |[4.1.1](https://mvnrepository.com/artifact/org.wso2.extension.siddhi.script.js/siddhi-script-js/4.1.1)
 
 ## Extensions released under GPL License
 
@@ -99,4 +99,4 @@ Name | Description | Latest <br/>Tested <br/>Version
 ### Script Extensions
 Name | Description | Latest <br/>Tested <br/>Version
 :-- | :-- | :--
-<a target="_blank" href="https://wso2-extensions.github.io/siddhi-gpl-execution-r">execution-r</a> |  Provide R script support within Siddhi Apps. | 
+<a target="_blank" href="https://wso2-extensions.github.io/siddhi-gpl-execution-r">execution-r</a> |  Allows writing user defined R functions within Siddhi Applications to process events. | 
