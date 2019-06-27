@@ -44,7 +44,7 @@ Name | Description | Latest <br/>Tested <br/>Version
 <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-avro">map-avro</a> | Converts AVRO messages to/from Siddhi events. | [2.0.2](https://mvnrepository.com/artifact/io.siddhi.extension.map.avro/siddhi-map-avro/2.0.2)
 <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-keyvalue">map-keyvalue</a> | Converts events having Key-Value maps to/from Siddhi events. | [2.0.2](https://mvnrepository.com/artifact/io.siddhi.extension.map.keyvalue/siddhi-map-keyvalue/2.0.2)
 <a target="_blank" href="https://siddhi-io.github.io/siddhi-map-csv">map-csv</a> | Converts messages with CSV format to/from Siddhi events. | [2.0.2](https://mvnrepository.com/artifact/io.siddhi.extension.map.csv/siddhi-map-csv/2.0.2)
-<a target="_blank" href="https://siddhi-io.github.io/siddhi-map-binary">map-binary</a> | Converts binary events to/from Siddhi events. | [2.0.2](https://mvnrepository.com/artifact/io.siddhi.extension.map.binary/siddhi-map-binary/2.0.2)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-map-binary">map-binary</a> | Converts binary events that adheres to Siddhi format to/from Siddhi events. | [2.0.2](https://mvnrepository.com/artifact/io.siddhi.extension.map.binary/siddhi-map-binary/2.0.2)
 
 ### Store Extensions
 Name | Description | Latest <br/>Tested <br/>Version
@@ -56,5 +56,5 @@ Name | Description | Latest <br/>Tested <br/>Version
 ### Script Extensions
 Name | Description | Latest <br/>Tested <br/>Version
 :-- | :-- | :--
-<a target="_blank" href="https://siddhi-io.github.io/siddhi-script-js">script-js</a> | Provide JavaScript function support within Siddhi Apps. |[5.0.1](https://mvnrepository.com/artifact/io.siddhi.extension.script.js/siddhi-script-js/5.0.1)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-script-js">script-js</a> | Allows writing user defined JavaScript functions within Siddhi Applications to process events. |[5.0.1](https://mvnrepository.com/artifact/io.siddhi.extension.script.js/siddhi-script-js/5.0.1)
 
