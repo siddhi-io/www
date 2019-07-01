@@ -1065,22 +1065,22 @@ insert <ouput event type>? into <output stream>
 
 **Inbuilt windows**
 
-Following are some inbuilt Siddhi windows, for more windows refer [execution extensions](http://siddhi.io/extensions/).
+Following are some inbuilt Siddhi windows, for more windows refer [execution extensions](../extensions/).
 
 |Inbuilt function | Description|
 | ------------- |-------------|
-| <a target="_blank" href="http://siddhi.io/api/latest/#time-window">time</a> | Retains events based on time in a sliding manner.|
-| <a target="_blank" href="http://siddhi.io/api/latest/#timebatch-window">timeBatch</a> | Retains events based on time in a tumbling/batch manner. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#length-window">length</a> | Retains events based on number of events in a sliding manner. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#lengthbatch-window">lengthBatch</a> | Retains events based on number of events in a tumbling/batch manner. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#timelength-window">timeLength</a> | Retains events based on time and number of events in a sliding manner. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#session-window">session</a> | Retains events for each session based on session key. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#batch-window">batch</a> | Retains events of last arrived event chunk. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#sort-window">sort</a> | Retains top-k or bottom-k events based on a parameter value. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#cron-window">cron</a> | Retains events based on cron time in a tumbling/batch manner. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#externaltime-window">externalTime</a> | Retains events based on event time value passed as a parameter in a sliding manner.|
-| <a target="_blank" href="http://siddhi.io/api/latest/#externaltimebatch-window">externalTimeBatch</a> | Retains events based on event time value passed as a parameter in a a tumbling/batch manner.|
-| <a target="_blank" href="http://siddhi.io/api/latest/#delay-window">delay</a> | Retains events and delays the output by the given time period in a sliding manner.|
+| <a target="_blank" href="../api/latest/#time-window">time</a> | Retains events based on time in a sliding manner.|
+| <a target="_blank" href="../api/latest/#timebatch-window">timeBatch</a> | Retains events based on time in a tumbling/batch manner. |
+| <a target="_blank" href="../api/latest/#length-window">length</a> | Retains events based on number of events in a sliding manner. |
+| <a target="_blank" href="../api/latest/#lengthbatch-window">lengthBatch</a> | Retains events based on number of events in a tumbling/batch manner. |
+| <a target="_blank" href="../api/latest/#timelength-window">timeLength</a> | Retains events based on time and number of events in a sliding manner. |
+| <a target="_blank" href="../api/latest/#session-window">session</a> | Retains events for each session based on session key. |
+| <a target="_blank" href="../api/latest/#batch-window">batch</a> | Retains events of last arrived event chunk. |
+| <a target="_blank" href="../api/latest/#sort-window">sort</a> | Retains top-k or bottom-k events based on a parameter value. |
+| <a target="_blank" href="../api/latest/#cron-window">cron</a> | Retains events based on cron time in a tumbling/batch manner. |
+| <a target="_blank" href="../api/latest/#externaltime-window">externalTime</a> | Retains events based on event time value passed as a parameter in a sliding manner.|
+| <a target="_blank" href="../api/latest/#externaltimebatch-window">externalTimeBatch</a> | Retains events based on event time value passed as a parameter in a a tumbling/batch manner.|
+| <a target="_blank" href="../api/latest/#delay-window">delay</a> | Retains events and delays the output by the given time period in a sliding manner.|
 
 
 **Example 1**
@@ -1224,7 +1224,7 @@ insert expired events into DelayedTempStream
 ```
 
 !!! Note
-    This is just to illustrate how expired events work, it is recommended to use [delay](http://siddhi.io/api/latest/#delay-window) window for usecases where we need to delay events by a given time period.
+    This is just to illustrate how expired events work, it is recommended to use [delay](../api/latest/#delay-window) window for usecases where we need to delay events by a given time period.
 
 ### Aggregate Function
 
@@ -1250,23 +1250,23 @@ Here `<aggregate function>` uniquely identifies the aggregate function. The `<pa
 
 **Inbuilt aggregate functions**
 
-Following are some inbuilt aggregation functions, for more functions refer [execution extensions](http://siddhi.io/extensions/).
+Following are some inbuilt aggregation functions, for more functions refer [execution extensions](../extensions/).
 
 |Inbuilt aggregate function | Description|
 | ------------- |-------------|
-| <a target="_blank" href="http://siddhi.io/api/latest/#sum-aggregate-function">sum</a> | Calculates the sum from a set of values. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#count-aggregate-function">count</a> | Calculates the count from a set of values. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#distinctcount-aggregate-function">distinctCount</a> | Calculates the distinct count based on a parameter from a set of values. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#avg-aggregate-function">avg</a> | Calculates the average from a set of values.|
-| <a target="_blank" href="http://siddhi.io/api/latest/#max-aggregate-function">max</a> | Finds the maximum value from a set of values. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#min-aggregate-function">max</a> | Finds the minimum value from a set of values. |
+| <a target="_blank" href="../api/latest/#sum-aggregate-function">sum</a> | Calculates the sum from a set of values. |
+| <a target="_blank" href="../api/latest/#count-aggregate-function">count</a> | Calculates the count from a set of values. |
+| <a target="_blank" href="../api/latest/#distinctcount-aggregate-function">distinctCount</a> | Calculates the distinct count based on a parameter from a set of values. |
+| <a target="_blank" href="../api/latest/#avg-aggregate-function">avg</a> | Calculates the average from a set of values.|
+| <a target="_blank" href="../api/latest/#max-aggregate-function">max</a> | Finds the maximum value from a set of values. |
+| <a target="_blank" href="../api/latest/#min-aggregate-function">max</a> | Finds the minimum value from a set of values. |
 
-| <a target="_blank" href="http://siddhi.io/api/latest/#maxforever-aggregate-function">maxForever</a> | Finds the maximum value from all events throughout its lifetime irrespective of the windows. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#minforever-aggregate-function">minForever</a> | Finds the minimum value from all events throughout its lifetime irrespective of the windows. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#stddev-aggregate-function">stdDev</a> | Calculates the standard deviation from a set of values. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#and-aggregate-function">and</a> | Calculates boolean and from a set of values. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#or-aggregate-function">or</a> | Calculates boolean or from a set of values. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#unionset-aggregate-function">unionSet</a> | Calculates union as a Set from a set of values. |
+| <a target="_blank" href="../api/latest/#maxforever-aggregate-function">maxForever</a> | Finds the maximum value from all events throughout its lifetime irrespective of the windows. |
+| <a target="_blank" href="../api/latest/#minforever-aggregate-function">minForever</a> | Finds the minimum value from all events throughout its lifetime irrespective of the windows. |
+| <a target="_blank" href="../api/latest/#stddev-aggregate-function">stdDev</a> | Calculates the standard deviation from a set of values. |
+| <a target="_blank" href="../api/latest/#and-aggregate-function">and</a> | Calculates boolean and from a set of values. |
+| <a target="_blank" href="../api/latest/#or-aggregate-function">or</a> | Calculates boolean or from a set of values. |
+| <a target="_blank" href="../api/latest/#unionset-aggregate-function">unionSet</a> | Calculates union as a Set from a set of values. |
 
 **Example**
 
@@ -1284,11 +1284,11 @@ Group By provides a way of grouping events based on one or more specified attrib
 
 **Purpose**
 
-Group By allows users to aggregate values of multiple events based on the given group by fields.
+Group By allows users to aggregate values of multiple events based on the given group-by fields.
 
 **Syntax**
 
-The syntax for the Group By aggregate function is as follows.
+The syntax for the Group By with aggregate function is as follows.
 
 ```sql
 from <input stream>#window.<window name>(...)
@@ -1301,22 +1301,22 @@ Here the group by attributes should be defined next to the `group by` keyword se
 
 **Example**
 
-Query to calculate the average `temp` per `roomNo` and `deviceID` combination, from the `TempStream` stream those have arrived during the last 10 minutes time window in a sliding manner.
+Query to calculate the average `temp` per `roomNo` and `deviceID` combination, from the events arrived from `TempStream` stream, during the last 10 minutes time-window in a sliding manner.
 
 ```sql
 from TempStream#window.time(10 min)
-select avg(temp) as avgTemp, roomNo, deviceID
+select roomNo, deviceID, avg(temp) as avgTemp
 group by roomNo, deviceID
 insert into AvgTempStream;
 ```
 
 ### Having
 
-Having provide a way of filtering events based queries output stream attributes based on a specified condition. It accepts any type of condition including a combination of functions and/or attributes that produces a Boolean result. Having allow events to passthrough if the condition results in `true`, and drops if it results in a `false`.  
+Having provide a way of filtering events based on a specified condition of the query output stream attributes. It accepts any type of condition including a combination of functions and/or attributes that produces a Boolean result. Having, allow events to passthrough if the condition results in `true`, and drops if it results in a `false`.  
 
 **Purpose**
 
-Having helps to select the events that are relevant for the output based on the attributes those are produced by the `select` statement and omit the ones that are not.
+Having helps to select the events that are relevant for the output based on the attributes those are produced by the `select` clause and omit the ones that are not.
 
 **Syntax**
 
@@ -1330,14 +1330,15 @@ having <condition>
 insert into <output stream>;
 ```
 
-Here the having `<condition>` should be defined next to the `having` keyword and having can be used with or without `group by` statement.
+Here the having `<condition>` should be defined next to the `having` keyword and having can be used with or without `group by` clause.
 
 **Example**
 
-The following query calculates the average temperature per room for the last 10 minutes, and alerts if it exceeds 30 degrees.
+Query to calculate the average `temp` per `roomNo` for the last 10 minutes, and alerts if the `avgTemp` exceeds 30 degrees.
+
 ```sql
 from TempStream#window.time(10 min)
-select avg(temp) as avgTemp, roomNo
+select roomNo, avg(temp) as avgTemp
 group by roomNo
 having avgTemp > 30
 insert into AlertStream;
@@ -1345,7 +1346,11 @@ insert into AlertStream;
 
 ### Order By
 
-Order By, orders the query results in ascending and or descending order based on one or more specified attributes.  When order by is defined based on an attribute, Siddhi by default orders the events in ascending order, and by adding `desc` keyword, the events can be ordered in descending order.
+Order By, orders the query results in ascending and or descending order based on one or more specified attributes. When an attribute is used for order by, by default Siddhi orders the events in ascending order of that attribute's value, and by adding `desc` keyword, the events can be ordered in descending order. When more than one attribute is defined the attributes defined towards the left will have more precedence in ordering than the ones defined in right.  
+
+**Purpose**
+
+Order By helps to sort the events in the outputs chunks produced by the query. Order By will be more helpful for batch windows, and queries where they output many of event together then for sliding window use cases where the output will be one or few events at a time.
 
 **Syntax**
 
@@ -1360,15 +1365,15 @@ order by <attribute1 name> (asc|desc)?, <attribute2 name> (asc|desc)?, ...
 insert into <output stream>;
 ```
 
-Here the group by attributes should be defined next to the `group by` keyword separating each by a comma, and optionally specifying event ordering using `asc` or `desc` keywords.
+Here the order by attributes should be defined next to the `order by` keyword separating each by a comma, and optionally specifying the event ordering using `asc` (default) or `desc` keywords.
 
 **Example**
 
-Query to calculate the average temperature per `roomNo` and `deviceID` combination for every 10 minutes, and order the generated output events in ascending order by `avgTemp` and then in descending order by `roomNo` (if the more than one event have the same `avgTemp` value).
+Query to calculate the average `temp` per `roomNo` and `deviceID` combination on every 10 minutes batches, and order the generated output events in ascending order by `avgTemp` and then by descending order of `roomNo` (if the more than one event have the same `avgTemp` value).
 
 ```sql
 from TempStream#window.timeBatch(10 min)
-select avg(temp) as avgTemp, roomNo, deviceID
+select roomNo, deviceID, avg(temp) as avgTemp
 group by roomNo, deviceID
 order by avgTemp, roomNo desc
 insert into AvgTempStream;
@@ -1376,12 +1381,15 @@ insert into AvgTempStream;
 
 ### Limit & Offset
 
-When events are emitted as a batch, offset allows you to offset beginning of the output event batch and limit allows you to limit the number of events in the batch from the defined offset.
-With this users can specify which set of events need be emitted.
+These provide a way to select the number of events (via limit) from the desired index (by specifying an offset) from the output event chunks produced by the query.
+
+**Purpose**
+
+Limit & Offset helps to output only the selected set of events from large event batches. This will be more useful with `Order By` clause where one can order the output for topK, bottomK, or even to paginate through the dataset by obtaining a set of events from the middle.   
 
 **Syntax**
 
-The syntax for the Limit & Offset clause is as follows:
+The syntax for the Limit & Offset clauses is as follows:
 
 ```sql
 from <input stream>#window.<window name>( ... )
@@ -1389,33 +1397,32 @@ select <aggregate function>( <parameter>, <parameter>, ...) as <attribute1 name>
 group by <attribute1 name>, <attribute2 name> ...
 having <condition>
 order by <attribute1 name> (asc | desc)?, <attribute2 name> (<ascend/descend>)?, ...
-limit <positive interger>?
-offset <positive interger>?
+limit <positive integer>?
+offset <positive integer>?
 insert into <output stream>;
 ```
 
-Here both `limit` and `offset` are optional where `limit` by default output all the events and `offset` by default set to `0`.
+Here both `limit` and `offset` are optional, when `limit` is omitted the query will output all the events, and when `offset` is omitted `0` is taken as the default offset value.
 
-**Example**
+**Example 1**
 
-The following query calculates the average temperature per `roomNo` and `deviceID` combination, for events that arrive at the `TempStream` stream
-for every 10 minutes and emits two events with highest average temperature.
+Query to calculate the average `temp` per `roomNo` and `deviceID` combination for every 10 minutes batches, from the events arriving at the `TempStream` stream, and emit only two events having the highest `avgTemp` value.
 
 ```sql
 from TempStream#window.timeBatch(10 min)
-select avg(temp) as avgTemp, roomNo, deviceID
+select roomNo, deviceID, avg(temp) as avgTemp
 group by roomNo, deviceID
 order by avgTemp desc
 limit 2
 insert into HighestAvgTempStream;
 ```
 
-The following query calculates the average temperature per `roomNo` and `deviceID` combination, for events that arrive at the `TempStream` stream
-for every 10 minutes and emits third, forth and fifth events when sorted in descending order based on their average temperature.
+**Example 2**
+Query to calculate the average `temp` per `roomNo` and `deviceID` combination for every 10 minutes batches, for events that arriving at the `TempStream` stream, and emits only the third, forth and fifth events when sorted in descending order based on their `avgTemp` value.
 
 ```sql
 from TempStream#window.timeBatch(10 min)
-select avg(temp) as avgTemp, roomNo, deviceID
+select roomNo, deviceID, avg(temp) as avgTemp
 group by roomNo, deviceID
 order by avgTemp desc
 limit 3
@@ -2143,17 +2150,17 @@ The following is a list of currently supported store types:
 
 **Caching in Memory**
 
-Store tables are persisted in high i/o latency storage. Hence, it is beneficial to maintain a cache of store tables in 
-memory which has low latency. Siddhi supports caching of store tables through `@cache` annotation. It should be used 
+Store tables are persisted in high i/o latency storage. Hence, it is beneficial to maintain a cache of store tables in
+memory which has low latency. Siddhi supports caching of store tables through `@cache` annotation. It should be used
 within `@store` annotation in a nested fashion as shown below.
 
 ```sql
-@store(type='store_type', static.option.key1='static_option_value1', static.option.keyN='static_option_valueN', 
+@store(type='store_type', static.option.key1='static_option_value1', static.option.keyN='static_option_valueN',
         @cache(size=10, cache.policy=FIFO))
 define table TableName (attribute1 Type1, attributeN TypeN);
 ```
 
-In the above example we have defined a cache with a maximum size of 10 rows with first-in first-out cache policy. 
+In the above example we have defined a cache with a maximum size of 10 rows with first-in first-out cache policy.
 The following table contains the cache parameters.
 
 | Parameter | Mandatory/Optional | Default Value | Description |
@@ -2166,45 +2173,45 @@ The following table contains the cache parameters.
 The following is an example of caching with expiry.
 
 ```sql
-@store(type='store_type', static.option.key1='static_option_value1', static.option.keyN='static_option_valueN', 
+@store(type='store_type', static.option.key1='static_option_value1', static.option.keyN='static_option_valueN',
         @cache(size=10, retention.period=5 min, purge.interval=1 min))
 define table TableName (attribute1 Type1, attributeN TypeN);
 ```
 
-The above query will define and create a store table of given type and a cache with a max size of 10. A thread will be 
+The above query will define and create a store table of given type and a cache with a max size of 10. A thread will be
 created every 1 minute which will check the entire cache table for rows added earlier than 5 minutes and expire them.
 
 **Cache Behaviour**
 
-Cache behaviour changes profoundly based on the size of store table relative to maximum cache size defined. Since 
+Cache behaviour changes profoundly based on the size of store table relative to maximum cache size defined. Since
 memory is a limited resource we don't allow cache to grow more than the user specified maximum size.
 
 Case 1 \
-When store table is smaller than maximum cache size defined we keep the entire content of store table in memory in 
-cache table. All types of queries are routed to cache and cache results are directly sent out to the user. Every time 
-the expiry thread finds that cache events were loaded earlier than retention period entire cache table will be deleted 
-and reloaded from store. In addition, when siddhi app starts, the entire store table, if it exists, will be loaded into 
+When store table is smaller than maximum cache size defined we keep the entire content of store table in memory in
+cache table. All types of queries are routed to cache and cache results are directly sent out to the user. Every time
+the expiry thread finds that cache events were loaded earlier than retention period entire cache table will be deleted
+and reloaded from store. In addition, when siddhi app starts, the entire store table, if it exists, will be loaded into
 cache.
 
 Case 2 \
-When store table is bigger than maximum cache size only the queries satisfying the following 2 conditions are sent to 
+When store table is bigger than maximum cache size only the queries satisfying the following 2 conditions are sent to
 cache.
 1. the query contains all the primary keys of the table
-2. the query contains only == type of comparison. 
+2. the query contains only == type of comparison.
 
-Only for the above types of queries we can establish if the cache is hit or missed. Subject to these conditions if the 
+Only for the above types of queries we can establish if the cache is hit or missed. Subject to these conditions if the
 cache is hit the results from cache is sent out. If the cache is missed then store is checked.
 
-If the above conditions are not met by a query it is directly sent to the store table. In addition, please note that 
-if the store table is pre existing when siddhi app is started and it is bigger than max cache size, cache preloading 
-will take only upto max size and put it in cache. For example if store table has 50 entries when the siddhi app is 
+If the above conditions are not met by a query it is directly sent to the store table. In addition, please note that
+if the store table is pre existing when siddhi app is started and it is bigger than max cache size, cache preloading
+will take only upto max size and put it in cache. For example if store table has 50 entries when the siddhi app is
 defined with cache size of 10, only the first 10 rows will be cached.
 
-When cache miss occurs we look for the answer in the store table. If there is a result from the store table it is added 
+When cache miss occurs we look for the answer in the store table. If there is a result from the store table it is added
 to cache. One element from cache is removed using the user given cache policy prior to adding.
 
-When it comes to cache expiry, since not all rows are loaded at once in this case there may be some expired rows and 
-some unexpired rows at any time. So for every purge interval a thread will be generated which looks for rows that were 
+When it comes to cache expiry, since not all rows are loaded at once in this case there may be some expired rows and
+some unexpired rows at any time. So for every purge interval a thread will be generated which looks for rows that were
 loaded earlier than retention period and delete only those rows. No reloading is done.
 
 **Operators on Table (and Store)**
@@ -3329,7 +3336,7 @@ insert into StockQuote
 
 **Available Extensions**
 
-Siddhi currently has several pre written extensions that are available **<a target="_blank" href="http://siddhi.io/extensions/">here</a>**
+Siddhi currently has several pre written extensions that are available **<a target="_blank" href="../extensions/">here</a>**
 
 _We value your contribution on improving Siddhi and its extensions further._
 
