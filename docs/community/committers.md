@@ -29,7 +29,7 @@ Niveathika Rajendran            |[niveathika](https://github.com/niveathika)	   
 Ramindu De Silva	            |[ramindu90](https://github.com/ramindu90)	            |WSO2	                    |[/in/ramindudesilva](https://www.linkedin.com/in/ramindudesilva/)
 Sajith Dimal	                |[ksdperera](https://github.com/ksdperera)	            |-	                        |[/in/sajith-dimal-90](https://www.linkedin.com/in/sajith-dimal-90/)
 Sajith Janaprasad Ariyarathna	|[this](https://github.com/this)	                    |Gapstars	                |[/in/sajithjanaprasad](https://www.linkedin.com/in/sajithjanaprasad/)
-Sajith Ravindra	                |[sajithshn](https://github.com/sajithshn)	            |WSO2	                    |-
+Sajith Ravindra	                |[sajithshn](https://github.com/sajithshn)	            |WSO2	                    |[/in/sajith-eshan-3862b518/](https://www.linkedin.com/in/sajith-eshan-3862b518/)
 Sriskandarajah Suhothayan	    |[suhothayan](https://github.com/suhothayan)	        |WSO2	                    |[/in/suhothayan](https://www.linkedin.com/in/suhothayan/)
 Tanya Madurapperuma	            |[TanyaM](https://github.com/TanyaM)	                |WSO2	                    |[/in/tanyamadurapperuma](https://www.linkedin.com/in/tanyamadurapperuma/)
 Tharik Kanaka	                |[keizer619](https://github.com/keizer619)	            |WSO2	                    |[/in/tharik619](https://www.linkedin.com/in/tharik619/)
