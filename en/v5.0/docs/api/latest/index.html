@@ -16,7 +16,86 @@
  * under the License.
 -->
 
-<!doctype html><html lang="en" class="no-js"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="x-ua-compatible" content="ie=edge"><meta name="description" content="Cloud Native Stream Processor"><link rel="canonical" href="http://siddhi.io/en/v5.0/docs/api/latest/"><meta name="author" content="WSO2"><meta name="lang:clipboard.copy" content="Copy to clipboard"><meta name="lang:clipboard.copied" content="Copied to clipboard"><meta name="lang:search.language" content="en"><meta name="lang:search.pipeline.stopwords" content="True"><meta name="lang:search.pipeline.trimmer" content="True"><meta name="lang:search.result.none" content="No matching documents"><meta name="lang:search.result.one" content="1 matching document"><meta name="lang:search.result.other" content="# matching documents"><meta name="lang:search.tokenizer" content="[\s\-]+"><link rel="shortcut icon" href="../../../images/favicon.ico"><meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.3.0"><title>latest - Siddhi</title><link rel="stylesheet" href="../../../assets/stylesheets/application.4031d38b.css"><link rel="stylesheet" href="../../../assets/stylesheets/application-palette.224b79ff.css"><meta name="theme-color" content="#009688"><script src="../../../assets/javascripts/modernizr.74668098.js"></script><link href="https://fonts.gstatic.com" rel="preconnect" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=swap"><style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style><link rel="stylesheet" href="../../../assets/fonts/material-icons.css"><link rel="stylesheet" href="../../../assets/lib/highlightjs/default.min.css"><link rel="stylesheet" href="../../../assets/css/theme.css"><script>window.ga = window.ga || function() {
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Cloud Native Stream Processor">
+      
+      
+        <link rel="canonical" href="http://siddhi.io/en/v5.0/docs/api/latest/">
+      
+      
+        <meta name="author" content="WSO2">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.0">
+    
+    
+      
+        <title>latest - Siddhi</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/application.0284f74d.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/application-palette.01803549.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#009688">
+      
+    
+    
+      <script src="../../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../../assets/lib/highlightjs/default.min.css">
+    
+      <link rel="stylesheet" href="../../../assets/css/theme.css">
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
     (ga.q = ga.q || []).push(arguments)
   }
   ga.l = +new Date
@@ -35,7 +114,36 @@
         }
       })
     }
-  })</script><script async src="https://www.google-analytics.com/analytics.js"></script></head><body dir="ltr" data-md-color-primary="teal" data-md-color-accent="teal"><svg class="md-svg"><defs><svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg></defs></svg> <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off"> <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off"> <label class="md-overlay" data-md-component="overlay" for="__drawer"></label><a href="#api-docs-v500" tabindex="1" class="md-skip">Skip to content </a><!--
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#api-docs-v500" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <!--
  * Copyright (c) 2019, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
  *
  * WSO2 Inc. licenses this file to you under the Apache License,
@@ -95,19 +203,64 @@
       <div class="md-flex__cell md-flex__cell--shrink">
         
           <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
-          <div class="md-search" data-md-component="search" role="dialog"><label class="md-search__overlay" for="__search"></label><div class="md-search__inner" role="search"><form class="md-search__form" name="search"><input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active"> <label class="md-icon md-search__icon" for="__search"></label> <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">&#xE5CD;</button></form><div class="md-search__output"><div class="md-search__scrollwrap" data-md-scrollfix><div class="md-search-result" data-md-component="result"><div class="md-search-result__meta">Type to start searching</div><ol class="md-search-result__list"></ol></div></div></div></div></div>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
         
       </div>
       
       <div class="md-flex__cell md-flex__cell--shrink">
         <div class="md-header-nav__source">
-          <a href="https://github.com/siddhi-io/siddhi/" title="Go to repository" class="md-source" data-md-source="github"><div class="md-source__icon"><svg viewBox="0 0 24 24" width="24" height="24"><use xlink:href="#__github" width="24" height="24"></use></svg></div><div class="md-source__repository">Siddhi</div></a>
+          
+
+
+  
+
+<a href="https://github.com/siddhi-io/siddhi/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Siddhi
+  </div>
+</a>
         </div>
       </div>
       
     </div>
   </nav>
-</header><div class="md-container">
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
 
   
 
@@ -206,7 +359,16 @@
         
     </div>
   </div>
-</nav><main class="md-main"><div class="md-main__inner md-grid" data-md-component="container"><div class="md-sidebar md-sidebar--primary" data-md-component="navigation"><div class="md-sidebar__scrollwrap"><div class="md-sidebar__inner"><nav class="md-nav md-nav--primary" data-md-level="0">
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
     <label class="md-nav__title md-nav__title--site" for="__drawer">
       <a href="http://siddhi.io/en/v5.0/" title="Siddhi"
          class="md-nav__button md-logo">
@@ -218,7 +380,23 @@
     </label>
     
       <div class="md-nav__source">
-        <a href="https://github.com/siddhi-io/siddhi/" title="Go to repository" class="md-source" data-md-source="github"><div class="md-source__icon"><svg viewBox="0 0 24 24" width="24" height="24"><use xlink:href="#__github" width="24" height="24"></use></svg></div><div class="md-source__repository">Siddhi</div></a>
+        
+
+
+  
+
+<a href="https://github.com/siddhi-io/siddhi/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Siddhi
+  </div>
+</a>
       </div>
     
     <ul class="md-nav__list" data-md-scrollfix>
@@ -443,7 +621,1314 @@
       latest
     </a>
     
-      <nav class="md-nav md-nav--secondary"><label class="md-nav__title" for="__toc">On this page</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="#core" title="Core" class="md-nav__link">Core</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#and-aggregate-function" title="and (Aggregate Function)" class="md-nav__link">and (Aggregate Function)</a></li><li class="md-nav__item"><a href="#avg-aggregate-function" title="avg (Aggregate Function)" class="md-nav__link">avg (Aggregate Function)</a></li><li class="md-nav__item"><a href="#count-aggregate-function" title="count (Aggregate Function)" class="md-nav__link">count (Aggregate Function)</a></li><li class="md-nav__item"><a href="#distinctcount-aggregate-function" title="distinctCount (Aggregate Function)" class="md-nav__link">distinctCount (Aggregate Function)</a></li><li class="md-nav__item"><a href="#max-aggregate-function" title="max (Aggregate Function)" class="md-nav__link">max (Aggregate Function)</a></li><li class="md-nav__item"><a href="#maxforever-aggregate-function" title="maxForever (Aggregate Function)" class="md-nav__link">maxForever (Aggregate Function)</a></li><li class="md-nav__item"><a href="#min-aggregate-function" title="min (Aggregate Function)" class="md-nav__link">min (Aggregate Function)</a></li><li class="md-nav__item"><a href="#minforever-aggregate-function" title="minForever (Aggregate Function)" class="md-nav__link">minForever (Aggregate Function)</a></li><li class="md-nav__item"><a href="#or-aggregate-function" title="or (Aggregate Function)" class="md-nav__link">or (Aggregate Function)</a></li><li class="md-nav__item"><a href="#stddev-aggregate-function" title="stdDev (Aggregate Function)" class="md-nav__link">stdDev (Aggregate Function)</a></li><li class="md-nav__item"><a href="#sum-aggregate-function" title="sum (Aggregate Function)" class="md-nav__link">sum (Aggregate Function)</a></li><li class="md-nav__item"><a href="#unionset-aggregate-function" title="unionSet (Aggregate Function)" class="md-nav__link">unionSet (Aggregate Function)</a></li><li class="md-nav__item"><a href="#uuid-function" title="UUID (Function)" class="md-nav__link">UUID (Function)</a></li><li class="md-nav__item"><a href="#cast-function" title="cast (Function)" class="md-nav__link">cast (Function)</a></li><li class="md-nav__item"><a href="#coalesce-function" title="coalesce (Function)" class="md-nav__link">coalesce (Function)</a></li><li class="md-nav__item"><a href="#convert-function" title="convert (Function)" class="md-nav__link">convert (Function)</a></li><li class="md-nav__item"><a href="#createset-function" title="createSet (Function)" class="md-nav__link">createSet (Function)</a></li><li class="md-nav__item"><a href="#currenttimemillis-function" title="currentTimeMillis (Function)" class="md-nav__link">currentTimeMillis (Function)</a></li><li class="md-nav__item"><a href="#default-function" title="default (Function)" class="md-nav__link">default (Function)</a></li><li class="md-nav__item"><a href="#eventtimestamp-function" title="eventTimestamp (Function)" class="md-nav__link">eventTimestamp (Function)</a></li><li class="md-nav__item"><a href="#ifthenelse-function" title="ifThenElse (Function)" class="md-nav__link">ifThenElse (Function)</a></li><li class="md-nav__item"><a href="#instanceofboolean-function" title="instanceOfBoolean (Function)" class="md-nav__link">instanceOfBoolean (Function)</a></li><li class="md-nav__item"><a href="#instanceofdouble-function" title="instanceOfDouble (Function)" class="md-nav__link">instanceOfDouble (Function)</a></li><li class="md-nav__item"><a href="#instanceoffloat-function" title="instanceOfFloat (Function)" class="md-nav__link">instanceOfFloat (Function)</a></li><li class="md-nav__item"><a href="#instanceofinteger-function" title="instanceOfInteger (Function)" class="md-nav__link">instanceOfInteger (Function)</a></li><li class="md-nav__item"><a href="#instanceoflong-function" title="instanceOfLong (Function)" class="md-nav__link">instanceOfLong (Function)</a></li><li class="md-nav__item"><a href="#instanceofstring-function" title="instanceOfString (Function)" class="md-nav__link">instanceOfString (Function)</a></li><li class="md-nav__item"><a href="#maximum-function" title="maximum (Function)" class="md-nav__link">maximum (Function)</a></li><li class="md-nav__item"><a href="#minimum-function" title="minimum (Function)" class="md-nav__link">minimum (Function)</a></li><li class="md-nav__item"><a href="#sizeofset-function" title="sizeOfSet (Function)" class="md-nav__link">sizeOfSet (Function)</a></li><li class="md-nav__item"><a href="#pol2cart-stream-function" title="pol2Cart (Stream Function)" class="md-nav__link">pol2Cart (Stream Function)</a></li><li class="md-nav__item"><a href="#log-stream-processor" title="log (Stream Processor)" class="md-nav__link">log (Stream Processor)</a></li><li class="md-nav__item"><a href="#batch-window" title="batch (Window)" class="md-nav__link">batch (Window)</a></li><li class="md-nav__item"><a href="#cron-window" title="cron (Window)" class="md-nav__link">cron (Window)</a></li><li class="md-nav__item"><a href="#delay-window" title="delay (Window)" class="md-nav__link">delay (Window)</a></li><li class="md-nav__item"><a href="#externaltime-window" title="externalTime (Window)" class="md-nav__link">externalTime (Window)</a></li><li class="md-nav__item"><a href="#externaltimebatch-window" title="externalTimeBatch (Window)" class="md-nav__link">externalTimeBatch (Window)</a></li><li class="md-nav__item"><a href="#frequent-window" title="frequent (Window)" class="md-nav__link">frequent (Window)</a></li><li class="md-nav__item"><a href="#length-window" title="length (Window)" class="md-nav__link">length (Window)</a></li><li class="md-nav__item"><a href="#lengthbatch-window" title="lengthBatch (Window)" class="md-nav__link">lengthBatch (Window)</a></li><li class="md-nav__item"><a href="#lossyfrequent-window" title="lossyFrequent (Window)" class="md-nav__link">lossyFrequent (Window)</a></li><li class="md-nav__item"><a href="#session-window" title="session (Window)" class="md-nav__link">session (Window)</a></li><li class="md-nav__item"><a href="#sort-window" title="sort (Window)" class="md-nav__link">sort (Window)</a></li><li class="md-nav__item"><a href="#time-window" title="time (Window)" class="md-nav__link">time (Window)</a></li><li class="md-nav__item"><a href="#timebatch-window" title="timeBatch (Window)" class="md-nav__link">timeBatch (Window)</a></li><li class="md-nav__item"><a href="#timelength-window" title="timeLength (Window)" class="md-nav__link">timeLength (Window)</a></li></ul></nav></li><li class="md-nav__item"><a href="#json" title="Json" class="md-nav__link">Json</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#getbool-function" title="getBool (Function)" class="md-nav__link">getBool (Function)</a></li><li class="md-nav__item"><a href="#getdouble-function" title="getDouble (Function)" class="md-nav__link">getDouble (Function)</a></li><li class="md-nav__item"><a href="#getfloat-function" title="getFloat (Function)" class="md-nav__link">getFloat (Function)</a></li><li class="md-nav__item"><a href="#getint-function" title="getInt (Function)" class="md-nav__link">getInt (Function)</a></li><li class="md-nav__item"><a href="#getlong-function" title="getLong (Function)" class="md-nav__link">getLong (Function)</a></li><li class="md-nav__item"><a href="#getobject-function" title="getObject (Function)" class="md-nav__link">getObject (Function)</a></li><li class="md-nav__item"><a href="#getstring-function" title="getString (Function)" class="md-nav__link">getString (Function)</a></li><li class="md-nav__item"><a href="#isexists-function" title="isExists (Function)" class="md-nav__link">isExists (Function)</a></li><li class="md-nav__item"><a href="#setelement-function" title="setElement (Function)" class="md-nav__link">setElement (Function)</a></li><li class="md-nav__item"><a href="#toobject-function" title="toObject (Function)" class="md-nav__link">toObject (Function)</a></li><li class="md-nav__item"><a href="#tostring-function" title="toString (Function)" class="md-nav__link">toString (Function)</a></li><li class="md-nav__item"><a href="#tokenize-stream-processor" title="tokenize (Stream Processor)" class="md-nav__link">tokenize (Stream Processor)</a></li><li class="md-nav__item"><a href="#tokenizeasobject-stream-processor" title="tokenizeAsObject (Stream Processor)" class="md-nav__link">tokenizeAsObject (Stream Processor)</a></li></ul></nav></li><li class="md-nav__item"><a href="#math" title="Math" class="md-nav__link">Math</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#percentile-aggregate-function" title="percentile (Aggregate Function)" class="md-nav__link">percentile (Aggregate Function)</a></li><li class="md-nav__item"><a href="#abs-function" title="abs (Function)" class="md-nav__link">abs (Function)</a></li><li class="md-nav__item"><a href="#acos-function" title="acos (Function)" class="md-nav__link">acos (Function)</a></li><li class="md-nav__item"><a href="#asin-function" title="asin (Function)" class="md-nav__link">asin (Function)</a></li><li class="md-nav__item"><a href="#atan-function" title="atan (Function)" class="md-nav__link">atan (Function)</a></li><li class="md-nav__item"><a href="#bin-function" title="bin (Function)" class="md-nav__link">bin (Function)</a></li><li class="md-nav__item"><a href="#cbrt-function" title="cbrt (Function)" class="md-nav__link">cbrt (Function)</a></li><li class="md-nav__item"><a href="#ceil-function" title="ceil (Function)" class="md-nav__link">ceil (Function)</a></li><li class="md-nav__item"><a href="#conv-function" title="conv (Function)" class="md-nav__link">conv (Function)</a></li><li class="md-nav__item"><a href="#copysign-function" title="copySign (Function)" class="md-nav__link">copySign (Function)</a></li><li class="md-nav__item"><a href="#cos-function" title="cos (Function)" class="md-nav__link">cos (Function)</a></li><li class="md-nav__item"><a href="#cosh-function" title="cosh (Function)" class="md-nav__link">cosh (Function)</a></li><li class="md-nav__item"><a href="#e-function" title="e (Function)" class="md-nav__link">e (Function)</a></li><li class="md-nav__item"><a href="#exp-function" title="exp (Function)" class="md-nav__link">exp (Function)</a></li><li class="md-nav__item"><a href="#floor-function" title="floor (Function)" class="md-nav__link">floor (Function)</a></li><li class="md-nav__item"><a href="#getexponent-function" title="getExponent (Function)" class="md-nav__link">getExponent (Function)</a></li><li class="md-nav__item"><a href="#hex-function" title="hex (Function)" class="md-nav__link">hex (Function)</a></li><li class="md-nav__item"><a href="#isinfinite-function" title="isInfinite (Function)" class="md-nav__link">isInfinite (Function)</a></li><li class="md-nav__item"><a href="#isnan-function" title="isNan (Function)" class="md-nav__link">isNan (Function)</a></li><li class="md-nav__item"><a href="#ln-function" title="ln (Function)" class="md-nav__link">ln (Function)</a></li><li class="md-nav__item"><a href="#log-function" title="log (Function)" class="md-nav__link">log (Function)</a></li><li class="md-nav__item"><a href="#log10-function" title="log10 (Function)" class="md-nav__link">log10 (Function)</a></li><li class="md-nav__item"><a href="#log2-function" title="log2 (Function)" class="md-nav__link">log2 (Function)</a></li><li class="md-nav__item"><a href="#max-function" title="max (Function)" class="md-nav__link">max (Function)</a></li><li class="md-nav__item"><a href="#min-function" title="min (Function)" class="md-nav__link">min (Function)</a></li><li class="md-nav__item"><a href="#oct-function" title="oct (Function)" class="md-nav__link">oct (Function)</a></li><li class="md-nav__item"><a href="#parsedouble-function" title="parseDouble (Function)" class="md-nav__link">parseDouble (Function)</a></li><li class="md-nav__item"><a href="#parsefloat-function" title="parseFloat (Function)" class="md-nav__link">parseFloat (Function)</a></li><li class="md-nav__item"><a href="#parseint-function" title="parseInt (Function)" class="md-nav__link">parseInt (Function)</a></li><li class="md-nav__item"><a href="#parselong-function" title="parseLong (Function)" class="md-nav__link">parseLong (Function)</a></li><li class="md-nav__item"><a href="#pi-function" title="pi (Function)" class="md-nav__link">pi (Function)</a></li><li class="md-nav__item"><a href="#power-function" title="power (Function)" class="md-nav__link">power (Function)</a></li><li class="md-nav__item"><a href="#rand-function" title="rand (Function)" class="md-nav__link">rand (Function)</a></li><li class="md-nav__item"><a href="#round-function" title="round (Function)" class="md-nav__link">round (Function)</a></li><li class="md-nav__item"><a href="#signum-function" title="signum (Function)" class="md-nav__link">signum (Function)</a></li><li class="md-nav__item"><a href="#sin-function" title="sin (Function)" class="md-nav__link">sin (Function)</a></li><li class="md-nav__item"><a href="#sinh-function" title="sinh (Function)" class="md-nav__link">sinh (Function)</a></li><li class="md-nav__item"><a href="#sqrt-function" title="sqrt (Function)" class="md-nav__link">sqrt (Function)</a></li><li class="md-nav__item"><a href="#tan-function" title="tan (Function)" class="md-nav__link">tan (Function)</a></li><li class="md-nav__item"><a href="#tanh-function" title="tanh (Function)" class="md-nav__link">tanh (Function)</a></li><li class="md-nav__item"><a href="#todegrees-function" title="toDegrees (Function)" class="md-nav__link">toDegrees (Function)</a></li><li class="md-nav__item"><a href="#toradians-function" title="toRadians (Function)" class="md-nav__link">toRadians (Function)</a></li></ul></nav></li><li class="md-nav__item"><a href="#rdbms" title="Rdbms" class="md-nav__link">Rdbms</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#cud-stream-processor" title="cud (Stream Processor)" class="md-nav__link">cud (Stream Processor)</a></li><li class="md-nav__item"><a href="#query-stream-processor" title="query (Stream Processor)" class="md-nav__link">query (Stream Processor)</a></li></ul></nav></li><li class="md-nav__item"><a href="#regex" title="Regex" class="md-nav__link">Regex</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#find-function" title="find (Function)" class="md-nav__link">find (Function)</a></li><li class="md-nav__item"><a href="#group-function" title="group (Function)" class="md-nav__link">group (Function)</a></li><li class="md-nav__item"><a href="#lookingat-function" title="lookingAt (Function)" class="md-nav__link">lookingAt (Function)</a></li><li class="md-nav__item"><a href="#matches-function" title="matches (Function)" class="md-nav__link">matches (Function)</a></li></ul></nav></li><li class="md-nav__item"><a href="#sink" title="Sink" class="md-nav__link">Sink</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#email-sink" title="email (Sink)" class="md-nav__link">email (Sink)</a></li><li class="md-nav__item"><a href="#http-sink" title="http (Sink)" class="md-nav__link">http (Sink)</a></li><li class="md-nav__item"><a href="#http-request-sink" title="http-request (Sink)" class="md-nav__link">http-request (Sink)</a></li><li class="md-nav__item"><a href="#http-response-sink" title="http-response (Sink)" class="md-nav__link">http-response (Sink)</a></li><li class="md-nav__item"><a href="#inmemory-sink" title="inMemory (Sink)" class="md-nav__link">inMemory (Sink)</a></li><li class="md-nav__item"><a href="#kafka-sink" title="kafka (Sink)" class="md-nav__link">kafka (Sink)</a></li><li class="md-nav__item"><a href="#kafkamultidc-sink" title="kafkaMultiDC (Sink)" class="md-nav__link">kafkaMultiDC (Sink)</a></li><li class="md-nav__item"><a href="#log-sink" title="log (Sink)" class="md-nav__link">log (Sink)</a></li><li class="md-nav__item"><a href="#nats-sink" title="nats (Sink)" class="md-nav__link">nats (Sink)</a></li><li class="md-nav__item"><a href="#tcp-sink" title="tcp (Sink)" class="md-nav__link">tcp (Sink)</a></li></ul></nav></li><li class="md-nav__item"><a href="#sinkmapper" title="Sinkmapper" class="md-nav__link">Sinkmapper</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#binary-sink-mapper" title="binary (Sink Mapper)" class="md-nav__link">binary (Sink Mapper)</a></li><li class="md-nav__item"><a href="#csv-sink-mapper" title="csv (Sink Mapper)" class="md-nav__link">csv (Sink Mapper)</a></li><li class="md-nav__item"><a href="#json-sink-mapper" title="json (Sink Mapper)" class="md-nav__link">json (Sink Mapper)</a></li><li class="md-nav__item"><a href="#keyvalue-sink-mapper" title="keyvalue (Sink Mapper)" class="md-nav__link">keyvalue (Sink Mapper)</a></li><li class="md-nav__item"><a href="#passthrough-sink-mapper" title="passThrough (Sink Mapper)" class="md-nav__link">passThrough (Sink Mapper)</a></li><li class="md-nav__item"><a href="#text-sink-mapper" title="text (Sink Mapper)" class="md-nav__link">text (Sink Mapper)</a></li><li class="md-nav__item"><a href="#xml-sink-mapper" title="xml (Sink Mapper)" class="md-nav__link">xml (Sink Mapper)</a></li></ul></nav></li><li class="md-nav__item"><a href="#source" title="Source" class="md-nav__link">Source</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#cdc-source" title="cdc (Source)" class="md-nav__link">cdc (Source)</a></li><li class="md-nav__item"><a href="#email-source" title="email (Source)" class="md-nav__link">email (Source)</a></li><li class="md-nav__item"><a href="#http-source" title="http (Source)" class="md-nav__link">http (Source)</a></li><li class="md-nav__item"><a href="#http-request-source" title="http-request (Source)" class="md-nav__link">http-request (Source)</a></li><li class="md-nav__item"><a href="#http-response-source" title="http-response (Source)" class="md-nav__link">http-response (Source)</a></li><li class="md-nav__item"><a href="#inmemory-source" title="inMemory (Source)" class="md-nav__link">inMemory (Source)</a></li><li class="md-nav__item"><a href="#kafka-source" title="kafka (Source)" class="md-nav__link">kafka (Source)</a></li><li class="md-nav__item"><a href="#kafkamultidc-source" title="kafkaMultiDC (Source)" class="md-nav__link">kafkaMultiDC (Source)</a></li><li class="md-nav__item"><a href="#nats-source" title="nats (Source)" class="md-nav__link">nats (Source)</a></li><li class="md-nav__item"><a href="#tcp-source" title="tcp (Source)" class="md-nav__link">tcp (Source)</a></li></ul></nav></li><li class="md-nav__item"><a href="#sourcemapper" title="Sourcemapper" class="md-nav__link">Sourcemapper</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#binary-source-mapper" title="binary (Source Mapper)" class="md-nav__link">binary (Source Mapper)</a></li><li class="md-nav__item"><a href="#csv-source-mapper" title="csv (Source Mapper)" class="md-nav__link">csv (Source Mapper)</a></li><li class="md-nav__item"><a href="#json-source-mapper" title="json (Source Mapper)" class="md-nav__link">json (Source Mapper)</a></li><li class="md-nav__item"><a href="#keyvalue-source-mapper" title="keyvalue (Source Mapper)" class="md-nav__link">keyvalue (Source Mapper)</a></li><li class="md-nav__item"><a href="#passthrough-source-mapper" title="passThrough (Source Mapper)" class="md-nav__link">passThrough (Source Mapper)</a></li><li class="md-nav__item"><a href="#text-source-mapper" title="text (Source Mapper)" class="md-nav__link">text (Source Mapper)</a></li><li class="md-nav__item"><a href="#xml-source-mapper" title="xml (Source Mapper)" class="md-nav__link">xml (Source Mapper)</a></li></ul></nav></li><li class="md-nav__item"><a href="#store" title="Store" class="md-nav__link">Store</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#rdbms-store" title="rdbms (Store)" class="md-nav__link">rdbms (Store)</a></li></ul></nav></li><li class="md-nav__item"><a href="#str" title="Str" class="md-nav__link">Str</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#groupconcat-aggregate-function" title="groupConcat (Aggregate Function)" class="md-nav__link">groupConcat (Aggregate Function)</a></li><li class="md-nav__item"><a href="#charat-function" title="charAt (Function)" class="md-nav__link">charAt (Function)</a></li><li class="md-nav__item"><a href="#coalesce-function_1" title="coalesce (Function)" class="md-nav__link">coalesce (Function)</a></li><li class="md-nav__item"><a href="#concat-function" title="concat (Function)" class="md-nav__link">concat (Function)</a></li><li class="md-nav__item"><a href="#contains-function" title="contains (Function)" class="md-nav__link">contains (Function)</a></li><li class="md-nav__item"><a href="#equalsignorecase-function" title="equalsIgnoreCase (Function)" class="md-nav__link">equalsIgnoreCase (Function)</a></li><li class="md-nav__item"><a href="#filltemplate-function" title="fillTemplate (Function)" class="md-nav__link">fillTemplate (Function)</a></li><li class="md-nav__item"><a href="#hex-function_1" title="hex (Function)" class="md-nav__link">hex (Function)</a></li><li class="md-nav__item"><a href="#length-function" title="length (Function)" class="md-nav__link">length (Function)</a></li><li class="md-nav__item"><a href="#lower-function" title="lower (Function)" class="md-nav__link">lower (Function)</a></li><li class="md-nav__item"><a href="#regexp-function" title="regexp (Function)" class="md-nav__link">regexp (Function)</a></li><li class="md-nav__item"><a href="#repeat-function" title="repeat (Function)" class="md-nav__link">repeat (Function)</a></li><li class="md-nav__item"><a href="#replaceall-function" title="replaceAll (Function)" class="md-nav__link">replaceAll (Function)</a></li><li class="md-nav__item"><a href="#replacefirst-function" title="replaceFirst (Function)" class="md-nav__link">replaceFirst (Function)</a></li><li class="md-nav__item"><a href="#reverse-function" title="reverse (Function)" class="md-nav__link">reverse (Function)</a></li><li class="md-nav__item"><a href="#split-function" title="split (Function)" class="md-nav__link">split (Function)</a></li><li class="md-nav__item"><a href="#strcmp-function" title="strcmp (Function)" class="md-nav__link">strcmp (Function)</a></li><li class="md-nav__item"><a href="#substr-function" title="substr (Function)" class="md-nav__link">substr (Function)</a></li><li class="md-nav__item"><a href="#trim-function" title="trim (Function)" class="md-nav__link">trim (Function)</a></li><li class="md-nav__item"><a href="#unhex-function" title="unhex (Function)" class="md-nav__link">unhex (Function)</a></li><li class="md-nav__item"><a href="#upper-function" title="upper (Function)" class="md-nav__link">upper (Function)</a></li><li class="md-nav__item"><a href="#tokenize-stream-processor_1" title="tokenize (Stream Processor)" class="md-nav__link">tokenize (Stream Processor)</a></li></ul></nav></li></ul></nav>
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">On this page</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#core" title="Core" class="md-nav__link">
+    Core
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#and-aggregate-function" title="and (Aggregate Function)" class="md-nav__link">
+    and (Aggregate Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avg-aggregate-function" title="avg (Aggregate Function)" class="md-nav__link">
+    avg (Aggregate Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#count-aggregate-function" title="count (Aggregate Function)" class="md-nav__link">
+    count (Aggregate Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distinctcount-aggregate-function" title="distinctCount (Aggregate Function)" class="md-nav__link">
+    distinctCount (Aggregate Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#max-aggregate-function" title="max (Aggregate Function)" class="md-nav__link">
+    max (Aggregate Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maxforever-aggregate-function" title="maxForever (Aggregate Function)" class="md-nav__link">
+    maxForever (Aggregate Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#min-aggregate-function" title="min (Aggregate Function)" class="md-nav__link">
+    min (Aggregate Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minforever-aggregate-function" title="minForever (Aggregate Function)" class="md-nav__link">
+    minForever (Aggregate Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#or-aggregate-function" title="or (Aggregate Function)" class="md-nav__link">
+    or (Aggregate Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stddev-aggregate-function" title="stdDev (Aggregate Function)" class="md-nav__link">
+    stdDev (Aggregate Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sum-aggregate-function" title="sum (Aggregate Function)" class="md-nav__link">
+    sum (Aggregate Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unionset-aggregate-function" title="unionSet (Aggregate Function)" class="md-nav__link">
+    unionSet (Aggregate Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uuid-function" title="UUID (Function)" class="md-nav__link">
+    UUID (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cast-function" title="cast (Function)" class="md-nav__link">
+    cast (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coalesce-function" title="coalesce (Function)" class="md-nav__link">
+    coalesce (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convert-function" title="convert (Function)" class="md-nav__link">
+    convert (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createset-function" title="createSet (Function)" class="md-nav__link">
+    createSet (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#currenttimemillis-function" title="currentTimeMillis (Function)" class="md-nav__link">
+    currentTimeMillis (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-function" title="default (Function)" class="md-nav__link">
+    default (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eventtimestamp-function" title="eventTimestamp (Function)" class="md-nav__link">
+    eventTimestamp (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ifthenelse-function" title="ifThenElse (Function)" class="md-nav__link">
+    ifThenElse (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instanceofboolean-function" title="instanceOfBoolean (Function)" class="md-nav__link">
+    instanceOfBoolean (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instanceofdouble-function" title="instanceOfDouble (Function)" class="md-nav__link">
+    instanceOfDouble (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instanceoffloat-function" title="instanceOfFloat (Function)" class="md-nav__link">
+    instanceOfFloat (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instanceofinteger-function" title="instanceOfInteger (Function)" class="md-nav__link">
+    instanceOfInteger (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instanceoflong-function" title="instanceOfLong (Function)" class="md-nav__link">
+    instanceOfLong (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instanceofstring-function" title="instanceOfString (Function)" class="md-nav__link">
+    instanceOfString (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maximum-function" title="maximum (Function)" class="md-nav__link">
+    maximum (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minimum-function" title="minimum (Function)" class="md-nav__link">
+    minimum (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sizeofset-function" title="sizeOfSet (Function)" class="md-nav__link">
+    sizeOfSet (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pol2cart-stream-function" title="pol2Cart (Stream Function)" class="md-nav__link">
+    pol2Cart (Stream Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-stream-processor" title="log (Stream Processor)" class="md-nav__link">
+    log (Stream Processor)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-window" title="batch (Window)" class="md-nav__link">
+    batch (Window)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cron-window" title="cron (Window)" class="md-nav__link">
+    cron (Window)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delay-window" title="delay (Window)" class="md-nav__link">
+    delay (Window)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externaltime-window" title="externalTime (Window)" class="md-nav__link">
+    externalTime (Window)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externaltimebatch-window" title="externalTimeBatch (Window)" class="md-nav__link">
+    externalTimeBatch (Window)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frequent-window" title="frequent (Window)" class="md-nav__link">
+    frequent (Window)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#length-window" title="length (Window)" class="md-nav__link">
+    length (Window)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lengthbatch-window" title="lengthBatch (Window)" class="md-nav__link">
+    lengthBatch (Window)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lossyfrequent-window" title="lossyFrequent (Window)" class="md-nav__link">
+    lossyFrequent (Window)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#session-window" title="session (Window)" class="md-nav__link">
+    session (Window)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sort-window" title="sort (Window)" class="md-nav__link">
+    sort (Window)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-window" title="time (Window)" class="md-nav__link">
+    time (Window)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timebatch-window" title="timeBatch (Window)" class="md-nav__link">
+    timeBatch (Window)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timelength-window" title="timeLength (Window)" class="md-nav__link">
+    timeLength (Window)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#json" title="Json" class="md-nav__link">
+    Json
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getbool-function" title="getBool (Function)" class="md-nav__link">
+    getBool (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getdouble-function" title="getDouble (Function)" class="md-nav__link">
+    getDouble (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getfloat-function" title="getFloat (Function)" class="md-nav__link">
+    getFloat (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getint-function" title="getInt (Function)" class="md-nav__link">
+    getInt (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getlong-function" title="getLong (Function)" class="md-nav__link">
+    getLong (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getobject-function" title="getObject (Function)" class="md-nav__link">
+    getObject (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getstring-function" title="getString (Function)" class="md-nav__link">
+    getString (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isexists-function" title="isExists (Function)" class="md-nav__link">
+    isExists (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setelement-function" title="setElement (Function)" class="md-nav__link">
+    setElement (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#toobject-function" title="toObject (Function)" class="md-nav__link">
+    toObject (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tostring-function" title="toString (Function)" class="md-nav__link">
+    toString (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tokenize-stream-processor" title="tokenize (Stream Processor)" class="md-nav__link">
+    tokenize (Stream Processor)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tokenizeasobject-stream-processor" title="tokenizeAsObject (Stream Processor)" class="md-nav__link">
+    tokenizeAsObject (Stream Processor)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#math" title="Math" class="md-nav__link">
+    Math
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#percentile-aggregate-function" title="percentile (Aggregate Function)" class="md-nav__link">
+    percentile (Aggregate Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abs-function" title="abs (Function)" class="md-nav__link">
+    abs (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acos-function" title="acos (Function)" class="md-nav__link">
+    acos (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asin-function" title="asin (Function)" class="md-nav__link">
+    asin (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atan-function" title="atan (Function)" class="md-nav__link">
+    atan (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bin-function" title="bin (Function)" class="md-nav__link">
+    bin (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cbrt-function" title="cbrt (Function)" class="md-nav__link">
+    cbrt (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ceil-function" title="ceil (Function)" class="md-nav__link">
+    ceil (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conv-function" title="conv (Function)" class="md-nav__link">
+    conv (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copysign-function" title="copySign (Function)" class="md-nav__link">
+    copySign (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cos-function" title="cos (Function)" class="md-nav__link">
+    cos (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cosh-function" title="cosh (Function)" class="md-nav__link">
+    cosh (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e-function" title="e (Function)" class="md-nav__link">
+    e (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exp-function" title="exp (Function)" class="md-nav__link">
+    exp (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#floor-function" title="floor (Function)" class="md-nav__link">
+    floor (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getexponent-function" title="getExponent (Function)" class="md-nav__link">
+    getExponent (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hex-function" title="hex (Function)" class="md-nav__link">
+    hex (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isinfinite-function" title="isInfinite (Function)" class="md-nav__link">
+    isInfinite (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isnan-function" title="isNan (Function)" class="md-nav__link">
+    isNan (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ln-function" title="ln (Function)" class="md-nav__link">
+    ln (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-function" title="log (Function)" class="md-nav__link">
+    log (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log10-function" title="log10 (Function)" class="md-nav__link">
+    log10 (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log2-function" title="log2 (Function)" class="md-nav__link">
+    log2 (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#max-function" title="max (Function)" class="md-nav__link">
+    max (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#min-function" title="min (Function)" class="md-nav__link">
+    min (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oct-function" title="oct (Function)" class="md-nav__link">
+    oct (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parsedouble-function" title="parseDouble (Function)" class="md-nav__link">
+    parseDouble (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parsefloat-function" title="parseFloat (Function)" class="md-nav__link">
+    parseFloat (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parseint-function" title="parseInt (Function)" class="md-nav__link">
+    parseInt (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parselong-function" title="parseLong (Function)" class="md-nav__link">
+    parseLong (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pi-function" title="pi (Function)" class="md-nav__link">
+    pi (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#power-function" title="power (Function)" class="md-nav__link">
+    power (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rand-function" title="rand (Function)" class="md-nav__link">
+    rand (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#round-function" title="round (Function)" class="md-nav__link">
+    round (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signum-function" title="signum (Function)" class="md-nav__link">
+    signum (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sin-function" title="sin (Function)" class="md-nav__link">
+    sin (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sinh-function" title="sinh (Function)" class="md-nav__link">
+    sinh (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sqrt-function" title="sqrt (Function)" class="md-nav__link">
+    sqrt (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tan-function" title="tan (Function)" class="md-nav__link">
+    tan (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tanh-function" title="tanh (Function)" class="md-nav__link">
+    tanh (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#todegrees-function" title="toDegrees (Function)" class="md-nav__link">
+    toDegrees (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#toradians-function" title="toRadians (Function)" class="md-nav__link">
+    toRadians (Function)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rdbms" title="Rdbms" class="md-nav__link">
+    Rdbms
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cud-stream-processor" title="cud (Stream Processor)" class="md-nav__link">
+    cud (Stream Processor)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-stream-processor" title="query (Stream Processor)" class="md-nav__link">
+    query (Stream Processor)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regex" title="Regex" class="md-nav__link">
+    Regex
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#find-function" title="find (Function)" class="md-nav__link">
+    find (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#group-function" title="group (Function)" class="md-nav__link">
+    group (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lookingat-function" title="lookingAt (Function)" class="md-nav__link">
+    lookingAt (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matches-function" title="matches (Function)" class="md-nav__link">
+    matches (Function)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sink" title="Sink" class="md-nav__link">
+    Sink
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#email-sink" title="email (Sink)" class="md-nav__link">
+    email (Sink)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-sink" title="http (Sink)" class="md-nav__link">
+    http (Sink)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-request-sink" title="http-request (Sink)" class="md-nav__link">
+    http-request (Sink)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-response-sink" title="http-response (Sink)" class="md-nav__link">
+    http-response (Sink)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inmemory-sink" title="inMemory (Sink)" class="md-nav__link">
+    inMemory (Sink)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kafka-sink" title="kafka (Sink)" class="md-nav__link">
+    kafka (Sink)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kafkamultidc-sink" title="kafkaMultiDC (Sink)" class="md-nav__link">
+    kafkaMultiDC (Sink)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-sink" title="log (Sink)" class="md-nav__link">
+    log (Sink)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nats-sink" title="nats (Sink)" class="md-nav__link">
+    nats (Sink)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tcp-sink" title="tcp (Sink)" class="md-nav__link">
+    tcp (Sink)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sinkmapper" title="Sinkmapper" class="md-nav__link">
+    Sinkmapper
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#binary-sink-mapper" title="binary (Sink Mapper)" class="md-nav__link">
+    binary (Sink Mapper)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csv-sink-mapper" title="csv (Sink Mapper)" class="md-nav__link">
+    csv (Sink Mapper)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json-sink-mapper" title="json (Sink Mapper)" class="md-nav__link">
+    json (Sink Mapper)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keyvalue-sink-mapper" title="keyvalue (Sink Mapper)" class="md-nav__link">
+    keyvalue (Sink Mapper)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passthrough-sink-mapper" title="passThrough (Sink Mapper)" class="md-nav__link">
+    passThrough (Sink Mapper)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#text-sink-mapper" title="text (Sink Mapper)" class="md-nav__link">
+    text (Sink Mapper)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xml-sink-mapper" title="xml (Sink Mapper)" class="md-nav__link">
+    xml (Sink Mapper)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#source" title="Source" class="md-nav__link">
+    Source
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdc-source" title="cdc (Source)" class="md-nav__link">
+    cdc (Source)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#email-source" title="email (Source)" class="md-nav__link">
+    email (Source)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-source" title="http (Source)" class="md-nav__link">
+    http (Source)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-request-source" title="http-request (Source)" class="md-nav__link">
+    http-request (Source)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-response-source" title="http-response (Source)" class="md-nav__link">
+    http-response (Source)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inmemory-source" title="inMemory (Source)" class="md-nav__link">
+    inMemory (Source)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kafka-source" title="kafka (Source)" class="md-nav__link">
+    kafka (Source)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kafkamultidc-source" title="kafkaMultiDC (Source)" class="md-nav__link">
+    kafkaMultiDC (Source)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nats-source" title="nats (Source)" class="md-nav__link">
+    nats (Source)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tcp-source" title="tcp (Source)" class="md-nav__link">
+    tcp (Source)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sourcemapper" title="Sourcemapper" class="md-nav__link">
+    Sourcemapper
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#binary-source-mapper" title="binary (Source Mapper)" class="md-nav__link">
+    binary (Source Mapper)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csv-source-mapper" title="csv (Source Mapper)" class="md-nav__link">
+    csv (Source Mapper)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json-source-mapper" title="json (Source Mapper)" class="md-nav__link">
+    json (Source Mapper)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keyvalue-source-mapper" title="keyvalue (Source Mapper)" class="md-nav__link">
+    keyvalue (Source Mapper)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passthrough-source-mapper" title="passThrough (Source Mapper)" class="md-nav__link">
+    passThrough (Source Mapper)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#text-source-mapper" title="text (Source Mapper)" class="md-nav__link">
+    text (Source Mapper)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xml-source-mapper" title="xml (Source Mapper)" class="md-nav__link">
+    xml (Source Mapper)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#store" title="Store" class="md-nav__link">
+    Store
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rdbms-store" title="rdbms (Store)" class="md-nav__link">
+    rdbms (Store)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#str" title="Str" class="md-nav__link">
+    Str
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#groupconcat-aggregate-function" title="groupConcat (Aggregate Function)" class="md-nav__link">
+    groupConcat (Aggregate Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#charat-function" title="charAt (Function)" class="md-nav__link">
+    charAt (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coalesce-function_1" title="coalesce (Function)" class="md-nav__link">
+    coalesce (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#concat-function" title="concat (Function)" class="md-nav__link">
+    concat (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contains-function" title="contains (Function)" class="md-nav__link">
+    contains (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#equalsignorecase-function" title="equalsIgnoreCase (Function)" class="md-nav__link">
+    equalsIgnoreCase (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filltemplate-function" title="fillTemplate (Function)" class="md-nav__link">
+    fillTemplate (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hex-function_1" title="hex (Function)" class="md-nav__link">
+    hex (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#length-function" title="length (Function)" class="md-nav__link">
+    length (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lower-function" title="lower (Function)" class="md-nav__link">
+    lower (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regexp-function" title="regexp (Function)" class="md-nav__link">
+    regexp (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repeat-function" title="repeat (Function)" class="md-nav__link">
+    repeat (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replaceall-function" title="replaceAll (Function)" class="md-nav__link">
+    replaceAll (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replacefirst-function" title="replaceFirst (Function)" class="md-nav__link">
+    replaceFirst (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reverse-function" title="reverse (Function)" class="md-nav__link">
+    reverse (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#split-function" title="split (Function)" class="md-nav__link">
+    split (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strcmp-function" title="strcmp (Function)" class="md-nav__link">
+    strcmp (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#substr-function" title="substr (Function)" class="md-nav__link">
+    substr (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trim-function" title="trim (Function)" class="md-nav__link">
+    trim (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unhex-function" title="unhex (Function)" class="md-nav__link">
+    unhex (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upper-function" title="upper (Function)" class="md-nav__link">
+    upper (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tokenize-stream-processor_1" title="tokenize (Stream Processor)" class="md-nav__link">
+    tokenize (Stream Processor)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -687,8 +2172,1337 @@
 
       
     </ul>
-  </nav>  </div></div></div><div class="md-sidebar md-sidebar--secondary" data-md-component="toc"><div class="md-sidebar__scrollwrap"><div class="md-sidebar__inner"><nav class="md-nav md-nav--secondary"><label class="md-nav__title" for="__toc">On this page</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="#core" title="Core" class="md-nav__link">Core</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#and-aggregate-function" title="and (Aggregate Function)" class="md-nav__link">and (Aggregate Function)</a></li><li class="md-nav__item"><a href="#avg-aggregate-function" title="avg (Aggregate Function)" class="md-nav__link">avg (Aggregate Function)</a></li><li class="md-nav__item"><a href="#count-aggregate-function" title="count (Aggregate Function)" class="md-nav__link">count (Aggregate Function)</a></li><li class="md-nav__item"><a href="#distinctcount-aggregate-function" title="distinctCount (Aggregate Function)" class="md-nav__link">distinctCount (Aggregate Function)</a></li><li class="md-nav__item"><a href="#max-aggregate-function" title="max (Aggregate Function)" class="md-nav__link">max (Aggregate Function)</a></li><li class="md-nav__item"><a href="#maxforever-aggregate-function" title="maxForever (Aggregate Function)" class="md-nav__link">maxForever (Aggregate Function)</a></li><li class="md-nav__item"><a href="#min-aggregate-function" title="min (Aggregate Function)" class="md-nav__link">min (Aggregate Function)</a></li><li class="md-nav__item"><a href="#minforever-aggregate-function" title="minForever (Aggregate Function)" class="md-nav__link">minForever (Aggregate Function)</a></li><li class="md-nav__item"><a href="#or-aggregate-function" title="or (Aggregate Function)" class="md-nav__link">or (Aggregate Function)</a></li><li class="md-nav__item"><a href="#stddev-aggregate-function" title="stdDev (Aggregate Function)" class="md-nav__link">stdDev (Aggregate Function)</a></li><li class="md-nav__item"><a href="#sum-aggregate-function" title="sum (Aggregate Function)" class="md-nav__link">sum (Aggregate Function)</a></li><li class="md-nav__item"><a href="#unionset-aggregate-function" title="unionSet (Aggregate Function)" class="md-nav__link">unionSet (Aggregate Function)</a></li><li class="md-nav__item"><a href="#uuid-function" title="UUID (Function)" class="md-nav__link">UUID (Function)</a></li><li class="md-nav__item"><a href="#cast-function" title="cast (Function)" class="md-nav__link">cast (Function)</a></li><li class="md-nav__item"><a href="#coalesce-function" title="coalesce (Function)" class="md-nav__link">coalesce (Function)</a></li><li class="md-nav__item"><a href="#convert-function" title="convert (Function)" class="md-nav__link">convert (Function)</a></li><li class="md-nav__item"><a href="#createset-function" title="createSet (Function)" class="md-nav__link">createSet (Function)</a></li><li class="md-nav__item"><a href="#currenttimemillis-function" title="currentTimeMillis (Function)" class="md-nav__link">currentTimeMillis (Function)</a></li><li class="md-nav__item"><a href="#default-function" title="default (Function)" class="md-nav__link">default (Function)</a></li><li class="md-nav__item"><a href="#eventtimestamp-function" title="eventTimestamp (Function)" class="md-nav__link">eventTimestamp (Function)</a></li><li class="md-nav__item"><a href="#ifthenelse-function" title="ifThenElse (Function)" class="md-nav__link">ifThenElse (Function)</a></li><li class="md-nav__item"><a href="#instanceofboolean-function" title="instanceOfBoolean (Function)" class="md-nav__link">instanceOfBoolean (Function)</a></li><li class="md-nav__item"><a href="#instanceofdouble-function" title="instanceOfDouble (Function)" class="md-nav__link">instanceOfDouble (Function)</a></li><li class="md-nav__item"><a href="#instanceoffloat-function" title="instanceOfFloat (Function)" class="md-nav__link">instanceOfFloat (Function)</a></li><li class="md-nav__item"><a href="#instanceofinteger-function" title="instanceOfInteger (Function)" class="md-nav__link">instanceOfInteger (Function)</a></li><li class="md-nav__item"><a href="#instanceoflong-function" title="instanceOfLong (Function)" class="md-nav__link">instanceOfLong (Function)</a></li><li class="md-nav__item"><a href="#instanceofstring-function" title="instanceOfString (Function)" class="md-nav__link">instanceOfString (Function)</a></li><li class="md-nav__item"><a href="#maximum-function" title="maximum (Function)" class="md-nav__link">maximum (Function)</a></li><li class="md-nav__item"><a href="#minimum-function" title="minimum (Function)" class="md-nav__link">minimum (Function)</a></li><li class="md-nav__item"><a href="#sizeofset-function" title="sizeOfSet (Function)" class="md-nav__link">sizeOfSet (Function)</a></li><li class="md-nav__item"><a href="#pol2cart-stream-function" title="pol2Cart (Stream Function)" class="md-nav__link">pol2Cart (Stream Function)</a></li><li class="md-nav__item"><a href="#log-stream-processor" title="log (Stream Processor)" class="md-nav__link">log (Stream Processor)</a></li><li class="md-nav__item"><a href="#batch-window" title="batch (Window)" class="md-nav__link">batch (Window)</a></li><li class="md-nav__item"><a href="#cron-window" title="cron (Window)" class="md-nav__link">cron (Window)</a></li><li class="md-nav__item"><a href="#delay-window" title="delay (Window)" class="md-nav__link">delay (Window)</a></li><li class="md-nav__item"><a href="#externaltime-window" title="externalTime (Window)" class="md-nav__link">externalTime (Window)</a></li><li class="md-nav__item"><a href="#externaltimebatch-window" title="externalTimeBatch (Window)" class="md-nav__link">externalTimeBatch (Window)</a></li><li class="md-nav__item"><a href="#frequent-window" title="frequent (Window)" class="md-nav__link">frequent (Window)</a></li><li class="md-nav__item"><a href="#length-window" title="length (Window)" class="md-nav__link">length (Window)</a></li><li class="md-nav__item"><a href="#lengthbatch-window" title="lengthBatch (Window)" class="md-nav__link">lengthBatch (Window)</a></li><li class="md-nav__item"><a href="#lossyfrequent-window" title="lossyFrequent (Window)" class="md-nav__link">lossyFrequent (Window)</a></li><li class="md-nav__item"><a href="#session-window" title="session (Window)" class="md-nav__link">session (Window)</a></li><li class="md-nav__item"><a href="#sort-window" title="sort (Window)" class="md-nav__link">sort (Window)</a></li><li class="md-nav__item"><a href="#time-window" title="time (Window)" class="md-nav__link">time (Window)</a></li><li class="md-nav__item"><a href="#timebatch-window" title="timeBatch (Window)" class="md-nav__link">timeBatch (Window)</a></li><li class="md-nav__item"><a href="#timelength-window" title="timeLength (Window)" class="md-nav__link">timeLength (Window)</a></li></ul></nav></li><li class="md-nav__item"><a href="#json" title="Json" class="md-nav__link">Json</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#getbool-function" title="getBool (Function)" class="md-nav__link">getBool (Function)</a></li><li class="md-nav__item"><a href="#getdouble-function" title="getDouble (Function)" class="md-nav__link">getDouble (Function)</a></li><li class="md-nav__item"><a href="#getfloat-function" title="getFloat (Function)" class="md-nav__link">getFloat (Function)</a></li><li class="md-nav__item"><a href="#getint-function" title="getInt (Function)" class="md-nav__link">getInt (Function)</a></li><li class="md-nav__item"><a href="#getlong-function" title="getLong (Function)" class="md-nav__link">getLong (Function)</a></li><li class="md-nav__item"><a href="#getobject-function" title="getObject (Function)" class="md-nav__link">getObject (Function)</a></li><li class="md-nav__item"><a href="#getstring-function" title="getString (Function)" class="md-nav__link">getString (Function)</a></li><li class="md-nav__item"><a href="#isexists-function" title="isExists (Function)" class="md-nav__link">isExists (Function)</a></li><li class="md-nav__item"><a href="#setelement-function" title="setElement (Function)" class="md-nav__link">setElement (Function)</a></li><li class="md-nav__item"><a href="#toobject-function" title="toObject (Function)" class="md-nav__link">toObject (Function)</a></li><li class="md-nav__item"><a href="#tostring-function" title="toString (Function)" class="md-nav__link">toString (Function)</a></li><li class="md-nav__item"><a href="#tokenize-stream-processor" title="tokenize (Stream Processor)" class="md-nav__link">tokenize (Stream Processor)</a></li><li class="md-nav__item"><a href="#tokenizeasobject-stream-processor" title="tokenizeAsObject (Stream Processor)" class="md-nav__link">tokenizeAsObject (Stream Processor)</a></li></ul></nav></li><li class="md-nav__item"><a href="#math" title="Math" class="md-nav__link">Math</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#percentile-aggregate-function" title="percentile (Aggregate Function)" class="md-nav__link">percentile (Aggregate Function)</a></li><li class="md-nav__item"><a href="#abs-function" title="abs (Function)" class="md-nav__link">abs (Function)</a></li><li class="md-nav__item"><a href="#acos-function" title="acos (Function)" class="md-nav__link">acos (Function)</a></li><li class="md-nav__item"><a href="#asin-function" title="asin (Function)" class="md-nav__link">asin (Function)</a></li><li class="md-nav__item"><a href="#atan-function" title="atan (Function)" class="md-nav__link">atan (Function)</a></li><li class="md-nav__item"><a href="#bin-function" title="bin (Function)" class="md-nav__link">bin (Function)</a></li><li class="md-nav__item"><a href="#cbrt-function" title="cbrt (Function)" class="md-nav__link">cbrt (Function)</a></li><li class="md-nav__item"><a href="#ceil-function" title="ceil (Function)" class="md-nav__link">ceil (Function)</a></li><li class="md-nav__item"><a href="#conv-function" title="conv (Function)" class="md-nav__link">conv (Function)</a></li><li class="md-nav__item"><a href="#copysign-function" title="copySign (Function)" class="md-nav__link">copySign (Function)</a></li><li class="md-nav__item"><a href="#cos-function" title="cos (Function)" class="md-nav__link">cos (Function)</a></li><li class="md-nav__item"><a href="#cosh-function" title="cosh (Function)" class="md-nav__link">cosh (Function)</a></li><li class="md-nav__item"><a href="#e-function" title="e (Function)" class="md-nav__link">e (Function)</a></li><li class="md-nav__item"><a href="#exp-function" title="exp (Function)" class="md-nav__link">exp (Function)</a></li><li class="md-nav__item"><a href="#floor-function" title="floor (Function)" class="md-nav__link">floor (Function)</a></li><li class="md-nav__item"><a href="#getexponent-function" title="getExponent (Function)" class="md-nav__link">getExponent (Function)</a></li><li class="md-nav__item"><a href="#hex-function" title="hex (Function)" class="md-nav__link">hex (Function)</a></li><li class="md-nav__item"><a href="#isinfinite-function" title="isInfinite (Function)" class="md-nav__link">isInfinite (Function)</a></li><li class="md-nav__item"><a href="#isnan-function" title="isNan (Function)" class="md-nav__link">isNan (Function)</a></li><li class="md-nav__item"><a href="#ln-function" title="ln (Function)" class="md-nav__link">ln (Function)</a></li><li class="md-nav__item"><a href="#log-function" title="log (Function)" class="md-nav__link">log (Function)</a></li><li class="md-nav__item"><a href="#log10-function" title="log10 (Function)" class="md-nav__link">log10 (Function)</a></li><li class="md-nav__item"><a href="#log2-function" title="log2 (Function)" class="md-nav__link">log2 (Function)</a></li><li class="md-nav__item"><a href="#max-function" title="max (Function)" class="md-nav__link">max (Function)</a></li><li class="md-nav__item"><a href="#min-function" title="min (Function)" class="md-nav__link">min (Function)</a></li><li class="md-nav__item"><a href="#oct-function" title="oct (Function)" class="md-nav__link">oct (Function)</a></li><li class="md-nav__item"><a href="#parsedouble-function" title="parseDouble (Function)" class="md-nav__link">parseDouble (Function)</a></li><li class="md-nav__item"><a href="#parsefloat-function" title="parseFloat (Function)" class="md-nav__link">parseFloat (Function)</a></li><li class="md-nav__item"><a href="#parseint-function" title="parseInt (Function)" class="md-nav__link">parseInt (Function)</a></li><li class="md-nav__item"><a href="#parselong-function" title="parseLong (Function)" class="md-nav__link">parseLong (Function)</a></li><li class="md-nav__item"><a href="#pi-function" title="pi (Function)" class="md-nav__link">pi (Function)</a></li><li class="md-nav__item"><a href="#power-function" title="power (Function)" class="md-nav__link">power (Function)</a></li><li class="md-nav__item"><a href="#rand-function" title="rand (Function)" class="md-nav__link">rand (Function)</a></li><li class="md-nav__item"><a href="#round-function" title="round (Function)" class="md-nav__link">round (Function)</a></li><li class="md-nav__item"><a href="#signum-function" title="signum (Function)" class="md-nav__link">signum (Function)</a></li><li class="md-nav__item"><a href="#sin-function" title="sin (Function)" class="md-nav__link">sin (Function)</a></li><li class="md-nav__item"><a href="#sinh-function" title="sinh (Function)" class="md-nav__link">sinh (Function)</a></li><li class="md-nav__item"><a href="#sqrt-function" title="sqrt (Function)" class="md-nav__link">sqrt (Function)</a></li><li class="md-nav__item"><a href="#tan-function" title="tan (Function)" class="md-nav__link">tan (Function)</a></li><li class="md-nav__item"><a href="#tanh-function" title="tanh (Function)" class="md-nav__link">tanh (Function)</a></li><li class="md-nav__item"><a href="#todegrees-function" title="toDegrees (Function)" class="md-nav__link">toDegrees (Function)</a></li><li class="md-nav__item"><a href="#toradians-function" title="toRadians (Function)" class="md-nav__link">toRadians (Function)</a></li></ul></nav></li><li class="md-nav__item"><a href="#rdbms" title="Rdbms" class="md-nav__link">Rdbms</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#cud-stream-processor" title="cud (Stream Processor)" class="md-nav__link">cud (Stream Processor)</a></li><li class="md-nav__item"><a href="#query-stream-processor" title="query (Stream Processor)" class="md-nav__link">query (Stream Processor)</a></li></ul></nav></li><li class="md-nav__item"><a href="#regex" title="Regex" class="md-nav__link">Regex</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#find-function" title="find (Function)" class="md-nav__link">find (Function)</a></li><li class="md-nav__item"><a href="#group-function" title="group (Function)" class="md-nav__link">group (Function)</a></li><li class="md-nav__item"><a href="#lookingat-function" title="lookingAt (Function)" class="md-nav__link">lookingAt (Function)</a></li><li class="md-nav__item"><a href="#matches-function" title="matches (Function)" class="md-nav__link">matches (Function)</a></li></ul></nav></li><li class="md-nav__item"><a href="#sink" title="Sink" class="md-nav__link">Sink</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#email-sink" title="email (Sink)" class="md-nav__link">email (Sink)</a></li><li class="md-nav__item"><a href="#http-sink" title="http (Sink)" class="md-nav__link">http (Sink)</a></li><li class="md-nav__item"><a href="#http-request-sink" title="http-request (Sink)" class="md-nav__link">http-request (Sink)</a></li><li class="md-nav__item"><a href="#http-response-sink" title="http-response (Sink)" class="md-nav__link">http-response (Sink)</a></li><li class="md-nav__item"><a href="#inmemory-sink" title="inMemory (Sink)" class="md-nav__link">inMemory (Sink)</a></li><li class="md-nav__item"><a href="#kafka-sink" title="kafka (Sink)" class="md-nav__link">kafka (Sink)</a></li><li class="md-nav__item"><a href="#kafkamultidc-sink" title="kafkaMultiDC (Sink)" class="md-nav__link">kafkaMultiDC (Sink)</a></li><li class="md-nav__item"><a href="#log-sink" title="log (Sink)" class="md-nav__link">log (Sink)</a></li><li class="md-nav__item"><a href="#nats-sink" title="nats (Sink)" class="md-nav__link">nats (Sink)</a></li><li class="md-nav__item"><a href="#tcp-sink" title="tcp (Sink)" class="md-nav__link">tcp (Sink)</a></li></ul></nav></li><li class="md-nav__item"><a href="#sinkmapper" title="Sinkmapper" class="md-nav__link">Sinkmapper</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#binary-sink-mapper" title="binary (Sink Mapper)" class="md-nav__link">binary (Sink Mapper)</a></li><li class="md-nav__item"><a href="#csv-sink-mapper" title="csv (Sink Mapper)" class="md-nav__link">csv (Sink Mapper)</a></li><li class="md-nav__item"><a href="#json-sink-mapper" title="json (Sink Mapper)" class="md-nav__link">json (Sink Mapper)</a></li><li class="md-nav__item"><a href="#keyvalue-sink-mapper" title="keyvalue (Sink Mapper)" class="md-nav__link">keyvalue (Sink Mapper)</a></li><li class="md-nav__item"><a href="#passthrough-sink-mapper" title="passThrough (Sink Mapper)" class="md-nav__link">passThrough (Sink Mapper)</a></li><li class="md-nav__item"><a href="#text-sink-mapper" title="text (Sink Mapper)" class="md-nav__link">text (Sink Mapper)</a></li><li class="md-nav__item"><a href="#xml-sink-mapper" title="xml (Sink Mapper)" class="md-nav__link">xml (Sink Mapper)</a></li></ul></nav></li><li class="md-nav__item"><a href="#source" title="Source" class="md-nav__link">Source</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#cdc-source" title="cdc (Source)" class="md-nav__link">cdc (Source)</a></li><li class="md-nav__item"><a href="#email-source" title="email (Source)" class="md-nav__link">email (Source)</a></li><li class="md-nav__item"><a href="#http-source" title="http (Source)" class="md-nav__link">http (Source)</a></li><li class="md-nav__item"><a href="#http-request-source" title="http-request (Source)" class="md-nav__link">http-request (Source)</a></li><li class="md-nav__item"><a href="#http-response-source" title="http-response (Source)" class="md-nav__link">http-response (Source)</a></li><li class="md-nav__item"><a href="#inmemory-source" title="inMemory (Source)" class="md-nav__link">inMemory (Source)</a></li><li class="md-nav__item"><a href="#kafka-source" title="kafka (Source)" class="md-nav__link">kafka (Source)</a></li><li class="md-nav__item"><a href="#kafkamultidc-source" title="kafkaMultiDC (Source)" class="md-nav__link">kafkaMultiDC (Source)</a></li><li class="md-nav__item"><a href="#nats-source" title="nats (Source)" class="md-nav__link">nats (Source)</a></li><li class="md-nav__item"><a href="#tcp-source" title="tcp (Source)" class="md-nav__link">tcp (Source)</a></li></ul></nav></li><li class="md-nav__item"><a href="#sourcemapper" title="Sourcemapper" class="md-nav__link">Sourcemapper</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#binary-source-mapper" title="binary (Source Mapper)" class="md-nav__link">binary (Source Mapper)</a></li><li class="md-nav__item"><a href="#csv-source-mapper" title="csv (Source Mapper)" class="md-nav__link">csv (Source Mapper)</a></li><li class="md-nav__item"><a href="#json-source-mapper" title="json (Source Mapper)" class="md-nav__link">json (Source Mapper)</a></li><li class="md-nav__item"><a href="#keyvalue-source-mapper" title="keyvalue (Source Mapper)" class="md-nav__link">keyvalue (Source Mapper)</a></li><li class="md-nav__item"><a href="#passthrough-source-mapper" title="passThrough (Source Mapper)" class="md-nav__link">passThrough (Source Mapper)</a></li><li class="md-nav__item"><a href="#text-source-mapper" title="text (Source Mapper)" class="md-nav__link">text (Source Mapper)</a></li><li class="md-nav__item"><a href="#xml-source-mapper" title="xml (Source Mapper)" class="md-nav__link">xml (Source Mapper)</a></li></ul></nav></li><li class="md-nav__item"><a href="#store" title="Store" class="md-nav__link">Store</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#rdbms-store" title="rdbms (Store)" class="md-nav__link">rdbms (Store)</a></li></ul></nav></li><li class="md-nav__item"><a href="#str" title="Str" class="md-nav__link">Str</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#groupconcat-aggregate-function" title="groupConcat (Aggregate Function)" class="md-nav__link">groupConcat (Aggregate Function)</a></li><li class="md-nav__item"><a href="#charat-function" title="charAt (Function)" class="md-nav__link">charAt (Function)</a></li><li class="md-nav__item"><a href="#coalesce-function_1" title="coalesce (Function)" class="md-nav__link">coalesce (Function)</a></li><li class="md-nav__item"><a href="#concat-function" title="concat (Function)" class="md-nav__link">concat (Function)</a></li><li class="md-nav__item"><a href="#contains-function" title="contains (Function)" class="md-nav__link">contains (Function)</a></li><li class="md-nav__item"><a href="#equalsignorecase-function" title="equalsIgnoreCase (Function)" class="md-nav__link">equalsIgnoreCase (Function)</a></li><li class="md-nav__item"><a href="#filltemplate-function" title="fillTemplate (Function)" class="md-nav__link">fillTemplate (Function)</a></li><li class="md-nav__item"><a href="#hex-function_1" title="hex (Function)" class="md-nav__link">hex (Function)</a></li><li class="md-nav__item"><a href="#length-function" title="length (Function)" class="md-nav__link">length (Function)</a></li><li class="md-nav__item"><a href="#lower-function" title="lower (Function)" class="md-nav__link">lower (Function)</a></li><li class="md-nav__item"><a href="#regexp-function" title="regexp (Function)" class="md-nav__link">regexp (Function)</a></li><li class="md-nav__item"><a href="#repeat-function" title="repeat (Function)" class="md-nav__link">repeat (Function)</a></li><li class="md-nav__item"><a href="#replaceall-function" title="replaceAll (Function)" class="md-nav__link">replaceAll (Function)</a></li><li class="md-nav__item"><a href="#replacefirst-function" title="replaceFirst (Function)" class="md-nav__link">replaceFirst (Function)</a></li><li class="md-nav__item"><a href="#reverse-function" title="reverse (Function)" class="md-nav__link">reverse (Function)</a></li><li class="md-nav__item"><a href="#split-function" title="split (Function)" class="md-nav__link">split (Function)</a></li><li class="md-nav__item"><a href="#strcmp-function" title="strcmp (Function)" class="md-nav__link">strcmp (Function)</a></li><li class="md-nav__item"><a href="#substr-function" title="substr (Function)" class="md-nav__link">substr (Function)</a></li><li class="md-nav__item"><a href="#trim-function" title="trim (Function)" class="md-nav__link">trim (Function)</a></li><li class="md-nav__item"><a href="#unhex-function" title="unhex (Function)" class="md-nav__link">unhex (Function)</a></li><li class="md-nav__item"><a href="#upper-function" title="upper (Function)" class="md-nav__link">upper (Function)</a></li><li class="md-nav__item"><a href="#tokenize-stream-processor_1" title="tokenize (Stream Processor)" class="md-nav__link">tokenize (Stream Processor)</a></li></ul></nav></li></ul></nav></div></div></div><div class="md-content"><article class="md-content__inner md-typeset">
-  <a href="https://github.com/siddhi-io/www/edit/v5.0/en/docs/docs/api/latest.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a><h1 id="api-docs-v500">API Docs - v5.0.0<a class="headerlink" href="#api-docs-v500" title="Permanent link">&para;</a></h1>
+  </nav>  
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">On this page</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#core" title="Core" class="md-nav__link">
+    Core
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#and-aggregate-function" title="and (Aggregate Function)" class="md-nav__link">
+    and (Aggregate Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avg-aggregate-function" title="avg (Aggregate Function)" class="md-nav__link">
+    avg (Aggregate Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#count-aggregate-function" title="count (Aggregate Function)" class="md-nav__link">
+    count (Aggregate Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#distinctcount-aggregate-function" title="distinctCount (Aggregate Function)" class="md-nav__link">
+    distinctCount (Aggregate Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#max-aggregate-function" title="max (Aggregate Function)" class="md-nav__link">
+    max (Aggregate Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maxforever-aggregate-function" title="maxForever (Aggregate Function)" class="md-nav__link">
+    maxForever (Aggregate Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#min-aggregate-function" title="min (Aggregate Function)" class="md-nav__link">
+    min (Aggregate Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minforever-aggregate-function" title="minForever (Aggregate Function)" class="md-nav__link">
+    minForever (Aggregate Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#or-aggregate-function" title="or (Aggregate Function)" class="md-nav__link">
+    or (Aggregate Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stddev-aggregate-function" title="stdDev (Aggregate Function)" class="md-nav__link">
+    stdDev (Aggregate Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sum-aggregate-function" title="sum (Aggregate Function)" class="md-nav__link">
+    sum (Aggregate Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unionset-aggregate-function" title="unionSet (Aggregate Function)" class="md-nav__link">
+    unionSet (Aggregate Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uuid-function" title="UUID (Function)" class="md-nav__link">
+    UUID (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cast-function" title="cast (Function)" class="md-nav__link">
+    cast (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coalesce-function" title="coalesce (Function)" class="md-nav__link">
+    coalesce (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convert-function" title="convert (Function)" class="md-nav__link">
+    convert (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#createset-function" title="createSet (Function)" class="md-nav__link">
+    createSet (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#currenttimemillis-function" title="currentTimeMillis (Function)" class="md-nav__link">
+    currentTimeMillis (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-function" title="default (Function)" class="md-nav__link">
+    default (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eventtimestamp-function" title="eventTimestamp (Function)" class="md-nav__link">
+    eventTimestamp (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ifthenelse-function" title="ifThenElse (Function)" class="md-nav__link">
+    ifThenElse (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instanceofboolean-function" title="instanceOfBoolean (Function)" class="md-nav__link">
+    instanceOfBoolean (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instanceofdouble-function" title="instanceOfDouble (Function)" class="md-nav__link">
+    instanceOfDouble (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instanceoffloat-function" title="instanceOfFloat (Function)" class="md-nav__link">
+    instanceOfFloat (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instanceofinteger-function" title="instanceOfInteger (Function)" class="md-nav__link">
+    instanceOfInteger (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instanceoflong-function" title="instanceOfLong (Function)" class="md-nav__link">
+    instanceOfLong (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instanceofstring-function" title="instanceOfString (Function)" class="md-nav__link">
+    instanceOfString (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maximum-function" title="maximum (Function)" class="md-nav__link">
+    maximum (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minimum-function" title="minimum (Function)" class="md-nav__link">
+    minimum (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sizeofset-function" title="sizeOfSet (Function)" class="md-nav__link">
+    sizeOfSet (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pol2cart-stream-function" title="pol2Cart (Stream Function)" class="md-nav__link">
+    pol2Cart (Stream Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-stream-processor" title="log (Stream Processor)" class="md-nav__link">
+    log (Stream Processor)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch-window" title="batch (Window)" class="md-nav__link">
+    batch (Window)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cron-window" title="cron (Window)" class="md-nav__link">
+    cron (Window)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delay-window" title="delay (Window)" class="md-nav__link">
+    delay (Window)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externaltime-window" title="externalTime (Window)" class="md-nav__link">
+    externalTime (Window)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#externaltimebatch-window" title="externalTimeBatch (Window)" class="md-nav__link">
+    externalTimeBatch (Window)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frequent-window" title="frequent (Window)" class="md-nav__link">
+    frequent (Window)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#length-window" title="length (Window)" class="md-nav__link">
+    length (Window)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lengthbatch-window" title="lengthBatch (Window)" class="md-nav__link">
+    lengthBatch (Window)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lossyfrequent-window" title="lossyFrequent (Window)" class="md-nav__link">
+    lossyFrequent (Window)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#session-window" title="session (Window)" class="md-nav__link">
+    session (Window)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sort-window" title="sort (Window)" class="md-nav__link">
+    sort (Window)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-window" title="time (Window)" class="md-nav__link">
+    time (Window)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timebatch-window" title="timeBatch (Window)" class="md-nav__link">
+    timeBatch (Window)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timelength-window" title="timeLength (Window)" class="md-nav__link">
+    timeLength (Window)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#json" title="Json" class="md-nav__link">
+    Json
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#getbool-function" title="getBool (Function)" class="md-nav__link">
+    getBool (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getdouble-function" title="getDouble (Function)" class="md-nav__link">
+    getDouble (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getfloat-function" title="getFloat (Function)" class="md-nav__link">
+    getFloat (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getint-function" title="getInt (Function)" class="md-nav__link">
+    getInt (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getlong-function" title="getLong (Function)" class="md-nav__link">
+    getLong (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getobject-function" title="getObject (Function)" class="md-nav__link">
+    getObject (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getstring-function" title="getString (Function)" class="md-nav__link">
+    getString (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isexists-function" title="isExists (Function)" class="md-nav__link">
+    isExists (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#setelement-function" title="setElement (Function)" class="md-nav__link">
+    setElement (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#toobject-function" title="toObject (Function)" class="md-nav__link">
+    toObject (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tostring-function" title="toString (Function)" class="md-nav__link">
+    toString (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tokenize-stream-processor" title="tokenize (Stream Processor)" class="md-nav__link">
+    tokenize (Stream Processor)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tokenizeasobject-stream-processor" title="tokenizeAsObject (Stream Processor)" class="md-nav__link">
+    tokenizeAsObject (Stream Processor)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#math" title="Math" class="md-nav__link">
+    Math
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#percentile-aggregate-function" title="percentile (Aggregate Function)" class="md-nav__link">
+    percentile (Aggregate Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abs-function" title="abs (Function)" class="md-nav__link">
+    abs (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acos-function" title="acos (Function)" class="md-nav__link">
+    acos (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asin-function" title="asin (Function)" class="md-nav__link">
+    asin (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atan-function" title="atan (Function)" class="md-nav__link">
+    atan (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bin-function" title="bin (Function)" class="md-nav__link">
+    bin (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cbrt-function" title="cbrt (Function)" class="md-nav__link">
+    cbrt (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ceil-function" title="ceil (Function)" class="md-nav__link">
+    ceil (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conv-function" title="conv (Function)" class="md-nav__link">
+    conv (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copysign-function" title="copySign (Function)" class="md-nav__link">
+    copySign (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cos-function" title="cos (Function)" class="md-nav__link">
+    cos (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cosh-function" title="cosh (Function)" class="md-nav__link">
+    cosh (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e-function" title="e (Function)" class="md-nav__link">
+    e (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exp-function" title="exp (Function)" class="md-nav__link">
+    exp (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#floor-function" title="floor (Function)" class="md-nav__link">
+    floor (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getexponent-function" title="getExponent (Function)" class="md-nav__link">
+    getExponent (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hex-function" title="hex (Function)" class="md-nav__link">
+    hex (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isinfinite-function" title="isInfinite (Function)" class="md-nav__link">
+    isInfinite (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isnan-function" title="isNan (Function)" class="md-nav__link">
+    isNan (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ln-function" title="ln (Function)" class="md-nav__link">
+    ln (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-function" title="log (Function)" class="md-nav__link">
+    log (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log10-function" title="log10 (Function)" class="md-nav__link">
+    log10 (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log2-function" title="log2 (Function)" class="md-nav__link">
+    log2 (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#max-function" title="max (Function)" class="md-nav__link">
+    max (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#min-function" title="min (Function)" class="md-nav__link">
+    min (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oct-function" title="oct (Function)" class="md-nav__link">
+    oct (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parsedouble-function" title="parseDouble (Function)" class="md-nav__link">
+    parseDouble (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parsefloat-function" title="parseFloat (Function)" class="md-nav__link">
+    parseFloat (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parseint-function" title="parseInt (Function)" class="md-nav__link">
+    parseInt (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parselong-function" title="parseLong (Function)" class="md-nav__link">
+    parseLong (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pi-function" title="pi (Function)" class="md-nav__link">
+    pi (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#power-function" title="power (Function)" class="md-nav__link">
+    power (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rand-function" title="rand (Function)" class="md-nav__link">
+    rand (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#round-function" title="round (Function)" class="md-nav__link">
+    round (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signum-function" title="signum (Function)" class="md-nav__link">
+    signum (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sin-function" title="sin (Function)" class="md-nav__link">
+    sin (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sinh-function" title="sinh (Function)" class="md-nav__link">
+    sinh (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sqrt-function" title="sqrt (Function)" class="md-nav__link">
+    sqrt (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tan-function" title="tan (Function)" class="md-nav__link">
+    tan (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tanh-function" title="tanh (Function)" class="md-nav__link">
+    tanh (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#todegrees-function" title="toDegrees (Function)" class="md-nav__link">
+    toDegrees (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#toradians-function" title="toRadians (Function)" class="md-nav__link">
+    toRadians (Function)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rdbms" title="Rdbms" class="md-nav__link">
+    Rdbms
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cud-stream-processor" title="cud (Stream Processor)" class="md-nav__link">
+    cud (Stream Processor)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#query-stream-processor" title="query (Stream Processor)" class="md-nav__link">
+    query (Stream Processor)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regex" title="Regex" class="md-nav__link">
+    Regex
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#find-function" title="find (Function)" class="md-nav__link">
+    find (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#group-function" title="group (Function)" class="md-nav__link">
+    group (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lookingat-function" title="lookingAt (Function)" class="md-nav__link">
+    lookingAt (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matches-function" title="matches (Function)" class="md-nav__link">
+    matches (Function)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sink" title="Sink" class="md-nav__link">
+    Sink
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#email-sink" title="email (Sink)" class="md-nav__link">
+    email (Sink)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-sink" title="http (Sink)" class="md-nav__link">
+    http (Sink)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-request-sink" title="http-request (Sink)" class="md-nav__link">
+    http-request (Sink)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-response-sink" title="http-response (Sink)" class="md-nav__link">
+    http-response (Sink)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inmemory-sink" title="inMemory (Sink)" class="md-nav__link">
+    inMemory (Sink)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kafka-sink" title="kafka (Sink)" class="md-nav__link">
+    kafka (Sink)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kafkamultidc-sink" title="kafkaMultiDC (Sink)" class="md-nav__link">
+    kafkaMultiDC (Sink)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-sink" title="log (Sink)" class="md-nav__link">
+    log (Sink)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nats-sink" title="nats (Sink)" class="md-nav__link">
+    nats (Sink)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tcp-sink" title="tcp (Sink)" class="md-nav__link">
+    tcp (Sink)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sinkmapper" title="Sinkmapper" class="md-nav__link">
+    Sinkmapper
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#binary-sink-mapper" title="binary (Sink Mapper)" class="md-nav__link">
+    binary (Sink Mapper)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csv-sink-mapper" title="csv (Sink Mapper)" class="md-nav__link">
+    csv (Sink Mapper)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json-sink-mapper" title="json (Sink Mapper)" class="md-nav__link">
+    json (Sink Mapper)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keyvalue-sink-mapper" title="keyvalue (Sink Mapper)" class="md-nav__link">
+    keyvalue (Sink Mapper)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passthrough-sink-mapper" title="passThrough (Sink Mapper)" class="md-nav__link">
+    passThrough (Sink Mapper)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#text-sink-mapper" title="text (Sink Mapper)" class="md-nav__link">
+    text (Sink Mapper)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xml-sink-mapper" title="xml (Sink Mapper)" class="md-nav__link">
+    xml (Sink Mapper)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#source" title="Source" class="md-nav__link">
+    Source
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cdc-source" title="cdc (Source)" class="md-nav__link">
+    cdc (Source)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#email-source" title="email (Source)" class="md-nav__link">
+    email (Source)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-source" title="http (Source)" class="md-nav__link">
+    http (Source)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-request-source" title="http-request (Source)" class="md-nav__link">
+    http-request (Source)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#http-response-source" title="http-response (Source)" class="md-nav__link">
+    http-response (Source)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#inmemory-source" title="inMemory (Source)" class="md-nav__link">
+    inMemory (Source)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kafka-source" title="kafka (Source)" class="md-nav__link">
+    kafka (Source)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kafkamultidc-source" title="kafkaMultiDC (Source)" class="md-nav__link">
+    kafkaMultiDC (Source)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nats-source" title="nats (Source)" class="md-nav__link">
+    nats (Source)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tcp-source" title="tcp (Source)" class="md-nav__link">
+    tcp (Source)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sourcemapper" title="Sourcemapper" class="md-nav__link">
+    Sourcemapper
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#binary-source-mapper" title="binary (Source Mapper)" class="md-nav__link">
+    binary (Source Mapper)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csv-source-mapper" title="csv (Source Mapper)" class="md-nav__link">
+    csv (Source Mapper)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#json-source-mapper" title="json (Source Mapper)" class="md-nav__link">
+    json (Source Mapper)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keyvalue-source-mapper" title="keyvalue (Source Mapper)" class="md-nav__link">
+    keyvalue (Source Mapper)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#passthrough-source-mapper" title="passThrough (Source Mapper)" class="md-nav__link">
+    passThrough (Source Mapper)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#text-source-mapper" title="text (Source Mapper)" class="md-nav__link">
+    text (Source Mapper)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xml-source-mapper" title="xml (Source Mapper)" class="md-nav__link">
+    xml (Source Mapper)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#store" title="Store" class="md-nav__link">
+    Store
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rdbms-store" title="rdbms (Store)" class="md-nav__link">
+    rdbms (Store)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#str" title="Str" class="md-nav__link">
+    Str
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#groupconcat-aggregate-function" title="groupConcat (Aggregate Function)" class="md-nav__link">
+    groupConcat (Aggregate Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#charat-function" title="charAt (Function)" class="md-nav__link">
+    charAt (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#coalesce-function_1" title="coalesce (Function)" class="md-nav__link">
+    coalesce (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#concat-function" title="concat (Function)" class="md-nav__link">
+    concat (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contains-function" title="contains (Function)" class="md-nav__link">
+    contains (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#equalsignorecase-function" title="equalsIgnoreCase (Function)" class="md-nav__link">
+    equalsIgnoreCase (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filltemplate-function" title="fillTemplate (Function)" class="md-nav__link">
+    fillTemplate (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hex-function_1" title="hex (Function)" class="md-nav__link">
+    hex (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#length-function" title="length (Function)" class="md-nav__link">
+    length (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lower-function" title="lower (Function)" class="md-nav__link">
+    lower (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regexp-function" title="regexp (Function)" class="md-nav__link">
+    regexp (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repeat-function" title="repeat (Function)" class="md-nav__link">
+    repeat (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replaceall-function" title="replaceAll (Function)" class="md-nav__link">
+    replaceAll (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replacefirst-function" title="replaceFirst (Function)" class="md-nav__link">
+    replaceFirst (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reverse-function" title="reverse (Function)" class="md-nav__link">
+    reverse (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#split-function" title="split (Function)" class="md-nav__link">
+    split (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#strcmp-function" title="strcmp (Function)" class="md-nav__link">
+    strcmp (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#substr-function" title="substr (Function)" class="md-nav__link">
+    substr (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trim-function" title="trim (Function)" class="md-nav__link">
+    trim (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unhex-function" title="unhex (Function)" class="md-nav__link">
+    unhex (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upper-function" title="upper (Function)" class="md-nav__link">
+    upper (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tokenize-stream-processor_1" title="tokenize (Stream Processor)" class="md-nav__link">
+    tokenize (Stream Processor)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+  
+                
+                  <a href="https://github.com/siddhi-io/www/edit/v5.0/en/docs/docs/api/latest.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="api-docs-v500">API Docs - v5.0.0<a class="headerlink" href="#api-docs-v500" title="Permanent link">&para;</a></h1>
 <h2 id="core">Core<a class="headerlink" href="#core" title="Permanent link">&para;</a></h2>
 <h3 id="and-aggregate-function">and <em><a target="_blank" href="../../query-guide/#aggregate-function">(Aggregate Function)</a></em><a class="headerlink" href="#and-aggregate-function" title="Permanent link">&para;</a></h3>
 <p style="word-wrap: break-word">Returns the results of AND operation for all the events.</p>
@@ -10106,8 +12920,23 @@ from inputStream#str:tokenize(str , ',')
 select text
 insert into outputStream;</code></pre>
 <p style="word-wrap: break-word">This query performs tokenization on the given string. If the str is "Android,Windows8,iOS", then the string is split into 3 events containing the <code>token</code> attribute values, i.e., <code>Android</code>, <code>Windows8</code> and <code>iOS</code>.</p></p>
+                
+                  
+                
+              
   <a href="#" class="cd-top text--replace js-cd-top">Top</a>
-</article></div></div></main>
+
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
 <footer class="md-footer">
   
     <div class="md-footer-nav">
@@ -10156,8 +12985,37 @@ insert into outputStream;</code></pre>
         &copy;2019 <a href="https://wso2.com/">WSO2</a>
       </div>
       
-      <div class="md-footer-social"><link rel="stylesheet" href="../../../assets/fonts/font-awesome.css"> <a href="https://github.com/siddhi-io/siddhi" class="md-footer-social__link fa fa-github"></a>  <a href="https://medium.com/siddhi-io" class="md-footer-social__link fa fa-medium"></a>  <a href="https://www.linkedin.com/groups/13553064" class="md-footer-social__link fa fa-linkedin"></a> </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../../assets/fonts/font-awesome.css">
+    
+      <a href="https://github.com/siddhi-io/siddhi" class="md-footer-social__link fa fa-github"></a>
+    
+      <a href="https://medium.com/siddhi-io" class="md-footer-social__link fa fa-medium"></a>
+    
+      <a href="https://www.linkedin.com/groups/13553064" class="md-footer-social__link fa fa-linkedin"></a>
+    
+  </div>
+
       
     </div>
   </div>
-</footer></div><script src="../../../assets/javascripts/application.b260a35d.js"></script><script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script><script src="../../../assets/lib/highlightjs/highlight.min.js"></script><script src="../../../assets/js/theme.js"></script><script src="../../../assets/lib/backtotop/js/util.js"></script><script src="../../../assets/lib/backtotop/js/main.js"></script></body></html>
+</footer>
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/application.245445c6.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../../.."}})</script>
+      
+        <script src="../../../assets/lib/highlightjs/highlight.min.js"></script>
+      
+        <script src="../../../assets/js/theme.js"></script>
+      
+        <script src="../../../assets/lib/backtotop/js/util.js"></script>
+      
+        <script src="../../../assets/lib/backtotop/js/main.js"></script>
+      
+    
+  </body>
+</html>

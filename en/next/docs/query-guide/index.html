@@ -16,7 +16,86 @@
  * under the License.
 -->
 
-<!doctype html><html lang="en" class="no-js"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="x-ua-compatible" content="ie=edge"><meta name="description" content="Cloud Native Stream Processor"><link rel="canonical" href="http://siddhi.io/en/next/docs/query-guide/"><meta name="author" content="WSO2"><meta name="lang:clipboard.copy" content="Copy to clipboard"><meta name="lang:clipboard.copied" content="Copied to clipboard"><meta name="lang:search.language" content="en"><meta name="lang:search.pipeline.stopwords" content="True"><meta name="lang:search.pipeline.trimmer" content="True"><meta name="lang:search.result.none" content="No matching documents"><meta name="lang:search.result.one" content="1 matching document"><meta name="lang:search.result.other" content="# matching documents"><meta name="lang:search.tokenizer" content="[\s\-]+"><link rel="shortcut icon" href="../../images/favicon.ico"><meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.3.0"><title>Query Guide - Siddhi</title><link rel="stylesheet" href="../../assets/stylesheets/application.4031d38b.css"><link rel="stylesheet" href="../../assets/stylesheets/application-palette.224b79ff.css"><meta name="theme-color" content="#009688"><script src="../../assets/javascripts/modernizr.74668098.js"></script><link href="https://fonts.gstatic.com" rel="preconnect" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=swap"><style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style><link rel="stylesheet" href="../../assets/fonts/material-icons.css"><link rel="stylesheet" href="../../assets/lib/highlightjs/default.min.css"><link rel="stylesheet" href="../../assets/css/theme.css"><script>window.ga = window.ga || function() {
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Cloud Native Stream Processor">
+      
+      
+        <link rel="canonical" href="http://siddhi.io/en/next/docs/query-guide/">
+      
+      
+        <meta name="author" content="WSO2">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.0">
+    
+    
+      
+        <title>Query Guide - Siddhi</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.0284f74d.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.01803549.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#009688">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../assets/lib/highlightjs/default.min.css">
+    
+      <link rel="stylesheet" href="../../assets/css/theme.css">
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
     (ga.q = ga.q || []).push(arguments)
   }
   ga.l = +new Date
@@ -35,7 +114,36 @@
         }
       })
     }
-  })</script><script async src="https://www.google-analytics.com/analytics.js"></script></head><body dir="ltr" data-md-color-primary="teal" data-md-color-accent="teal"><svg class="md-svg"><defs><svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg></defs></svg> <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off"> <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off"> <label class="md-overlay" data-md-component="overlay" for="__drawer"></label><a href="#siddhi-51-streaming-sql-guide" tabindex="1" class="md-skip">Skip to content </a><!--
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#siddhi-51-streaming-sql-guide" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <!--
  * Copyright (c) 2019, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
  *
  * WSO2 Inc. licenses this file to you under the Apache License,
@@ -95,19 +203,64 @@
       <div class="md-flex__cell md-flex__cell--shrink">
         
           <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
-          <div class="md-search" data-md-component="search" role="dialog"><label class="md-search__overlay" for="__search"></label><div class="md-search__inner" role="search"><form class="md-search__form" name="search"><input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active"> <label class="md-icon md-search__icon" for="__search"></label> <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">&#xE5CD;</button></form><div class="md-search__output"><div class="md-search__scrollwrap" data-md-scrollfix><div class="md-search-result" data-md-component="result"><div class="md-search-result__meta">Type to start searching</div><ol class="md-search-result__list"></ol></div></div></div></div></div>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
         
       </div>
       
       <div class="md-flex__cell md-flex__cell--shrink">
         <div class="md-header-nav__source">
-          <a href="https://github.com/siddhi-io/siddhi/" title="Go to repository" class="md-source" data-md-source="github"><div class="md-source__icon"><svg viewBox="0 0 24 24" width="24" height="24"><use xlink:href="#__github" width="24" height="24"></use></svg></div><div class="md-source__repository">Siddhi</div></a>
+          
+
+
+  
+
+<a href="https://github.com/siddhi-io/siddhi/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Siddhi
+  </div>
+</a>
         </div>
       </div>
       
     </div>
   </nav>
-</header><div class="md-container">
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+        
 
   
 
@@ -206,7 +359,16 @@
         
     </div>
   </div>
-</nav><main class="md-main"><div class="md-main__inner md-grid" data-md-component="container"><div class="md-sidebar md-sidebar--primary" data-md-component="navigation"><div class="md-sidebar__scrollwrap"><div class="md-sidebar__inner"><nav class="md-nav md-nav--primary" data-md-level="0">
+</nav>
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
     <label class="md-nav__title md-nav__title--site" for="__drawer">
       <a href="http://siddhi.io/en/next/" title="Siddhi"
          class="md-nav__button md-logo">
@@ -218,7 +380,23 @@
     </label>
     
       <div class="md-nav__source">
-        <a href="https://github.com/siddhi-io/siddhi/" title="Go to repository" class="md-source" data-md-source="github"><div class="md-source__icon"><svg viewBox="0 0 24 24" width="24" height="24"><use xlink:href="#__github" width="24" height="24"></use></svg></div><div class="md-source__repository">Siddhi</div></a>
+        
+
+
+  
+
+<a href="https://github.com/siddhi-io/siddhi/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Siddhi
+  </div>
+</a>
       </div>
     
     <ul class="md-nav__list" data-md-scrollfix>
@@ -410,7 +588,528 @@
       Query Guide
     </a>
     
-      <nav class="md-nav md-nav--secondary"><label class="md-nav__title" for="__toc">On this page</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="#introduction" title="Introduction" class="md-nav__link">Introduction</a></li><li class="md-nav__item"><a href="#siddhi-application" title="Siddhi Application" class="md-nav__link">Siddhi Application</a></li><li class="md-nav__item"><a href="#stream" title="Stream" class="md-nav__link">Stream</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#source" title="Source" class="md-nav__link">Source</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#source-mapper" title="Source Mapper" class="md-nav__link">Source Mapper</a></li></ul></nav></li><li class="md-nav__item"><a href="#sink" title="Sink" class="md-nav__link">Sink</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#distributed-sink" title="Distributed Sink" class="md-nav__link">Distributed Sink</a></li><li class="md-nav__item"><a href="#sink-mapper" title="Sink Mapper" class="md-nav__link">Sink Mapper</a></li></ul></nav></li><li class="md-nav__item"><a href="#error-handling" title="Error Handling" class="md-nav__link">Error Handling</a></li></ul></nav></li><li class="md-nav__item"><a href="#query" title="Query" class="md-nav__link">Query</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#value" title="Value" class="md-nav__link">Value</a></li><li class="md-nav__item"><a href="#select" title="Select" class="md-nav__link">Select</a></li><li class="md-nav__item"><a href="#function" title="Function" class="md-nav__link">Function</a></li><li class="md-nav__item"><a href="#filter" title="Filter" class="md-nav__link">Filter</a></li><li class="md-nav__item"><a href="#window" title="Window" class="md-nav__link">Window</a></li><li class="md-nav__item"><a href="#event-type" title="Event Type" class="md-nav__link">Event Type</a></li><li class="md-nav__item"><a href="#aggregate-function" title="Aggregate Function" class="md-nav__link">Aggregate Function</a></li><li class="md-nav__item"><a href="#group-by" title="Group By" class="md-nav__link">Group By</a></li><li class="md-nav__item"><a href="#having" title="Having" class="md-nav__link">Having</a></li><li class="md-nav__item"><a href="#order-by" title="Order By" class="md-nav__link">Order By</a></li><li class="md-nav__item"><a href="#limit-offset" title="Limit &amp; Offset" class="md-nav__link">Limit &amp; Offset</a></li><li class="md-nav__item"><a href="#join-stream" title="Join (Stream)" class="md-nav__link">Join (Stream)</a></li><li class="md-nav__item"><a href="#pattern" title="Pattern" class="md-nav__link">Pattern</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#counting-pattern" title="Counting Pattern" class="md-nav__link">Counting Pattern</a></li><li class="md-nav__item"><a href="#logical-patterns" title="Logical Patterns" class="md-nav__link">Logical Patterns</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#detecting-non-occurring-events" title="Detecting Non-occurring Events" class="md-nav__link">Detecting Non-occurring Events</a></li></ul></nav></li></ul></nav></li><li class="md-nav__item"><a href="#sequence" title="Sequence" class="md-nav__link">Sequence</a></li><li class="md-nav__item"><a href="#output-rate-limiting" title="Output rate limiting" class="md-nav__link">Output rate limiting</a></li></ul></nav></li><li class="md-nav__item"><a href="#partition" title="Partition" class="md-nav__link">Partition</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#inner-stream" title="Inner Stream" class="md-nav__link">Inner Stream</a></li><li class="md-nav__item"><a href="#purge-partition" title="Purge Partition" class="md-nav__link">Purge Partition</a></li></ul></nav></li><li class="md-nav__item"><a href="#table" title="Table" class="md-nav__link">Table</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#store" title="Store" class="md-nav__link">Store</a></li><li class="md-nav__item"><a href="#insert" title="Insert" class="md-nav__link">Insert</a></li><li class="md-nav__item"><a href="#join-table" title="Join (Table)" class="md-nav__link">Join (Table)</a></li><li class="md-nav__item"><a href="#delete" title="Delete" class="md-nav__link">Delete</a></li><li class="md-nav__item"><a href="#update" title="Update" class="md-nav__link">Update</a></li><li class="md-nav__item"><a href="#update-or-insert" title="Update or Insert" class="md-nav__link">Update or Insert</a></li><li class="md-nav__item"><a href="#in" title="In" class="md-nav__link">In</a></li></ul></nav></li><li class="md-nav__item"><a href="#named-aggregation" title="Named Aggregation" class="md-nav__link">Named Aggregation</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#distributed-aggregation" title="Distributed Aggregation" class="md-nav__link">Distributed Aggregation</a></li><li class="md-nav__item"><a href="#join-aggregation" title="Join (Aggregation)" class="md-nav__link">Join (Aggregation)</a></li></ul></nav></li><li class="md-nav__item"><a href="#named-window" title="Named Window" class="md-nav__link">Named Window</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#insert_1" title="Insert" class="md-nav__link">Insert</a></li><li class="md-nav__item"><a href="#join-window" title="Join (Window)" class="md-nav__link">Join (Window)</a></li><li class="md-nav__item"><a href="#from" title="From" class="md-nav__link">From</a></li></ul></nav></li><li class="md-nav__item"><a href="#trigger" title="Trigger" class="md-nav__link">Trigger</a></li><li class="md-nav__item"><a href="#script" title="Script" class="md-nav__link">Script</a></li><li class="md-nav__item"><a href="#store-query" title="Store Query" class="md-nav__link">Store Query</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#tablewindow-select" title="(Table/Window) Select" class="md-nav__link">(Table/Window) Select</a></li><li class="md-nav__item"><a href="#aggregation-select" title="(Aggregation) Select" class="md-nav__link">(Aggregation) Select</a></li><li class="md-nav__item"><a href="#insert_2" title="Insert" class="md-nav__link">Insert</a></li><li class="md-nav__item"><a href="#delete_1" title="Delete" class="md-nav__link">Delete</a></li><li class="md-nav__item"><a href="#update_1" title="Update" class="md-nav__link">Update</a></li><li class="md-nav__item"><a href="#update-or-insert_1" title="Update or Insert" class="md-nav__link">Update or Insert</a></li></ul></nav></li><li class="md-nav__item"><a href="#extensions" title="Extensions" class="md-nav__link">Extensions</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#writing-custom-extensions" title="Writing Custom Extensions" class="md-nav__link">Writing Custom Extensions</a></li></ul></nav></li><li class="md-nav__item"><a href="#configuring-and-monitoring-siddhi-applications" title="Configuring and Monitoring Siddhi Applications" class="md-nav__link">Configuring and Monitoring Siddhi Applications</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#multi-threading-and-asynchronous-processing" title="Multi-threading and Asynchronous Processing" class="md-nav__link">Multi-threading and Asynchronous Processing</a></li><li class="md-nav__item"><a href="#statistics" title="Statistics" class="md-nav__link">Statistics</a></li><li class="md-nav__item"><a href="#event-playback" title="Event Playback" class="md-nav__link">Event Playback</a></li></ul></nav></li></ul></nav>
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">On this page</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" title="Introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#siddhi-application" title="Siddhi Application" class="md-nav__link">
+    Siddhi Application
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stream" title="Stream" class="md-nav__link">
+    Stream
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#source" title="Source" class="md-nav__link">
+    Source
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#source-mapper" title="Source Mapper" class="md-nav__link">
+    Source Mapper
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sink" title="Sink" class="md-nav__link">
+    Sink
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distributed-sink" title="Distributed Sink" class="md-nav__link">
+    Distributed Sink
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sink-mapper" title="Sink Mapper" class="md-nav__link">
+    Sink Mapper
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-handling" title="Error Handling" class="md-nav__link">
+    Error Handling
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#query" title="Query" class="md-nav__link">
+    Query
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#value" title="Value" class="md-nav__link">
+    Value
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#select" title="Select" class="md-nav__link">
+    Select
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function" title="Function" class="md-nav__link">
+    Function
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter" title="Filter" class="md-nav__link">
+    Filter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#window" title="Window" class="md-nav__link">
+    Window
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event-type" title="Event Type" class="md-nav__link">
+    Event Type
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aggregate-function" title="Aggregate Function" class="md-nav__link">
+    Aggregate Function
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#group-by" title="Group By" class="md-nav__link">
+    Group By
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#having" title="Having" class="md-nav__link">
+    Having
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#order-by" title="Order By" class="md-nav__link">
+    Order By
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limit-offset" title="Limit &amp; Offset" class="md-nav__link">
+    Limit &amp; Offset
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#join-stream" title="Join (Stream)" class="md-nav__link">
+    Join (Stream)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern" title="Pattern" class="md-nav__link">
+    Pattern
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#counting-pattern" title="Counting Pattern" class="md-nav__link">
+    Counting Pattern
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logical-patterns" title="Logical Patterns" class="md-nav__link">
+    Logical Patterns
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#detecting-non-occurring-events" title="Detecting Non-occurring Events" class="md-nav__link">
+    Detecting Non-occurring Events
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sequence" title="Sequence" class="md-nav__link">
+    Sequence
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-rate-limiting" title="Output rate limiting" class="md-nav__link">
+    Output rate limiting
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#partition" title="Partition" class="md-nav__link">
+    Partition
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inner-stream" title="Inner Stream" class="md-nav__link">
+    Inner Stream
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#purge-partition" title="Purge Partition" class="md-nav__link">
+    Purge Partition
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#table" title="Table" class="md-nav__link">
+    Table
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#store" title="Store" class="md-nav__link">
+    Store
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insert" title="Insert" class="md-nav__link">
+    Insert
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#join-table" title="Join (Table)" class="md-nav__link">
+    Join (Table)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete" title="Delete" class="md-nav__link">
+    Delete
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update" title="Update" class="md-nav__link">
+    Update
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-or-insert" title="Update or Insert" class="md-nav__link">
+    Update or Insert
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#in" title="In" class="md-nav__link">
+    In
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#named-aggregation" title="Named Aggregation" class="md-nav__link">
+    Named Aggregation
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distributed-aggregation" title="Distributed Aggregation" class="md-nav__link">
+    Distributed Aggregation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#join-aggregation" title="Join (Aggregation)" class="md-nav__link">
+    Join (Aggregation)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#named-window" title="Named Window" class="md-nav__link">
+    Named Window
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#insert_1" title="Insert" class="md-nav__link">
+    Insert
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#join-window" title="Join (Window)" class="md-nav__link">
+    Join (Window)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#from" title="From" class="md-nav__link">
+    From
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trigger" title="Trigger" class="md-nav__link">
+    Trigger
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#script" title="Script" class="md-nav__link">
+    Script
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#store-query" title="Store Query" class="md-nav__link">
+    Store Query
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tablewindow-select" title="(Table/Window) Select" class="md-nav__link">
+    (Table/Window) Select
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aggregation-select" title="(Aggregation) Select" class="md-nav__link">
+    (Aggregation) Select
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insert_2" title="Insert" class="md-nav__link">
+    Insert
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete_1" title="Delete" class="md-nav__link">
+    Delete
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update_1" title="Update" class="md-nav__link">
+    Update
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-or-insert_1" title="Update or Insert" class="md-nav__link">
+    Update or Insert
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extensions" title="Extensions" class="md-nav__link">
+    Extensions
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#writing-custom-extensions" title="Writing Custom Extensions" class="md-nav__link">
+    Writing Custom Extensions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-and-monitoring-siddhi-applications" title="Configuring and Monitoring Siddhi Applications" class="md-nav__link">
+    Configuring and Monitoring Siddhi Applications
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multi-threading-and-asynchronous-processing" title="Multi-threading and Asynchronous Processing" class="md-nav__link">
+    Multi-threading and Asynchronous Processing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#statistics" title="Statistics" class="md-nav__link">
+    Statistics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event-playback" title="Event Playback" class="md-nav__link">
+    Event Playback
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -685,8 +1384,551 @@
 
       
     </ul>
-  </nav>  </div></div></div><div class="md-sidebar md-sidebar--secondary" data-md-component="toc"><div class="md-sidebar__scrollwrap"><div class="md-sidebar__inner"><nav class="md-nav md-nav--secondary"><label class="md-nav__title" for="__toc">On this page</label><ul class="md-nav__list" data-md-scrollfix><li class="md-nav__item"><a href="#introduction" title="Introduction" class="md-nav__link">Introduction</a></li><li class="md-nav__item"><a href="#siddhi-application" title="Siddhi Application" class="md-nav__link">Siddhi Application</a></li><li class="md-nav__item"><a href="#stream" title="Stream" class="md-nav__link">Stream</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#source" title="Source" class="md-nav__link">Source</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#source-mapper" title="Source Mapper" class="md-nav__link">Source Mapper</a></li></ul></nav></li><li class="md-nav__item"><a href="#sink" title="Sink" class="md-nav__link">Sink</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#distributed-sink" title="Distributed Sink" class="md-nav__link">Distributed Sink</a></li><li class="md-nav__item"><a href="#sink-mapper" title="Sink Mapper" class="md-nav__link">Sink Mapper</a></li></ul></nav></li><li class="md-nav__item"><a href="#error-handling" title="Error Handling" class="md-nav__link">Error Handling</a></li></ul></nav></li><li class="md-nav__item"><a href="#query" title="Query" class="md-nav__link">Query</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#value" title="Value" class="md-nav__link">Value</a></li><li class="md-nav__item"><a href="#select" title="Select" class="md-nav__link">Select</a></li><li class="md-nav__item"><a href="#function" title="Function" class="md-nav__link">Function</a></li><li class="md-nav__item"><a href="#filter" title="Filter" class="md-nav__link">Filter</a></li><li class="md-nav__item"><a href="#window" title="Window" class="md-nav__link">Window</a></li><li class="md-nav__item"><a href="#event-type" title="Event Type" class="md-nav__link">Event Type</a></li><li class="md-nav__item"><a href="#aggregate-function" title="Aggregate Function" class="md-nav__link">Aggregate Function</a></li><li class="md-nav__item"><a href="#group-by" title="Group By" class="md-nav__link">Group By</a></li><li class="md-nav__item"><a href="#having" title="Having" class="md-nav__link">Having</a></li><li class="md-nav__item"><a href="#order-by" title="Order By" class="md-nav__link">Order By</a></li><li class="md-nav__item"><a href="#limit-offset" title="Limit &amp; Offset" class="md-nav__link">Limit &amp; Offset</a></li><li class="md-nav__item"><a href="#join-stream" title="Join (Stream)" class="md-nav__link">Join (Stream)</a></li><li class="md-nav__item"><a href="#pattern" title="Pattern" class="md-nav__link">Pattern</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#counting-pattern" title="Counting Pattern" class="md-nav__link">Counting Pattern</a></li><li class="md-nav__item"><a href="#logical-patterns" title="Logical Patterns" class="md-nav__link">Logical Patterns</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#detecting-non-occurring-events" title="Detecting Non-occurring Events" class="md-nav__link">Detecting Non-occurring Events</a></li></ul></nav></li></ul></nav></li><li class="md-nav__item"><a href="#sequence" title="Sequence" class="md-nav__link">Sequence</a></li><li class="md-nav__item"><a href="#output-rate-limiting" title="Output rate limiting" class="md-nav__link">Output rate limiting</a></li></ul></nav></li><li class="md-nav__item"><a href="#partition" title="Partition" class="md-nav__link">Partition</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#inner-stream" title="Inner Stream" class="md-nav__link">Inner Stream</a></li><li class="md-nav__item"><a href="#purge-partition" title="Purge Partition" class="md-nav__link">Purge Partition</a></li></ul></nav></li><li class="md-nav__item"><a href="#table" title="Table" class="md-nav__link">Table</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#store" title="Store" class="md-nav__link">Store</a></li><li class="md-nav__item"><a href="#insert" title="Insert" class="md-nav__link">Insert</a></li><li class="md-nav__item"><a href="#join-table" title="Join (Table)" class="md-nav__link">Join (Table)</a></li><li class="md-nav__item"><a href="#delete" title="Delete" class="md-nav__link">Delete</a></li><li class="md-nav__item"><a href="#update" title="Update" class="md-nav__link">Update</a></li><li class="md-nav__item"><a href="#update-or-insert" title="Update or Insert" class="md-nav__link">Update or Insert</a></li><li class="md-nav__item"><a href="#in" title="In" class="md-nav__link">In</a></li></ul></nav></li><li class="md-nav__item"><a href="#named-aggregation" title="Named Aggregation" class="md-nav__link">Named Aggregation</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#distributed-aggregation" title="Distributed Aggregation" class="md-nav__link">Distributed Aggregation</a></li><li class="md-nav__item"><a href="#join-aggregation" title="Join (Aggregation)" class="md-nav__link">Join (Aggregation)</a></li></ul></nav></li><li class="md-nav__item"><a href="#named-window" title="Named Window" class="md-nav__link">Named Window</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#insert_1" title="Insert" class="md-nav__link">Insert</a></li><li class="md-nav__item"><a href="#join-window" title="Join (Window)" class="md-nav__link">Join (Window)</a></li><li class="md-nav__item"><a href="#from" title="From" class="md-nav__link">From</a></li></ul></nav></li><li class="md-nav__item"><a href="#trigger" title="Trigger" class="md-nav__link">Trigger</a></li><li class="md-nav__item"><a href="#script" title="Script" class="md-nav__link">Script</a></li><li class="md-nav__item"><a href="#store-query" title="Store Query" class="md-nav__link">Store Query</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#tablewindow-select" title="(Table/Window) Select" class="md-nav__link">(Table/Window) Select</a></li><li class="md-nav__item"><a href="#aggregation-select" title="(Aggregation) Select" class="md-nav__link">(Aggregation) Select</a></li><li class="md-nav__item"><a href="#insert_2" title="Insert" class="md-nav__link">Insert</a></li><li class="md-nav__item"><a href="#delete_1" title="Delete" class="md-nav__link">Delete</a></li><li class="md-nav__item"><a href="#update_1" title="Update" class="md-nav__link">Update</a></li><li class="md-nav__item"><a href="#update-or-insert_1" title="Update or Insert" class="md-nav__link">Update or Insert</a></li></ul></nav></li><li class="md-nav__item"><a href="#extensions" title="Extensions" class="md-nav__link">Extensions</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#writing-custom-extensions" title="Writing Custom Extensions" class="md-nav__link">Writing Custom Extensions</a></li></ul></nav></li><li class="md-nav__item"><a href="#configuring-and-monitoring-siddhi-applications" title="Configuring and Monitoring Siddhi Applications" class="md-nav__link">Configuring and Monitoring Siddhi Applications</a><nav class="md-nav"><ul class="md-nav__list"><li class="md-nav__item"><a href="#multi-threading-and-asynchronous-processing" title="Multi-threading and Asynchronous Processing" class="md-nav__link">Multi-threading and Asynchronous Processing</a></li><li class="md-nav__item"><a href="#statistics" title="Statistics" class="md-nav__link">Statistics</a></li><li class="md-nav__item"><a href="#event-playback" title="Event Playback" class="md-nav__link">Event Playback</a></li></ul></nav></li></ul></nav></div></div></div><div class="md-content"><article class="md-content__inner md-typeset">
-  <a href="https://github.com/siddhi-io/www/edit/master/en/docs/docs/query-guide.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a><h1 id="siddhi-51-streaming-sql-guide">Siddhi 5.1 Streaming SQL Guide<a class="headerlink" href="#siddhi-51-streaming-sql-guide" title="Permanent link">&para;</a></h1>
+  </nav>  
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">On this page</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" title="Introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#siddhi-application" title="Siddhi Application" class="md-nav__link">
+    Siddhi Application
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stream" title="Stream" class="md-nav__link">
+    Stream
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#source" title="Source" class="md-nav__link">
+    Source
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#source-mapper" title="Source Mapper" class="md-nav__link">
+    Source Mapper
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sink" title="Sink" class="md-nav__link">
+    Sink
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distributed-sink" title="Distributed Sink" class="md-nav__link">
+    Distributed Sink
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sink-mapper" title="Sink Mapper" class="md-nav__link">
+    Sink Mapper
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-handling" title="Error Handling" class="md-nav__link">
+    Error Handling
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#query" title="Query" class="md-nav__link">
+    Query
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#value" title="Value" class="md-nav__link">
+    Value
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#select" title="Select" class="md-nav__link">
+    Select
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function" title="Function" class="md-nav__link">
+    Function
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#filter" title="Filter" class="md-nav__link">
+    Filter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#window" title="Window" class="md-nav__link">
+    Window
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event-type" title="Event Type" class="md-nav__link">
+    Event Type
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aggregate-function" title="Aggregate Function" class="md-nav__link">
+    Aggregate Function
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#group-by" title="Group By" class="md-nav__link">
+    Group By
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#having" title="Having" class="md-nav__link">
+    Having
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#order-by" title="Order By" class="md-nav__link">
+    Order By
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limit-offset" title="Limit &amp; Offset" class="md-nav__link">
+    Limit &amp; Offset
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#join-stream" title="Join (Stream)" class="md-nav__link">
+    Join (Stream)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pattern" title="Pattern" class="md-nav__link">
+    Pattern
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#counting-pattern" title="Counting Pattern" class="md-nav__link">
+    Counting Pattern
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logical-patterns" title="Logical Patterns" class="md-nav__link">
+    Logical Patterns
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#detecting-non-occurring-events" title="Detecting Non-occurring Events" class="md-nav__link">
+    Detecting Non-occurring Events
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sequence" title="Sequence" class="md-nav__link">
+    Sequence
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-rate-limiting" title="Output rate limiting" class="md-nav__link">
+    Output rate limiting
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#partition" title="Partition" class="md-nav__link">
+    Partition
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inner-stream" title="Inner Stream" class="md-nav__link">
+    Inner Stream
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#purge-partition" title="Purge Partition" class="md-nav__link">
+    Purge Partition
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#table" title="Table" class="md-nav__link">
+    Table
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#store" title="Store" class="md-nav__link">
+    Store
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insert" title="Insert" class="md-nav__link">
+    Insert
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#join-table" title="Join (Table)" class="md-nav__link">
+    Join (Table)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete" title="Delete" class="md-nav__link">
+    Delete
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update" title="Update" class="md-nav__link">
+    Update
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-or-insert" title="Update or Insert" class="md-nav__link">
+    Update or Insert
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#in" title="In" class="md-nav__link">
+    In
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#named-aggregation" title="Named Aggregation" class="md-nav__link">
+    Named Aggregation
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#distributed-aggregation" title="Distributed Aggregation" class="md-nav__link">
+    Distributed Aggregation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#join-aggregation" title="Join (Aggregation)" class="md-nav__link">
+    Join (Aggregation)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#named-window" title="Named Window" class="md-nav__link">
+    Named Window
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#insert_1" title="Insert" class="md-nav__link">
+    Insert
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#join-window" title="Join (Window)" class="md-nav__link">
+    Join (Window)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#from" title="From" class="md-nav__link">
+    From
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trigger" title="Trigger" class="md-nav__link">
+    Trigger
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#script" title="Script" class="md-nav__link">
+    Script
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#store-query" title="Store Query" class="md-nav__link">
+    Store Query
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tablewindow-select" title="(Table/Window) Select" class="md-nav__link">
+    (Table/Window) Select
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aggregation-select" title="(Aggregation) Select" class="md-nav__link">
+    (Aggregation) Select
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insert_2" title="Insert" class="md-nav__link">
+    Insert
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete_1" title="Delete" class="md-nav__link">
+    Delete
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update_1" title="Update" class="md-nav__link">
+    Update
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#update-or-insert_1" title="Update or Insert" class="md-nav__link">
+    Update or Insert
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extensions" title="Extensions" class="md-nav__link">
+    Extensions
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#writing-custom-extensions" title="Writing Custom Extensions" class="md-nav__link">
+    Writing Custom Extensions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-and-monitoring-siddhi-applications" title="Configuring and Monitoring Siddhi Applications" class="md-nav__link">
+    Configuring and Monitoring Siddhi Applications
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multi-threading-and-asynchronous-processing" title="Multi-threading and Asynchronous Processing" class="md-nav__link">
+    Multi-threading and Asynchronous Processing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#statistics" title="Statistics" class="md-nav__link">
+    Statistics
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#event-playback" title="Event Playback" class="md-nav__link">
+    Event Playback
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+  
+                
+                  <a href="https://github.com/siddhi-io/www/edit/master/en/docs/docs/query-guide.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="siddhi-51-streaming-sql-guide">Siddhi 5.1 Streaming SQL Guide<a class="headerlink" href="#siddhi-51-streaming-sql-guide" title="Permanent link">&para;</a></h1>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <p>Siddhi Streaming SQL is designed to process streams of events. It can be used to
 implement streaming data integration, streaming analytics, rule based and
@@ -1775,7 +3017,7 @@ insert &lt;ouput event type&gt;? into &lt;output stream&gt;</code></pre>
 <p>Filter conditions can be applied both before and/or after the window.</p>
 </div>
 <p><strong>Inbuilt windows</strong></p>
-<p>Following are some inbuilt Siddhi windows, for more windows refer <a href="http://siddhi.io/extensions/">execution extensions</a>.</p>
+<p>Following are some inbuilt Siddhi windows, for more windows refer <a href="../extensions/">execution extensions</a>.</p>
 <table>
 <thead>
 <tr>
@@ -1785,51 +3027,51 @@ insert &lt;ouput event type&gt;? into &lt;output stream&gt;</code></pre>
 </thead>
 <tbody>
 <tr>
-<td><a target="_blank" href="http://siddhi.io/api/latest/#time-window">time</a></td>
+<td><a target="_blank" href="../api/latest/#time-window">time</a></td>
 <td>Retains events based on time in a sliding manner.</td>
 </tr>
 <tr>
-<td><a target="_blank" href="http://siddhi.io/api/latest/#timebatch-window">timeBatch</a></td>
+<td><a target="_blank" href="../api/latest/#timebatch-window">timeBatch</a></td>
 <td>Retains events based on time in a tumbling/batch manner.</td>
 </tr>
 <tr>
-<td><a target="_blank" href="http://siddhi.io/api/latest/#length-window">length</a></td>
+<td><a target="_blank" href="../api/latest/#length-window">length</a></td>
 <td>Retains events based on number of events in a sliding manner.</td>
 </tr>
 <tr>
-<td><a target="_blank" href="http://siddhi.io/api/latest/#lengthbatch-window">lengthBatch</a></td>
+<td><a target="_blank" href="../api/latest/#lengthbatch-window">lengthBatch</a></td>
 <td>Retains events based on number of events in a tumbling/batch manner.</td>
 </tr>
 <tr>
-<td><a target="_blank" href="http://siddhi.io/api/latest/#timelength-window">timeLength</a></td>
+<td><a target="_blank" href="../api/latest/#timelength-window">timeLength</a></td>
 <td>Retains events based on time and number of events in a sliding manner.</td>
 </tr>
 <tr>
-<td><a target="_blank" href="http://siddhi.io/api/latest/#session-window">session</a></td>
+<td><a target="_blank" href="../api/latest/#session-window">session</a></td>
 <td>Retains events for each session based on session key.</td>
 </tr>
 <tr>
-<td><a target="_blank" href="http://siddhi.io/api/latest/#batch-window">batch</a></td>
+<td><a target="_blank" href="../api/latest/#batch-window">batch</a></td>
 <td>Retains events of last arrived event chunk.</td>
 </tr>
 <tr>
-<td><a target="_blank" href="http://siddhi.io/api/latest/#sort-window">sort</a></td>
+<td><a target="_blank" href="../api/latest/#sort-window">sort</a></td>
 <td>Retains top-k or bottom-k events based on a parameter value.</td>
 </tr>
 <tr>
-<td><a target="_blank" href="http://siddhi.io/api/latest/#cron-window">cron</a></td>
+<td><a target="_blank" href="../api/latest/#cron-window">cron</a></td>
 <td>Retains events based on cron time in a tumbling/batch manner.</td>
 </tr>
 <tr>
-<td><a target="_blank" href="http://siddhi.io/api/latest/#externaltime-window">externalTime</a></td>
+<td><a target="_blank" href="../api/latest/#externaltime-window">externalTime</a></td>
 <td>Retains events based on event time value passed as a parameter in a sliding manner.</td>
 </tr>
 <tr>
-<td><a target="_blank" href="http://siddhi.io/api/latest/#externaltimebatch-window">externalTimeBatch</a></td>
+<td><a target="_blank" href="../api/latest/#externaltimebatch-window">externalTimeBatch</a></td>
 <td>Retains events based on event time value passed as a parameter in a a tumbling/batch manner.</td>
 </tr>
 <tr>
-<td><a target="_blank" href="http://siddhi.io/api/latest/#delay-window">delay</a></td>
+<td><a target="_blank" href="../api/latest/#delay-window">delay</a></td>
 <td>Retains events and delays the output by the given time period in a sliding manner.</td>
 </tr>
 </tbody>
@@ -2015,7 +3257,7 @@ insert expired events into DelayedTempStream</code></pre>
 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This is just to illustrate how expired events work, it is recommended to use <a href="http://siddhi.io/api/latest/#delay-window">delay</a> window for usecases where we need to delay events by a given time period.</p>
+<p>This is just to illustrate how expired events work, it is recommended to use <a href="../api/latest/#delay-window">delay</a> window for usecases where we need to delay events by a given time period.</p>
 </div>
 <h3 id="aggregate-function">Aggregate Function<a class="headerlink" href="#aggregate-function" title="Permanent link">&para;</a></h3>
 <p>Aggregate functions are pre-configured aggregation operations that can consumes zero, or more parameters from multiple events and always produce a single value as result. They can be only used in the query projection (as part of the <code>select</code> clause). When a query comprises a window, the aggregation will be contained to the events in the window, and when it does not have a window, the aggregation is performed from the first event the query has received.</p>
@@ -2030,7 +3272,7 @@ insert into &lt;output stream&gt;;</code></pre>
 
 <p>Here <code>&lt;aggregate function&gt;</code> uniquely identifies the aggregate function. The <code>&lt;parameter&gt;</code> defined input parameters the aggregate function can accept. The input parameters can be attributes, constant values, results of other functions or aggregate functions, results of mathematical or logical expressions, or time values. The number and type of parameters an aggregate function accepts depend on the function itself.</p>
 <p><strong>Inbuilt aggregate functions</strong></p>
-<p>Following are some inbuilt aggregation functions, for more functions refer <a href="http://siddhi.io/extensions/">execution extensions</a>.</p>
+<p>Following are some inbuilt aggregation functions, for more functions refer <a href="../extensions/">execution extensions</a>.</p>
 <table>
 <thead>
 <tr>
@@ -2040,37 +3282,37 @@ insert into &lt;output stream&gt;;</code></pre>
 </thead>
 <tbody>
 <tr>
-<td><a target="_blank" href="http://siddhi.io/api/latest/#sum-aggregate-function">sum</a></td>
+<td><a target="_blank" href="../api/latest/#sum-aggregate-function">sum</a></td>
 <td>Calculates the sum from a set of values.</td>
 </tr>
 <tr>
-<td><a target="_blank" href="http://siddhi.io/api/latest/#count-aggregate-function">count</a></td>
+<td><a target="_blank" href="../api/latest/#count-aggregate-function">count</a></td>
 <td>Calculates the count from a set of values.</td>
 </tr>
 <tr>
-<td><a target="_blank" href="http://siddhi.io/api/latest/#distinctcount-aggregate-function">distinctCount</a></td>
+<td><a target="_blank" href="../api/latest/#distinctcount-aggregate-function">distinctCount</a></td>
 <td>Calculates the distinct count based on a parameter from a set of values.</td>
 </tr>
 <tr>
-<td><a target="_blank" href="http://siddhi.io/api/latest/#avg-aggregate-function">avg</a></td>
+<td><a target="_blank" href="../api/latest/#avg-aggregate-function">avg</a></td>
 <td>Calculates the average from a set of values.</td>
 </tr>
 <tr>
-<td><a target="_blank" href="http://siddhi.io/api/latest/#max-aggregate-function">max</a></td>
+<td><a target="_blank" href="../api/latest/#max-aggregate-function">max</a></td>
 <td>Finds the maximum value from a set of values.</td>
 </tr>
 <tr>
-<td><a target="_blank" href="http://siddhi.io/api/latest/#min-aggregate-function">max</a></td>
+<td><a target="_blank" href="../api/latest/#min-aggregate-function">max</a></td>
 <td>Finds the minimum value from a set of values.</td>
 </tr>
 </tbody>
 </table>
-<p>| <a target="_blank" href="http://siddhi.io/api/latest/#maxforever-aggregate-function">maxForever</a> | Finds the maximum value from all events throughout its lifetime irrespective of the windows. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#minforever-aggregate-function">minForever</a> | Finds the minimum value from all events throughout its lifetime irrespective of the windows. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#stddev-aggregate-function">stdDev</a> | Calculates the standard deviation from a set of values. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#and-aggregate-function">and</a> | Calculates boolean and from a set of values. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#or-aggregate-function">or</a> | Calculates boolean or from a set of values. |
-| <a target="_blank" href="http://siddhi.io/api/latest/#unionset-aggregate-function">unionSet</a> | Calculates union as a Set from a set of values. |</p>
+<p>| <a target="_blank" href="../api/latest/#maxforever-aggregate-function">maxForever</a> | Finds the maximum value from all events throughout its lifetime irrespective of the windows. |
+| <a target="_blank" href="../api/latest/#minforever-aggregate-function">minForever</a> | Finds the minimum value from all events throughout its lifetime irrespective of the windows. |
+| <a target="_blank" href="../api/latest/#stddev-aggregate-function">stdDev</a> | Calculates the standard deviation from a set of values. |
+| <a target="_blank" href="../api/latest/#and-aggregate-function">and</a> | Calculates boolean and from a set of values. |
+| <a target="_blank" href="../api/latest/#or-aggregate-function">or</a> | Calculates boolean or from a set of values. |
+| <a target="_blank" href="../api/latest/#unionset-aggregate-function">unionSet</a> | Calculates union as a Set from a set of values. |</p>
 <p><strong>Example</strong></p>
 <p>Query to calculate average, maximum, and minimum values on <code>temp</code> attribute of the <code>TempStream</code> stream in a sliding manner, from the events arrived over the last 10 minutes and to produce outputs <code>avgTemp</code>, <code>maxTemp</code> and <code>minTemp</code> respectively to the <code>AvgTempStream</code> output stream.</p>
 <pre class="codehilite"><code class="language-sql linenums">from TempStream#window.time(10 min)
@@ -2080,9 +3322,9 @@ insert into AvgTempStream;</code></pre>
 <h3 id="group-by">Group By<a class="headerlink" href="#group-by" title="Permanent link">&para;</a></h3>
 <p>Group By provides a way of grouping events based on one or more specified attributes to perform aggregate operations.</p>
 <p><strong>Purpose</strong></p>
-<p>Group By allows users to aggregate values of multiple events based on the given group by fields.</p>
+<p>Group By allows users to aggregate values of multiple events based on the given group-by fields.</p>
 <p><strong>Syntax</strong></p>
-<p>The syntax for the Group By aggregate function is as follows.</p>
+<p>The syntax for the Group By with aggregate function is as follows.</p>
 <pre class="codehilite"><code class="language-sql linenums">from &lt;input stream&gt;#window.&lt;window name&gt;(...)
 select &lt;aggregate function&gt;( &lt;parameter&gt;, &lt;parameter&gt;, ...) as &lt;attribute1 name&gt;, &lt;attribute2 name&gt;, ...
 group by &lt;attribute1 name&gt;, &lt;attribute2 name&gt;, ...
@@ -2090,16 +3332,16 @@ insert into &lt;output stream&gt;;</code></pre>
 
 <p>Here the group by attributes should be defined next to the <code>group by</code> keyword separating each attribute by a comma.</p>
 <p><strong>Example</strong></p>
-<p>Query to calculate the average <code>temp</code> per <code>roomNo</code> and <code>deviceID</code> combination, from the <code>TempStream</code> stream those have arrived during the last 10 minutes time window in a sliding manner.</p>
+<p>Query to calculate the average <code>temp</code> per <code>roomNo</code> and <code>deviceID</code> combination, from the events arrived from <code>TempStream</code> stream, during the last 10 minutes time-window in a sliding manner.</p>
 <pre class="codehilite"><code class="language-sql linenums">from TempStream#window.time(10 min)
-select avg(temp) as avgTemp, roomNo, deviceID
+select roomNo, deviceID, avg(temp) as avgTemp
 group by roomNo, deviceID
 insert into AvgTempStream;</code></pre>
 
 <h3 id="having">Having<a class="headerlink" href="#having" title="Permanent link">&para;</a></h3>
-<p>Having provide a way of filtering events based queries output stream attributes based on a specified condition. It accepts any type of condition including a combination of functions and/or attributes that produces a Boolean result. Having allow events to passthrough if the condition results in <code>true</code>, and drops if it results in a <code>false</code>.  </p>
+<p>Having provide a way of filtering events based on a specified condition of the query output stream attributes. It accepts any type of condition including a combination of functions and/or attributes that produces a Boolean result. Having, allow events to passthrough if the condition results in <code>true</code>, and drops if it results in a <code>false</code>.  </p>
 <p><strong>Purpose</strong></p>
-<p>Having helps to select the events that are relevant for the output based on the attributes those are produced by the <code>select</code> statement and omit the ones that are not.</p>
+<p>Having helps to select the events that are relevant for the output based on the attributes those are produced by the <code>select</code> clause and omit the ones that are not.</p>
 <p><strong>Syntax</strong></p>
 <p>The syntax for the Having clause is as follows.</p>
 <pre class="codehilite"><code class="language-sql linenums">from &lt;input stream&gt;#window.&lt;window name&gt;( ... )
@@ -2108,16 +3350,19 @@ group by &lt;attribute1 name&gt;, &lt;attribute2 name&gt; ...
 having &lt;condition&gt;
 insert into &lt;output stream&gt;;</code></pre>
 
-<p>Here the having <code>&lt;condition&gt;</code> should be defined next to the <code>having</code> keyword and having can be used with or without <code>group by</code> statement.</p>
+<p>Here the having <code>&lt;condition&gt;</code> should be defined next to the <code>having</code> keyword and having can be used with or without <code>group by</code> clause.</p>
 <p><strong>Example</strong></p>
-<p>The following query calculates the average temperature per room for the last 10 minutes, and alerts if it exceeds 30 degrees.
+<p>Query to calculate the average <code>temp</code> per <code>roomNo</code> for the last 10 minutes, and alerts if the <code>avgTemp</code> exceeds 30 degrees.</p>
 <pre class="codehilite"><code class="language-sql linenums">from TempStream#window.time(10 min)
-select avg(temp) as avgTemp, roomNo
+select roomNo, avg(temp) as avgTemp
 group by roomNo
 having avgTemp &gt; 30
-insert into AlertStream;</code></pre></p>
+insert into AlertStream;</code></pre>
+
 <h3 id="order-by">Order By<a class="headerlink" href="#order-by" title="Permanent link">&para;</a></h3>
-<p>Order By, orders the query results in ascending and or descending order based on one or more specified attributes.  When order by is defined based on an attribute, Siddhi by default orders the events in ascending order, and by adding <code>desc</code> keyword, the events can be ordered in descending order.</p>
+<p>Order By, orders the query results in ascending and or descending order based on one or more specified attributes. When an attribute is used for order by, by default Siddhi orders the events in ascending order of that attribute's value, and by adding <code>desc</code> keyword, the events can be ordered in descending order. When more than one attribute is defined the attributes defined towards the left will have more precedence in ordering than the ones defined in right.  </p>
+<p><strong>Purpose</strong></p>
+<p>Order By helps to sort the events in the outputs chunks produced by the query. Order By will be more helpful for batch windows, and queries where they output many of event together then for sliding window use cases where the output will be one or few events at a time.</p>
 <p><strong>Syntax</strong></p>
 <p>The syntax for the Order By clause is as follows:</p>
 <pre class="codehilite"><code class="language-sql linenums">from &lt;input stream&gt;#window.&lt;window name&gt;( ... )
@@ -2127,44 +3372,44 @@ having &lt;condition&gt;
 order by &lt;attribute1 name&gt; (asc|desc)?, &lt;attribute2 name&gt; (asc|desc)?, ...
 insert into &lt;output stream&gt;;</code></pre>
 
-<p>Here the group by attributes should be defined next to the <code>group by</code> keyword separating each by a comma, and optionally specifying event ordering using <code>asc</code> or <code>desc</code> keywords.</p>
+<p>Here the order by attributes should be defined next to the <code>order by</code> keyword separating each by a comma, and optionally specifying the event ordering using <code>asc</code> (default) or <code>desc</code> keywords.</p>
 <p><strong>Example</strong></p>
-<p>Query to calculate the average temperature per <code>roomNo</code> and <code>deviceID</code> combination for every 10 minutes, and order the generated output events in ascending order by <code>avgTemp</code> and then in descending order by <code>roomNo</code> (if the more than one event have the same <code>avgTemp</code> value).</p>
+<p>Query to calculate the average <code>temp</code> per <code>roomNo</code> and <code>deviceID</code> combination on every 10 minutes batches, and order the generated output events in ascending order by <code>avgTemp</code> and then by descending order of <code>roomNo</code> (if the more than one event have the same <code>avgTemp</code> value).</p>
 <pre class="codehilite"><code class="language-sql linenums">from TempStream#window.timeBatch(10 min)
-select avg(temp) as avgTemp, roomNo, deviceID
+select roomNo, deviceID, avg(temp) as avgTemp
 group by roomNo, deviceID
 order by avgTemp, roomNo desc
 insert into AvgTempStream;</code></pre>
 
 <h3 id="limit-offset">Limit &amp; Offset<a class="headerlink" href="#limit-offset" title="Permanent link">&para;</a></h3>
-<p>When events are emitted as a batch, offset allows you to offset beginning of the output event batch and limit allows you to limit the number of events in the batch from the defined offset.
-With this users can specify which set of events need be emitted.</p>
+<p>These provide a way to select the number of events (via limit) from the desired index (by specifying an offset) from the output event chunks produced by the query.</p>
+<p><strong>Purpose</strong></p>
+<p>Limit &amp; Offset helps to output only the selected set of events from large event batches. This will be more useful with <code>Order By</code> clause where one can order the output for topK, bottomK, or even to paginate through the dataset by obtaining a set of events from the middle.   </p>
 <p><strong>Syntax</strong></p>
-<p>The syntax for the Limit &amp; Offset clause is as follows:</p>
+<p>The syntax for the Limit &amp; Offset clauses is as follows:</p>
 <pre class="codehilite"><code class="language-sql linenums">from &lt;input stream&gt;#window.&lt;window name&gt;( ... )
 select &lt;aggregate function&gt;( &lt;parameter&gt;, &lt;parameter&gt;, ...) as &lt;attribute1 name&gt;, &lt;attribute2 name&gt;, ...
 group by &lt;attribute1 name&gt;, &lt;attribute2 name&gt; ...
 having &lt;condition&gt;
 order by &lt;attribute1 name&gt; (asc | desc)?, &lt;attribute2 name&gt; (&lt;ascend/descend&gt;)?, ...
-limit &lt;positive interger&gt;?
-offset &lt;positive interger&gt;?
+limit &lt;positive integer&gt;?
+offset &lt;positive integer&gt;?
 insert into &lt;output stream&gt;;</code></pre>
 
-<p>Here both <code>limit</code> and <code>offset</code> are optional where <code>limit</code> by default output all the events and <code>offset</code> by default set to <code>0</code>.</p>
-<p><strong>Example</strong></p>
-<p>The following query calculates the average temperature per <code>roomNo</code> and <code>deviceID</code> combination, for events that arrive at the <code>TempStream</code> stream
-for every 10 minutes and emits two events with highest average temperature.</p>
+<p>Here both <code>limit</code> and <code>offset</code> are optional, when <code>limit</code> is omitted the query will output all the events, and when <code>offset</code> is omitted <code>0</code> is taken as the default offset value.</p>
+<p><strong>Example 1</strong></p>
+<p>Query to calculate the average <code>temp</code> per <code>roomNo</code> and <code>deviceID</code> combination for every 10 minutes batches, from the events arriving at the <code>TempStream</code> stream, and emit only two events having the highest <code>avgTemp</code> value.</p>
 <pre class="codehilite"><code class="language-sql linenums">from TempStream#window.timeBatch(10 min)
-select avg(temp) as avgTemp, roomNo, deviceID
+select roomNo, deviceID, avg(temp) as avgTemp
 group by roomNo, deviceID
 order by avgTemp desc
 limit 2
 insert into HighestAvgTempStream;</code></pre>
 
-<p>The following query calculates the average temperature per <code>roomNo</code> and <code>deviceID</code> combination, for events that arrive at the <code>TempStream</code> stream
-for every 10 minutes and emits third, forth and fifth events when sorted in descending order based on their average temperature.</p>
+<p><strong>Example 2</strong>
+Query to calculate the average <code>temp</code> per <code>roomNo</code> and <code>deviceID</code> combination for every 10 minutes batches, for events that arriving at the <code>TempStream</code> stream, and emits only the third, forth and fifth events when sorted in descending order based on their <code>avgTemp</code> value.</p>
 <pre class="codehilite"><code class="language-sql linenums">from TempStream#window.timeBatch(10 min)
-select avg(temp) as avgTemp, roomNo, deviceID
+select roomNo, deviceID, avg(temp) as avgTemp
 group by roomNo, deviceID
 order by avgTemp desc
 limit 3
@@ -2887,14 +4132,14 @@ define table RoomTypeTable ( roomNo int, type string );</code></pre>
 <li><a target="_blank" href="https://siddhi-io.github.io/siddhi-store-mongodb">MongoDB</a></li>
 </ul>
 <p><strong>Caching in Memory</strong></p>
-<p>Store tables are persisted in high i/o latency storage. Hence, it is beneficial to maintain a cache of store tables in 
-memory which has low latency. Siddhi supports caching of store tables through <code>@cache</code> annotation. It should be used 
+<p>Store tables are persisted in high i/o latency storage. Hence, it is beneficial to maintain a cache of store tables in
+memory which has low latency. Siddhi supports caching of store tables through <code>@cache</code> annotation. It should be used
 within <code>@store</code> annotation in a nested fashion as shown below.</p>
-<pre class="codehilite"><code class="language-sql linenums">@store(type='store_type', static.option.key1='static_option_value1', static.option.keyN='static_option_valueN', 
+<pre class="codehilite"><code class="language-sql linenums">@store(type='store_type', static.option.key1='static_option_value1', static.option.keyN='static_option_valueN',
         @cache(size=10, cache.policy=FIFO))
 define table TableName (attribute1 Type1, attributeN TypeN);</code></pre>
 
-<p>In the above example we have defined a cache with a maximum size of 10 rows with first-in first-out cache policy. 
+<p>In the above example we have defined a cache with a maximum size of 10 rows with first-in first-out cache policy.
 The following table contains the cache parameters.</p>
 <table>
 <thead>
@@ -2933,36 +4178,36 @@ The following table contains the cache parameters.</p>
 </tbody>
 </table>
 <p>The following is an example of caching with expiry.</p>
-<pre class="codehilite"><code class="language-sql linenums">@store(type='store_type', static.option.key1='static_option_value1', static.option.keyN='static_option_valueN', 
+<pre class="codehilite"><code class="language-sql linenums">@store(type='store_type', static.option.key1='static_option_value1', static.option.keyN='static_option_valueN',
         @cache(size=10, retention.period=5 min, purge.interval=1 min))
 define table TableName (attribute1 Type1, attributeN TypeN);</code></pre>
 
-<p>The above query will define and create a store table of given type and a cache with a max size of 10. A thread will be 
+<p>The above query will define and create a store table of given type and a cache with a max size of 10. A thread will be
 created every 1 minute which will check the entire cache table for rows added earlier than 5 minutes and expire them.</p>
 <p><strong>Cache Behaviour</strong></p>
-<p>Cache behaviour changes profoundly based on the size of store table relative to maximum cache size defined. Since 
+<p>Cache behaviour changes profoundly based on the size of store table relative to maximum cache size defined. Since
 memory is a limited resource we don't allow cache to grow more than the user specified maximum size.</p>
 <p>Case 1 \
-When store table is smaller than maximum cache size defined we keep the entire content of store table in memory in 
-cache table. All types of queries are routed to cache and cache results are directly sent out to the user. Every time 
-the expiry thread finds that cache events were loaded earlier than retention period entire cache table will be deleted 
-and reloaded from store. In addition, when siddhi app starts, the entire store table, if it exists, will be loaded into 
+When store table is smaller than maximum cache size defined we keep the entire content of store table in memory in
+cache table. All types of queries are routed to cache and cache results are directly sent out to the user. Every time
+the expiry thread finds that cache events were loaded earlier than retention period entire cache table will be deleted
+and reloaded from store. In addition, when siddhi app starts, the entire store table, if it exists, will be loaded into
 cache.</p>
 <p>Case 2 \
-When store table is bigger than maximum cache size only the queries satisfying the following 2 conditions are sent to 
+When store table is bigger than maximum cache size only the queries satisfying the following 2 conditions are sent to
 cache.
 1. the query contains all the primary keys of the table
-2. the query contains only == type of comparison. </p>
-<p>Only for the above types of queries we can establish if the cache is hit or missed. Subject to these conditions if the 
+2. the query contains only == type of comparison.</p>
+<p>Only for the above types of queries we can establish if the cache is hit or missed. Subject to these conditions if the
 cache is hit the results from cache is sent out. If the cache is missed then store is checked.</p>
-<p>If the above conditions are not met by a query it is directly sent to the store table. In addition, please note that 
-if the store table is pre existing when siddhi app is started and it is bigger than max cache size, cache preloading 
-will take only upto max size and put it in cache. For example if store table has 50 entries when the siddhi app is 
+<p>If the above conditions are not met by a query it is directly sent to the store table. In addition, please note that
+if the store table is pre existing when siddhi app is started and it is bigger than max cache size, cache preloading
+will take only upto max size and put it in cache. For example if store table has 50 entries when the siddhi app is
 defined with cache size of 10, only the first 10 rows will be cached.</p>
-<p>When cache miss occurs we look for the answer in the store table. If there is a result from the store table it is added 
+<p>When cache miss occurs we look for the answer in the store table. If there is a result from the store table it is added
 to cache. One element from cache is removed using the user given cache policy prior to adding.</p>
-<p>When it comes to cache expiry, since not all rows are loaded at once in this case there may be some expired rows and 
-some unexpired rows at any time. So for every purge interval a thread will be generated which looks for rows that were 
+<p>When it comes to cache expiry, since not all rows are loaded at once in this case there may be some expired rows and
+some unexpired rows at any time. So for every purge interval a thread will be generated which looks for rows that were
 loaded earlier than retention period and delete only those rows. No reloading is done.</p>
 <p><strong>Operators on Table (and Store)</strong></p>
 <p>The following operators can be performed on tables (and stores).</p>
@@ -3961,7 +5206,7 @@ select symbol, price
 insert into StockQuote</code></pre>
 
 <p><strong>Available Extensions</strong></p>
-<p>Siddhi currently has several pre written extensions that are available <strong><a target="_blank" href="http://siddhi.io/extensions/">here</a></strong></p>
+<p>Siddhi currently has several pre written extensions that are available <strong><a target="_blank" href="../extensions/">here</a></strong></p>
 <p><em>We value your contribution on improving Siddhi and its extensions further.</em></p>
 <h3 id="writing-custom-extensions">Writing Custom Extensions<a class="headerlink" href="#writing-custom-extensions" title="Permanent link">&para;</a></h3>
 <p>Custom extensions can be written in order to cater use case specific logic that are not available in Siddhi out of the box or as an existing extension.</p>
@@ -4532,8 +5777,23 @@ The following elements are configured with this annotation.</p>
 </table>
 <p>e.g., In the following example, the Siddhi system time is incremented by two seconds if no events arrive for a time interval of 100 milliseconds.</p>
 <p><code>@app:playback(idle.time = '100 millisecond', increment = '2 sec')</code></p>
+                
+                  
+                
+              
   <a href="#" class="cd-top text--replace js-cd-top">Top</a>
-</article></div></div></main>
+
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
 <footer class="md-footer">
   
     <div class="md-footer-nav">
@@ -4582,8 +5842,37 @@ The following elements are configured with this annotation.</p>
         &copy;2019 <a href="https://wso2.com/">WSO2</a>
       </div>
       
-      <div class="md-footer-social"><link rel="stylesheet" href="../../assets/fonts/font-awesome.css"> <a href="https://github.com/siddhi-io/siddhi" class="md-footer-social__link fa fa-github"></a>  <a href="https://medium.com/siddhi-io" class="md-footer-social__link fa fa-medium"></a>  <a href="https://www.linkedin.com/groups/13553064" class="md-footer-social__link fa fa-linkedin"></a> </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
+    
+      <a href="https://github.com/siddhi-io/siddhi" class="md-footer-social__link fa fa-github"></a>
+    
+      <a href="https://medium.com/siddhi-io" class="md-footer-social__link fa fa-medium"></a>
+    
+      <a href="https://www.linkedin.com/groups/13553064" class="md-footer-social__link fa fa-linkedin"></a>
+    
+  </div>
+
       
     </div>
   </div>
-</footer></div><script src="../../assets/javascripts/application.b260a35d.js"></script><script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script><script src="../../assets/lib/highlightjs/highlight.min.js"></script><script src="../../assets/js/theme.js"></script><script src="../../assets/lib/backtotop/js/util.js"></script><script src="../../assets/lib/backtotop/js/main.js"></script></body></html>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.245445c6.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+        <script src="../../assets/lib/highlightjs/highlight.min.js"></script>
+      
+        <script src="../../assets/js/theme.js"></script>
+      
+        <script src="../../assets/lib/backtotop/js/util.js"></script>
+      
+        <script src="../../assets/lib/backtotop/js/main.js"></script>
+      
+    
+  </body>
+</html>
