@@ -18,6 +18,7 @@ Name | Description | Latest <br/>Tested <br/>Version
 <a target="_blank" href="https://siddhi-io.github.io/siddhi-execution-reorder">execution-reorder</a> | Orders out-of-order event arrivals using algorithms such as K-Slack and alpha K-Stack. |  [5.0.0](https://mvnrepository.com/artifact/io.siddhi.extension.execution.reorder/siddhi-execution-reorder/5.0.0)
 <a target="_blank" href="https://siddhi-io.github.io/siddhi-execution-unique">execution-unique</a> | Retains and process unique events based on the given parameters. |[5.0.0](https://mvnrepository.com/artifact/io.siddhi.extension.execution.unique/siddhi-execution-unique/5.0.0)
 <a target="_blank" href="https://siddhi-io.github.io/siddhi-execution-streamingml">execution-streamingml</a> | Performs streaming machine learning (clustering, classification and regression) on event streams. | [2.0.1](https://mvnrepository.com/artifact/io.siddhi.extension.execution.streamingml/siddhi-execution-streamingml/2.0.1)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-execution-tensorflow">execution-tensorflow</a> | provides support for running pre-built TensorFlow models. | [2.0.1](https://mvnrepository.com/artifact/io.siddhi.extension.execution.tensorflow/siddhi-execution-tensorflow/2.0.1)
 
 ### Input/Output Extensions
 
