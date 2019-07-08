@@ -7,6 +7,11 @@
     "v3.x"
   ],
   "all": {
+    "v5.1": {
+      "doc": "v5.1",
+      "download": "v5.1",
+      "notes": "v5.1"
+    },
     "v5.0": {
       "doc": "v5.0",
       "download": "v5.0",

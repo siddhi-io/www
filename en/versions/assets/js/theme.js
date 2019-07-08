@@ -122,7 +122,7 @@ request.onload = function() {
           var previousVersions = [];
 
           Object.keys(data.all).forEach(function(key, index){
-              if ((key !== data.current) && (key !== data['pre-release'])) {
+              if ((key !== data.current) && (key !== data.next)) {
 
                   var docLinkType = data.all[key].doc.split(':')[0];
                   var docTarget = '_self';
@@ -182,7 +182,8 @@ request.onload = function() {
 
           // Pre-release version update
           document.getElementById('pre-release-version-documentation-link')
-              .setAttribute('href', docSetUrl + 'next/docs');
+              .setAttribute('href', docSetUrl + data.next + '/docs');
+          document.getElementById('pre-release-version-name').innerHTML =  data.next;
       }
 
   } else {
