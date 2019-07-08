@@ -1,4 +1,4 @@
-# Siddhi 5.1 Quick Start Guide
+# Siddhi 5.2 Quick Start Guide
 
 Siddhi is a cloud native Streaming and Complex Event Processing engine that understands Streaming SQL queries in order to capture events from diverse data sources, process them, detect complex conditions, and publish output to various endpoints in real time.
 

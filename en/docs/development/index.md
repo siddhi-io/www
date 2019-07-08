@@ -1,4 +1,4 @@
-# Siddhi 5.1 Development Guide
+# Siddhi 5.2 Development Guide
 
 ## Obtaining and Building Project Source code 
 

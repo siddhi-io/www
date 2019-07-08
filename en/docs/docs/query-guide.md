@@ -1,4 +1,4 @@
-# Siddhi 5.1 Streaming SQL Guide
+# Siddhi 5.2 Streaming SQL Guide
 
 ## Introduction
 

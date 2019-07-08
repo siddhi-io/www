@@ -1,4 +1,4 @@
-# Building Siddhi 5.1 Repos
+# Building Siddhi 5.2 Repos
 
 ## Building Java Repos
 

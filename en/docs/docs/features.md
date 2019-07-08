@@ -1,4 +1,4 @@
-#Siddhi 5.1 Features
+#Siddhi 5.2 Features
 
 - Retrieving Events 
     - From various data sources supporting multiple message formats
