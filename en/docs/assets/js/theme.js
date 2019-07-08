@@ -183,6 +183,7 @@ request.onload = function() {
           // Pre-release version update
           document.getElementById('pre-release-version-documentation-link')
               .setAttribute('href', docSetUrl + data.next + '/docs');
+          document.getElementById('pre-release-version-name').innerHTML =  data.next;
       }
 
   } else {

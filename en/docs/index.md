@@ -49,7 +49,7 @@ These are the latest changes that have yet to be released.
 <table>
     <tbody>
         <tr>
-            <th>next</th>
+            <th id="pre-release-version-name">next</th>
             <td>
                 <a id="pre-release-version-documentation-link">Documentation</a>
             </td>
