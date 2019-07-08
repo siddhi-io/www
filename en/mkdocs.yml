@@ -18,7 +18,7 @@
 site_name: Siddhi
 site_description: Cloud Native Stream Processor
 site_author: WSO2
-site_url: http://siddhi.io
+site_url: http://siddhi.io/en/next/
 
 # Repository
 repo_name: Siddhi
@@ -120,11 +120,11 @@ nav:
     - Siddhi Kubernetes Microservice: docs/siddhi-as-a-kubernetes-microservice.md
     - Configuration Guide: docs/config-guide.md
   - Community:
-    - /community/
+    - Community: /community/
   - Development:
     - Introduction: development/index.md
     - Source: development/source.md
     - Build: development/build.md
     - Architecture: development/architecture.md
   - License:
-    - /license/
+    - License: /license/
