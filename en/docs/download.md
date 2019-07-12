@@ -1,19 +1,19 @@
-# Siddhi 5.1 Download Siddhi
+# Siddhi 5.1.0 Download Siddhi
 
 Select the appropriate Siddhi distribution for your use case. 
 
 ##Siddhi Distribution 
 
-Siddhi 5.1 ([Distribution 0.1.0](https://github.com/siddhi-io/distribution/releases/tag/v0.1.0))
+Siddhi 5.1.0 ([Distribution 5.1.0-m1](https://github.com/siddhi-io/distribution/releases/tag/v5.1.0-m1))
 
-* [Siddhi Tooling](https://github.com/siddhi-io/distribution/releases/download/v0.1.0/siddhi-tooling-0.1.0.zip)
-* [Siddhi Runner](https://github.com/siddhi-io/distribution/releases/download/v0.1.0/siddhi-runner-0.1.0.zip) 
+* [Siddhi Tooling](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-m1/siddhi-tooling-5.1.0-m1.zip)
+* [Siddhi Runner](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-m1/siddhi-runner-5.1.0-m1.zip) 
 
 Refer the user guide to use [Siddhi as a Local Microservice](../deployment/siddhi-as-a-local-microservice/)
 
 ##Siddhi Docker 
 
-Siddhi 5.1 (based on Distribution 0.1.0)
+Siddhi 5.1.0 (based on Distribution 5.1.0-m1)
 
 * [Siddhi Tooling](https://hub.docker.com/r/siddhiio/siddhi-tooling) 
 * [Siddhi Runner - Alpine](https://hub.docker.com/r/siddhiio/siddhi-runner-alpine) 
@@ -23,9 +23,10 @@ Refer the user guide to use [Siddhi as a Docker Microservice](../deployment/sidd
 
 ##Siddhi Kubernetes 
 
-Siddhi 5.1 (based on Distribution 0.1.1)
+Siddhi 5.1.0 (based on Distribution 5.1.0-m1)
 
-* [Siddhi CRD](https://github.com/siddhi-io/siddhi-operator.git)
+* [Siddhi CRD](https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-m1/00-prereqs.yaml)
+* [Siddhi Operator](https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-m1/01-siddhi-operator.yaml)
 
 Refer the user guide to use [Siddhi as Kubernetes Microservice](../deployment/siddhi-as-a-kubernetes-microservice/)
 
