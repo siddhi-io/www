@@ -108,36 +108,6 @@ html .md-typeset .superfences-tabs > label:hover {
     color: #009688;
 }
 
-.md-typeset h1[id]:target:before {
-    margin-top: -6.9rem;
-    padding-top: 6.9rem;
-}
-
-.md-typeset h2[id]:target:before {
-    margin-top: -6.8rem;
-    padding-top: 6.8rem;
-}
-
-.md-typeset h3[id]:target:before {
-    margin-top: -6.8rem;
-    padding-top: 6.8rem;
-}
-
-.md-typeset h4[id]:target:before {
-    margin-top: -6.8rem;
-    padding-top: 6.8rem;
-}
-
-.md-typeset h5[id]:target:before {
-    margin-top: -7.1rem;
-    padding-top: 7.1rem;
-}
-
-.md-typeset h6[id]:target:before {
-    margin-top: -7.1rem;
-    padding-top: 7.1rem;
-}
-
 .md-search__input {
     background-color: #dedede;
 }
@@ -624,4 +594,3 @@ html .md-typeset .superfences-tabs > label:hover {
 .md-nav__button img {
     width: 150%;
 }
-
