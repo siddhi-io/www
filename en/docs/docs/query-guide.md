@@ -1918,7 +1918,8 @@ A partition key can be generated in the following two methods:
     **Syntax**
 
     <pre>
-    partition with ( &lt;expression> of &lt;stream name>, &lt;expression> of &lt;stream name>, ... )
+    partition with ( &lt;expression> of &lt;stream name>, 
+                     &lt;expression> of &lt;stream name>, ... )
     begin
         &lt;query>
         &lt;query>
@@ -1943,9 +1944,10 @@ A partition key can be generated in the following two methods:
     This is created by mapping each partition key to a range condition of the input streams numerical attribute.
 
     **Syntax**
-
     <pre>
-    partition with ( &lt;condition> as &lt;partition key> or &lt;condition> as &lt;partition key> or ... of &lt;stream name>, ... )
+    partition with ( &lt;condition> as &lt;partition key> or 
+                     &lt;condition> as &lt;partition key> or ... of &lt;stream name>,
+                     ... )
     begin
         &lt;query>
         &lt;query>
@@ -2635,6 +2637,7 @@ The following parameters are configured in a table definition:
 ```sql
   define window SensorWindow (name string, value float, roomNo int, deviceID string) timeBatch(1 second);
 ```
+
 + Returning an output only when events expire from the window.
 
     In this query, the event type of the window is `expired events`. Therefore, it only returns the events that have expired from the window as the output.
@@ -2642,7 +2645,6 @@ The following parameters are configured in a table definition:
 ```sql
   define window SensorWindow (name string, value float, roomNo int, deviceID string) timeBatch(1 second) output expired events;
 ```
-
 
 **Operators on Named Windows**
 
