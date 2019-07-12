@@ -52,6 +52,7 @@ Name | Description | Latest <br/>Tested <br/>Version
 :-- | :-- | :--
 <a target="_blank" href="https://siddhi-io.github.io/siddhi-store-rdbms">store-rdbms</a> | Persist and retrieve events to/from RDBMS databases such as MySQL, MS SQL, Postgresql, H2 and Oracle. | [6.0.1](https://mvnrepository.com/artifact/io.siddhi.extension.store.rdbms/siddhi-store-rdbms/6.0.1)
 <a target="_blank" href="https://siddhi-io.github.io/siddhi-store-mongodb">store-mongodb</a> | Persist and retrieve events to/from MongoDB. | [2.0.1](https://mvnrepository.com/artifact/io.siddhi.extension.store.mongodb/siddhi-store-mongodb/2.0.1)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-store-redis">store-redis</a> | Persist and retrieve events to/from Redis. | [3.1.0](https://mvnrepository.com/artifact/io.siddhi.extension.store.redis/siddhi-store-redis/3.1.0)
 <a target="_blank" href="https://siddhi-io.github.io/siddhi-store-elasticsearch">store-elasticsearch</a> | Persist and retrieve events to/from Elasticsearch. | [3.0.0](https://mvnrepository.com/artifact/io.siddhi.extension.store.elasticsearch/siddhi-store-elasticsearch/3.0.0)
 
 ### Script Extensions
