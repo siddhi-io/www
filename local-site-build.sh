@@ -82,7 +82,11 @@ build_landing(){
 
    build_landing
 
+   #for mac
    LC_ALL=C find ../dist/ -type f -exec sed -i '' s/_latest_version_/$CURRENT_VERSION/g {} +
+
+   #for linux
+   LC_ALL=C find ../dist/ -type f | xargs sed -i  "s/_latest_version_/$CURRENT_VERSION/g"
 
    git checkout gh-pages
    rm -rf ./*
