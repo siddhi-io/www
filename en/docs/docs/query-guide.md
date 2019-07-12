@@ -1553,6 +1553,7 @@ from (every)? <event reference>=<input stream>[<filter condition>] ->
 select <event reference>.<attribute name>, <event reference>.<attribute name>, ...
 insert into <output stream>
 ```
+
 | Items| Description |
 |-------------------|-------------|
 | `->` | This is used to indicate an event that should be following another event. The subsequent event does not necessarily have to occur immediately after the preceding event. The condition to be met by the preceding event should be added before the sign, and the condition to be met by the subsequent event should be added after the sign. |
