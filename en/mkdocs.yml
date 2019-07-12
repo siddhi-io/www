@@ -56,6 +56,8 @@ extra:
     link: https://github.com/siddhi-io/siddhi
   - type: medium
     link: https://medium.com/siddhi-io
+  - type: twitter
+    link: https://twitter.com/siddhi_io
   - type: linkedin
     link: https://www.linkedin.com/groups/13553064
   site_version: v5.2
