@@ -1,4 +1,4 @@
-# Siddhi 5.1 Config Guide
+# Siddhi 5.2 Config Guide
 
 This section covers the following.
 

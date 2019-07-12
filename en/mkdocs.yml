@@ -56,9 +56,11 @@ extra:
     link: https://github.com/siddhi-io/siddhi
   - type: medium
     link: https://medium.com/siddhi-io
+  - type: twitter
+    link: https://twitter.com/siddhi_io
   - type: linkedin
     link: https://www.linkedin.com/groups/13553064
-  site_version: v5.1
+  site_version: v5.2
 
 # Google Analytics
 google_analytics:
@@ -112,7 +114,7 @@ nav:
     - Query Guide: docs/query-guide.md
     - Siddhi APIs:
       - latest: docs/api/latest.md
-      - 5.1.0: docs/api/5.1.0.md
+      - 5.2.0: docs/api/5.2.0.md
     - Extensions: docs/extensions.md
     - Siddhi Java library: docs/siddhi-as-a-java-library.md
     - Siddhi Local Microservice: docs/siddhi-as-a-local-microservice.md

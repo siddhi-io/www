@@ -1,4 +1,4 @@
-# Siddhi 5.1 Architecture 
+# Siddhi 5.2 Architecture 
 
 Siddhi is an open source, cloud-native, stream processing and complex event processing engine. It can be utilized in any of the following ways:
 

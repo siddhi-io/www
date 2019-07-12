@@ -1,4 +1,4 @@
-# Siddhi 5.1 User Guide
+# Siddhi 5.2 User Guide
 
 This section provides information on using and running Siddhi.
 

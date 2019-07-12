@@ -1,4 +1,4 @@
-# Siddhi 5.1 as a Kubernetes Microservice
+# Siddhi 5.2 as a Kubernetes Microservice
 
 This section provides information on running [Siddhi Apps](../introduction/#siddhi-application) natively in Kubernetes via Siddhi Kubernetes Operator. 
 

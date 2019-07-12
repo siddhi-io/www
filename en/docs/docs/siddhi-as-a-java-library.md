@@ -1,4 +1,4 @@
-# Siddhi 5.1 as a Java library
+# Siddhi 5.2 as a Java library
 
 Siddhi can be used as a library in any Java program (including in OSGi runtimes) just by adding Siddhi and its extension jars as dependencies.
 

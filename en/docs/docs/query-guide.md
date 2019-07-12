@@ -1,4 +1,4 @@
-# Siddhi 5.1 Streaming SQL Guide
+# Siddhi 5.2 Streaming SQL Guide
 
 ## Introduction
 
@@ -672,11 +672,11 @@ from <input>
 The following parameters are used to configure a stream definition.
 
 | Parameter&nbsp;&nbsp;&nbsp;&nbsp;| Description |
-| ------------- |-------------|
-| `query name`  | The name of the query. Since naming the query (i.e the `@name('<query name>')` annotation) is optional, when the name is not provided Siddhi assign a system generated name for the query. |
-| `input`   | Defines the means of event consumption via [streams](#stream), [named-windows](#named-window), [tables](#table), and/or [named-aggregations](#named-aggregations), and defines the processing logic using [filters](#filter), [windows](#window), [stream-functions](#stream-function), [joins](#join), [patterns](#pattern) and [sequences](#sequence). |
-| `projection`    | Generates output event attributes using [select](#select), [functions](#function), [aggregation-functions](#aggregation-function), and [group by](#group-by) operations, and filters the generated the output using [having](#having), [limit & offset](#limit-offset), [order by](#order-by), and [output rate limiting](#output-rate-limiting) operations before sending them out. Here the projection is optional and when it is omitted all the input events will be sent to the output as it is. |
-|`output action`| Defines output action (such as `insert into`, `update`, `delete`, etc) that needs to be performed by the generated events on a [stream](#stream), [named-window](#named-window), or [table](#table)  |
+|----------------|-------------|
+| `query name`   | The name of the query. Since naming the query (i.e the `@name('<query name>')` annotation) is optional, when the name is not provided Siddhi assign a system generated name for the query. |
+| `input`        | Defines the means of event consumption via [streams](#stream), [named-windows](#named-window), [tables](#table), and/or [named-aggregations](#named-aggregations), and defines the processing logic using [filters](#filter), [windows](#window), [stream-functions](#stream-function), [joins](#join), [patterns](#pattern) and [sequences](#sequence). |
+| `projection`   | Generates output event attributes using [select](#select), [functions](#function), [aggregation-functions](#aggregation-function), and [group by](#group-by) operations, and filters the generated the output using [having](#having), [limit & offset](#limit-offset), [order by](#order-by), and [output rate limiting](#output-rate-limiting) operations before sending them out. Here the projection is optional and when it is omitted all the input events will be sent to the output as it is. |
+| `output action`| Defines output action (such as `insert into`, `update`, `delete`, etc) that needs to be performed by the generated events on a [stream](#stream), [named-window](#named-window), or [table](#table)  |
 
 **Example**
 
@@ -692,6 +692,7 @@ insert into RoomTempStream;
 from RoomTempStream
 insert into AnotherRoomTempStream;
 ```
+
 !!! tip "Inferred Stream"
     Here, the `RoomTempStream` and `AnotherRoomTempStream` streams are an inferred streams, which means their stream definitions are inferred from the queries and they can be used same as any other defined stream without any restrictions.  
 
@@ -1552,6 +1553,7 @@ from (every)? <event reference>=<input stream>[<filter condition>] ->
 select <event reference>.<attribute name>, <event reference>.<attribute name>, ...
 insert into <output stream>
 ```
+
 | Items| Description |
 |-------------------|-------------|
 | `->` | This is used to indicate an event that should be following another event. The subsequent event does not necessarily have to occur immediately after the preceding event. The condition to be met by the preceding event should be added before the sign, and the condition to be met by the subsequent event should be added after the sign. |
@@ -1916,7 +1918,8 @@ A partition key can be generated in the following two methods:
     **Syntax**
 
     <pre>
-    partition with ( &lt;expression> of &lt;stream name>, &lt;expression> of &lt;stream name>, ... )
+    partition with ( &lt;expression> of &lt;stream name>, 
+                     &lt;expression> of &lt;stream name>, ... )
     begin
         &lt;query>
         &lt;query>
@@ -1941,9 +1944,10 @@ A partition key can be generated in the following two methods:
     This is created by mapping each partition key to a range condition of the input streams numerical attribute.
 
     **Syntax**
-
     <pre>
-    partition with ( &lt;condition> as &lt;partition key> or &lt;condition> as &lt;partition key> or ... of &lt;stream name>, ... )
+    partition with ( &lt;condition> as &lt;partition key> or 
+                     &lt;condition> as &lt;partition key> or ... of &lt;stream name>,
+                     ... )
     begin
         &lt;query>
         &lt;query>
@@ -2699,6 +2703,7 @@ The following parameters are configured in a table definition:
 ```sql
   define window SensorWindow (name string, value float, roomNo int, deviceID string) timeBatch(1 second);
 ```
+
 + Returning an output only when events expire from the window.
 
     In this query, the event type of the window is `expired events`. Therefore, it only returns the events that have expired from the window as the output.
@@ -2706,7 +2711,6 @@ The following parameters are configured in a table definition:
 ```sql
   define window SensorWindow (name string, value float, roomNo int, deviceID string) timeBatch(1 second) output expired events;
 ```
-
 
 **Operators on Named Windows**
 
