@@ -2300,7 +2300,6 @@ This Siddhi Application calculates the maximum temperature within the last 5 min
 ```sql
 define window FiveMinTempWindow (roomNo int, temp double) time(5 min);
 
-
 from FiveMinTempWindow
 select max(temp) as maxValue, roomNo
 insert into MaxSensorReadingStream;
