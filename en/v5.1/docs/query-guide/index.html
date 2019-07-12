@@ -2634,6 +2634,15 @@ The following parameters are used to configure a stream definition.</p>
 </table>
 <p><strong>Example</strong></p>
 <p>A query consumes events from the <code>TempStream</code> stream and output only the <code>roomNo</code> and <code>temp</code> attributes to the <code>RoomTempStream</code> stream, from which another query consumes the events and sends all its attributes to <code>AnotherRoomTempStream</code> stream.</p>
+<pre class="codehilite"><code class="language-sql linenums">define stream TempStream (deviceID long, roomNo int, temp double);
+
+from TempStream
+select roomNo, temp
+insert into RoomTempStream;
+
+from RoomTempStream
+insert into AnotherRoomTempStream;</code></pre>
+
 <div class="admonition tip">
 <p class="admonition-title">Inferred Stream</p>
 <p>Here, the <code>RoomTempStream</code> and <code>AnotherRoomTempStream</code> streams are an inferred streams, which means their stream definitions are inferred from the queries and they can be used same as any other defined stream without any restrictions.  </p>
@@ -3503,18 +3512,39 @@ insert into outputStream ;    </pre></p>
 <p>Patterns allow you to identify trends in events over a time period.</p>
 <p><strong>Syntax</strong></p>
 <p>The following is the syntax for a pattern query:</p>
-<p><pre class="codehilite"><code class="language-sql linenums">from (every)? &lt;event reference&gt;=&lt;input stream&gt;[&lt;filter condition&gt;] -&gt;
+<pre class="codehilite"><code class="language-sql linenums">from (every)? &lt;event reference&gt;=&lt;input stream&gt;[&lt;filter condition&gt;] -&gt;
     (every)? &lt;event reference&gt;=&lt;input stream [&lt;filter condition&gt;] -&gt;
     ...
     (within &lt;time gap&gt;)?     
 select &lt;event reference&gt;.&lt;attribute name&gt;, &lt;event reference&gt;.&lt;attribute name&gt;, ...
 insert into &lt;output stream&gt;</code></pre>
-| Items| Description |
-|-------------------|-------------|
-| <code>-&gt;</code> | This is used to indicate an event that should be following another event. The subsequent event does not necessarily have to occur immediately after the preceding event. The condition to be met by the preceding event should be added before the sign, and the condition to be met by the subsequent event should be added after the sign. |
-| <code>&lt;event reference&gt;</code> | This allows you to add a reference to the the matching event so that it can be accessed later for further processing. |
-| <code>(within &lt;time gap&gt;)?</code> | The <code>within</code> clause is optional. It defines the time duration within which all the matching events should occur. |
-| <code>every</code> | <code>every</code> is an optional keyword. This defines whether the event matching should be triggered for every event arrival in the specified stream with the matching condition. <br/> When this keyword is not used, the matching is carried out only once. |</p>
+
+<table>
+<thead>
+<tr>
+<th>Items</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-&gt;</code></td>
+<td>This is used to indicate an event that should be following another event. The subsequent event does not necessarily have to occur immediately after the preceding event. The condition to be met by the preceding event should be added before the sign, and the condition to be met by the subsequent event should be added after the sign.</td>
+</tr>
+<tr>
+<td><code>&lt;event reference&gt;</code></td>
+<td>This allows you to add a reference to the the matching event so that it can be accessed later for further processing.</td>
+</tr>
+<tr>
+<td><code>(within &lt;time gap&gt;)?</code></td>
+<td>The <code>within</code> clause is optional. It defines the time duration within which all the matching events should occur.</td>
+</tr>
+<tr>
+<td><code>every</code></td>
+<td><code>every</code> is an optional keyword. This defines whether the event matching should be triggered for every event arrival in the specified stream with the matching condition. <br/> When this keyword is not used, the matching is carried out only once.</td>
+</tr>
+</tbody>
+</table>
 <p>Siddhi also supports pattern matching with counting events and matching events in a logical order such as (<code>and</code>, <code>or</code>, and <code>not</code>). These are described in detail further below in this guide.</p>
 <p><strong>Example</strong></p>
 <p>This query sends an alert if the temperature of a room increases by 5 degrees within 10 min.</p>
@@ -3937,7 +3967,8 @@ Each partition is tagged with a partition key. Those partitions only process the
 <p>This is created by generating unique values using input stream attributes.</p>
 <p><strong>Syntax</strong></p>
 <p><pre>
-partition with ( &lt;expression&gt; of &lt;stream name&gt;, &lt;expression&gt; of &lt;stream name&gt;, ... )
+partition with ( &lt;expression&gt; of &lt;stream name&gt;, 
+                 &lt;expression&gt; of &lt;stream name&gt;, ... )
 begin
     &lt;query&gt;
     &lt;query&gt;
@@ -3957,9 +3988,11 @@ end;
 <li>
 <p>Partition by range</p>
 <p>This is created by mapping each partition key to a range condition of the input streams numerical attribute.</p>
-<p><strong>Syntax</strong></p>
-<p><pre>
-partition with ( &lt;condition&gt; as &lt;partition key&gt; or &lt;condition&gt; as &lt;partition key&gt; or ... of &lt;stream name&gt;, ... )
+<p><strong>Syntax</strong>
+<pre>
+partition with ( &lt;condition&gt; as &lt;partition key&gt; or 
+                 &lt;condition&gt; as &lt;partition key&gt; or ... of &lt;stream name&gt;,
+                 ... )
 begin
     &lt;query&gt;
     &lt;query&gt;
@@ -4711,11 +4744,14 @@ Events can be inserted to a named window from one or more queries and it can pro
 <p>In this query, the event type is not specified. Therefore, it returns both current and expired events as the output.</p>
 </li>
 </ul>
-<p><pre class="codehilite"><code class="language-sql linenums">  define window SensorWindow (name string, value float, roomNo int, deviceID string) timeBatch(1 second);</code></pre>
-+ Returning an output only when events expire from the window.</p>
-<pre class="codehilite"><code class="linenums">In this query, the event type of the window is `expired events`. Therefore, it only returns the events that have expired from the window as the output.</code></pre>
+<pre class="codehilite"><code class="language-sql linenums">  define window SensorWindow (name string, value float, roomNo int, deviceID string) timeBatch(1 second);</code></pre>
 
-
+<ul>
+<li>
+<p>Returning an output only when events expire from the window.</p>
+<p>In this query, the event type of the window is <code>expired events</code>. Therefore, it only returns the events that have expired from the window as the output.</p>
+</li>
+</ul>
 <pre class="codehilite"><code class="language-sql linenums">  define window SensorWindow (name string, value float, roomNo int, deviceID string) timeBatch(1 second) output expired events;</code></pre>
 
 <p><strong>Operators on Named Windows</strong></p>
@@ -5849,6 +5885,8 @@ The following elements are configured with this annotation.</p>
       <a href="https://github.com/siddhi-io/siddhi" class="md-footer-social__link fa fa-github"></a>
     
       <a href="https://medium.com/siddhi-io" class="md-footer-social__link fa fa-medium"></a>
+    
+      <a href="https://twitter.com/siddhi_io" class="md-footer-social__link fa fa-twitter"></a>
     
       <a href="https://www.linkedin.com/groups/13553064" class="md-footer-social__link fa fa-linkedin"></a>
     

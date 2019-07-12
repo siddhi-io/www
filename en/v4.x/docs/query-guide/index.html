@@ -4256,7 +4256,6 @@ insert into &lt;output stream&gt;</code></pre>
 This Siddhi Application calculates the maximum temperature within the last 5 minutes.</p>
 <pre class="codehilite"><code class="language-sql linenums">define window FiveMinTempWindow (roomNo int, temp double) time(5 min);
 
-
 from FiveMinTempWindow
 select max(temp) as maxValue, roomNo
 insert into MaxSensorReadingStream;</code></pre>
@@ -5340,6 +5339,8 @@ The following elements are configured with this annotation.</p>
       <a href="https://github.com/siddhi-io/siddhi" class="md-footer-social__link fa fa-github"></a>
     
       <a href="https://medium.com/siddhi-io" class="md-footer-social__link fa fa-medium"></a>
+    
+      <a href="https://twitter.com/siddhi_io" class="md-footer-social__link fa fa-twitter"></a>
     
       <a href="https://www.linkedin.com/groups/13553064" class="md-footer-social__link fa fa-linkedin"></a>
     
