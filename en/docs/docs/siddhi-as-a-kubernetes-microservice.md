@@ -2,8 +2,8 @@
 
 This section provides information on running [Siddhi Apps](../introduction/#siddhi-application) natively in Kubernetes via Siddhi Kubernetes Operator.
 
-Siddhi can be configured in `SiddhiProcess` kind and passed to the CRD for deployment.
-Here, the Siddhi applications containing stream processing logic can be written inline in `SiddhiProcess` yaml or passed as `.siddhi` files via configmaps. `SiddhiProcess` yaml can also be configured with the necessary system configurations.
+Siddhi can be configured using `SiddhiProcess` kind and passed to the siddhi operator for deployment.
+Here, the Siddhi applications containing stream processing logic can be written inline in `SiddhiProcess` yaml or passed as `.siddhi` files via contig maps. `SiddhiProcess` yaml can also be configured with the necessary system configurations.
 
 ## Prerequisites
 
@@ -13,7 +13,7 @@ Here, the Siddhi applications containing stream processing logic can be written 
     2. [Google Kubernetes Engine(GKE) Cluster](https://console.cloud.google.com/)
     3. [Docker for Mac](https://docs.docker.com/docker-for-mac/install/)
     4. Or any other Kubernetes cluster
-* Distributed siddhi application deployment need [NATS operator](https://github.com/nats-io/nats-operator/tree/v0.6.0#namespace-scoped-installation) and [NATS streaming operator](https://github.com/nats-io/nats-streaming-operator/tree/v0.2.2#getting-started).
+* Distributed deployment of siddhi apps need [NATS operator](https://github.com/nats-io/nats-operator/tree/v0.6.0#namespace-scoped-installation) and [NATS streaming operator](https://github.com/nats-io/nats-streaming-operator/tree/v0.2.2#getting-started).
 * Admin privileges to install Siddhi operator  
 
 !!! Note "Minikube"
@@ -38,8 +38,8 @@ Here, the Siddhi applications containing stream processing logic can be written 
 To install the Siddhi Kubernetes operator run the following commands.
 
 ```sh
-kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/prerequisites.yaml
-kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/siddhi-operator.yaml
+kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-m1/00-prereqs.yaml
+kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-m1/01-siddhi-operator.yaml
 ```
 
 You can verify the installation by making sure the following deployments are running in your Kubernetes cluster.
@@ -61,7 +61,8 @@ siddhi-parser     1         1         1            1           1m
 
 Siddhi applications can be deployed on Kubernetes using the Siddhi operator.
 
-Here we will be creating a very simple Siddhi stream processing application that consumes events via HTTP, filers the input events on the type 'monitored' and logs the output on the console.
+Here we will be creating a very simple Siddhi stream processing application that receives power consumption from several devices in a house. If the power consumption of dryer exceeds the consumption limit of 6000W then that siddhi app sends an alert from printing a log.
+
 This can be created using a SiddhiProcess YAML file as given below.
 
 ```yaml
@@ -113,16 +114,16 @@ spec:
 !!! Info "Configuring Siddhi"
     To configure databases, extensions, authentication, periodic state persistence, and statistics for Siddhi as Kubernetes Microservice refer [Siddhi Config Guide](../config-guide/). 
 
-To deploy the above Siddhi app in your Kubernetes cluster, copy to a YAML file with name `power-surge-app.yaml` and execute the following command.
+To deploy the above Siddhi app in your Kubernetes cluster, copy above YAML to a file with name `power-surge-app.yaml` and execute the following command.
 
 ```sh
 kubectl create -f <absolute-yaml-file-path>/power-surge-app.yaml
 ```
 
-!!! Note "tls secret"
-    Within the SiddhiProcess, a tls secret named `siddhi-tls` is configured. If a Kubernetes secret with the same name does not exist in the Kubernetes cluster, the NGINX will ignore it and use a self-generated certificate. Configuring a secret will be necessary for calling HTTPS endpoints, refer [deploy and run Siddhi apps with HTTPS](#deploy-and-run-siddhi-app-with-https) section for more details.
+!!! Note "TLS secret"
+    Within the SiddhiProcess, a TLS secret named `siddhi-tls` is configured. If a Kubernetes secret with the same name does not exist in the Kubernetes cluster, the NGINX will ignore it and use a self-generated certificate. Configuring a secret will be necessary for calling HTTPS endpoints, refer [deploy and run Siddhi apps with HTTPS](#deploy-and-run-siddhi-app-with-https) section for more details.
 
-If the `monitor-app` is deployed successfully, the created SiddhiProcess, deployment, service, and ingress can be viewed as follows.
+If the `power-surge-app` is deployed successfully, it should create SiddhiProcess, deployment, service, and ingress as following.
 
 ```sh
 $ kubectl get SiddhiProcesses
@@ -148,13 +149,13 @@ siddhi    siddhi    10.0.2.15   80        2m
 ```
 
 !!! Note "Using a custom-built siddhi-runner image"
-    If you need to use a custom-built `siddhi-runner` image for a specific `SiddhiProcess` deployment, you have to configure `image` and `imageTag` arguments with the custom-built image name and image tag respectively in the `monitor-app.yaml` file.
+    If you need to use a custom-built `siddhi-runner` image for a specific `SiddhiProcess` deployment, you have to configure `container.image` spec in the `power-surge-app.yaml`.
     Refer the documentation on creating custom siddhi-runner images bundling additional JARs [here](../docs/config-guide.md#adding-to-siddhi-docker-microservice).
-    If you are pulling the custom-built image from a private Docker registry/repository, specify the corresponding kubernetes secret as `imagePullSecret` argument in the `monitor-app.yaml` file. For more details on using docker images from private registries/repositories refer [this documentation](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/).
+    If you are pulling the custom-built image from a private Docker registry/repository, specify the corresponding kubernetes secret as `imagePullSecret` argument in the `power-surge-app.yaml` file. For more details on using docker images from private registries/repositories refer [this documentation](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/).
 
 **_Invoke Siddhi Applications_**
 
-To invoke the Siddhi App, first obtain the external IP of the ingress load balancer using `kubectl get ingress` command as follows.
+To invoke the Siddhi App, obtain the external IP of the ingress load balancer using `kubectl get ingress` command as following.
 
 ```sh
 $ kubectl get ingress
@@ -199,9 +200,9 @@ siddhi-operator-6698d8f69d-6rfb6           1/1       Running   0          4m
 siddhi-parser-76448887d5-dqqv6             1/1       Running   0          4m
 ```
 
-Here, the pod starting with the SiddhiProcess name (in this case `monitor-app-`) is the pod we need to monitor.
+Here, the pod starting with the SiddhiProcess name (in this case `power-surge-app-`) is the pod we need to monitor.
 
-To view the logs, run the `kubectl logs <pod name>` command. 
+To view the logs, run the `kubectl logs <pod name>` command.
 This will show all the Siddhi process logs, along with the filtered output events as given below.
 
 ```sh
@@ -232,7 +233,7 @@ power-surge-app   Running   1/1       5m
 
 ### View Siddhi process configs
 
-Get the Siddhi process configuration details using `kubectl describe sp` command as follows.
+Describe the Siddhi process configuration details using `kubectl describe sp` command as follows.
 
 ```sh
 $ kubectl describe sp power-surge-app
@@ -307,7 +308,7 @@ siddhi-parser-76448887d5-dqqv6             1/1       Running   0          4m
 ```
 
 Then to retrieve the Siddhi process logs, run `kubectl logs <pod name>` command. Here `<pod name>` should be replaced with the name of the pod that starts with the relevant SiddhiProcess's name. 
-A sample output logs is of this command is as follows.
+A sample output logs are of this command is as follows.
 
 ```sh
 $ kubectl logs power-surge-app-0-646c4f9dd5-rxzkq
@@ -319,11 +320,11 @@ $ kubectl logs power-surge-app-0-646c4f9dd5-rxzkq
 [2019-07-12 07:17:22,219]  INFO {io.siddhi.core.stream.output.sink.LogSink} - LOGGER : Event{timestamp=1562915842182, data=[dryer, 60000], isExpired=false}
 ```
 
-## Deploy and run Siddhi App using configmaps
+## Deploy and run Siddhi App using config maps
 
-Siddhi operator allows you to deploy Siddhi app configurations via configmaps instead of just adding them inline. Through this you can also run multiple Siddhi Apps in a single SiddhiProcess.
+Siddhi operator allows you to deploy Siddhi app configurations via config maps instead of just adding them inline. Through this, you can also run multiple Siddhi Apps in a single SiddhiProcess.
 
-This can be done by passing the configmaps containing Siddhi app files to the SiddhiProcess's apps configuration as follows. 
+This can be done by passing the config maps containing Siddhi app files to the SiddhiProcess's apps configuration as follows.
 
 ```yaml
 apps:
@@ -331,9 +332,9 @@ apps:
   - configMap: power-surge-cm1
 ```
 
-**Sample on deploying and running Siddhi Apps via configmaps**
+**Sample on deploying and running Siddhi Apps via config maps**
 
-Here we will be creating a very simple Siddhi application as follows, that consumes events via HTTP, filers the input events on type 'monitored' and logs the output on the console.
+Here we will be creating a very simple Siddhi stream processing application that receives power consumption from several devices in a house. If the power consumption of dryer exceeds the consumption limit of 6000W then that siddhi app sends an alert from printing a log.
 
 ```programming
 @App:name("PowerSurgeDetection")
@@ -371,7 +372,7 @@ This can be achieved by running the following command.
 kubectl create configmap power-surge-cm --from-file=<absolute-file-path>/PowerSurgeDetection.siddhi
 ```
 
-The created config map can be added to SiddhiProcess YAML under the `apps` entry as follows. 
+The created config map can be added to SiddhiProcess YAML under the `apps` entry as follows.
 
 ```yaml
 apiVersion: siddhi.io/v1alpha2
@@ -400,13 +401,13 @@ kubectl create -f <absolute-yaml-file-path>/power-surge-app.yaml
 ```
 
 !!! Note "Using a config, created from a directory containing multiple Siddhi files"
-    SiddhiProcess's `apps` configuration also supports a config map that is created from a directory containing multiple Siddhi files.
+    SiddhiProcess's `apps.configMap` configuration also supports a config map that is created from a directory containing multiple Siddhi files.
     Use `kubectl create configmap siddhi-apps --from-file=<DIRECTORY_PATH>` command to create a config map from a directory.
 
 
 **_Invoke Siddhi Applications_**
 
-To invoke the Siddhi Apps, first obtain the external IP of the ingress load balancer using `kubectl get ingress` command as follows.
+To invoke the Siddhi App, first obtain the external IP of the ingress load balancer using `kubectl get ingress` command as follows.
 
 ```sh
 $ kubectl get ingress
@@ -439,7 +440,7 @@ curl -X POST \
 
 Since the output of `power-surge-app` is logged, you can see the output by monitoring the associated pod's logs.
  
-To find the `power-surge-app` pod use the `kubectl get pods` command. This will list down all the deployed pods. 
+To find the `power-surge-app` pod use the `kubectl get pods` command. This will list down all the deployed pods.
 
 ```sh
 $ kubectl get pods
@@ -483,7 +484,7 @@ data:
 
 ## Deploy and run Siddhi App with HTTPS
 
-Configuring TLS will allow Siddhi ingress NGINX to expose HTTPS endpoints of your Siddhi Apps. To do so, create a Kubernetes secret(`siddhi-tls`) and add that to the TLS configuration in `siddhi-operator-config` config map as following.
+Configuring TLS will allow Siddhi ingress NGINX to expose HTTPS endpoints of your Siddhi Apps. To do so, create a Kubernetes secret(`siddhi-tls`) and add that to the TLS configuration in `siddhi-operator-config` config map as given below.
 
 ```yaml
 ingressTLS: siddhi-tls
@@ -569,7 +570,7 @@ Siddhi apps can be in two different types.
 1. Stateless siddhi apps
 1. Stateful siddhi apps
 
-The deployment of the stateful siddhi apps follow distributed architecture to ensure high availability. The fully distributed scenario of siddhi deployments handle using siddhi [distributed annotations](./query-guide/#distributed-sink).
+The deployment of the stateful siddhi apps follows distributed architecture to ensure high availability. The fully distributed scenario of siddhi deployments handle using siddhi [distributed annotations](./query-guide/#distributed-sink).
 
 <table>
   <tr>
@@ -579,7 +580,7 @@ The deployment of the stateful siddhi apps follow distributed architecture to en
   </tr>
   <tr>
     <td><b>Without Distributed Annotations</b></td>
-    <td><b>Case 1</b>: The given siddhi app will be deployed in stateless manner in a single kubernetes deployment.</td>
+    <td><b>Case 1</b>: The given siddhi app will be deployed in a stateless mode in a single kubernetes deployment.</td>
     <td>
       <b>Case 2</b>: If given siddhi app contains stateful queries then the siddhi app divided into two partial siddhi apps (passthrough and process) and deployed in two kubernetes deployments. Use the configured messaging system to communicate between two apps.
     </td>
@@ -591,17 +592,17 @@ The deployment of the stateful siddhi apps follow distributed architecture to en
   </tr>
 </table>
 
-The previously described siddhi app deployments are fall under this Case 1 category. The following sample will cover the siddhi app deployments which fall under Case 2. 
+The previously described siddhi app deployments fall under this Case 1 category. The following sample will cover the siddhi app deployments which fall under Case 2.
 
 **Sample on deploying and running Siddhi App with a Messaging System**
 
-The siddhi operator currently supports NATS as the messaging system. Therefore it is prerequisite for deploying NATS operator and NATS streaming operator in you kubernetes cluster befor you install the siddhi app.
+The siddhi operator currently supports NATS as the messaging system. Therefore it is prerequisite to deploying NATS operator and NATS streaming operator in your kubernetes cluster before you install the siddhi app.
 
 1. Refer [this documentation](https://github.com/nats-io/nats-streaming-operator/tree/v0.2.2#getting-started) to install NATS operator and NATS streaming operator.
 1. Install the [siddhi operator](#install-siddhi-operator).
 1. Create a [persistence volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) in your cluster.
 
-Now we need to NATS cluster and NATS streaming cluster to run the siddhi app deployment. There are two cases handle by the operator.
+Now we need a NATS cluster and NATS streaming cluster to run the siddhi app deployment. For this, there are two cases handled by the operator.
 
 1. User can create NATS cluster and NATS streaming cluster as described in [this documentation](https://github.com/nats-io/nats-streaming-operator/tree/v0.2.2#deploying-a-nats-streaming-cluster). Specify cluster details in the YAML file like following.
 
@@ -614,14 +615,14 @@ Now we need to NATS cluster and NATS streaming cluster to run the siddhi app dep
         clusterID: example-stan
     ```
 
-  1. If user only specify messaging system as NATS like below then siddhi operator will automatically creates NATS cluster(`siddhi-nats`) and NATS streaming cluster(`siddhi-stan`), and connect two partial apps.
+1. If the user only specifies messaging system as NATS like below then siddhi operator will automatically create NATS cluster(`siddhi-nats`) and NATS streaming cluster(`siddhi-stan`), and connect two partial apps.
   
       ```yaml
       messagingSystem:
         type: nats
       ```
 
-Before installing a siddhi app you have to check that all prerequistes(siddhi-operator, nats-operator, and nats-streaming-operator) up and running perfectly like below.
+Before installing a siddhi app you have to check that all prerequisites(siddhi-operator, nats-operator, and nats-streaming-operator) up and running perfectly like below.
 
 ```sh
 $ kubectl get deployments
@@ -711,12 +712,12 @@ kubectl apply -f power-consume-app.yaml
 
 This `kubectl` execution in the siddhi operator will do the following tasks.
 
-1. Create NATS cluster and streaming cluster since user did not specify it.
-1. Parse the given siddhi app and create two partial siddhi apps(passthrough and failover). Then deploy both apps in seperate deployments to distribute I/O time. Check health of the siddhi runner and make deployments up and running.
+1. Create a NATS cluster and streaming cluster since the user did not specify it.
+1. Parse the given siddhi app and create two partial siddhi apps(passthrough and process). Then deploy both apps in separate deployments to distribute I/O time. Check health of the siddhi runner and make deployments up and running.
 1. Create a service for passthrough app.
-1. Create a ingress rule that maps to passthrough service.
+1. Create an ingress rule that maps to passthrough service.
 
-After a successful deployment your kubernetes cluster should have these artifacts.
+After a successful deployment, your kubernetes cluster should have these artifacts.
 
 ```sh
 $ kubectl get SiddhiProcesses
@@ -756,7 +757,7 @@ power-consume-app-1-pvc   Bound     siddhi-pv   1Gi        RWO            standa
 
 Here `power-consume-app-0` is the passthrough deployment and `power-consume-app-1` is the process deployment.
 
-Now you can send a HTTP request to the passthrough app.
+Now you can send an HTTP request to the passthrough app.
 
 ```sh
 curl -X POST \
