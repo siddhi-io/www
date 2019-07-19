@@ -1,0 +1,493 @@
+/*
+ * Copyright (c) 2019, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ *
+ * WSO2 Inc. licenses this file to you under the Apache License,
+ * Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+body {
+    font-family: 'Nunito', sans-serif !important;
+}
+
+a {
+    color: #262626;
+}
+
+a:hover {
+    color: #000;
+}
+
+@media only screen and (min-width: 60em) {
+    .md-header-nav__source {
+        display: block;
+        width: 7.6rem;
+        max-width: 7.6rem;
+    }
+}
+
+.row {
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0;
+}
+
+.md-content__inner {
+    margin: 0;
+}
+
+[data-md-color-primary="teal"] .md-header, [data-md-color-primary="teal"] .md-hero {
+    background-color: transparent;
+}
+
+.md-header[data-md-state="shadow"] {
+    box-shadow: none;
+}
+
+.navbar.navbar-default.md-header-nav.md-grid {
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    background: #fff;
+    box-shadow: none;
+    margin: 0;
+}
+
+.navbar-nav > li > a {
+    padding-top: 6px;
+    padding-bottom: 10px;
+    line-height: 20px;
+    font-size: 16px;
+    padding-right: 0;
+}
+
+.md-main__inner.md-grid {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.md-grid {
+    max-width: none !important;
+}
+
+.md-tabs__item {
+    padding-right: 5px !important;
+    padding-left: 0 !important;
+}
+
+.md-search__inner {
+    margin: 0;
+    width: 200px;
+}
+
+.navbar-brand {
+    padding: 6px 15px;
+}
+
+.navbar-brand > img {
+    width: 5.5rem;
+}
+
+.md-search__input:hover {
+    background: #dedede;
+}
+
+.md-search__input {
+    background-color: #fff;
+    border: 0.5px solid #7d7d7d;
+    color: #7d7d7d;
+}
+
+.cIntroRow h1 {
+    font-size: 3em;
+    font-weight: 200;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.cIntroRow h1 {
+    font-size: 1px;
+    color: #ffff;
+    padding: 0;
+    margin: 0;
+}
+
+.cPageLogo img {
+    height: 60px;
+}
+
+.cIntroRow h2 {
+    margin-top: 0;
+    margin-top: 0;
+    font-weight: 200;
+    margin-bottom: 30px;
+}
+
+.cIntroRow p {
+    margin-bottom: 0;
+}
+
+.row.cPageHeader {
+    padding-top: 130px;
+    padding-bottom: 0;
+}
+
+/* widget */
+
+.cWdgetContainer {
+    border: 30px solid #e5eaea;
+    box-shadow: -5px 6px 8px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    width: 100%;
+    background-color: #dedede;
+
+}
+
+.row.cIntroRow {
+    padding-top: 0px;
+    padding-bottom: 75px;
+    background-image: url(../images/siddhi-w-bg.jpg);
+    background-position: bottom;
+    background-size: 100%;
+    /* padding-bottom: 0px; */
+}
+
+.cTerminal {
+    background: #000;
+    padding: 10px;
+    min-height: 300px;
+}
+
+a.cDownloadButton {
+    color: #fff !important;
+    padding: 10px 20px;
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 0px;
+    display: inline-block;
+    /*margin-top: 20px;*/
+    background-color: #02aaad;
+}
+
+.md-flex__ellipsis.md-header-nav__title {
+    visibility: collapse;
+}
+
+/* Scroll */
+.navbar.navbar-default.md-header-nav.md-grid {
+    background-color: transparent;
+}
+
+.md-header .navbar-brand img {
+    /* display: none; */
+    opacity: 0;
+    transition: all .5s ease 0s;
+}
+
+.md-header.cScrollMenu .navbar-brand img {
+    width: 90px;
+    margin-top: 3px;
+    margin-right: 8px;
+}
+
+.md-header {
+    background-color: transparent;
+}
+
+.md-header.cScrollMenu {
+    background-color: #00aaac !important;
+    height: auto;
+}
+
+.md-header.cScrollMenu .navbar-brand img {
+    opacity: 1;
+    transition: all .5s ease 0s;
+}
+
+.md-header.cScrollMenu .navbar-default .navbar-nav > li > a {
+    color: #fff !important;
+}
+
+.cPageLogo.cScrollMenu img {
+    opacity: 0;
+    transition: all .5s ease 0s;
+}
+
+.md-search__input + .md-search__icon {
+    color: #7d7d7d;
+}
+
+a.cDownloadButton:hover {
+    background: #3e3e3e;
+    text-decoration: none;
+}
+
+.row.cSection.cGray {
+    background: #e9e9e9;
+    padding-top: 75px;
+    padding-bottom: 75px;
+}
+
+.row.cSection.cWhite {
+    padding-top: 75px;
+    padding-bottom: 75px;
+}
+
+ul.cDemoControls {
+    padding: 0;
+    margin: 0;
+}
+
+ul.cDemoControls li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    float: left;
+    width: 25%;
+    border: none;
+    padding-right: 15px;
+}
+
+ul.cDemoControls li a {
+    background-color: transparent;
+    padding: 10px 20px;
+    color: #7d7d7d !important;
+    width: 100%;
+    display: inline-block;
+    font-weight: 800;
+    border: 0.25px solid #7d7d7d;
+    font-size: 12px;
+    text-align: center;
+    text-decoration: none;
+
+}
+
+ul.cDemoControls li:last-child {
+    padding-right: 0;
+}
+
+.cControls {
+    padding-top: 15px;
+}
+
+ul.cDemoControls li.active a {
+    background-color: #7d7d7d;
+    color: #fff !important;
+}
+
+.cSection h2 {
+    margin-top: 0;
+}
+
+.terminalOutput {
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    font-size: 14px;
+    color: #00bfa5;
+}
+
+.terminalOutput h3 {
+    margin-top: 10px;
+}
+
+.cDistributionsContainer {
+    display: inline-block;
+    border-top: 1px solid #dedede;
+    padding-top: 30px;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.cDistributionsContainer h3 {
+    margin-top: 0;
+}
+
+.cDistribution {
+    display: inline-block;
+    width: 100%;
+    padding: 10px 20px;
+    border: 2px solid #e9e9e9;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    background-repeat: no-repeat;
+    padding-left: 80px;
+    background-position: 30px center;
+    background-size: 30px;
+    line-height: 30px;
+    color: #02aaad !important;
+    font-weight: 800;
+    text-decoration: none;
+    background-color: #fff;
+
+}
+
+a.cDistribution:hover {
+    background-color: #02aaad;
+    color: #fff !important;
+    text-decoration: none;
+}
+
+.cDistribution.cKubernetes {
+    background-image: url(//b.content.wso2.com/sites/all/2017-d7-theme/products/common/installer/images/kubernetes.svg);
+
+}
+
+.cDistribution.cDocker {
+    background-image: url(//b.content.wso2.com/sites/all/2017-d7-theme/products/common/installer/images/docker.svg);
+}
+
+.cDistribution.cVM {
+    background-image: url(//b.content.wso2.com/sites/all/2017-d7-theme/products/common/installer/images/binary.svg);
+}
+
+.cDistribution.cJava {
+    background-image: url(../images/java-logo.png);
+}
+
+.cDistribution.cPython {
+    background-image: url(../images/python-logo.png);
+}
+
+table.DistributionsTable {
+    width: 100%;
+}
+
+table.DistributionsTable td {
+    width: 50%;
+    padding-right: 15px;
+}
+
+/* .md-icon.md-search__icon {
+    display: none;
+} */
+
+.cBenefits {
+    background-color: #fff;
+    padding: 30px 30px 30px 30px;
+    display: inline-block;
+    min-height: 280px;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.cBenefits img {
+
+}
+
+.cBenefitsHeader {
+    display: inline-block;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #dedede;
+    width: 100%;
+}
+
+.cBenefitsHeader img {
+    width: 60px;
+    display: inline-block;
+    float: left;
+    margin-right: 20px;
+}
+
+.cBenefitsHeader h3 {
+    margin: 0;
+    display: inline-block;
+    float: left;
+    line-height: 60px;
+    font-weight: 600;
+
+}
+
+.cUseCases h3 {
+    border-bottom: 1px solid #00aaac;
+    margin-top: 0;
+    display: inline-block;
+}
+
+.cUseCases ul {
+    margin-left: 0;
+}
+
+.cUseCases ul li {
+    margin-bottom: 0px;
+    margin-top: 0px;
+    list-style: none;
+    border-bottom: 1px solid #e9e9e9;
+    margin-left: 0;
+    padding: 5px 0;
+
+}
+
+.cUseCases ul li:last-child {
+    border: none;
+
+}
+
+.cUseCasesContainer {
+     /*background-color: #e9e9e9;*/
+    display: inline-block;
+    /* padding: 30px; */
+    padding: 10px 60px 0 0;
+    margin-bottom: 20px;
+}
+
+.cUseCasesContainer.cBigBox {
+    /* min-height: 200px; */
+}
+
+.cUseCasesContainer.cSmallBox {
+
+}
+
+a.md-tabs__link.md-tabs__link--active {
+    visibility: collapse;
+}
+
+@media (min-width: 768px) {
+    .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+        margin-left: 0;
+    }
+}
+
+.md-tabs__list {
+    margin: 0 0 0 -4rem;
+}
+
+@media only screen and (min-width: 60em) {
+    .md-search {
+        padding: .15rem;
+    }
+}
+
+a.md-icon.md-content__icon {
+    margin: -2rem .5rem 0 0;
+}
+
+nav.md-footer-nav__inner.md-grid {
+    max-width: 61rem !important;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.md-footer-meta__inner.md-grid {
+    max-width: 61rem !important;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.overviewImage {
+    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

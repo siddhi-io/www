@@ -32,7 +32,7 @@ copyright: Siddhi - Documentation
 theme:
   name: material
   logo: images/siddhi-logo.svg
-  favicon: images/favicon.ico
+  favicon: images/logos/favicon.ico
   palette:
     primary: teal
     accent: teal
