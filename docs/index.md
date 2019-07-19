@@ -140,7 +140,7 @@ Siddhi understands Streaming SQL queries in order to capture events from diverse
 <div class="col-md-4 col-sm-12">
 <div class="cBenefits">
 <div class="cBenefitsHeader">
-<img src="../images/dev.svg"/>
+<img src="images/dev.svg"/>
 <h3>Faster Development</h3>
 </div>
 <p>Agile development experience with SQL like query language and graphical drag-and-drop editor supporting event simulation</p>
@@ -149,7 +149,7 @@ Siddhi understands Streaming SQL queries in order to capture events from diverse
 <div class="col-md-4 col-sm-12">
 <div class="cBenefits">
 <div class="cBenefitsHeader">
-<img src="../images/cloud.svg"/>
+<img src="images/cloud.svg"/>
 <h3>Cloud Native</h3>
 </div>
 <p>Lightweight runtime that natively runs in Kubernetes via Kubernetes CRD, and works with systems such as NATS, gRPC, and Prometheus</div>
@@ -157,7 +157,7 @@ Siddhi understands Streaming SQL queries in order to capture events from diverse
 <div class="col-md-4 col-sm-12">
 <div class="cBenefits">
 <div class="cBenefitsHeader">
-<img src="../images/micro-service.svg"/>
+<img src="images/micro-service.svg"/>
 <h3>Scalable Deplyment</h3>
 </div>
 <p>Embedded event processing within Java, Python applications to running on bare metal, Docker and massively scaling on Kubernetes</p></div>
@@ -165,7 +165,7 @@ Siddhi understands Streaming SQL queries in order to capture events from diverse
 <div class="col-md-4 col-sm-12">
 <div class="cBenefits">
 <div class="cBenefitsHeader">
-<img src="../images/integration.svg"/>
+<img src="images/integration.svg"/>
 <h3>System Integration</h3>
 </div>
 <p>Integrates with messaging systems (NATS, Kafka, JMS), Databases (RDBMS, NoSQL), Services (HTTP, gRPC), File systems and others</p></div>
@@ -173,7 +173,7 @@ Siddhi understands Streaming SQL queries in order to capture events from diverse
 <div class="col-md-4 col-sm-12">
 <div class="cBenefits">
 <div class="cBenefitsHeader">
-<img src="../images/cicd.svg"/>
+<img src="images/cicd.svg"/>
 <h3>CI/CD Pipeline</h3>
 </div>
 <p>Supports development lifecycle and seamless deployments, through simple file-based configurations, automated tests, and CI/CD pipelines</p></div>
@@ -181,7 +181,7 @@ Siddhi understands Streaming SQL queries in order to capture events from diverse
 <div class="col-md-4 col-sm-12">
 <div class="cBenefits">
 <div class="cBenefitsHeader">
-<img src="../images/tested.svg"/>
+<img src="images/tested.svg"/>
 <h3>Realiability</h3>
 </div>
 <p>Battle-tested with billions of events at UBER, eBay, PayPal, HCA, TFL, WSO2 and in many Fortune 500 companies enabling exactly once event processing</p></div>
@@ -194,7 +194,7 @@ Siddhi understands Streaming SQL queries in order to capture events from diverse
 <div class="container">
 <div class="col-md-12 col-sm-12">
 <h2>Overview</h2>
-<img src="../images/siddhi-overview.png" class="overviewImage"/>
+<img src="images/siddhi-overview.png" class="overviewImage"/>
 <p style="text-align: center;">Siddhi can run as an embedded Java or Python library, run as a microservice on bare-metal, VM, or Docker, and run natively at scale in Kubernetes.</p>
 </div>
 </div>
@@ -267,7 +267,7 @@ Siddhi understands Streaming SQL queries in order to capture events from diverse
 <div class="container">
 <div class="col-md-12 col-sm-12">
 <h2>Working with Siddhi</h2>
-<img src="../images/siddhi-Diagram-02.png"/>
+<img src="images/siddhi-Diagram-02.png"/>
 <p/>
 </div>
 </div>
