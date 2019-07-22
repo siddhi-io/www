@@ -35,22 +35,16 @@ Siddhi understands Streaming SQL queries in order to capture events from diverse
 <!-- <a href="#" class="cDownloadButton">Download</a> -->
 <div class="cDistributionsContainer">
 <h3>Distributions</h3>
-<table class="DistributionsTable">
-<tr>
-<td><a class="cDistribution cKubernetes" href="/documentation/siddhi-5.x/siddhi-as-a-kubernetes-microservice-5.x/">Kubernetes</a></td>
-<td><a class="cDistribution cDocker" href="/documentation/siddhi-5.x/siddhi-as-a-docker-microservice-5.x/">Docker</a></td>
-</tr>
-<td><a class="cDistribution cVM" href="/documentation/siddhi-5.x/siddhi-as-a-local-microservice-5.x/">VM (Binary)</a></td>
-<td><a class="cDistribution cJava" href="/documentation/siddhi-5.x/siddhi-as-a-java-library-5.x/">Java</a></td>
-</tr>
-<td><a class="cDistribution cPython" href="/contribution/#obtaining-the-source-code-and-building-the-project">Python</a></td>
-<td>
-</tr>
-</table>
 
 
-
-
+<div class="cDistributions">
+<ui>
+<li><a class="cDistribution cKubernetes" href="/documentation/siddhi-5.x/siddhi-as-a-kubernetes-microservice-5.x/">Kubernetes</a></li>
+<li><a class="cDistribution cDocker" href="/documentation/siddhi-5.x/siddhi-as-a-docker-microservice-5.x/">Docker</a></li>
+<li><a class="cDistribution cVM" href="/documentation/siddhi-5.x/siddhi-as-a-local-microservice-5.x/">VM (Binary)</a></li>
+<li><a class="cDistribution cJava" href="/documentation/siddhi-5.x/siddhi-as-a-java-library-5.x/">Java</a></li>
+<li><a class="cDistribution cPython" href="/contribution/#obtaining-the-source-code-and-building-the-project">Python</a></li>
+</ui></div>
 
 
 </div>

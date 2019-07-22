@@ -242,22 +242,39 @@ a.cDownloadButton:hover {
 .row.cSection.cWhite {
     padding-top: 75px;
     padding-bottom: 75px;
+    background-image: url(../images/siddhi-w-bg.jpg);
+    background-position: bottom;
+    background-size: 100%;
+    background-repeat: no-repeat;
 }
 
 ul.cDemoControls {
     padding: 0;
     margin: 0;
+    white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+    ul.cDemoControls li {
+        margin: auto;
+    }
+
+    .overviewImage {
+        width: 80%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 ul.cDemoControls li {
     list-style: none;
-    padding: 0;
-    margin: 0;
+    padding: 5px;
     display: inline-block;
     float: left;
     width: 25%;
     border: none;
-    padding-right: 15px;
+    min-width: 110px;
 }
 
 ul.cDemoControls li a {
@@ -274,9 +291,9 @@ ul.cDemoControls li a {
 
 }
 
-ul.cDemoControls li:last-child {
-    padding-right: 0;
-}
+/*ul.cDemoControls li:last-child {*/
+/*padding-right: 0;*/
+/*}*/
 
 .cControls {
     padding-top: 15px;
@@ -329,7 +346,7 @@ ul.cDemoControls li.active a {
     font-weight: 800;
     text-decoration: none;
     background-color: #fff;
-
+    white-space: nowrap;
 }
 
 a.cDistribution:hover {
@@ -359,13 +376,20 @@ a.cDistribution:hover {
     background-image: url(../images/python-logo.png);
 }
 
-table.DistributionsTable {
-    width: 100%;
+.cDistributions ui {
+    padding: 0;
+    margin: 0;
+    white-space: nowrap;
 }
 
-table.DistributionsTable td {
+.cDistributions ui li {
     width: 50%;
-    padding-right: 15px;
+    padding-right: 10px;
+    list-style: none;
+    display: inline-block;
+    float: left;
+    border: none;
+    min-width: 220px;
 }
 
 /* .md-icon.md-search__icon {
@@ -434,7 +458,7 @@ table.DistributionsTable td {
 }
 
 .cUseCasesContainer {
-     /*background-color: #e9e9e9;*/
+    /*background-color: #e9e9e9;*/
     display: inline-block;
     /* padding: 30px; */
     padding: 10px 60px 0 0;
@@ -457,11 +481,13 @@ a.md-tabs__link.md-tabs__link--active {
     .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
         margin-left: 0;
     }
+
+    .md-tabs__list {
+        margin: 0 0 0 -4rem;
+    }
+
 }
 
-.md-tabs__list {
-    margin: 0 0 0 -4rem;
-}
 
 @media only screen and (min-width: 60em) {
     .md-search {
@@ -485,9 +511,24 @@ nav.md-footer-nav__inner.md-grid {
     margin-left: auto;
 }
 
-.overviewImage {
-    width: 80%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
+/*@media only screen and (max-width: 76.1875em) {*/
+    /*.md-nav--primary, .md-nav--primary .md-nav {*/
+        /*display: flex;*/
+        /*position: absolute;*/
+        /*top: 0;*/
+        /*right: 0;*/
+        /*left: 0;*/
+        /*flex-direction: column;*/
+        /*height: 100%;*/
+        /*z-index: 1;*/
+    /*}*/
+
+    /*.md-nav {*/
+        /*background-color: #fff;*/
+    /*}*/
+
+    /*.md-nav {*/
+        /*font-size: .7rem;*/
+        /*line-height: 1.3;*/
+    /*}*/
+/*}*/
