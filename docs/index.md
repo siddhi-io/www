@@ -229,16 +229,6 @@ Siddhi understands Streaming SQL queries in order to capture events from diverse
 <div class="container">
 
 <div class="col-md-6 col-sm-12">
-<h2>Join the Community</h2>
-<ul>
-    <li><h3><a href="https://github.com/siddhi-io/siddhi/">Siddhi Core on GitHub</a></h3></li>
-    <li><h3><a href="community/#asking-questions">Siddhi mailing list</a></h3></li>
-    <li><h3><a href="community/contribution/">How to contribute</a></h3></li>
-    <li><h3 class="cLinks__last"><a href="en/_latest_version_/development/source/">Siddhi GitHub Repos</a></h3></li>
-</ul>
-</div>
-
-<div class="col-md-6 col-sm-12">
 <h2>Try Siddhi</h2>
 <ul>
     <li><h3><a href="en/_latest_version_/download/">Download</a></h3></li>
@@ -246,6 +236,16 @@ Siddhi understands Streaming SQL queries in order to capture events from diverse
     <li><h3><a href="en/_latest_version_/docs/query-guide/">Siddhi query guide</a></h3></li>
     <li><h3><a href="en/_latest_version_/development/architecture/">Architecture</a></h3></li>
     <li><h3 class="cLinks__last"><a href="en/_latest_version_/docs/siddhi-as-a-kubernetes-microservice/">How Siddhi works in Kubernetes</a></h3></li>
+</ul>
+</div>
+
+<div class="col-md-6 col-sm-12">
+<h2>Join the Community</h2>
+<ul>
+    <li><h3><a href="https://github.com/siddhi-io/siddhi/">Siddhi Core on GitHub</a></h3></li>
+    <li><h3><a href="community/#asking-questions">Siddhi mailing list</a></h3></li>
+    <li><h3><a href="community/contribution/">How to contribute</a></h3></li>
+    <li><h3 class="cLinks__last"><a href="en/_latest_version_/development/source/">Siddhi GitHub repos</a></h3></li>
 </ul>
 </div>
 

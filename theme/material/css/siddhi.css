@@ -90,7 +90,7 @@ a:hover {
 
 .md-search__inner {
     margin: 0;
-    width: 140px;
+    width: 200px;
 }
 
 .navbar-brand {
@@ -99,8 +99,8 @@ a:hover {
 
 .navbar-brand > img {
     width: 5.5rem;
-    margin-right: 3rem;
-    padding: 3px 0px 0 3px;
+    /*margin-right: 3rem;*/
+    /*padding: 3px 0px 0 3px;*/
 }
 
 label.md-icon.md-icon--menu.md-header-nav__button {
@@ -115,7 +115,8 @@ label.md-icon.md-icon--menu.md-header-nav__button {
     background-color: #fff;
     border: 0.5px solid #7d7d7d;
     color: #7d7d7d;
-    width: 140px;
+    /*width: 140px;*/
+    height: 32px;
 }
 
 .cIntroRow h1 {
@@ -570,7 +571,7 @@ a.md-tabs__link.md-tabs__link--active {
 
 @media only screen and (min-width: 60em) {
     .md-search {
-        padding: .15rem;
+        padding: .3rem;
     }
 }
 
