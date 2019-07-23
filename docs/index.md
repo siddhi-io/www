@@ -57,66 +57,23 @@ Siddhi understands Streaming SQL queries in order to capture events from diverse
 <div class="cWdgetContainer" id="exTab1">
 <div class="cTerminal">
 <div class="tab-content clearfix">
-			  <div class="tab-pane active" id="1a">
-              <div class="terminalOutput">
-             <h3>Demo 1</h3>
- <br>
-[I 190618 14:02:23 handlers:132] Browser Connected: http://127.0.0.1:8000/home/ <br>
-[I 190618 14:07:43 handlers:132] Browser Connected: http://127.0.0.1:8000/home/ <br>
-[I 190618 14:12:16 handlers:132] Browser Connected: http://127.0.0.1:8000/documentation/features/<br>
-[I 190618 14:12:17 handlers:132] Browser Connected: http://127.0.0.1:8000/home/<br>
-[I 190618 18:38:03 handlers:132] Browser Connected: http://127.0.0.1:8000/<br>
-[I 190618 18:38:26 handlers:132] Browser Connected: http://127.0.0.1:8000/home/<br>
-
+<div class="tab-pane active" id="1a">
+<div class="terminalOutput">
+<img src="images/editor/graphical-editor.png"/>
 </div>
 </div>
-				<div class="tab-pane" id="2a">
-                      <div class="terminalOutput">
-                      <h3>Demo 2</h3>
-<br>
-[I 190618 14:02:23 handlers:132] Browser Connected: http://127.0.0.1:8000/home/<br>
-[I 190618 14:07:43 handlers:132] Browser Connected: http://127.0.0.1:8000/home/<br>
-[I 190618 14:12:16 handlers:132] Browser Connected: http://127.0.0.1:8000/documentation/features/<br>
-[I 190618 14:12:17 handlers:132] Browser Connected: http://127.0.0.1:8000/home/<br>
-[I 190618 18:38:03 handlers:132] Browser Connected: http://127.0.0.1:8000/<br>
-[I 190618 18:38:26 handlers:132] Browser Connected: http://127.0.0.1:8000/home/<br>
-</div>
+<div class="tab-pane" id="2a">
+<div class="terminalOutput">
+<img src="images/editor/source-editor.png"/>
+                      </div>
 				</div>
-        <div class="tab-pane" id="3a">
-                        <div class="terminalOutput">
-                        <h3>Demo 3</h3>
-<br>
-[I 190618 14:02:23 handlers:132] Browser Connected: http://127.0.0.1:8000/home/<br>
-[I 190618 14:07:43 handlers:132] Browser Connected: http://127.0.0.1:8000/home/<br>
-[I 190618 14:12:16 handlers:132] Browser Connected: http://127.0.0.1:8000/documentation/features/<br>
-[I 190618 14:12:17 handlers:132] Browser Connected: http://127.0.0.1:8000/home/<br>
-[I 190618 18:38:03 handlers:132] Browser Connected: http://127.0.0.1:8000/<br>
-[I 190618 18:38:26 handlers:132] Browser Connected: http://127.0.0.1:8000/home/<br>
-</div>
-				</div>
-          <div class="tab-pane" id="4a">
-                        <div class="terminalOutput">
-                        <h3>Demo 4</h3>
-<br>
-[I 190618 14:02:23 handlers:132] Browser Connected: http://127.0.0.1:8000/home/<br>
-[I 190618 14:07:43 handlers:132] Browser Connected: http://127.0.0.1:8000/home/<br>
-[I 190618 14:12:16 handlers:132] Browser Connected: http://127.0.0.1:8000/documentation/features/<br>
-[I 190618 14:12:17 handlers:132] Browser Connected: http://127.0.0.1:8000/home/<br>
-[I 190618 18:38:03 handlers:132] Browser Connected: http://127.0.0.1:8000/<br>
-[I 190618 18:38:26 handlers:132] Browser Connected: http://127.0.0.1:8000/home/<br>
-</div>
-			</div>
 </div>
 </div>
 <div class="cControls">
 <ul  class="cDemoControls">
-    <li class="active"><a  href="#1a" data-toggle="tab">DEMO 1</a>
+    <li class="active"><a  href="#1a" data-toggle="tab">Graphical Editor</a>
 	</li>
-	<li><a href="#2a" data-toggle="tab">DEMO 2</a>
-	</li>
-	<li><a href="#3a" data-toggle="tab">DEMO 3</a>
-	</li>
-  	<li><a href="#4a" data-toggle="tab">DEMO 4</a>
+	<li><a href="#2a" data-toggle="tab">Source Editor</a>
 	</li>
 </ul>
 </div>
@@ -267,6 +224,34 @@ Siddhi understands Streaming SQL queries in order to capture events from diverse
 </div>
 </div>
 
+
+<div class="row cSection cGray cLinks">
+<div class="container">
+
+<div class="col-md-6 col-sm-12">
+<h2>Join the Community</h2>
+<ul>
+    <li><h3><a href="https://github.com/siddhi-io/siddhi/">Siddhi Core on GitHub</a></h3></li>
+    <li><h3><a href="community/#asking-questions">Siddhi mailing list</a></h3></li>
+    <li><h3><a href="community/contribution/">How to contribute</a></h3></li>
+    <li><h3 class="cLinks__last"><a href="en/_latest_version_/development/source/">Siddhi GitHub Repos</a></h3></li>
+</ul>
+</div>
+
+<div class="col-md-6 col-sm-12">
+<h2>Try Siddhi</h2>
+<ul>
+    <li><h3><a href="en/_latest_version_/download/">Download</a></h3></li>
+    <li><h3><a href="en/_latest_version_/docs/quick-start/">Getting started</a></h3></li>
+    <li><h3><a href="en/_latest_version_/docs/query-guide/">Siddhi query guide</a></h3></li>
+    <li><h3><a href="en/_latest_version_/development/architecture/">Architecture</a></h3></li>
+    <li><h3 class="cLinks__last"><a href="en/_latest_version_/docs/siddhi-as-a-kubernetes-microservice/">How Siddhi works in Kubernetes</a></h3></li>
+</ul>
+</div>
+
+
+</div>
+</div>
 
 
 

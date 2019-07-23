@@ -22,10 +22,12 @@ body {
 
 a {
     color: #262626;
+    text-decoration: none;
 }
 
 a:hover {
     color: #000;
+    text-decoration: none;
 }
 
 @media only screen and (min-width: 60em) {
@@ -88,7 +90,7 @@ a:hover {
 
 .md-search__inner {
     margin: 0;
-    width: 200px;
+    width: 140px;
 }
 
 .navbar-brand {
@@ -97,6 +99,12 @@ a:hover {
 
 .navbar-brand > img {
     width: 5.5rem;
+    margin-right: 3rem;
+    padding: 3px 0px 0 3px;
+}
+
+label.md-icon.md-icon--menu.md-header-nav__button {
+    visibility: collapse;
 }
 
 .md-search__input:hover {
@@ -107,6 +115,7 @@ a:hover {
     background-color: #fff;
     border: 0.5px solid #7d7d7d;
     color: #7d7d7d;
+    width: 140px;
 }
 
 .cIntroRow h1 {
@@ -167,6 +176,7 @@ a:hover {
     background: #000;
     padding: 10px;
     min-height: 300px;
+    padding-top: 40px;
 }
 
 a.cDownloadButton {
@@ -205,18 +215,13 @@ a.cDownloadButton {
     background-color: transparent;
 }
 
-.md-header.cScrollMenu {
-    background-color: #00aaac !important;
-    height: auto;
-}
-
 .md-header.cScrollMenu .navbar-brand img {
     opacity: 1;
     transition: all .5s ease 0s;
 }
 
 .md-header.cScrollMenu .navbar-default .navbar-nav > li > a {
-    color: #fff !important;
+    color: #fff;
 }
 
 .cPageLogo.cScrollMenu img {
@@ -272,7 +277,7 @@ ul.cDemoControls li {
     padding: 5px;
     display: inline-block;
     float: left;
-    width: 25%;
+    width: 50%;
     border: none;
     min-width: 110px;
 }
@@ -488,6 +493,67 @@ a.md-tabs__link.md-tabs__link--active {
 
 }
 
+.md-header.cScrollMenu {
+    background-color: #00aaac;
+    height: auto;
+}
+
+@media screen and (max-width: 768px) {
+
+    .md-header.cScrollMenu {
+        background-color: #fff;
+        height: auto;
+    }
+
+    .md-header.cScrollMenu  .navbar-default .navbar-nav > li > a {
+        color: #000;
+    }
+
+    .md-header.cScrollMenu .navbar-default .navbar-nav > li > a:hover{
+        color: #000;
+        text-shadow: black;
+    }
+
+    .navbar-default .navbar-collapse, .navbar-default .navbar-form {
+        border-color: #e7e7e7;
+        background-color: #ffffff;
+    }
+
+    .md-flex {
+        margin-top: -380px;
+        position: fixed;
+        padding-left: auto;
+        padding-right: 20px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    label.md-icon.md-icon--menu.md-header-nav__button {
+        visibility: collapse;
+    }
+
+    .navbar-header {
+        background-color: #00aaac;
+    }
+
+    .md-header .navbar-brand img {
+        opacity: 10;
+        transition: all .5s ease 0s;
+    }
+}
+
+.navbar-default .navbar-toggle {
+    border: none;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #fff;
+}
+
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+    background-color: #00aaac;
+}
 
 @media only screen and (min-width: 60em) {
     .md-search {
@@ -510,6 +576,43 @@ nav.md-footer-nav__inner.md-grid {
     margin-right: auto;
     margin-left: auto;
 }
+
+a.md-flex.md-footer-nav__link {
+    color: #fff;
+}
+
+a.md-flex.md-footer-nav__link:hover{
+    color: #ebebeb;
+}
+
+.cLinks__last {
+    border: transparent !important;
+}
+
+.cLinks h3 {
+    border-bottom: 1px solid #00aaac45;
+    margin-top: -10px;
+    display: inline-block;
+    margin-bottom: -50px;
+    width: 90%;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    font-size: 18px;
+}
+
+.cLinks li {
+     list-style: none;
+ }
+
+.cLinks ul {
+    margin-left: -20px;
+}
+
+.cLinks a {
+    color: lightsteelblue;
+}
+
+
 
 /*@media only screen and (max-width: 76.1875em) {*/
     /*.md-nav--primary, .md-nav--primary .md-nav {*/
