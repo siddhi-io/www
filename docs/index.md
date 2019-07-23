@@ -145,7 +145,7 @@ Siddhi understands Streaming SQL queries in order to capture events from diverse
 <div class="container">
 <div class="col-md-12 col-sm-12">
 <h2>Overview</h2>
-<img src="images/siddhi-overview.png" class="overviewImage"/>
+<img src="images/siddhi-overview.png" />
 <p style="text-align: center;">Siddhi can run as an embedded Java or Python library, run as a microservice on bare-metal, VM, or Docker, and run natively at scale in Kubernetes.</p>
 </div>
 </div>
@@ -218,7 +218,7 @@ Siddhi understands Streaming SQL queries in order to capture events from diverse
 <div class="container">
 <div class="col-md-12 col-sm-12">
 <h2>Working with Siddhi</h2>
-<img src="images/siddhi-Diagram-02.png"/>
+<img src="images/how-siddhi-works.png"/>
 <p/>
 </div>
 </div>
