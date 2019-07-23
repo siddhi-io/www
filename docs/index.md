@@ -142,7 +142,7 @@ Siddhi understands Streaming SQL queries in order to capture events from diverse
 </div>
 
 <div class="row cSection cWhite">
-<div class="container">
+<div class="container bannerImage">
 <div class="col-md-12 col-sm-12">
 <h2>Overview</h2>
 <img src="images/siddhi-overview.png" />
@@ -215,7 +215,7 @@ Siddhi understands Streaming SQL queries in order to capture events from diverse
 
 
 <div class="row cSection cWhite">
-<div class="container">
+<div class="container bannerImage">
 <div class="col-md-12 col-sm-12">
 <h2>Working with Siddhi</h2>
 <img src="images/how-siddhi-works.png"/>
