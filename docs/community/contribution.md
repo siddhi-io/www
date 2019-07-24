@@ -6,6 +6,8 @@ Following are some ways of contributing to Siddhi.
 
 ## Reporting Issues
 
+*Important*: All security-related issues should be reported to security@wso2.com. See [Siddhi Security Policy](/security) for details.
+
 If you are unsure whether you have found a bug, please consider searching existing [issues in Siddhi.io GitHub repo](https://github.com/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aissue+archived%3Afalse+user%3Asiddhi-io) or ask questions in [Siddhi-Dev Google Group](https://groups.google.com/forum/#!forum/siddhi-dev).
 
 To file non-security issues:
