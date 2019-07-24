@@ -110,6 +110,7 @@ nav:
   - Community:
     - Support : community/index.md
     - Contribution : community/contribution.md
+    - Security : community/security.md
     - Committers : community/committers.md
     - Events : community/events.md
     - Siddhi Logos : community/siddhi-logos.md
