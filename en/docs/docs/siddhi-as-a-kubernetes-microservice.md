@@ -108,6 +108,9 @@ spec:
     image: "siddhiio/siddhi-runner-ubuntu:5.1.0-m1"
 ```
 
+!!! Note "Always listen on 0.0.0.0 with the Siddhi Application running inside a container environment."
+    If you listen on localhost inside the container, nothing outside the container can connect to your application. 
+    
 !!! Tip "Siddhi Tooling"
     You can also use the powerful [Siddhi Editor](../../quckstart/#3-using-siddhi-for-the-first-time) to implement and test steam processing applications. 
 
