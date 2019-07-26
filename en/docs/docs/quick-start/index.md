@@ -259,6 +259,8 @@ select weight, sum(weight) as totalWeight, avg(weight) as averageWeight
 insert into OutputStream;
 ```
 
+**Note:** You should listen on 0.0.0.0 with the Siddhi Application you are running inside the container.If you listen on localhost inside the container, nothing outside the container can connect to your application. That includes blocking port forwarding from the docker host and container to container networking.
+
 Now you can send events using the Event Simulator and observe the log to see the sum and average of the weights based on the last three cargo events.
 
 In the earlier scenario when the window is not used, the system only stored the running sum in its memory, and it did not store any events. But for `length` based [window processing](../query-guide/#window) the system will retain the events that fall into the window to perform aggregation operations such as average, maximum, etc. In this case when the 4th event arrives, the first event in the window is removed ensuring the memory usage does not grow beyond a specific limit. **Note:** some window types in Siddhi are even more optimized to perform the operations with minimal or no event retention.
