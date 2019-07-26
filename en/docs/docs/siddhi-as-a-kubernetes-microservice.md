@@ -61,6 +61,9 @@ This can be created using a SiddhiProcess YAML file as given below.
 
 <script src="https://gist.github.com/BuddhiWathsala/f029d671f4f6d7719dce59500b970815.js"></script>
 
+!!! Note "Always listen on 0.0.0.0 with the Siddhi Application running inside a container environment."
+    If you listen on localhost inside the container, nothing outside the container can connect to your application. 
+    
 !!! Tip "Siddhi Tooling"
     You can also use the powerful [Siddhi Editor](../quick-start/#3-using-siddhi-for-the-first-time) to implement and test steam processing applications. 
 
