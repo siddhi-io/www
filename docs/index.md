@@ -26,7 +26,7 @@ template: templates/mkt-webpage.html
 <h1>Siddhi</h1>
 <h2>Cloud Native Stream Processor</h2>
 <p>
-Fully open source, cloud-native, scalable, Streaming and Complex Event Processing System capable of builidng real-time analytics, data integration, notification and surveillance usecases.
+Fully open source, cloud-native, scalable, Streaming and Complex Event Processing System capable of building real-time analytics, data integration, notification and surveillance usecases.
 </p>
 <p>
 Siddhi understands Streaming SQL queries in order to capture events from diverse data sources, process them, integrate with multiple services and data sources, and publish output to various endpoints in real-time. 
