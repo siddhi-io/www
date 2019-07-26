@@ -41,6 +41,9 @@ Following SiddhiApp collects events via HTTP and logs the number of events arriv
 
 <script src="https://gist.github.com/suhothayan/8b0471cbe86a0089db5d6afb1c46f765.js"></script>
 
+!!! Note "Always listen on 0.0.0.0 with the Siddhi Application running inside a docker container."
+    If you listen on localhost inside the container, nothing outside the container can connect to your application. That includes blocking port forwarding from the docker host and container to container networking.
+
 <ul>
     <li>Copy the above SiddhiApp, and create the SiddhiApp file <code>CountOverTime.siddhi</code>.</li>
     <li>Run the SiddhiApp by executing following commands from the distribution directory
