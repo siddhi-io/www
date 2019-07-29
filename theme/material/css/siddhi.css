@@ -443,6 +443,10 @@ a.cDistribution:hover {
     background-image: url(../images/python-logo.png);
 }
 
+.cDistribution.cSource {
+    background-image: url(../images/source.png);
+}
+
 .cDistributions ui {
     padding: 0;
     margin: 0;

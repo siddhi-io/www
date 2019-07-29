@@ -39,13 +39,13 @@ Siddhi understands Streaming SQL queries in order to capture events from diverse
 
 <div class="cDistributions">
 <ui>
-<li><a class="cDistribution cKubernetes" href="/documentation/siddhi-5.x/siddhi-as-a-kubernetes-microservice-5.x/">Kubernetes</a></li>
-<li><a class="cDistribution cDocker" href="/documentation/siddhi-5.x/siddhi-as-a-docker-microservice-5.x/">Docker</a></li>
-<li><a class="cDistribution cVM" href="/documentation/siddhi-5.x/siddhi-as-a-local-microservice-5.x/">VM (Binary)</a></li>
-<li><a class="cDistribution cJava" href="/documentation/siddhi-5.x/siddhi-as-a-java-library-5.x/">Java</a></li>
-<li><a class="cDistribution cPython" href="/contribution/#obtaining-the-source-code-and-building-the-project">Python</a></li>
+<li><a class="cDistribution cKubernetes" href="en/_latest_version_/download/#siddhi-kubernetes">Kubernetes</a></li>
+<li><a class="cDistribution cDocker" href="en/_latest_version_/download/#siddhi-docker">Docker</a></li>
+<li><a class="cDistribution cVM" href="en/_latest_version_/download/#siddhi-distribution">VM (Binary)</a></li>
+<li><a class="cDistribution cJava" href="/en/_latest_version_/download/#siddhi-libs">Java</a></li>
+<li><a class="cDistribution cPython" href="/en/_latest_version_/download/#pysiddhi">Python</a></li>
+<li><a class="cDistribution cSource" href="en/_latest_version_/development/source/">Source</a></li>
 </ui></div>
-
 
 </div>
 
