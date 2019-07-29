@@ -467,11 +467,16 @@ a.cDistribution:hover {
     display: none;
 } */
 
+@media (min-width: 992px) {
+    cBenefits {
+        min-height: 330px;
+    }
+}
+
 .cBenefits {
     background-color: #fff;
     padding: 30px 30px 30px 30px;
     display: inline-block;
-    min-height: 320px;
     margin-bottom: 30px;
     text-align: left;
 }
@@ -683,10 +688,6 @@ a.md-flex.md-footer-nav__link:hover {
 
 .terminalOutput img {
     max-width: 100% !important;
-}
-
-.md-typeset blockquote, .md-typeset ol, .md-typeset p, .md-typeset ul {
-    margin: 2.2em 0;
 }
 
 @media only screen and (max-width: 59.9375em) {
