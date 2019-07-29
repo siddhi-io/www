@@ -249,8 +249,8 @@ a.cDownloadButton:hover {
 
 ul.cDemoControls {
     padding: 0;
-    margin: 0;
     white-space: nowrap;
+    margin: -8px 0 !important;
 }
 
 ul.cDemoControls li {
