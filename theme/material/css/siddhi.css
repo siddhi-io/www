@@ -576,6 +576,10 @@ a.md-tabs__link.md-tabs__link--active {
         height: auto;
     }
 
+    .md-tabs__list {
+        margin: 0 0 0 0;
+    }
+
     .md-header.cScrollMenu .navbar-default .navbar-nav > li > a {
         color: #000;
     }
