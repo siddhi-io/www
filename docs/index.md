@@ -43,7 +43,7 @@ Siddhi understands Streaming SQL queries in order to capture events from diverse
 <li><a class="cDistribution cDocker" href="en/_latest_version_/download/#siddhi-docker">Docker</a></li>
 <li><a class="cDistribution cVM" href="en/_latest_version_/download/#siddhi-distribution">VM (Binary)</a></li>
 <li><a class="cDistribution cJava" href="en/_latest_version_/download/#siddhi-libs">Java</a></li>
-<li><a class="cDistribution cPython" href="en/_latest_version_/download/#pysiddhi">Python</a></li>
+<li><a class="cDistribution cPython" href="https://siddhi-io.github.io/PySiddhi/">Python</a></li>
 <li><a class="cDistribution cSource" href="en/_latest_version_/development/source/">Source</a></li>
 </ui></div>
 
