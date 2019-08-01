@@ -4,10 +4,11 @@ Select the appropriate Siddhi distribution for your use case.
 
 ##Siddhi Distribution 
 
-Siddhi 5.1.0 ([Distribution 5.1.0-m1](https://github.com/siddhi-io/distribution/releases/tag/v5.1.0-m1))
+Siddhi 5.1.0 ([Distribution 5.1.0-m1](https://github.com/siddhi-io/distribution/releases/tag/v5.1.0-m1)) | &nbsp;      | &nbsp;  | &nbsp; |
+------                                                                                           | -----    | ----- | ----- |
+[Siddhi Tooling](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-m1/siddhi-tooling-5.1.0-m1.zip) | [md5](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-m1/siddhi-tooling-5.1.0-m1.zip.md5) | [SHA-1](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-m1/siddhi-tooling-5.1.0-m1.zip.sha1) | [asc](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-m1/siddhi-tooling-5.1.0-m1.zip.asc) 
+[Siddhi Runner](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-m1/siddhi-runner-5.1.0-m1.zip) | [md5](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-m1/siddhi-runner-5.1.0-m1.zip.md5) | [SHA-1](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-m1/siddhi-runner-5.1.0-m1.zip.sha1) | [asc](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-m1/siddhi-runner-5.1.0-m1.zip.asc) 
 
-* [Siddhi Tooling](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-m1/siddhi-tooling-5.1.0-m1.zip)
-* [Siddhi Runner](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-m1/siddhi-runner-5.1.0-m1.zip) 
 
 Refer the user guide to use [Siddhi as a Local Microservice](../deployment/siddhi-as-a-local-microservice/)
 
