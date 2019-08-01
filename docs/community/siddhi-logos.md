@@ -47,6 +47,10 @@ Find various Siddhi logos here, feel free to use them wherever to refer Siddhi.
 <img alt="siddhi-icon-inverted.png" src="../../images/logos/siddhi-icon-inverted.png?raw=true" 
     title="siddhi-icon-inverted.png" style="background-color: black;width: 100px;">
 
+###siddhi-icon-inverted-black.png
+<img alt="siddhi-icon-inverted-black.png" src="../../images/logos/siddhi-icon-inverted-black.png?raw=true" 
+    title="siddhi-icon-inverted-black.png" style="width: 100px;">
+
 ###favicon.ico
 <img alt="favicon.ico" src="../../images/logos/favicon.ico?raw=true" 
     title="favicon.ico">

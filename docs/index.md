@@ -1,5 +1,5 @@
 ---
-template: templates/single-column.html
+template: templates/mkt-webpage.html
 ---
 
 <!--
@@ -20,165 +20,238 @@ template: templates/single-column.html
  * under the License.
 -->
 
-**Siddhi** - Cloud Native Stream Processor
-===========================================
-
-  [![Jenkins Build Status](https://wso2.org/jenkins/view/wso2-dependencies/job/siddhi/job/siddhi/badge/icon)](https://wso2.org/jenkins/view/wso2-dependencies/job/siddhi/job/siddhi)
-  [![GitHub Siddhi Core Release](https://img.shields.io/github/release/siddhi-io/siddhi.svg)](https://github.com/siddhi-io/siddhi/releases)
-  [![GitHub Release Date](https://img.shields.io/github/release-date/siddhi-io/siddhi.svg)](https://github.com/siddhi-io/siddhi/releases)
-  [![GitHub last commit](https://img.shields.io/github/last-commit/siddhi-io/siddhi.svg)](https://github.com/siddhi-io/siddhi/commits/master)
-  [![codecov](https://codecov.io/gh/siddhi-io/siddhi/branch/master/graph/badge.svg)](https://codecov.io/gh/siddhi-io/siddhi)
-  [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-
-Siddhi is a cloud native **_Streaming_** and **_Complex Event Processing_** engine that understands **Streaming SQL queries** in order to capture events from diverse data sources, process them, detect complex conditions, and publish output to various endpoints in real time.
-
-Siddhi can run as an embedded [Java library](en/_latest_version_/docs/siddhi-as-a-java-library/), and as a microservice on [bare metal, VM](en/_latest_version_/docs/siddhi-as-a-local-microservice/), [Docker](en/_latest_version_/docs/siddhi-as-a-docker-microservice/) and natively in [Kubernetes](en/_latest_version_/docs/siddhi-as-a-kubernetes-microservice/). It also has a [graphical and text editor](#development-environment) for building Streaming Data Integration and Streaming Analytics applications.
-
-## Distributions
-
-<a href="en/_latest_version_/download/#siddhi-kubernetes" rel="nofollow">
- <img src="https://raw.githubusercontent.com/siddhi-io/siddhi/master/docs/images/distributions/kubernetes.png?raw=true" alt="Kubernetes" width="19%">
-</a>
-<a href="en/_latest_version_/download/#siddhi-docker" rel="nofollow">
- <img src="https://raw.githubusercontent.com/siddhi-io/siddhi/master/docs/images/distributions/docker.png?raw=true" alt="Docker" width="19%">
-</a>
-<a href="en/_latest_version_/download/#siddhi-distribution" rel="nofollow">
- <img src="https://raw.githubusercontent.com/siddhi-io/siddhi/master/docs/images/distributions/binary.png?raw=true" alt="Binary" width="19%">
-</a>
-<a href="en/_latest_version_/download/#siddhi-libs" rel="nofollow">
- <img src="https://raw.githubusercontent.com/siddhi-io/siddhi/master/docs/images/distributions/java.png?raw=true" alt="Java" width="19%">
-</a>
-<a href="en/_latest_version_/development/source/" rel="nofollow">
- <img src="https://raw.githubusercontent.com/siddhi-io/siddhi/master/docs/images/distributions/source.png?raw=true" alt="Source" width="19%">
-</a>
-
-And more [installation options](en/_latest_version_/download/) 
-
-## Overview 
-
-<p style="text-align: center;">
-<img alt="" src="images/siddhi-overview.png?raw=true" title="Overview" style="max-width: 75%;">
+<div class="row cIntroRow">
+<div class="container">
+<div class="col-md-6 col-sm-6">
+<h1>Siddhi</h1>
+<h2>Cloud Native Stream Processor</h2>
+<p>
+Fully open source, cloud-native, scalable, Streaming and Complex Event Processing System capable of building real-time analytics, data integration, notification and surveillance usecases.
+</p>
+<p>
+Siddhi understands Streaming SQL queries in order to capture events from diverse data sources, process them, integrate with multiple services and data sources, and publish output to various endpoints in real-time. 
 </p>
 
+<!-- <a href="#" class="cDownloadButton">Download</a> -->
+<div class="cDistributionsContainer">
+<h3>Distributions</h3>
 
-## Supported Use Cases 
 
-<div class="md-typeset__table"><table>
-    <tbody><tr>
-        <th width="25%" align="center">Streaming Data Integration</th>
-        <th width="25%" align="center">Streaming Data Analytics</th>
-        <th width="25%" align="center">Alerts & Notifications</th>
-        <th width="25%" align="center">Adaptive Decision Making</th>
-    </tr>
-    <tr>
-        <td style="vertical-align: top">
-            <ul>
-              <li>Retrieve data from various event sources (Kafka, JMS, HTTP, CDC, etc).</li>
-              <li>Transform events to and from multiple event formats (JSON, XML, Text, Avro, etc).</li>
-              <li>Data preprocessing & cleaning.</li>
-              <li>Join multiple data streams.</li>
-              <li>Integrate streaming data with databases (RDBMS, Cassandra, HBase, Redis, etc) and services.</li>
-            </ul>  
-        </td>
-        <td style="vertical-align: top">
-            <ul>
-              <li>Calculate aggregations over windows such as time, length, and session.</li>
-              <li>Long duration time series  aggregations with granularities from seconds to years.</li>
-              <li>Analyze trends (rise, fall, turn, tipple bottom).</li>
-              <li>Realtime predictions with pre trained machine learning models (PMML, Tensorflow).</li>
-              <li>Learn and predict at runtime using online machine learning models.</li>
-            </ul>  
-       </td>
-        <td style="vertical-align: top">
-            <ul>
-              <li>Generate alerts based on thresholds.</li>
-              <li>Correlate data to find missing and erroneous events.</li>
-              <li>Detect temporal event patterns.</li>
-              <li>Detect non-occurrence of events.</li>
-              <li>Publish data to multiple event sinks (Email, messaging systems, services, databases).</li>
-            </ul>  
-        </td>
-        <td style="vertical-align: top">
-            <ul>
-              <li>Static rule processing.</li>
-              <li>Adaptive stateful rule processing.</li>
-              <li>Decision making through synchronous RPC.</li>
-              <li>Query state from tables, windows and aggregations.</li>
-              <li>Static and online machine learning based decision making.</li>
-            </ul>  
-        </td>
-    </tr>
-</tbody></table></div>
+<div class="cDistributions">
+<ui>
+<li><a class="cDistribution cKubernetes" href="en/_latest_version_/download/#siddhi-kubernetes">Kubernetes</a></li>
+<li><a class="cDistribution cDocker" href="en/_latest_version_/download/#siddhi-docker">Docker</a></li>
+<li><a class="cDistribution cVM" href="en/_latest_version_/download/#siddhi-distribution">VM (Binary)</a></li>
+<li><a class="cDistribution cJava" href="en/_latest_version_/download/#siddhi-libs">Java</a></li>
+<li><a class="cDistribution cPython" href="https://siddhi-io.github.io/PySiddhi/">Python</a></li>
+<li><a class="cDistribution cSource" href="en/_latest_version_/development/source/">Source</a></li>
+</ui></div>
 
-* And many more ...  For more information, see <a target="_blank" href="http://www.kdnuggets.com/2015/08/patterns-streaming-realtime-analytics.html">Patterns of Streaming Realtime Analytics</a>
-
-Siddhi is free and open source, released under **Apache Software License v2.0**.
-
-## Why use Siddhi ? 
-
-* **Fast**. <a target="_blank" href="http://wso2.com/library/conference/2017/2/wso2con-usa-2017-scalable-real-time-complex-event-processing-at-uber?utm_source=gitanalytics&utm_campaign=gitanalytics_Jul17">UBER</a> uses it to process 20 Billion events per day (300,000 events per second). 
-* **Lightweight** (core Siddhi libs are <2MB), and embeddable in Android, Python and RaspberryPi.
-* Has **over 50 <a target="_blank" href="en/_latest_version_/docs/extensions/">Siddhi Extensions</a>**
-* **Used by over 60 companies including many Fortune 500 companies** in production. Following are some examples:
-    * **WSO2** uses Siddhi for the following purposes:
-        * To provide **distributed and high available** stream processing capabilities via <a target="_blank" href="http://wso2.com/analytics?utm_source=gitanalytics&utm_campaign=gitanalytics_Jul17">WSO2 Stream Processor</a>. It is named as a strong performer in <a target="_blank" href="https://go.forrester.com/blogs/16-04-16-15_true_streaming_analytics_platforms_for_real_time_everything/">The Forrester Wave: Big Data Streaming Analytics, Q1 2016</a> (<a target="_blank" href="https://www.forrester.com/report/The+Forrester+Wave+Big+Data+Streaming+Analytics+Q1+2016/-/E-RES129023">Report</a>).
-        * As the **edge analytics** library of [WSO2 IoT Server](http://wso2.com/iot?utm_source=gitanalytics&utm_campaign=gitanalytics_Jul17).
-        * As the core of <a target="_blank" href="http://wso2.com/api-management?utm_source=gitanalytics&utm_campaign=gitanalytics_Jul17">WSO2 API Manager</a>'s throttling. 
-        * As the core of <a target="_blank" href="http://wso2.com/platform?utm_source=gitanalytics&utm_campaign=gitanalytics_Jul17">WSO2 products'</a> analytics.
-    * **<a target="_blank" href="http://wso2.com/library/conference/2017/2/wso2con-usa-2017-scalable-real-time-complex-event-processing-at-uber?utm_source=gitanalytics&utm_campaign=gitanalytics_Jul17">UBER</a>** uses Siddhi for fraud analytics.
-    * **<a target="_blank" href="http://eagle.apache.org/docs/index.html">Apache Eagle</a>** uses Siddhi as a policy engine.
-    * Also used by [Punch Platform](https://doc.punchplatform.com/Reference_Guide/Data_Processing/Punch/Cep_Rules.html#siddhi_and_punch), [Sqooba](https://sqooba.io/), and [SiteWhere](https://sitewhere1.sitewhere.io/userguide/tenant/event-processing.html)
-* Solutions based on Siddhi have been **finalists at <a target="_blank" href="http://dl.acm.org/results.cfm?query=(%252Bgrand%20%252Bchallenge%20%252Bwso2)&within=owners.owner=HOSTED&filtered=&dte=&bfr=">ACM DEBS Grand Challenge Stream Processing competitions** in 2014, 2015, 2016, 2017</a>.
-* Siddhi has been **the basis of many academic research projects** and has <a target="_blank" href="https://scholar.google.com/scholar?cites=5113376427716987836&as_sdt=2005&sciodt=0,5&hl=en">**over 60 citations**</a>. 
-
-If you are a Siddhi user, we would love to hear more on how you use Siddhi? Please share your experience and feedback via the [Siddhi user Google group](https://groups.google.com/forum/#!forum/siddhi-user).
-
-## Get Started!
-
-Get started with Siddhi in a few minutes by following the <a target="_blank" href="en/_latest_version_/docs/quick-start/">Siddhi Quick Start Guide</a>
-
-## Development Environment 
-
-Siddhi provides tooling that supports following features to develop and test stream processing applications: 
-
-* **Text Query Editor** with syntax highlighting and advanced auto completion support.
-* **Event Simulator and Debugger** to test Siddhi Applications.
-* **Graphical Query Editor** with drag and drop query building support.
-
-<div>
-    <p style="width: 49%;float:left;text-align: center;">
-        <b>Graphical Query Editor</b>
-        <img alt="" src="/images/editor/graphical-editor.png" title="Graphical Query Editor">
-    </p>
-    <p style="float:right;width:49%;text-align: center;">
-        <b>Text Query Editor</b>
-        <img alt="" src="/images/editor/source-editor.png" title="Source Editor">
-    </p>
 </div>
 
-## Siddhi Versions
 
-* **Latest Stable Release of Siddhi v5.x.x** : [**v5.0.0**](en/_latest_version_/docs/api/latest/) _built on Java 8 & 11._ 
-* Get Siddhi API information <a target="_blank" href="en/_latest_version_/docs/api/latest/">here</a>.
+</div>
 
-## Contact us 
-* Post your questions with the <a target="_blank" href="http://stackoverflow.com/search?q=siddhi">"Siddhi"</a> tag in <a target="_blank" href="http://stackoverflow.com/search?q=siddhi">Stackoverflow</a>. 
-* For questions and feedback please connect via the [Siddhi user Google group](https://groups.google.com/forum/#!forum/siddhi-user).
-* Engage in community development through [Siddhi dev Google group](https://groups.google.com/forum/#!forum/siddhi-dev). 
+<div class="col-md-6 col-sm-6">
 
-## How to Contribute
-Find the detail information on asking questions, providing feedback, reporting issues, building and contributing code on [How to contribute?](/community/contribution/) section.
+<div class="cWdgetContainer" id="exTab1">
+<div class="cTerminal">
+<div class="tab-content clearfix">
+<div class="tab-pane active" id="1a">
+<div class="terminalOutput">
+<img src="images/editor/graphical-editor.png"/>
+</div>
+</div>
+<div class="tab-pane" id="2a">
+<div class="terminalOutput">
+<img src="images/editor/source-editor.png"/>
+                      </div>
+				</div>
+</div>
+</div>
+<div class="cControls">
+<ul  class="cDemoControls">
+    <li class="active"><a  href="#1a" data-toggle="tab">Graphical Editor</a>
+	</li>
+	<li><a href="#2a" data-toggle="tab">Source Editor</a>
+	</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
 
-## Roadmap 
 
-- [x] Support Kafka
-- [x] Support NATS
-- [x] Siddhi Runner Distribution 
-- [x] Siddhi Tooling (Editor)
-- [x] Siddhi Kubernetes CRD
-- [x] Periodic incremental state persistence  
-- [ ] Support Prometheus for metrics collection
-- [ ] Support high available Siddhi deployment with NATS via Kubernetes CRD
-- [ ] Support distributed Siddhi deployment with NATS via Kubernetes CRD
+<div class="row cSection cGray">
+<div class="container">
+<div class="col-md-12 col-sm-12">
+<h2>Benefits</h2>
+</div>
+<div class="col-md-4 col-sm-12">
+<div class="cBenefits">
+<div class="cBenefitsHeader">
+<img src="images/dev.svg"/>
+<h3>Faster Development</h3>
+</div>
+<p>Agile development experience with SQL like query language and graphical drag-and-drop editor supporting event simulation.</p>
+</div>
+</div>
+<div class="col-md-4 col-sm-12">
+<div class="cBenefits">
+<div class="cBenefitsHeader">
+<img src="images/cloud.svg"/>
+<h3>Cloud Native</h3>
+</div>
+<p>Lightweight runtime that natively runs in Kubernetes via Kubernetes CRD, and works with systems such as NATS, gRPC, and Prometheus.</div>
+</div>
+<div class="col-md-4 col-sm-12">
+<div class="cBenefits">
+<div class="cBenefitsHeader">
+<img src="images/micro-service.svg"/>
+<h3>Scalable Deployment</h3>
+</div>
+<p>Embedded event processing within Java, Python applications to running on bare metal, Docker and massively scaling on Kubernetes.</p></div>
+</div>
+<div class="col-md-4 col-sm-12">
+<div class="cBenefits">
+<div class="cBenefitsHeader">
+<img src="images/integration.svg"/>
+<h3>System Integration</h3>
+</div>
+<p>Integrates with messaging systems (NATS, Kafka, JMS), Databases (RDBMS, NoSQL), Services (HTTP, gRPC), File systems and others.</p></div>
+</div>
+<div class="col-md-4 col-sm-12">
+<div class="cBenefits">
+<div class="cBenefitsHeader">
+<img src="images/cicd.svg"/>
+<h3>CI/CD Pipeline</h3>
+</div>
+<p>Supports development lifecycle and seamless deployments, through simple file-based configurations, automated tests, and CI/CD pipelines.</p></div>
+</div>
+<div class="col-md-4 col-sm-12">
+<div class="cBenefits">
+<div class="cBenefitsHeader">
+<img src="images/tested.svg"/>
+<h3>Reliability</h3>
+</div>
+<p>Battle-tested with billions of events at UBER, eBay, PayPal, HCA, TFL, WSO2 and in many Fortune 500 companies enabling exactly once event processing.</p></div>
+</div>
 
-Siddhi is joint research project initiated by <a target="_blank" href="http://wso2.com/">WSO2</a> and <a target="_blank" href="http://www.mrt.ac.lk/web/">University of Moratuwa</a>, Sri Lanka.
+</div>
+</div>
+
+<div class="row cSection cWhite">
+<div class="container bannerImage">
+<div class="col-md-12 col-sm-12">
+<h2>Overview</h2>
+<img src="images/siddhi-overview.png" />
+<p style="text-align: center;">Siddhi can run as an embedded Java or Python library, run as a microservice on bare-metal, VM, or Docker, and run natively at scale in Kubernetes processing millions of events per second.</p>
+</div>
+</div>
+</div>
+
+<div class="row cSection cGray cUseCases">
+<div class="container">
+<div class="col-md-12 col-sm-12">
+<h2>Use cases</h2>
+</div>
+
+<div class="col-md-6 col-sm-12">
+<div class="cUseCasesContainer">
+<h3>Streaming Data Integration</h3>
+<ul>
+    <li>Retrieve and publish data from various enterprise systems.</li>
+    <li>Perform data transformation on JSON, XML, Text, Avro, and CSV.</li>
+    <li>Integrate with databases, services, and realtime event streams.</li>
+    <li>Data preprocessing, fault tolerance, and error handling.</li>
+</ul>
+</div>
+</div>
+
+<div class="col-md-6 col-sm-12">
+<div class="cUseCasesContainer">
+<h3>Streaming Data Analytics</h3>
+<ul>
+    <li>Calculate aggregations over time, length, and session windows.</li>
+    <li>Long-running time-series aggregations from seconds to years.</li>
+    <li>Analyze event occurrence patterns and trends over time.</li>
+    <li>Realtime predictions with online and pre-trained ML models.</li>
+</ul>
+</div>
+</div>
+
+<div class="clearfix"></div>
+
+<div class="col-md-6 col-sm-12">
+<div class="cUseCasesContainer">
+<h3>Alerts & Notifications</h3>
+<ul>
+    <li>Generate alerts based on static and dynamic thresholds.</li>
+    <li>Correlate data to detect event anomalies and missing events.</li>
+    <li>Support scheduling, digest, and auto-retry of notifications.</li>
+    <li>Publish alerts via various event sinks such as email, and MQs.</li>
+</li>
+</ul>
+</div>
+</div>
+
+<div class="col-md-6 col-sm-12">
+<div class="cUseCasesContainer">
+<h3>Adaptive Decision Making</h3>
+<ul>
+    <li>Static rule processing via predefined and database based rules.</li>
+    <li>Dynamic rule processing through stateful queries and system state.</li>
+    <li>Decision making through synchronous RPC (HTTP, gRPC).</li>
+    <li>Incremental learning and decision making online ML models.</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+</div>
+
+
+
+<div class="row cSection cWhite">
+<div class="container bannerImage">
+<div class="col-md-12 col-sm-12">
+<h2>Working with Siddhi</h2>
+<img src="images/how-siddhi-works.png"/>
+<p/>
+</div>
+</div>
+</div>
+
+
+<div class="row cSection cGray cLinks">
+<div class="container">
+
+<div class="col-md-6 col-sm-12">
+<h2>Try Siddhi</h2>
+<ul>
+    <li><h3><a href="en/_latest_version_/download/">Download</a></h3></li>
+    <li><h3><a href="en/_latest_version_/docs/quick-start/">Getting started</a></h3></li>
+    <li><h3><a href="en/_latest_version_/docs/query-guide/">Siddhi query guide</a></h3></li>
+    <li><h3><a href="en/_latest_version_/development/architecture/">Architecture</a></h3></li>
+    <li><h3 class="cLinks__last"><a href="en/_latest_version_/docs/siddhi-as-a-kubernetes-microservice/">How Siddhi works in Kubernetes</a></h3></li>
+</ul>
+</div>
+
+<div class="col-md-6 col-sm-12">
+<h2>Join the Community</h2>
+<ul>
+    <li><h3><a href="https://github.com/siddhi-io/siddhi/">Siddhi Core on GitHub</a></h3></li>
+    <li><h3><a href="community/#asking-questions">Siddhi mailing list</a></h3></li>
+    <li><h3><a href="community/contribution/">How to contribute</a></h3></li>
+    <li><h3 class="cLinks__last"><a href="en/_latest_version_/development/source/">Siddhi GitHub repos</a></h3></li>
+</ul>
+</div>
+
+
+</div>
+</div>
+
+
+
