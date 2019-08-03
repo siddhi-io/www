@@ -2034,7 +2034,7 @@ named <code>5minAvgQuery</code>.</p>
 
 define stream TempStream (deviceID long, roomNo int, temp double);
 
-@name('5minAvgQuery')
+@info(name = '5minAvgQuery')
 from TempStream#window.time(5 min)
 select roomNo, avg(temp) as avgTemp
   group by roomNo
@@ -2548,12 +2548,12 @@ define stream TempStream (deviceID long, roomNo int, temp double);</code></pre>
 define stream TempStream (deviceID long, roomNo int, temp double);
 
 -- Error generation through a custom function `createError()`
-@name('error-generation')
+@info(name = 'error-generation')
 from TempStream#custom:createError()
 insert into IgnoreStream1;
 
 -- Handling error by simply logging the event and error.
-@name('handle-error')
+@info(name = 'handle-error')
 from !TempStream#log("Error Occurred!")
 select deviceID, roomNo, temp, _error
 insert into IgnoreStream2;</code></pre>
@@ -2590,7 +2590,7 @@ define stream TempStream (deviceID long, roomNo int, temp double);</code></pre>
 define stream TempStream (deviceID long, roomNo int, temp double);
 
 -- Handling error by simply logging the event and error.
-@name('handle-error')
+@info(name = 'handle-error')
 from !TempStream#log("Error Occurred!")
 select deviceID, roomNo, temp, _error
 insert into IgnoreStream;</code></pre>
@@ -2601,7 +2601,7 @@ insert into IgnoreStream;</code></pre>
 <p>A query provides a way to process the events in the order they arrive and produce output using both stateful and stateless complex event processing and stream processing operations.</p>
 <p><strong>Syntax</strong></p>
 <p>The high level query syntax for defining processing logics is as follows:</p>
-<p><pre class="codehilite"><code class="language-sql linenums">@name('&lt;query name&gt;')
+<p><pre class="codehilite"><code class="language-sql linenums">@info(name = '&lt;query name&gt;')
 from &lt;input&gt;
 &lt;projection&gt;
 &lt;output action&gt;</code></pre>
@@ -2616,7 +2616,7 @@ The following parameters are used to configure a stream definition.</p>
 <tbody>
 <tr>
 <td><code>query name</code></td>
-<td>The name of the query. Since naming the query (i.e the <code>@name('&lt;query name&gt;')</code> annotation) is optional, when the name is not provided Siddhi assign a system generated name for the query.</td>
+<td>The name of the query. Since naming the query (i.e the <code>@info(name = '&lt;query name&gt;')</code> annotation) is optional, when the name is not provided Siddhi assign a system generated name for the query.</td>
 </tr>
 <tr>
 <td><code>input</code></td>
