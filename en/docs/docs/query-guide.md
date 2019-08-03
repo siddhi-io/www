@@ -81,7 +81,7 @@ named `5minAvgQuery`.
 
 define stream TempStream (deviceID long, roomNo int, temp double);
 
-@name('5minAvgQuery')
+@info(name = '5minAvgQuery')
 from TempStream#window.time(5 min)
 select roomNo, avg(temp) as avgTemp
   group by roomNo
@@ -587,12 +587,12 @@ Note: Details on writing processing logics via [queries](#query) will be explain
 define stream TempStream (deviceID long, roomNo int, temp double);
 
 -- Error generation through a custom function `createError()`
-@name('error-generation')
+@info(name = 'error-generation')
 from TempStream#custom:createError()
 insert into IgnoreStream1;
 
 -- Handling error by simply logging the event and error.
-@name('handle-error')
+@info(name = 'handle-error')
 from !TempStream#log("Error Occurred!")
 select deviceID, roomNo, temp, _error
 insert into IgnoreStream2;
@@ -645,7 +645,7 @@ Note: Details on writing processing logics via [queries](#query) will be explain
 define stream TempStream (deviceID long, roomNo int, temp double);
 
 -- Handling error by simply logging the event and error.
-@name('handle-error')
+@info(name = 'handle-error')
 from !TempStream#log("Error Occurred!")
 select deviceID, roomNo, temp, _error
 insert into IgnoreStream;
@@ -664,7 +664,7 @@ A query provides a way to process the events in the order they arrive and produc
 The high level query syntax for defining processing logics is as follows:
 
 ```sql
-@name('<query name>')
+@info(name = '<query name>')
 from <input>
 <projection>
 <output action>
@@ -673,7 +673,7 @@ The following parameters are used to configure a stream definition.
 
 | Parameter&nbsp;&nbsp;&nbsp;&nbsp;| Description |
 |----------------|-------------|
-| `query name`   | The name of the query. Since naming the query (i.e the `@name('<query name>')` annotation) is optional, when the name is not provided Siddhi assign a system generated name for the query. |
+| `query name`   | The name of the query. Since naming the query (i.e the `@info(name = '<query name>')` annotation) is optional, when the name is not provided Siddhi assign a system generated name for the query. |
 | `input`        | Defines the means of event consumption via [streams](#stream), [named-windows](#named-window), [tables](#table), and/or [named-aggregations](#named-aggregations), and defines the processing logic using [filters](#filter), [windows](#window), [stream-functions](#stream-function), [joins](#join), [patterns](#pattern) and [sequences](#sequence). |
 | `projection`   | Generates output event attributes using [select](#select), [functions](#function), [aggregation-functions](#aggregation-function), and [group by](#group-by) operations, and filters the generated the output using [having](#having), [limit & offset](#limit-offset), [order by](#order-by), and [output rate limiting](#output-rate-limiting) operations before sending them out. Here the projection is optional and when it is omitted all the input events will be sent to the output as it is. |
 | `output action`| Defines output action (such as `insert into`, `update`, `delete`, etc) that needs to be performed by the generated events on a [stream](#stream), [named-window](#named-window), or [table](#table)  |
