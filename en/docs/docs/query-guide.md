@@ -2561,7 +2561,7 @@ Further, following system properties are also available,
 System Property| Description| Possible Values | Optional | Default Value
 ---------|---------|---------|---------|------
 shardId| The id of the shard one of the distributed aggregation is running in. This should be unique to a single shard | Any string | No | <Empty_String>
-partitionById| This allows user to enable/disable distributed aggregation for all aggregations running in one siddhi manager .(Available from v4.3.3) | true/false | Yesio | false
+partitionById| This allows user to enable/disable distributed aggregation for all aggregations running in one siddhi manager .(Available from v4.3.3) | true/false | Yes | false
 
 !!! Note
     ShardIds should not be changed after the first configuration in order to keep data consistency.
