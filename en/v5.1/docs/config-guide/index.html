@@ -1635,12 +1635,14 @@ authentication:
 <p>Refer <a href="../siddhi-as-a-java-library/">guide</a> for more details on using Siddhi as a Java Library.</p>
 <h3 id="adding-to-siddhi-local-microservice">Adding to Siddhi Local Microservice<a class="headerlink" href="#adding-to-siddhi-local-microservice" title="Permanent link">&para;</a></h3>
 <p>The most used Siddhi extensions are packed by default with the Siddhi Local Microservice distribution.</p>
-<p>To add or update Siddhi extensions and/or third-party dependencies, adding or replacing the relevant OSGi JARs in <code>&lt;SIDDHI_RUNNER_HOME&gt;/lib</code> directory.</p>
-<p>Since Local Microservice is OSGi-based, when adding libraries/drivers they need to be checked if they are OSGi bundles, and if not convert to OSGi before adding them to the <code>&lt;SIDDHI_RUNNER_HOME&gt;/lib</code> directory.</p>
-<div class="admonition tip">
-<p class="admonition-title">Converting Jars to OSGi Bundles..</p>
-<p>If the database driver is not an OSGi bundle, then it should be converted to OSGi. Please refer <a href="#converting-jars-to-osgi-bundles">Converting Jars to OSGi Bundles</a> documentation for details.</p>
-</div>
+<p>To add or update Siddhi extensions and/or third-party dependencies, you can use <code>&lt;SIDDHI_RUNNER_HOME&gt;/jars</code> and 
+<code>&lt;SIDDHI_RUNNER_HOME&gt;/bundles</code> directories. </p>
+<ol>
+<li><code>&lt;SIDDHI_RUNNER_HOME&gt;/jars</code> directory : Maintained for Jar files which may not have their corresponding OSGi bundle implementation. 
+These Jars will be converted as OSGI bundles and copied to Siddhi Runner distribution during server startup. </li>
+<li><code>&lt;SIDDHI_RUNNER_HOME&gt;/bundles</code> directory : Maintained for OSGI bundles which you need to copy to Siddhi Runner distribution during server startup.</li>
+</ol>
+<p>Updates to these directories will be adapted after a server restart.</p>
 <p>Refer <a href="../siddhi-as-a-local-microservice/">guide</a> for more details on using Siddhi as Local Microservice.</p>
 <h3 id="adding-to-siddhi-docker-microservice">Adding to Siddhi Docker Microservice<a class="headerlink" href="#adding-to-siddhi-docker-microservice" title="Permanent link">&para;</a></h3>
 <p>The most used Siddhi extensions are packed by default with the Siddhi Docker Microservice distribution.</p>
@@ -1648,14 +1650,15 @@ authentication:
 <p>Sample docker file using <code>siddhi-runner-base-alpine</code> is as follows.
 <script src="https://gist.github.com/pcnfernando/09d3af8f958c464425a892efabac2d98.js"></script></p>
 <p>Find the necessary artifacts to build the docker from <a href="https://github.com/siddhi-io/docker-siddhi/tree/master/docker-files/siddhi-runner">docker-siddhi</a> repository.</p>
-<p>The necessary OSGi jars and extensions that need to be added to the Siddhi Docker Microservice should be placed at ${BUNDLE_JAR_DIR} (<code>./files/lib</code>) folder as defined in the above docker file, such that they would be bundled during the docker build phase.</p>
-<div class="admonition tip">
-<p class="admonition-title">Converting Jars to OSGi Bundles</p>
-<p>If the database driver is not an OSGi bundle, then it should be converted to OSGi. Please refer <a href="#converting-jars-to-osgi-bundles">Converting Jars to OSGi Bundles</a> documentation for details.</p>
-</div>
+<p><code>&lt;DOCKERFILE_HOME&amp;gt/siddhi-runner/files</code> contains two directories (bundles and jars directories) where you can copy the Jars and Bundles you need to bundle into the docker image.</p>
+<ol>
+<li>Jars directory - Maintained for Jar files which may not have their corresponding OSGi bundle implementation. These Jars will be converted as OSGI bundles and copied to Siddhi Runner docker image during docker build phase.</li>
+<li>Bundles directory - Maintained for OSGI bundles which you need to copy to Siddhi Runner docker image directory during docker build phase.</li>
+</ol>
 <p>Refer <a href="../siddhi-as-a-docker-microservice/">guide</a> for more details on using Siddhi as Docker Microservice.</p>
 <h3 id="adding-to-siddhi-kubernetes-microservice">Adding to Siddhi Kubernetes Microservice<a class="headerlink" href="#adding-to-siddhi-kubernetes-microservice" title="Permanent link">&para;</a></h3>
-<p>To add or update Siddhi extensions and/or third-party dependencies, a custom docker image has to be created using the steps described in <a href="#adding-to-siddhi-docker-microservice">Adding to Siddhi Docker Microservice</a> documentation including the necessary extensions and dependencies. The created image can be then referenced in the <code>sepc.pod</code> subsection in the <code>SiddhiProcess</code> Kubernetes artifact created to deploy Siddhi in Kubernetes.</p>
+<p>To add or update Siddhi extensions and/or third-party dependencies, a custom docker image has to be created using the steps described in <a href="#adding-to-siddhi-docker-microservice">Adding to Siddhi Docker Microservice</a> documentation including the necessary extensions and dependencies. </p>
+<p>The created image can be then referenced in the <code>sepc.pod</code> subsection in the <code>SiddhiProcess</code> Kubernetes artifact created to deploy Siddhi in Kubernetes.</p>
 <p>For details on creating the Kubernetes artifacts refer <a href="../siddhi-as-a-kubernetes-microservice/">Using Siddhi as Kubernetes Microservice</a> documentation.</p>
 <h2 id="configuring-statistics">Configuring Statistics<a class="headerlink" href="#configuring-statistics" title="Permanent link">&para;</a></h2>
 <div class="admonition info">
