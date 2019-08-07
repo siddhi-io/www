@@ -375,6 +375,7 @@ The most used Siddhi extensions are packed by default with the Siddhi Local Micr
 
 To add or update Siddhi extensions and/or third-party dependencies, you can use <code>&lt;SIDDHI_RUNNER_HOME&gt;/jars</code> and 
 <code>&lt;SIDDHI_RUNNER_HOME&gt;/bundles</code> directories. 
+
 1. <code>&lt;SIDDHI_RUNNER_HOME&gt;/jars</code> directory : Maintained for Jar files which may not have their corresponding OSGi bundle implementation. 
 These Jars will be converted as OSGI bundles and copied to Siddhi Runner distribution during server startup. 
 2. <code>&lt;SIDDHI_RUNNER_HOME&gt;/bundles</code> directory : Maintained for OSGI bundles which you need to copy to Siddhi Runner distribution during server startup.
@@ -403,7 +404,9 @@ Refer [guide](../siddhi-as-a-docker-microservice/) for more details on using Sid
 
 ### Adding to Siddhi Kubernetes Microservice
 
-To add or update Siddhi extensions and/or third-party dependencies, a custom docker image has to be created using the steps described in [Adding to Siddhi Docker Microservice](#adding-to-siddhi-docker-microservice) documentation including the necessary extensions and dependencies. The created image can be then referenced in the `sepc.pod` subsection in the `SiddhiProcess` Kubernetes artifact created to deploy Siddhi in Kubernetes.
+To add or update Siddhi extensions and/or third-party dependencies, a custom docker image has to be created using the steps described in [Adding to Siddhi Docker Microservice](#adding-to-siddhi-docker-microservice) documentation including the necessary extensions and dependencies. 
+
+The created image can be then referenced in the `sepc.pod` subsection in the `SiddhiProcess` Kubernetes artifact created to deploy Siddhi in Kubernetes.
 
 For details on creating the Kubernetes artifacts refer [Using Siddhi as Kubernetes Microservice](../siddhi-as-a-kubernetes-microservice/) documentation.
 
