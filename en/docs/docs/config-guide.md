@@ -592,6 +592,7 @@ securevault:
 
 ```
 Information about the parameters configured under the `securevault` subsection in the Siddhi Configuration yaml is as follows.
+
 | Parameter | Default Value | Description |
 | ------------- |-------------|-------------|
 | secretRepository > type | org.wso2.carbon.secvault.repository.DefaultSecretRepository | The default implementation of Secret Repository is based on the passwords and aliases given in the secrets.properties file and the JKS that is configured in the secure-vault.yaml file |
