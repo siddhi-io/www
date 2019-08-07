@@ -600,6 +600,5 @@ Information about the parameters configured under the `securevault` subsection i
 | secretRepository > parameters > secretPropertiesFile | ${SIDDHI_RUNNER_HOME}/resources/security/securevault.jks | Keysstore which contains the certificate to encrypt sensitive data | 
 | secretRepository > parameters > privateKeyAlias|wso2carbon| Alias of the cerificate in the key store used for encryption
 | masterKeyReader > type|org.wso2.carbon.secvault.reader.DefaultMasterKeyReader|The default implementation of MasterKeyReader gets a list of required passwords from the Secret Repository and provides the values for those passwords by reading system properties, environment variables and the master-keys.yaml file.|
-|masterKeyReader > parameters > masterKeyReaderFile| ${SIDDHI_RUNNER_HOME}/conf/runner/master-keys.yaml
-| Location of `master-keys.yaml` file which contains password used to access the key store to decrypt the ancrypted passwords at runtime|
+|masterKeyReader > parameters > masterKeyReaderFile| ${SIDDHI_RUNNER_HOME}/conf/runner/master-keys.yaml | Location of `master-keys.yaml` file which contains password used to access the key store to decrypt the ancrypted passwords at runtime|
 
