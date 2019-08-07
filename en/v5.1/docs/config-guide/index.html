@@ -1845,32 +1845,32 @@ Information about the parameters configured under the <code>securevault</code> s
 <tbody>
 <tr>
 <td>secretRepository &gt; type</td>
-<td>org.wso2.carbon.secvault.repository.DefaultSecretRepository</td>
+<td><code>org.wso2.carbon.secvault.repository.DefaultSecretRepository</code></td>
 <td>The default implementation of Secret Repository is based on the passwords and aliases given in the secrets.properties file and the JKS that is configured in the secure-vault.yaml file</td>
 </tr>
 <tr>
 <td>secretRepository &gt; parameters &gt; secretPropertiesFile</td>
-<td SIDDHI_RUNNER_HOME="SIDDHI_RUNNER_HOME">$</td>
+<td><code>${SIDDHI_RUNNER_HOME}/conf/runner/secrets.properties</code></td>
 <td>Location of the <code>secrect.properties</code> file which matches alias with encrypted data</td>
 </tr>
 <tr>
 <td>secretRepository &gt; parameters &gt; secretPropertiesFile</td>
-<td SIDDHI_RUNNER_HOME="SIDDHI_RUNNER_HOME">$</td>
+<td><code>${SIDDHI_RUNNER_HOME}/resources/security/securevault.jks</code></td>
 <td>Keysstore which contains the certificate to encrypt sensitive data</td>
 </tr>
 <tr>
 <td>secretRepository &gt; parameters &gt; privateKeyAlias</td>
-<td>wso2carbon</td>
+<td><code>wso2carbon</code></td>
 <td>Alias of the cerificate in the key store used for encryption</td>
 </tr>
 <tr>
 <td>masterKeyReader &gt; type</td>
-<td>org.wso2.carbon.secvault.reader.DefaultMasterKeyReader</td>
+<td><code>org.wso2.carbon.secvault.reader.DefaultMasterKeyReader</code></td>
 <td>The default implementation of MasterKeyReader gets a list of required passwords from the Secret Repository and provides the values for those passwords by reading system properties, environment variables and the master-keys.yaml file.</td>
 </tr>
 <tr>
 <td>masterKeyReader &gt; parameters &gt; masterKeyReaderFile</td>
-<td SIDDHI_RUNNER_HOME="SIDDHI_RUNNER_HOME">$</td>
+<td><code>${SIDDHI_RUNNER_HOME}/conf/runner/master-keys.yaml</code></td>
 <td>Location of <code>master-keys.yaml</code> file which contains password used to access the key store to decrypt the ancrypted passwords at runtime</td>
 </tr>
 </tbody>
