@@ -373,12 +373,14 @@ Refer [guide](../siddhi-as-a-java-library/) for more details on using Siddhi as 
 
 The most used Siddhi extensions are packed by default with the Siddhi Local Microservice distribution.
 
-To add or update Siddhi extensions and/or third-party dependencies, adding or replacing the relevant OSGi JARs in <code>&lt;SIDDHI_RUNNER_HOME&gt;/lib</code> directory.
+To add or update Siddhi extensions and/or third-party dependencies, you can use <code>&lt;SIDDHI_RUNNER_HOME&gt;/jars</code> and 
+<code>&lt;SIDDHI_RUNNER_HOME&gt;/bundles</code> directories. 
 
-Since Local Microservice is OSGi-based, when adding libraries/drivers they need to be checked if they are OSGi bundles, and if not convert to OSGi before adding them to the <code>&lt;SIDDHI_RUNNER_HOME&gt;/lib</code> directory.
+1. <code>&lt;SIDDHI_RUNNER_HOME&gt;/jars</code> directory : Maintained for Jar files which may not have their corresponding OSGi bundle implementation. 
+These Jars will be converted as OSGI bundles and copied to Siddhi Runner distribution during server startup. 
+2. <code>&lt;SIDDHI_RUNNER_HOME&gt;/bundles</code> directory : Maintained for OSGI bundles which you need to copy to Siddhi Runner distribution during server startup.
 
-!!! Tip "Converting Jars to OSGi Bundles.."
-    If the database driver is not an OSGi bundle, then it should be converted to OSGi. Please refer [Converting Jars to OSGi Bundles](#converting-jars-to-osgi-bundles) documentation for details.
+Updates to these directories will be adapted after a server restart.
 
 Refer [guide](../siddhi-as-a-local-microservice/) for more details on using Siddhi as Local Microservice.
 
@@ -393,16 +395,18 @@ Sample docker file using `siddhi-runner-base-alpine` is as follows.
 
 Find the necessary artifacts to build the docker from [docker-siddhi](https://github.com/siddhi-io/docker-siddhi/tree/master/docker-files/siddhi-runner) repository.
 
-The necessary OSGi jars and extensions that need to be added to the Siddhi Docker Microservice should be placed at ${BUNDLE_JAR_DIR} (`./files/lib`) folder as defined in the above docker file, such that they would be bundled during the docker build phase.
+<code>&lt;DOCKERFILE_HOME&gt/siddhi-runner/files</code> contains two directories (bundles and jars directories) where you can copy the Jars and Bundles you need to bundle into the docker image.
 
-!!! Tip "Converting Jars to OSGi Bundles"
-    If the database driver is not an OSGi bundle, then it should be converted to OSGi. Please refer [Converting Jars to OSGi Bundles](#converting-jars-to-osgi-bundles) documentation for details.
+1. Jars directory - Maintained for Jar files which may not have their corresponding OSGi bundle implementation. These Jars will be converted as OSGI bundles and copied to Siddhi Runner docker image during docker build phase.
+2. Bundles directory - Maintained for OSGI bundles which you need to copy to Siddhi Runner docker image directory during docker build phase.
 
 Refer [guide](../siddhi-as-a-docker-microservice/) for more details on using Siddhi as Docker Microservice.
 
 ### Adding to Siddhi Kubernetes Microservice
 
-To add or update Siddhi extensions and/or third-party dependencies, a custom docker image has to be created using the steps described in [Adding to Siddhi Docker Microservice](#adding-to-siddhi-docker-microservice) documentation including the necessary extensions and dependencies. The created image can be then referenced in the `sepc.pod` subsection in the `SiddhiProcess` Kubernetes artifact created to deploy Siddhi in Kubernetes.
+To add or update Siddhi extensions and/or third-party dependencies, a custom docker image has to be created using the steps described in [Adding to Siddhi Docker Microservice](#adding-to-siddhi-docker-microservice) documentation including the necessary extensions and dependencies. 
+
+The created image can be then referenced in the `sepc.pod` subsection in the `SiddhiProcess` Kubernetes artifact created to deploy Siddhi in Kubernetes.
 
 For details on creating the Kubernetes artifacts refer [Using Siddhi as Kubernetes Microservice](../siddhi-as-a-kubernetes-microservice/) documentation.
 
