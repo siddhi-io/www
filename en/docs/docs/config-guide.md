@@ -162,7 +162,7 @@ To configure database based periodic data persistence, add <code>statePersisten
 | intervalInMin | The time interval in minutes that defines the interval in which state of Siddhi applications should be persisted | 1 |
 | revisionsToKeep | The number of revisions to keep in the system. Here when a new persistence takes place, the older revisions are removed. | 3 |
 | persistenceStore | The persistence store | io.siddhi.distribution.core.persistence.DBPersistenceStore |
-| config > datasource | The datasource to be used in persisting the state. The datasource should be defined in the Siddhi configuration yaml. For detailed instructions of how to configure a datasource, see [Database Configuration](#database-configuration/).| SIDDHI_PERSISTENCE_DB (A datasource that is defined in `wso2.datasources` in Siddhi configuration yaml) |
+| config > datasource | The datasource to be used in persisting the state. The datasource should be defined in the Siddhi configuration yaml. For detailed instructions of how to configure a datasource, see [Database Configuration](#database-configuration/).| SIDDHI_PERSISTENCE_DB (A datasource that is defined in `datasources` in Siddhi configuration yaml) |
 | config > table | The table that should be created and used for persisting states. | PERSISTENCE_TABLE |
 
 The following is a sample configuration for database based state persistence.
@@ -173,7 +173,7 @@ statePersistence:
   revisionsToKeep: 3
   persistenceStore: io.siddhi.distribution.core.persistence.DBPersistenceStore
   config:
-    datasource: <DATASOURCE NAME>   # A datasource with this name should be defined in wso2.datasources namespace
+    datasource: <DATASOURCE NAME>   # A datasource with this name should be defined in datasources namespace
     table: <TABLE NAME>
 
 ```
@@ -442,7 +442,7 @@ The available metrics reporting options are as follows.
 
 ### 1.6.1. Reporting via JMX Mbeans
 
-JMX Mbeams is the default statistics reporting option of Siddhi. To enable stats with the default configuration add the metric-related properties under `wso2.metrics` section in the Siddhi Configurations yaml file, and pass that during startup.
+JMX Mbeams is the default statistics reporting option of Siddhi. To enable stats with the default configuration add the metric-related properties under `metrics` section in the Siddhi Configurations yaml file, and pass that during startup.
 
 A sample configuration is as follows.
 ```yaml
@@ -521,7 +521,7 @@ metrics:
       # Default Data Source Configuration
       - &JDBC01
         # JNDI name of the data source to be used by the JDBC Reporter.
-        # This data source should be defined under wso2.datasources.
+        # This data source should be defined under datasources.
         dataSourceName: java:comp/env/jdbc/SiddhiMetricsDB
         # Schedule regular deletion of metrics data older than a set number of days.
         # It is recommended that you enable this job to ensure your metrics tables do not get extremely large.
@@ -550,7 +550,7 @@ metrics:
 ```
 
 !!! note "Metrics history and reporting interval"
-    If the `wso2.metrics.reporting.jdbc` subsection is not enabled, the information relating to metrics history will not be persisted for future references. Also note the that the reporting will only start to update the database after the given `pollingPeriod` time has elapsed.  
+    If the `metrics.reporting.jdbc` subsection is not enabled, the information relating to metrics history will not be persisted for future references. Also note the that the reporting will only start to update the database after the given `pollingPeriod` time has elapsed.  
 
 Information about the parameters configured under the `jdbc.dataSource` subsection in the Siddhi Configuration yaml is as follows.
 
