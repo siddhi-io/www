@@ -47,7 +47,10 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><link rel="stylesheet" href="assets/stylesheets/application.4031d38b.css"><link rel="stylesheet" href="assets/stylesheets/application-palette.224b79ff.css"><meta name="theme-color" content="#009688"><script src="assets/javascripts/modernizr.74668098.js"></script><link rel="stylesheet" href="assets/fonts/material-icons.css"><link rel="stylesheet" href="assets/lib/highlightjs/default.min.css"><link rel="stylesheet" href="assets/css/theme.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<!-- asciinema player -->
+<link rel="stylesheet" type="text/css" href="css/asciinema-player.css" /><link rel="stylesheet" href="assets/stylesheets/application.4031d38b.css"><link rel="stylesheet" href="assets/stylesheets/application-palette.224b79ff.css"><meta name="theme-color" content="#009688"><script src="assets/javascripts/modernizr.74668098.js"></script><link rel="stylesheet" href="assets/fonts/material-icons.css"><link rel="stylesheet" href="assets/lib/highlightjs/default.min.css"><link rel="stylesheet" href="assets/css/theme.css">
 <script>
   window.ga = window.ga || function() {
     (ga.q = ga.q || []).push(arguments)
@@ -658,23 +661,24 @@ Siddhi understands Streaming SQL queries in order to capture events from diverse
 <div class="cWdgetContainer" id="exTab1">
 <div class="cTerminal">
 <div class="tab-content clearfix">
-<div class="tab-pane active" id="1a">
+<div class="tab-pane" id="1a">
 <div class="terminalOutput">
-<img src="images/editor/graphical-editor.png"/>
+<img src="images/editor/editor.gif"/>
 </div>
 </div>
-<div class="tab-pane" id="2a">
+<div class="tab-pane active" id="2a">
 <div class="terminalOutput">
-<img src="images/editor/source-editor.png"/>
-                      </div>
-                </div>
+<asciinema-player src="images/siddhi-510-on-k8s.cast" autoplay="true" loop="true" speed="3" preload="true" cols="62" rows="16"></asciinema-player>
+<script src="assets/js/asciinema-player.js"></script>
+</div>
+</div>
 </div>
 </div>
 <div class="cControls">
 <ul  class="cDemoControls">
-    <li class="active"><a  href="#1a" data-toggle="tab">Graphical Editor</a>
+    <li><a  href="#1a" data-toggle="tab">Siddhi Editor</a>
     </li>
-    <li><a href="#2a" data-toggle="tab">Source Editor</a>
+    <li class="active"><a href="#2a" data-toggle="tab">Siddhi on Kubernetes</a>
     </li>
 </ul>
 </div>

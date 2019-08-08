@@ -54,6 +54,10 @@ for (var i = 0; i < dropdowns.length; i++) {
 }
 ;
 
+//fix for asciinema-player
+var fullscreenButton = document.querySelector(".fullscreen-button");
+fullscreenButton.outerHTML = "<a target=\"_blank\" href=\"images/siddhi-k8s.html\">" + fullscreenButton.outerHTML + "</a>";
+
 /* 
  * Reading versions
  */

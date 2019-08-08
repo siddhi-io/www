@@ -101,6 +101,15 @@
         text-align: right;
         opacity: 0.7;
     }
+
+    .terminalOutput{
+        height: 298px;
+    }
+
+    .terminalOutput > img{
+        margin-top: 10%;
+        margin-bottom: 10%;
+    }
 }
 
 html .md-typeset .superfences-tabs > label:hover {
