@@ -57,23 +57,24 @@ Siddhi understands Streaming SQL queries in order to capture events from diverse
 <div class="cWdgetContainer" id="exTab1">
 <div class="cTerminal">
 <div class="tab-content clearfix">
-<div class="tab-pane active" id="1a">
+<div class="tab-pane" id="1a">
 <div class="terminalOutput">
-<img src="images/editor/graphical-editor.png"/>
+<img src="images/editor/editor.gif"/>
 </div>
 </div>
-<div class="tab-pane" id="2a">
+<div class="tab-pane active" id="2a">
 <div class="terminalOutput">
-<img src="images/editor/source-editor.png"/>
-                      </div>
-				</div>
+<asciinema-player src="images/siddhi-510-on-k8s.cast" autoplay="true" loop="true" speed="3" preload="true" cols="62" rows="16"></asciinema-player>
+<script src="assets/js/asciinema-player.js"></script>
+</div>
+</div>
 </div>
 </div>
 <div class="cControls">
 <ul  class="cDemoControls">
-    <li class="active"><a  href="#1a" data-toggle="tab">Graphical Editor</a>
+    <li><a  href="#1a" data-toggle="tab">Siddhi Editor</a>
 	</li>
-	<li><a href="#2a" data-toggle="tab">Source Editor</a>
+	<li class="active"><a href="#2a" data-toggle="tab">Siddhi on Kubernetes</a>
 	</li>
 </ul>
 </div>
@@ -81,7 +82,6 @@ Siddhi understands Streaming SQL queries in order to capture events from diverse
 </div>
 </div>
 </div>
-
 
 <div class="row cSection cGray">
 <div class="container">
