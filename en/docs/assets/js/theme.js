@@ -177,6 +177,9 @@ request.send();
  */
 hljs.initHighlightingOnLoad();
 
+var siddhiLogo = document.querySelector(".md-header-nav__button.md-logo");
+siddhiLogo.setAttribute("href","/");
+
 /* 
  * TOC position highlight on scroll
  */
