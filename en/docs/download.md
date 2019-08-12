@@ -55,7 +55,7 @@ PySiddhi4 can be installed using one of the following methods.
 
 ##### Installing PySiddhi4 via Python Package Management
 
-PySiddhi4 can be installed via PIP command as bellow.
+PySiddhi4 can be installed via PIP command as below.
 
 ```
 pip install pysiddhi4

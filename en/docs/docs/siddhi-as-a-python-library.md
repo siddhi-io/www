@@ -1,6 +1,6 @@
 # Siddhi 4.x as a Python library
 
-To use Siddhi in Python via PySiddhi and to get a working sample follow the bellow sample:
+To use Siddhi in Python via PySiddhi and to get a working sample follow the below sample:
 
 ### Step 1: Initialize libraries and imports
 
