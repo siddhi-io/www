@@ -248,7 +248,7 @@ define stream InputStream (name string, age int, country string);
 **Example 2**
 
 Receive `JSON` messages by exposing an `HTTP` service, and direct them to `StockStream` stream for processing.
-Here the incoming `JSON`, as given bellow, do not adhere to the default data format that's supported by the `JSON` mapper.
+Here the incoming `JSON`, as given below, do not adhere to the default data format that's supported by the `JSON` mapper.
 
 ```json
 {
@@ -274,7 +274,7 @@ The configuration of the `HTTP` source and the custom `JSON` source mapping to a
 define stream StockStream (symbol string, price float, volume long);
 ```
 
-The same can also be configured by omitting the attribute names as bellow.
+The same can also be configured by omitting the attribute names as below.
 
 ```sql
 @source(type='http', receiver.url='http://0.0.0.0:8080/foo',
@@ -545,7 +545,7 @@ Errors in Siddhi can be handled at the Streams and in Sinks.
 When errors are thrown by Siddhi elements subscribed to the stream, the error gets propagated up to the stream that delivered the event to those Siddhi elements. By default the error is logged and dropped at the stream, but this behavior can be altered by by adding `@OnError` annotation to the corresponding stream definition.
 `@OnError` annotation can help users to capture the error and the associated event, and handle them gracefully by sending them to a fault stream.
 
-The `@OnError` annotation and the required `action` to be specified as bellow.
+The `@OnError` annotation and the required `action` to be specified as below.
 
 ```sql
 @OnError(action='on error action')
@@ -570,7 +570,7 @@ The configuration of `TempStream` stream and `@OnError` annotation is as follows
 define stream TempStream (deviceID long, roomNo int, temp double);
 ```
 
-Siddhi will infer and automatically defines the fault stream of `TempStream` as given bellow.
+Siddhi will infer and automatically defines the fault stream of `TempStream` as given below.
 
 
 ```sql
@@ -602,7 +602,7 @@ insert into IgnoreStream2;
 
 There can be cases where external systems becoming unavailable or coursing errors when the events are published to them. By default sinks log and drop the events causing event losses, and this can be handled gracefully by configuring `on.error` parameter of the `@sink` annotation.
 
-The `on.error` parameter of the `@sink` annotation can be specified as bellow.
+The `on.error` parameter of the `@sink` annotation can be specified as below.
 
 ```sql
 @sink(type='<sink type>', on.error='<on error action>', <key>='<value>', ...)
