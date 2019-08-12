@@ -422,7 +422,7 @@ To enable statistics, the relevant configuration should be added to the Siddhi C
 To enable statistics the relevant matrics related configurations should be added under `metrics` section in the Siddhi Configurations yaml file, and pass that during startup.
 
 !!! Note "Configuring Metrics reporting level."
-    To modify the statistics reporting, relevant metric names can be added under the `metrics.levels` subsection in the Siddhi Configurations yaml, along with the matrics level (i.e., OFF, INFO, DEBUG, TRACE, or ALL) as given bellow.
+    To modify the statistics reporting, relevant metric names can be added under the `metrics.levels` subsection in the Siddhi Configurations yaml, along with the matrics level (i.e., OFF, INFO, DEBUG, TRACE, or ALL) as given below.
     <pre>
     metrics:
       # Metrics Levels are organized from most specific to least:
@@ -505,9 +505,9 @@ metrics:
 
 ### Reporting via Database
 
-To enable JDBC reporting and to periodically clean up the outdated statistics from the database, first a datasource should be created with the relevant database configurations and then the related metrics properties as given bellow should be added to in the Siddhi Configurations yaml file, and pass that during startup.
+To enable JDBC reporting and to periodically clean up the outdated statistics from the database, first a datasource should be created with the relevant database configurations and then the related metrics properties as given below should be added to in the Siddhi Configurations yaml file, and pass that during startup.
 
-The bellow sample is referring to the datasource with JNDI name `jdbc/SiddhiMetricsDB`, hence the datasource configuration in yaml should have `jndiConfig.name` as `jdbc/SiddhiMetricsDB`. For detailed instructions on configuring a datasource, refer [Configuring Databases](#configuring-databases).
+The below sample is referring to the datasource with JNDI name `jdbc/SiddhiMetricsDB`, hence the datasource configuration in yaml should have `jndiConfig.name` as `jdbc/SiddhiMetricsDB`. For detailed instructions on configuring a datasource, refer [Configuring Databases](#configuring-databases).
 
 
 . The scripts to create these tables are provided in the <code>&lt;SIDDHI_RUNNER_HOME&gt;/wso2/runner/dbscripts</code> directory.
