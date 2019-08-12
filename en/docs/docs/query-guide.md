@@ -248,7 +248,7 @@ define stream InputStream (name string, age int, country string);
 **Example 2**
 
 Receive `JSON` messages by exposing an `HTTP` service, and direct them to `StockStream` stream for processing.
-Here the incoming `JSON`, as given bellow, do not adhere to the default data format that's supported by the `JSON` mapper.
+Here the incoming `JSON`, as given below, do not adhere to the default data format that's supported by the `JSON` mapper.
 
 ```json
 {
@@ -274,7 +274,7 @@ The configuration of the `HTTP` source and the custom `JSON` source mapping to a
 define stream StockStream (symbol string, price float, volume long);
 ```
 
-The same can also be configured by omitting the attribute names as bellow.
+The same can also be configured by omitting the attribute names as below.
 
 ```sql
 @source(type='http', receiver.url='http://0.0.0.0:8080/foo',
@@ -545,7 +545,7 @@ Errors in Siddhi can be handled at the Streams and in Sinks.
 When errors are thrown by Siddhi elements subscribed to the stream, the error gets propagated up to the stream that delivered the event to those Siddhi elements. By default the error is logged and dropped at the stream, but this behavior can be altered by by adding `@OnError` annotation to the corresponding stream definition.
 `@OnError` annotation can help users to capture the error and the associated event, and handle them gracefully by sending them to a fault stream.
 
-The `@OnError` annotation and the required `action` to be specified as bellow.
+The `@OnError` annotation and the required `action` to be specified as below.
 
 ```sql
 @OnError(action='on error action')
@@ -570,7 +570,7 @@ The configuration of `TempStream` stream and `@OnError` annotation is as follows
 define stream TempStream (deviceID long, roomNo int, temp double);
 ```
 
-Siddhi will infer and automatically defines the fault stream of `TempStream` as given bellow.
+Siddhi will infer and automatically defines the fault stream of `TempStream` as given below.
 
 
 ```sql
@@ -602,7 +602,7 @@ insert into IgnoreStream2;
 
 There can be cases where external systems becoming unavailable or coursing errors when the events are published to them. By default sinks log and drop the events causing event losses, and this can be handled gracefully by configuring `on.error` parameter of the `@sink` annotation.
 
-The `on.error` parameter of the `@sink` annotation can be specified as bellow.
+The `on.error` parameter of the `@sink` annotation can be specified as below.
 
 ```sql
 @sink(type='<sink type>', on.error='<on error action>', <key>='<value>', ...)
@@ -694,11 +694,11 @@ insert into AnotherRoomTempStream;
 ```
 
 !!! tip "Inferred Stream"
-    Here, the `RoomTempStream` and `AnotherRoomTempStream` streams are an inferred streams, which means their stream definitions are inferred from the queries and they can be used same as any other defined stream without any restrictions.  
+    Here, the `RoomTempStream` and `AnotherRoomTempStream` streams are an inferred streams, which means their stream definitions are inferred from the queries and hence they can be used the same as any other defined streams without any restrictions.  
 
 ###Value
 
-Values are typed data, that can be manipulated, transferred and stored. Values can be referred by the attributes defined in definitions such as streams, and tables.
+Values are typed data, which can be manipulated, transferred, and stored. Values can be referred by the attributes defined in definitions such as streams, and tables.
 
 Siddhi supports values of type `STRING`, `INT` (Integer), `LONG`, `DOUBLE`, `FLOAT`, `BOOL` (Boolean) and `OBJECT`.
 The syntax of each type and their example use as a constant value is as follows,
@@ -942,11 +942,11 @@ The select clause in Siddhi query defines the output event attributes of the que
 
 ###Function
 
-Function are pre-configured operations that can consumes zero, or more parameters and always produce a single value as result. It can be used anywhere an attribute can be used.
+Functions are pre-configured operations that can consumes zero, or more parameters and always produce a single value as result. It can be used anywhere an attribute can be used.
 
 **Purpose**
 
-Functions encapsulate pre-configured reusable execution logic allowing users to execute the logic anywhere just by calling the function. This also make writing SiddhiApps simple and easy to understand.
+It encapsulate pre-configured reusable execution logic allowing users to execute the logic anywhere just by calling the function. This also make writing SiddhiApps simple and easy to understand.
 
 **Syntax**
 
@@ -963,17 +963,17 @@ Here `<function name>` uniquely identifies the function. The `<parameter>` defin
 
 **Example 1**
 
-Function name `add` accepting two input parameters, is called with an attribute named `input` and a constant value `75`.  
+Function with name `add` accepting two input parameters, one being an attribute named `input` and other being a constant value `75`.  
 ```
 add(input, 75)
 ```
 
 **Example 2**
 
-Function name `alertAfter` accepting two input parameters, is called with a time value of `1 hour and 25 minutes` and a mathematical addition operation of `startTime` + `56`.
+Function name `alertAfter` accepting two input parameters, one being a time value `1 hour and 25 minutes` and the other a mathematical addition of `startTime` and `56`.
 
 ```
-add(1 hour and 25 minutes, startTime + 56)
+alertAfter(1 hour and 25 minutes, startTime + 56)
 ```
 
 **Inbuilt functions**
@@ -1003,7 +1003,8 @@ Following are some inbuilt Siddhi functions, for more functions refer [execution
 
 **Example**
 
-Query that converts the `roomNo` to `string` using `convert` function, finds the maximum temperature reading with `maximum` function, and adds a unique `messageID` using the `UUID` function.
+Query to convert the `roomNo` to `string` using `convert` function, find the maximum temperature reading with `maximum` function, and to add a unique `messageID` using the `UUID` function.
+
 ```sql
 from TempStream
 select convert(roomNo, 'string') as roomNo,
@@ -1014,11 +1015,11 @@ insert into RoomTempStream;
 
 ### Filter
 
-Filters provide a way of filtering input stream events based on a specified condition. It accepts any type of condition including a combination of functions and/or attributes  that produces a Boolean result. Filters allow events to passthrough if the condition results in `true`, and drops if it results in a `false`.  
+Filters filter events arriving on input streams based on specified conditions. They accept any type of condition including a combination of attributes, constants, functions, and others, that produces a Boolean result. Filters allow events to pass through if the condition results in `true`, and drops if it results in a `false`.  
 
 **Purpose**
 
-Filter helps to select the events that are relevant for the processing and omit the ones that are not.
+Filter helps to select the events that are relevant for processing and omit the ones that are not.
 
 **Syntax**
 
@@ -1033,7 +1034,7 @@ insert into <output stream>
 **Example**
 
 Query to filter `TempStream` stream events, having `roomNo` within the range of 100-210 and temperature greater than 40 degrees,
-and insert them into `HighTempStream` stream.
+and insert the filtered results into `HighTempStream` stream.
 
 ```sql
 from TempStream[(roomNo >= 100 and roomNo < 210) and temp > 40]
@@ -1043,17 +1044,17 @@ insert into HighTempStream;
 
 ### Window
 
-Window provides a way to capture a subset of events from an input stream and retain them for a period of time based on a specified criterion. The criterion defines when and how the events should be evicted from the windows. Such as events getting evicted from the window based on the time duration, or number of events and they events are evicted in a sliding (one by one) or tumbling (batch) manner.
+Windows capture a subset of events from input streams and retain them for a period of time based on a specified criterion. The criterion defines when and how the events should be evicted from the window. Such as events getting evicted based on time duration, or number of events in the window, and the way they get evicted is in sliding (one by one) or tumbling (batch) manner.
 
-Within a query, each input stream can at most have only one window associated with it.
+In a query, each input stream can at most have only one window associated with it.
 
 **Purpose**
 
-Windows help to retain events based on a criterion, such that the values of those events can be aggregated, or checked if an event of interest is within the window or not.
+Windows help to retain events based on a criterion, such that the values of those events can be aggregated, correlated or checked, if the event of interest is in the window.
 
 **Syntax**
 
-Window should be defined by using the `#window` prefix next to the input stream as shown below.
+Window should be defined next to the input stream along the `#window` prefix as shown below.
 
 ```sql
 from <input stream>#window.<window name>(<parameter>, <parameter>, ... )
@@ -1158,11 +1159,11 @@ Here, the window operates in a batch/tumbling manner where the window will proce
 
 ### Event Type
 
-Query output depends on the `current` and `expired` event types it produces based on its internal processing state. By default all queries produce `current` events upon event arrival to the query. The queries containing windows additionally produce `expired` events when events expire from the windows.
+Query output depends on the `current` and `expired` event types produced by the query based on its internal processing state. By default all queries produce `current` events upon event arrival. The queries containing windows additionally produce `expired` events when events expire from those windows.
 
 **Purpose**
 
-Event type helps to specify when a query should output events to the stream, such as output upon current events, expired events or upon both current and expired events.
+Event type helps to identify how the events were produced and to specify when a query should output such events to the output stream, such as output processed events only upon new event arrival to the query, upon event expiry from the window, or upon both cases.
 
 **Syntax**
 
@@ -1203,20 +1204,20 @@ update or insert into <table> (for <event type>)?
     on <condition>
 ```
 
-!!! note
-    Controlling query output based on the event types neither alters query execution nor its accuracy.  
-
 The event types can be defined using the following keywords to manipulate query output.
 
 | Event types | Description |
 |-------------------|-------------|
-| `current events` | Outputs events only when incoming events arrive to be processed by the query. </br> This is default behavior when no specific event type is specified.|
-| `expired events` | Outputs events only when events expires from the window. |
-| `all events` | Outputs events when incoming events arrive to be processed by the query as well as </br> when events expire from the window. |
+| `current events` | Outputs processed events only upon new event arrival to the query. </br> This is default behavior when no specific event type is specified.|
+| `expired events` | Outputs processed events only upon event expiry from the window. |
+| `all events` | Outputs processed events when new events arrive to the query as well as </br> when events expire from the window. |
+
+!!! note
+    Controlling query output based on the event types neither alters query execution nor its accuracy.  
 
 **Example**
 
-Query to output only the expired events from a 1 minute time window to the `DelayedTempStream` stream. This can be used for delaying the events by a minute.
+Query to output processed events only upon event expiry from the 1 minute time window to the `DelayedTempStream` stream. This query helps to delay events by a minute.
 
 ```sql
 from TempStream#window.time(1 min)
@@ -1225,19 +1226,19 @@ insert expired events into DelayedTempStream
 ```
 
 !!! Note
-    This is just to illustrate how expired events work, it is recommended to use [delay](../api/latest/#delay-window) window for usecases where we need to delay events by a given time period.
+    This is just to illustrate how expired events work, it is recommended to use [delay](../api/latest/#delay-window) window for use cases where we need to delay events by a given time period of time.
 
 ### Aggregate Function
 
-Aggregate functions are pre-configured aggregation operations that can consumes zero, or more parameters from multiple events and always produce a single value as result. They can be only used in the query projection (as part of the `select` clause). When a query comprises a window, the aggregation will be contained to the events in the window, and when it does not have a window, the aggregation is performed from the first event the query has received.
+Aggregate functions are pre-configured aggregation operations that can consume zero, or more parameters from multiple events and produce a single value as result. They can be only used in query projection (as part of the `select` clause). When a query comprises a window, the aggregation will be constrained to the events in the window, and when it does not have a window, the aggregation is performed from the first event the query has received.
 
 **Purpose**
 
-Aggregate functions encapsulate pre-configured reusable aggregate logic allowing users to aggregate values of multiple events together. When used with batch/tumbling windows this can also help to reduce the number of output events produced.  
+Aggregate functions encapsulate pre-configured reusable aggregate logic allowing users to aggregate values of multiple events together. When used with batch/tumbling windows this will also reduce the number of output events produced.  
 
 **Syntax**
 
-Aggregate function can be used in query projection (as part of the `select` clause) alone or as a part of another expression. In all cases, the output produced by the query should be properly mapped to the output stream attribute using the `as` keyword.
+Aggregate function can be used in query projection (as part of the `select` clause) alone or as a part of another expression. In all cases, the output produced should be properly mapped to the output stream attribute of the query using the `as` keyword.
 
 The syntax of aggregate function is as follows,
 
@@ -1247,11 +1248,11 @@ select <aggregate function>(<parameter>, <parameter>, ... ) as <attribute name>,
 insert into <output stream>;
 ```
 
-Here `<aggregate function>` uniquely identifies the aggregate function. The `<parameter>` defined input parameters the aggregate function can accept. The input parameters can be attributes, constant values, results of other functions or aggregate functions, results of mathematical or logical expressions, or time values. The number and type of parameters an aggregate function accepts depend on the function itself.
+Here `<aggregate function>` uniquely identifies the aggregate function. The `<parameter>` defined input parameters the aggregate function can accept. The input parameters can be attributes, constant values, results of other functions or aggregate functions, results of mathematical or logical expressions, or time values. The number and type of parameters an aggregate function accepts depend on the aggregate function itself.
 
 **Inbuilt aggregate functions**
 
-Following are some inbuilt aggregation functions, for more functions refer [execution extensions](../extensions/).
+Following are some inbuilt aggregation functions, for more aggregate functions refer [execution extensions](../extensions/).
 
 |Inbuilt aggregate function | Description|
 | ------------- |-------------|
@@ -1261,17 +1262,16 @@ Following are some inbuilt aggregation functions, for more functions refer [exec
 | <a target="_blank" href="../api/latest/#avg-aggregate-function">avg</a> | Calculates the average from a set of values.|
 | <a target="_blank" href="../api/latest/#max-aggregate-function">max</a> | Finds the maximum value from a set of values. |
 | <a target="_blank" href="../api/latest/#min-aggregate-function">max</a> | Finds the minimum value from a set of values. |
-
 | <a target="_blank" href="../api/latest/#maxforever-aggregate-function">maxForever</a> | Finds the maximum value from all events throughout its lifetime irrespective of the windows. |
 | <a target="_blank" href="../api/latest/#minforever-aggregate-function">minForever</a> | Finds the minimum value from all events throughout its lifetime irrespective of the windows. |
 | <a target="_blank" href="../api/latest/#stddev-aggregate-function">stdDev</a> | Calculates the standard deviation from a set of values. |
-| <a target="_blank" href="../api/latest/#and-aggregate-function">and</a> | Calculates boolean and from a set of values. |
-| <a target="_blank" href="../api/latest/#or-aggregate-function">or</a> | Calculates boolean or from a set of values. |
-| <a target="_blank" href="../api/latest/#unionset-aggregate-function">unionSet</a> | Calculates union as a Set from a set of values. |
+| <a target="_blank" href="../api/latest/#and-aggregate-function">and</a> | Calculates boolean `and` from a set of values. |
+| <a target="_blank" href="../api/latest/#or-aggregate-function">or</a> | Calculates boolean `or` from a set of values. |
+| <a target="_blank" href="../api/latest/#unionset-aggregate-function">unionSet</a> | Constructs a Set by unioning set of values. |
 
 **Example**
 
-Query to calculate average, maximum, and minimum values on `temp` attribute of the `TempStream` stream in a sliding manner, from the events arrived over the last 10 minutes and to produce outputs `avgTemp`, `maxTemp` and `minTemp` respectively to the `AvgTempStream` output stream.
+Query to calculate average, maximum, and minimum values on `temp` attribute of the `TempStream` stream in a sliding manner, from the events arrived over the last 10 minutes and to produce output events with attributes `avgTemp`, `maxTemp` and `minTemp` respectively to the `AvgTempStream` stream.
 
 ```sql
 from TempStream#window.time(10 min)
@@ -1281,11 +1281,11 @@ insert into AvgTempStream;
 
 ### Group By
 
-Group By provides a way of grouping events based on one or more specified attributes to perform aggregate operations.
+Group By groups events based on one or more specified attributes to perform aggregate operations.
 
 **Purpose**
 
-Group By allows users to aggregate values of multiple events based on the given group-by fields.
+Group By helps to perform aggregate functions independently for each given group-by key combination.
 
 **Syntax**
 
@@ -1302,7 +1302,7 @@ Here the group by attributes should be defined next to the `group by` keyword se
 
 **Example**
 
-Query to calculate the average `temp` per `roomNo` and `deviceID` combination, from the events arrived from `TempStream` stream, during the last 10 minutes time-window in a sliding manner.
+Query to calculate the average `temp` per each `roomNo` and `deviceID` combination, from the events arrived from `TempStream` stream, during the last 10 minutes time-window in a sliding manner.
 
 ```sql
 from TempStream#window.time(10 min)
@@ -1313,7 +1313,7 @@ insert into AvgTempStream;
 
 ### Having
 
-Having provide a way of filtering events based on a specified condition of the query output stream attributes. It accepts any type of condition including a combination of functions and/or attributes that produces a Boolean result. Having, allow events to passthrough if the condition results in `true`, and drops if it results in a `false`.  
+Having filters events at the query output using a specified condition on query output stream attributes. It accepts any type of condition including a combination of output  stream attributes, constants, and/or functions that produces a Boolean result. Having, allow events to passthrough if the condition results in `true`, and drops if it results in a `false`.  
 
 **Purpose**
 
@@ -1331,11 +1331,11 @@ having <condition>
 insert into <output stream>;
 ```
 
-Here the having `<condition>` should be defined next to the `having` keyword and having can be used with or without `group by` clause.
+Here the having `<condition>` should be defined next to the `having` keyword, and it can be used with or without `group by` clause.
 
 **Example**
 
-Query to calculate the average `temp` per `roomNo` for the last 10 minutes, and alerts if the `avgTemp` exceeds 30 degrees.
+Query to calculate the average `temp` per `roomNo` for the events arrived on the last 10 minutes, and send alerts for each event having `avgTemp` more than 30 degrees.
 
 ```sql
 from TempStream#window.time(10 min)
@@ -1347,11 +1347,11 @@ insert into AlertStream;
 
 ### Order By
 
-Order By, orders the query results in ascending and or descending order based on one or more specified attributes. When an attribute is used for order by, by default Siddhi orders the events in ascending order of that attribute's value, and by adding `desc` keyword, the events can be ordered in descending order. When more than one attribute is defined the attributes defined towards the left will have more precedence in ordering than the ones defined in right.  
+Order By, orders the query results in ascending or descending order based on one or more specified attributes. By default the order by attribute orders the events in ascending order, and by adding `desc` keyword, the events can be ordered in descending order. When more than one attribute is defined the attributes defined towards the left will have more precedence in ordering than the ones defined in right.  
 
 **Purpose**
 
-Order By helps to sort the events in the outputs chunks produced by the query. Order By will be more helpful for batch windows, and queries where they output many of event together then for sliding window use cases where the output will be one or few events at a time.
+Order By helps to sort the events in the query output chunks. Order By will only be effective when query outputs a lot of events together such as in batch windows then for sliding windows where events are emitted one at a time.
 
 **Syntax**
 
@@ -1366,11 +1366,11 @@ order by <attribute1 name> (asc|desc)?, <attribute2 name> (asc|desc)?, ...
 insert into <output stream>;
 ```
 
-Here the order by attributes should be defined next to the `order by` keyword separating each by a comma, and optionally specifying the event ordering using `asc` (default) or `desc` keywords.
+Here, the order by attributes (`<attributeN name>`) should be defined next to the `order by` keyword separating each by a comma, and optionally the event ordering can be specified using `asc` (default) or `desc` keywords to respectively define ascending and descending.
 
 **Example**
 
-Query to calculate the average `temp` per `roomNo` and `deviceID` combination on every 10 minutes batches, and order the generated output events in ascending order by `avgTemp` and then by descending order of `roomNo` (if the more than one event have the same `avgTemp` value).
+Query to calculate the average `temp`, per `roomNo` and `deviceID` combination, on every 10 minutes batches, and order the generated output events in ascending order by `avgTemp` and then in descending order of `roomNo` (if there are more events having the same `avgTemp` value) before emitting them to the `AvgTempStream` stream.
 
 ```sql
 from TempStream#window.timeBatch(10 min)
@@ -1382,11 +1382,11 @@ insert into AvgTempStream;
 
 ### Limit & Offset
 
-These provide a way to select the number of events (via limit) from the desired index (by specifying an offset) from the output event chunks produced by the query.
+These provide a way to select a limited number of events (via limit) from the desired index (using an offset) from the output event chunks produced by the query.
 
 **Purpose**
 
-Limit & Offset helps to output only the selected set of events from large event batches. This will be more useful with `Order By` clause where one can order the output for topK, bottomK, or even to paginate through the dataset by obtaining a set of events from the middle.   
+Limit & Offset helps to output only the selected set of events from large event batches. This will be very useful with `Order By` clause where one can order the output and extract the topK or bottomK events, and even use it to paginate through the dataset by obtaining set of events from the middle.   
 
 **Syntax**
 
@@ -1403,11 +1403,11 @@ offset <positive integer>?
 insert into <output stream>;
 ```
 
-Here both `limit` and `offset` are optional, when `limit` is omitted the query will output all the events, and when `offset` is omitted `0` is taken as the default offset value.
+Here both `limit` and `offset` are optional and both can be defined by adding a positive integer next to their keywords, when `limit` is omitted the query will output all the events, and when `offset` is omitted `0` is taken as the default offset value.
 
 **Example 1**
 
-Query to calculate the average `temp` per `roomNo` and `deviceID` combination for every 10 minutes batches, from the events arriving at the `TempStream` stream, and emit only two events having the highest `avgTemp` value.
+Query to calculate the average `temp`, per `roomNo` and `deviceID` combination, for every 10 minutes batches, from the events arriving at the `TempStream` stream, and emit only two events having the highest `avgTemp` value.
 
 ```sql
 from TempStream#window.timeBatch(10 min)
@@ -1419,7 +1419,8 @@ insert into HighestAvgTempStream;
 ```
 
 **Example 2**
-Query to calculate the average `temp` per `roomNo` and `deviceID` combination for every 10 minutes batches, for events that arriving at the `TempStream` stream, and emits only the third, forth and fifth events when sorted in descending order based on their `avgTemp` value.
+
+Query to calculate the average `temp`, per `roomNo` and `deviceID` combination, for every 10 minutes batches, for the events arriving at the `TempStream` stream, and emits only the third, forth and fifth events when sorted in descending order based on their `avgTemp` value.
 
 ```sql
 from TempStream#window.timeBatch(10 min)
@@ -1432,140 +1433,312 @@ insert into HighestAvgTempStream;
 ```
 
 ### Join (Stream)
-Joins allow you to get a combined result from two streams in real-time based on a specified condition.
+
+Joins combine events from two streams in real-time based on a specified condition.
 
 **Purpose**
 
-Streams are stateless. Therefore, in order to join two streams, they need to be connected to a window so that there is a pool of events that can be used for joining. Joins also accept conditions to join the appropriate events from each stream.
+Join provides a way of correlating events of two steams and in addition aggregating them based on the defined windows.
 
-During the joining process each incoming event of each stream is matched against all the events in the other
-stream's window based on the given condition, and the output events are generated for all the matching event pairs.
+Two streams cannot directly join as they are stateless, and they do not retain events. Therefore, each stream needs to be associated with a window for joining as it can retain events. Join also accepts a condition to match events against each event stream window.
+
+During the joining process each incoming event of each stream is matched against all the events in the other stream's window based on the given condition, and the output events are generated for all the matching event pairs.
+
+When there is no window associated with the joining steam, `window.lengthBatch(0)` is assigned by default to the steam to enable the join process and to preserve stream's stateless nature.
 
 !!! Note
     Join can also be performed with [stored data](#join-table), [aggregation](#join-aggregation) or externally [named windows](#join-window).
 
 **Syntax**
 
-The syntax for a join is as follows:
+The syntax for a join two streams is as follows:
 
 ```sql
-from <input stream>#window.<window name>(<parameter>, ... ) {unidirectional} {as <reference>}
-         join <input stream>#window.<window name>(<parameter>,  ... ) {unidirectional} {as <reference>}
-    on <join condition>
+from <input stream>(#window.<window name>(<parameter>, ... ))? (unidirectional)? (as <reference>)?
+         <join type> <input stream>(#window.<window name>(<parameter>,  ... ))? (unidirectional)? (as <reference>)?
+    (on <join condition>)?
 select <attribute name>, <attribute name>, ...
 insert into <output stream>
 ```
-Here, the `<join condition>` allows you to match the attributes from both the streams.
 
-**Unidirectional join operation**
+Here, both the streams can have a window associated with them and have an optional `<join condition>`  next to the `on` keyword to match events from both windows to generate combined output events.
 
-By default, events arriving at either stream can trigger the joining process. However, if you want to control the
-join execution, you can add the `unidirectional` keyword next to a stream in the join definition as depicted in the
-syntax in order to enable that stream to trigger the join operation. Here, events arriving at other stream only update the
- window of that stream, and this stream does not trigger the join operation.
+!!! Note "Window should be defined as the last element of each joining stream."
+    Join query expects a window to be defined as the last element of each joining stream, therefore there cannot be a filter defined after the window.
 
-!!! Note
-    The `unidirectional` keyword cannot be applied to both the input streams because the default behaviour already allows both streams to trigger the join operation.
+**join types**
 
-**Example**
-
-Assuming that the temperature of regulators are updated every minute.
-Following is a Siddhi App that controls the temperature regulators if they are not already `on` for all the rooms with a room temperature greater than 30 degrees.  
-
-```sql
-define stream TempStream(deviceID long, roomNo int, temp double);
-define stream RegulatorStream(deviceID long, roomNo int, isOn bool);
-
-from TempStream[temp > 30.0]#window.time(1 min) as T
-  join RegulatorStream[isOn == false]#window.length(1) as R
-  on T.roomNo == R.roomNo
-select T.roomNo, R.deviceID, 'start' as action
-insert into RegulatorActionStream;
-```
-
-**Supported join types**
-
-Following are the supported operations of a join clause.
+Following are the supported join operations.
 
  *  **Inner join (join)**
 
-    This is the default behaviour of a join operation. `join` is used as the keyword to join both the streams. The output is generated only if there is a matching event in both the streams.
+    This is the default behavior of a join operation, and the `join` keyword is used to join both the streams.
+
+    Here the output is generated only if there is a matching event in both the streams when either stream is triggering the join operation.
 
  *  **Left outer join**
 
-    The `left outer join` operation allows you to join two streams to be merged based on a condition. `left outer join` is used as the keyword to join both the streams.
+    The `left outer join` keyword is used to join two streams while producing all left stream events to the output.
 
-    Here, it returns all the events of left stream even if there are no matching events in the right stream by
-    having null values for the attributes of the right stream.
-
-     **Example**
-
-    The following query generates output events for all events from the `StockStream` stream regardless of whether a matching
-    symbol exists in the `TwitterStream` stream or not.
-
-    <pre>
-    from StockStream#window.time(1 min) as S
-      left outer join TwitterStream#window.length(1) as T
-      on S.symbol== T.symbol
-    select S.symbol as symbol, T.tweet, S.price
-    insert into outputStream ;    </pre>
+    Here, the output is generated when right stream triggers the join operation and finds matching events in the left stream window to perform the join, and in all cases where the left stream triggers the join operation. Here, when the left stream finds matching events in the right stream window, it uses them for the join, and if there are no matching events, then it uses null values for the join operation.
 
  *  **Right outer join**
 
-    This is similar to a left outer join. `Right outer join` is used as the keyword to join both the streams.
-    It returns all the events of the right stream even if there are no matching events in the left stream.
+    This is similar to a left outer join and the `Right outer join` keyword is used to join two streams while producing all right stream events to the output.
+
+    It generate output in all cases where the right stream triggers the join operation even if there are no matching events in the left stream window.
 
  *  **Full outer join**
 
-    The full outer join combines the results of left outer join and right outer join. `full outer join` is used as the keyword to join both the streams.
-    Here, output event are generated for each incoming event even if there are no matching events in the other stream.
+    The full outer join combines the results of left outer join and right outer join. The `full outer join` keyword is used to join the streams while producing both left and stream events to the output.
 
-    **Example**
+    Here, the output is generated in all cases where the left or right stream triggers the join operation, and when a stream finds matching events in the other stream window, it uses them for the join, and if there are no matching events, then it uses null values instead.
 
-    The following query generates output events for all the incoming events of each stream regardless of whether there is a
-    match for the `symbol` attribute in the other stream or not.
+!!! Note "Cross join"
+    In either of these cases when join condition is omitted, the triggering event will successfully match against all the events in the other stream window, producing a cross join behavior.
 
-    <pre>
-    from StockStream#window.time(1 min) as S
-      full outer join TwitterStream#window.length(1) as T
-      on S.symbol== T.symbol
-    select S.symbol as symbol, T.tweet, S.price
-    insert into outputStream ;    </pre>
+**Unidirectional join operation**
 
+By default, events arriving on either stream trigger the join operation and generate the corresponding output. However, this join behavior can be controlled by adding the `unidirectional` keyword next to one of the streams as depicted in the join query syntax above. This enables only the stream with the `unidirectional` to trigger the join operation. Therefore the events arriving on the other stream will neither trigger the join operation nor produce any output, but rather they only update their stream's window state.
+
+!!! Note "The `unidirectional` keyword cannot be applied on both join streams."
+    This is because the default behavior already allows both the streams to trigger the join operation.
+
+**Example 1 (join)**
+
+The query to generate output when there is a matching event having equal `symbol` and `companyID` combination from the events arrived in the last 10 minutes on `StockStream` stream and the events arrived in the last 20 minutes on `TwitterStream` stream.
+
+```sql
+define stream StockStream (symbol string, price float, volume long);
+define stream TwitterStream (companyID string, tweet string);
+
+from StockStream#window.time(10 min) as S
+    join TwitterStream#window.time(20 min) as T
+    on S.symbol== T.companyID
+select S.symbol as symbol, T.tweet, S.price
+insert into OutputStream ;
+```
+
+Possible OutputStream outputs as follows
+```
+("FB", "FB is great!", 23.5f)
+("GOOG", "Its time to Google!", 54.5f)
+```
+
+**Example 2 (with no join condition)**
+
+The query to generate output for all possible event combinations from the last 5 events of the `StockStream` stream and the events arrived in the last 1 minutes on `TwitterStream` stream.
+
+```sql
+define stream StockStream (symbol string, price float, volume long);
+define stream TwitterStream (companyID string, tweet string);
+
+from StockStream#window.length(5) as S
+    join TwitterStream#window.time(1 min) as T
+select S.symbol as symbol, T.tweet, S.price
+insert into OutputStream ;
+```
+
+Possible OutputStream outputs as follows,
+```
+("FB", "FB is great!", 23.5f)
+("FB", "Its time to Google!", 23.5f)
+("GOOG", "FB is great!", 54.5f)
+("GOOG", "Its time to Google!", 54.5f)
+```
+
+**Example 3 (left outer join)**
+
+The query to generate output for all events arriving in the `StockStream` stream regardless of whether there is a matching `companyID` for `symbol` exist in the events arrived in the last 20 minutes on `TwitterStream` stream, and generate output for the events arriving in the `StockStream` stream only when there is a matchine `symbol` and `companyID` combination exist in the events arrived in the last 10 minutes on `StockStream` stream.
+
+```sql
+define stream StockStream (symbol string, price float, volume long);
+define stream TwitterStream (companyID string, tweet string);
+
+from StockStream#window.time(10 min) as S
+    left outer join TwitterStream#window.time(20 min) as T
+    on S.symbol== T.companyID
+select S.symbol as symbol, T.tweet, S.price
+insert into OutputStream ;
+```
+
+Possible OutputStream outputs as follows,
+```
+("FB", "FB is great!", 23.5f)
+("GOOG", null, 54.5f) //when there are no matching event in TwitterStream
+```
+
+**Example 3 (full outer join)**
+
+The query to generate output for all events arriving in the `StockStream` stream and in the `TwitterStream` stream regardless of whether there is a matching `companyID` for `symbol` exist in the other stream window or not.
+
+```sql
+define stream StockStream (symbol string, price float, volume long);
+define stream TwitterStream (companyID string, tweet string);
+
+from StockStream#window.time(10 min) as S
+    full outer join TwitterStream#window.time(20 min) as T
+    on S.symbol== T.companyID
+select S.symbol as symbol, T.tweet, S.price
+insert into OutputStream ;
+```
+
+Possible OutputStream outputs as follows,
+```
+("FB", "FB is great!", 23.5f)
+("GOOG", null, 54.5f) //when there are no matching event in TwitterStream
+(null, "I like to tweet!", null) //when there are no matching event in StockStream
+```
+
+**Example 3 (unidirectional join)**
+
+The query to generate output only when events arrive on `StockStream` stream find a matching event having equal `symbol` and `companyID` combination against the events arrived in the last 20 minutes on `TwitterStream` stream.
+
+```sql
+define stream StockStream (symbol string, price float, volume long);
+define stream TwitterStream (companyID string, tweet string);
+
+from StockStream#window.time(10 min) unidirectional as S
+    join TwitterStream#window.time(20 min) as T
+    on S.symbol== T.companyID
+select S.symbol as symbol, T.tweet, S.price
+insert into OutputStream ;
+```
+
+Possible OutputStream outputs as follows,
+```
+("FB", "FB is great!", 23.5f)
+("GOOG", "Its time to Google!", 54.5f)
+```
+Here both outputs will be initiated by events arriving on `StockStream`.
 
 ### Pattern
 
-This is a state machine implementation that allows you to detect patterns in the events that arrive over time. This can correlate events within a single stream or between multiple streams.
+The pattern is a state machine implementation that detects event occurrence patterns from the events arrived in one or more event streams over time. It supports matching the same pattern repetitively, match patterns by counting events occurrences, and using logical ordering such as (`and`, `or`, and `not`).
 
 **Purpose**
 
-Patterns allow you to identify trends in events over a time period.
+The pattern helps to achieve Complex Event Processing (CEP) capabilities by detecting various pre-defined event occurrence patterns in realtime.
+
+Pattern query does not expect the matching events to occur immediately after each other, and it can successfully correlate the events how are far apart and having other events in between.
 
 **Syntax**
 
-The following is the syntax for a pattern query:
+The syntax for a pattern query is as follows,
 
 ```sql
-from (every)? <event reference>=<input stream>[<filter condition>] ->
-    (every)? <event reference>=<input stream [<filter condition>] ->
-    ...
+from (
+      (every)? (<event reference>=)?<input stream>[<filter condition>](<<min count>:<max count>>)? |
+      (every)? (<event reference>=)?<input stream>[<filter condition>] (and|or) (<event reference>=)?<input stream>[<filter condition>] |
+      (every)? not input stream>[<filter condition>] (and <event reference>=<input stream>[<filter condition>] | for <time gap>)
+    ) -> ...
     (within <time gap>)?     
 select <event reference>.<attribute name>, <event reference>.<attribute name>, ...
 insert into <output stream>
 ```
 
-| Items| Description |
-|-------------------|-------------|
-| `->` | This is used to indicate an event that should be following another event. The subsequent event does not necessarily have to occur immediately after the preceding event. The condition to be met by the preceding event should be added before the sign, and the condition to be met by the subsequent event should be added after the sign. |
-| `<event reference>` | This allows you to add a reference to the the matching event so that it can be accessed later for further processing. |
-| `(within <time gap>)?` | The `within` clause is optional. It defines the time duration within which all the matching events should occur. |
-| `every` | `every` is an optional keyword. This defines whether the event matching should be triggered for every event arrival in the specified stream with the matching condition. <br/> When this keyword is not used, the matching is carried out only once. |
+<table style="width:100%">
+    <tr>
+        <th style="width:20%">Items</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td><code>-></code></td>
+        <td>Indicates an event will follow the given event. The subsequent event does not necessarily have to occur immediately after the preceding event. The condition to be met by the preceding event should be added before the <code>-></code>, and the condition to be met by the subsequent event should be added after the <code>-></code>.</td>
+    </tr>
+    <tr>
+        <td><code>every</code></td>
+        <td>An optional keyword defining when a new event matching state machine should be initiated to repetitively match the patterns. <br/>
+        When this keyword is not used, the event matching state machine will be initiated only once.</td>
+    </tr>
+    <tr>
+        <td><code>within &lt;time gap&gt;</code></td>
+        <td>An optional <code>within</code> clause that defines the time duration within which all the matching events should occur.</td>
+    </tr>
+    <tr>
+        <td><code>&lt;&lt;min count&gt;:&lt;max count&gt;&gt;</code></td>
+        <td>Determines the number of minimum and maximum number of events that should the matched at the given condition. <br/>
+        Possible values for the min and max count and their behavior is as follows,
+        <table style="width:100%">
+            <tr>
+                <th>Syntex</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+            <tr>
+                <td><code>&lt;n1:n2&gt;</code></td>
+                <td>Matches <code>n1</code> to <code>n2</code> events (including <code>n1</code> and not more than <code>n2</code>).</td>
+                <td><code>&lt;1:4&gt;</code> matches 1 to 4 events.</td>
+            </tr>
+            <tr>
+                <td><code>&lt;n:&gt;</code></td>
+                <td>Matches <code>n</code> or more events (including <code>n</code>).</td>
+                <td><code>&lt;2:></code> matches 2 or more events.</td>
+            </tr>
+            <tr>
+                <td><code>&lt;:n&gt;</code></td>
+                <td>Matches up to <code>n</code> events (excluding <code>n</code>).</td>
+                <td><code>&lt;:5&gt;</code> matches up to 5 events.</td>
+            </tr>
+            <tr>
+                <td><code>&lt;n&gt;</code></td>
+                <td>Matches exactly <code>n</code> events.</td>
+                <td><code>&lt;5&gt;</code> matches exactly 5 events.</td>
+            </tr>
+        </table>
+        </td>
+    </tr>
+    <tr>
+        <td><code>and</code></td>
+        <td>Allows both of its condition to be matched by two distinct events in any order.</td>
+    </tr>
+    <tr>
+        <td><code>or</code></td>
+        <td>Only expects one of its condition to be matched by an event. Here the event reference of the unmatched condition will be <code>null</code>.</td>
+    </tr>
+    <tr>
+        <td><code>not &lt;condition1&gt; and &lt;condition2&gt;</code></td>
+        <td>Detects the event matching <code>&lt;condition2&gt;</code> before any event matching <code>&lt;condition1&gt;</code>.</td>
+    </tr>
+    <tr>
+        <td><code>not &lt;condition1> for &lt;time period></code></td>
+        <td>Detects no event matching <code>&lt;condition1&gt;</code> for the specified <code>&lt;time period&gt;</code>.</td>
+    </tr>
+    <tr>
+        <td><code>&lt;event reference&gt;</code></td>
+        <td>An optional reference to access the matching event for further processing.<br/>
+        All conditions can be assigned to an event reference to collect the matching event occurrences, other than the condition used for <code>not</code> case (as there will not be any event matched against it).
+        </td>
+    </tr>
+</table>  
 
-Siddhi also supports pattern matching with counting events and matching events in a logical order such as (`and`, `or`, and `not`). These are described in detail further below in this guide.
+!!! Note "Non occurrence of events."
+    Siddhi detects non-occurrence of events using the `not` keyword, and its effective non-occurrence checking period is bounded either by fulfillment of a condition associated by `and` or via an expiry time using `<time period>`.
 
-**Example**
+!!! Note "Logical correlation of multiple conditions."
+    Siddhi can only logically correlate two conditions at a time using keywords such as `and`, `or`, and `not`. When more than two conditions need to be logically correlated, use multiple pattern queries in a chaining manner, at a time correlating two logical conditions and streaming the output to a downstream query to logically correlate the results with other logical conditions.
 
-This query sends an alert if the temperature of a room increases by 5 degrees within 10 min.
+**Event selection**
+
+The `event reference` in pattern queries is used to retrieve the matched events. When a pattern condition is intended to match only a single event, then the attributes of that event can be retrieved by referring to its reference as `<event reference>.<attribute name>`. An example of this is as follows.
+
++ `e1.symbol`, refers to the `symbol` attribute value of the matching event `e1`.
+
+But when the pattern condition is associated with `<<min count>:<max count>>`, it is expected to match against on multiple events. Therefore, an event from the matched event collection should be retrieved using the event index from its reference. Here the indexes are specified in square brackets next to event reference, where index `0` referring to the first event, and a special index `last` referring to the last available event in the collection.
+Attribute values of all the events in the matching event collection can be accessed a list, by referring to their `<event reference>` without an index.
+Some possible indexes and their behavior is as follows.
+
++ `e1[0].symbol`, refers to the `symbol` attribute value of the 1st event in reference `e1`.
++ `e1[3].price`, refers to the `price` attribute value of the 4th event in reference `e1`.
++ `e1[last].symbol`, refers to the `symbol` attribute value of the last event in reference `e1`.
++ `e1[last - 1].symbol`, refers to the `symbol` attribute value of one before the last event in reference `e1`.
++ `e1.symbol`, refers to the list of `symbol` attribute values of all events in the event collection in reference `e1`, as a list object.
+
+The system returns `null` when accessing attribute values, when no matching event is assigned to the `event reference` (as in when two conditions are combined using `or`) or when the provided index is greater than the last event index in the event collection.
+
+**Example 1 (Every)**
+
+A query to send an alerts when temperature of a room increases by 5 degrees within 10 min.
 
 ```sql
 from every( e1=TempStream ) -> e2=TempStream[ e1.roomNo == roomNo and (e1.temp + 5) <= temp ]
@@ -1574,145 +1747,88 @@ select e1.roomNo, e1.temp as initialTemp, e2.temp as finalTemp
 insert into AlertStream;
 ```
 
-Here, the matching process begins for each event in the `TempStream` stream (because `every` is used with `e1=TempStream`),
-and if  another event arrives within 10 minutes with a value for the `temp` attribute that is greater than or equal to `e1.temp + 5`
-of the event e1, an output is generated via the `AlertStream`.
+Here, the matching process begins for each event in the `TempStream` stream (as `every` is used with `e1=TempStream`), and if another event arrives within 10 minutes with a value for `temp` attribute being greater than or equal to `e1.temp + 5` of the initial event `e1`, an output is generated via the `AlertStream`.
 
-####Counting Pattern
 
-Counting patterns allow you to match multiple events that may have been received for the same matching condition.
-The number of events matched per condition can be limited via condition postfixes.
+**Example 2 (Event Collection)**
 
-**Syntax**
-
-Each matching condition can contain a collection of events with the minimum and maximum number of events to be matched as shown in the syntax below.
-
-```sql
-from (every)? <event reference>=<input stream>[<filter condition>] (<<min count>:<max count>>)? ->  
-    ...
-    (within <time gap>)?     
-select <event reference>([event index])?.<attribute name>, ...
-insert into <output stream>
-```
-
-|Postfix|Description|Example
----------|---------|---------
-|`<n1:n2>`|This matches `n1` to `n2` events (including `n1` and not more than `n2`).|`1:4` matches 1 to 4 events.
-|`<n:>`|This matches `n` or more events (including `n`).|`<2:>` matches 2 or more events.
-|`<:n>`|This matches up to `n` events (excluding `n`).|`<:5>` matches up to 5 events.
-|`<n>`|This matches exactly `n` events.|`<5>` matches exactly 5 events.
-
-Specific occurrences of the event in a collection can be retrieved by using an event index with its reference.
-Square brackets can be used to indicate the event index where `1` can be used as the index of the first event and `last` can be used as the index
- for the `last` available event in the event collection. If you provide an index greater then the last event index,
- the system returns `null`. The following are some valid examples.
-
-+ `e1[3]` refers to the 3rd event.
-+ `e1[last]` refers to the last event.
-+ `e1[last - 1]` refers to the event before the last event.
-
-**Example**
-
-The following Siddhi App calculates the temperature difference between two regulator events.
+A query to find the temperature difference between two regulator events.
 
 ```sql
 define stream TempStream (deviceID long, roomNo int, temp double);
 define stream RegulatorStream (deviceID long, roomNo int, tempSet double, isOn bool);
 
-from every( e1=RegulatorStream) -> e2=TempStream[e1.roomNo==roomNo]<1:> -> e3=RegulatorStream[e1.roomNo==roomNo]
+from every e1=RegulatorStream -> e2=TempStream[e1.roomNo==roomNo]<1:>
+      -> e3=RegulatorStream[e1.roomNo==roomNo]
 select e1.roomNo, e2[0].temp - e2[last].temp as tempDiff
 insert into TempDiffStream;
 ```
-#### Logical Patterns
 
-Logical patterns match events that arrive in temporal order and correlate them with logical relationships such as `and`,
-`or` and `not`.
+Here, one or more `TempStream` events having the same `roomNo` as of the `RegulatorStream` stream event matched in `e1` is collected, and among them, the first and the last was retrieved to find the temperature difference.
 
-**Syntax**
+**Example 3 (Logical or condition)**
 
-```sql
-from (every)? (not)? <event reference>=<input stream>[<filter condition>]
-          ((and|or) <event reference>=<input stream>[<filter condition>])? (within <time gap>)? ->  
-    ...
-select <event reference>([event index])?.<attribute name>, ...
-insert into <output stream>
-```
+Query to send the `stop` control action to the regulator via `RegulatorActionStream` when the key is removed from the hotel room. Here the key actions are monitored via `RoomKeyStream` stream, and the regulator state is monitored through `RegulatorStateChangeStream` stream.
 
-Keywords such as `and`, `or`, or `not` can be used to illustrate the logical relationship.
-
-Key Word|Description
----------|---------
-`and`|This allows both conditions of `and` to be matched by two events in any order.
-`or`|The state succeeds if either condition of `or` is satisfied. Here the event reference of the other condition is `null`.
-`not <condition1> and <condition2>`| When `not` is included with `and`, it identifies the events that match <condition2> arriving before any event that match <condition1>.
-`not <condition> for <time period>`| When `not` is included with `for`, it allows you to identify a situation where no event that matches `<condition1>` arrives during the specified `<time period>`.  e.g.,`from not TemperatureStream[temp > 60] for 5 sec`.
-
-Here the `not` pattern can be followed by either an `and` clause or the effective period of `not` can be concluded after a given `<time period>`. Further in Siddhi more than two streams cannot be matched with logical conditions using `and`, `or`, or `not` clauses at this point.
-
-##### Detecting Non-occurring Events
-
-Siddhi allows you to detect non-occurring events via multiple combinations of the key words specified above as shown in the table below.
-
-In the patterns listed, P* can be either a regular event pattern, an absent event pattern or a logical pattern.
-
-Pattern|Detected Scenario
----------|---------
-`not A for <time period>`|The non-occurrence of event A within `<time period>` after system start up.<br/> e.g., Generating an alert if a taxi has not reached its destination within 30 minutes, to indicate that the passenger might be in danger.
-`not A for <time period> and B`|After system start up, event A does not occur within `time period`, but event B occurs at some point in time. <br/> e.g., Generating an alert if a taxi has not reached its destination within 30 minutes, and the passenger marked that he/she is in danger at some point in time.
-`not A for <time period 1> and not B for <time period 2>`|After system start up, event A doess not occur within `time period 1`, and event B also does not occur within `<time period 2>`. <br/> e.g., Generating an alert if the driver of a taxi has not reached the destination within 30 minutes, and the passenger has not marked himself/herself to be in danger within that same time period.
-`not A for <time period> or B`|After system start up, either event A does not occur within `<time period>`, or event B occurs at some point in time. <br/> e.g., Generating an alert if the taxi has not reached its destination within 30 minutes, or if the passenger has marked that he/she is in danger at some point in time.
-`not A for <time period 1> or not B for <time period 2>`|After system start up, either event A does not occur within `<time period 1>`, or event B occurs within `<time period 2>`. <br/> e.g., Generating an alert to indicate that the driver is not on an expected route if the taxi has not reached destination A within 20 minutes, or reached destination B within 30 minutes.
-`A → not B for <time period>`|Event B does not occur within `<time period>` after the occurrence of event A. e.g., Generating an alert if the taxi has reached its destination, but this was not followed by a payment record.
-`P* → not A for <time period> and B`|After the occurrence of P*, event A does not occur within `<time period>`, and event B occurs at some point in time. <br/>
-`P* → not A for <time period 1> and not B for <time period 2>`|After the occurrence of P*, event A does not occur within `<time period 1>`, and event B does not occur within `<time period 2>`.
-`P* → not A for <time period> or B`|After the occurrence of P*, either event A does not occur within `<time period>`, or event B occurs at some point in time.
-`P* → not A for <time period 1> or not B for <time period 2>`|After the occurrence of P*, either event A does not occur within `<time period 1>`, or event B does not occur within `<time period 2>`.
-`not A for <time period> → B`|Event A does occur within `<time period>` after the system start up, but event B occurs after that `<time period>` has elapsed.
-`not A for <time period> and B → P*`|Event A does not occur within `<time period>`, and event B occurs at some point in time. Then P* occurs after the `<time period>` has elapsed, and after B has occurred.
-`not A for <time period 1> and not B for <time period 2> → P*`|After system start up, event A does not occur within `<time period 1>`, and event B does not occur within `<time period 2>`. However, P* occurs after both A and B.
-`not A for <time period> or B → P*`|After system start up, event A does not occur within `<time period>` or event B occurs at some point in time. The P* occurs after `<time period>` has elapsed, or after B has occurred.
-`not A for <time period 1> or not B for <time period 2> → P*`|After system start up, either event A does not occur within `<time period 1>`, or event B does not occur within `<time period 2>`. Then P*  occurs after both `<time period 1>` and `<time period 2>` have elapsed.
-`not A and B`|Event A does not occur before event B.
-`A and not B`|Event B does not occur before event A.
-
-
-**Example**
-
-Following Siddhi App, sends the `stop` control action to the regulator when the key is removed from the hotel room.
 ```sql
 define stream RegulatorStateChangeStream(deviceID long, roomNo int, tempSet double, action string);
 define stream RoomKeyStream(deviceID long, roomNo int, action string);
 
-
-from every( e1=RegulatorStateChangeStream[ action == 'on' ] ) ->
-      e2=RoomKeyStream[ e1.roomNo == roomNo and action == 'removed' ] or e3=RegulatorStateChangeStream[ e1.roomNo == roomNo and action == 'off']
+from every e1=RegulatorStateChangeStream[ action == 'on' ]
+     -> e2=RoomKeyStream[ e1.roomNo == roomNo and action == 'removed' ]
+        or e3=RegulatorStateChangeStream[ e1.roomNo == roomNo and action == 'off']
 select e1.roomNo, ifThenElse( e2 is null, 'none', 'stop' ) as action
 having action != 'none'
 insert into RegulatorActionStream;
 ```
 
-This Siddhi Application generates an alert if we have switch off the regulator before the temperature reaches 12 degrees.  
+Here, the query sends a `stop` action on `RegulatorActionStream` stream, if a `removed` action is triggered in the `RoomKeyStream` stream before the regulator state changing to `off` which is notified via `RegulatorStateChangeStream` stream.
+
+**Example 4 (Logical not condition)**
+
+Query to generate alerts if the regulator gets switched off before the temperature reaches 12 degrees.  
 
 ```sql
 define stream RegulatorStateChangeStream(deviceID long, roomNo int, tempSet double, action string);
 define stream TempStream (deviceID long, roomNo int, temp double);
 
-from e1=RegulatorStateChangeStream[action == 'start'] -> not TempStream[e1.roomNo == roomNo and temp < 12] and e2=RegulatorStateChangeStream[action == 'off']
+from every e1=RegulatorStateChangeStream[action == 'start']
+     -> not TempStream[e1.roomNo == roomNo and temp <= 12]
+        and e2=RegulatorStateChangeStream[e1.roomNo == roomNo and action == 'off']
 select e1.roomNo as roomNo
 insert into AlertStream;
 ```
+Here, the query alerts the `roomNo` via `AlertStream` stream, when no temperature events having less than 12 arrived in the `TempStream` between the `start` and `off`  actions of the regulator, notified via `RegulatorActionStream` stream.
 
-This Siddhi Application generates an alert if the temperature does not reduce to 12 degrees within 5 minutes of switching on the regulator.  
+**Example 5 (Logical not condition)**
+
+Query to alert if the room temperature does not reduce to the set value within 5 minutes after switching on the regulator.  
 
 ```sql
 define stream RegulatorStateChangeStream(deviceID long, roomNo int, tempSet double, action string);
 define stream TempStream (deviceID long, roomNo int, temp double);
 
-from e1=RegulatorStateChangeStream[action == 'start'] -> not TempStream[e1.roomNo == roomNo and temp < 12] for '5 min'
+from e1=RegulatorStateChangeStream[action == 'start']
+     -> not TempStream[e1.roomNo == roomNo and temp <= e1.tempSet] for '5 min'
 select e1.roomNo as roomNo
 insert into AlertStream;
 ```
 
+Here, the query alerts the `roomNo` via `AlertStream` stream, when no temperature events having less than `tempSet` temperature arrived in the `TempStream` within 5 minutes of the regulator `start` action arrived via `RegulatorActionStream` stream.
+
+**Example 6 (Detecting event non-occurrence)**
+
+Following table presents some non-occurrence event matching scenarios that can be implemented using patterns.
+
+Pattern| Description | Sample Scenario
+---------|---------|---------
+`not A for <time period>`|The non-occurrence of event A within `<time period>` after system start up.| Alerts if the taxi has not reached its destination within 30 minutes, indicating that the passenger might be in danger.
+`not A for <time period> and B`|Event A does not occur within `<time period>`, but event B occurs at some point in time. | Alerts if the taxi has not reached its destination within 30 minutes, and the passenger has marked that he/she is in danger at some point in time.
+`not A for <time period> or B` |Either event A does not occur within `<time period>`, or event B occurs at some point in time.| Alerts if the taxi has not reached its destination within 30 minutes, or if the passenger has marked that he/she is in danger at some point in time.
+`not A for <time period 1> and not B for <time period 2>`|Event A does not occur within `<time period 1>`, and event B also does not occur within `<time period 2>`. | Alerts if the taxi has not reached its destination within 30 minutes, and the passenger has not marked himself/herself not in danger within the same time period.
+`not A for <time period 1> or not B for <time period 2>`|Either event A does not occur within `<time period 1>`, or event B occurs within `<time period 2>`. | Alerts if the taxi has not reached its destination A within 20 minutes, or reached its destination B within 30 minutes.
+`A → not B for <time period>`|Event B does not occur within `<time period>` after the occurrence of event A. | Alerts if the taxi has reached its destination, but it has been not followed by a payment record within 10 minutes.
+`not A and B` or <br/>`A and not B` |Event A does not occur before event B. | Alerts if the taxi is stated before activating the taxi fare calculator.
 
 ### Sequence
 
@@ -1918,7 +2034,7 @@ A partition key can be generated in the following two methods:
     **Syntax**
 
     <pre>
-    partition with ( &lt;expression> of &lt;stream name>, 
+    partition with ( &lt;expression> of &lt;stream name>,
                      &lt;expression> of &lt;stream name>, ... )
     begin
         &lt;query>
@@ -1945,7 +2061,7 @@ A partition key can be generated in the following two methods:
 
     **Syntax**
     <pre>
-    partition with ( &lt;condition> as &lt;partition key> or 
+    partition with ( &lt;condition> as &lt;partition key> or
                      &lt;condition> as &lt;partition key> or ... of &lt;stream name>,
                      ... )
     begin
@@ -2185,9 +2301,9 @@ define table TableName (attribute1 Type1, attributeN TypeN);
 The above query will define and create a store table of given type and a cache with a max size of 10. A thread will be
 created every 1 minute which will check the entire cache table for rows added earlier than 5 minutes and expire them.
 
-**Cache Behaviour**
+**Cache Behavior**
 
-Cache behaviour changes profoundly based on the size of store table relative to maximum cache size defined. Since
+Cache behavior changes profoundly based on the size of store table relative to maximum cache size defined. Since
 memory is a limited resource we don't allow cache to grow more than the user specified maximum size.
 
 Case 1 \
@@ -2292,7 +2408,7 @@ Table join supports following join operations.
 
  *  **Inner join (join)**
 
-    This is the default behaviour of a join operation. `join` is used as the keyword to join the stream with the table. The output is generated only if there is a matching event in both the stream and the table.
+    This is the default behavior of a join operation. `join` is used as the keyword to join the stream with the table. The output is generated only if there is a matching event in both the stream and the table.
 
  *  **Left outer join**
 
@@ -2656,7 +2772,7 @@ Aggregation join supports following join operations.
 
  *  **Inner join (join)**
 
-    This is the default behaviour of a join operation. `join` is used as the keyword to join the stream with the aggregation. The output is generated only if there is a matching event in the stream and the aggregation.
+    This is the default behavior of a join operation. `join` is used as the keyword to join the stream with the aggregation. The output is generated only if there is a matching event in the stream and the aggregation.
 
  *  **Left outer join**
 
@@ -2782,7 +2898,7 @@ Window join supports following operations of a join clause.
 
  *  **Inner join (join)**
 
-    This is the default behaviour of a join operation. `join` is used as the keyword to join two windows or a stream with a window. The output is generated only if there is a matching event in both stream/window.
+    This is the default behavior of a join operation. `join` is used as the keyword to join two windows or a stream with a window. The output is generated only if there is a matching event in both stream/window.
 
  *  **Left outer join**
 
@@ -3534,7 +3650,7 @@ To implement the siddhi-store extension archetype, follow the procedure below:
 ### Multi-threading and Asynchronous Processing
 
 When `@Async` annotation is added to the Streams it enable the Streams to introduce asynchronous and multi-threading
-behaviour.
+behavior.
 
 ```sql
 @Async(buffer.size='256', workers='2', batch.size.max='5')
