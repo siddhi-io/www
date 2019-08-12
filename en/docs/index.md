@@ -51,6 +51,9 @@ These are the latest changes that have yet to be released.
         <tr>
             <th id="pre-release-version-name">next</th>
             <td>
+                <a id="pre-release-version-version-download-link">Download</a>
+            </td>
+            <td>
                 <a id="pre-release-version-documentation-link">Documentation</a>
             </td>
             <td>
