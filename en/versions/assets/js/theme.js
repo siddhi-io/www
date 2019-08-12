@@ -53,6 +53,9 @@ for (var i = 0; i < dropdowns.length; i++) {
     };
 };
 
+var siddhiLogo = document.querySelector(".md-header-nav__button.md-logo");
+siddhiLogo.setAttribute("href","/");
+
 /* 
  * Reading versions
  */
