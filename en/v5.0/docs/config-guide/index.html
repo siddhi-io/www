@@ -1517,7 +1517,7 @@ auth.configs:
 <p>To enable statistics the relevant matrics related configurations should be added under <code>wso2.metrics</code> section in the Siddhi Configurations yaml file, and pass that during startup.</p>
 <div class="admonition note">
 <p class="admonition-title">Configuring Metrics reporting level.</p>
-<p>To modify the statistics reporting, relevant metric names can be added under the <code>wso2.metrics.levels</code> subsection in the Siddhi Configurations yaml, along with the matrics level (i.e., OFF, INFO, DEBUG, TRACE, or ALL) as given bellow.
+<p>To modify the statistics reporting, relevant metric names can be added under the <code>wso2.metrics.levels</code> subsection in the Siddhi Configurations yaml, along with the matrics level (i.e., OFF, INFO, DEBUG, TRACE, or ALL) as given below.
 <pre>
 wso2.metrics:
   # Metrics Levels are organized from most specific to least:
@@ -1587,8 +1587,8 @@ wso2.metrics:
         pollingPeriod: 5</code></pre>
 
 <h3 id="reporting-via-database">Reporting via Database<a class="headerlink" href="#reporting-via-database" title="Permanent link">&para;</a></h3>
-<p>To enable JDBC reporting and to periodically clean up the outdated statistics from the database, first a datasource should be created with the relevant database configurations and then the related metrics properties as given bellow should be added to in the Siddhi Configurations yaml file, and pass that during startup.</p>
-<p>The bellow sample is referring to the datasource with JNDI name <code>jdbc/SiddhiMetricsDB</code>, hence the datasource configuration in yaml should have <code>jndiConfig.name</code> as <code>jdbc/SiddhiMetricsDB</code>. For detailed instructions on configuring a datasource, refer <a href="#configuring-databases">Configuring Databases</a>.</p>
+<p>To enable JDBC reporting and to periodically clean up the outdated statistics from the database, first a datasource should be created with the relevant database configurations and then the related metrics properties as given below should be added to in the Siddhi Configurations yaml file, and pass that during startup.</p>
+<p>The below sample is referring to the datasource with JNDI name <code>jdbc/SiddhiMetricsDB</code>, hence the datasource configuration in yaml should have <code>jndiConfig.name</code> as <code>jdbc/SiddhiMetricsDB</code>. For detailed instructions on configuring a datasource, refer <a href="#configuring-databases">Configuring Databases</a>.</p>
 <p>. The scripts to create these tables are provided in the <code>&lt;SIDDHI_RUNNER_HOME&gt;/wso2/runner/dbscripts</code> directory.</p>
 <p>Sample configuration of reporting via database.</p>
 <pre class="codehilite"><code class="linenums">wso2.metrics:

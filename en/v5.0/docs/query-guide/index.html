@@ -2238,7 +2238,7 @@ define stream InputStream (name string, age int, country string);</code></pre>
 
 <p><strong>Example 2</strong></p>
 <p>Receive <code>JSON</code> messages by exposing an <code>HTTP</code> service, and direct them to <code>StockStream</code> stream for processing.
-Here the incoming <code>JSON</code>, as given bellow, do not adhere to the default data format that's supported by the <code>JSON</code> mapper.</p>
+Here the incoming <code>JSON</code>, as given below, do not adhere to the default data format that's supported by the <code>JSON</code> mapper.</p>
 <pre class="codehilite"><code class="language-json linenums">{
   "portfolio":{
     "stock":{
@@ -2258,7 +2258,7 @@ Here the incoming <code>JSON</code>, as given bellow, do not adhere to the defau
                 volume = "stock.volume")))
 define stream StockStream (symbol string, price float, volume long);</code></pre>
 
-<p>The same can also be configured by omitting the attribute names as bellow.</p>
+<p>The same can also be configured by omitting the attribute names as below.</p>
 <pre class="codehilite"><code class="language-sql linenums">@source(type='http', receiver.url='http://0.0.0.0:8080/foo',
   @map(type='json', enclosing.element="$.portfolio",
     @attributes("stock.company.symbol", "stock.price", "stock.volume")))
@@ -2521,7 +2521,7 @@ define stream OutputStream (name string, age int, country string);</code></pre>
 <p><strong><em>Error Handling at Stream</em></strong></p>
 <p>When errors are thrown by Siddhi elements subscribed to the stream, the error gets propagated up to the stream that delivered the event to those Siddhi elements. By default the error is logged and dropped at the stream, but this behavior can be altered by by adding <code>@OnError</code> annotation to the corresponding stream definition.
 <code>@OnError</code> annotation can help users to capture the error and the associated event, and handle them gracefully by sending them to a fault stream.</p>
-<p>The <code>@OnError</code> annotation and the required <code>action</code> to be specified as bellow.</p>
+<p>The <code>@OnError</code> annotation and the required <code>action</code> to be specified as below.</p>
 <pre class="codehilite"><code class="language-sql linenums">@OnError(action='on error action')
 define stream &lt;stream name&gt; (&lt;attribute name&gt; &lt;attribute type&gt;,
                              &lt;attribute name&gt; &lt;attribute type&gt;, ... );</code></pre>
@@ -2538,7 +2538,7 @@ The following actions can be specified to <code>@OnError</code> annotation to ha
 <pre class="codehilite"><code class="language-sql linenums">@OnError(name='STREAM')
 define stream TempStream (deviceID long, roomNo int, temp double);</code></pre>
 
-<p>Siddhi will infer and automatically defines the fault stream of <code>TempStream</code> as given bellow.</p>
+<p>Siddhi will infer and automatically defines the fault stream of <code>TempStream</code> as given below.</p>
 <pre class="codehilite"><code class="language-sql linenums">define stream !TempStream (deviceID long, roomNo int, temp double, _error object);</code></pre>
 
 <p>The SiddhiApp extending the above the use-case by adding failure generation and error handling with the use of <a href="#query">queries</a> is as follows.</p>
@@ -2560,7 +2560,7 @@ insert into IgnoreStream2;</code></pre>
 
 <p><strong><em>Error Handling at Sink</em></strong></p>
 <p>There can be cases where external systems becoming unavailable or coursing errors when the events are published to them. By default sinks log and drop the events causing event losses, and this can be handled gracefully by configuring <code>on.error</code> parameter of the <code>@sink</code> annotation.</p>
-<p>The <code>on.error</code> parameter of the <code>@sink</code> annotation can be specified as bellow.</p>
+<p>The <code>on.error</code> parameter of the <code>@sink</code> annotation can be specified as below.</p>
 <pre class="codehilite"><code class="language-sql linenums">@sink(type='&lt;sink type&gt;', on.error='&lt;on error action&gt;', &lt;key&gt;='&lt;value&gt;', ...)
 define stream &lt;stream name&gt; (&lt;attribute name&gt; &lt;attribute type&gt;,
                              &lt;attribute name&gt; &lt;attribute type&gt;, ... );</code></pre>
