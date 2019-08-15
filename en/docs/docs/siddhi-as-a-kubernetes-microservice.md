@@ -38,8 +38,8 @@ Here, the Siddhi applications containing stream processing logic can be written 
 To install the Siddhi Kubernetes operator run the following commands.
 
 ```sh
-kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-m1/00-prereqs.yaml
-kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-m1/01-siddhi-operator.yaml
+kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-m2/00-prereqs.yaml
+kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-m2/01-siddhi-operator.yaml
 ```
 
 You can verify the installation by making sure the following deployments are running in your Kubernetes cluster.
@@ -49,7 +49,6 @@ $ kubectl get deployment
 
 NAME              DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
 siddhi-operator   1         1         1            1           1m
-siddhi-parser     1         1         1            1           1m
 ```
 
 !!! Note "Using a custom-built Siddhi runner image"
@@ -102,10 +101,8 @@ spec:
       -
         name: RECEIVER_URL
         value: "http://0.0.0.0:8080/checkPower"
-      -
-        name: BASIC_AUTH_ENABLED
-        value: "false"
-    image: "siddhiio/siddhi-runner-ubuntu:5.1.0-m1"
+
+    image: "siddhiio/siddhi-runner-ubuntu:5.1.0-m2"
 ```
 
 !!! Note "Always listen on 0.0.0.0 with the Siddhi Application running inside a container environment."
@@ -137,14 +134,12 @@ $ kubectl get deployment
 NAME                READY     UP-TO-DATE   AVAILABLE   AGE
 power-surge-app-0   1/1       1            1           2m
 siddhi-operator     1/1       1            1           2m
-siddhi-parser       1/1       1            1           2m
 
 $ kubectl get service
 NAME                TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
 kubernetes          ClusterIP   10.96.0.1       <none>        443/TCP    2d
 power-surge-app-0   ClusterIP   10.96.44.182    <none>        8080/TCP   2m
 siddhi-operator     ClusterIP   10.98.78.238    <none>        8383/TCP   2m
-siddhi-parser       ClusterIP   10.110.82.200   <none>        9090/TCP   2m
 
 $ kubectl get ingress
 NAME      HOSTS     ADDRESS     PORTS     AGE
@@ -200,7 +195,6 @@ $ kubectl get pods
 NAME                                       READY     STATUS    RESTARTS   AGE
 power-surge-app-0-646c4f9dd5-rxzkq         1/1       Running   0          4m
 siddhi-operator-6698d8f69d-6rfb6           1/1       Running   0          4m
-siddhi-parser-76448887d5-dqqv6             1/1       Running   0          4m
 ```
 
 Here, the pod starting with the SiddhiProcess name (in this case `power-surge-app-`) is the pod we need to monitor.
@@ -285,7 +279,7 @@ insert into PowerSurgeAlertStream;
       Value:  http://0.0.0.0:8080/checkPower
       Name:   BASIC_AUTH_ENABLED
       Value:  false
-    Image:    siddhiio/siddhi-runner-ubuntu:5.1.0-m1
+    Image:    siddhiio/siddhi-runner-ubuntu:5.1.0-m2
 Status:
   Nodes:   <nil>
   Ready:   1/1
@@ -307,7 +301,6 @@ $ kubectl get pods
 NAME                                       READY     STATUS    RESTARTS   AGE
 power-surge-app-0-646c4f9dd5-rxzkq         1/1       Running   0          4m
 siddhi-operator-6698d8f69d-6rfb6           1/1       Running   0          4m
-siddhi-parser-76448887d5-dqqv6             1/1       Running   0          4m
 ```
 
 Then to retrieve the Siddhi process logs, run `kubectl logs <pod name>` command. Here `<pod name>` should be replaced with the name of the pod that starts with the relevant SiddhiProcess's name. 
@@ -332,7 +325,7 @@ This can be done by passing the config maps containing Siddhi app files to the S
 ```yaml
 apps:
   - configMap: power-surge-cm1
-  - configMap: power-surge-cm1
+  - configMap: power-surge-cm2
 ```
 
 **Sample on deploying and running Siddhi Apps via config maps**
@@ -390,10 +383,8 @@ spec:
       - 
         name: RECEIVER_URL
         value: "http://0.0.0.0:8080/checkPower"
-      - 
-        name: BASIC_AUTH_ENABLED
-        value: "false"
-    image: "siddhiio/siddhi-runner-ubuntu:5.1.0-m1"
+
+    image: "siddhiio/siddhi-runner-ubuntu:5.1.0-m2"
 
 ```
 
@@ -451,7 +442,6 @@ $ kubectl get pods
 NAME                                       READY     STATUS    RESTARTS   AGE
 power-surge-app-0-646c4f9dd5-tns7l         1/1       Running   0          2m
 siddhi-operator-6698d8f69d-6rfb6           1/1       Running   0          8m
-siddhi-parser-76448887d5-dqqv6             1/1       Running   0          8m
 ```
 
 Here, the pod starting with the SiddhiProcess name (in this case `power-surge-app-`) is the pod we need to monitor.
@@ -480,8 +470,9 @@ kind: ConfigMap
 metadata:
   name: siddhi-operator-config
 data:
-  siddhiRunnerHome: /home/siddhi_user/siddhi-runner/
-  siddhiRunnerImage: siddhiio/siddhi-runner-alpine:5.1.0-m1
+  siddhiHome: /home/siddhi_user/siddhi-runner/
+  siddhiProfile: runner
+  siddhiImage: siddhiio/siddhi-runner-alpine:5.1.0-m2
   autoIngressCreation: "false"
 ```
 
@@ -515,8 +506,9 @@ kind: ConfigMap
 metadata:
   name: siddhi-operator-config
 data:
-  siddhiRunnerHome: /home/siddhi_user/siddhi-runner/
-  siddhiRunnerImage: siddhiio/siddhi-runner-alpine:5.1.0-m1
+  siddhiHome: /home/siddhi_user/siddhi-runner/
+  siddhiProfile: runner
+  siddhiImage: siddhiio/siddhi-runner-alpine:5.1.0-m2
   autoIngressCreation: "true"
   ingressTLS: siddhi-tls
 ```
@@ -556,8 +548,6 @@ $ kubectl get pods
 NAME                                       READY     STATUS    RESTARTS   AGE
 power-surge-app-0-646c4f9dd5-kk5md         1/1       Running   0          2m
 siddhi-operator-6698d8f69d-6rfb6           1/1       Running   0          10m
-siddhi-parser-76448887d5-dqqv6             1/1       Running   0          10m
-
 $ kubectl logs monitor-app-667c97c898-rrtfs
 ...
 [2019-07-12 09:06:15,173]  INFO {org.wso2.transport.http.netty.contractimpl.listener.ServerConnectorBootstrap$HttpServerConnector} - HTTP(S) Interface starting on host 0.0.0.0 and port 9443
@@ -615,7 +605,7 @@ Now we need a NATS cluster and NATS streaming cluster to run the Siddhi app depl
       config: 
         bootstrapServers:
           - "nats://example-nats:4222"
-        clusterID: example-stan
+        clusterId: example-stan
     ```
 
 1. If the user only specifies messaging system as NATS like below then Siddhi operator will automatically create NATS cluster(`siddhi-nats`) and NATS streaming cluster(`siddhi-stan`), and connect two partial apps.
@@ -634,7 +624,6 @@ NAME                      READY     UP-TO-DATE   AVAILABLE   AGE
 nats-operator             1/1       1            1           5m
 nats-streaming-operator   1/1       1            1           5m
 siddhi-operator           1/1       1            1           5m
-siddhi-parser             1/1       1            1           5m
 ```
 
 Now you need to specify a YAML file like below to create stateful Siddhi app deployment.
@@ -734,7 +723,6 @@ nats-streaming-operator   1/1       1            1           10m
 power-consume-app-0       1/1       1            1           5m
 power-consume-app-1       1/1       1            1           5m
 siddhi-operator           1/1       1            1           10m
-siddhi-parser             1/1       1            1           10m
 
 $ kubectl get service
 NAME                  TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                      AGE
@@ -743,7 +731,6 @@ power-consume-app-0   ClusterIP   10.105.67.227    <none>        8080/TCP       
 siddhi-nats           ClusterIP   10.100.205.21    <none>        4222/TCP                     10m
 siddhi-nats-mgmt      ClusterIP   None             <none>        6222/TCP,8222/TCP,7777/TCP   10m
 siddhi-operator       ClusterIP   10.103.229.109   <none>        8383/TCP                     10m
-siddhi-parser         ClusterIP   10.99.44.209     <none>        9090/TCP                     10m
 
 $ kubectl get ingress
 NAME      HOSTS     ADDRESS     PORTS     AGE
@@ -785,7 +772,6 @@ power-consume-app-0-7486b87979-6tccx       1/1       Running   0          5m
 power-consume-app-1-588996fcfb-prncj       1/1       Running   0          5m
 siddhi-nats-1                              1/1       Running   0          5m
 siddhi-operator-6698d8f69d-w2kvj           1/1       Running   0          10m
-siddhi-parser-76448887d5-hgnrw             1/1       Running   0          10m
 siddhi-stan-1                              1/1       Running   1          5m
 
 $ kubectl logs power-consume-app-1-588996fcfb-prncj
