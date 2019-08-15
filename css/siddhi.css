@@ -710,3 +710,53 @@ a.md-flex.md-footer-nav__link:hover {
         height: 2.4rem;
     }
 }
+
+.cTryItContainer {
+    display: inline-block;
+    margin-top: 21px;
+    width: 100%;
+}
+
+.cTryIt {
+    display: inline-block;
+    width: 100%;
+    padding: 10px 20px;
+    border: 2px solid #e9e9e9;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    background-repeat: no-repeat;
+    padding-left: 38%;
+    background-position: 31% center;
+    background-size: 30px;
+    line-height: 30px;
+    color: #ffffff !important;
+    font-weight: 800;
+    text-decoration: none;
+    background-color: #02aaad;
+    white-space: nowrap;
+}
+
+a.cTryIt:hover {
+    background-color: #7d7d7d;
+    color: #fff !important;
+    text-decoration: none;
+}
+
+.cTryIt.cKatacoda {
+    background-image: url(../images/katacoda.png);
+}
+
+.cTryItList ui {
+    padding: 0;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.cTryItList ui li {
+    width: 100%;
+    list-style: none;
+    display: inline-block;
+    float: left;
+    border: none;
+    min-width: 220px;
+}
