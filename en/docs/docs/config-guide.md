@@ -238,7 +238,7 @@ Similarly [Sinks](../../query-guide/#sink) and [Store Tables](../../query-guide/
 **Example**: Configuring http source using `ref`
 
 Following configuration defines the `url` and details about `basic.auth`, in the Siddhi Configuration yaml.
-```
+```yaml
 refs:
   -
     ref:
@@ -251,7 +251,7 @@ refs:
 
 This can be referred in the Siddhi Applications as follows.
 
-```
+```mysql
 @Source(ref='http-passthrough',
         @map(type='json', @attributes( name='$.name', amount='$.quantity')))
 define stream SweetProductionStream (name string, amount double);
@@ -423,7 +423,7 @@ To enable statistics the relevant matrics related configurations should be added
 
 !!! Note "Configuring Metrics reporting level."
     To modify the statistics reporting, relevant metric names can be added under the `metrics.levels` subsection in the Siddhi Configurations yaml, along with the matrics level (i.e., OFF, INFO, DEBUG, TRACE, or ALL) as given below.
-    <pre>
+    ```yaml
     metrics:
       # Metrics Levels are organized from most specific to least:
       # OFF (most specific, no metrics)
@@ -440,7 +440,7 @@ To enable statistics the relevant matrics related configurations should be added
           jvm.class-loading: INFO
           jvm.gc: DEBUG
           jvm.memory: INFO
-    </pre>
+    ```
 
 The available metrics reporting options are as follows.
 
