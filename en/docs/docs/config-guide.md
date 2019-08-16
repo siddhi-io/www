@@ -2,14 +2,31 @@
 
 This section covers the following.
 
-* [Configuring Databases](#configuring-databases)
-* [Configuring Periodic State Persistence](#configuring-periodic-state-persistence)
-* [Configuring Siddhi Sources, Sinks, Stores and Extensions](#configuring-siddhi-elements)
-* [Configuring Authentication](#configuring-authentication)
-* [Adding Extensions and Third Party Dependencies](#adding-extensions-and-third-party-dependencies)
-* [Configuring Statistics](#configuring-statistics)
-* [Converting Jars to OSGi Bundles](#converting-jars-to-osgi-bundles)
-* [Encrypt sensitive deployment configurations](#18-Encrypt-sensitive-deployment-configurations)
+- [Configuring Databases](#Configuring-Databases)
+- [Configuring Periodic State Persistence](#Configuring-Periodic-State-Persistence)
+  - [Persistence on Database](#Persistence-on-Database)
+  - [Persistence on File System](#Persistence-on-File-System)
+- [Configuring Siddhi Elements](#Configuring-Siddhi-Elements)
+  - [Configuring Sources, Sinks and Stores References](#Configuring-Sources-Sinks-and-Stores-References)
+  - [Configuring Extensions System Parameters](#Configuring-Extensions-System-Parameters)
+  - [Configuring Siddhi Properties](#Configuring-Siddhi-Properties)
+- [Configuring Authentication](#Configuring-Authentication)
+- [Adding Extensions and Third Party Dependencies](#Adding-Extensions-and-Third-Party-Dependencies)
+  - [Adding to Siddhi Java Program](#Adding-to-Siddhi-Java-Program)
+  - [Adding to Siddhi Local Microservice](#Adding-to-Siddhi-Local-Microservice)
+  - [Adding to Siddhi Docker Microservice](#Adding-to-Siddhi-Docker-Microservice)
+  - [Adding to Siddhi Kubernetes Microservice](#Adding-to-Siddhi-Kubernetes-Microservice)
+- [Configuring Statistics](#Configuring-Statistics)
+  - [Reporting via JMX Mbeans](#Reporting-via-JMX-Mbeans)
+  - [Reporting via Console](#Reporting-via-Console)
+  - [Reporting via Database](#Reporting-via-Database)
+- [Converting Jars to OSGi Bundles](#Converting-Jars-to-OSGi-Bundles)
+- [Encrypt sensitive deployment configurations](#Encrypt-sensitive-deployment-configurations)
+- [Configuring server properties](#Configuring-server-properties)
+  - [Configure port offset](#Configure-port-offset)
+- [Configuring Databridge Transport](#Configuring-Databridge-Transport)
+  - [Configuring databridge listener](#Configuring-databridge-listener)
+  - [Configuring databridge publisher](#Configuring-databridge-publisher)
 
 ## Configuring Databases
 
@@ -517,39 +534,22 @@ Sample configuration of reporting via database.
 
 ```yaml
 metrics:
-  # Enable Metrics
   enabled: true
   jdbc:
   # Data Source Configurations for JDBC Reporters
     dataSource:
-      # Default Data Source Configuration
       - &JDBC01
-        # JNDI name of the data source to be used by the JDBC Reporter.
-        # This data source should be defined under datasources.
         dataSourceName: java:comp/env/jdbc/SiddhiMetricsDB
-        # Schedule regular deletion of metrics data older than a set number of days.
-        # It is recommended that you enable this job to ensure your metrics tables do not get extremely large.
-        # Deleting data older than seven days should be sufficient.
         scheduledCleanup:
-          # Enable scheduled cleanup to delete Metrics data in the database.
           enabled: false
-          # The scheduled job will cleanup all data older than the specified days
           daysToKeep: 7
-          # This is the period for each cleanup operation in seconds.
           scheduledCleanupPeriod: 86400
   reporting:
     jdbc:
       - # The name for the JDBC Reporter
         name: JDBC
-        # Enable JDBC Reporter
         enabled: true
-        # Source of Metrics, which will be used to identify each metric in database -->
-        # Commented to use the hostname by default
-        # source: Siddhi
-        # Alias referring to the Data Source configuration
         dataSource: *JDBC01
-        # Polling Period in seconds.
-        # This is the period for polling metrics from the metric registry and updating the database with the values
         pollingPeriod: 60      
 ```
 
@@ -599,10 +599,211 @@ Information about the parameters configured under the `securevault` subsection i
 
 | Parameter | Default Value | Description |
 | ------------- |-------------|-------------|
-| secretRepository > type | `org.wso2.carbon.secvault.repository.DefaultSecretRepository` | The default implementation of Secret Repository is based on the passwords and aliases given in the secrets.properties file and the JKS that is configured in the secure-vault.yaml file |
-| secretRepository > parameters > secretPropertiesFile | `${SIDDHI_RUNNER_HOME}/conf/runner/secrets.properties` | Location of the `secrect.properties` file which matches alias with encrypted data |
-| secretRepository > parameters > secretPropertiesFile | `${SIDDHI_RUNNER_HOME}/resources/security/securevault.jks` | Keysstore which contains the certificate to encrypt sensitive data | 
-| secretRepository > parameters > privateKeyAlias|`wso2carbon`| Alias of the cerificate in the key store used for encryption
-| masterKeyReader > type|`org.wso2.carbon.secvault.reader.DefaultMasterKeyReader`|The default implementation of MasterKeyReader gets a list of required passwords from the Secret Repository and provides the values for those passwords by reading system properties, environment variables and the master-keys.yaml file.|
-|masterKeyReader > parameters > masterKeyReaderFile| `${SIDDHI_RUNNER_HOME}/conf/runner/master-keys.yaml` | Location of `master-keys.yaml` file which contains password used to access the key store to decrypt the ancrypted passwords at runtime|
+| secretRepository > type | org.wso2.carbon.secvault.<br>repository.DefaultSecretRepository | The default implementation of Secret Repository is based on the passwords and aliases given in the secrets.properties file and the JKS that is configured in the secure-vault.yaml file |
+| secretPropertiesFile | \$\{SIDDHI_RUNNER_HOME\}/conf/<br>runner/secrets.properties | Location of the `secrect.properties` file which matches alias with encrypted data |
+| secretPropertiesFile | \$\{SIDDHI_RUNNER_HOME\}/resources/<br>security/securevault.jks |Keysstore which contains the certificate to encrypt sensitive data |
+| privateKeyAlias|wso2carbon| Alias of the cerificate in the key store used for encryption
+| masterKeyReader > type|org.wso2.carbon.secvault.<br>reader.DefaultMasterKeyReader|The default implementation of MasterKeyReader gets a list of required passwords from the Secret Repository and provides the values for those passwords by reading system properties, environment variables and the master-keys.yaml file.|
+| masterKeyReaderFile| \$\{SIDDHI_RUNNER_HOME\}/conf/<br>runner/master-keys.yaml | Location of `master-keys.yaml` file which contains password used to access the key store to decrypt the ancrypted passwords at runtime|
+
+## Configuring server properties
+
+Siddhi runner and tooling distribution is based on WSO2 Carbon 5 Kernel platform. The properties for the server can be configure under `wso2.carbon` namespace.
+
+Sample configurations is as follows,
+```yaml
+wso2.carbon:
+  id: siddhi-runner
+  name: Siddhi Runner Distribution
+```
+
+### Configure port offset
+
+ Port offset defines the number by which all ports defined in the runtime such as the HTTP/S ports will be offset. For example, if the default HTTP port is 9090 and the `ports >> offset` is 1, the effective HTTP port will be 9091. This configuration allows to change ports in a uniform manner across the transports.
+
+ Below is the sample configurations for offsets,
+
+```yaml
+wso2.carbon:
+  id: siddhi-runner
+  name: Siddhi Runner Distribution
+  ports:
+    offset: 1
+```
+
+## Configuring Databridge Transport
+
+Siddhi uses Databridge transport to send and receive events over Thrift/Binary protocols, This can be used through `siddhi-io-wso2event` extension.
+
+Sample Configuration is as follows,
+```yaml
+transports:      
+  databridge:
+  # Configuration used for the databridge communication
+    listenerConfigurations:
+      workerThreads: 10
+      .
+      .
+      .
+    senderConfigurations:
+    # Configuration of the Data Agents - to publish events through databridge
+      agents:
+          agentConfiguration:
+            name: Thrift
+            dataEndpointClass: org.wso2.carbon.databridge.agent.endpoint.thrift.ThriftDataEndpoint
+            .
+            .
+            .
+```
+Here, `transports >> databridge` includes listenerConfigurations, to configure databridge receiver in WSO2Event Source, and senderConfigurations, to configure agents used to publish events over databridge in WSO2Event Sink
+
+### Configuring databridge listener
+
+Sample configuration for databridge listener and properties are as follows,
+
+```yaml
+transports:
+  databridge:
+    listenerConfigurations:
+      workerThreads: 10
+      maxEventBufferCapacity: 10
+      eventBufferSize: 2000
+      keyStoreLocation: ${sys:carbon.home}/resources/security/wso2carbon.jks
+      keyStorePassword: wso2carbon
+      clientTimeoutMin: 30
+      # Data receiver configurations
+      dataReceivers:
+        -
+          dataReceiver:
+            type: Thrift
+            properties:
+              tcpPort: '7611'
+              sslPort: '7711'
+        - 
+          dataReceiver:
+            type: Binary
+            properties:
+              tcpPort: '9611'
+              sslPort: '9711'
+              tcpReceiverThreadPoolSize: '100'
+              sslReceiverThreadPoolSize: '100'
+              hostName: 0.0.0.0
+```
+
+| Parameter | Default Value | Description |
+| ------------- |:-------------:|-------------|
+| workerThreads | 10 | No of worker threads to consume events |
+| maxEventBufferCapacity | 10 | Maximum amount of messages that can be queued internally in Message Buffer |
+| eventBufferSize | 2000 | Maximum number of events that can be stored in the queue |
+| clientTimeoutMin | 30 | Session timeout value in mins |
+| keyStoreLocation | \{SIDDHIRUNNER_HOME\}/resources/<br>security/wso2carbon.jks | Keystore file path |
+| Keystore password | wo2carbon | Keystore password |
+| dataReceivers |   | Generalised configuration for different types of data receivers |
+| dataReceivers >> dataReceiver >> type |   | Type of the datareceiver |
+
+
+Parameters for Thrift data receiver,
+
+| Parameter | Default Value | Description |
+| ------------- |:-------------:|-------------|
+| tcpPort | 7611 | TCP port for the Thrift datareceiver |
+| sslPort | 7711 | SSL port for the Thrift datareceiver |
+
+Parameters for Binary data receiver,
+
+| Parameter | Default Value | Description |
+| ------------- |:-------------:|-------------|
+| tcpPort | 7611 | TCP port for the Binary datareceiver |
+| sslPort | 7711 | SSL port for the Binary datareceiver |
+| tcpReceiverThreadPoolSize | 100 | Receiver pool size for Thrift TCP protocol |
+| sslReceiverThreadPoolSize | 100 | Receiver pool size for Thrift SSL protocol |
+| hostname | 0.0.0.0 | Hostname for the Thrift receiver |
+
+### Configuring databridge publisher
+
+!!! Note
+By default both Thrift and Binary agents will be started.
+
+Sample configuration for databridge agent(publisher) and properties are as follows,
+```yaml
+transports:
+  databridge:
+    senderConfigurations:
+      agents:
+        -
+          agentConfiguration:
+            name: Thrift
+            dataEndpointClass: org.wso2.carbon.databridge.agent.endpoint.thrift.ThriftDataEndpoint
+            publishingStrategy: async
+            trustStorePath: '${sys:carbon.home}/resources/security/client-truststore.jks'
+            trustStorePassword: 'wso2carbon'
+            queueSize: 32768
+            batchSize: 200
+            corePoolSize: 1
+            socketTimeoutMS: 30000
+            maxPoolSize: 1
+            keepAliveTimeInPool: 20
+            reconnectionInterval: 30
+            maxTransportPoolSize: 250
+            maxIdleConnections: 250
+            evictionTimePeriod: 5500
+            minIdleTimeInPool: 5000
+            secureMaxTransportPoolSize: 250
+            secureMaxIdleConnections: 250
+            secureEvictionTimePeriod: 5500
+            secureMinIdleTimeInPool: 5000
+            sslEnabledProtocols: TLSv1.1,TLSv1.2
+            ciphers: TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_DHE_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,TLS_DHE_RSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_128_GCM_SHA256
+        -
+          agentConfiguration:
+            name: Binary
+            dataEndpointClass: org.wso2.carbon.databridge.agent.endpoint.binary.BinaryDataEndpoint
+            publishingStrategy: async
+            trustStorePath: '${sys:carbon.home}/resources/security/client-truststore.jks'
+            trustStorePassword: 'wso2carbon'
+            queueSize: 32768
+            batchSize: 200
+            corePoolSize: 1
+            socketTimeoutMS: 30000
+            maxPoolSize: 1
+            keepAliveTimeInPool: 20
+            reconnectionInterval: 30
+            maxTransportPoolSize: 250
+            maxIdleConnections: 250
+            evictionTimePeriod: 5500
+            minIdleTimeInPool: 5000
+            secureMaxTransportPoolSize: 250
+            secureMaxIdleConnections: 250
+            secureEvictionTimePeriod: 5500
+            secureMinIdleTimeInPool: 5000
+            sslEnabledProtocols: TLSv1.1,TLSv1.2
+            ciphers: TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_DHE_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,TLS_DHE_RSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_128_GCM_SHA256
+```
+
+| Parameter | Default Value | Description |
+| ------------- |:-------------:|-------------|
+| name | Thrift / Binary | Name of the databridge agent |
+| dataEndpointClass |   org.wso2.carbon.databridge.<br>agent.endpoint.thrift.ThriftDataEndpoint / org.wso2.carbon.databridge.<br>agent.endpoint.thrift.ThriftDataEndpoint | Class of the databridge agent initaialised |
+| publishingStrategy | async | Startegy used for publishing. Can be either `sync` or `async` |
+| trustStorePath | \$\{sys:carbon.home\}/resources/<br>security/client-truststore.jks | Truststore file path |
+| trustStorePassword | wso2carbon | Trustore password |
+| queueSize | 32768 | Queuse size used to hold events before publishing |
+| batchSize | 200 | Size of a publishing batch of events |
+| corePoolSize | 1 | Pool size of the threads used to buffer before publishing |
+| maxPoolSize | 1 | Maximum pool size for threads used to buffer before publishing |
+| socketTimeoutMS | 30000 | Time for socket to timeout in Milliseconds |
+| keepAliveTimeInPool | 20 | Time used to keep the threads live |
+| reconnectionInterval | 30 | Reconnection interval in case of lost transmission |
+| maxTransportPoolSize | 250 | Transport threads used for publishing |
+| maxIdleConnections | 250 | Maximum idle connections maintained in the databridge |
+| evictionTimePeriod | 5500  | Eviction time interval |
+| minIdleTimeInPool | 5500 | Min idle time in pool |
+| secureMaxTransportPoolSize  | 250 | Max transport pool size in SSL publishing |
+| secureMaxIdleConnections | 250 | Max idle connections in SSL publishing |
+| secureEvictionTimePeriod | 5500 | Eviction time period in SSL publishing |
+| secureMinIdleTimeInPool | 5500 | Min idle time in pool in SSL publishing |
+| sslEnabledProtocols | TLSv1.1,TLSv1.2 | SSL enabled protocols |
+| ciphers | TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,<br>TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,<br>TLS_DHE_RSA_WITH_AES_128_CBC_SHA256,<br>TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,<br>TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,<br>TLS_DHE_RSA_WITH_AES_128_CBC_SHA,<br>TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,<br>TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,<br>TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 | Ciphers used in transmission |
+
+
 
