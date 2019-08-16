@@ -5,7 +5,7 @@ Select the appropriate Siddhi distribution for your use case.
 !!! info "Pre-Release Distributions"
     Find the latest milestones and daily builds [here](https://siddhi.io/en/v5.1/download/).
 
-##Siddhi Distribution  
+## Siddhi Distribution  
 
 ### **0.1.0**
 
@@ -17,7 +17,7 @@ Based on Siddhi Core 5.0.0 | &nbsp; | &nbsp;  | &nbsp; | &nbsp; |
 
 Refer the user guide to use [Siddhi as a Local Microservice](../docs/siddhi-as-a-local-microservice/).
 
-##Siddhi Docker 
+## Siddhi Docker 
 
 ### **0.1.0**
 
@@ -29,7 +29,7 @@ Based on Siddhi distribution `0.1.0` and Siddhi Core `5.0.0`.
 
 Refer the user guide to use [Siddhi as a Docker Microservice](../docs/siddhi-as-a-docker-microservice/).
 
-##Siddhi Kubernetes 
+## Siddhi Kubernetes 
 
 ### **0.1.1**
 
@@ -39,7 +39,7 @@ Based on Siddhi distribution `0.1.0` and Siddhi Core `5.0.0`.
 
 Refer the user guide to use [Siddhi as Kubernetes Microservice](../docs/siddhi-as-a-kubernetes-microservice/).
 
-##Siddhi Libs 
+## Siddhi Libs 
 
 ### **5.0.x** 
 
