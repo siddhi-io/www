@@ -318,14 +318,14 @@ extensions:
 
 ### Configuring Siddhi Properties
 
-Siddhi supports setting follwing properties to be specify distribution based behaviours, for instance all [Named Aggregation](../../query-guide/#named-aggregation) in the distribution can be changed to [Distributed Named Aggregation](../../query-guide/#distributed-aggregation) with the following siddhi properties.
+Siddhi supports setting following properties to be specify distribution based behaviours, for instance all [Named Aggregation](../../query-guide/#named-aggregation) in the distribution can be changed to [Distributed Named Aggregation](../../query-guide/#distributed-aggregation) with the following siddhi properties.
 
 System Property| Description| Possible Values | Optional | Default Value
 ---------|---------|---------|---------|------
 shardId| The id of the shard one of the distributed aggregation is running in. This should be unique to a single shard | Any string | No | <Empty_String>
 partitionById| This allows user to enable/disable distributed aggregation for all aggregations running in one siddhi manager .(Available from v4.3.3) | true/false | Yes | false
 
-Follwing is the example of setting Distributed Named Agregation
+Following is the example of setting Distributed Named Aggregation
 ```yaml
 properties:
   partitionById	: true
@@ -436,10 +436,10 @@ Siddhi uses [dropwizard](https://metrics.dropwizard.io/) metrics library to calc
 
 To enable statistics, the relevant configuration should be added to the Siddhi Configuration yaml as follows, and at the same time the statistics collection should be enabled in the Siddhi Application which is being monitored. Refer [Siddhi Application Statistics](../../query-guide/#statistics) documentation for enabling Siddhi Application level statistics.
 
-To enable statistics the relevant matrics related configurations should be added under `metrics` section in the Siddhi Configurations yaml file, and pass that during startup.
+To enable statistics the relevant metrics related configurations should be added under `metrics` section in the Siddhi Configurations yaml file, and pass that during startup.
 
 !!! Note "Configuring Metrics reporting level."
-    To modify the statistics reporting, relevant metric names can be added under the `metrics.levels` subsection in the Siddhi Configurations yaml, along with the matrics level (i.e., OFF, INFO, DEBUG, TRACE, or ALL) as given below.
+    To modify the statistics reporting, relevant metric names can be added under the `metrics.levels` subsection in the Siddhi Configurations yaml, along with the metrics level (i.e., OFF, INFO, DEBUG, TRACE, or ALL) as given below.
     ```yaml
     metrics:
       # Metrics Levels are organized from most specific to least:
@@ -463,7 +463,7 @@ The available metrics reporting options are as follows.
 
 ### Reporting via JMX Mbeans
 
-JMX Mbeams is the default statistics reporting option of Siddhi. To enable stats with the default configuration add the metric-related properties under `metrics` section in the Siddhi Configurations yaml file, and pass that during startup.
+JMX Mbeans is the default statistics reporting option of Siddhi. To enable stats with the default configuration add the metric-related properties under `metrics` section in the Siddhi Configurations yaml file, and pass that during startup.
 
 A sample configuration is as follows.
 ```yaml
@@ -579,7 +579,7 @@ This converts the Jar to OSGi bundles and place it in <code>&lt;SIDDHI_RUNNER_HO
 
 Cipher tool is used to encrypt sensitive data in deployment configurations. This tool works in conjunction with Secure Vault to replace sensitive data that is in plain text with an alias. The actual value is then encrypted and securely stored in the SecureVault. At runtime, the actual value is retrieved from the alias and used. For more information, see [Secure Vault](https://github.com/wso2/carbon-secvault/blob/master/README.md).
 
-Below is the defaul configurations for Secure Vault
+Below is the default configurations for Secure Vault
 ```yaml
 # Secure Vault Configuration
 securevault:
@@ -601,10 +601,10 @@ Information about the parameters configured under the `securevault` subsection i
 | ------------- |-------------|-------------|
 | secretRepository > type | org.wso2.carbon.secvault.repository.DefaultSecretRepository | The default implementation of Secret Repository is based on the passwords and aliases given in the secrets.properties file and the JKS that is configured in the secure-vault.yaml file |
 | secretPropertiesFile | `${SIDDHI_RUNNER_HOME}/conf/runner/secrets.properties` | Location of the `secrect.properties` file which matches alias with encrypted data |
-| secretPropertiesFile | `${SIDDHI_RUNNER_HOME}/resources/security/securevault.jks` |Keysstore which contains the certificate to encrypt sensitive data |
-| privateKeyAlias|wso2carbon| Alias of the cerificate in the key store used for encryption
+| secretPropertiesFile | `${SIDDHI_RUNNER_HOME}/resources/security/securevault.jks` |Keystore which contains the certificate to encrypt sensitive data |
+| privateKeyAlias|wso2carbon| Alias of the certificate in the key store used for encryption
 | masterKeyReader > type|org.wso2.carbon.secvault.reader.DefaultMasterKeyReader|The default implementation of MasterKeyReader gets a list of required passwords from the Secret Repository and provides the values for those passwords by reading system properties, environment variables and the master-keys.yaml file.|
-| masterKeyReaderFile| `${SIDDHI_RUNNER_HOME\}/conf/runner/master-keys.yaml` | Location of `master-keys.yaml` file which contains password used to access the key store to decrypt the ancrypted passwords at runtime|
+| masterKeyReaderFile| `${SIDDHI_RUNNER_HOME\}/conf/runner/master-keys.yaml` | Location of `master-keys.yaml` file which contains password used to access the key store to decrypt the encrypted passwords at runtime|
 
 ## Configuring server properties
 
@@ -695,26 +695,26 @@ transports:
 | workerThreads | 10 | No of worker threads to consume events |
 | maxEventBufferCapacity | 10 | Maximum amount of messages that can be queued internally in Message Buffer |
 | eventBufferSize | 2000 | Maximum number of events that can be stored in the queue |
-| clientTimeoutMin | 30 | Session timeout value in mins |
+| clientTimeoutMin | 30 | Session timeout value in minutes |
 | keyStoreLocation | `${SIDDHIRUNNER_HOME}/resources/security/wso2carbon.jks` | Keystore file path |
 | Keystore password | wo2carbon | Keystore password |
 | dataReceivers |   | Generalised configuration for different types of data receivers |
-| dataReceivers >> dataReceiver >> type |   | Type of the datareceiver |
+| dataReceivers >> dataReceiver >> type |   | Type of the data receiver |
 
 
 Parameters for Thrift data receiver,
 
 | Parameter | Default Value | Description |
 | ------------- |:-------------:|-------------|
-| tcpPort | 7611 | TCP port for the Thrift datareceiver |
-| sslPort | 7711 | SSL port for the Thrift datareceiver |
+| tcpPort | 7611 | TCP port for the Thrift data receiver |
+| sslPort | 7711 | SSL port for the Thrift data receiver |
 
 Parameters for Binary data receiver,
 
 | Parameter | Default Value | Description |
 | ------------- |:-------------:|-------------|
-| tcpPort | 7611 | TCP port for the Binary datareceiver |
-| sslPort | 7711 | SSL port for the Binary datareceiver |
+| tcpPort | 7611 | TCP port for the Binary data receiver |
+| sslPort | 7711 | SSL port for the Binary data receiver |
 | tcpReceiverThreadPoolSize | 100 | Receiver pool size for Thrift TCP protocol |
 | sslReceiverThreadPoolSize | 100 | Receiver pool size for Thrift SSL protocol |
 | hostname | 0.0.0.0 | Hostname for the Thrift receiver |
@@ -783,11 +783,11 @@ transports:
 | Parameter | Default Value | Description |
 | ------------- |:-------------:|-------------|
 | name | Thrift / Binary | Name of the databridge agent |
-| dataEndpointClass |   org.wso2.carbon.databridge.agent.endpoint.thrift.ThriftDataEndpoint / org.wso2.carbon.databridge.agent.endpoint.thrift.ThriftDataEndpoint | Class of the databridge agent initaialised |
-| publishingStrategy | async | Startegy used for publishing. Can be either `sync` or `async` |
+| dataEndpointClass |   org.wso2.carbon.databridge.agent.endpoint.thrift.ThriftDataEndpoint / org.wso2.carbon.databridge.agent.endpoint.thrift.ThriftDataEndpoint | Class of the databridge agent initialised |
+| publishingStrategy | async | Strategy used for publishing. Can be either `sync` or `async` |
 | trustStorePath | `${sys:carbon.home\}/resources/security/client-truststore.jks` | Truststore file path |
-| trustStorePassword | wso2carbon | Trustore password |
-| queueSize | 32768 | Queuse size used to hold events before publishing |
+| trustStorePassword | wso2carbon | Trust store password |
+| queueSize | 32768 | Queue size used to hold events before publishing |
 | batchSize | 200 | Size of a publishing batch of events |
 | corePoolSize | 1 | Pool size of the threads used to buffer before publishing |
 | maxPoolSize | 1 | Maximum pool size for threads used to buffer before publishing |
