@@ -599,12 +599,12 @@ Information about the parameters configured under the `securevault` subsection i
 
 | Parameter | Default Value | Description |
 | ------------- |-------------|-------------|
-| secretRepository > type | org.wso2.carbon.secvault.<br>repository.DefaultSecretRepository | The default implementation of Secret Repository is based on the passwords and aliases given in the secrets.properties file and the JKS that is configured in the secure-vault.yaml file |
-| secretPropertiesFile | \$\{SIDDHI_RUNNER_HOME\}/conf/<br>runner/secrets.properties | Location of the `secrect.properties` file which matches alias with encrypted data |
-| secretPropertiesFile | \$\{SIDDHI_RUNNER_HOME\}/resources/<br>security/securevault.jks |Keysstore which contains the certificate to encrypt sensitive data |
+| secretRepository > type | org.wso2.carbon.secvault.repository.DefaultSecretRepository | The default implementation of Secret Repository is based on the passwords and aliases given in the secrets.properties file and the JKS that is configured in the secure-vault.yaml file |
+| secretPropertiesFile | `${SIDDHI_RUNNER_HOME}/conf/runner/secrets.properties` | Location of the `secrect.properties` file which matches alias with encrypted data |
+| secretPropertiesFile | `${SIDDHI_RUNNER_HOME}/resources/security/securevault.jks` |Keysstore which contains the certificate to encrypt sensitive data |
 | privateKeyAlias|wso2carbon| Alias of the cerificate in the key store used for encryption
-| masterKeyReader > type|org.wso2.carbon.secvault.<br>reader.DefaultMasterKeyReader|The default implementation of MasterKeyReader gets a list of required passwords from the Secret Repository and provides the values for those passwords by reading system properties, environment variables and the master-keys.yaml file.|
-| masterKeyReaderFile| \$\{SIDDHI_RUNNER_HOME\}/conf/<br>runner/master-keys.yaml | Location of `master-keys.yaml` file which contains password used to access the key store to decrypt the ancrypted passwords at runtime|
+| masterKeyReader > type|org.wso2.carbon.secvault.reader.DefaultMasterKeyReader|The default implementation of MasterKeyReader gets a list of required passwords from the Secret Repository and provides the values for those passwords by reading system properties, environment variables and the master-keys.yaml file.|
+| masterKeyReaderFile| `${SIDDHI_RUNNER_HOME\}/conf/runner/master-keys.yaml` | Location of `master-keys.yaml` file which contains password used to access the key store to decrypt the ancrypted passwords at runtime|
 
 ## Configuring server properties
 
@@ -696,7 +696,7 @@ transports:
 | maxEventBufferCapacity | 10 | Maximum amount of messages that can be queued internally in Message Buffer |
 | eventBufferSize | 2000 | Maximum number of events that can be stored in the queue |
 | clientTimeoutMin | 30 | Session timeout value in mins |
-| keyStoreLocation | \{SIDDHIRUNNER_HOME\}/resources/<br>security/wso2carbon.jks | Keystore file path |
+| keyStoreLocation | `${SIDDHIRUNNER_HOME}/resources/security/wso2carbon.jks` | Keystore file path |
 | Keystore password | wo2carbon | Keystore password |
 | dataReceivers |   | Generalised configuration for different types of data receivers |
 | dataReceivers >> dataReceiver >> type |   | Type of the datareceiver |
@@ -783,9 +783,9 @@ transports:
 | Parameter | Default Value | Description |
 | ------------- |:-------------:|-------------|
 | name | Thrift / Binary | Name of the databridge agent |
-| dataEndpointClass |   org.wso2.carbon.databridge.<br>agent.endpoint.thrift.ThriftDataEndpoint / org.wso2.carbon.databridge.<br>agent.endpoint.thrift.ThriftDataEndpoint | Class of the databridge agent initaialised |
+| dataEndpointClass |   org.wso2.carbon.databridge.agent.endpoint.thrift.ThriftDataEndpoint / org.wso2.carbon.databridge.agent.endpoint.thrift.ThriftDataEndpoint | Class of the databridge agent initaialised |
 | publishingStrategy | async | Startegy used for publishing. Can be either `sync` or `async` |
-| trustStorePath | \$\{sys:carbon.home\}/resources/<br>security/client-truststore.jks | Truststore file path |
+| trustStorePath | `${sys:carbon.home\}/resources/security/client-truststore.jks` | Truststore file path |
 | trustStorePassword | wso2carbon | Trustore password |
 | queueSize | 32768 | Queuse size used to hold events before publishing |
 | batchSize | 200 | Size of a publishing batch of events |
