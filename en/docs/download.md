@@ -48,6 +48,6 @@ Refer the user guide to use [Siddhi as Kubernetes Microservice](../docs/siddhi-a
 * [Siddhi Query Compiler](https://mvnrepository.com/artifact/io.siddhi/siddhi-annotations)
 * [Siddhi Annotation](https://mvnrepository.com/artifact/io.siddhi/siddhi-query-compiler)
 
-Refer the user guide to use [Siddhi as a Java library](../docs/siddhi-as-a-java-library/)
+Refer the user guide to use [Siddhi as a Java library](../docs/siddhi-as-a-java-library/).
 
-!!! Info "For other Siddhi Versions refer the [Download Archives](../../versions/)".
+!!! Info "For other Siddhi Versions refer the [Download Archives](../../versions/)."
