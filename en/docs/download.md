@@ -64,9 +64,9 @@ Based on Siddhi distribution `5.1.0-m1` and Siddhi Core `5.1.0`.
 
 Refer the user guide to use [Siddhi as Kubernetes Microservice](../deployment/siddhi-as-a-kubernetes-microservice/).
 
-### Siddhi Libs 
+## Siddhi Libs 
 
-#### **5.1.x** 
+### **5.1.x** 
 
 * [Siddhi Core](https://mvnrepository.com/artifact/io.siddhi/siddhi-core)
 * [Siddhi Query API](https://mvnrepository.com/artifact/io.siddhi/siddhi-query-api)
