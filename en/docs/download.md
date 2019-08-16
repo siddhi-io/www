@@ -6,7 +6,9 @@ Select the appropriate Siddhi distribution for your use case.
 
 ### **Daily Build**
 
-- [Siddhi Tooling & Siddhi Runner](https://wso2.org/jenkins/job/siddhi/job/siddhi-daily-build/lastSuccessfulBuild/)
+<ul>
+  <li><a target="_blank" href="https://wso2.org/jenkins/job/siddhi/job/siddhi-daily-build/">Siddhi Tooling & Siddhi Runner</a></li>
+</ul>  
 
 ### **5.1.0-m2**
 
