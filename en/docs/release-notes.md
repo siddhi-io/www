@@ -74,10 +74,10 @@ Please find the complete changes [here](https://github.com/siddhi-io/distributio
 
 ### Siddhi Distribution 5.1.0-M1
 
-### New Features
+#### New Features
 - Siddhi Test Framework: Provides the capability to write integration tests using Docker containers [#1327](https://github.com/siddhi-io/siddhi/issues/1327)
 
-### Complete Changes
+#### Complete Changes
 [v0.1.0...v5.1.0-m1](https://github.com/siddhi-io/distribution/compare/v0.1.0...v5.1.0-m1) 
 
 !!! info "Please find more details about the release [here](https://github.com/siddhi-io/distribution/releases/tag/v5.1.0-m1)"
