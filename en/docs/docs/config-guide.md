@@ -7,7 +7,7 @@ This section covers the following.
   - [Persistence on Database](#Persistence-on-Database)
   - [Persistence on File System](#Persistence-on-File-System)
 - [Configuring Siddhi Elements](#Configuring-Siddhi-Elements)
-  - [Configuring Sources, Sinks and Stores References](#Configuring-Sources-Sinks-and-Stores-References)
+  - [Configuring Sources, Sinks and Stores References](#Configuring-Sources,-Sinks-and-Stores-References)
   - [Configuring Extensions System Parameters](#Configuring-Extensions-System-Parameters)
   - [Configuring Siddhi Properties](#Configuring-Siddhi-Properties)
 - [Configuring Authentication](#Configuring-Authentication)
@@ -27,6 +27,7 @@ This section covers the following.
 - [Configuring Databridge Transport](#Configuring-Databridge-Transport)
   - [Configuring databridge listener](#Configuring-databridge-listener)
   - [Configuring databridge publisher](#Configuring-databridge-publisher)
+- [Configuring Admin REST APIs](#Configuring-Admin-REST-APIs)
 
 ## Configuring Databases
 
@@ -169,7 +170,7 @@ This explains how to periodically persisting the state of Siddhi either into a d
 
 ### Persistence on Database
 
-To perform periodic state persistence on a database, the database should be configured as a datasource and the relevant jdbc drivers should be added to Siddhi's class-path. Refer [Database Configuration](#database-configuration/) section for more information.
+To perform periodic state persistence on a database, the database should be configured as a datasource and the relevant jdbc drivers should be added to Siddhi's class-path. Refer [Database Configuration](#Configuring-Databases) section for more information.
 
 To configure database based periodic data persistence, add <code>statePersistence</code> section with the following properties on the Siddhi configuration yaml, and pass that during startup.
 
@@ -179,7 +180,7 @@ To configure database based periodic data persistence, add <code>statePersisten
 | intervalInMin | The time interval in minutes that defines the interval in which state of Siddhi applications should be persisted | 1 |
 | revisionsToKeep | The number of revisions to keep in the system. Here when a new persistence takes place, the older revisions are removed. | 3 |
 | persistenceStore | The persistence store | io.siddhi.distribution.core.persistence.DBPersistenceStore |
-| config > datasource | The datasource to be used in persisting the state. The datasource should be defined in the Siddhi configuration yaml. For detailed instructions of how to configure a datasource, see [Database Configuration](#database-configuration/).| SIDDHI_PERSISTENCE_DB (A datasource that is defined in `datasources` in Siddhi configuration yaml) |
+| config > datasource | The datasource to be used in persisting the state. The datasource should be defined in the Siddhi configuration yaml. For detailed instructions of how to configure a datasource, see [Database Configuration](#Configuring-Databases).| SIDDHI_PERSISTENCE_DB (A datasource that is defined in `datasources` in Siddhi configuration yaml) |
 | config > table | The table that should be created and used for persisting states. | PERSISTENCE_TABLE |
 
 The following is a sample configuration for database based state persistence.
@@ -434,9 +435,7 @@ For details on creating the Kubernetes artifacts refer [Using Siddhi as Kubernet
 
 Siddhi uses [dropwizard](https://metrics.dropwizard.io/) metrics library to calculate Siddhi and JVM statistics, and it can report the results via JMX Mbeans, console or database.
 
-To enable statistics, the relevant configuration should be added to the Siddhi Configuration yaml as follows, and at the same time the statistics collection should be enabled in the Siddhi Application which is being monitored. Refer [Siddhi Application Statistics](../../query-guide/#statistics) documentation for enabling Siddhi Application level statistics.
-
-To enable statistics the relevant metrics related configurations should be added under `metrics` section in the Siddhi Configurations yaml file, and pass that during startup.
+To enable statistics, the relevant configuration under `metrics` section should be added to the Siddhi Configuration yaml as follows, and at the same time the statistics collection should be enabled in the Siddhi Application which is being monitored. Refer [Siddhi Application Statistics](../../query-guide/#statistics) documentation for enabling Siddhi Application level statistics.
 
 !!! Note "Configuring Metrics reporting level."
     To modify the statistics reporting, relevant metric names can be added under the `metrics.levels` subsection in the Siddhi Configurations yaml, along with the metrics level (i.e., OFF, INFO, DEBUG, TRACE, or ALL) as given below.
@@ -805,5 +804,60 @@ transports:
 | sslEnabledProtocols | TLSv1.1,TLSv1.2 | SSL enabled protocols |
 | ciphers | TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,<br>TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,<br>TLS_DHE_RSA_WITH_AES_128_CBC_SHA256,<br>TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,<br>TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,<br>TLS_DHE_RSA_WITH_AES_128_CBC_SHA,<br>TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,<br>TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,<br>TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 | Ciphers used in transmission |
 
+## Configuring Admin REST APIs
 
+Admin API can be configured under the namespace `transports >> http`. 
 
+Sample Config and the parameters are as follows,
+```yaml
+transports:
+  http:
+    listenerConfigurations:
+      - 
+        id: "default"
+        host: "0.0.0.0"
+        port: 9090
+      - 
+        id: "msf4j-https"
+        host: "0.0.0.0"
+        port: 9443
+        scheme: https
+        sslConfig:
+          keyStore: "${carbon.home}/resources/security/wso2carbon.jks"
+          keyStorePassword: wso2carbon
+    transportProperties:
+      - name: "server.bootstrap.socket.timeout"
+        value: 60
+      - name: "latency.metrics.enabled"
+        value: false
+```
+
+| Parameter | Default Value | Description |
+| ------------- |:-------------:|-------------|
+| id | default | Id of the server |
+| host | 0.0.0.0 | Hostname of the server |
+| port | 8080 | Port of the APIs |
+| scheme | http | Scheme of the APIs. It can be either `http` or `https` |
+| httpTraceLogEnabled | false | Enable HTTP trace logs |
+| httpAccessLogEnabled | false | Enable HTTP access logs |
+| socketIdleTimeout | 0 | Timeout for socket for which requests received. Not set by default. |
+
+SSL configurations (listenerConfigurations >> sslConfig)
+
+| Parameter | Default Value | Description |
+| ------------- |:-------------:|-------------|
+| keyStore | `${carbon.home}/resources/security/wso2carbon.jks` | The file containing the private key of the client |
+| keyStorePass | wso2carbon | Password of the private key if it is encrypted |
+| enableProtocols | All | SSL/TLS protocols to be enabled (e.g.: TLSv1,TLSv1.1,TLSv1.2) |
+| cipherSuites | All | List of ciphers to be used eg: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA |
+| enableSessionCreation |  | Enable/disable new SSL session creation |
+| sessionTimeOut | 0 | SSL session time out. Not set by default. |
+| handshakeTimeOut | 0 | SSL handshake time out. Not set by default. |
+
+Transport Properties (transportProperties)
+
+| Parameter | Default Value | Description |
+| ------------- |:-------------:|-------------|
+| server.bootstrap.connect.timeout | 15000 | Timout in millisecond to establish connection |
+| server.bootstrap.socket.timeout | 60 | Socket connection timeouts |
+| latency.metrics.enabled | false | Enable/Disable latency metrics by carbon metrics component |
