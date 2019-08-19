@@ -55,7 +55,7 @@
       
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
-      <link rel="shortcut icon" href="../../images/favicon.ico">
+      <link rel="shortcut icon" href="../../images/logos/favicon.ico">
       <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.0">
     
     
@@ -169,7 +169,7 @@
         <a href="http://siddhi.io/en/v5.1/" title="Siddhi"
            class="md-header-nav__button md-logo">
           
-            <img src="../../images/siddhi-logo.svg" width="24" height="24">
+            <img src="../../images/logos/siddhi-logo.svg" width="24" height="24">
           
         </a>
       </div>
@@ -373,7 +373,7 @@
       <a href="http://siddhi.io/en/v5.1/" title="Siddhi"
          class="md-nav__button md-logo">
         
-          <img src="../../images/siddhi-logo.svg" width="48" height="48">
+          <img src="../../images/logos/siddhi-logo.svg" width="48" height="48">
         
       </a>
       Siddhi
@@ -882,6 +882,53 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#configuring-server-properties" title="Configuring server properties" class="md-nav__link">
+    Configuring server properties
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-port-offset" title="Configure port offset" class="md-nav__link">
+    Configure port offset
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-databridge-transport" title="Configuring Databridge Transport" class="md-nav__link">
+    Configuring Databridge Transport
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuring-databridge-listener" title="Configuring databridge listener" class="md-nav__link">
+    Configuring databridge listener
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-databridge-publisher" title="Configuring databridge publisher" class="md-nav__link">
+    Configuring databridge publisher
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
       
       
       
@@ -1226,6 +1273,53 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#configuring-server-properties" title="Configuring server properties" class="md-nav__link">
+    Configuring server properties
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-port-offset" title="Configure port offset" class="md-nav__link">
+    Configure port offset
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-databridge-transport" title="Configuring Databridge Transport" class="md-nav__link">
+    Configuring Databridge Transport
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuring-databridge-listener" title="Configuring databridge listener" class="md-nav__link">
+    Configuring databridge listener
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuring-databridge-publisher" title="Configuring databridge publisher" class="md-nav__link">
+    Configuring databridge publisher
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
       
       
       
@@ -1249,14 +1343,31 @@
                 <h1 id="siddhi-51-config-guide">Siddhi 5.1 Config Guide<a class="headerlink" href="#siddhi-51-config-guide" title="Permanent link">&para;</a></h1>
 <p>This section covers the following.</p>
 <ul>
-<li><a href="#configuring-databases">Configuring Databases</a></li>
-<li><a href="#configuring-periodic-state-persistence">Configuring Periodic State Persistence</a></li>
-<li><a href="#configuring-siddhi-elements">Configuring Siddhi Sources, Sinks, Stores and Extensions</a></li>
-<li><a href="#configuring-authentication">Configuring Authentication</a></li>
-<li><a href="#adding-extensions-and-third-party-dependencies">Adding Extensions and Third Party Dependencies</a></li>
-<li><a href="#configuring-statistics">Configuring Statistics</a></li>
-<li><a href="#converting-jars-to-osgi-bundles">Converting Jars to OSGi Bundles</a></li>
-<li><a href="#18-Encrypt-sensitive-deployment-configurations">Encrypt sensitive deployment configurations</a></li>
+<li><a href="#Configuring-Databases">Configuring Databases</a></li>
+<li><a href="#Configuring-Periodic-State-Persistence">Configuring Periodic State Persistence</a></li>
+<li><a href="#Persistence-on-Database">Persistence on Database</a></li>
+<li><a href="#Persistence-on-File-System">Persistence on File System</a></li>
+<li><a href="#Configuring-Siddhi-Elements">Configuring Siddhi Elements</a></li>
+<li><a href="#Configuring-Sources-Sinks-and-Stores-References">Configuring Sources, Sinks and Stores References</a></li>
+<li><a href="#Configuring-Extensions-System-Parameters">Configuring Extensions System Parameters</a></li>
+<li><a href="#Configuring-Siddhi-Properties">Configuring Siddhi Properties</a></li>
+<li><a href="#Configuring-Authentication">Configuring Authentication</a></li>
+<li><a href="#Adding-Extensions-and-Third-Party-Dependencies">Adding Extensions and Third Party Dependencies</a></li>
+<li><a href="#Adding-to-Siddhi-Java-Program">Adding to Siddhi Java Program</a></li>
+<li><a href="#Adding-to-Siddhi-Local-Microservice">Adding to Siddhi Local Microservice</a></li>
+<li><a href="#Adding-to-Siddhi-Docker-Microservice">Adding to Siddhi Docker Microservice</a></li>
+<li><a href="#Adding-to-Siddhi-Kubernetes-Microservice">Adding to Siddhi Kubernetes Microservice</a></li>
+<li><a href="#Configuring-Statistics">Configuring Statistics</a></li>
+<li><a href="#Reporting-via-JMX-Mbeans">Reporting via JMX Mbeans</a></li>
+<li><a href="#Reporting-via-Console">Reporting via Console</a></li>
+<li><a href="#Reporting-via-Database">Reporting via Database</a></li>
+<li><a href="#Converting-Jars-to-OSGi-Bundles">Converting Jars to OSGi Bundles</a></li>
+<li><a href="#Encrypt-sensitive-deployment-configurations">Encrypt sensitive deployment configurations</a></li>
+<li><a href="#Configuring-server-properties">Configuring server properties</a></li>
+<li><a href="#Configure-port-offset">Configure port offset</a></li>
+<li><a href="#Configuring-Databridge-Transport">Configuring Databridge Transport</a></li>
+<li><a href="#Configuring-databridge-listener">Configuring databridge listener</a></li>
+<li><a href="#Configuring-databridge-publisher">Configuring databridge publisher</a></li>
 </ul>
 <h2 id="configuring-databases">Configuring Databases<a class="headerlink" href="#configuring-databases" title="Permanent link">&para;</a></h2>
 <div class="admonition info">
@@ -1514,7 +1625,7 @@ define stream SweetProductionStream (name string, amount double);</code></pre>
 Similarly <a href="../../query-guide/#sink">Sinks</a> and <a href="../../query-guide/#store">Store Tables</a> can also be configured and referred from Siddhi Apps.</p>
 <p><strong>Example</strong>: Configuring http source using <code>ref</code></p>
 <p>Following configuration defines the <code>url</code> and details about <code>basic.auth</code>, in the Siddhi Configuration yaml.
-<pre class="codehilite"><code class="linenums">refs:
+<pre class="codehilite"><code class="language-yaml linenums">refs:
   -
     ref:
       name: 'http-passthrough'
@@ -1523,7 +1634,7 @@ Similarly <a href="../../query-guide/#sink">Sinks</a> and <a href="../../query-g
         receiver.url: 'http://0.0.0.0:8008/sweet-production'
         basic.auth.enabled: false</code></pre></p>
 <p>This can be referred in the Siddhi Applications as follows.</p>
-<pre class="codehilite"><code class="linenums">@Source(ref='http-passthrough',
+<pre class="codehilite"><code class="language-mysql linenums">@Source(ref='http-passthrough',
         @map(type='json', @attributes( name='$.name', amount='$.quantity')))
 define stream SweetProductionStream (name string, amount double);</code></pre>
 
@@ -1559,7 +1670,7 @@ For each separate extension you want to configure, add a sub-section named <code
         mysql.recordDeleteQuery: "DELETE FROM {{TABLE_NAME}} {{CONDITION}}"
         mysql.recordExistsQuery: "SELECT 1 FROM {{TABLE_NAME}} {{CONDITION}} LIMIT 1"</code></pre></p>
 <h3 id="configuring-siddhi-properties">Configuring Siddhi Properties<a class="headerlink" href="#configuring-siddhi-properties" title="Permanent link">&para;</a></h3>
-<p>Siddhi supports setting follwing properties to be specify distribution based behaviours, for instance all <a href="../../query-guide/#named-aggregation">Named Aggregation</a> in the distribution can be changed to <a href="../../query-guide/#distributed-aggregation">Distributed Named Aggregation</a> with the following siddhi properties.</p>
+<p>Siddhi supports setting following properties to be specify distribution based behaviours, for instance all <a href="../../query-guide/#named-aggregation">Named Aggregation</a> in the distribution can be changed to <a href="../../query-guide/#distributed-aggregation">Distributed Named Aggregation</a> with the following siddhi properties.</p>
 <table>
 <thead>
 <tr>
@@ -1587,7 +1698,7 @@ For each separate extension you want to configure, add a sub-section named <code
 </tr>
 </tbody>
 </table>
-<p>Follwing is the example of setting Distributed Named Agregation
+<p>Following is the example of setting Distributed Named Aggregation
 <pre class="codehilite"><code class="language-yaml linenums">properties:
   partitionById : true
   shardId : shard1</code></pre></p>
@@ -1667,12 +1778,11 @@ These Jars will be converted as OSGI bundles and copied to Siddhi Runner distrib
 </div>
 <p>Siddhi uses <a href="https://metrics.dropwizard.io/">dropwizard</a> metrics library to calculate Siddhi and JVM statistics, and it can report the results via JMX Mbeans, console or database.</p>
 <p>To enable statistics, the relevant configuration should be added to the Siddhi Configuration yaml as follows, and at the same time the statistics collection should be enabled in the Siddhi Application which is being monitored. Refer <a href="../../query-guide/#statistics">Siddhi Application Statistics</a> documentation for enabling Siddhi Application level statistics.</p>
-<p>To enable statistics the relevant matrics related configurations should be added under <code>metrics</code> section in the Siddhi Configurations yaml file, and pass that during startup.</p>
+<p>To enable statistics the relevant metrics related configurations should be added under <code>metrics</code> section in the Siddhi Configurations yaml file, and pass that during startup.</p>
 <div class="admonition note">
 <p class="admonition-title">Configuring Metrics reporting level.</p>
-<p>To modify the statistics reporting, relevant metric names can be added under the <code>metrics.levels</code> subsection in the Siddhi Configurations yaml, along with the matrics level (i.e., OFF, INFO, DEBUG, TRACE, or ALL) as given below.
-<pre>
-metrics:
+<p>To modify the statistics reporting, relevant metric names can be added under the <code>metrics.levels</code> subsection in the Siddhi Configurations yaml, along with the metrics level (i.e., OFF, INFO, DEBUG, TRACE, or ALL) as given below.
+<pre class="codehilite"><code class="language-yaml linenums">metrics:
   # Metrics Levels are organized from most specific to least:
   # OFF (most specific, no metrics)
   # INFO
@@ -1687,12 +1797,11 @@ metrics:
       jvm.buffers: 'OFF'
       jvm.class-loading: INFO
       jvm.gc: DEBUG
-      jvm.memory: INFO
-</pre></p>
+      jvm.memory: INFO</code></pre></p>
 </div>
 <p>The available metrics reporting options are as follows.</p>
 <h3 id="reporting-via-jmx-mbeans">Reporting via JMX Mbeans<a class="headerlink" href="#reporting-via-jmx-mbeans" title="Permanent link">&para;</a></h3>
-<p>JMX Mbeams is the default statistics reporting option of Siddhi. To enable stats with the default configuration add the metric-related properties under <code>metrics</code> section in the Siddhi Configurations yaml file, and pass that during startup.</p>
+<p>JMX Mbeans is the default statistics reporting option of Siddhi. To enable stats with the default configuration add the metric-related properties under <code>metrics</code> section in the Siddhi Configurations yaml file, and pass that during startup.</p>
 <p>A sample configuration is as follows.
 <pre class="codehilite"><code class="language-yaml linenums">metrics:
   enabled: true</code></pre>
@@ -1744,39 +1853,22 @@ metrics:
 <p>. The scripts to create these tables are provided in the <code>&lt;SIDDHI_RUNNER_HOME&gt;/wso2/runner/dbscripts</code> directory.</p>
 <p>Sample configuration of reporting via database.</p>
 <pre class="codehilite"><code class="language-yaml linenums">metrics:
-  # Enable Metrics
   enabled: true
   jdbc:
   # Data Source Configurations for JDBC Reporters
     dataSource:
-      # Default Data Source Configuration
       - &amp;JDBC01
-        # JNDI name of the data source to be used by the JDBC Reporter.
-        # This data source should be defined under datasources.
         dataSourceName: java:comp/env/jdbc/SiddhiMetricsDB
-        # Schedule regular deletion of metrics data older than a set number of days.
-        # It is recommended that you enable this job to ensure your metrics tables do not get extremely large.
-        # Deleting data older than seven days should be sufficient.
         scheduledCleanup:
-          # Enable scheduled cleanup to delete Metrics data in the database.
           enabled: false
-          # The scheduled job will cleanup all data older than the specified days
           daysToKeep: 7
-          # This is the period for each cleanup operation in seconds.
           scheduledCleanupPeriod: 86400
   reporting:
     jdbc:
       - # The name for the JDBC Reporter
         name: JDBC
-        # Enable JDBC Reporter
         enabled: true
-        # Source of Metrics, which will be used to identify each metric in database --&gt;
-        # Commented to use the hostname by default
-        # source: Siddhi
-        # Alias referring to the Data Source configuration
         dataSource: *JDBC01
-        # Polling Period in seconds.
-        # This is the period for polling metrics from the metric registry and updating the database with the values
         pollingPeriod: 60      </code></pre>
 
 <div class="admonition note">
@@ -1822,7 +1914,7 @@ metrics:
 <p>This converts the Jar to OSGi bundles and place it in <code>&lt;SIDDHI_RUNNER_HOME&gt;/lib</code> directory.</p>
 <h2 id="encrypt-sensitive-deployment-configurations">Encrypt sensitive deployment configurations<a class="headerlink" href="#encrypt-sensitive-deployment-configurations" title="Permanent link">&para;</a></h2>
 <p>Cipher tool is used to encrypt sensitive data in deployment configurations. This tool works in conjunction with Secure Vault to replace sensitive data that is in plain text with an alias. The actual value is then encrypted and securely stored in the SecureVault. At runtime, the actual value is retrieved from the alias and used. For more information, see <a href="https://github.com/wso2/carbon-secvault/blob/master/README.md">Secure Vault</a>.</p>
-<p>Below is the defaul configurations for Secure Vault
+<p>Below is the default configurations for Secure Vault
 <pre class="codehilite"><code class="language-yaml linenums"># Secure Vault Configuration
 securevault:
   secretRepository:
@@ -1848,33 +1940,387 @@ Information about the parameters configured under the <code>securevault</code> s
 <tbody>
 <tr>
 <td>secretRepository &gt; type</td>
-<td><code>org.wso2.carbon.secvault.repository.DefaultSecretRepository</code></td>
+<td>org.wso2.carbon.secvault.repository.DefaultSecretRepository</td>
 <td>The default implementation of Secret Repository is based on the passwords and aliases given in the secrets.properties file and the JKS that is configured in the secure-vault.yaml file</td>
 </tr>
 <tr>
-<td>secretRepository &gt; parameters &gt; secretPropertiesFile</td>
+<td>secretPropertiesFile</td>
 <td><code>${SIDDHI_RUNNER_HOME}/conf/runner/secrets.properties</code></td>
 <td>Location of the <code>secrect.properties</code> file which matches alias with encrypted data</td>
 </tr>
 <tr>
-<td>secretRepository &gt; parameters &gt; secretPropertiesFile</td>
+<td>secretPropertiesFile</td>
 <td><code>${SIDDHI_RUNNER_HOME}/resources/security/securevault.jks</code></td>
-<td>Keysstore which contains the certificate to encrypt sensitive data</td>
+<td>Keystore which contains the certificate to encrypt sensitive data</td>
 </tr>
 <tr>
-<td>secretRepository &gt; parameters &gt; privateKeyAlias</td>
-<td><code>wso2carbon</code></td>
-<td>Alias of the cerificate in the key store used for encryption</td>
+<td>privateKeyAlias</td>
+<td>wso2carbon</td>
+<td>Alias of the certificate in the key store used for encryption</td>
 </tr>
 <tr>
 <td>masterKeyReader &gt; type</td>
-<td><code>org.wso2.carbon.secvault.reader.DefaultMasterKeyReader</code></td>
+<td>org.wso2.carbon.secvault.reader.DefaultMasterKeyReader</td>
 <td>The default implementation of MasterKeyReader gets a list of required passwords from the Secret Repository and provides the values for those passwords by reading system properties, environment variables and the master-keys.yaml file.</td>
 </tr>
 <tr>
-<td>masterKeyReader &gt; parameters &gt; masterKeyReaderFile</td>
-<td><code>${SIDDHI_RUNNER_HOME}/conf/runner/master-keys.yaml</code></td>
-<td>Location of <code>master-keys.yaml</code> file which contains password used to access the key store to decrypt the ancrypted passwords at runtime</td>
+<td>masterKeyReaderFile</td>
+<td><code>${SIDDHI_RUNNER_HOME\}/conf/runner/master-keys.yaml</code></td>
+<td>Location of <code>master-keys.yaml</code> file which contains password used to access the key store to decrypt the encrypted passwords at runtime</td>
+</tr>
+</tbody>
+</table>
+<h2 id="configuring-server-properties">Configuring server properties<a class="headerlink" href="#configuring-server-properties" title="Permanent link">&para;</a></h2>
+<p>Siddhi runner and tooling distribution is based on WSO2 Carbon 5 Kernel platform. The properties for the server can be configure under <code>wso2.carbon</code> namespace.</p>
+<p>Sample configurations is as follows,
+<pre class="codehilite"><code class="language-yaml linenums">wso2.carbon:
+  id: siddhi-runner
+  name: Siddhi Runner Distribution</code></pre></p>
+<h3 id="configure-port-offset">Configure port offset<a class="headerlink" href="#configure-port-offset" title="Permanent link">&para;</a></h3>
+<p>Port offset defines the number by which all ports defined in the runtime such as the HTTP/S ports will be offset. For example, if the default HTTP port is 9090 and the <code>ports &gt;&gt; offset</code> is 1, the effective HTTP port will be 9091. This configuration allows to change ports in a uniform manner across the transports.</p>
+<p>Below is the sample configurations for offsets,</p>
+<pre class="codehilite"><code class="language-yaml linenums">wso2.carbon:
+  id: siddhi-runner
+  name: Siddhi Runner Distribution
+  ports:
+    offset: 1</code></pre>
+
+<h2 id="configuring-databridge-transport">Configuring Databridge Transport<a class="headerlink" href="#configuring-databridge-transport" title="Permanent link">&para;</a></h2>
+<p>Siddhi uses Databridge transport to send and receive events over Thrift/Binary protocols, This can be used through <code>siddhi-io-wso2event</code> extension.</p>
+<p>Sample Configuration is as follows,
+<pre class="codehilite"><code class="language-yaml linenums">transports:      
+  databridge:
+  # Configuration used for the databridge communication
+    listenerConfigurations:
+      workerThreads: 10
+      .
+      .
+      .
+    senderConfigurations:
+    # Configuration of the Data Agents - to publish events through databridge
+      agents:
+          agentConfiguration:
+            name: Thrift
+            dataEndpointClass: org.wso2.carbon.databridge.agent.endpoint.thrift.ThriftDataEndpoint
+            .
+            .
+            .</code></pre>
+Here, <code>transports &gt;&gt; databridge</code> includes listenerConfigurations, to configure databridge receiver in WSO2Event Source, and senderConfigurations, to configure agents used to publish events over databridge in WSO2Event Sink</p>
+<h3 id="configuring-databridge-listener">Configuring databridge listener<a class="headerlink" href="#configuring-databridge-listener" title="Permanent link">&para;</a></h3>
+<p>Sample configuration for databridge listener and properties are as follows,</p>
+<pre class="codehilite"><code class="language-yaml linenums">transports:
+  databridge:
+    listenerConfigurations:
+      workerThreads: 10
+      maxEventBufferCapacity: 10
+      eventBufferSize: 2000
+      keyStoreLocation: ${sys:carbon.home}/resources/security/wso2carbon.jks
+      keyStorePassword: wso2carbon
+      clientTimeoutMin: 30
+      # Data receiver configurations
+      dataReceivers:
+        -
+          dataReceiver:
+            type: Thrift
+            properties:
+              tcpPort: '7611'
+              sslPort: '7711'
+        - 
+          dataReceiver:
+            type: Binary
+            properties:
+              tcpPort: '9611'
+              sslPort: '9711'
+              tcpReceiverThreadPoolSize: '100'
+              sslReceiverThreadPoolSize: '100'
+              hostName: 0.0.0.0</code></pre>
+
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th align="center">Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>workerThreads</td>
+<td align="center">10</td>
+<td>No of worker threads to consume events</td>
+</tr>
+<tr>
+<td>maxEventBufferCapacity</td>
+<td align="center">10</td>
+<td>Maximum amount of messages that can be queued internally in Message Buffer</td>
+</tr>
+<tr>
+<td>eventBufferSize</td>
+<td align="center">2000</td>
+<td>Maximum number of events that can be stored in the queue</td>
+</tr>
+<tr>
+<td>clientTimeoutMin</td>
+<td align="center">30</td>
+<td>Session timeout value in minutes</td>
+</tr>
+<tr>
+<td>keyStoreLocation</td>
+<td align="center"><code>${SIDDHIRUNNER_HOME}/resources/security/wso2carbon.jks</code></td>
+<td>Keystore file path</td>
+</tr>
+<tr>
+<td>Keystore password</td>
+<td align="center">wo2carbon</td>
+<td>Keystore password</td>
+</tr>
+<tr>
+<td>dataReceivers</td>
+<td align="center"></td>
+<td>Generalised configuration for different types of data receivers</td>
+</tr>
+<tr>
+<td>dataReceivers &gt;&gt; dataReceiver &gt;&gt; type</td>
+<td align="center"></td>
+<td>Type of the data receiver</td>
+</tr>
+</tbody>
+</table>
+<p>Parameters for Thrift data receiver,</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th align="center">Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tcpPort</td>
+<td align="center">7611</td>
+<td>TCP port for the Thrift data receiver</td>
+</tr>
+<tr>
+<td>sslPort</td>
+<td align="center">7711</td>
+<td>SSL port for the Thrift data receiver</td>
+</tr>
+</tbody>
+</table>
+<p>Parameters for Binary data receiver,</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th align="center">Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tcpPort</td>
+<td align="center">7611</td>
+<td>TCP port for the Binary data receiver</td>
+</tr>
+<tr>
+<td>sslPort</td>
+<td align="center">7711</td>
+<td>SSL port for the Binary data receiver</td>
+</tr>
+<tr>
+<td>tcpReceiverThreadPoolSize</td>
+<td align="center">100</td>
+<td>Receiver pool size for Thrift TCP protocol</td>
+</tr>
+<tr>
+<td>sslReceiverThreadPoolSize</td>
+<td align="center">100</td>
+<td>Receiver pool size for Thrift SSL protocol</td>
+</tr>
+<tr>
+<td>hostname</td>
+<td align="center">0.0.0.0</td>
+<td>Hostname for the Thrift receiver</td>
+</tr>
+</tbody>
+</table>
+<h3 id="configuring-databridge-publisher">Configuring databridge publisher<a class="headerlink" href="#configuring-databridge-publisher" title="Permanent link">&para;</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
+<p>By default both Thrift and Binary agents will be started.</p>
+<p>Sample configuration for databridge agent(publisher) and properties are as follows,
+<pre class="codehilite"><code class="language-yaml linenums">transports:
+  databridge:
+    senderConfigurations:
+      agents:
+        -
+          agentConfiguration:
+            name: Thrift
+            dataEndpointClass: org.wso2.carbon.databridge.agent.endpoint.thrift.ThriftDataEndpoint
+            publishingStrategy: async
+            trustStorePath: '${sys:carbon.home}/resources/security/client-truststore.jks'
+            trustStorePassword: 'wso2carbon'
+            queueSize: 32768
+            batchSize: 200
+            corePoolSize: 1
+            socketTimeoutMS: 30000
+            maxPoolSize: 1
+            keepAliveTimeInPool: 20
+            reconnectionInterval: 30
+            maxTransportPoolSize: 250
+            maxIdleConnections: 250
+            evictionTimePeriod: 5500
+            minIdleTimeInPool: 5000
+            secureMaxTransportPoolSize: 250
+            secureMaxIdleConnections: 250
+            secureEvictionTimePeriod: 5500
+            secureMinIdleTimeInPool: 5000
+            sslEnabledProtocols: TLSv1.1,TLSv1.2
+            ciphers: TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_DHE_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,TLS_DHE_RSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_128_GCM_SHA256
+        -
+          agentConfiguration:
+            name: Binary
+            dataEndpointClass: org.wso2.carbon.databridge.agent.endpoint.binary.BinaryDataEndpoint
+            publishingStrategy: async
+            trustStorePath: '${sys:carbon.home}/resources/security/client-truststore.jks'
+            trustStorePassword: 'wso2carbon'
+            queueSize: 32768
+            batchSize: 200
+            corePoolSize: 1
+            socketTimeoutMS: 30000
+            maxPoolSize: 1
+            keepAliveTimeInPool: 20
+            reconnectionInterval: 30
+            maxTransportPoolSize: 250
+            maxIdleConnections: 250
+            evictionTimePeriod: 5500
+            minIdleTimeInPool: 5000
+            secureMaxTransportPoolSize: 250
+            secureMaxIdleConnections: 250
+            secureEvictionTimePeriod: 5500
+            secureMinIdleTimeInPool: 5000
+            sslEnabledProtocols: TLSv1.1,TLSv1.2
+            ciphers: TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_DHE_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,TLS_DHE_RSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_128_GCM_SHA256</code></pre></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th align="center">Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td align="center">Thrift / Binary</td>
+<td>Name of the databridge agent</td>
+</tr>
+<tr>
+<td>dataEndpointClass</td>
+<td align="center">org.wso2.carbon.databridge.agent.endpoint.thrift.ThriftDataEndpoint / org.wso2.carbon.databridge.agent.endpoint.thrift.ThriftDataEndpoint</td>
+<td>Class of the databridge agent initialised</td>
+</tr>
+<tr>
+<td>publishingStrategy</td>
+<td align="center">async</td>
+<td>Strategy used for publishing. Can be either <code>sync</code> or <code>async</code></td>
+</tr>
+<tr>
+<td>trustStorePath</td>
+<td align="center"><code>${sys:carbon.home\}/resources/security/client-truststore.jks</code></td>
+<td>Truststore file path</td>
+</tr>
+<tr>
+<td>trustStorePassword</td>
+<td align="center">wso2carbon</td>
+<td>Trust store password</td>
+</tr>
+<tr>
+<td>queueSize</td>
+<td align="center">32768</td>
+<td>Queue size used to hold events before publishing</td>
+</tr>
+<tr>
+<td>batchSize</td>
+<td align="center">200</td>
+<td>Size of a publishing batch of events</td>
+</tr>
+<tr>
+<td>corePoolSize</td>
+<td align="center">1</td>
+<td>Pool size of the threads used to buffer before publishing</td>
+</tr>
+<tr>
+<td>maxPoolSize</td>
+<td align="center">1</td>
+<td>Maximum pool size for threads used to buffer before publishing</td>
+</tr>
+<tr>
+<td>socketTimeoutMS</td>
+<td align="center">30000</td>
+<td>Time for socket to timeout in Milliseconds</td>
+</tr>
+<tr>
+<td>keepAliveTimeInPool</td>
+<td align="center">20</td>
+<td>Time used to keep the threads live</td>
+</tr>
+<tr>
+<td>reconnectionInterval</td>
+<td align="center">30</td>
+<td>Reconnection interval in case of lost transmission</td>
+</tr>
+<tr>
+<td>maxTransportPoolSize</td>
+<td align="center">250</td>
+<td>Transport threads used for publishing</td>
+</tr>
+<tr>
+<td>maxIdleConnections</td>
+<td align="center">250</td>
+<td>Maximum idle connections maintained in the databridge</td>
+</tr>
+<tr>
+<td>evictionTimePeriod</td>
+<td align="center">5500</td>
+<td>Eviction time interval</td>
+</tr>
+<tr>
+<td>minIdleTimeInPool</td>
+<td align="center">5500</td>
+<td>Min idle time in pool</td>
+</tr>
+<tr>
+<td>secureMaxTransportPoolSize</td>
+<td align="center">250</td>
+<td>Max transport pool size in SSL publishing</td>
+</tr>
+<tr>
+<td>secureMaxIdleConnections</td>
+<td align="center">250</td>
+<td>Max idle connections in SSL publishing</td>
+</tr>
+<tr>
+<td>secureEvictionTimePeriod</td>
+<td align="center">5500</td>
+<td>Eviction time period in SSL publishing</td>
+</tr>
+<tr>
+<td>secureMinIdleTimeInPool</td>
+<td align="center">5500</td>
+<td>Min idle time in pool in SSL publishing</td>
+</tr>
+<tr>
+<td>sslEnabledProtocols</td>
+<td align="center">TLSv1.1,TLSv1.2</td>
+<td>SSL enabled protocols</td>
+</tr>
+<tr>
+<td>ciphers</td>
+<td align="center">TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,<br>TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,<br>TLS_DHE_RSA_WITH_AES_128_CBC_SHA256,<br>TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,<br>TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,<br>TLS_DHE_RSA_WITH_AES_128_CBC_SHA,<br>TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,<br>TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,<br>TLS_DHE_RSA_WITH_AES_128_GCM_SHA256</td>
+<td>Ciphers used in transmission</td>
 </tr>
 </tbody>
 </table>
@@ -1946,6 +2392,8 @@ Information about the parameters configured under the <code>securevault</code> s
       
   <div class="md-footer-social">
     <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
+    
+      <a href="/community/#community-collaboration" class="md-footer-social__link fa fa-slack"></a>
     
       <a href="https://github.com/siddhi-io/siddhi" class="md-footer-social__link fa fa-github"></a>
     
