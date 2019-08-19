@@ -4,9 +4,34 @@ Siddhi an open-source project under [Apache License](../../license/) built by hu
 
 You can get help on Siddhi in the following ways.
 
+## Community Collaboration 
+
+* [Siddhi Slack chanel](https://siddhi-io.slack.com/) is used to collaborate with the project users, committers and contributors.<br/> 
+  If you are not already a member please feel free to request an invitation. 
+
+<div class="slackInvite">                            
+<div id="CommunityInviter"></div>
+<script>
+  window.CommunityInviterAsyncInit = function () {
+    CommunityInviter.init({
+      app_url:'siddhi',
+      team_id:'siddhi-io'
+   })
+  };
+
+  (function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "https://communityinviter.com/js/communityinviter.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'Community_Inviter'));
+</script>
+</div>   
+ 
 ## Asking Questions
 
-* We encourage users to ask questions and get support via [StackOverflow](https://stackoverflow.com/questions/tagged/siddhi), make sure to add the `siddhi` tag to the issue for better response.
+* Users can also ask questions and get support via [StackOverflow](https://stackoverflow.com/questions/tagged/siddhi), make sure to add the `siddhi` tag to the issue for better response.
 
 * Users can also ask questions from the developers using the Siddhi [GitHub issue tracker](https://github.com/siddhi-io/siddhi/issues) with the `question` label.
 

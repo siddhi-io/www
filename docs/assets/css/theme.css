@@ -632,3 +632,8 @@ html .md-typeset .superfences-tabs > label:hover {
 .md-nav__button img {
     width: 150%;
 }
+
+.slackInvite {
+    background-color: #83949661;
+    padding: 40px;
+}
