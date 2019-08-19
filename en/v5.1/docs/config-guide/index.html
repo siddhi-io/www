@@ -929,6 +929,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#configuring-admin-rest-apis" title="Configuring Admin REST APIs" class="md-nav__link">
+    Configuring Admin REST APIs
+  </a>
+  
+</li>
+      
       
       
       
@@ -1320,6 +1327,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#configuring-admin-rest-apis" title="Configuring Admin REST APIs" class="md-nav__link">
+    Configuring Admin REST APIs
+  </a>
+  
+</li>
+      
       
       
       
@@ -1348,7 +1362,7 @@
 <li><a href="#Persistence-on-Database">Persistence on Database</a></li>
 <li><a href="#Persistence-on-File-System">Persistence on File System</a></li>
 <li><a href="#Configuring-Siddhi-Elements">Configuring Siddhi Elements</a></li>
-<li><a href="#Configuring-Sources-Sinks-and-Stores-References">Configuring Sources, Sinks and Stores References</a></li>
+<li><a href="#Configuring-Sources,-Sinks-and-Stores-References">Configuring Sources, Sinks and Stores References</a></li>
 <li><a href="#Configuring-Extensions-System-Parameters">Configuring Extensions System Parameters</a></li>
 <li><a href="#Configuring-Siddhi-Properties">Configuring Siddhi Properties</a></li>
 <li><a href="#Configuring-Authentication">Configuring Authentication</a></li>
@@ -1368,6 +1382,7 @@
 <li><a href="#Configuring-Databridge-Transport">Configuring Databridge Transport</a></li>
 <li><a href="#Configuring-databridge-listener">Configuring databridge listener</a></li>
 <li><a href="#Configuring-databridge-publisher">Configuring databridge publisher</a></li>
+<li><a href="#Configuring-Admin-REST-APIs">Configuring Admin REST APIs</a></li>
 </ul>
 <h2 id="configuring-databases">Configuring Databases<a class="headerlink" href="#configuring-databases" title="Permanent link">&para;</a></h2>
 <div class="admonition info">
@@ -1501,7 +1516,7 @@
 </div>
 <p>This explains how to periodically persisting the state of Siddhi either into a database system or file system, in order to prevent data losses that can result from a system failure.</p>
 <h3 id="persistence-on-database">Persistence on Database<a class="headerlink" href="#persistence-on-database" title="Permanent link">&para;</a></h3>
-<p>To perform periodic state persistence on a database, the database should be configured as a datasource and the relevant jdbc drivers should be added to Siddhi's class-path. Refer <a href="#database-configuration/">Database Configuration</a> section for more information.</p>
+<p>To perform periodic state persistence on a database, the database should be configured as a datasource and the relevant jdbc drivers should be added to Siddhi's class-path. Refer <a href="#Configuring-Databases">Database Configuration</a> section for more information.</p>
 <p>To configure database based periodic data persistence, add <code>statePersistence</code> section with the following properties on the Siddhi configuration yaml, and pass that during startup.</p>
 <table>
 <thead>
@@ -1534,7 +1549,7 @@
 </tr>
 <tr>
 <td>config &gt; datasource</td>
-<td>The datasource to be used in persisting the state. The datasource should be defined in the Siddhi configuration yaml. For detailed instructions of how to configure a datasource, see <a href="#database-configuration/">Database Configuration</a>.</td>
+<td>The datasource to be used in persisting the state. The datasource should be defined in the Siddhi configuration yaml. For detailed instructions of how to configure a datasource, see <a href="#Configuring-Databases">Database Configuration</a>.</td>
 <td>SIDDHI_PERSISTENCE_DB (A datasource that is defined in <code>datasources</code> in Siddhi configuration yaml)</td>
 </tr>
 <tr>
@@ -1777,8 +1792,7 @@ These Jars will be converted as OSGI bundles and copied to Siddhi Runner distrib
 <p>This section is not applicable for Java and Python modes.</p>
 </div>
 <p>Siddhi uses <a href="https://metrics.dropwizard.io/">dropwizard</a> metrics library to calculate Siddhi and JVM statistics, and it can report the results via JMX Mbeans, console or database.</p>
-<p>To enable statistics, the relevant configuration should be added to the Siddhi Configuration yaml as follows, and at the same time the statistics collection should be enabled in the Siddhi Application which is being monitored. Refer <a href="../../query-guide/#statistics">Siddhi Application Statistics</a> documentation for enabling Siddhi Application level statistics.</p>
-<p>To enable statistics the relevant metrics related configurations should be added under <code>metrics</code> section in the Siddhi Configurations yaml file, and pass that during startup.</p>
+<p>To enable statistics, the relevant configuration under <code>metrics</code> section should be added to the Siddhi Configuration yaml as follows, and at the same time the statistics collection should be enabled in the Siddhi Application which is being monitored. Refer <a href="../../query-guide/#statistics">Siddhi Application Statistics</a> documentation for enabling Siddhi Application level statistics.</p>
 <div class="admonition note">
 <p class="admonition-title">Configuring Metrics reporting level.</p>
 <p>To modify the statistics reporting, relevant metric names can be added under the <code>metrics.levels</code> subsection in the Siddhi Configurations yaml, along with the metrics level (i.e., OFF, INFO, DEBUG, TRACE, or ALL) as given below.
@@ -2321,6 +2335,149 @@ Here, <code>transports &gt;&gt; databridge</code> includes listenerConfiguration
 <td>ciphers</td>
 <td align="center">TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,<br>TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,<br>TLS_DHE_RSA_WITH_AES_128_CBC_SHA256,<br>TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,<br>TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,<br>TLS_DHE_RSA_WITH_AES_128_CBC_SHA,<br>TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,<br>TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,<br>TLS_DHE_RSA_WITH_AES_128_GCM_SHA256</td>
 <td>Ciphers used in transmission</td>
+</tr>
+</tbody>
+</table>
+<h2 id="configuring-admin-rest-apis">Configuring Admin REST APIs<a class="headerlink" href="#configuring-admin-rest-apis" title="Permanent link">&para;</a></h2>
+<p>Admin API can be configured under the namespace <code>transports &gt;&gt; http</code>. </p>
+<p>Sample Config and the parameters are as follows,
+<pre class="codehilite"><code class="language-yaml linenums">transports:
+  http:
+    listenerConfigurations:
+      - 
+        id: "default"
+        host: "0.0.0.0"
+        port: 9090
+      - 
+        id: "msf4j-https"
+        host: "0.0.0.0"
+        port: 9443
+        scheme: https
+        sslConfig:
+          keyStore: "${carbon.home}/resources/security/wso2carbon.jks"
+          keyStorePassword: wso2carbon
+    transportProperties:
+      - name: "server.bootstrap.socket.timeout"
+        value: 60
+      - name: "latency.metrics.enabled"
+        value: false</code></pre></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th align="center">Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td align="center">default</td>
+<td>Id of the server</td>
+</tr>
+<tr>
+<td>host</td>
+<td align="center">0.0.0.0</td>
+<td>Hostname of the server</td>
+</tr>
+<tr>
+<td>port</td>
+<td align="center">8080</td>
+<td>Port of the APIs</td>
+</tr>
+<tr>
+<td>scheme</td>
+<td align="center">http</td>
+<td>Scheme of the APIs. It can be either <code>http</code> or <code>https</code></td>
+</tr>
+<tr>
+<td>httpTraceLogEnabled</td>
+<td align="center">false</td>
+<td>Enable HTTP trace logs</td>
+</tr>
+<tr>
+<td>httpAccessLogEnabled</td>
+<td align="center">false</td>
+<td>Enable HTTP access logs</td>
+</tr>
+<tr>
+<td>socketIdleTimeout</td>
+<td align="center">0</td>
+<td>Timeout for socket for which requests received. Not set by default.</td>
+</tr>
+</tbody>
+</table>
+<p>SSL configurations (listenerConfigurations &gt;&gt; sslConfig)</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th align="center">Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>keyStore</td>
+<td align="center"><code>${carbon.home}/resources/security/wso2carbon.jks</code></td>
+<td>The file containing the private key of the client</td>
+</tr>
+<tr>
+<td>keyStorePass</td>
+<td align="center">wso2carbon</td>
+<td>Password of the private key if it is encrypted</td>
+</tr>
+<tr>
+<td>enableProtocols</td>
+<td align="center">All</td>
+<td>SSL/TLS protocols to be enabled (e.g.: TLSv1,TLSv1.1,TLSv1.2)</td>
+</tr>
+<tr>
+<td>cipherSuites</td>
+<td align="center">All</td>
+<td>List of ciphers to be used eg: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</td>
+</tr>
+<tr>
+<td>enableSessionCreation</td>
+<td align="center"></td>
+<td>Enable/disable new SSL session creation</td>
+</tr>
+<tr>
+<td>sessionTimeOut</td>
+<td align="center">0</td>
+<td>SSL session time out. Not set by default.</td>
+</tr>
+<tr>
+<td>handshakeTimeOut</td>
+<td align="center">0</td>
+<td>SSL handshake time out. Not set by default.</td>
+</tr>
+</tbody>
+</table>
+<p>Transport Properties (transportProperties)</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th align="center">Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>server.bootstrap.connect.timeout</td>
+<td align="center">15000</td>
+<td>Timout in millisecond to establish connection</td>
+</tr>
+<tr>
+<td>server.bootstrap.socket.timeout</td>
+<td align="center">60</td>
+<td>Socket connection timeouts</td>
+</tr>
+<tr>
+<td>latency.metrics.enabled</td>
+<td align="center">false</td>
+<td>Enable/Disable latency metrics by carbon metrics component</td>
 </tr>
 </tbody>
 </table>
