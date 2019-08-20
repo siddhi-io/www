@@ -1,34 +1,5 @@
 # Siddhi 5.1 Config Guide
 
-This section covers the following.
-
-- [Configuring Databases](#Configuring-Databases)
-- [Configuring Periodic State Persistence](#Configuring-Periodic-State-Persistence)
-  - [Persistence on Database](#Persistence-on-Database)
-  - [Persistence on File System](#Persistence-on-File-System)
-- [Configuring Siddhi Elements](#Configuring-Siddhi-Elements)
-  - [Configuring Sources, Sinks and Stores References](#Configuring-Sources,-Sinks-and-Stores-References)
-  - [Configuring Extensions System Parameters](#Configuring-Extensions-System-Parameters)
-  - [Configuring Siddhi Properties](#Configuring-Siddhi-Properties)
-- [Configuring Authentication](#Configuring-Authentication)
-- [Adding Extensions and Third Party Dependencies](#Adding-Extensions-and-Third-Party-Dependencies)
-  - [Adding to Siddhi Java Program](#Adding-to-Siddhi-Java-Program)
-  - [Adding to Siddhi Local Microservice](#Adding-to-Siddhi-Local-Microservice)
-  - [Adding to Siddhi Docker Microservice](#Adding-to-Siddhi-Docker-Microservice)
-  - [Adding to Siddhi Kubernetes Microservice](#Adding-to-Siddhi-Kubernetes-Microservice)
-- [Configuring Statistics](#Configuring-Statistics)
-  - [Reporting via JMX Mbeans](#Reporting-via-JMX-Mbeans)
-  - [Reporting via Console](#Reporting-via-Console)
-  - [Reporting via Database](#Reporting-via-Database)
-- [Converting Jars to OSGi Bundles](#Converting-Jars-to-OSGi-Bundles)
-- [Encrypt sensitive deployment configurations](#Encrypt-sensitive-deployment-configurations)
-- [Configuring server properties](#Configuring-server-properties)
-  - [Configure port offset](#Configure-port-offset)
-- [Configuring Databridge Transport](#Configuring-Databridge-Transport)
-  - [Configuring databridge listener](#Configuring-databridge-listener)
-  - [Configuring databridge publisher](#Configuring-databridge-publisher)
-- [Configuring Admin REST APIs](#Configuring-Admin-REST-APIs)
-
 ## Configuring Databases
 
 !!! info "Applicable only for Local, Docker, and Kubernetes modes."
