@@ -436,5 +436,5 @@ which is used to demonstrate the capability of Siddhi HTTP sink. Execute the bel
    
     - If there are more than 10 requests get throttled within 1 hour then the API invoker will receive an email (as shown in the 'Testing' section).
     
-    !!! info "Refer [here](https://siddhi.io/en/v5.1/docs/siddhi-as-a-kubernetes-microservice/) to get more details about running Siddhi in Kubernetes."
+    !!! info "Refer [here](https://siddhi.io/en/v5.1/docs/siddhi-as-a-kubernetes-microservice/) to get more details about running Siddhi on Kubernetes."
    
