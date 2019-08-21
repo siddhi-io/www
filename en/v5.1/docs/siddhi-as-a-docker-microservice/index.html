@@ -993,11 +993,17 @@ Here, the Siddhi application (<code>.siddhi</code> file) contains stream process
 <p>Steps to Run Siddhi Docker Microservice is as follows.</p>
 <ul>
 <li>Pull the the latest Siddhi Runner image from <a href="https://hub.docker.com/u/siddhiio">Siddhiio Docker Hub</a>.
-<pre class="codehilite"><code class="linenums">docker pull siddhiio/siddhi-runner-alpine:latest</code></pre></li>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>docker pull siddhiio/siddhi-runner-alpine:latest
+</pre></div>
+</td></tr></table></li>
 <li>Start SiddhiApps with the runner config by executing the following docker command.<br/>
-<pre class="codehilite"><code class="linenums">docker run -it -v &lt;local-siddhi-file-path&gt;:&lt;siddhi-file-mount-path&gt; -v &lt;local-conf-file-path&gt;:&lt;conf-file-mount-path&gt; siddhiio/siddhi-runner-alpine:latest -Dapps=&lt;siddhi-file-mount-path&gt; -Dconfig=&lt;conf-file-mount-path&gt;</code></pre>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>docker run -it -v &lt;local-siddhi-file-path&gt;:&lt;siddhi-file-mount-path&gt; -v &lt;local-conf-file-path&gt;:&lt;conf-file-mount-path&gt; siddhiio/siddhi-runner-alpine:latest -Dapps=&lt;siddhi-file-mount-path&gt; -Dconfig=&lt;conf-file-mount-path&gt;
+</pre></div>
+</td></tr></table>
 E.g.,
-<pre class="codehilite"><code class="linenums">docker run -it -v /home/me/siddhi-apps:/apps -v /home/me/siddhi-configs:/configs siddhiio/siddhi-runner-alpine:latest -Dapps=/apps/Foo.siddhi -Dconfig=/configs/siddhi-config.yaml</code></pre></li>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>docker run -it -v /home/me/siddhi-apps:/apps -v /home/me/siddhi-configs:/configs siddhiio/siddhi-runner-alpine:latest -Dapps=/apps/Foo.siddhi -Dconfig=/configs/siddhi-config.yaml
+</pre></div>
+</td></tr></table></li>
 </ul>
 <div class="admonition tip">
 <p class="admonition-title">Running multiple SiddhiApps in one runner instance.</p>

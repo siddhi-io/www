@@ -1183,13 +1183,18 @@ variable. <br>
 <strong>Step 3</strong> — Download the latest tooling distribution from <a href="https://github.com/siddhi-io/distribution/releases/download/v0.1.0/siddhi-tooling-0.1.0.zip">here</a>.<br>
 <strong>Step 4</strong> — Extract the downloaded zip and navigate to <code>&lt;TOOLING_HOME&gt;/bin</code>. <br> (<code>TOOLING_HOME</code> refers to the extracted folder) <br>
 <strong>Step 5</strong> — Issue the following command in the command prompt (Windows) / terminal (Linux/Mac)</p>
-<pre class="codehilite"><code class="linenums">For Windows: tooling.bat
-For Linux/Mac: ./tooling.sh</code></pre>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>For Windows: tooling.bat
+For Linux/Mac: ./tooling.sh
+</pre></div>
+</td></tr></table>
 
 <p>After successfully starting the Siddhi Editor, the terminal should look like as shown below:</p>
 <p><img alt="" src="../../images/quickstart/after-starting-editor.png?raw=true" title="Terminal after starting Siddhi Editor" /></p>
 <p>After starting the Siddhi Editor, access the Editor GUI by visiting the following link in your browser (Google Chrome is the Recommended).</p>
-<pre class="codehilite"><code class="linenums">http://localhost:9390/editor</code></pre>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>http://localhost:9390/editor
+</pre></div>
+</td></tr></table>
 
 <p>This takes you to the Siddhi Editor landing page.</p>
 <p><img alt="" src="../../images/quickstart/siddhi-editor.png?raw=true" title="Siddhi Editor" /></p>
@@ -1200,7 +1205,9 @@ For Linux/Mac: ./tooling.sh</code></pre>
 <p><img alt="" src="../../images/quickstart/loading-ship.jpeg?raw=true" title="Loading Cargo on Ship" /></p>
 <p>We can write a Siddhi Application for the above scenario using the following <strong>4 parts</strong>.</p>
 <p><strong>Part 1 — Giving our Siddhi application a suitable name.</strong> This allows us to uniquely identity a Siddhi Application. In this example, let's name our application as <em>“HelloWorldApp”</em></p>
-<p><pre class="codehilite"><code class="linenums">@App:name("HelloWorldApp")</code></pre>
+<p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>@App:name(&quot;HelloWorldApp&quot;)
+</pre></div>
+</td></tr></table>
 <strong>Part 2 — Defining the input stream.</strong> The stream needs to have a name and a schema defining the data that each incoming event should contain. The event data attributes are expressed as name and type pairs.</p>
 <p>We can also attach a <em>"source"</em> to the created stream, so that we can consume events from outside and send them to the stream. (<strong>Source is the Siddhi way to consume streams from
 external systems</strong>). For this scenario we will use an <code>http</code> source to consume Cargo Events. When added the <code>http</code> source will spin up a HTTP endpoint and keep on listening for messages. To learn more about sources, refer <a href="../query-guide/#source">source</a>)</p>
@@ -1214,13 +1221,19 @@ This contains only one data attribute:</li>
 <li>HTTP endpoint address - http://0.0.0.0:8006/cargo</li>
 <li>Accepted input data format - <em>JSON</em></li>
 </ul>
-<pre class="codehilite"><code class="linenums">@source(type = 'http', receiver.url = "http://0.0.0.0:8006/cargo", @map(type = 'json'))
-define stream CargoStream (weight int);</code></pre>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>@source(type = &#39;http&#39;, receiver.url = &quot;http://0.0.0.0:8006/cargo&quot;, @map(type = &#39;json&#39;))
+define stream CargoStream (weight int);
+</pre></div>
+</td></tr></table>
 
 <p><strong>Part 3 - Defining the output stream.</strong> This has the same info as the input <em>“CargoStream”</em> stream definition with an additional <em>totalWeight</em> attribute containing the total weight calculated so far.</p>
 <p>In addition we also need to add a <code>log</code> <em>"sink"</em>  to log the <code>OutputStream</code> so that we can observe the output produced by the stream. (<strong>Sink is the Siddhi way to publish streams to external systems</strong>). This particular <code>log</code> type sink simply logs the stream events. To learn more about sinks, refer <a href="../query-guide/#sink">sink</a>)</p>
-<p><pre class="codehilite"><code class="linenums">@sink(type='log', prefix='LOGGER')
-define stream OutputStream(weight int, totalWeight long);</code></pre>
+<p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>@sink(type=&#39;log&#39;, prefix=&#39;LOGGER&#39;)
+define stream OutputStream(weight int, totalWeight long);
+</pre></div>
+</td></tr></table>
 <strong>Part 4 — Writing the Siddhi query.</strong> As part of the query we need to specify the following:</p>
 <ol>
 <li>A name for the query — <em>“HelloWorldQuery”</em></li>
@@ -1229,27 +1242,45 @@ define stream OutputStream(weight int, totalWeight long);</code></pre>
 <li>The data outputted to the output stream — <em>“weight”</em>, <em>“totalWeight”</em></li>
 <li>The output stream to which the event should be outputted — <em>“OutputStream”</em></li>
 </ol>
-<pre class="codehilite"><code class="linenums">@info(name='HelloWorldQuery')
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>@info(name=&#39;HelloWorldQuery&#39;)
 from CargoStream
 select weight, sum(weight) as totalWeight
-insert into OutputStream;</code></pre>
+insert into OutputStream;
+</pre></div>
+</td></tr></table>
 
 <p>This query will calculate the sum of weights from the start of the Siddhi application. For more complex use cases refer <a href="../query-guide/">Siddhi Query Guild</a>)  </p>
 <p>Final Siddhi application in the editor will look like following.
 <img alt="" src="../../images/quickstart/hello-query.png?raw=true" title="Hello World in Stream Processor Studio" /></p>
 <p>You can copy the final Siddhi app from below.</p>
-<pre class="codehilite"><code class="linenums">@App:name("HelloWorldApp")
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>@App:name(&quot;HelloWorldApp&quot;)
 
-@source(type = 'http', receiver.url = "http://0.0.0.0:8006/cargo", @map(type = 'json'))
+@source(type = &#39;http&#39;, receiver.url = &quot;http://0.0.0.0:8006/cargo&quot;, @map(type = &#39;json&#39;))
 define stream CargoStream (weight int);
 
-@sink(type='log', prefix='LOGGER')
+@sink(type=&#39;log&#39;, prefix=&#39;LOGGER&#39;)
 define stream OutputStream(weight int, totalWeight long);
 
-@info(name='HelloWorldQuery')
+@info(name=&#39;HelloWorldQuery&#39;)
 from CargoStream
 select weight, sum(weight) as totalWeight
-insert into OutputStream;</code></pre>
+insert into OutputStream;
+</pre></div>
+</td></tr></table>
 
 <h2 id="5-testing-siddhi-application">5. Testing Siddhi Application<a class="headerlink" href="#5-testing-siddhi-application" title="Permanent link">&para;</a></h2>
 <p>In this section first we will test the logical accuracy of Siddhi query using in-built functions of Siddhi Editor. In a later section we will invoke the HTTP endpoint and perform an end to end test.</p>
@@ -1264,7 +1295,9 @@ insert into OutputStream;</code></pre>
 </ul>
 <p><strong>Step 2 — Click “Run” mode and then click “Start and Send”</strong>. This starts the Siddhi Application and send the event.</p>
 <p>If the Siddhi application is successfully started, the following message is printed in the Stream Processor Studio console:</br>
-<pre class="codehilite"><code class="linenums">HelloWorldApp.siddhi Started Successfully!</code></pre>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>HelloWorldApp.siddhi Started Successfully!
+</pre></div>
+</td></tr></table>
 <strong>Step 3 — Click “Send” and observe the terminal</strong>. This will send a new event for each click.
 You can see a logs containing <code>outputData=[2, 2]</code> and <code>outputData=[2, 4]</code>, etc. You can change the value of the weight and send it to see how the sum of the weight is updated.</p>
 <p><img alt="" src="../../images/quickstart/log.png?raw=true" title="Terminal after sending 2 twice" /></p>
@@ -1276,30 +1309,50 @@ You can see a logs containing <code>outputData=[2, 2]</code> and <code>outputDat
 For this purpose, let's try to find the <strong>average weight of last three boxes</strong> of each event.</p>
 <p><img alt="" src="../../images/quickstart/siddhi-windows.png?raw=true" title="Terminal after sending 2 twice" /></p>
 <p>For window processing, we need to modify our query as follows:
-<pre class="codehilite"><code class="linenums">@info(name='HelloWorldQuery')
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>@info(name=&#39;HelloWorldQuery&#39;)
 from CargoStream#window.length(3)
 select weight, sum(weight) as totalWeight, avg(weight) as averageWeight
-insert into OutputStream;</code></pre></p>
+insert into OutputStream;
+</pre></div>
+</td></tr></table></p>
 <ul>
 <li><code>from CargoStream#window.length(3)</code> - Specifies that we need to consider the last three events in a sliding manner.</li>
 <li><code>avg(weight) as averageWeight</code> - Specifies calculating the average of events stored in the window and producing the results as <em>"averageWeight"</em> (Note: Similarly the <code>sum</code> also calculates the <code>totalWeight</code> based on the last three events).</li>
 </ul>
 <p>We also need to modify the <em>"OutputStream"</em> definition to accommodate the new <em>"averageWeight"</em>.</p>
-<pre class="codehilite"><code class="linenums">define stream OutputStream(weight int, totalWeight long, averageWeight double);</code></pre>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>define stream OutputStream(weight int, totalWeight long, averageWeight double);
+</pre></div>
+</td></tr></table>
 
 <p>The updated Siddhi Application is given below:</p>
-<pre class="codehilite"><code class="linenums">@App:name("HelloWorldApp")
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>@App:name(&quot;HelloWorldApp&quot;)
 
-@source(type = 'http', receiver.url = "http://0.0.0.0:8006/cargo",@map(type = 'json'))
+@source(type = &#39;http&#39;, receiver.url = &quot;http://0.0.0.0:8006/cargo&quot;,@map(type = &#39;json&#39;))
 define stream CargoStream (weight int);
 
-@sink(type='log', prefix='LOGGER')
+@sink(type=&#39;log&#39;, prefix=&#39;LOGGER&#39;)
 define stream OutputStream(weight int, totalWeight long, averageWeight double);
 
-@info(name='HelloWorldQuery')
+@info(name=&#39;HelloWorldQuery&#39;)
 from CargoStream#window.length(3)
 select weight, sum(weight) as totalWeight, avg(weight) as averageWeight
-insert into OutputStream;</code></pre>
+insert into OutputStream;
+</pre></div>
+</td></tr></table>
 
 <p>Now you can send events using the Event Simulator and observe the log to see the sum and average of the weights based on the last three cargo events.</p>
 <p>In the earlier scenario when the window is not used, the system only stored the running sum in its memory, and it did not store any events. But for <code>length</code> based <a href="../query-guide/#window">window processing</a> the system will retain the events that fall into the window to perform aggregation operations such as average, maximum, etc. In this case when the 4<sup>th</sup> event arrives, the first event in the window is removed ensuring the memory usage does not grow beyond a specific limit. <strong>Note:</strong> some window types in Siddhi are even more optimized to perform the operations with minimal or no event retention.</p>
@@ -1309,20 +1362,32 @@ insert into OutputStream;</code></pre>
 <li>Install docker in your machine and start the daemon (<a href="https://docs.docker.com/install/">https://docs.docker.com/install/</a>).</li>
 <li>Pull the latest siddhi-runner image by executing below command.</li>
 </ul>
-<p><pre class="codehilite"><code class="linenums">docker pull siddhiio/siddhi-runner-alpine:latest</code></pre>
+<p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>docker pull siddhiio/siddhi-runner-alpine:latest
+</pre></div>
+</td></tr></table>
 * Navigate to Siddhi Editor and choose <strong>File -&gt; Export File</strong> for download above Siddhi application as a file.
 * Move downloaded Siddhi file(<em>HelloWorldApp.siddhi</em>) to a desired location (e.g. <code>/home/me/siddhi-apps</code>)
 * Execute below command to start the Siddhi Application as a microservice.</p>
-<p><pre class="codehilite"><code class="linenums">docker run -it -p 8006:8006 -v /home/me/siddhi-apps:/apps siddhiio/siddhi-runner-alpine
--Dapps=/apps/HelloWorldApp.siddhi</code></pre>
+<p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>docker run -it -p 8006:8006 -v /home/me/siddhi-apps:/apps siddhiio/siddhi-runner-alpine
+-Dapps=/apps/HelloWorldApp.siddhi
+</pre></div>
+</td></tr></table>
 <strong>Note: Make sure to update the <code>/home/me/siddhi-apps</code> with the folder path you have stored the <code>HelloWorldApp.siddhi</code> app.</strong>
 * Once container is started use below curl command to send events into <em>"CargoStream"</em>
-<pre class="codehilite"><code class="linenums">curl -X POST http://localhost:8006/cargo \
-  --header "Content-Type:application/json" \
-  -d '{"event":{"weight":2}}'</code></pre>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>curl -X POST http://localhost:8006/cargo \
+  --header &quot;Content-Type:application/json&quot; \
+  -d &#39;{&quot;event&quot;:{&quot;weight&quot;:2}}&#39;
+</pre></div>
+</td></tr></table>
 * You will be able to observe outputs via logs as shown below.
-<pre class="codehilite"><code class="linenums">[2019-04-24 08:54:51,755]  INFO {io.siddhi.core.stream.output.sink.LogSink} - LOGGER : Event{timestamp=1556096091751, data=[2, 2, 2.0], isExpired=false}
-[2019-04-24 08:56:25,307]  INFO {io.siddhi.core.stream.output.sink.LogSink} - LOGGER : Event{timestamp=1556096185307, data=[2, 4, 2.0], isExpired=false}</code></pre></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>[2019-04-24 08:54:51,755]  INFO {io.siddhi.core.stream.output.sink.LogSink} - LOGGER : Event{timestamp=1556096091751, data=[2, 2, 2.0], isExpired=false}
+[2019-04-24 08:56:25,307]  INFO {io.siddhi.core.stream.output.sink.LogSink} - LOGGER : Event{timestamp=1556096185307, data=[2, 4, 2.0], isExpired=false}
+</pre></div>
+</td></tr></table></p>
 <p>To learn more about the Siddhi functionality, see <a href="../../">Siddhi Documentation</a>.</p>
 <p>If you have questions please post them on<a target="_blank" href="http://stackoverflow.com/search?q=siddhi">Stackoverflow</a> with <a target="_blank" href="http://stackoverflow.com/search?q=siddhi">"Siddhi"</a> tag.</p>
                 
