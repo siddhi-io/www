@@ -5,20 +5,20 @@
 ### Siddhi Core 5.1.2
 
 #### Highlights
-* There is an improvement done for Template Builder by removing Java Message Format dependency since it is causing some inconsistencies with performing custom mapping for float, double and long values. Due to this fix, there might be some differences (corrected proper output) in the output that you get for custom output mapping with Text, XML, JSON, and CSV. (#1431)
-* There is a behavioral change introduced with the improvements done with (#1421). When counting patterns are used such as e1=StockStream<2:8> and when they are referred without indexes such as e1.price it collects the price values from all the events in the counting pattern e1 and produces it as a list. Since the list is not native to Siddhi the attribute will have the object as its type. In older Siddhi version, it will output the last matching event’s attribute value.
+* There is an improvement done for Template Builder by removing Java Message Format dependency since it is causing some inconsistencies with performing custom mapping for float, double and long values. Due to this fix, there might be some differences (corrected proper output) in the output that you get for custom output mapping with Text, XML, JSON, and CSV. ([#1431](https://github.com/siddhi-io/siddhi/pull/1431))
+* There is a behavioral change introduced with the improvements done with ([#1421](https://github.com/siddhi-io/siddhi/pull/1421)). When counting patterns are used such as e1=StockStream<2:8> and when they are referred without indexes such as e1.price it collects the price values from all the events in the counting pattern e1 and produces it as a list. Since the list is not native to Siddhi the attribute will have the object as its type. In older Siddhi version, it will output the last matching event’s attribute value.
 
 #### Features & Improvements
-* SiddhiManager permits user-defined data to be propagated throughout the stack (#1406)
-* API to check whether the Siddhi App is stateful or not (#1413)
-* Support outputting the events collected in counting-pattern as a list (#1421)
-* Support API docs having multiline code segments (#1430)
-* Improve TemplateBuilder & remove Java MessageFormat dependency (#1431)
-* Support pattern ‘every’ clause containing multiple state elements with within condition (#1435)
+* SiddhiManager permits user-defined data to be propagated throughout the stack ([#1406](https://github.com/siddhi-io/siddhi/pull/1406))
+* API to check whether the Siddhi App is stateful or not ([#1413](https://github.com/siddhi-io/siddhi/pull/1413))
+* Support outputting the events collected in counting-pattern as a list ([#1421](https://github.com/siddhi-io/siddhi/pull/1421))
+* Support API docs having multiline code segments ([#1430](https://github.com/siddhi-io/siddhi/pull/1430))
+* Improve TemplateBuilder & remove Java MessageFormat dependency ([#1431](https://github.com/siddhi-io/siddhi/pull/1431))
+* Support pattern ‘every’ clause containing multiple state elements with within condition ([#1435](https://github.com/siddhi-io/siddhi/pull/1435))
 
 #### Bug Fixes
-* Siddhi Error Handlers not getting engaged (#1419)
-* Incremental persistence to work on Windows Environment (https://github.com/siddhi-io/siddhi/pull/1421/commits/9c37b0d8fc8ce271551d4106bb20231334846f59)
+* Siddhi Error Handlers not getting engaged ([#1419](https://github.com/siddhi-io/siddhi/pull/1419))
+* Incremental persistence to work on Windows Environment ([9c37b0d8fc8ce271551d4106bb20231334846f59](https://github.com/siddhi-io/siddhi/pull/1421/commits/9c37b0d8fc8ce271551d4106bb20231334846f59))
 
 #### Complete Changes 
 Please find the complete changes [here](https://github.com/siddhi-io/siddhi/compare/v5.1.1...v5.1.2)
@@ -28,12 +28,12 @@ Please find the complete changes [here](https://github.com/siddhi-io/siddhi/comp
 ### Siddhi Core 5.1.1
 
 #### Features & Improvements
-* Siddhi store join query optimizations (#1382)
+* Siddhi store join query optimizations ([#1382](https://github.com/siddhi-io/siddhi/pull/1382))
 
 #### Bug Fixes
-* Log Rolling when aggregation query runs when Database is down (#1380)
-* Fix to avoid API changes introduced for Siddhi store implementation in Siddhi 5.1.0 (#1388)
-* Counting pattern issue with ‘every’ (#1392)
+* Log Rolling when aggregation query runs when Database is down ([#1380](https://github.com/siddhi-io/siddhi/pull/1380))
+* Fix to avoid API changes introduced for Siddhi store implementation in Siddhi 5.1.0 ([#1388](https://github.com/siddhi-io/siddhi/pull/1388))
+* Counting pattern issue with ‘every’ ([#1392](https://github.com/siddhi-io/siddhi/pull/1392))
 
 #### Complete Changes 
 Please find the complete changes [here](https://github.com/siddhi-io/siddhi/compare/v5.1.0...v5.1.1)
@@ -43,7 +43,7 @@ Please find the complete changes [here](https://github.com/siddhi-io/siddhi/comp
 ### Siddhi Core 5.1.0
 
 #### Features & Improvements
-* Minor improvements related to error messages used for the no param case when paramOverload annotation is in place. (#1375)
+* Minor improvements related to error messages used for the no param case when paramOverload annotation is in place. ([#1375](https://github.com/siddhi-io/siddhi/pull/1375))
 
 #### Complete Changes 
 Please find the complete changes [here](https://github.com/siddhi-io/siddhi/compare/v5.0.2...v5.1.0)
@@ -59,11 +59,11 @@ Please find the complete changes [here](https://github.com/siddhi-io/siddhi/comp
 * Refer the Siddhi 5.1.2 [release note](https://github.com/siddhi-io/siddhi/releases/tag/v5.1.2) to get to know about the latest feature improvements and bug fixes done for Siddhi engine.
 
 #### Features & Improvements
-* Improve deployment.yaml configuration for better user experience  (#262, #269, #276)
-* Siddhi Parser API to validate Siddhi Apps (#273) 
+* Improve deployment.yaml configuration for better user experience  ([#262](https://github.com/siddhi-io/distribution/pull/262), [#269](https://github.com/siddhi-io/distribution/pull/269), [#276](https://github.com/siddhi-io/distribution/pull/276))
+* Siddhi Parser API to validate Siddhi Apps ([#273](https://github.com/siddhi-io/distribution/pull/273))
 
 #### Bug Fixes
-* Fix design view toggle button position (#243)
+* Fix design view toggle button position ([#243](https://github.com/siddhi-io/distribution/pull/243))
 
 #### Complete Changes 
 Please find the complete changes [here](https://github.com/siddhi-io/distribution/compare/v5.1.0-m1...v5.1.0-m2) 
@@ -75,7 +75,7 @@ Please find the complete changes [here](https://github.com/siddhi-io/distributio
 ### Siddhi Distribution 5.1.0-M1
 
 #### New Features
-- Siddhi Test Framework: Provides the capability to write integration tests using Docker containers [#1327](https://github.com/siddhi-io/siddhi/issues/1327)
+- Siddhi Test Framework: Provides the capability to write integration tests using Docker containers ([#1327](https://github.com/siddhi-io/siddhi/issues/1327))
 
 #### Complete Changes
 [v0.1.0...v5.1.0-m1](https://github.com/siddhi-io/distribution/compare/v0.1.0...v5.1.0-m1) 
