@@ -112,6 +112,8 @@ nav:
     - Introduction: docs/index.md
     - Features: docs/features.md
     - Quick Start: docs/quick-start/index.md
+    - Use case Guides:
+        - Alerts Based on Thresholds: docs/guides/alerts-for-thresholds/guide.md
     - Tooling: docs/tooling.md
     - Query Guide: docs/query-guide.md
     - Siddhi APIs:
