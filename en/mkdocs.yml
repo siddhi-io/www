@@ -75,7 +75,7 @@ markdown_extensions:
   - markdown.extensions.admonition
   - markdown.extensions.codehilite:
       linenums: true
-      use_pygments: false
+      use_pygments: true
       guess_lang: false
   - markdown.extensions.def_list
   - markdown.extensions.attr_list
