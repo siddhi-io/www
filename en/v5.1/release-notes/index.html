@@ -900,6 +900,42 @@
           
 
 
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
+    
+    <label class="md-nav__link" for="nav-3-4">
+      Use case Guides
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-4">
+        Use case Guides
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../docs/guides/alerts-for-thresholds/guide/" title="Alerts Based on Thresholds" class="md-nav__link">
+      Alerts Based on Thresholds
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
   <li class="md-nav__item">
     <a href="../docs/tooling/" title="Tooling" class="md-nav__link">
       Tooling
@@ -926,13 +962,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-7" type="checkbox" id="nav-3-7">
     
-    <label class="md-nav__link" for="nav-3-6">
+    <label class="md-nav__link" for="nav-3-7">
       Siddhi APIs
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-3-6">
+      <label class="md-nav__title" for="nav-3-7">
         Siddhi APIs
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -1543,22 +1579,22 @@
 <h3 id="siddhi-core-512">Siddhi Core 5.1.2<a class="headerlink" href="#siddhi-core-512" title="Permanent link">&para;</a></h3>
 <h4 id="highlights">Highlights<a class="headerlink" href="#highlights" title="Permanent link">&para;</a></h4>
 <ul>
-<li>There is an improvement done for Template Builder by removing Java Message Format dependency since it is causing some inconsistencies with performing custom mapping for float, double and long values. Due to this fix, there might be some differences (corrected proper output) in the output that you get for custom output mapping with Text, XML, JSON, and CSV. (#1431)</li>
-<li>There is a behavioral change introduced with the improvements done with (#1421). When counting patterns are used such as e1=StockStream&lt;2:8&gt; and when they are referred without indexes such as e1.price it collects the price values from all the events in the counting pattern e1 and produces it as a list. Since the list is not native to Siddhi the attribute will have the object as its type. In older Siddhi version, it will output the last matching event’s attribute value.</li>
+<li>There is an improvement done for Template Builder by removing Java Message Format dependency since it is causing some inconsistencies with performing custom mapping for float, double and long values. Due to this fix, there might be some differences (corrected proper output) in the output that you get for custom output mapping with Text, XML, JSON, and CSV. (<a href="https://github.com/siddhi-io/siddhi/pull/1431">#1431</a>)</li>
+<li>There is a behavioral change introduced with the improvements done with (<a href="https://github.com/siddhi-io/siddhi/pull/1421">#1421</a>). When counting patterns are used such as e1=StockStream&lt;2:8&gt; and when they are referred without indexes such as e1.price it collects the price values from all the events in the counting pattern e1 and produces it as a list. Since the list is not native to Siddhi the attribute will have the object as its type. In older Siddhi version, it will output the last matching event’s attribute value.</li>
 </ul>
 <h4 id="features-improvements">Features &amp; Improvements<a class="headerlink" href="#features-improvements" title="Permanent link">&para;</a></h4>
 <ul>
-<li>SiddhiManager permits user-defined data to be propagated throughout the stack (#1406)</li>
-<li>API to check whether the Siddhi App is stateful or not (#1413)</li>
-<li>Support outputting the events collected in counting-pattern as a list (#1421)</li>
-<li>Support API docs having multiline code segments (#1430)</li>
-<li>Improve TemplateBuilder &amp; remove Java MessageFormat dependency (#1431)</li>
-<li>Support pattern ‘every’ clause containing multiple state elements with within condition (#1435)</li>
+<li>SiddhiManager permits user-defined data to be propagated throughout the stack (<a href="https://github.com/siddhi-io/siddhi/pull/1406">#1406</a>)</li>
+<li>API to check whether the Siddhi App is stateful or not (<a href="https://github.com/siddhi-io/siddhi/pull/1413">#1413</a>)</li>
+<li>Support outputting the events collected in counting-pattern as a list (<a href="https://github.com/siddhi-io/siddhi/pull/1421">#1421</a>)</li>
+<li>Support API docs having multiline code segments (<a href="https://github.com/siddhi-io/siddhi/pull/1430">#1430</a>)</li>
+<li>Improve TemplateBuilder &amp; remove Java MessageFormat dependency (<a href="https://github.com/siddhi-io/siddhi/pull/1431">#1431</a>)</li>
+<li>Support pattern ‘every’ clause containing multiple state elements with within condition (<a href="https://github.com/siddhi-io/siddhi/pull/1435">#1435</a>)</li>
 </ul>
 <h4 id="bug-fixes">Bug Fixes<a class="headerlink" href="#bug-fixes" title="Permanent link">&para;</a></h4>
 <ul>
-<li>Siddhi Error Handlers not getting engaged (#1419)</li>
-<li>Incremental persistence to work on Windows Environment (https://github.com/siddhi-io/siddhi/pull/1421/commits/9c37b0d8fc8ce271551d4106bb20231334846f59)</li>
+<li>Siddhi Error Handlers not getting engaged (<a href="https://github.com/siddhi-io/siddhi/pull/1419">#1419</a>)</li>
+<li>Incremental persistence to work on Windows Environment (<a href="https://github.com/siddhi-io/siddhi/pull/1421/commits/9c37b0d8fc8ce271551d4106bb20231334846f59">9c37b0d8fc8ce271551d4106bb20231334846f59</a>)</li>
 </ul>
 <h4 id="complete-changes">Complete Changes<a class="headerlink" href="#complete-changes" title="Permanent link">&para;</a></h4>
 <p>Please find the complete changes <a href="https://github.com/siddhi-io/siddhi/compare/v5.1.1...v5.1.2">here</a></p>
@@ -1568,13 +1604,13 @@
 <h3 id="siddhi-core-511">Siddhi Core 5.1.1<a class="headerlink" href="#siddhi-core-511" title="Permanent link">&para;</a></h3>
 <h4 id="features-improvements_1">Features &amp; Improvements<a class="headerlink" href="#features-improvements_1" title="Permanent link">&para;</a></h4>
 <ul>
-<li>Siddhi store join query optimizations (#1382)</li>
+<li>Siddhi store join query optimizations (<a href="https://github.com/siddhi-io/siddhi/pull/1382">#1382</a>)</li>
 </ul>
 <h4 id="bug-fixes_1">Bug Fixes<a class="headerlink" href="#bug-fixes_1" title="Permanent link">&para;</a></h4>
 <ul>
-<li>Log Rolling when aggregation query runs when Database is down (#1380)</li>
-<li>Fix to avoid API changes introduced for Siddhi store implementation in Siddhi 5.1.0 (#1388)</li>
-<li>Counting pattern issue with ‘every’ (#1392)</li>
+<li>Log Rolling when aggregation query runs when Database is down (<a href="https://github.com/siddhi-io/siddhi/pull/1380">#1380</a>)</li>
+<li>Fix to avoid API changes introduced for Siddhi store implementation in Siddhi 5.1.0 (<a href="https://github.com/siddhi-io/siddhi/pull/1388">#1388</a>)</li>
+<li>Counting pattern issue with ‘every’ (<a href="https://github.com/siddhi-io/siddhi/pull/1392">#1392</a>)</li>
 </ul>
 <h4 id="complete-changes_1">Complete Changes<a class="headerlink" href="#complete-changes_1" title="Permanent link">&para;</a></h4>
 <p>Please find the complete changes <a href="https://github.com/siddhi-io/siddhi/compare/v5.1.0...v5.1.1">here</a></p>
@@ -1584,7 +1620,7 @@
 <h3 id="siddhi-core-510">Siddhi Core 5.1.0<a class="headerlink" href="#siddhi-core-510" title="Permanent link">&para;</a></h3>
 <h4 id="features-improvements_2">Features &amp; Improvements<a class="headerlink" href="#features-improvements_2" title="Permanent link">&para;</a></h4>
 <ul>
-<li>Minor improvements related to error messages used for the no param case when paramOverload annotation is in place. (#1375)</li>
+<li>Minor improvements related to error messages used for the no param case when paramOverload annotation is in place. (<a href="https://github.com/siddhi-io/siddhi/pull/1375">#1375</a>)</li>
 </ul>
 <h4 id="complete-changes_2">Complete Changes<a class="headerlink" href="#complete-changes_2" title="Permanent link">&para;</a></h4>
 <p>Please find the complete changes <a href="https://github.com/siddhi-io/siddhi/compare/v5.0.2...v5.1.0">here</a></p>
@@ -1599,12 +1635,12 @@
 </ul>
 <h4 id="features-improvements_3">Features &amp; Improvements<a class="headerlink" href="#features-improvements_3" title="Permanent link">&para;</a></h4>
 <ul>
-<li>Improve deployment.yaml configuration for better user experience  (#262, #269, #276)</li>
-<li>Siddhi Parser API to validate Siddhi Apps (#273) </li>
+<li>Improve deployment.yaml configuration for better user experience  (<a href="https://github.com/siddhi-io/distribution/pull/262">#262</a>, <a href="https://github.com/siddhi-io/distribution/pull/269">#269</a>, <a href="https://github.com/siddhi-io/distribution/pull/276">#276</a>)</li>
+<li>Siddhi Parser API to validate Siddhi Apps (<a href="https://github.com/siddhi-io/distribution/pull/273">#273</a>)</li>
 </ul>
 <h4 id="bug-fixes_2">Bug Fixes<a class="headerlink" href="#bug-fixes_2" title="Permanent link">&para;</a></h4>
 <ul>
-<li>Fix design view toggle button position (#243)</li>
+<li>Fix design view toggle button position (<a href="https://github.com/siddhi-io/distribution/pull/243">#243</a>)</li>
 </ul>
 <h4 id="complete-changes_3">Complete Changes<a class="headerlink" href="#complete-changes_3" title="Permanent link">&para;</a></h4>
 <p>Please find the complete changes <a href="https://github.com/siddhi-io/distribution/compare/v5.1.0-m1...v5.1.0-m2">here</a> </p>
@@ -1617,7 +1653,7 @@
 <h3 id="siddhi-distribution-510-m1">Siddhi Distribution 5.1.0-M1<a class="headerlink" href="#siddhi-distribution-510-m1" title="Permanent link">&para;</a></h3>
 <h4 id="new-features">New Features<a class="headerlink" href="#new-features" title="Permanent link">&para;</a></h4>
 <ul>
-<li>Siddhi Test Framework: Provides the capability to write integration tests using Docker containers <a href="https://github.com/siddhi-io/siddhi/issues/1327">#1327</a></li>
+<li>Siddhi Test Framework: Provides the capability to write integration tests using Docker containers (<a href="https://github.com/siddhi-io/siddhi/issues/1327">#1327</a>)</li>
 </ul>
 <h4 id="complete-changes_4">Complete Changes<a class="headerlink" href="#complete-changes_4" title="Permanent link">&para;</a></h4>
 <p><a href="https://github.com/siddhi-io/distribution/compare/v0.1.0...v5.1.0-m1">v0.1.0...v5.1.0-m1</a> </p>
