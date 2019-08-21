@@ -3,7 +3,7 @@ Generating Alerts Based on Static and Dynamic Thresholds
 
 In this guide, you will understand one of the common requirements of a Stream Processing which is generating alerts based on static and dynamic thresholds. To understand this requirement, let’s consider the throttling use case in API management solutions. 
 
-# Scenario - Throttling for API Requests
+## Scenario - Throttling for API Requests
 Throttling has become as one of the unavoidable needs with the evolution of APIs and API management. Throttling is a process that is used to control the usage of APIs by consumers during a given period. 
 
 The following sections are available in this guide.
@@ -73,7 +73,7 @@ When a subscriber made an API call to `order-mgt-v1` API it sends an event with 
 4. Once the Siddhi app is created, you can use the Event Simulator option in the editor to simulate events to streams and perform developer testing.
 
 
-````
+````sql
 @App:name('API-Request-Throttler')
 @App:description('Enforces throttling on API requests')
 
@@ -305,7 +305,7 @@ which is used to demonstrate the capability of Siddhi HTTP sink. Execute the bel
 
     - To deploy the above created Siddhi app, you have to create a custom resource object YAML file (with the kind as SiddhiProcess) as following
     
-        ````
+        ````yaml
         apiVersion: siddhi.io/v1alpha2
         kind: SiddhiProcess
         metadata:
@@ -436,5 +436,5 @@ which is used to demonstrate the capability of Siddhi HTTP sink. Execute the bel
    
     - If there are more than 10 requests get throttled within 1 hour then the API invoker will receive an email (as shown in the 'Testing' section).
     
-    !!! info "Refer more details in [here](https://siddhi.io/en/v5.1/docs/siddhi-as-a-kubernetes-microservice/)"
+    !!! info "Refer [here](https://siddhi.io/en/v5.1/docs/siddhi-as-a-kubernetes-microservice/) to get more details about running Siddhi in Kubernetes."
    
