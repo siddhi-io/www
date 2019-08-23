@@ -566,7 +566,7 @@ Handle errors in `TempStream` by redirecting the errors to a fault stream.
 The configuration of `TempStream` stream and `@OnError` annotation is as follows.
 
 ```sql
-@OnError(name='STREAM')
+@OnError(action='STREAM')
 define stream TempStream (deviceID long, roomNo int, temp double);
 ```
 
@@ -583,7 +583,7 @@ Note: Details on writing processing logics via [queries](#query) will be explain
 
 ```sql
 -- Define fault stream to handle error occurred at TempStream subscribers
-@OnError(name='STREAM')
+@OnError(action='STREAM')
 define stream TempStream (deviceID long, roomNo int, temp double);
 
 -- Error generation through a custom function `createError()`
@@ -638,7 +638,7 @@ The configuration of `TempStream` stream with associated fault stream, `@sink` K
 Note: Details on writing processing logics via [queries](#query) will be explained in later sections.
 
 ```sql
-@OnError(name='STREAM')
+@OnError(action='STREAM')
 @sink(type='kafka', on.error='STREAM', topic='{{roomNo}}',
       bootstrap.servers='localhost:9092',
       @map(type='xml'))
