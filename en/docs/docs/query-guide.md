@@ -3045,7 +3045,7 @@ The events are inserted into the fault stream during a failure. The error identi
 e.g., the following is a Siddhi application that includes the `@OnError` annotation to handle failures during runtime.
 
 ```sql
-@OnError(name='STREAM')
+@OnError(action='STREAM')
 define stream StreamA (symbol string, volume long);
 
 from StreamA[custom:fault() > volume] 
