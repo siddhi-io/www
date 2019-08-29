@@ -1614,13 +1614,13 @@ Here both outputs will be initiated by events arriving on `StockStream`.
 
 ### Pattern
 
-The pattern is a state machine implementation that detects event occurrence patterns from the events arrived in one or more event streams over time. It supports matching the same pattern repetitively, match patterns by counting events occurrences, and using logical ordering such as (`and`, `or`, and `not`).
+The pattern is a state machine implementation that detects event occurrences from events arrived via one or more event streams over time. It can repetitively match patterns, count event occurrences, and use logical event ordering (using `and`, `or`, and `not`).
 
 **Purpose**
 
 The pattern helps to achieve Complex Event Processing (CEP) capabilities by detecting various pre-defined event occurrence patterns in realtime.
 
-Pattern query does not expect the matching events to occur immediately after each other, and it can successfully correlate the events how are far apart and having other events in between.
+Pattern query does not expect the matching events to occur immediately after each other, and it can successfully correlate the events who are far apart and having other events in between.
 
 **Syntax**
 
@@ -1648,8 +1648,8 @@ insert into <output stream>
     </tr>
     <tr>
         <td><code>every</code></td>
-        <td>An optional keyword defining when a new event matching state machine should be initiated to repetitively match the patterns. <br/>
-        When this keyword is not used, the event matching state machine will be initiated only once.</td>
+        <td>An optional keyword defining when a new event matching state-machine should be initiated to repetitively match the pattern.<br/>
+        When this keyword is not used, the event matching state-machine will be initiated only once.</td>
     </tr>
     <tr>
         <td><code>within &lt;time gap&gt;</code></td>
@@ -1702,7 +1702,7 @@ insert into <output stream>
     </tr>
     <tr>
         <td><code>not &lt;condition1> for &lt;time period></code></td>
-        <td>Detects no event matching <code>&lt;condition1&gt;</code> for the specified <code>&lt;time period&gt;</code>.</td>
+        <td>Detects no event matching on <code>&lt;condition1&gt;</code> for the specified <code>&lt;time period&gt;</code>.</td>
     </tr>
     <tr>
         <td><code>&lt;event reference&gt;</code></td>
@@ -1720,7 +1720,7 @@ insert into <output stream>
 
 **Event selection**
 
-The `event reference` in pattern queries is used to retrieve the matched events. When a pattern condition is intended to match only a single event, then the attributes of that event can be retrieved by referring to its reference as `<event reference>.<attribute name>`. An example of this is as follows.
+The `event reference` in pattern queries is used to retrieve the matched events. When a pattern condition is intended to match only a single event, then its attributes can be retrieved by referring to its reference as `<event reference>.<attribute name>`. An example of this is as follows.
 
 + `e1.symbol`, refers to the `symbol` attribute value of the matching event `e1`.
 
@@ -1832,33 +1832,106 @@ Pattern| Description | Sample Scenario
 
 ### Sequence
 
-Sequence is a state machine implementation that allows you to detect the sequence of event occurrences over time.
-Here **all matching events need to arrive consecutively** to match the sequence condition, and there cannot be any non-matching events arriving within a matching sequence of events.
-This can correlate events within a single stream or between multiple streams.
+The sequence is a state machine implementation that detects consecutive event occurrences from events arrived via one or more event streams over time. Here **all matching events need to arrive consecutively**, and there should not be any non-matching events in between the matching sequence of events. The sequence can repetitively match event sequences, count event occurrences, and use logical event ordering (using `and`, `or`, and `not`).
 
 **Purpose**
 
-This allows you to detect a specified event sequence over a specified time period.
+The sequence helps to achieve Complex Event Processing (CEP) capabilities by detecting various pre-defined consecutive event occurrence sequences in realtime.
+
+Sequence query does expect the matching events to occur immediately after each other, and it can successfully correlate the events who do not have other events in between.
 
 **Syntax**
 
 The syntax for a sequence query is as follows:
 
 ```sql
-from (every)? <event reference>=<input stream>[<filter condition>],
-    <event reference>=<input stream [<filter condition>],
-    ...
+from (
+      (every)? (<event reference>=)?<input stream>[<filter condition>] (+|*|?)? |
+               (<event reference>=)?<input stream>[<filter condition>] (and|or) (<event reference>=)?<input stream>[<filter condition>] |
+               not input stream>[<filter condition>] (and <event reference>=<input stream>[<filter condition>] | for <time gap>)
+    ), ...
     (within <time gap>)?     
 select <event reference>.<attribute name>, <event reference>.<attribute name>, ...
 insert into <output stream>
 ```
 
-| Items | Description |
-|-------------------|-------------|
-| `,` | This represents the immediate next event i.e., when an event that matches the first condition arrives, the event that arrives immediately after it should match the second condition. |
-| `<event reference>` | This allows you to add a reference to the the matching event so that it can be accessed later for further processing. |
-| `(within <time gap>)?` | The `within` clause is optional. It defines the time duration within which all the matching events should occur. |
-| `every` | `every` is an optional keyword. This defines whether the matching event should be triggered for every event that arrives at the specified stream with the matching condition. <br/> When this keyword is not used, the matching is carried out only once. |
+<table style="width:100%">
+    <tr>
+        <th style="width:20%">Items</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td><code>,</code></td>
+        <td>Indicates the immediate next event that follows the given event. The condition to be met by the preceding event should be added before the <code>,</code>, and the condition to be met by the subsequent event should be added after the <code>,</code>.</td>
+    </tr>
+    <tr>
+        <td><code>every</code></td>
+        <td>An optional keyword defining when a new event matching state-machine should be initiated to repetitively match the sequence.<br/>
+        When this keyword is not used, the event matching state-machine will be initiated only once.</td>
+    </tr>
+    <tr>
+        <td><code>within &lt;time gap&gt;</code></td>
+        <td>An optional <code>within</code> clause that defines the time duration within which all the matching events should occur.</td>
+    </tr>
+    <tr>
+        <td><code> + </code></td>
+        <td>Matches **one or more** events to the given condition.</td>
+    </tr>
+    <tr>
+        <td><code> * </code></td>
+        <td>Matches **zero or more** events to the given condition.</td>
+    </tr>
+    <tr>
+        <td><code> ? </code></td>
+        <td>Matches **zero or one** events to the given condition.</td>
+    </tr>
+    <tr>
+        <td><code>and</code></td>
+        <td>Allows both of its condition to be matched by two distinct events in any order.</td>
+    </tr>
+    <tr>
+        <td><code>or</code></td>
+        <td>Only expects one of its condition to be matched by an event. Here the event reference of the unmatched condition will be <code>null</code>.</td>
+    </tr>
+    <tr>
+        <td><code>not &lt;condition1&gt; and &lt;condition2&gt;</code></td>
+        <td>Detects the event matching <code>&lt;condition2&gt;</code> before any event matching <code>&lt;condition1&gt;</code>.</td>
+    </tr>
+    <tr>
+        <td><code>not &lt;condition1> for &lt;time period></code></td>
+        <td>Detects no event matching on <code>&lt;condition1&gt;</code> for the specified <code>&lt;time period&gt;</code>.</td>
+    </tr>
+    <tr>
+        <td><code>&lt;event reference&gt;</code></td>
+        <td>An optional reference to access the matching event for further processing.<br/>
+        All conditions can be assigned to an event reference to collect the matching event occurrences, other than the condition used for <code>not</code> case (as there will not be any event matched against it).
+        </td>
+    </tr>
+</table>
+
+!!! Note "Non occurrence of events."
+    Siddhi detects non-occurrence of events using the `not` keyword, and its effective non-occurrence checking period is bounded either by fulfillment of a condition associated by `and` or via an expiry time using `<time period>`.
+
+!!! Note "Logical correlation of multiple conditions."
+    Siddhi can only logically correlate two conditions at a time using keywords such as `and`, `or`, and `not`. When more than two conditions need to be logically correlated, use multiple pattern queries in a chaining manner, at a time correlating two logical conditions and streaming the output to a downstream query to logically correlate the results with other logical conditions.
+
+**Event selection**
+
+The `event reference` in sequence queries is used to retrieve the matched events. When a sequence condition is intended to match only a single event, then its attributes can be retrieved by referring to its reference as `<event reference>.<attribute name>`. An example of this is as follows.
+
++ `e1.symbol`, refers to the `symbol` attribute value of the matching event `e1`.
+
+But when the pattern condition is associated with `<<min count>:<max count>>`, it is expected to match against on multiple events. Therefore, an event from the matched event collection should be retrieved using the event index from its reference. Here the indexes are specified in square brackets next to event reference, where index `0` referring to the first event, and a special index `last` referring to the last available event in the collection.
+Attribute values of all the events in the matching event collection can be accessed a list, by referring to their `<event reference>` without an index.
+Some possible indexes and their behavior is as follows.
+
++ `e1[0].symbol`, refers to the `symbol` attribute value of the 1st event in reference `e1`.
++ `e1[3].price`, refers to the `price` attribute value of the 4th event in reference `e1`.
++ `e1[last].symbol`, refers to the `symbol` attribute value of the last event in reference `e1`.
++ `e1[last - 1].symbol`, refers to the `symbol` attribute value of one before the last event in reference `e1`.
++ `e1.symbol`, refers to the list of `symbol` attribute values of all events in the event collection in reference `e1`, as a list object.
+
+The system returns `null` when accessing attribute values, when no matching event is assigned to the `event reference` (as in when two conditions are combined using `or`) or when the provided index is greater than the last event index in the event collection.
 
 
 **Example**
@@ -1871,34 +1944,6 @@ select e1.temp as initialTemp, e2.temp as finalTemp
 insert into AlertStream;
 ```
 
-**Counting Sequence**
-
-Counting sequences allow you to match multiple events for the same matching condition.
-The number of events matched per condition can be limited via condition postfixes such as **Counting Patterns**, or by using the
-`*`, `+`, and `?` operators.
-
-The matching events can also be retrieved using event indexes, similar to how it is done in **Counting Patterns**.
-
-**Syntax**
-
-Each matching condition in a sequence can contain a collection of events as shown below.
-
-```sql
-from (every)? <event reference>=<input stream>[<filter condition>](+|*|?)?,
-    <event reference>=<input stream [<filter condition>](+|*|?)?,
-    ...
-    (within <time gap>)?     
-select <event reference>.<attribute name>, <event reference>.<attribute name>, ...
-insert into <output stream>
-```
-
-|Postfix symbol|Required/Optional |Description|
-|---------|---------|---------|
-| `+` | Optional |This matches **one or more** events to the given condition. |
-| `*` | Optional |This matches **zero or more** events to the given condition. |
-| `?` | Optional |This matches **zero or one** events to the given condition. |
-
-
 **Example**
 
 This Siddhi application identifies temperature peeks.
@@ -1910,23 +1955,6 @@ from every e1=TempStream, e2=TempStream[e1.temp <= temp]+, e3=TempStream[e2[last
 select e1.temp as initialTemp, e2[last].temp as peakTemp
 insert into PeekTempStream;
 ```
-
-**Logical Sequence**
-
-Logical sequences identify logical relationships using `and`, `or` and `not` on consecutively arriving events.
-
-**Syntax**
-The syntax for a logical sequence is as follows:
-
-```sql
-from (every)? (not)? <event reference>=<input stream>[<filter condition>]
-          ((and|or) <event reference>=<input stream>[<filter condition>])? (within <time gap>)?,
-    ...
-select <event reference>([event index])?.<attribute name>, ...
-insert into <output stream>
-```
-
-Keywords such as `and`, `or`, or `not` can be used to illustrate the logical relationship, similar to how it is done in **Logical Patterns**.
 
 **Example**
 
