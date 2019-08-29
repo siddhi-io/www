@@ -23,7 +23,7 @@ site_url: http://siddhi.io/en/v5.1/
 # Repository
 repo_name: Siddhi
 repo_url: https://github.com/siddhi-io/siddhi
-edit_uri: https://github.com/siddhi-io/www/edit/master/en/docs/
+edit_uri: https://github.com/siddhi-io/www/edit/v5.1/en/docs/
 
 # Copyright
 copyright: Siddhi - Documentation
@@ -75,7 +75,7 @@ markdown_extensions:
   - markdown.extensions.admonition
   - markdown.extensions.codehilite:
       linenums: true
-      use_pygments: false
+      use_pygments: true
       guess_lang: false
   - markdown.extensions.def_list
   - markdown.extensions.attr_list
@@ -112,6 +112,8 @@ nav:
     - Introduction: docs/index.md
     - Features: docs/features.md
     - Quick Start: docs/quick-start/index.md
+    - Use case Guides:
+        - Alerts Based on Thresholds: docs/guides/alerts-for-thresholds/guide.md
     - Tooling: docs/tooling.md
     - Query Guide: docs/query-guide.md
     - Siddhi APIs:
