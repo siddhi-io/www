@@ -59,7 +59,38 @@ Siddhi applications can be deployed on Kubernetes using the Siddhi operator.
 Here we will creating a very simple Siddhi stream processing application that consumes events via HTTP, filers the input events on the type 'monitored' and logs the output on the console.
 This can be created using a SiddhiProcess YAML file as given below.
 
-<script src="https://gist.github.com/BuddhiWathsala/f029d671f4f6d7719dce59500b970815.js"></script>
+```yaml
+apiVersion: siddhi.io/v1alpha1
+kind: SiddhiProcess
+metadata:
+  name: monitor-app
+  version: 1.0.0
+spec:
+  pod:
+   image: siddhiio/siddhi-runner-alpine
+   imageTag: 0.1.0
+  tls:
+    ingressSecret: siddhi-tls
+  env: 
+    - name: RECEIVER_URL
+      value: "http://0.0.0.0:8280/example"
+    - name: BASIC_AUTH_ENABLED
+      value: "false"
+  query: |
+    @App:name("MonitorApp")
+    @App:description("Description of the plan") 
+    
+    @sink(type='log', prefix='LOGGER')
+    @source(type='http', receiver.url='${RECEIVER_URL}', basic.auth.enabled='${BASIC_AUTH_ENABLED}', @map(type='json'))
+    define stream DevicePowerStream (type string, deviceID string, power int);
+    
+    define stream MonitorDevicesPowerStream(deviceID string, power int);
+
+    @info(name='monitored-filter')
+    from DevicePowerStream[type == 'monitored']
+    select deviceID, power
+    insert into MonitorDevicesPowerStream;
+```
 
 !!! Note "Always listen on 0.0.0.0 with the Siddhi Application running inside a container environment."
     If you listen on localhost inside the container, nothing outside the container can connect to your application. 
@@ -348,7 +379,21 @@ apps:
 
 Here we will creating a very simple Siddhi application as follows, that consumes events via HTTP, filers the input events on type 'monitored' and logs the output on the console.
 
-<script src="https://gist.github.com/BuddhiWathsala/8687a2b73bb003a8ae7bcf3d3f63b78e.js"></script>
+```sql
+@App:name("MonitorApp")
+@App:description("Description of the plan") 
+
+@source(type='http', receiver.url='${RECEIVER_URL}', basic.auth.enabled='${BASIC_AUTH_ENABLED}', @map(type='json'))
+define stream DevicePowerStream (type string, deviceID string, power int);
+
+@sink(type='log', prefix='LOGGER')
+define stream MonitorDevicesPowerStream(deviceID string, power int);
+
+@info(name='monitored-filter')
+from DevicePowerStream[type == 'monitored']
+select deviceID, power
+insert into MonitorDevicesPowerStream;
+```
 
 !!! Tip "Siddhi Tooling"
     You can also use the powerful [Siddhi Editor](../quick-start/#3-using-siddhi-for-the-first-time) to implement and test steam processing applications. 
@@ -362,7 +407,26 @@ kubectl create configmap monitor-app-cm --from-file=<absolute-file-path>/Monitor
 
 The created config map can be added to SiddhiProcess YAML under the `apps` entry as follows. 
 
-<script src="https://gist.github.com/BuddhiWathsala/45019cf093226e4858c931e62e04233f.js"></script>
+```yaml
+apiVersion: siddhi.io/v1alpha1
+kind: SiddhiProcess
+metadata:
+  name: monitor-app
+  version: 1.0.0
+spec:
+  pod:
+   image: siddhiio/siddhi-runner-alpine
+   imageTag: 0.1.0
+  tls:
+    ingressSecret: siddhi-tls
+  env: 
+    - name: RECEIVER_URL
+      value: "http://0.0.0.0:8280/example"
+    - name: BASIC_AUTH_ENABLED
+      value: "false"
+  apps:
+    - monitor-app-cm
+```
 
 Save the YAML file as `monitor-app.yaml`, and use the following command to deploy the SiddhiProcess.
 
@@ -435,7 +499,54 @@ $ kubectl logs monitor-app-7f8584875f-krz6t
 
 By default, Siddhi operator creates an NGINX ingress and exposes your HTTP/HTTPS through that ingress. If you need to disable automatic ingress creation, you have to change the `AUTO_INGRESS_CREATION` value in the Siddhi `operator.yaml` file to `false` or `null` as below.
 
-<script src="https://gist.github.com/BuddhiWathsala/c1cadcf9828cfaf46bb909f30497e4ab.js"></script>
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: siddhi-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: siddhi-operator
+  template:
+    metadata:
+      labels:
+        name: siddhi-operator
+    spec:
+      serviceAccountName: siddhi-operator
+      containers:
+        - name: siddhi-operator
+          image: docker.io/siddhiio/siddhi-operator:0.1.1
+          command:
+          - siddhi-operator
+          imagePullPolicy: Always
+          env:
+            - name: WATCH_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: OPERATOR_NAME
+              value: siddhi-operator
+            - name: OPERATOR_VERSION
+              value: 0.1.0
+            - name: SIDDHI_RUNNER_IMAGE
+              value: siddhiio/siddhi-runner-alpine
+            - name: SIDDHI_RUNNER_IMAGE_TAG
+              value: 0.1.0
+            - name: SIDDHI_RUNNER_IMAGE_SECRET
+              value: null
+            - name: SIDDHI_RUNNER_HOME
+              value: /home/siddhi_user/siddhi-runner-0.1.0/
+            - name: SIDDHI_PARSER_URL
+              value: http://siddhi-parser/parse
+            - name: AUTO_INGRESS_CREATION
+              value: "false"
+```
 
 ## Deploy and run Siddhi App with HTTPS 
 
@@ -462,7 +573,38 @@ kubectl create secret tls siddhi-tls --key siddhi.key --cert siddhi.crt
 
 The created secret then need to be added to the created SiddhiProcess's `tls` configuration as following. 
 
-<script src="https://gist.github.com/BuddhiWathsala/f029d671f4f6d7719dce59500b970815.js"></script>
+```yaml
+apiVersion: siddhi.io/v1alpha1
+kind: SiddhiProcess
+metadata:
+  name: monitor-app
+  version: 1.0.0
+spec:
+  pod:
+   image: siddhiio/siddhi-runner-alpine
+   imageTag: 0.1.0
+  tls:
+    ingressSecret: siddhi-tls
+  env: 
+    - name: RECEIVER_URL
+      value: "http://0.0.0.0:8280/example"
+    - name: BASIC_AUTH_ENABLED
+      value: "false"
+  query: |
+    @App:name("MonitorApp")
+    @App:description("Description of the plan") 
+    
+    @sink(type='log', prefix='LOGGER')
+    @source(type='http', receiver.url='${RECEIVER_URL}', basic.auth.enabled='${BASIC_AUTH_ENABLED}', @map(type='json'))
+    define stream DevicePowerStream (type string, deviceID string, power int);
+    
+    define stream MonitorDevicesPowerStream(deviceID string, power int);
+
+    @info(name='monitored-filter')
+    from DevicePowerStream[type == 'monitored']
+    select deviceID, power
+    insert into MonitorDevicesPowerStream;
+```
 
 When this is done Siddhi operator will now enable TLS support via the NGINX ingress, and you will be able to access all the HTTPS endpoints.
 

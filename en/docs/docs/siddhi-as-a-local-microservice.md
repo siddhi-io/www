@@ -32,7 +32,23 @@ Steps to Run Siddhi Local Microservice is as follows.
 
 Following SiddhiApp collects events via HTTP and logs the number of events arrived during last 15 seconds.  
 
-<script src="https://gist.github.com/suhothayan/8b0471cbe86a0089db5d6afb1c46f765.js"></script>
+```sql
+@App:name('CountOverTime')
+@App:description('Receive events via HTTP, and logs the number of events received during last 15 seconds')
+
+@source(type = 'http', receiver.url = "http://0.0.0.0:8006/production",
+	@map(type = 'json'))
+define stream ProductionStream (name string, amount double);
+
+@sink(type = 'log')
+define stream TotalCountStream (totalCount long);
+
+-- Count the incoming events
+@info(name = 'query1')
+from ProductionStream#window.time(15 sec)
+select count() as totalCount 
+insert into TotalCountStream;
+```
 
 <ul>
     <li>Copy the above SiddhiApp, and create the SiddhiApp file <code>CountOverTime.siddhi</code>.</li>
@@ -87,11 +103,43 @@ When running SiddhiApps users can optionally provide a config yaml to Siddhi run
 
 Following SiddhiApp collects events via HTTP and store them in H2 Database.
 
-<script src="https://gist.github.com/suhothayan/2413a6f886219befe736bf4447af02de.js"></script>
+```sql
+@App:name("ConsumeAndStore")
+@App:description("Consume events from HTTP and write to TEST_DB")
 
-The runner config can by configured with the relevant datasource information and passed when starting the runner
+@source(type = 'http', receiver.url = "http://0.0.0.0:8006/production",
+	@map(type = 'json'))
+define stream ProductionStream (name string, amount double);
 
-<script src="https://gist.github.com/suhothayan/015ae003d4ba8d4aeaadc19e4c9516fd.js"></script>
+@store(type='rdbms', datasource='TEST_DB')
+define table ProductionTable (name string, amount double);
+
+-- Store all events to the table
+@info(name = 'query1')
+from ProductionStream
+insert into ProductionTable;
+```
+
+The runner config can by configured with the relevant datasource information and passed when starting the runner.
+
+```sql
+wso2.datasources:
+  dataSources:
+  - name: TEST_DB
+    description: The datasource used for testing
+    definition:
+      type: RDBMS
+      configuration:
+        jdbcUrl: 'jdbc:h2:${sys:carbon.home}/wso2/${sys:wso2.runtime}/database/TEST_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000'
+        username: admin
+        password: admin
+        driverClassName: org.h2.Driver
+        maxPoolSize: 10
+        idleTimeout: 60000
+        connectionTestQuery: SELECT 1
+        validationTimeout: 30000
+        isAutoCommit: false 
+```
 
 <ul>
     <li>Copy the above SiddhiApp, & config yaml, and create corresponding the SiddhiApp file <code>ConsumeAndStore.siddhi</code> and <code>TestDb.yaml</code> files.</li>
@@ -177,11 +225,49 @@ Following templated SiddhiApp collects events via HTTP, filters them based on `a
 
 Here the `THRESHOLD` value, and `TO_EMAIL` are templated in the `TemplatedFilterAndEmail.siddhi` SiddhiApp.
 
-<script src="https://gist.github.com/suhothayan/47b6300f629463e63b2d5be78d6e45b4.js"></script>
+```sql
+@App:name("TemplatedFilterAndEmail")
+@App:description("Consumes events from HTTP, filters them based on amount greater than a templated threshold value, and sends filtered events via email.")
+
+@source(type = 'http', receiver.url = "http://0.0.0.0:8006/production",
+	@map(type = 'json'))
+define stream ProductionStream (name string, amount double);
+
+@sink(ref = 'email-sink', subject = 'High {{name}} production!', to = '${TO_EMAIL}', content.type = 'text/html',
+	@map(type = 'text',
+		@payload("""
+			Hi, <br/><br/>
+			High production of <b>{{name}},</b> with amount <b>{{amount}}</b> identified. <br/><br/>
+			For more information please contact production department.<br/><br/>
+			Thank you""")))
+define stream  FilteredProductionStream (name string, amount double);
+
+-- Filters the events based on threshold 
+@info(name = 'query1')
+from ProductionStream[amount > ${THRESHOLD}]
+insert into FilteredProductionStream;
+```
 
 The runner config is configured with a gmail account to send email messages in `EmailConfig.yaml` by templating sending `EMAIL_ADDRESS`, `EMAIL_USERNAME` and `EMAIL_PASSWORD`.   
 
-<script src="https://gist.github.com/suhothayan/3f36f8827d379925a8cca68dd78b9a8e.js"></script>
+```yaml
+siddhi:
+  refs:
+    -
+      ref:
+        name: 'email-sink'
+        type: 'email'
+        properties:
+          port: '465'
+          host: 'smtp.gmail.com'
+          ssl.enable: 'true'
+          auth: 'true'
+          ssl.enable: 'true'
+          # User your gmail configurations here
+          address: '${EMAIL_ADDRESS}'   #E.g. test@gmail.com
+          username: '${EMAIL_USERNAME}' #E.g. test
+          password: '${EMAIL_PASSWORD}' #E.g. password
+```
 
 <ul>
     <li>Copy the above SiddhiApp, & config yaml, and create corresponding the SiddhiApp file <code>TemplatedFilterAndEmail.siddhi</code> and <code>EmailConfig.yaml</code> files.</li>

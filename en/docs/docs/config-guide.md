@@ -174,7 +174,16 @@ To configure database based periodic data persistence, add <code>state.persiste
 
 The following is a sample configuration for database based state persistence.
 
-<script src="https://gist.github.com/pcnfernando/7b94df53248fb626867bd7b64019a109.js"></script>
+```yaml
+state.persistence:
+  enabled: true
+  intervalInMin: 1
+  revisionsToKeep: 3
+  persistenceStore: io.siddhi.distribution.core.persistence.DBPersistenceStore
+  config:
+    datasource: <DATASOURCE NAME>   # A datasource with this name should be defined in wso2.datasources namespace
+    table: <TABLE NAME>
+```
 
 ### Persistence on File System
 
@@ -190,7 +199,15 @@ To configure file system based periodic data persistence, add <code>state.persi
 
 The following is a sample configuration for file system based state persistence.
 
-<script src="https://gist.github.com/pcnfernando/19f1879b86bd96a25762e2cadf8ae407.js"></script>
+```yaml
+state.persistence:
+  enabled: true
+  intervalInMin: 1
+  revisionsToKeep: 2
+  persistenceStore: io.siddhi.distribution.core.persistence.FileSystemPersistenceStore
+  config:
+    location: siddhi-app-persistence
+```
 
 ## Configuring Siddhi Elements
 
@@ -369,7 +386,32 @@ The most used Siddhi extensions are packed by default with the Siddhi Docker Mic
 To add or update Siddhi extensions and/or third-party dependencies, a new docker image has to be built from either [siddhi-runner-base-ubuntu](https://hub.docker.com/r/siddhiio/siddhi-runner-base-ubuntu) or [siddhi-runner-base-alpine](https://hub.docker.com/r/siddhiio/siddhi-runner-base-alpine) images. These images contain Linux OS, JDK and the Siddhi distribution.
 
 Sample docker file using `siddhi-runner-base-alpine` is as follows.
-<script src="https://gist.github.com/pcnfernando/09d3af8f958c464425a892efabac2d98.js"></script>
+```docker
+# use siddhi-runner-base
+FROM siddhiio/siddhi-runner-base-alpine:5.1.0-m2
+MAINTAINER Siddhi IO Docker Maintainers "siddhi-dev@googlegroups.com"
+
+ARG HOST_BUNDLES_DIR=./files/bundles
+ARG HOST_JARS_DIR=./files/jars
+ARG JARS=${RUNTIME_SERVER_HOME}/jars
+ARG BUNDLES=${RUNTIME_SERVER_HOME}/bundles
+
+# copy entrypoint bash script to user home
+COPY --chown=siddhi_user:siddhi_io init.sh ${WORKING_DIRECTORY}/
+
+# copy bundles & jars to the siddhi-runner distribution
+COPY --chown=siddhi_user:siddhi_io ${HOST_BUNDLES_DIR}/ ${BUNDLES}
+COPY --chown=siddhi_user:siddhi_io ${HOST_JARS_DIR}/ ${JARS}
+
+# expose ports
+EXPOSE 9090 9443 9712 9612 7711 7611 7070 7443
+
+RUN bash ${RUNTIME_SERVER_HOME}/bin/install-jars.sh
+
+STOPSIGNAL SIGINT
+
+ENTRYPOINT ["/home/siddhi_user/init.sh",  "--"]
+```
 
 Find the necessary artifacts to build the docker from [docker-siddhi](https://github.com/siddhi-io/docker-siddhi/tree/master/docker-files/siddhi-runner) repository.
 
