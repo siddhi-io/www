@@ -38,8 +38,8 @@ Here, the Siddhi applications containing stream processing logic can be written 
 To install the Siddhi Kubernetes operator run the following commands.
 
 ```sh
-kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-m2/00-prereqs.yaml
-kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-m2/01-siddhi-operator.yaml
+kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-alpha/00-prereqs.yaml
+kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-alpha/01-siddhi-operator.yaml
 ```
 
 You can verify the installation by making sure the following deployments are running in your Kubernetes cluster.
@@ -102,7 +102,7 @@ spec:
         name: RECEIVER_URL
         value: "http://0.0.0.0:8080/checkPower"
 
-    image: "siddhiio/siddhi-runner-ubuntu:5.1.0-m2"
+    image: "siddhiio/siddhi-runner-ubuntu:5.1.0-alpha"
 ```
 
 !!! Note "Always listen on 0.0.0.0 with the Siddhi Application running inside a container environment."
@@ -279,7 +279,7 @@ insert into PowerSurgeAlertStream;
       Value:  http://0.0.0.0:8080/checkPower
       Name:   BASIC_AUTH_ENABLED
       Value:  false
-    Image:    siddhiio/siddhi-runner-ubuntu:5.1.0-m2
+    Image:    siddhiio/siddhi-runner-ubuntu:5.1.0-alpha
 Status:
   Nodes:   <nil>
   Ready:   1/1
@@ -384,7 +384,7 @@ spec:
         name: RECEIVER_URL
         value: "http://0.0.0.0:8080/checkPower"
 
-    image: "siddhiio/siddhi-runner-ubuntu:5.1.0-m2"
+    image: "siddhiio/siddhi-runner-ubuntu:5.1.0-alpha"
 
 ```
 
@@ -472,7 +472,7 @@ metadata:
 data:
   siddhiHome: /home/siddhi_user/siddhi-runner/
   siddhiProfile: runner
-  siddhiImage: siddhiio/siddhi-runner-alpine:5.1.0-m2
+  siddhiImage: siddhiio/siddhi-runner-alpine:5.1.0-alpha
   autoIngressCreation: "false"
 ```
 
@@ -508,7 +508,7 @@ metadata:
 data:
   siddhiHome: /home/siddhi_user/siddhi-runner/
   siddhiProfile: runner
-  siddhiImage: siddhiio/siddhi-runner-alpine:5.1.0-m2
+  siddhiImage: siddhiio/siddhi-runner-alpine:5.1.0-alpha
   autoIngressCreation: "true"
   ingressTLS: siddhi-tls
 ```

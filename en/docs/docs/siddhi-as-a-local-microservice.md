@@ -7,7 +7,7 @@ Here, the Siddhi application (`.siddhi` file) contains stream processing logic a
 
 Steps to Run Siddhi Local Microservice is as follows.
 
-* Download the latest [Siddhi Runner distribution](https://github.com/siddhi-io/distribution/releases/download/v0.1.0/siddhi-runner-0.1.0.zip) 
+* Download the latest [Siddhi Runner distribution](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-alpha/siddhi-runner-5.1.0-alpha.zip) 
 * Unzip the siddhi-runner-x.x.x.zip
 * Start SiddhiApps with the runner config by executing the following commands from the distribution directory<br/>
   Linux/Mac : `./bin/runner.sh -Dapps=<siddhi-file> -Dconfig=<config-yaml-file>`<br/>

@@ -10,6 +10,13 @@ Select the appropriate Siddhi distribution for your use case.
   <li><a target="_blank" href="https://wso2.org/jenkins/job/siddhi/job/siddhi-daily-build/">Siddhi Tooling & Siddhi Runner</a></li>
 </ul>  
 
+### **5.1.0-alpha**
+
+Based on Siddhi Core 5.1.3 | &nbsp;      | &nbsp;  | &nbsp; |  &nbsp; |
+------     | -----    | ----- | ----- | ----- |
+[Siddhi Tooling](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-alpha/siddhi-tooling-5.1.0-alpha.zip) | [md5](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-alpha/siddhi-tooling-5.1.0-alpha.zip.md5) | [SHA-1](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-alpha/siddhi-tooling-5.1.0-alpha.zip.sha1) | [asc](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-alpha/siddhi-tooling-5.1.0-alpha.zip.asc) | [source code](https://github.com/siddhi-io/distribution/releases/tag/v5.1.0-alpha) 
+[Siddhi Runner](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-alpha/siddhi-runner-5.1.0-alpha.zip) | [md5](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-alpha/siddhi-runner-5.1.0-alpha.zip.md5) | [SHA-1](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-alpha/siddhi-runner-5.1.0-alpha.zip.sha1) | [asc](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-alpha/siddhi-runner-5.1.0-alpha.zip.asc) | [source code](https://github.com/siddhi-io/distribution/releases/tag/v5.1.0-alpha)
+
 ### **5.1.0-m2**
 
 Based on Siddhi Core 5.1.2 | &nbsp;      | &nbsp;  | &nbsp; |  &nbsp; |
@@ -27,6 +34,14 @@ Based on Siddhi Core 5.1.0 | &nbsp;      | &nbsp;  | &nbsp; |  &nbsp; |
 Refer the user guide to use [Siddhi as a Local Microservice](../deployment/siddhi-as-a-local-microservice/).
 
 ## Siddhi Docker
+
+### **5.1.0-alpha**
+
+Based on Siddhi distribution `5.1.0-alpha` and Siddhi Core `5.1.3`.
+
+* [Siddhi Tooling](https://hub.docker.com/r/siddhiio/siddhi-tooling) 
+* [Siddhi Runner - Alpine](https://hub.docker.com/r/siddhiio/siddhi-runner-alpine) 
+* [Siddhi Runner - Ubuntu](https://hub.docker.com/r/siddhiio/siddhi-runner-ubuntu)  
 
 ### **5.1.0-m2**
 
@@ -47,6 +62,15 @@ Based on Siddhi distribution `5.1.0-m1` and Siddhi Core `5.1.0`.
 Refer the user guide to use [Siddhi as a Docker Microservice](../deployment/siddhi-as-a-docker-microservice/).
 
 ## Siddhi Kubernetes 
+
+### **5.1.0-alpha**
+
+Based on Siddhi distribution `5.1.0-alpha` and Siddhi Core `5.1.3`.
+
+* [Siddhi CRD](https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-alpha/00-prereqs.yaml)
+* [Siddhi Operator](https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-alpha/01-siddhi-operator.yaml)
+
+Refer the user guide to use [Siddhi as Kubernetes Microservice](../deployment/siddhi-as-a-kubernetes-microservice/).
 
 ### **5.1.0-m2**
 

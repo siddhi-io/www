@@ -82,7 +82,7 @@ In this section, we will be using the Siddhi tooling distribution — a serv
 [Oracle Java SE Development Kit (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/index.html) version 1.8. <br>
 **Step 2** — [Set the JAVA_HOME](https://docs.oracle.com/cd/E19182-01/820-7851/inst_cli_jdk_javahome_t/) environment
 variable. <br>
-**Step 3** — Download the latest tooling distribution from [here](https://github.com/siddhi-io/distribution/releases/download/v0.1.0/siddhi-tooling-0.1.0.zip).<br>
+**Step 3** — Download the latest tooling distribution from [here](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-alpha/siddhi-tooling-5.1.0-alpha.zip).<br>
 **Step 4** — Extract the downloaded zip and navigate to `<TOOLING_HOME>/bin`. <br> (`TOOLING_HOME` refers to the extracted folder) <br>
 **Step 5** — Issue the following command in the command prompt (Windows) / terminal (Linux/Mac)
 
