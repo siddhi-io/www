@@ -1933,8 +1933,7 @@ Some possible indexes and their behavior is as follows.
 
 The system returns `null` when accessing attribute values, when no matching event is assigned to the `event reference` (as in when two conditions are combined using `or`) or when the provided index is greater than the last event index in the event collection.
 
-
-**Example**
+**Example 1**
 
 This query generates an alert if the increase in the temperature between two consecutive temperature events exceeds one degree.
 
@@ -1944,7 +1943,7 @@ select e1.temp as initialTemp, e2.temp as finalTemp
 insert into AlertStream;
 ```
 
-**Example**
+**Example 2**
 
 This Siddhi application identifies temperature peeks.
 
@@ -1956,7 +1955,7 @@ select e1.temp as initialTemp, e2[last].temp as peakTemp
 insert into PeekTempStream;
 ```
 
-**Example**
+**Example 3**
 
 This Siddhi application notifies the state when a regulator event is immediately followed by both temperature and humidity events.
 
