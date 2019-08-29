@@ -7,7 +7,7 @@
 #### Highlights
 * Improvements done for use cases such as throttling, continuous testing & integration and error handling.
 
-## Features & Improvements
+#### Features & Improvements
 * Introduce RESET processing mode to preserve memory optimization. [(#1444)](https://github.com/siddhi-io/siddhi/pull/1444)
 * Add support YAML Config Manager for easy setting of system properties in SiddhiManager through a YAML file [(#1446)](https://github.com/siddhi-io/siddhi/pull/1446)
 * Support to create a Sandbox SiddhiAppRuntime for testing purposes [(#1451)](https://github.com/siddhi-io/siddhi/pull/1451)
@@ -15,10 +15,10 @@
 * Support a way to retrieve the sink options and type at sink mapper. [(#1473)](https://github.com/siddhi-io/siddhi/pull/1473)
 * Support error handling (log/wait/fault-stream) when event sinks publish data asynchronously. [(#1473)](https://github.com/siddhi-io/siddhi/pull/1473)
 
-## Bug Fixes
+#### Bug Fixes
 * Fixes to TimeBatchWindow to process events in a streaming manner, when it's enabled to send current events in streaming mode. This makes sure all having conditions are matched against the output, whereby allowing users to effectively implement throttling use cases with alert suppression. [(#1441)](https://github.com/siddhi-io/siddhi/pull/1441)
 
-## Complete Changes 
+#### Complete Changes 
 Please find the complete changes [here](https://github.com/siddhi-io/siddhi/compare/v5.1.2...v5.1.3)
 
 !!! info "Please find more details about the release [here](https://github.com/siddhi-io/siddhi/releases/tag/v5.1.3)"
@@ -78,16 +78,16 @@ Please find the complete changes [here](https://github.com/siddhi-io/siddhi/comp
 #### Highlights
 * Refer the Siddhi 5.1.3 [release note](https://github.com/siddhi-io/siddhi/releases/tag/v5.1.3) to get to know about the latest feature improvements and bug fixes done for Siddhi engine.
 
-## Features & Improvements
+#### Features & Improvements
 * Add support for offset in siddhi parser [(#291)](https://github.com/siddhi-io/distribution/pull/291)
 * Add overload param support for source view editor [(#310)](https://github.com/siddhi-io/distribution/pull/310)
 * Improve design view to show the connection between *-call-request and *-call-response IOs. [(#310)](https://github.com/siddhi-io/distribution/pull/310)
 * Feature to support downloading docker and Kubernetes artifacts from Tooling UI [(#349)](https://github.com/siddhi-io/distribution/pull/349)
 
-## Bug Fixes
+#### Bug Fixes
 * Fix for snakeyaml dependency issue. [(#310)](https://github.com/siddhi-io/distribution/pull/310)
 
-## Complete Changes 
+#### Complete Changes 
 Please find the complete changes [here](https://github.com/siddhi-io/distribution/compare/v5.1.0-m2...v5.1.0-alpha) 
 
 !!! info "Please find more details about the release [here](https://github.com/siddhi-io/distribution/releases/tag/v5.1.0-alpha)"
