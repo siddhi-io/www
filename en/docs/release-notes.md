@@ -5,6 +5,27 @@
 ### Siddhi Core 5.1.2
 
 #### Highlights
+* Improvements done for use cases such as throttling, continuous testing & integration and error handling.
+
+## Features & Improvements
+* Introduce RESET processing mode to preserve memory optimization. [(#1444)](https://github.com/siddhi-io/siddhi/pull/1444)
+* Add support YAML Config Manager for easy setting of system properties in SiddhiManager through a YAML file [(#1446)](https://github.com/siddhi-io/siddhi/pull/1446)
+* Support to create a Sandbox SiddhiAppRuntime for testing purposes [(#1451)](https://github.com/siddhi-io/siddhi/pull/1451)
+* Improve convert function to provide message & cause for Throwable objects [(#1463)](https://github.com/siddhi-io/siddhi/pull/1463)
+* Support a way to retrieve the sink options and type at sink mapper. [(#1473)](https://github.com/siddhi-io/siddhi/pull/1473)
+* Support error handling (log/wait/fault-stream) when event sinks publish data asynchronously. [(#1473)](https://github.com/siddhi-io/siddhi/pull/1473)
+
+## Bug Fixes
+* Fixes to TimeBatchWindow to process events in a streaming manner, when it's enabled to send current events in streaming mode. This makes sure all having conditions are matched against the output, whereby allowing users to effectively implement throttling use cases with alert suppression. [(#1441)](https://github.com/siddhi-io/siddhi/pull/1441)
+
+## Complete Changes 
+Please find the complete changes [here](https://github.com/siddhi-io/siddhi/compare/v5.1.2...v5.1.3)
+
+!!! info "Please find more details about the release [here](https://github.com/siddhi-io/siddhi/releases/tag/v5.1.3)"
+
+### Siddhi Core 5.1.2
+
+#### Highlights
 * There is an improvement done for Template Builder by removing Java Message Format dependency since it is causing some inconsistencies with performing custom mapping for float, double and long values. Due to this fix, there might be some differences (corrected proper output) in the output that you get for custom output mapping with Text, XML, JSON, and CSV. ([#1431](https://github.com/siddhi-io/siddhi/pull/1431))
 * There is a behavioral change introduced with the improvements done with ([#1421](https://github.com/siddhi-io/siddhi/pull/1421)). When counting patterns are used such as e1=StockStream<2:8> and when they are referred without indexes such as e1.price it collects the price values from all the events in the counting pattern e1 and produces it as a list. Since the list is not native to Siddhi the attribute will have the object as its type. In older Siddhi version, it will output the last matching event’s attribute value.
 
@@ -50,8 +71,28 @@ Please find the complete changes [here](https://github.com/siddhi-io/siddhi/comp
 
 !!! info "Please find more details about the release [here](https://github.com/siddhi-io/siddhi/releases/tag/v5.1.0)"
 
-
 ## Siddhi Distribution Releases
+
+### Siddhi Distribution 5.1.0-Alpha
+
+#### Highlights
+* Refer the Siddhi 5.1.3 [release note](https://github.com/siddhi-io/siddhi/releases/tag/v5.1.3) to get to know about the latest feature improvements and bug fixes done for Siddhi engine.
+
+## Features & Improvements
+* Add support for offset in siddhi parser [(#291)](https://github.com/siddhi-io/distribution/pull/291)
+* Add overload param support for source view editor [(#310)](https://github.com/siddhi-io/distribution/pull/310)
+* Improve design view to show the connection between *-call-request and *-call-response IOs. [(#310)](https://github.com/siddhi-io/distribution/pull/310)
+* Feature to support downloading docker and Kubernetes artifacts from Tooling UI [(#349)](https://github.com/siddhi-io/distribution/pull/349)
+
+## Bug Fixes
+* Fix for snakeyaml dependency issue. [(#310)](https://github.com/siddhi-io/distribution/pull/310)
+
+## Complete Changes 
+Please find the complete changes [here](https://github.com/siddhi-io/distribution/compare/v5.1.0-m2...v5.1.0-alpha) 
+
+!!! info "Please find more details about the release [here](https://github.com/siddhi-io/distribution/releases/tag/v5.1.0-alpha)"
+
+!!! info "Please find the details of the corresponding docker release [here](https://github.com/siddhi-io/docker-siddhi/releases/tag/v5.1.0-alpha)"
 
 ### Siddhi Distribution 5.1.0-M2
 
@@ -83,7 +124,6 @@ Please find the complete changes [here](https://github.com/siddhi-io/distributio
 !!! info "Please find more details about the release [here](https://github.com/siddhi-io/distribution/releases/tag/v5.1.0-m1)"
 
 !!! info "Please find the details of the corresponding docker release [here](https://github.com/siddhi-io/docker-siddhi/releases/tag/v5.1.0-m1)"
-
 
 ## Siddhi K8s Operator Releases
 
