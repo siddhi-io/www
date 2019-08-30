@@ -1019,7 +1019,21 @@ E.g.,
 <h2 id="samples">Samples<a class="headerlink" href="#samples" title="Permanent link">&para;</a></h2>
 <h3 id="running-siddhi-app">Running Siddhi App<a class="headerlink" href="#running-siddhi-app" title="Permanent link">&para;</a></h3>
 <p>Following SiddhiApp collects events via HTTP and logs the number of events arrived during last 15 seconds.  </p>
-<script src="https://gist.github.com/suhothayan/8b0471cbe86a0089db5d6afb1c46f765.js"></script>
+<pre class="codehilite"><code class="language-sql linenums">@App:name('CountOverTime')
+@App:description('Receive events via HTTP, and logs the number of events received during last 15 seconds')
+
+@source(type = 'http', receiver.url = "http://0.0.0.0:8006/production",
+    @map(type = 'json'))
+define stream ProductionStream (name string, amount double);
+
+@sink(type = 'log')
+define stream TotalCountStream (totalCount long);
+
+-- Count the incoming events
+@info(name = 'query1')
+from ProductionStream#window.time(15 sec)
+select count() as totalCount 
+insert into TotalCountStream;</code></pre>
 
 <div class="admonition note">
 <p class="admonition-title">Always listen on 0.0.0.0 with the Siddhi Application running inside a docker container.</p>
@@ -1074,10 +1088,38 @@ curl -X POST http://localhost:8006/production \
 <h3 id="running-with-runner-config">Running with runner config<a class="headerlink" href="#running-with-runner-config" title="Permanent link">&para;</a></h3>
 <p>When running SiddhiApps users can optionally provide a config yaml to Siddhi runner to manage configurations such as state persistence, databases connections and secure vault.</p>
 <p>Following SiddhiApp collects events via HTTP and store them in H2 Database.</p>
-<script src="https://gist.github.com/suhothayan/2413a6f886219befe736bf4447af02de.js"></script>
+<pre class="codehilite"><code class="language-sql linenums">@App:name("ConsumeAndStore")
+@App:description("Consume events from HTTP and write to TEST_DB")
+
+@source(type = 'http', receiver.url = "http://0.0.0.0:8006/production",
+    @map(type = 'json'))
+define stream ProductionStream (name string, amount double);
+
+@store(type='rdbms', datasource='TEST_DB')
+define table ProductionTable (name string, amount double);
+
+-- Store all events to the table
+@info(name = 'query1')
+from ProductionStream
+insert into ProductionTable;</code></pre>
 
 <p>The runner config can be configured with the relevant datasource information and passed when starting the runner</p>
-<script src="https://gist.github.com/suhothayan/015ae003d4ba8d4aeaadc19e4c9516fd.js"></script>
+<pre class="codehilite"><code class="language-yaml linenums">wso2.datasources:
+  dataSources:
+  - name: TEST_DB
+    description: The datasource used for testing
+    definition:
+      type: RDBMS
+      configuration:
+        jdbcUrl: 'jdbc:h2:${sys:carbon.home}/wso2/${sys:wso2.runtime}/database/TEST_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000'
+        username: admin
+        password: admin
+        driverClassName: org.h2.Driver
+        maxPoolSize: 10
+        idleTimeout: 60000
+        connectionTestQuery: SELECT 1
+        validationTimeout: 30000
+        isAutoCommit: false </code></pre>
 
 <ul>
     <li>Copy the above SiddhiApp, & config yaml, and create corresponding the SiddhiApp file <code>ConsumeAndStore.siddhi</code> and <code>TestDb.yaml</code> files.</li>
@@ -1155,10 +1197,44 @@ curl -X POST https://localhost:9443/stores/query \
 <p>Templating SiddhiApps allows users to provide environment/system variables to siddhiApps at runtime. This can help users to migrate SiddhiApps from one environment to another (E.g from dev, test and to prod).</p>
 <p>Following templated SiddhiApp collects events via HTTP, filters them based on <code>amount</code> greater than a given threshold value, and only sends the filtered events via email.</p>
 <p>Here the <code>THRESHOLD</code> value, and <code>TO_EMAIL</code> are templated in the <code>TemplatedFilterAndEmail.siddhi</code> SiddhiApp.</p>
-<script src="https://gist.github.com/suhothayan/47b6300f629463e63b2d5be78d6e45b4.js"></script>
+<pre class="codehilite"><code class="language-sql linenums">@App:name("TemplatedFilterAndEmail")
+@App:description("Consumes events from HTTP, filters them based on amount greater than a templated threshold value, and sends filtered events via email.")
+
+@source(type = 'http', receiver.url = "http://0.0.0.0:8006/production",
+    @map(type = 'json'))
+define stream ProductionStream (name string, amount double);
+
+@sink(ref = 'email-sink', subject = 'High {{name}} production!', to = '${TO_EMAIL}', content.type = 'text/html',
+    @map(type = 'text',
+        @payload("""
+            Hi, &lt;br/&gt;&lt;br/&gt;
+            High production of &lt;b&gt;{{name}},&lt;/b&gt; with amount &lt;b&gt;{{amount}}&lt;/b&gt; identified. &lt;br/&gt;&lt;br/&gt;
+            For more information please contact production department.&lt;br/&gt;&lt;br/&gt;
+            Thank you""")))
+define stream  FilteredProductionStream (name string, amount double);
+
+-- Filters the events based on threshold 
+@info(name = 'query1')
+from ProductionStream[amount &gt; ${THRESHOLD}]
+insert into FilteredProductionStream;</code></pre>
 
 <p>The runner config is configured with a gmail account to send email messages in <code>EmailConfig.yaml</code> by templating sending <code>EMAIL_ADDRESS</code>, <code>EMAIL_USERNAME</code> and <code>EMAIL_PASSWORD</code>.   </p>
-<script src="https://gist.github.com/suhothayan/3f36f8827d379925a8cca68dd78b9a8e.js"></script>
+<pre class="codehilite"><code class="language-yaml linenums">siddhi:
+  refs:
+    -
+      ref:
+        name: 'email-sink'
+        type: 'email'
+        properties:
+          port: '465'
+          host: 'smtp.gmail.com'
+          ssl.enable: 'true'
+          auth: 'true'
+          ssl.enable: 'true'
+          # User your gmail configurations here
+          address: '${EMAIL_ADDRESS}'   #E.g. test@gmail.com
+          username: '${EMAIL_USERNAME}' #E.g. test
+          password: '${EMAIL_PASSWORD}' #E.g. password</code></pre>
 
 <ul>
     <li>Copy the above SiddhiApp, & config yaml, and create corresponding the SiddhiApp file <code>TemplatedFilterAndEmail.siddhi</code> and <code>EmailConfig.yaml</code> files.</li>

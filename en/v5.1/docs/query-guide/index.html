@@ -2660,7 +2660,7 @@ The following actions can be specified to <code>@OnError</code> annotation to ha
 <p>Handle errors in <code>TempStream</code> by redirecting the errors to a fault stream.</p>
 <p>The configuration of <code>TempStream</code> stream and <code>@OnError</code> annotation is as follows.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="n">OnError</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;STREAM&#39;</span><span class="p">)</span>
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="n">OnError</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s1">&#39;STREAM&#39;</span><span class="p">)</span>
 <span class="n">define</span> <span class="n">stream</span> <span class="n">TempStream</span> <span class="p">(</span><span class="n">deviceID</span> <span class="n">long</span><span class="p">,</span> <span class="n">roomNo</span> <span class="nb">int</span><span class="p">,</span> <span class="n">temp</span> <span class="n">double</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
@@ -2686,7 +2686,7 @@ The following actions can be specified to <code>@OnError</code> annotation to ha
 12
 13
 14</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1">-- Define fault stream to handle error occurred at TempStream subscribers</span>
-<span class="o">@</span><span class="n">OnError</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;STREAM&#39;</span><span class="p">)</span>
+<span class="o">@</span><span class="n">OnError</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s1">&#39;STREAM&#39;</span><span class="p">)</span>
 <span class="n">define</span> <span class="n">stream</span> <span class="n">TempStream</span> <span class="p">(</span><span class="n">deviceID</span> <span class="n">long</span><span class="p">,</span> <span class="n">roomNo</span> <span class="nb">int</span><span class="p">,</span> <span class="n">temp</span> <span class="n">double</span><span class="p">);</span>
 
 <span class="c1">-- Error generation through a custom function `createError()`</span>
@@ -2746,7 +2746,7 @@ The following actions can be specified to <code>@OnError</code> annotation to ha
  8
  9
 10
-11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="n">OnError</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;STREAM&#39;</span><span class="p">)</span>
+11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="n">OnError</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s1">&#39;STREAM&#39;</span><span class="p">)</span>
 <span class="o">@</span><span class="n">sink</span><span class="p">(</span><span class="k">type</span><span class="o">=</span><span class="s1">&#39;kafka&#39;</span><span class="p">,</span> <span class="k">on</span><span class="p">.</span><span class="n">error</span><span class="o">=</span><span class="s1">&#39;STREAM&#39;</span><span class="p">,</span> <span class="n">topic</span><span class="o">=</span><span class="s1">&#39;{{roomNo}}&#39;</span><span class="p">,</span>
       <span class="n">bootstrap</span><span class="p">.</span><span class="n">servers</span><span class="o">=</span><span class="s1">&#39;localhost:9092&#39;</span><span class="p">,</span>
       <span class="o">@</span><span class="k">map</span><span class="p">(</span><span class="k">type</span><span class="o">=</span><span class="s1">&#39;xml&#39;</span><span class="p">))</span>
@@ -3955,10 +3955,10 @@ and insert the filtered results into <code>HighTempStream</code> stream.</p>
 </td></tr></table>
 Here both outputs will be initiated by events arriving on <code>StockStream</code>.</p>
 <h3 id="pattern">Pattern<a class="headerlink" href="#pattern" title="Permanent link">&para;</a></h3>
-<p>The pattern is a state machine implementation that detects event occurrence patterns from the events arrived in one or more event streams over time. It supports matching the same pattern repetitively, match patterns by counting events occurrences, and using logical ordering such as (<code>and</code>, <code>or</code>, and <code>not</code>).</p>
+<p>The pattern is a state machine implementation that detects event occurrences from events arrived via one or more event streams over time. It can repetitively match patterns, count event occurrences, and use logical event ordering (using <code>and</code>, <code>or</code>, and <code>not</code>).</p>
 <p><strong>Purpose</strong></p>
 <p>The pattern helps to achieve Complex Event Processing (CEP) capabilities by detecting various pre-defined event occurrence patterns in realtime.</p>
-<p>Pattern query does not expect the matching events to occur immediately after each other, and it can successfully correlate the events how are far apart and having other events in between.</p>
+<p>Pattern query does not expect the matching events to occur immediately after each other, and it can successfully correlate the events who are far apart and having other events in between.</p>
 <p><strong>Syntax</strong></p>
 <p>The syntax for a pattern query is as follows,</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
@@ -3990,8 +3990,8 @@ Here both outputs will be initiated by events arriving on <code>StockStream</cod
     </tr>
     <tr>
         <td><code>every</code></td>
-        <td>An optional keyword defining when a new event matching state machine should be initiated to repetitively match the patterns. <br/>
-        When this keyword is not used, the event matching state machine will be initiated only once.</td>
+        <td>An optional keyword defining when a new event matching state-machine should be initiated to repetitively match the pattern.<br/>
+        When this keyword is not used, the event matching state-machine will be initiated only once.</td>
     </tr>
     <tr>
         <td><code>within &lt;time gap&gt;</code></td>
@@ -4044,7 +4044,7 @@ Here both outputs will be initiated by events arriving on <code>StockStream</cod
     </tr>
     <tr>
         <td><code>not &lt;condition1> for &lt;time period></code></td>
-        <td>Detects no event matching <code>&lt;condition1&gt;</code> for the specified <code>&lt;time period&gt;</code>.</td>
+        <td>Detects no event matching on <code>&lt;condition1&gt;</code> for the specified <code>&lt;time period&gt;</code>.</td>
     </tr>
     <tr>
         <td><code>&lt;event reference&gt;</code></td>
@@ -4063,7 +4063,7 @@ Here both outputs will be initiated by events arriving on <code>StockStream</cod
 <p>Siddhi can only logically correlate two conditions at a time using keywords such as <code>and</code>, <code>or</code>, and <code>not</code>. When more than two conditions need to be logically correlated, use multiple pattern queries in a chaining manner, at a time correlating two logical conditions and streaming the output to a downstream query to logically correlate the results with other logical conditions.</p>
 </div>
 <p><strong>Event selection</strong></p>
-<p>The <code>event reference</code> in pattern queries is used to retrieve the matched events. When a pattern condition is intended to match only a single event, then the attributes of that event can be retrieved by referring to its reference as <code>&lt;event reference&gt;.&lt;attribute name&gt;</code>. An example of this is as follows.</p>
+<p>The <code>event reference</code> in pattern queries is used to retrieve the matched events. When a pattern condition is intended to match only a single event, then its attributes can be retrieved by referring to its reference as <code>&lt;event reference&gt;.&lt;attribute name&gt;</code>. An example of this is as follows.</p>
 <ul>
 <li><code>e1.symbol</code>, refers to the <code>symbol</code> attribute value of the matching event <code>e1</code>.</li>
 </ul>
@@ -4221,11 +4221,10 @@ Here, the query alerts the <code>roomNo</code> via <code>AlertStream</code> stre
 </tbody>
 </table>
 <h3 id="sequence">Sequence<a class="headerlink" href="#sequence" title="Permanent link">&para;</a></h3>
-<p>Sequence is a state machine implementation that allows you to detect the sequence of event occurrences over time.
-Here <strong>all matching events need to arrive consecutively</strong> to match the sequence condition, and there cannot be any non-matching events arriving within a matching sequence of events.
-This can correlate events within a single stream or between multiple streams.</p>
+<p>The sequence is a state machine implementation that detects consecutive event occurrences from events arrived via one or more event streams over time. Here <strong>all matching events need to arrive consecutively</strong>, and there should not be any non-matching events in between the matching sequence of events. The sequence can repetitively match event sequences, count event occurrences, and use logical event ordering (using <code>and</code>, <code>or</code>, and <code>not</code>).</p>
 <p><strong>Purpose</strong></p>
-<p>This allows you to detect a specified event sequence over a specified time period.</p>
+<p>The sequence helps to achieve Complex Event Processing (CEP) capabilities by detecting various pre-defined consecutive event occurrence sequences in realtime.</p>
+<p>Sequence query does expect the matching events to occur immediately after each other, and it can successfully correlate the events who do not have other events in between.</p>
 <p><strong>Syntax</strong></p>
 <p>The syntax for a sequence query is as follows:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
@@ -4233,42 +4232,98 @@ This can correlate events within a single stream or between multiple streams.</p
 3
 4
 5
-6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">from</span> <span class="p">(</span><span class="k">every</span><span class="p">)</span><span class="o">?</span> <span class="o">&lt;</span><span class="n">event</span> <span class="n">reference</span><span class="o">&gt;=&lt;</span><span class="k">input</span> <span class="n">stream</span><span class="o">&gt;</span><span class="p">[</span><span class="o">&lt;</span><span class="n">filter</span> <span class="n">condition</span><span class="o">&gt;</span><span class="p">],</span>
-    <span class="o">&lt;</span><span class="n">event</span> <span class="n">reference</span><span class="o">&gt;=&lt;</span><span class="k">input</span> <span class="n">stream</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">filter</span> <span class="n">condition</span><span class="o">&gt;</span><span class="p">],</span>
-    <span class="p">...</span>
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">from</span> <span class="p">(</span>
+      <span class="p">(</span><span class="k">every</span><span class="p">)</span><span class="o">?</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">event</span> <span class="n">reference</span><span class="o">&gt;=</span><span class="p">)</span><span class="o">?&lt;</span><span class="k">input</span> <span class="n">stream</span><span class="o">&gt;</span><span class="p">[</span><span class="o">&lt;</span><span class="n">filter</span> <span class="n">condition</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">(</span><span class="o">+|*|?</span><span class="p">)</span><span class="o">?</span> <span class="o">|</span>
+               <span class="p">(</span><span class="o">&lt;</span><span class="n">event</span> <span class="n">reference</span><span class="o">&gt;=</span><span class="p">)</span><span class="o">?&lt;</span><span class="k">input</span> <span class="n">stream</span><span class="o">&gt;</span><span class="p">[</span><span class="o">&lt;</span><span class="n">filter</span> <span class="n">condition</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">(</span><span class="k">and</span><span class="o">|</span><span class="k">or</span><span class="p">)</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">event</span> <span class="n">reference</span><span class="o">&gt;=</span><span class="p">)</span><span class="o">?&lt;</span><span class="k">input</span> <span class="n">stream</span><span class="o">&gt;</span><span class="p">[</span><span class="o">&lt;</span><span class="n">filter</span> <span class="n">condition</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">|</span>
+               <span class="k">not</span> <span class="k">input</span> <span class="n">stream</span><span class="o">&gt;</span><span class="p">[</span><span class="o">&lt;</span><span class="n">filter</span> <span class="n">condition</span><span class="o">&gt;</span><span class="p">]</span> <span class="p">(</span><span class="k">and</span> <span class="o">&lt;</span><span class="n">event</span> <span class="n">reference</span><span class="o">&gt;=&lt;</span><span class="k">input</span> <span class="n">stream</span><span class="o">&gt;</span><span class="p">[</span><span class="o">&lt;</span><span class="n">filter</span> <span class="n">condition</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">|</span> <span class="k">for</span> <span class="o">&lt;</span><span class="n">time</span> <span class="n">gap</span><span class="o">&gt;</span><span class="p">)</span>
+    <span class="p">),</span> <span class="p">...</span>
     <span class="p">(</span><span class="n">within</span> <span class="o">&lt;</span><span class="n">time</span> <span class="n">gap</span><span class="o">&gt;</span><span class="p">)</span><span class="o">?</span>     
 <span class="k">select</span> <span class="o">&lt;</span><span class="n">event</span> <span class="n">reference</span><span class="o">&gt;</span><span class="p">.</span><span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">event</span> <span class="n">reference</span><span class="o">&gt;</span><span class="p">.</span><span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...</span>
 <span class="k">insert</span> <span class="k">into</span> <span class="o">&lt;</span><span class="k">output</span> <span class="n">stream</span><span class="o">&gt;</span>
 </pre></div>
 </td></tr></table>
 
-<table>
-<thead>
-<tr>
-<th>Items</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>,</code></td>
-<td>This represents the immediate next event i.e., when an event that matches the first condition arrives, the event that arrives immediately after it should match the second condition.</td>
-</tr>
-<tr>
-<td><code>&lt;event reference&gt;</code></td>
-<td>This allows you to add a reference to the the matching event so that it can be accessed later for further processing.</td>
-</tr>
-<tr>
-<td><code>(within &lt;time gap&gt;)?</code></td>
-<td>The <code>within</code> clause is optional. It defines the time duration within which all the matching events should occur.</td>
-</tr>
-<tr>
-<td><code>every</code></td>
-<td><code>every</code> is an optional keyword. This defines whether the matching event should be triggered for every event that arrives at the specified stream with the matching condition. <br/> When this keyword is not used, the matching is carried out only once.</td>
-</tr>
-</tbody>
+<table style="width:100%">
+    <tr>
+        <th style="width:20%">Items</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td><code>,</code></td>
+        <td>Indicates the immediate next event that follows the given event. The condition to be met by the preceding event should be added before the <code>,</code>, and the condition to be met by the subsequent event should be added after the <code>,</code>.</td>
+    </tr>
+    <tr>
+        <td><code>every</code></td>
+        <td>An optional keyword defining when a new event matching state-machine should be initiated to repetitively match the sequence.<br/>
+        When this keyword is not used, the event matching state-machine will be initiated only once.</td>
+    </tr>
+    <tr>
+        <td><code>within &lt;time gap&gt;</code></td>
+        <td>An optional <code>within</code> clause that defines the time duration within which all the matching events should occur.</td>
+    </tr>
+    <tr>
+        <td><code> + </code></td>
+        <td>Matches **one or more** events to the given condition.</td>
+    </tr>
+    <tr>
+        <td><code> * </code></td>
+        <td>Matches **zero or more** events to the given condition.</td>
+    </tr>
+    <tr>
+        <td><code> ? </code></td>
+        <td>Matches **zero or one** events to the given condition.</td>
+    </tr>
+    <tr>
+        <td><code>and</code></td>
+        <td>Allows both of its condition to be matched by two distinct events in any order.</td>
+    </tr>
+    <tr>
+        <td><code>or</code></td>
+        <td>Only expects one of its condition to be matched by an event. Here the event reference of the unmatched condition will be <code>null</code>.</td>
+    </tr>
+    <tr>
+        <td><code>not &lt;condition1&gt; and &lt;condition2&gt;</code></td>
+        <td>Detects the event matching <code>&lt;condition2&gt;</code> before any event matching <code>&lt;condition1&gt;</code>.</td>
+    </tr>
+    <tr>
+        <td><code>not &lt;condition1> for &lt;time period></code></td>
+        <td>Detects no event matching on <code>&lt;condition1&gt;</code> for the specified <code>&lt;time period&gt;</code>.</td>
+    </tr>
+    <tr>
+        <td><code>&lt;event reference&gt;</code></td>
+        <td>An optional reference to access the matching event for further processing.<br/>
+        All conditions can be assigned to an event reference to collect the matching event occurrences, other than the condition used for <code>not</code> case (as there will not be any event matched against it).
+        </td>
+    </tr>
 </table>
-<p><strong>Example</strong></p>
+
+<div class="admonition note">
+<p class="admonition-title">Non occurrence of events.</p>
+<p>Siddhi detects non-occurrence of events using the <code>not</code> keyword, and its effective non-occurrence checking period is bounded either by fulfillment of a condition associated by <code>and</code> or via an expiry time using <code>&lt;time period&gt;</code>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Logical correlation of multiple conditions.</p>
+<p>Siddhi can only logically correlate two conditions at a time using keywords such as <code>and</code>, <code>or</code>, and <code>not</code>. When more than two conditions need to be logically correlated, use multiple pattern queries in a chaining manner, at a time correlating two logical conditions and streaming the output to a downstream query to logically correlate the results with other logical conditions.</p>
+</div>
+<p><strong>Event selection</strong></p>
+<p>The <code>event reference</code> in sequence queries is used to retrieve the matched events. When a sequence condition is intended to match only a single event, then its attributes can be retrieved by referring to its reference as <code>&lt;event reference&gt;.&lt;attribute name&gt;</code>. An example of this is as follows.</p>
+<ul>
+<li><code>e1.symbol</code>, refers to the <code>symbol</code> attribute value of the matching event <code>e1</code>.</li>
+</ul>
+<p>But when the pattern condition is associated with <code>&lt;&lt;min count&gt;:&lt;max count&gt;&gt;</code>, it is expected to match against on multiple events. Therefore, an event from the matched event collection should be retrieved using the event index from its reference. Here the indexes are specified in square brackets next to event reference, where index <code>0</code> referring to the first event, and a special index <code>last</code> referring to the last available event in the collection.
+Attribute values of all the events in the matching event collection can be accessed a list, by referring to their <code>&lt;event reference&gt;</code> without an index.
+Some possible indexes and their behavior is as follows.</p>
+<ul>
+<li><code>e1[0].symbol</code>, refers to the <code>symbol</code> attribute value of the 1<sup>st</sup> event in reference <code>e1</code>.</li>
+<li><code>e1[3].price</code>, refers to the <code>price</code> attribute value of the 4<sup>th</sup> event in reference <code>e1</code>.</li>
+<li><code>e1[last].symbol</code>, refers to the <code>symbol</code> attribute value of the last event in reference <code>e1</code>.</li>
+<li><code>e1[last - 1].symbol</code>, refers to the <code>symbol</code> attribute value of one before the last event in reference <code>e1</code>.</li>
+<li><code>e1.symbol</code>, refers to the list of <code>symbol</code> attribute values of all events in the event collection in reference <code>e1</code>, as a list object.</li>
+</ul>
+<p>The system returns <code>null</code> when accessing attribute values, when no matching event is assigned to the <code>event reference</code> (as in when two conditions are combined using <code>or</code>) or when the provided index is greater than the last event index in the event collection.</p>
+<p><strong>Example 1</strong></p>
 <p>This query generates an alert if the increase in the temperature between two consecutive temperature events exceeds one degree.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
@@ -4278,54 +4333,7 @@ This can correlate events within a single stream or between multiple streams.</p
 </pre></div>
 </td></tr></table>
 
-<p><strong>Counting Sequence</strong></p>
-<p>Counting sequences allow you to match multiple events for the same matching condition.
-The number of events matched per condition can be limited via condition postfixes such as <strong>Counting Patterns</strong>, or by using the
-<code>*</code>, <code>+</code>, and <code>?</code> operators.</p>
-<p>The matching events can also be retrieved using event indexes, similar to how it is done in <strong>Counting Patterns</strong>.</p>
-<p><strong>Syntax</strong></p>
-<p>Each matching condition in a sequence can contain a collection of events as shown below.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">from</span> <span class="p">(</span><span class="k">every</span><span class="p">)</span><span class="o">?</span> <span class="o">&lt;</span><span class="n">event</span> <span class="n">reference</span><span class="o">&gt;=&lt;</span><span class="k">input</span> <span class="n">stream</span><span class="o">&gt;</span><span class="p">[</span><span class="o">&lt;</span><span class="n">filter</span> <span class="n">condition</span><span class="o">&gt;</span><span class="p">](</span><span class="o">+|*|?</span><span class="p">)</span><span class="o">?</span><span class="p">,</span>
-    <span class="o">&lt;</span><span class="n">event</span> <span class="n">reference</span><span class="o">&gt;=&lt;</span><span class="k">input</span> <span class="n">stream</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">filter</span> <span class="n">condition</span><span class="o">&gt;</span><span class="p">](</span><span class="o">+|*|?</span><span class="p">)</span><span class="o">?</span><span class="p">,</span>
-    <span class="p">...</span>
-    <span class="p">(</span><span class="n">within</span> <span class="o">&lt;</span><span class="n">time</span> <span class="n">gap</span><span class="o">&gt;</span><span class="p">)</span><span class="o">?</span>     
-<span class="k">select</span> <span class="o">&lt;</span><span class="n">event</span> <span class="n">reference</span><span class="o">&gt;</span><span class="p">.</span><span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">event</span> <span class="n">reference</span><span class="o">&gt;</span><span class="p">.</span><span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...</span>
-<span class="k">insert</span> <span class="k">into</span> <span class="o">&lt;</span><span class="k">output</span> <span class="n">stream</span><span class="o">&gt;</span>
-</pre></div>
-</td></tr></table>
-
-<table>
-<thead>
-<tr>
-<th>Postfix symbol</th>
-<th>Required/Optional</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>+</code></td>
-<td>Optional</td>
-<td>This matches <strong>one or more</strong> events to the given condition.</td>
-</tr>
-<tr>
-<td><code>*</code></td>
-<td>Optional</td>
-<td>This matches <strong>zero or more</strong> events to the given condition.</td>
-</tr>
-<tr>
-<td><code>?</code></td>
-<td>Optional</td>
-<td>This matches <strong>zero or one</strong> events to the given condition.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Example</strong></p>
+<p><strong>Example 2</strong></p>
 <p>This Siddhi application identifies temperature peeks.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
@@ -4339,24 +4347,7 @@ The number of events matched per condition can be limited via condition postfixe
 </pre></div>
 </td></tr></table>
 
-<p><strong>Logical Sequence</strong></p>
-<p>Logical sequences identify logical relationships using <code>and</code>, <code>or</code> and <code>not</code> on consecutively arriving events.</p>
-<p><strong>Syntax</strong>
-The syntax for a logical sequence is as follows:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">from</span> <span class="p">(</span><span class="k">every</span><span class="p">)</span><span class="o">?</span> <span class="p">(</span><span class="k">not</span><span class="p">)</span><span class="o">?</span> <span class="o">&lt;</span><span class="n">event</span> <span class="n">reference</span><span class="o">&gt;=&lt;</span><span class="k">input</span> <span class="n">stream</span><span class="o">&gt;</span><span class="p">[</span><span class="o">&lt;</span><span class="n">filter</span> <span class="n">condition</span><span class="o">&gt;</span><span class="p">]</span>
-          <span class="p">((</span><span class="k">and</span><span class="o">|</span><span class="k">or</span><span class="p">)</span> <span class="o">&lt;</span><span class="n">event</span> <span class="n">reference</span><span class="o">&gt;=&lt;</span><span class="k">input</span> <span class="n">stream</span><span class="o">&gt;</span><span class="p">[</span><span class="o">&lt;</span><span class="n">filter</span> <span class="n">condition</span><span class="o">&gt;</span><span class="p">])</span><span class="o">?</span> <span class="p">(</span><span class="n">within</span> <span class="o">&lt;</span><span class="n">time</span> <span class="n">gap</span><span class="o">&gt;</span><span class="p">)</span><span class="o">?</span><span class="p">,</span>
-    <span class="p">...</span>
-<span class="k">select</span> <span class="o">&lt;</span><span class="n">event</span> <span class="n">reference</span><span class="o">&gt;</span><span class="p">([</span><span class="n">event</span> <span class="k">index</span><span class="p">])</span><span class="o">?</span><span class="p">.</span><span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...</span>
-<span class="k">insert</span> <span class="k">into</span> <span class="o">&lt;</span><span class="k">output</span> <span class="n">stream</span><span class="o">&gt;</span>
-</pre></div>
-</td></tr></table>
-
-<p>Keywords such as <code>and</code>, <code>or</code>, or <code>not</code> can be used to illustrate the logical relationship, similar to how it is done in <strong>Logical Patterns</strong>.</p>
-<p><strong>Example</strong></p>
+<p><strong>Example 3</strong></p>
 <p>This Siddhi application notifies the state when a regulator event is immediately followed by both temperature and humidity events.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2

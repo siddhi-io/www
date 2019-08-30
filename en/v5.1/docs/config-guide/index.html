@@ -1969,7 +1969,55 @@ These Jars will be converted as OSGI bundles and copied to Siddhi Runner distrib
 <p>The most used Siddhi extensions are packed by default with the Siddhi Docker Microservice distribution.</p>
 <p>To add or update Siddhi extensions and/or third-party dependencies, a new docker image has to be built from either <a href="https://hub.docker.com/r/siddhiio/siddhi-runner-base-ubuntu">siddhi-runner-base-ubuntu</a> or <a href="https://hub.docker.com/r/siddhiio/siddhi-runner-base-alpine">siddhi-runner-base-alpine</a> images. These images contain Linux OS, JDK and the Siddhi distribution.</p>
 <p>Sample docker file using <code>siddhi-runner-base-alpine</code> is as follows.
-<script src="https://gist.github.com/pcnfernando/09d3af8f958c464425a892efabac2d98.js"></script></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c"># use siddhi-runner-base</span>
+<span class="k">FROM</span><span class="s"> siddhiio/siddhi-runner-base-alpine:5.1.0-alpha</span>
+<span class="k">MAINTAINER</span><span class="s"> Siddhi IO Docker Maintainers &quot;siddhi-dev@googlegroups.com&quot;</span>
+
+<span class="k">ARG</span> <span class="nv">HOST_BUNDLES_DIR</span><span class="o">=</span>./files/bundles
+<span class="k">ARG</span> <span class="nv">HOST_JARS_DIR</span><span class="o">=</span>./files/jars
+<span class="k">ARG</span> <span class="nv">JARS</span><span class="o">=</span><span class="si">${</span><span class="nv">RUNTIME_SERVER_HOME</span><span class="si">}</span>/jars
+<span class="k">ARG</span> <span class="nv">BUNDLES</span><span class="o">=</span><span class="si">${</span><span class="nv">RUNTIME_SERVER_HOME</span><span class="si">}</span>/bundles
+
+<span class="c"># copy entrypoint bash script to user home</span>
+<span class="k">COPY</span> --chown<span class="o">=</span>siddhi_user:siddhi_io init.sh <span class="si">${</span><span class="nv">WORKING_DIRECTORY</span><span class="si">}</span>/
+
+<span class="c"># copy bundles &amp; jars to the siddhi-runner distribution</span>
+<span class="k">COPY</span> --chown<span class="o">=</span>siddhi_user:siddhi_io <span class="si">${</span><span class="nv">HOST_BUNDLES_DIR</span><span class="si">}</span>/ <span class="si">${</span><span class="nv">BUNDLES</span><span class="si">}</span>
+<span class="k">COPY</span> --chown<span class="o">=</span>siddhi_user:siddhi_io <span class="si">${</span><span class="nv">HOST_JARS_DIR</span><span class="si">}</span>/ <span class="si">${</span><span class="nv">JARS</span><span class="si">}</span>
+
+<span class="c"># expose ports</span>
+<span class="k">EXPOSE</span><span class="s"> 9090 9443 9712 9612 7711 7611 7070 7443</span>
+
+<span class="k">RUN</span> bash <span class="si">${</span><span class="nv">RUNTIME_SERVER_HOME</span><span class="si">}</span>/bin/install-jars.sh
+
+<span class="k">STOPSIGNAL</span><span class="s"> SIGINT</span>
+
+<span class="k">ENTRYPOINT</span> <span class="p">[</span><span class="s2">&quot;/home/siddhi_user/init.sh&quot;</span><span class="p">,</span>  <span class="s2">&quot;--&quot;</span><span class="p">]</span>
+</pre></div>
+</td></tr></table></p>
 <p>Find the necessary artifacts to build the docker from <a href="https://github.com/siddhi-io/docker-siddhi/tree/master/docker-files/siddhi-runner">docker-siddhi</a> repository.</p>
 <p><code>&lt;DOCKERFILE_HOME&amp;gt/siddhi-runner/files</code> contains two directories (bundles and jars directories) where you can copy the Jars and Bundles you need to bundle into the docker image.</p>
 <ol>

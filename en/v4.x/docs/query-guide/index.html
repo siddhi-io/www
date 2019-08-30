@@ -5082,7 +5082,7 @@ define stream &lt;stream name&gt; (&lt;attribute name&gt; &lt;attribute type&gt;
 The events are inserted into the fault stream during a failure. The error identified is captured as the value for the <code>_error</code> attribute.</li>
 </ul>
 <p>e.g., the following is a Siddhi application that includes the <code>@OnError</code> annotation to handle failures during runtime.</p>
-<pre class="codehilite"><code class="language-sql linenums">@OnError(name='STREAM')
+<pre class="codehilite"><code class="language-sql linenums">@OnError(action='STREAM')
 define stream StreamA (symbol string, volume long);
 
 from StreamA[custom:fault() &gt; volume] 

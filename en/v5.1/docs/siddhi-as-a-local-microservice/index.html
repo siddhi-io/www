@@ -1028,7 +1028,7 @@
 Here, the Siddhi application (<code>.siddhi</code> file) contains stream processing logic and the necessary system configurations can be passed via the Siddhi configuration <code>.yaml</code> file. </p>
 <p>Steps to Run Siddhi Local Microservice is as follows.</p>
 <ul>
-<li>Download the latest <a href="https://github.com/siddhi-io/distribution/releases/download/v0.1.0/siddhi-runner-0.1.0.zip">Siddhi Runner distribution</a> </li>
+<li>Download the latest <a href="https://github.com/siddhi-io/distribution/releases/download/v5.1.0-alpha/siddhi-runner-5.1.0-alpha.zip">Siddhi Runner distribution</a> </li>
 <li>Unzip the siddhi-runner-x.x.x.zip</li>
 <li>Start SiddhiApps with the runner config by executing the following commands from the distribution directory<br/>
   Linux/Mac : <code>./bin/runner.sh -Dapps=&lt;siddhi-file&gt; -Dconfig=&lt;config-yaml-file&gt;</code><br/>
@@ -1054,7 +1054,37 @@ Here, the Siddhi application (<code>.siddhi</code> file) contains stream process
 <h2 id="samples">Samples<a class="headerlink" href="#samples" title="Permanent link">&para;</a></h2>
 <h3 id="running-siddhi-app">Running Siddhi App<a class="headerlink" href="#running-siddhi-app" title="Permanent link">&para;</a></h3>
 <p>Following SiddhiApp collects events via HTTP and logs the number of events arrived during last 15 seconds.  </p>
-<script src="https://gist.github.com/suhothayan/8b0471cbe86a0089db5d6afb1c46f765.js"></script>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="n">App</span><span class="p">:</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;CountOverTime&#39;</span><span class="p">)</span>
+<span class="o">@</span><span class="n">App</span><span class="p">:</span><span class="n">description</span><span class="p">(</span><span class="s1">&#39;Receive events via HTTP, and logs the number of events received during last 15 seconds&#39;</span><span class="p">)</span>
+
+<span class="o">@</span><span class="k">source</span><span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;http&#39;</span><span class="p">,</span> <span class="n">receiver</span><span class="p">.</span><span class="n">url</span> <span class="o">=</span> <span class="ss">&quot;http://0.0.0.0:8006/production&quot;</span><span class="p">,</span>
+    <span class="o">@</span><span class="k">map</span><span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;json&#39;</span><span class="p">))</span>
+<span class="n">define</span> <span class="n">stream</span> <span class="n">ProductionStream</span> <span class="p">(</span><span class="n">name</span> <span class="n">string</span><span class="p">,</span> <span class="n">amount</span> <span class="n">double</span><span class="p">);</span>
+
+<span class="o">@</span><span class="n">sink</span><span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">define</span> <span class="n">stream</span> <span class="n">TotalCountStream</span> <span class="p">(</span><span class="n">totalCount</span> <span class="n">long</span><span class="p">);</span>
+
+<span class="c1">-- Count the incoming events</span>
+<span class="o">@</span><span class="n">info</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;query1&#39;</span><span class="p">)</span>
+<span class="k">from</span> <span class="n">ProductionStream</span><span class="o">#</span><span class="n">window</span><span class="p">.</span><span class="n">time</span><span class="p">(</span><span class="mi">15</span> <span class="n">sec</span><span class="p">)</span>
+<span class="k">select</span> <span class="k">count</span><span class="p">()</span> <span class="k">as</span> <span class="n">totalCount</span> 
+<span class="k">insert</span> <span class="k">into</span> <span class="n">TotalCountStream</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
 
 <ul>
     <li>Copy the above SiddhiApp, and create the SiddhiApp file <code>CountOverTime.siddhi</code>.</li>
@@ -1107,10 +1137,70 @@ curl -X POST http://localhost:8006/production \
 <h3 id="running-with-runner-config">Running with runner config<a class="headerlink" href="#running-with-runner-config" title="Permanent link">&para;</a></h3>
 <p>When running SiddhiApps users can optionally provide a config yaml to Siddhi runner to manage configurations such as state persistence, databases connections and secure vault.</p>
 <p>Following SiddhiApp collects events via HTTP and store them in H2 Database.</p>
-<script src="https://gist.github.com/suhothayan/2413a6f886219befe736bf4447af02de.js"></script>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="n">App</span><span class="p">:</span><span class="n">name</span><span class="p">(</span><span class="ss">&quot;ConsumeAndStore&quot;</span><span class="p">)</span>
+<span class="o">@</span><span class="n">App</span><span class="p">:</span><span class="n">description</span><span class="p">(</span><span class="ss">&quot;Consume events from HTTP and write to TEST_DB&quot;</span><span class="p">)</span>
+
+<span class="o">@</span><span class="k">source</span><span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;http&#39;</span><span class="p">,</span> <span class="n">receiver</span><span class="p">.</span><span class="n">url</span> <span class="o">=</span> <span class="ss">&quot;http://0.0.0.0:8006/production&quot;</span><span class="p">,</span>
+    <span class="o">@</span><span class="k">map</span><span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;json&#39;</span><span class="p">))</span>
+<span class="n">define</span> <span class="n">stream</span> <span class="n">ProductionStream</span> <span class="p">(</span><span class="n">name</span> <span class="n">string</span><span class="p">,</span> <span class="n">amount</span> <span class="n">double</span><span class="p">);</span>
+
+<span class="o">@</span><span class="n">store</span><span class="p">(</span><span class="k">type</span><span class="o">=</span><span class="s1">&#39;rdbms&#39;</span><span class="p">,</span> <span class="n">datasource</span><span class="o">=</span><span class="s1">&#39;TEST_DB&#39;</span><span class="p">)</span>
+<span class="n">define</span> <span class="k">table</span> <span class="n">ProductionTable</span> <span class="p">(</span><span class="n">name</span> <span class="n">string</span><span class="p">,</span> <span class="n">amount</span> <span class="n">double</span><span class="p">);</span>
+
+<span class="c1">-- Store all events to the table</span>
+<span class="o">@</span><span class="n">info</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;query1&#39;</span><span class="p">)</span>
+<span class="k">from</span> <span class="n">ProductionStream</span>
+<span class="k">insert</span> <span class="k">into</span> <span class="n">ProductionTable</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
 
 <p>The runner config can by configured with the relevant datasource information and passed when starting the runner</p>
-<script src="https://gist.github.com/suhothayan/015ae003d4ba8d4aeaadc19e4c9516fd.js"></script>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">wso2.datasources</span><span class="p">:</span>
+  <span class="nt">dataSources</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">TEST_DB</span>
+    <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">The datasource used for testing</span>
+    <span class="nt">definition</span><span class="p">:</span>
+      <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">RDBMS</span>
+      <span class="nt">configuration</span><span class="p">:</span>
+        <span class="nt">jdbcUrl</span><span class="p">:</span> <span class="s">&#39;jdbc:h2:${sys:carbon.home}/wso2/${sys:wso2.runtime}/database/TEST_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000&#39;</span>
+        <span class="nt">username</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">admin</span>
+        <span class="nt">password</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">admin</span>
+        <span class="nt">driverClassName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">org.h2.Driver</span>
+        <span class="nt">maxPoolSize</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+        <span class="nt">idleTimeout</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">60000</span>
+        <span class="nt">connectionTestQuery</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SELECT 1</span>
+        <span class="nt">validationTimeout</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">30000</span>
+        <span class="nt">isAutoCommit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span> 
+</pre></div>
+</td></tr></table>
 
 <ul>
     <li>Copy the above SiddhiApp, & config yaml, and create corresponding the SiddhiApp file <code>ConsumeAndStore.siddhi</code> and <code>TestDb.yaml</code> files.</li>
@@ -1193,10 +1283,82 @@ curl -X POST https://localhost:9443/stores/query \
 <p>Templating SiddhiApps allows users to provide environment/system variables to siddhiApps at runtime. This can help users to migrate SiddhiApps from one environment to another (E.g from dev, test and to prod).</p>
 <p>Following templated SiddhiApp collects events via HTTP, filters them based on <code>amount</code> greater than a given threshold value, and only sends the filtered events via email.</p>
 <p>Here the <code>THRESHOLD</code> value, and <code>TO_EMAIL</code> are templated in the <code>TemplatedFilterAndEmail.siddhi</code> SiddhiApp.</p>
-<script src="https://gist.github.com/suhothayan/47b6300f629463e63b2d5be78d6e45b4.js"></script>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="n">App</span><span class="p">:</span><span class="n">name</span><span class="p">(</span><span class="ss">&quot;TemplatedFilterAndEmail&quot;</span><span class="p">)</span>
+<span class="o">@</span><span class="n">App</span><span class="p">:</span><span class="n">description</span><span class="p">(</span><span class="ss">&quot;Consumes events from HTTP, filters them based on amount greater than a templated threshold value, and sends filtered events via email.&quot;</span><span class="p">)</span>
+
+<span class="o">@</span><span class="k">source</span><span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;http&#39;</span><span class="p">,</span> <span class="n">receiver</span><span class="p">.</span><span class="n">url</span> <span class="o">=</span> <span class="ss">&quot;http://0.0.0.0:8006/production&quot;</span><span class="p">,</span>
+    <span class="o">@</span><span class="k">map</span><span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;json&#39;</span><span class="p">))</span>
+<span class="n">define</span> <span class="n">stream</span> <span class="n">ProductionStream</span> <span class="p">(</span><span class="n">name</span> <span class="n">string</span><span class="p">,</span> <span class="n">amount</span> <span class="n">double</span><span class="p">);</span>
+
+<span class="o">@</span><span class="n">sink</span><span class="p">(</span><span class="k">ref</span> <span class="o">=</span> <span class="s1">&#39;email-sink&#39;</span><span class="p">,</span> <span class="n">subject</span> <span class="o">=</span> <span class="s1">&#39;High {{name}} production!&#39;</span><span class="p">,</span> <span class="k">to</span> <span class="o">=</span> <span class="s1">&#39;${TO_EMAIL}&#39;</span><span class="p">,</span> <span class="n">content</span><span class="p">.</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;text/html&#39;</span><span class="p">,</span>
+    <span class="o">@</span><span class="k">map</span><span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span>
+        <span class="o">@</span><span class="n">payload</span><span class="p">(</span><span class="ss">&quot;&quot;&quot;</span>
+<span class="ss">            Hi, &lt;br/&gt;&lt;br/&gt;</span>
+<span class="ss">            High production of &lt;b&gt;{{name}},&lt;/b&gt; with amount &lt;b&gt;{{amount}}&lt;/b&gt; identified. &lt;br/&gt;&lt;br/&gt;</span>
+<span class="ss">            For more information please contact production department.&lt;br/&gt;&lt;br/&gt;</span>
+<span class="ss">            Thank you&quot;&quot;&quot;</span><span class="p">)))</span>
+<span class="n">define</span> <span class="n">stream</span>  <span class="n">FilteredProductionStream</span> <span class="p">(</span><span class="n">name</span> <span class="n">string</span><span class="p">,</span> <span class="n">amount</span> <span class="n">double</span><span class="p">);</span>
+
+<span class="c1">-- Filters the events based on threshold </span>
+<span class="o">@</span><span class="n">info</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;query1&#39;</span><span class="p">)</span>
+<span class="k">from</span> <span class="n">ProductionStream</span><span class="p">[</span><span class="n">amount</span> <span class="o">&gt;</span> <span class="err">${</span><span class="n">THRESHOLD</span><span class="err">}</span><span class="p">]</span>
+<span class="k">insert</span> <span class="k">into</span> <span class="n">FilteredProductionStream</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
 
 <p>The runner config is configured with a gmail account to send email messages in <code>EmailConfig.yaml</code> by templating sending <code>EMAIL_ADDRESS</code>, <code>EMAIL_USERNAME</code> and <code>EMAIL_PASSWORD</code>.   </p>
-<script src="https://gist.github.com/suhothayan/3f36f8827d379925a8cca68dd78b9a8e.js"></script>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">siddhi</span><span class="p">:</span>
+  <span class="nt">refs</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span>
+      <span class="nt">ref</span><span class="p">:</span>
+        <span class="nt">name</span><span class="p">:</span> <span class="s">&#39;email-sink&#39;</span>
+        <span class="nt">type</span><span class="p">:</span> <span class="s">&#39;email&#39;</span>
+        <span class="nt">properties</span><span class="p">:</span>
+          <span class="nt">port</span><span class="p">:</span> <span class="s">&#39;465&#39;</span>
+          <span class="nt">host</span><span class="p">:</span> <span class="s">&#39;smtp.gmail.com&#39;</span>
+          <span class="nt">ssl.enable</span><span class="p">:</span> <span class="s">&#39;true&#39;</span>
+          <span class="nt">auth</span><span class="p">:</span> <span class="s">&#39;true&#39;</span>
+          <span class="nt">ssl.enable</span><span class="p">:</span> <span class="s">&#39;true&#39;</span>
+          <span class="c1"># User your gmail configurations here</span>
+          <span class="nt">address</span><span class="p">:</span> <span class="s">&#39;${EMAIL_ADDRESS}&#39;</span>   <span class="c1">#E.g. test@gmail.com</span>
+          <span class="nt">username</span><span class="p">:</span> <span class="s">&#39;${EMAIL_USERNAME}&#39;</span> <span class="c1">#E.g. test</span>
+          <span class="nt">password</span><span class="p">:</span> <span class="s">&#39;${EMAIL_PASSWORD}&#39;</span> <span class="c1">#E.g. password</span>
+</pre></div>
+</td></tr></table>
 
 <ul>
     <li>Copy the above SiddhiApp, & config yaml, and create corresponding the SiddhiApp file <code>TemplatedFilterAndEmail.siddhi</code> and <code>EmailConfig.yaml</code> files.</li>

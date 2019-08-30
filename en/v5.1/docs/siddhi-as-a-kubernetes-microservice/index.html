@@ -1161,8 +1161,8 @@ or disable Siddhi operator's <a href="#deploy-siddhi-apps-without-ingress-creati
 <h2 id="install-siddhi-operator">Install Siddhi Operator<a class="headerlink" href="#install-siddhi-operator" title="Permanent link">&para;</a></h2>
 <p>To install the Siddhi Kubernetes operator run the following commands.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-m2/00-prereqs.yaml
-kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-m2/01-siddhi-operator.yaml
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-alpha/00-prereqs.yaml
+kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-alpha/01-siddhi-operator.yaml
 </pre></div>
 </td></tr></table>
 
@@ -1261,7 +1261,7 @@ If you are pulling the custom-built image from a private Docker registry/reposit
         <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">RECEIVER_URL</span>
         <span class="nt">value</span><span class="p">:</span> <span class="s">&quot;http://0.0.0.0:8080/checkPower&quot;</span>
 
-    <span class="nt">image</span><span class="p">:</span> <span class="s">&quot;siddhiio/siddhi-runner-ubuntu:5.1.0-m2&quot;</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="s">&quot;siddhiio/siddhi-runner-ubuntu:5.1.0-alpha&quot;</span>
 </pre></div>
 </td></tr></table>
 
@@ -1527,7 +1527,7 @@ insert into PowerSurgeAlertStream<span class="p">;</span>
       Value:  http://0.0.0.0:8080/checkPower
       Name:   BASIC_AUTH_ENABLED
       Value:  <span class="nb">false</span>
-    Image:    siddhiio/siddhi-runner-ubuntu:5.1.0-m2
+    Image:    siddhiio/siddhi-runner-ubuntu:5.1.0-alpha
 Status:
   Nodes:   &lt;nil&gt;
   Ready:   <span class="m">1</span>/1
@@ -1670,7 +1670,7 @@ This can be achieved by running the following command.</p>
         <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">RECEIVER_URL</span>
         <span class="nt">value</span><span class="p">:</span> <span class="s">&quot;http://0.0.0.0:8080/checkPower&quot;</span>
 
-    <span class="nt">image</span><span class="p">:</span> <span class="s">&quot;siddhiio/siddhi-runner-ubuntu:5.1.0-m2&quot;</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="s">&quot;siddhiio/siddhi-runner-ubuntu:5.1.0-alpha&quot;</span>
 </pre></div>
 </td></tr></table>
 
@@ -1775,7 +1775,7 @@ This will show all the Siddhi process logs, along with the filtered output event
 <span class="nt">data</span><span class="p">:</span>
   <span class="nt">siddhiHome</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/home/siddhi_user/siddhi-runner/</span>
   <span class="nt">siddhiProfile</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">runner</span>
-  <span class="nt">siddhiImage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhiio/siddhi-runner-alpine:5.1.0-m2</span>
+  <span class="nt">siddhiImage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhiio/siddhi-runner-alpine:5.1.0-alpha</span>
   <span class="nt">autoIngressCreation</span><span class="p">:</span> <span class="s">&quot;false&quot;</span>
 </pre></div>
 </td></tr></table>
@@ -1814,7 +1814,7 @@ This will show all the Siddhi process logs, along with the filtered output event
 <span class="nt">data</span><span class="p">:</span>
   <span class="nt">siddhiHome</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/home/siddhi_user/siddhi-runner/</span>
   <span class="nt">siddhiProfile</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">runner</span>
-  <span class="nt">siddhiImage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhiio/siddhi-runner-alpine:5.1.0-m2</span>
+  <span class="nt">siddhiImage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhiio/siddhi-runner-alpine:5.1.0-alpha</span>
   <span class="nt">autoIngressCreation</span><span class="p">:</span> <span class="s">&quot;true&quot;</span>
   <span class="nt">ingressTLS</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi-tls</span>
 </pre></div>

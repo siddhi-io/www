@@ -1435,7 +1435,7 @@ mohan, silver, true], isExpired=false}
 <p>You can deploy the Siddhi app using any of the methods listed below. </p>
 <h3 id="deploy-on-vm-bare-metal">Deploy on VM/ Bare Metal<a class="headerlink" href="#deploy-on-vm-bare-metal" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Download the latest Siddhi Runner <a href="https://github.com/siddhi-io/distribution/releases/download/v0.1.0/siddhi-runner-0.1.0.zip">distribution</a>.</li>
+<li>Download the latest Siddhi Runner <a href="https://github.com/siddhi-io/distribution/releases/download/v5.1.0-alpha/siddhi-runner-5.1.0-alpha.zip">distribution</a>.</li>
 <li>Unzip the <code>siddhi-runner-x.x.x.zip</code>.</li>
 <li>Configure the necessary environmental variables</li>
 </ol>
@@ -1485,14 +1485,14 @@ mohan, silver, true], isExpired=false}
 </li>
 <li>
 <p>Pull the latest Siddhi Runner image from [Siddhiio Docker Hub] (https://hub.docker.com/u/siddhiio).</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>docker pull siddhiio/siddhi-runner-alpine:5.1.0-m1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>docker pull siddhiio/siddhi-runner-alpine:5.1.0-alpha
 </pre></div>
 </td></tr></table>
 
 </li>
 <li>
 <p>Start SiddhiApp by executing the following docker command.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>docker run -it -p 8006:8006 -v /home/siddhi-apps:/apps -e EMAIL_PASSWORD=siddhi123 -e EMAIL_USERNAME=siddhi.gke.user -e SENDER_EMAIL_ADDRESS=siddhi.gke.user@gmail.com -e LOGGER_SERVICE_HOST=10.100.0.99 siddhiio/siddhi-runner-alpine:5.1.0-m1 -Dapps=/apps/API-Request-Throttler.siddhi
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>docker run -it -p 8006:8006 -v /home/siddhi-apps:/apps -e EMAIL_PASSWORD=siddhi123 -e EMAIL_USERNAME=siddhi.gke.user -e SENDER_EMAIL_ADDRESS=siddhi.gke.user@gmail.com -e LOGGER_SERVICE_HOST=10.100.0.99 siddhiio/siddhi-runner-alpine:5.1.0-alpha -Dapps=/apps/API-Request-Throttler.siddhi
 </pre></div>
 </td></tr></table>
 
@@ -1534,8 +1534,8 @@ Hence, make sure to add proper values for the environmental variables in the abo
 <li>
 <p>To install the Siddhi Kubernetes operator run the following commands.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-m1/00-prereqs.yaml
-kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-m1/01-siddhi-operator.yaml
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-alpha/00-prereqs.yaml
+kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-alpha/01-siddhi-operator.yaml
 </pre></div>
 </td></tr></table>
 
@@ -1722,7 +1722,7 @@ which is used to demonstrate the capability of Siddhi HTTP sink. Execute the bel
         <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">LOGGER_SERVICE_HOST</span>
         <span class="nt">value</span><span class="p">:</span> <span class="s">&quot;10.100.0.99&quot;</span>
 
-    <span class="nt">image</span><span class="p">:</span> <span class="s">&quot;siddhiio/siddhi-runner-ubuntu:5.1.0-m1&quot;</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="s">&quot;siddhiio/siddhi-runner-ubuntu:5.1.0-alpha&quot;</span>
 </pre></div>
 </td></tr></table>
 

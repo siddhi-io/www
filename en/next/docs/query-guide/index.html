@@ -2535,7 +2535,7 @@ The following actions can be specified to <code>@OnError</code> annotation to ha
 <p><strong>Example</strong></p>
 <p>Handle errors in <code>TempStream</code> by redirecting the errors to a fault stream.</p>
 <p>The configuration of <code>TempStream</code> stream and <code>@OnError</code> annotation is as follows.</p>
-<pre class="codehilite"><code class="language-sql linenums">@OnError(name='STREAM')
+<pre class="codehilite"><code class="language-sql linenums">@OnError(action='STREAM')
 define stream TempStream (deviceID long, roomNo int, temp double);</code></pre>
 
 <p>Siddhi will infer and automatically defines the fault stream of <code>TempStream</code> as given bellow.</p>
@@ -2544,7 +2544,7 @@ define stream TempStream (deviceID long, roomNo int, temp double);</code></pre>
 <p>The SiddhiApp extending the above the use-case by adding failure generation and error handling with the use of <a href="#query">queries</a> is as follows.</p>
 <p>Note: Details on writing processing logics via <a href="#query">queries</a> will be explained in later sections.</p>
 <pre class="codehilite"><code class="language-sql linenums">-- Define fault stream to handle error occurred at TempStream subscribers
-@OnError(name='STREAM')
+@OnError(action='STREAM')
 define stream TempStream (deviceID long, roomNo int, temp double);
 
 -- Error generation through a custom function `createError()`
@@ -2583,7 +2583,7 @@ define stream TempStream (deviceID long, roomNo int, temp double);</code></pre>
 <p>Send events to the fault stream of <code>TempStream</code> when the system cannot connect to Kafka.</p>
 <p>The configuration of <code>TempStream</code> stream with associated fault stream, <code>@sink</code> Kafka annotation with <code>on.error</code> property and a <a href="#query">queries</a> to handle the error is as follows.</p>
 <p>Note: Details on writing processing logics via <a href="#query">queries</a> will be explained in later sections.</p>
-<pre class="codehilite"><code class="language-sql linenums">@OnError(name='STREAM')
+<pre class="codehilite"><code class="language-sql linenums">@OnError(action='STREAM')
 @sink(type='kafka', on.error='STREAM', topic='{{roomNo}}',
       bootstrap.servers='localhost:9092',
       @map(type='xml'))
