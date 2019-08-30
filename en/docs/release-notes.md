@@ -127,6 +127,39 @@ Please find the complete changes [here](https://github.com/siddhi-io/distributio
 
 ## Siddhi K8s Operator Releases
 
+### Siddhi Operator 0.2.0-alpha
+
+#### Highlights
+#### Changed
+
+1. Change YAML naming convention of the messaging system and persistent volume claim.
+    - Change `clusterId` -> `streamingClusterId`
+    - Change `persistentVolume`  -> `persistentVolumeClaim`
+
+        ```yaml
+        messagingSystem:
+            type: nats
+            config: 
+            bootstrapServers: 
+                - "nats://nats-siddhi:4222"
+            streamingClusterId: stan-siddhi
+        
+        persistentVolumeClaim: 
+            accessModes: 
+            - ReadWriteOnce
+            resources: 
+            requests: 
+                storage: 1Gi
+            storageClassName: standard
+            volumeMode: Filesystem
+        ```
+
+#### Bug Fixes 
+
+ 1. Getting segmentation fault error when creating PVC automatically https://github.com/siddhi-io/siddhi-operator/issues/86
+ 
+ !!! info "Please find more details about the release [here](https://github.com/siddhi-io/siddhi-operator/releases/tag/v0.2.0-alpha)"
+
 ### Siddhi Operator 0.2.0-m2
 
 #### Highlights
