@@ -637,3 +637,13 @@ html .md-typeset .superfences-tabs > label:hover {
     background-color: #83949661;
     padding: 40px;
 }
+
+.cInfo {
+    float: right;
+    font-size: .8rem;
+    margin: 0 .5rem .5rem .5rem;
+}
+
+.cInfo a {
+    color: #009688;
+}
