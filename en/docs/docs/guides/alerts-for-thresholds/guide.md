@@ -56,7 +56,7 @@ When a subscriber made an API call to `order-mgt-v1` API it sends an event with 
 
 ### Implement Streaming Queries
 
-1. Start the Siddhi [tolling](https://siddhi.io/en/v5.0/docs/tooling/) runtime and go to the editor UI in http://localhost:9390/editor 
+1. Start the Siddhi [tooling](https://siddhi.io/en/v5.0/docs/tooling/) runtime and go to the editor UI in http://localhost:9390/editor 
 
     Follow below steps to start the Siddhi tooling runtime.
     * Extract the downloaded zip and navigate to <TOOLING_HOME>/bin. (TOOLING_HOME refers to the extracted folder) 
