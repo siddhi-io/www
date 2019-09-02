@@ -1351,7 +1351,7 @@ Order By, orders the query results in ascending or descending order based on one
 
 **Purpose**
 
-Order By helps to sort the events in the query output chunks. Order By will only be effective when query outputs a lot of events together such as in batch windows then for sliding windows where events are emitted one at a time.
+Order By helps to sort the events in the query output chunks. Order By will only be effective when query outputs a lot of events together such as in batch windows than for sliding windows where events are emitted one at a time.
 
 **Syntax**
 
@@ -1464,7 +1464,7 @@ insert into <output stream>
 Here, both the streams can have a window associated with them and have an optional `<join condition>`  next to the `on` keyword to match events from both windows to generate combined output events.
 
 !!! Note "Window should be defined as the last element of each joining stream."
-    Join query expects a window to be defined as the last element of each joining stream, therefore there cannot be a filter defined after the window.
+    Join query expects a window to be defined as the last element of each joining stream, therefore a filter cannot be defined after the window.
 
 **join types**
 
@@ -1749,8 +1749,7 @@ insert into AlertStream;
 
 Here, the matching process begins for each event in the `TempStream` stream (as `every` is used with `e1=TempStream`), and if another event arrives within 10 minutes with a value for `temp` attribute being greater than or equal to `e1.temp + 5` of the initial event `e1`, an output is generated via the `AlertStream`.
 
-
-**Example 2 (Event Collection)**
+**Example 2 (Event collection)**
 
 A query to find the temperature difference between two regulator events.
 
@@ -1933,53 +1932,61 @@ Some possible indexes and their behavior is as follows.
 
 The system returns `null` when accessing attribute values, when no matching event is assigned to the `event reference` (as in when two conditions are combined using `or`) or when the provided index is greater than the last event index in the event collection.
 
-**Example 1**
+**Example 1 (Every)**
 
-This query generates an alert if the increase in the temperature between two consecutive temperature events exceeds one degree.
+Query to send alerts when temperature increases at least by one degree between two consecutive temperature events.
 
 ```sql
-from every e1=TempStream, e2=TempStream[e1.temp + 1 < temp]
+from every e1=TempStream, e2=TempStream[temp > e1.temp + 1]
 select e1.temp as initialTemp, e2.temp as finalTemp
 insert into AlertStream;
 ```
 
-**Example 2**
+Here, the matching process begins for each event in the `TempStream` stream (as `every` is used with `e1=TempStream`), and if the immediate next event with a value for `temp` attribute being greater than `e1.temp + 1` of the initial event `e1`, then an output is generated via the `AlertStream`.
 
-This Siddhi application identifies temperature peeks.
+**Example 2 (Every collection)**
+
+Query to identify temperature peeks by monitoring continuous increases in `temp` attribute and alerts upon the first drop.
 
 ```sql
 define stream TempStream(deviceID long, roomNo int, temp double);
 
-from every e1=TempStream, e2=TempStream[e1.temp <= temp]+, e3=TempStream[e2[last].temp > temp]
-select e1.temp as initialTemp, e2[last].temp as peakTemp
-insert into PeekTempStream;
+@info(name = 'query1')
+from every e1=TempStream,
+     e2=TempStream[ifThenElse(e2[last].temp is null, e1.temp <= temp, e2[last].temp <= temp)]+,
+     e3=TempStream[e2[last].temp > temp]
+select e1.temp as initialTemp, e2[last].temp as peekTemp, e3.price as firstDropTemp
+insert into PeekTempStream ;
 ```
 
-**Example 3**
+Here, the matching process begins for each event in the `TempStream` stream (as `every` is used with `e1=TempStream`). It checks if the `temp` attribute value of the second event is greater than or equal to the `temp` attribute value of the first event (`e1.temp`), then for all the following events, their `temp` attribute value is checked if they are greater than or equal to their previous event's `temp` attribute value (`e2[last].temp`), and when the `temp` attribute value becomes less than its previous events `temp` attribute value value an output is generated via the `AlertStream` stream.
 
-This Siddhi application notifies the state when a regulator event is immediately followed by both temperature and humidity events.
+**Example 3 (Logical and condition)**
+
+A query to identify a regulator activation event immediately followed by both temperature sensor and humidity sensor activation events in either order.
 
 ```sql
-define stream TempStream(deviceID long, temp double);
-define stream HumidStream(deviceID long, humid double);
+define stream TempStream(deviceID long, isActive bool);
+define stream HumidStream(deviceID long, isActive bool);
 define stream RegulatorStream(deviceID long, isOn bool);
 
-from every e1=RegulatorStream, e2=TempStream and e3=HumidStream
-select e2.temp, e3.humid
+from every e1=RegulatorStream[isOn == true], e2=TempStream and e3=HumidStream
+select e2.isActive as tempSensorActive, e3.isActive as humidSensorActive
 insert into StateNotificationStream;
 ```
+Here, the matching process begins for each event in the `RegulatorStream` stream having the `isOn` attribute `true`. It generates an output via the `AlertStream` stream when an event from both `TempStream` stream and `HumidStream` stream arrives immediately after the first event in either order.
 
 ### Output rate limiting
 
-Output rate limiting allows queries to output events periodically based on a specified condition.
+Output rate-limiting limits the number of events emitted by the queries based on a specified criterion such as time, and number of events.
 
 **Purpose**
 
-This allows you to limit the output to avoid overloading the subsequent executions, and to remove unnecessary information.
+Output rate-limiting helps to reduce the load on the subsequent executions such as query processing, I/O operations, and notifications by reducing the output frequency of the events.
 
 **Syntax**
 
-The syntax of an output rate limiting configuration is as follows:
+The syntax for output rate limiting is as follows:
 
 ```sql
 from <input stream> ...
@@ -1987,58 +1994,104 @@ select <attribute name>, <attribute name>, ...
 output <rate limiting configuration>
 insert into <output stream>
 ```
-Siddhi supports three types of output rate limiting configurations as explained in the following table:
+
+Here, the output rate limiting configuration (`<rate limiting configuration>`) should be defined next to the `output` keyword and the supported output rate limiting types are explained in the following table:
 
 Rate limiting configuration|Syntax| Description
 ---------|---------|--------
-Based on time | `<output event> every <time interval>` | This outputs `<output event>` every `<time interval>` time interval.
-Based on number of events | `<output event> every <event interval> events` | This outputs `<output event>` for every `<event interval>` number of events.
-Snapshot based output | `snapshot every <time interval>`| This outputs all events in the window (or the last event if no window is defined in the query) for every given `<time interval>` time interval.
+Time based | `(<output event selection>)? every <time interval>` | Outputs `<output event selection>` every `<time interval>` time interval.
+Number of events based | `(<output event selection>)? every <event interval> events` | Outputs `<output event selection>` for every `<event interval>` number of events.
+Snapshot based | `snapshot every <time interval>`| Outputs all events currently in the query window (or outputs only the last event if no window is defined in the query) for every given `<time interval>` time interval.
 
-Here the `<output event>` specifies the event(s) that should be returned as the output of the query.
-The possible values are as follows:
-* `first` : Only the first event processed by the query during the specified time interval/sliding window is emitted.
-* `last` : Only the last event processed by the query during the specified time interval/sliding window is emitted.
-* `all` : All the events processed by the query during the specified time interval/sliding window are emitted. **When no `<output event>` is defined, `all` is used by default.**
+The `<output event selection>` specifies the event(s) that are selected to be outputted from the query, here when no `<output event selection>` is defined, `all` is used by default.
 
-**Examples**
+The possible values for the `<output event selection>` and their behaviors are as follows:
+* `first`: The first query output is published as soon as it is generated and the subsequent events are dropped until the specified time interval or the number of events are reached before sending the next event as output.
+* `last`: Emits only the last output event generated during the specified time or event interval.
+* `all`: Emits all the output events together which are generated during the specified time or event interval.
 
-+ Returning events based on the number of events
+**Example 1 (Time based first event)**
 
-    Here, events are emitted every time the specified number of events arrive. You can also specify whether to emit only the first event/last event, or all the events out of the events that arrived.
+Query to calculate the average `temp` per `roomNo` for the events arrived on the last 10 minutes, and send alerts **once every 15 minutes** of the events having `avgTemp` more than 30 degrees.
 
-    In this example, the last temperature per sensor is emitted for every 10 events.
+```sql
+define stream TempStream(deviceID long, roomNo int, temp double);
 
-    <pre>
-    from TempStreamselect
-    select temp, deviceID
-    group by deviceID
-    output last every 10 events
-    insert into LowRateTempStream;    </pre>
+from TempStream#window.time(10 min)
+select roomNo, avg(temp) as avgTemp
+group by roomNo
+having avgTemp > 30
+output first every 15 min
+insert into AlertStream;
+```
 
-+ Returning events based on time
+Here the first event having `avgTemp` > 30 is emitted immediately and the next event is only emitted after 15 minutes.
 
-    Here events are emitted for every predefined time interval. You can also specify whether to emit only the first event, last event, or all events out of the events that arrived during the specified time interval.
+**Example 2 (Event based first event)**
 
-    In this example, emits all temperature events every 10 seconds  
+Query to output the initial event, and there onwards every 5th event from `TempStream` stream events.
 
-    <pre>
-    from TempStreamoutput
-    output every 10 sec
-    insert into LowRateTempStream;    </pre>
+```sql
+define stream TempStream(deviceID long, roomNo int, temp double);
 
-+ Returning a periodic snapshot of events
+from TempStream
+output first every 5 events
+insert into FiveEventBatchStream;
+```
 
-    This method works best with windows. When an input stream is connected to a window, snapshot rate limiting emits all the current events that have arrived and do not have corresponding expired events for every predefined time interval.
-    If the input stream is not connected to a window, only the last current event for each predefined time interval is emitted.
+**Example 3 (Event based all events)**
 
-    This query emits a snapshot of the events in a time window of 5 seconds every 1 second.
+Query to collect last 5 `TempStream` stream events and send them together as a single batch.
 
-    <pre>
-    from TempStream#window.time(5 sec)
-    output snapshot every 1 sec
-    insert into SnapshotTempStream;    </pre>
+```sql
+define stream TempStream(deviceID long, roomNo int, temp double);
 
+from TempStream
+output every 5 events
+insert into FiveEventBatchStream;
+```
+
+As no `<output event selection>` is defined, the behavior of `all` is applied in this case.
+
+**Example 4 (Time based last event)**
+
+Query to emit only the last event of `TempStream` stream for every 10 minute interval.
+
+```sql
+define stream TempStream(deviceID long, roomNo int, temp double);
+
+from TempStream
+output last every 10 min
+insert into FiveEventBatchStream;
+```
+
+**Example 5 (Snapshot based)**
+
+Query to emit the snapshot of events retained by its last 5 minutes window defined on `TempStream` stream, every second.
+
+```sql
+define stream TempStream(deviceID long, roomNo int, temp double);
+
+from TempStream#window.time(5 sec)
+output snapshot every 1 sec
+insert into SnapshotTempStream;
+```
+
+Here, the query emits all the current events generated which do not have a corresponding expired event at the predefined time interval.
+
+**Example 6 (Snapshot based)**
+
+Query to emit the snapshot of events retained every second, when no window is defined on `TempStream` stream.
+
+```sql
+define stream TempStream(deviceID long, roomNo int, temp double);
+
+from TempStream
+output snapshot every 5 sec
+insert into SnapshotTempStream;
+```
+
+Here, the query outputs the last seen event at the end of each time interval as there are no events stored in no window defined.
 
 ## Partition
 
