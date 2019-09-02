@@ -676,8 +676,8 @@ spec:
   
   messagingSystem:
     type: nats
-  
-  persistentVolume: 
+       
+  persistentVolumeClaim: 
     accessModes: 
       - ReadWriteOnce
     resources: 
