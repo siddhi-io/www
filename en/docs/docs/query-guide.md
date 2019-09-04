@@ -2095,149 +2095,139 @@ Here, the query outputs the last seen event at the end of each time interval as 
 
 ## Partition
 
-Partitions divide streams and queries into isolated groups in order to process them in parallel and in isolation.
-A partition can contain one or more queries and there can be multiple instances where the same queries and streams are replicated for each partition.
-Each partition is tagged with a partition key. Those partitions only process the events that match the corresponding partition key.
+Partition provides data parallelism by categorizing events into various isolated partition instance based on their attribute values and by processing each partition instance in isolation. Here each partition instance is tagged with a partition key, and they only process events that match to the corresponding partition key.
 
 **Purpose**
 
-Partitions allow you to process the events groups in isolation so that event processing can be performed using the same set of queries for each group.
+Partition provide ways to segment events into groups and allow them to process the same set of queries in parallel and in isolation without redefining the queries for each segment.
 
-**Partition key generation**
-
-A partition key can be generated in the following two methods:
-
-* Partition by value
-
-    This is created by generating unique values using input stream attributes.
-
-    **Syntax**
-
-    <pre>
-    partition with ( &lt;expression> of &lt;stream name>,
-                     &lt;expression> of &lt;stream name>, ... )
-    begin
-        &lt;query>
-        &lt;query>
-        ...
-    end; </pre>
-
-    **Example**
-
-    This query calculates the maximum temperature recorded within the last 10 events per `deviceID`.
-
-    <pre>
-    partition with ( deviceID of TempStream )
-    begin
-        from TempStream#window.length(10)
-        select roomNo, deviceID, max(temp) as maxTemp
-        insert into DeviceTempStream;
-    end;
-    </pre>
-
-* Partition by range
-
-    This is created by mapping each partition key to a range condition of the input streams numerical attribute.
-
-    **Syntax**
-    <pre>
-    partition with ( &lt;condition> as &lt;partition key> or
-                     &lt;condition> as &lt;partition key> or ... of &lt;stream name>,
-                     ... )
-    begin
-        &lt;query>
-        &lt;query>
-        ...
-    end;
-    </pre>
-
-    **Example**
-
-    This query calculates the average temperature for the last 10 minutes per office area.
-
-    <pre>
-    partition with ( roomNo >= 1030 as 'serverRoom' or
-                     roomNo < 1030 and roomNo >= 330 as 'officeRoom' or
-                     roomNo < 330 as 'lobby' of TempStream)
-    begin
-        from TempStream#window.time(10 min)
-        select roomNo, deviceID, avg(temp) as avgTemp
-        insert into AreaTempStream
-    end;
-    </pre>  
-
-### Inner Stream
-
-Queries inside a partition block can use inner streams to communicate with each other while preserving partition isolation.
-Inner streams are denoted by a "#" placed before the stream name, and these streams cannot be accessed outside a partition block.
-
-**Purpose**
-
-Inner streams allow you to connect queries within the partition block so that the output of a query can be used as an input only by another query
-within the same partition. Therefore, you do not need to repartition the streams if they are communicating within the partition.
-
-**Example**
-
-This partition calculates the average temperature of every 10 events for each sensor, and sends an output to the `DeviceTempIncreasingStream` stream if the consecutive average temperature values increase by more than
-5 degrees.
-
-<pre>
-partition with ( deviceID of TempStream )
-begin
-    from TempStream#window.lengthBatch(10)
-    select roomNo, deviceID, avg(temp) as avgTemp
-    insert into #AvgTempStream
-
-    from every (e1=#AvgTempStream),e2=#AvgTempStream[e1.avgTemp + 5 < avgTemp]
-    select e1.deviceID, e1.avgTemp as initialAvgTemp, e2.avgTemp as finalAvgTemp
-    insert into DeviceTempIncreasingStream
-end;
-</pre>
-
-### Purge Partition
-
-Based on the partition key used for the partition, multiple instances of streams and queries will be generated. When an extremely large number of unique partition keys are used there is a possibility of very high instances of streams and queries getting generated and eventually system going out of memory. In order to overcome this, users can define a purge interval to clean partitions that will not be used anymore.
-
-**Purpose**
-
-`@purge` allows you to clean the partition instances that will not be used anymore.
+Here, events form multiple steams generating the same partition key will result in the same instance of the partition, and executed together. When a stream is used within the partition block without configuring a partition key, all of its events will be executed in all available partition instances.
 
 **Syntax**
 
-The syntax of partition purge configuration is as follows:
+The syntax for a partition is as follows:
 
 ```sql
 @purge(enable='true', interval='<purge interval>', idle.period='<idle period of partition instance>')
-partition with ( <partition key> of <input stream> )
+partition with ( <key selection> of <stream name>,
+                 <key selection> of <stream name>, ... )
 begin
-    from <input stream> ...
+    from <stream name> ...
     select <attribute name>, <attribute name>, ...
-    insert into <output stream>
+    insert into (#)?<stream name>
+
+    from (#)?<stream name> ...
+    select <attribute name>, <attribute name>, ...
+    insert into <stream name>
+
+    ...
 end;
 ```
 
-Partition purge configuration| Description
+Here, a new instance of a partition will be dynamically created for each unique partition key that is generated based on the `<key selection>` applied on the events of their associated streams (`<stream name>`). These created partition instances will exist in the system forever unless otherwise a purging policy is defined using the `@purge` annotation. The inner streams denoted by `#<stream name>` can be used to chain multiple queries within a partition block without leaving the isolation of the partition instance.
+
+The `<key selection>` defines the partition key for each event based on the event attribute value or using range expressions as listed below.
+
+Key selection type | Syntax | description
+-------------------|--------|------------
+Partition by value| `<attribute name>` | Attribute value of the event is used as its partition key.
+Partition by range| `<compare condition> as 'value' or <compare condition> as 'value' or ...` | Event is executed against all `<compare conditions>`, and the values associated with the matching conditions are used as its partition key. Here, when the event is matched against multiple conditions, it is processed on all the partition instances that are associated with those matching conditions.  
+
+When there are multiple queries within a partition block, and they can be chained without leaving the isolation of the partition instance using the inner streams denoted by `#`. More information on inner Streams will be covered in the following secsions.
+
+**Inner Stream**
+
+Inner stream connects the queries inside a partition instance to one another while preserving partition isolation. These are denoted by a `#` placed before the stream name, and these streams cannot be accessed outside the partition block.
+
+Through this, without repartitioning the streams, the output of a query instance can be used as the input of another query instance that is also in the same partition instance.
+
+!!! Note "Using **non** inner streams to chain queries within a partition block."
+    When the **connecting stream is not an inner stream and if it is not configured to generate a partition key, then it outputs events to all available partition instances**. However, when the non-inner stream is configured to generate a partition key, it only outputs to the partition instances that are selected based on the repartitioned partition key.
+
+**Purge Partition**
+
+Purge partition purges partitions that are not being used for a given period on a regular interval. This is because, by default, when partition instances are created for each unique partition key they exist forever if their queries contain stateful information, and there are use cases (such as partitioning events by date value) where an extremely large number of unique partition keys are used, which generates a large number of partition instances, and this eventually leading to system out of memory.
+
+The partition instances that will not be used anymore can purged using the `@purge` annotation. The elements of the annotation and their behavior is as follows.  
+
+Purge partition configuration| Description
 ---------|--------
-Purge interval | The periodic time interval to purge the purgeable partition instances.
-Idle period of partition instance| The period, a particular partition instance (for a given partition key) needs to be idle before it becomes purgeable.
+`enable` | To enable partition purging.
+`internal` | Periodic time interval to purge the purgeable partition instances.
+`idle.period` | The idle period, a particular partition instance (for a given partition key) needs to be idle before it becomes purgeable.
 
-**Examples**
+**Example 1 (Partition by value)**
 
-Mark partition instances eligible for purging, if there are no events from a particular deviceID for 15 seconds, and periodically purge those partition instances every 1 second.
+Query to calculate the maximum temperature of each `deviceID`, among its last 10 events.
 
 ```sql
-@purge(enable='true', interval='1 sec', idle.period='15 sec')
+partition with ( deviceID of TempStream )
+begin
+    from TempStream#window.length(10)
+    select roomNo, deviceID, max(temp) as maxTemp
+    insert into DeviceTempStream;
+end;
+```
+
+Here, each unique `deviceID` will create a partition instance which retains the last 10 events arrived for its corresponding partition key and calculates the maximum values without interfering with the events of other partition instances.    
+
+**Example 2 (Partition by range)**
+
+Query to calculate the average temperature for the last 10 minutes per each office area, where the office areas are identified based on the `roomNo` attribute ranges from the events of `TempStream` stream.
+
+
+```sql
+partition with ( roomNo >= 1030 as 'serverRoom' or
+                 roomNo < 1030 and roomNo >= 330 as 'officeRoom' or
+                 roomNo < 330 as 'lobby' of TempStream)
+begin
+    from TempStream#window.time(10 min)
+    select roomNo, deviceID, avg(temp) as avgTemp
+    insert into AreaTempStream
+end;
+```
+
+Here, partition instances are created for each office area type such as `serverRoom`, `officeRoom`, and `lobby`. Events are processed only in the partition instances which are associated with matching compare condition values that are satisfied by the event's `roomNo` attribute, and within each partition instance, the average `tamp` value is calculated based on the events arrived over the last 10 minutes.   
+
+**Example 3 (Inner streams)**
+
+A partition to calculate the average temperature of every 10 events for each sensor, and send the output via the `DeviceTempIncreasingStream` stream if consecutive average temperature (`avgTemp`) values increase by more than 5 degrees.
+
+```sql
 partition with ( deviceID of TempStream )
 begin
     from TempStream#window.lengthBatch(10)
     select roomNo, deviceID, avg(temp) as avgTemp
     insert into #AvgTempStream
 
-    from every (e1=#AvgTempStream),e2=#AvgTempStream[e1.avgTemp + 5 < avgTemp]
+    from every e1=#AvgTempStream, e2=#AvgTempStream[e1.avgTemp + 5 < avgTemp]
     select e1.deviceID, e1.avgTemp as initialAvgTemp, e2.avgTemp as finalAvgTemp
     insert into DeviceTempIncreasingStream
 end;
 ```
+
+Here, the first query calculates the `avgTemp` for every 10 events for each unique `deviceID` and passes the output via the inner stream `#AvgTempStream` to the second query that is also in the same partition instance. The second query then identifies a pair of consecutive events from `#AvgTempStream`, where the latter event having 5 degrees more on `avgTemp` value than its previous event.
+
+**Example 4 (Purge partition)**
+
+A partition to identify consecutive three login failure attempts for each session within 1 hour. Here, the number of sessions can be infinite.
+
+```sql
+define stream LoginStream ( sessionID string, loginSuccessful bool);
+
+@purge(enable='true', interval='10 sec', idle.period='1 hour')
+partition with ( sessionID of LoginStream )
+begin
+    from every e1=LoginStream[loginSuccessful==false],
+               e2=LoginStream[loginSuccessful==false],
+               e3=LoginStream[loginSuccessful==false]
+         within 1 hour
+    select e1.sessionID as sessionID
+    insert into LoginFailureStream;
+end;
+```
+
+Here, the events in `LoginStream` is partitioned by their `sessionID` attribute and matched for consecutive occurrences of events having `loginSuccessful==false` with 1 hour using a [sequence query](#sequence) and inserts the matching pattern's `sessionID` to `LoginFailureStream`. As the number of sessions is infinite the `@purge` annotation is enabled to purge the partition instances. The instances are marked for purging if there are no events from a particular sessionID for the last 1 hour, and the marked instances are periodically purged once every 10 seconds.
 
 ## Table
 
