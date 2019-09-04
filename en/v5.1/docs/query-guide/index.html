@@ -55,7 +55,7 @@
       
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
-      <link rel="shortcut icon" href="../../images/logos/favicon.ico">
+      <link rel="shortcut icon" href="../../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.0">
     
     
@@ -169,7 +169,7 @@
         <a href="http://siddhi.io/en/v5.1/" title="Siddhi"
            class="md-header-nav__button md-logo">
           
-            <img src="../../images/logos/siddhi-logo.svg" width="24" height="24">
+            <img src="../../images/siddhi-logo.svg" width="24" height="24">
           
         </a>
       </div>
@@ -373,7 +373,7 @@
       <a href="http://siddhi.io/en/v5.1/" title="Siddhi"
          class="md-nav__button md-logo">
         
-          <img src="../../images/logos/siddhi-logo.svg" width="48" height="48">
+          <img src="../../images/siddhi-logo.svg" width="48" height="48">
         
       </a>
       Siddhi
@@ -3664,7 +3664,7 @@ and insert the filtered results into <code>HighTempStream</code> stream.</p>
 <h3 id="order-by">Order By<a class="headerlink" href="#order-by" title="Permanent link">&para;</a></h3>
 <p>Order By, orders the query results in ascending or descending order based on one or more specified attributes. By default the order by attribute orders the events in ascending order, and by adding <code>desc</code> keyword, the events can be ordered in descending order. When more than one attribute is defined the attributes defined towards the left will have more precedence in ordering than the ones defined in right.  </p>
 <p><strong>Purpose</strong></p>
-<p>Order By helps to sort the events in the query output chunks. Order By will only be effective when query outputs a lot of events together such as in batch windows then for sliding windows where events are emitted one at a time.</p>
+<p>Order By helps to sort the events in the query output chunks. Order By will only be effective when query outputs a lot of events together such as in batch windows than for sliding windows where events are emitted one at a time.</p>
 <p><strong>Syntax</strong></p>
 <p>The syntax for the Order By clause is as follows:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
@@ -3783,7 +3783,7 @@ and insert the filtered results into <code>HighTempStream</code> stream.</p>
 <p>Here, both the streams can have a window associated with them and have an optional <code>&lt;join condition&gt;</code>  next to the <code>on</code> keyword to match events from both windows to generate combined output events.</p>
 <div class="admonition note">
 <p class="admonition-title">Window should be defined as the last element of each joining stream.</p>
-<p>Join query expects a window to be defined as the last element of each joining stream, therefore there cannot be a filter defined after the window.</p>
+<p>Join query expects a window to be defined as the last element of each joining stream, therefore a filter cannot be defined after the window.</p>
 </div>
 <p><strong>join types</strong></p>
 <p>Following are the supported join operations.</p>
@@ -4091,7 +4091,7 @@ Some possible indexes and their behavior is as follows.</p>
 </td></tr></table>
 
 <p>Here, the matching process begins for each event in the <code>TempStream</code> stream (as <code>every</code> is used with <code>e1=TempStream</code>), and if another event arrives within 10 minutes with a value for <code>temp</code> attribute being greater than or equal to <code>e1.temp + 5</code> of the initial event <code>e1</code>, an output is generated via the <code>AlertStream</code>.</p>
-<p><strong>Example 2 (Event Collection)</strong></p>
+<p><strong>Example 2 (Event collection)</strong></p>
 <p>A query to find the temperature difference between two regulator events.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
@@ -4323,55 +4323,63 @@ Some possible indexes and their behavior is as follows.</p>
 <li><code>e1.symbol</code>, refers to the list of <code>symbol</code> attribute values of all events in the event collection in reference <code>e1</code>, as a list object.</li>
 </ul>
 <p>The system returns <code>null</code> when accessing attribute values, when no matching event is assigned to the <code>event reference</code> (as in when two conditions are combined using <code>or</code>) or when the provided index is greater than the last event index in the event collection.</p>
-<p><strong>Example 1</strong></p>
-<p>This query generates an alert if the increase in the temperature between two consecutive temperature events exceeds one degree.</p>
+<p><strong>Example 1 (Every)</strong></p>
+<p>Query to send alerts when temperature increases at least by one degree between two consecutive temperature events.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">from</span> <span class="k">every</span> <span class="n">e1</span><span class="o">=</span><span class="n">TempStream</span><span class="p">,</span> <span class="n">e2</span><span class="o">=</span><span class="n">TempStream</span><span class="p">[</span><span class="n">e1</span><span class="p">.</span><span class="n">temp</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">temp</span><span class="p">]</span>
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">from</span> <span class="k">every</span> <span class="n">e1</span><span class="o">=</span><span class="n">TempStream</span><span class="p">,</span> <span class="n">e2</span><span class="o">=</span><span class="n">TempStream</span><span class="p">[</span><span class="n">temp</span> <span class="o">&gt;</span> <span class="n">e1</span><span class="p">.</span><span class="n">temp</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
 <span class="k">select</span> <span class="n">e1</span><span class="p">.</span><span class="n">temp</span> <span class="k">as</span> <span class="n">initialTemp</span><span class="p">,</span> <span class="n">e2</span><span class="p">.</span><span class="n">temp</span> <span class="k">as</span> <span class="n">finalTemp</span>
 <span class="k">insert</span> <span class="k">into</span> <span class="n">AlertStream</span><span class="p">;</span>
 </pre></div>
 </td></tr></table>
 
-<p><strong>Example 2</strong></p>
-<p>This Siddhi application identifies temperature peeks.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">define</span> <span class="n">stream</span> <span class="n">TempStream</span><span class="p">(</span><span class="n">deviceID</span> <span class="n">long</span><span class="p">,</span> <span class="n">roomNo</span> <span class="nb">int</span><span class="p">,</span> <span class="n">temp</span> <span class="n">double</span><span class="p">);</span>
-
-<span class="k">from</span> <span class="k">every</span> <span class="n">e1</span><span class="o">=</span><span class="n">TempStream</span><span class="p">,</span> <span class="n">e2</span><span class="o">=</span><span class="n">TempStream</span><span class="p">[</span><span class="n">e1</span><span class="p">.</span><span class="n">temp</span> <span class="o">&lt;=</span> <span class="n">temp</span><span class="p">]</span><span class="o">+</span><span class="p">,</span> <span class="n">e3</span><span class="o">=</span><span class="n">TempStream</span><span class="p">[</span><span class="n">e2</span><span class="p">[</span><span class="k">last</span><span class="p">].</span><span class="n">temp</span> <span class="o">&gt;</span> <span class="n">temp</span><span class="p">]</span>
-<span class="k">select</span> <span class="n">e1</span><span class="p">.</span><span class="n">temp</span> <span class="k">as</span> <span class="n">initialTemp</span><span class="p">,</span> <span class="n">e2</span><span class="p">[</span><span class="k">last</span><span class="p">].</span><span class="n">temp</span> <span class="k">as</span> <span class="n">peakTemp</span>
-<span class="k">insert</span> <span class="k">into</span> <span class="n">PeekTempStream</span><span class="p">;</span>
-</pre></div>
-</td></tr></table>
-
-<p><strong>Example 3</strong></p>
-<p>This Siddhi application notifies the state when a regulator event is immediately followed by both temperature and humidity events.</p>
+<p>Here, the matching process begins for each event in the <code>TempStream</code> stream (as <code>every</code> is used with <code>e1=TempStream</code>), and if the immediate next event with a value for <code>temp</code> attribute being greater than <code>e1.temp + 1</code> of the initial event <code>e1</code>, then an output is generated via the <code>AlertStream</code>.</p>
+<p><strong>Example 2 (Every collection)</strong></p>
+<p>Query to identify temperature peeks by monitoring continuous increases in <code>temp</code> attribute and alerts upon the first drop.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
 4
 5
 6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">define</span> <span class="n">stream</span> <span class="n">TempStream</span><span class="p">(</span><span class="n">deviceID</span> <span class="n">long</span><span class="p">,</span> <span class="n">temp</span> <span class="n">double</span><span class="p">);</span>
-<span class="n">define</span> <span class="n">stream</span> <span class="n">HumidStream</span><span class="p">(</span><span class="n">deviceID</span> <span class="n">long</span><span class="p">,</span> <span class="n">humid</span> <span class="n">double</span><span class="p">);</span>
-<span class="n">define</span> <span class="n">stream</span> <span class="n">RegulatorStream</span><span class="p">(</span><span class="n">deviceID</span> <span class="n">long</span><span class="p">,</span> <span class="n">isOn</span> <span class="n">bool</span><span class="p">);</span>
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">define</span> <span class="n">stream</span> <span class="n">TempStream</span><span class="p">(</span><span class="n">deviceID</span> <span class="n">long</span><span class="p">,</span> <span class="n">roomNo</span> <span class="nb">int</span><span class="p">,</span> <span class="n">temp</span> <span class="n">double</span><span class="p">);</span>
 
-<span class="k">from</span> <span class="k">every</span> <span class="n">e1</span><span class="o">=</span><span class="n">RegulatorStream</span><span class="p">,</span> <span class="n">e2</span><span class="o">=</span><span class="n">TempStream</span> <span class="k">and</span> <span class="n">e3</span><span class="o">=</span><span class="n">HumidStream</span>
-<span class="k">select</span> <span class="n">e2</span><span class="p">.</span><span class="n">temp</span><span class="p">,</span> <span class="n">e3</span><span class="p">.</span><span class="n">humid</span>
-<span class="k">insert</span> <span class="k">into</span> <span class="n">StateNotificationStream</span><span class="p">;</span>
+<span class="o">@</span><span class="n">info</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;query1&#39;</span><span class="p">)</span>
+<span class="k">from</span> <span class="k">every</span> <span class="n">e1</span><span class="o">=</span><span class="n">TempStream</span><span class="p">,</span>
+     <span class="n">e2</span><span class="o">=</span><span class="n">TempStream</span><span class="p">[</span><span class="n">ifThenElse</span><span class="p">(</span><span class="n">e2</span><span class="p">[</span><span class="k">last</span><span class="p">].</span><span class="n">temp</span> <span class="k">is</span> <span class="k">null</span><span class="p">,</span> <span class="n">e1</span><span class="p">.</span><span class="n">temp</span> <span class="o">&lt;=</span> <span class="n">temp</span><span class="p">,</span> <span class="n">e2</span><span class="p">[</span><span class="k">last</span><span class="p">].</span><span class="n">temp</span> <span class="o">&lt;=</span> <span class="n">temp</span><span class="p">)]</span><span class="o">+</span><span class="p">,</span>
+     <span class="n">e3</span><span class="o">=</span><span class="n">TempStream</span><span class="p">[</span><span class="n">e2</span><span class="p">[</span><span class="k">last</span><span class="p">].</span><span class="n">temp</span> <span class="o">&gt;</span> <span class="n">temp</span><span class="p">]</span>
+<span class="k">select</span> <span class="n">e1</span><span class="p">.</span><span class="n">temp</span> <span class="k">as</span> <span class="n">initialTemp</span><span class="p">,</span> <span class="n">e2</span><span class="p">[</span><span class="k">last</span><span class="p">].</span><span class="n">temp</span> <span class="k">as</span> <span class="n">peekTemp</span><span class="p">,</span> <span class="n">e3</span><span class="p">.</span><span class="n">price</span> <span class="k">as</span> <span class="n">firstDropTemp</span>
+<span class="k">insert</span> <span class="k">into</span> <span class="n">PeekTempStream</span> <span class="p">;</span>
 </pre></div>
 </td></tr></table>
 
-<h3 id="output-rate-limiting">Output rate limiting<a class="headerlink" href="#output-rate-limiting" title="Permanent link">&para;</a></h3>
-<p>Output rate limiting allows queries to output events periodically based on a specified condition.</p>
-<p><strong>Purpose</strong></p>
-<p>This allows you to limit the output to avoid overloading the subsequent executions, and to remove unnecessary information.</p>
-<p><strong>Syntax</strong></p>
-<p>The syntax of an output rate limiting configuration is as follows:</p>
+<p>Here, the matching process begins for each event in the <code>TempStream</code> stream (as <code>every</code> is used with <code>e1=TempStream</code>). It checks if the <code>temp</code> attribute value of the second event is greater than or equal to the <code>temp</code> attribute value of the first event (<code>e1.temp</code>), then for all the following events, their <code>temp</code> attribute value is checked if they are greater than or equal to their previous event's <code>temp</code> attribute value (<code>e2[last].temp</code>), and when the <code>temp</code> attribute value becomes less than its previous events <code>temp</code> attribute value value an output is generated via the <code>AlertStream</code> stream.</p>
+<p><strong>Example 3 (Logical and condition)</strong></p>
+<p>A query to identify a regulator activation event immediately followed by both temperature sensor and humidity sensor activation events in either order.</p>
 <p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">define</span> <span class="n">stream</span> <span class="n">TempStream</span><span class="p">(</span><span class="n">deviceID</span> <span class="n">long</span><span class="p">,</span> <span class="n">isActive</span> <span class="n">bool</span><span class="p">);</span>
+<span class="n">define</span> <span class="n">stream</span> <span class="n">HumidStream</span><span class="p">(</span><span class="n">deviceID</span> <span class="n">long</span><span class="p">,</span> <span class="n">isActive</span> <span class="n">bool</span><span class="p">);</span>
+<span class="n">define</span> <span class="n">stream</span> <span class="n">RegulatorStream</span><span class="p">(</span><span class="n">deviceID</span> <span class="n">long</span><span class="p">,</span> <span class="n">isOn</span> <span class="n">bool</span><span class="p">);</span>
+
+<span class="k">from</span> <span class="k">every</span> <span class="n">e1</span><span class="o">=</span><span class="n">RegulatorStream</span><span class="p">[</span><span class="n">isOn</span> <span class="o">==</span> <span class="k">true</span><span class="p">],</span> <span class="n">e2</span><span class="o">=</span><span class="n">TempStream</span> <span class="k">and</span> <span class="n">e3</span><span class="o">=</span><span class="n">HumidStream</span>
+<span class="k">select</span> <span class="n">e2</span><span class="p">.</span><span class="n">isActive</span> <span class="k">as</span> <span class="n">tempSensorActive</span><span class="p">,</span> <span class="n">e3</span><span class="p">.</span><span class="n">isActive</span> <span class="k">as</span> <span class="n">humidSensorActive</span>
+<span class="k">insert</span> <span class="k">into</span> <span class="n">StateNotificationStream</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+Here, the matching process begins for each event in the <code>RegulatorStream</code> stream having the <code>isOn</code> attribute <code>true</code>. It generates an output via the <code>AlertStream</code> stream when an event from both <code>TempStream</code> stream and <code>HumidStream</code> stream arrives immediately after the first event in either order.</p>
+<h3 id="output-rate-limiting">Output rate limiting<a class="headerlink" href="#output-rate-limiting" title="Permanent link">&para;</a></h3>
+<p>Output rate-limiting limits the number of events emitted by the queries based on a specified criterion such as time, and number of events.</p>
+<p><strong>Purpose</strong></p>
+<p>Output rate-limiting helps to reduce the load on the subsequent executions such as query processing, I/O operations, and notifications by reducing the output frequency of the events.</p>
+<p><strong>Syntax</strong></p>
+<p>The syntax for output rate limiting is as follows:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
 4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">from</span> <span class="o">&lt;</span><span class="k">input</span> <span class="n">stream</span><span class="o">&gt;</span> <span class="p">...</span>
@@ -4380,7 +4388,8 @@ Some possible indexes and their behavior is as follows.</p>
 <span class="k">insert</span> <span class="k">into</span> <span class="o">&lt;</span><span class="k">output</span> <span class="n">stream</span><span class="o">&gt;</span>
 </pre></div>
 </td></tr></table>
-Siddhi supports three types of output rate limiting configurations as explained in the following table:</p>
+
+<p>Here, the output rate limiting configuration (<code>&lt;rate limiting configuration&gt;</code>) should be defined next to the <code>output</code> keyword and the supported output rate limiting types are explained in the following table:</p>
 <table>
 <thead>
 <tr>
@@ -4391,60 +4400,121 @@ Siddhi supports three types of output rate limiting configurations as explained 
 </thead>
 <tbody>
 <tr>
-<td>Based on time</td>
-<td><code>&lt;output event&gt; every &lt;time interval&gt;</code></td>
-<td>This outputs <code>&lt;output event&gt;</code> every <code>&lt;time interval&gt;</code> time interval.</td>
+<td>Time based</td>
+<td><code>(&lt;output event selection&gt;)? every &lt;time interval&gt;</code></td>
+<td>Outputs <code>&lt;output event selection&gt;</code> every <code>&lt;time interval&gt;</code> time interval.</td>
 </tr>
 <tr>
-<td>Based on number of events</td>
-<td><code>&lt;output event&gt; every &lt;event interval&gt; events</code></td>
-<td>This outputs <code>&lt;output event&gt;</code> for every <code>&lt;event interval&gt;</code> number of events.</td>
+<td>Number of events based</td>
+<td><code>(&lt;output event selection&gt;)? every &lt;event interval&gt; events</code></td>
+<td>Outputs <code>&lt;output event selection&gt;</code> for every <code>&lt;event interval&gt;</code> number of events.</td>
 </tr>
 <tr>
-<td>Snapshot based output</td>
+<td>Snapshot based</td>
 <td><code>snapshot every &lt;time interval&gt;</code></td>
-<td>This outputs all events in the window (or the last event if no window is defined in the query) for every given <code>&lt;time interval&gt;</code> time interval.</td>
+<td>Outputs all events currently in the query window (or outputs only the last event if no window is defined in the query) for every given <code>&lt;time interval&gt;</code> time interval.</td>
 </tr>
 </tbody>
 </table>
-<p>Here the <code>&lt;output event&gt;</code> specifies the event(s) that should be returned as the output of the query.
-The possible values are as follows:
-* <code>first</code> : Only the first event processed by the query during the specified time interval/sliding window is emitted.
-* <code>last</code> : Only the last event processed by the query during the specified time interval/sliding window is emitted.
-* <code>all</code> : All the events processed by the query during the specified time interval/sliding window are emitted. <strong>When no <code>&lt;output event&gt;</code> is defined, <code>all</code> is used by default.</strong></p>
-<p><strong>Examples</strong></p>
-<ul>
-<li>
-<p>Returning events based on the number of events</p>
-<p>Here, events are emitted every time the specified number of events arrive. You can also specify whether to emit only the first event/last event, or all the events out of the events that arrived.</p>
-<p>In this example, the last temperature per sensor is emitted for every 10 events.</p>
-<p><pre>
-from TempStreamselect
-select temp, deviceID
-group by deviceID
-output last every 10 events
-insert into LowRateTempStream;    </pre></p>
-</li>
-<li>
-<p>Returning events based on time</p>
-<p>Here events are emitted for every predefined time interval. You can also specify whether to emit only the first event, last event, or all events out of the events that arrived during the specified time interval.</p>
-<p>In this example, emits all temperature events every 10 seconds  </p>
-<p><pre>
-from TempStreamoutput
-output every 10 sec
-insert into LowRateTempStream;    </pre></p>
-</li>
-<li>
-<p>Returning a periodic snapshot of events</p>
-<p>This method works best with windows. When an input stream is connected to a window, snapshot rate limiting emits all the current events that have arrived and do not have corresponding expired events for every predefined time interval.
-If the input stream is not connected to a window, only the last current event for each predefined time interval is emitted.</p>
-<p>This query emits a snapshot of the events in a time window of 5 seconds every 1 second.</p>
-<p><pre>
-from TempStream#window.time(5 sec)
-output snapshot every 1 sec
-insert into SnapshotTempStream;    </pre></p>
-</li>
-</ul>
+<p>The <code>&lt;output event selection&gt;</code> specifies the event(s) that are selected to be outputted from the query, here when no <code>&lt;output event selection&gt;</code> is defined, <code>all</code> is used by default.</p>
+<p>The possible values for the <code>&lt;output event selection&gt;</code> and their behaviors are as follows:
+* <code>first</code>: The first query output is published as soon as it is generated and the subsequent events are dropped until the specified time interval or the number of events are reached before sending the next event as output.
+* <code>last</code>: Emits only the last output event generated during the specified time or event interval.
+* <code>all</code>: Emits all the output events together which are generated during the specified time or event interval.</p>
+<p><strong>Example 1 (Time based first event)</strong></p>
+<p>Query to calculate the average <code>temp</code> per <code>roomNo</code> for the events arrived on the last 10 minutes, and send alerts <strong>once every 15 minutes</strong> of the events having <code>avgTemp</code> more than 30 degrees.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">define</span> <span class="n">stream</span> <span class="n">TempStream</span><span class="p">(</span><span class="n">deviceID</span> <span class="n">long</span><span class="p">,</span> <span class="n">roomNo</span> <span class="nb">int</span><span class="p">,</span> <span class="n">temp</span> <span class="n">double</span><span class="p">);</span>
+
+<span class="k">from</span> <span class="n">TempStream</span><span class="o">#</span><span class="n">window</span><span class="p">.</span><span class="n">time</span><span class="p">(</span><span class="mi">10</span> <span class="k">min</span><span class="p">)</span>
+<span class="k">select</span> <span class="n">roomNo</span><span class="p">,</span> <span class="k">avg</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span> <span class="k">as</span> <span class="n">avgTemp</span>
+<span class="k">group</span> <span class="k">by</span> <span class="n">roomNo</span>
+<span class="k">having</span> <span class="n">avgTemp</span> <span class="o">&gt;</span> <span class="mi">30</span>
+<span class="k">output</span> <span class="k">first</span> <span class="k">every</span> <span class="mi">15</span> <span class="k">min</span>
+<span class="k">insert</span> <span class="k">into</span> <span class="n">AlertStream</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<p>Here the first event having <code>avgTemp</code> &gt; 30 is emitted immediately and the next event is only emitted after 15 minutes.</p>
+<p><strong>Example 2 (Event based first event)</strong></p>
+<p>Query to output the initial event, and there onwards every 5<sup>th</sup> event from <code>TempStream</code> stream events.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">define</span> <span class="n">stream</span> <span class="n">TempStream</span><span class="p">(</span><span class="n">deviceID</span> <span class="n">long</span><span class="p">,</span> <span class="n">roomNo</span> <span class="nb">int</span><span class="p">,</span> <span class="n">temp</span> <span class="n">double</span><span class="p">);</span>
+
+<span class="k">from</span> <span class="n">TempStream</span>
+<span class="k">output</span> <span class="k">first</span> <span class="k">every</span> <span class="mi">5</span> <span class="n">events</span>
+<span class="k">insert</span> <span class="k">into</span> <span class="n">FiveEventBatchStream</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<p><strong>Example 3 (Event based all events)</strong></p>
+<p>Query to collect last 5 <code>TempStream</code> stream events and send them together as a single batch.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">define</span> <span class="n">stream</span> <span class="n">TempStream</span><span class="p">(</span><span class="n">deviceID</span> <span class="n">long</span><span class="p">,</span> <span class="n">roomNo</span> <span class="nb">int</span><span class="p">,</span> <span class="n">temp</span> <span class="n">double</span><span class="p">);</span>
+
+<span class="k">from</span> <span class="n">TempStream</span>
+<span class="k">output</span> <span class="k">every</span> <span class="mi">5</span> <span class="n">events</span>
+<span class="k">insert</span> <span class="k">into</span> <span class="n">FiveEventBatchStream</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<p>As no <code>&lt;output event selection&gt;</code> is defined, the behavior of <code>all</code> is applied in this case.</p>
+<p><strong>Example 4 (Time based last event)</strong></p>
+<p>Query to emit only the last event of <code>TempStream</code> stream for every 10 minute interval.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">define</span> <span class="n">stream</span> <span class="n">TempStream</span><span class="p">(</span><span class="n">deviceID</span> <span class="n">long</span><span class="p">,</span> <span class="n">roomNo</span> <span class="nb">int</span><span class="p">,</span> <span class="n">temp</span> <span class="n">double</span><span class="p">);</span>
+
+<span class="k">from</span> <span class="n">TempStream</span>
+<span class="k">output</span> <span class="k">last</span> <span class="k">every</span> <span class="mi">10</span> <span class="k">min</span>
+<span class="k">insert</span> <span class="k">into</span> <span class="n">FiveEventBatchStream</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<p><strong>Example 5 (Snapshot based)</strong></p>
+<p>Query to emit the snapshot of events retained by its last 5 minutes window defined on <code>TempStream</code> stream, every second.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">define</span> <span class="n">stream</span> <span class="n">TempStream</span><span class="p">(</span><span class="n">deviceID</span> <span class="n">long</span><span class="p">,</span> <span class="n">roomNo</span> <span class="nb">int</span><span class="p">,</span> <span class="n">temp</span> <span class="n">double</span><span class="p">);</span>
+
+<span class="k">from</span> <span class="n">TempStream</span><span class="o">#</span><span class="n">window</span><span class="p">.</span><span class="n">time</span><span class="p">(</span><span class="mi">5</span> <span class="n">sec</span><span class="p">)</span>
+<span class="k">output</span> <span class="n">snapshot</span> <span class="k">every</span> <span class="mi">1</span> <span class="n">sec</span>
+<span class="k">insert</span> <span class="k">into</span> <span class="n">SnapshotTempStream</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<p>Here, the query emits all the current events generated which do not have a corresponding expired event at the predefined time interval.</p>
+<p><strong>Example 6 (Snapshot based)</strong></p>
+<p>Query to emit the snapshot of events retained every second, when no window is defined on <code>TempStream</code> stream.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">define</span> <span class="n">stream</span> <span class="n">TempStream</span><span class="p">(</span><span class="n">deviceID</span> <span class="n">long</span><span class="p">,</span> <span class="n">roomNo</span> <span class="nb">int</span><span class="p">,</span> <span class="n">temp</span> <span class="n">double</span><span class="p">);</span>
+
+<span class="k">from</span> <span class="n">TempStream</span>
+<span class="k">output</span> <span class="n">snapshot</span> <span class="k">every</span> <span class="mi">5</span> <span class="n">sec</span>
+<span class="k">insert</span> <span class="k">into</span> <span class="n">SnapshotTempStream</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<p>Here, the query outputs the last seen event at the end of each time interval as there are no events stored in no window defined.</p>
 <h2 id="partition">Partition<a class="headerlink" href="#partition" title="Permanent link">&para;</a></h2>
 <p>Partitions divide streams and queries into isolated groups in order to process them in parallel and in isolation.
 A partition can contain one or more queries and there can be multiple instances where the same queries and streams are replicated for each partition.
