@@ -26,7 +26,6 @@ For example, let’s assume that user “John” has subscribed to an API with t
 
 Now, let’s understand how this could be implemented in Siddhi engine.
 
-
 ## Prerequisites
 Below are the prerequisites that should be considered to implement the above use case.
 
@@ -212,13 +211,13 @@ You can deploy the Siddhi app using any of the methods listed below.
     
 4. Start Siddhi app with the runner config by executing the following commands from the distribution directory.
         
-     ```
+     ````
      Linux/Mac : ./bin/runner.sh -Dapps=<siddhi-file-path> 
      Windows : bin\runner.bat -Dapps=<siddhi-file-path>
 
 	    Eg: If exported siddhi app in Siddhi home directory,
             ./bin/runner.sh -Dapps=API-Request-Throttler.siddhi
-      ```
+     ````
     
 5. Download the mock [logging service](https://github.com/mohanvive/siddhi-mock-services/releases/download/v1.0.0/logservice-1.0.0.jar) which is used to demonstrate the capability of Siddhi HTTP sink. Execute the below command to run the mock server.
 
