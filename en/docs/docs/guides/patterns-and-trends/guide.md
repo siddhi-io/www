@@ -332,9 +332,9 @@ MySQL is an external dependency for this use case. Hence, you could use the corr
     
 4. You can use the sample [TCP event publisher](https://github.com/mohanvive/siddhi-sample-clients/releases/download/v1.0.0/tcp-producer-1.0.0-jar-with-dependencies.jar )  to simulate required events. Use the below command to publish events to TCP endpoint.
 
-   ````
-   java -jar tcp-producer-1.0.0-jar-with-dependencies.jar tcp://localhost:9892/taxiRideRequests
-   ````
+    ````
+    java -jar tcp-producer-1.0.0-jar-with-dependencies.jar tcp://localhost:9892/taxiRideRequests
+    ````
    
 5. Then, you could see below logs get printed in the Siddhi runner console/log, events related to `NeedMoreRidersStream`  are stored in the database table and escalation email is sent to the manager when there is an increasing trend found in the cancellations. 
 
