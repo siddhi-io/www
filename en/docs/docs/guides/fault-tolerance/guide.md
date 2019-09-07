@@ -206,6 +206,7 @@ As a prerequisite, you have to start the Kafka message broker. Please follow bet
 Refer the Kafka documentation for more details, https://kafka.apache.org/quickstart 
 
 Then, you have to add necessary client jars (from <KAFKA_HOME>/libs directory) to Siddhi distribution as given below.
+
 * Copy below client libs to <SIDDHI_HOME>/bundles directory
     * scala-library-2.12.8.jar	
     * zkclient-0.11.jar		
@@ -303,6 +304,7 @@ Then, as given in [Setup Kafka](#setup-kafka) and [Setup MySQL](#setup-mysql) se
 4. You have to copy necessary Kafka and Mysql client jars to Siddhi runner distribution to connect with Kafka and MySQL database.
     
     Download the Kafka distribution and copy below Kafka client jars from <KAFKA_HOME>/lib folder
+    
     * Copy below client libs to <SIDDHI_HOME>/bundles directory
         * scala-library-2.12.8.jar	
         * zkclient-0.11.jar		
@@ -317,13 +319,13 @@ Then, as given in [Setup Kafka](#setup-kafka) and [Setup MySQL](#setup-mysql) se
 
 5. Start Siddhi app with the runner config by executing the following commands from the distribution directory.
         
-     ```
+     ````
      Linux/Mac : ./bin/runner.sh -Dapps=<siddhi-file-path> -Dconfig=<config-yaml-path>
      Windows : bin\runner.bat -Dapps=<siddhi-file-path> -Dconfig=<config-yaml-path>
 
 	    Eg: If exported siddhi app in Siddhi home directory,
             ./bin/runner.sh -Dapps=Glucose-Reading-PreProcessing-App.siddhi -Dconfig=snapshot.yaml
-      ```
+      ````
      Note: `snapshot.yaml` file contains the configuration to enable state snapshot persistence
     
 6. Once server is started, download the sample Kafka Avro event generator from [here](https://github.com/mohanvive/siddhi-sample-clients/releases/download/v1.0.0/kafka-avro-producer-1.0.0-jar-with-dependencies.jar) and execute below command.
@@ -502,7 +504,7 @@ You can refer the official Siddhi documentation [reference](https://siddhi.io/en
         kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-alpha/01-siddhi-operator.yaml --namespace=siddhi-kafka-test
         ````
         
-     - You can verify the installation by making sure the following deployments are running in your Kubernetes cluster.
+    - You can verify the installation by making sure the following deployments are running in your Kubernetes cluster.
      
         ![kubernetes_siddhi-pods](images/k8s-pods.png "K8S Siddhi Pods")
         
@@ -510,7 +512,7 @@ You can refer the official Siddhi documentation [reference](https://siddhi.io/en
 
 5. Siddhi applications can be deployed on Kubernetes using the Siddhi operator.
 
-   - To deploy the above created Siddhi app, we have to create custom resource object yaml file (with the kind as SiddhiProcess) as given below
+    - To deploy the above created Siddhi app, we have to create custom resource object yaml file (with the kind as SiddhiProcess) as given below
     
         ````yaml
         apiVersion: siddhi.io/v1alpha2
@@ -658,69 +660,71 @@ You can refer the official Siddhi documentation [reference](https://siddhi.io/en
         
         ````
         
-      Note: In the above provided Siddhi app, there are some environmental variables (MYSQL_DB_URL, MYSQL_USERNAME and  MYSQL_PASSWORD)  are used. These values are required to be set to tryout the scenario end to end. MYSQL related environmental variables are required to store the events which are failed to publish to the HTTP endpoint. Environmental variable KAFKA_BOOTSTRAP_SERVER_URL is the Kafka endpoint url where Siddhi listens and consume events from. Hence, make sure to add proper values for the environmental variables in the above yaml file (check the `env` section of the yaml file).
+        Note: In the above provided Siddhi app, there are some environmental variables (MYSQL_DB_URL, MYSQL_USERNAME and  MYSQL_PASSWORD)  are used. These values are required to be set to tryout the scenario end to end. MYSQL related environmental variables are required to store the events which are failed to publish to the HTTP endpoint. Environmental variable KAFKA_BOOTSTRAP_SERVER_URL is the Kafka endpoint url where Siddhi listens and consume events from. Hence, make sure to add proper values for the environmental variables in the above yaml file (check the `env` section of the yaml file).
             
-      Here, you can use the docker image that created in the [Deploy on Docker](#deploy-on-docker) section since you need a docker images with required extensions and client jars to test it in Kubernetes.
+        Here, you can use the docker image that created in the [Deploy on Docker](#deploy-on-docker) section since you need a docker images with required extensions and client jars to test it in Kubernetes.
             
-      Other than that, Siddhi runtime is configured to enable state snapshot persistence under the `runner` entry as shown above.
+        Other than that, Siddhi runtime is configured to enable state snapshot persistence under the `runner` entry as shown above.
 
-   - Now,  let’s create the above resource in the Kubernetes  cluster with below command.
+    - Now,  let’s create the above resource in the Kubernetes  cluster with below command.
       	
-     ````
+        ````
         kubectl --namespace=siddhi-kafka-test create -f <absolute-yaml-file-path>/glucose-reading-preprocessing-app.yaml
-     ````
-      
-        Once, siddhi app is successfully deployed. You can verify its health with below Kubernetes commands
-        
-    ![kubernetes_pods_with_kafka](images/k8s-pods-with-siddhi.png "Kubernetes Pods")
-        
-
-   - Now, you can send some events to Kafka messaging server and test the use case. If you are planning to push events to Kafka messaging server from your host machine then you have to enable few external listeners in Kafka. Please check the documentation provided for the Kafka helm chart. For testing purposes, you could use the `test-client` pod provided by us.
-      
-      	* Create a pod with below definition. 
-
-        ````yaml
-        apiVersion: v1
-          kind: Pod
-          metadata:
-            name: testclient
-            namespace: siddhi-kafka-test
-          spec:
-            containers:
-            - name: kafka
-              image: mohanvive/test-client
-              command:
-                - sh
-                - -c
-                - "exec tail -f /dev/null"
         ````
         
-        * Create a YAML file called test-client.yaml, add above pod definition in it and run below command.
+        Once, siddhi app is successfully deployed. You can verify its health with below Kubernetes commands
+        
+        ![kubernetes_pods_with_kafka](images/k8s-pods-with-siddhi.png "Kubernetes Pods")
+        
+    - Now, you can send some events to Kafka messaging server and test the use case. If you are planning to push events to Kafka messaging server from your host machine then you have to enable few external listeners in Kafka. Please check the documentation provided for the Kafka helm chart. For testing purposes, you could use the `test-client` pod provided by us.
+    
+        - Create a pod with below definition. 
+    
+            ````yaml
+            apiVersion: v1
+              kind: Pod
+              metadata:
+                name: testclient
+                namespace: siddhi-kafka-test
+              spec:
+                containers:
+                - name: kafka
+                  image: mohanvive/test-client
+                  command:
+                    - sh
+                    - -c
+                    - "exec tail -f /dev/null"
+            ````
+            
+        - Create a YAML file called test-client.yaml, add above pod definition in it and run below command.
             
             ````
             kubectl apply -f test-client.yaml
             ````
-   - Then, go into the above created pod using below command.
+            
+        - Then, go into the above created pod using below command.
+   
             ````
     		kubectl exec -it testclient sh --namespace=siddhi-kafka-test
     		````
     
-   - Download the sample Kafka client which could publish events related to above use case.
-    	````
-    	wget https://github.com/mohanvive/siddhi-sample-clients/releases/download/v1.0.0/kafka-avro-producer-1.0.0-jar-with-dependencies.jar
-    	````
+        - Download the sample Kafka client which could publish events related to above use case.
+   
+    	    ````
+    	    wget https://github.com/mohanvive/siddhi-sample-clients/releases/download/v1.0.0/kafka-avro-producer-1.0.0-jar-with-dependencies.jar
+    	    ````
     
-   - Then execute below command to push events to Kafka messaging system.
-    	````
-    	java -jar kafka-avro-producer-1.0.0-jar-with-dependencies.jar my-kafka-headless:9092
-    	````
+        - Then execute below command to push events to Kafka messaging system.
+   
+    	    ````
+    	    java -jar kafka-avro-producer-1.0.0-jar-with-dependencies.jar my-kafka-headless:9092
+    	    ````
     
-   - Then, as defined in the SIddhi application abnormal events get logged since it tries to publish to an unavailable endpoint.
+        - Then, as defined in the SIddhi application abnormal events get logged since it tries to publish to an unavailable endpoint.
 
-   ![kubernetes_siddhi_console_output](images/k8s-console-output.png "Kubernetes Console Output")
+            ![kubernetes_siddhi_console_output](images/k8s-console-output.png "Kubernetes Console Output")
     
-   ![kubernetes_siddhi_db_output](images/k8s-db-output.png "Kubernetes Database Output")   
+            ![kubernetes_siddhi_db_output](images/k8s-db-output.png "Kubernetes Database Output")   
 
-    
-   !!! info "Refer [here](https://siddhi.io/en/v5.1/docs/siddhi-as-a-kubernetes-microservice/) to get more details about running Siddhi on Kubernetes."
+        !!! info "Refer [here](https://siddhi.io/en/v5.1/docs/siddhi-as-a-kubernetes-microservice/) to get more details about running Siddhi on Kubernetes."
    
