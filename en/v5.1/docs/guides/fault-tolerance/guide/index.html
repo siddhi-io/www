@@ -1736,17 +1736,19 @@ Please refer <a href="https://siddhi.io/en/v5.1/docs/config-guide/#adding-to-sid
 </li>
 <li>
 <p>Start Siddhi app with the runner config by executing the following commands from the distribution directory.</p>
-<p>````
- Linux/Mac : ./bin/runner.sh -Dapps=<siddhi-file-path> -Dconfig=<config-yaml-path>
- Windows : bin\runner.bat -Dapps=<siddhi-file-path> -Dconfig=<config-yaml-path></p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>Eg: If exported siddhi app in Siddhi home directory,
-    ./bin/runner.sh -Dapps=Glucose-Reading-PreProcessing-App.siddhi -Dconfig=snapshot.yaml
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>Linux/Mac : ./bin/runner.sh -Dapps=&lt;siddhi-file-path&gt; -Dconfig=&lt;config-yaml-path&gt;
+Windows : bin\runner.bat -Dapps=&lt;siddhi-file-path&gt; -Dconfig=&lt;config-yaml-path&gt;
+
+   Eg: If exported siddhi app in Siddhi home directory,
+       ./bin/runner.sh -Dapps=Glucose-Reading-PreProcessing-App.siddhi -Dconfig=snapshot.yaml
 </pre></div>
 </td></tr></table>
 
-<p><code>```
- Note:</code>snapshot.yaml` file contains the configuration to enable state snapshot persistence</p>
+<p>Note: <code>snapshot.yaml</code> file contains the configuration to enable state snapshot persistence</p>
 </li>
 <li>
 <p>Once server is started, download the sample Kafka Avro event generator from <a href="https://github.com/mohanvive/siddhi-sample-clients/releases/download/v1.0.0/kafka-avro-producer-1.0.0-jar-with-dependencies.jar">here</a> and execute below command.</p>
@@ -1940,7 +1942,7 @@ ENTRYPOINT [&quot;/home/siddhi_user/siddhi-runner/bin/runner.sh&quot;,  &quot;--
 </ul>
 </li>
 <li>
-<p>Next, you can configure Kafka messaging system in the Kubernetes (in the above created namespace). You can use the Kafka Helm chart for this purpose- https://github.com/helm/charts/tree/master/incubator/kafka</p>
+<p>Next, you can configure Kafka messaging system in the Kubernetes (in the above created namespace). You can use the Kafka Helm <a href="https://github.com/helm/charts/tree/master/incubator/kafka">chart</a> for this purpose.</p>
 <ul>
 <li>
 <p>First, install Kafka helm chart as shown below.</p>

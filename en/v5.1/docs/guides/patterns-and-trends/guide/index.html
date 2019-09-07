@@ -1573,9 +1573,9 @@ For Linux/Mac: ./tooling.sh
 <h4 id="siddhi-runtime-configuration">Siddhi Runtime Configuration<a class="headerlink" href="#siddhi-runtime-configuration" title="Permanent link">&para;</a></h4>
 <ol>
 <li>
-<p>Make sure to set the necessary environmental variables as given above.
-    Note: In the above provided Siddhi app, there are some environmental variables (MYSQL_DB_URL, MYSQL_USERNAME, and  MYSQL_PASSWORD)  are used. These values are required to be set to try out the scenario end to end. MYSQL related environmental variables are required to store the events of stream <code>NeedMoreRidersStream</code> . Environmental variables EMAIL_PASSWORD, EMAIL_USERNAME, SENDER_EMAIL_ADDRESS and MANAGER_EMAIL_ADDRESS  are used to send an email alert when there is an increasing trend of cancellation on specific area. 
-    Hence, make sure to set the environmental variables with the proper values in the system (make sure to follow necessary steps based on the underneath operating system).  </p>
+<p>Make sure to set the necessary environmental variables as given above.</p>
+<p>Note: In the above provided Siddhi app, there are some environmental variables (MYSQL_DB_URL, MYSQL_USERNAME, and  MYSQL_PASSWORD)  are used. These values are required to be set to try out the scenario end to end. MYSQL related environmental variables are required to store the events of stream <code>NeedMoreRidersStream</code> . Environmental variables EMAIL_PASSWORD, EMAIL_USERNAME, SENDER_EMAIL_ADDRESS and MANAGER_EMAIL_ADDRESS  are used to send an email alert when there is an increasing trend of cancellation on specific area. 
+Hence, make sure to set the environmental variables with the proper values in the system (make sure to follow necessary steps based on the underneath operating system).  </p>
 </li>
 <li>
 <p>Download the latest Siddhi Runner <a href="https://github.com/siddhi-io/distribution/releases/download/v5.1.0-alpha/siddhi-runner-5.1.0-alpha.zip">distribution</a>.</p>
@@ -1587,16 +1587,18 @@ For Linux/Mac: ./tooling.sh
 </li>
 <li>
 <p>Start Siddhi app with the runner config by executing the following commands from the distribution directory.</p>
-<p>```
- Linux/Mac : ./bin/runner.sh -Dapps=<siddhi-file-path> 
- Windows : bin\runner.bat -Dapps=<siddhi-file-path> </p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>Eg: If exported siddhi app in Siddhi home directory,
-    ./bin/runner.sh -Dapps=Taxi-Rider-Requests-Processing-App.siddhi
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>Linux/Mac : ./bin/runner.sh -Dapps=&lt;siddhi-file-path&gt; 
+Windows : bin\runner.bat -Dapps=&lt;siddhi-file-path&gt; 
+
+   Eg: If exported siddhi app in Siddhi home directory,
+       ./bin/runner.sh -Dapps=Taxi-Rider-Requests-Processing-App.siddhi
 </pre></div>
 </td></tr></table>
 
-<p>```</p>
 <p><img alt="siddhi_runner_console" src="../images/siddhi-runner-console.png" title="Siddhi Runner Console" /> </p>
 </li>
 <li>
@@ -1651,8 +1653,8 @@ For Linux/Mac: ./tooling.sh
 </ol>
 <h4 id="siddhi-docker-configuration">Siddhi Docker Configuration<a class="headerlink" href="#siddhi-docker-configuration" title="Permanent link">&para;</a></h4>
 <ol>
-<li>Since, MySQL client jar is required for the Siddhi runner; you have to create the docker image accordingly. Below is the sample Docker file created</li>
-</ol>
+<li>
+<p>Since, MySQL client jar is required for the Siddhi runner; you have to create the docker image accordingly. Below is the sample Docker file created</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
@@ -1696,12 +1698,13 @@ ENTRYPOINT [&quot;/home/siddhi_user/siddhi-runner/bin/runner.sh&quot;,  &quot;--
 <p>Here, you have to create a folder called <code>jars</code> to add necessary external client dependencies to the docker image.</p>
 <p><img alt="directory_tree_structure" src="../images/tree-structure.png" title="Directory Tree Structure" /> </p>
 <p>You can refer the official Siddhi documentation <a href="https://siddhi.io/en/v5.1/docs/config-guide/#adding-to-siddhi-docker-microservice">reference</a> for this purpose.</p>
-<ol>
+</li>
 <li>
-<p>Once, Dockerfile is created you can create the docker image with below command.
-    <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>docker build -t siddhi_mysql .
+<p>Once, Dockerfile is created you can create the docker image with below command.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>docker build -t siddhi_mysql .
 </pre></div>
-</td></tr></table></p>
+</td></tr></table>
+
 </li>
 <li>
 <p>Then, you can run the Siddhi docker image that you created with necessary external dependencies to work with MySQL. </p>
@@ -1778,10 +1781,10 @@ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/
 </li>
 <li>
 <p>Siddhi applications can be deployed on Kubernetes using the Siddhi operator.</p>
-</li>
+<ul>
 <li>
 <p>To deploy the above created Siddhi app, we have to create custom resource object yaml file (with the kind as SiddhiProcess) as given below</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>  1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>  1
   2
   3
   4
@@ -1893,123 +1896,119 @@ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/
 110
 111
 112
-113
-114
-115</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>````yaml
-apiVersion: siddhi.io/v1alpha2
-kind: SiddhiProcess
-metadata:
-  name: taxi-rider-requests-processing-app
-spec:
-  apps:
-   - script: |
-        @App:name(&quot;Taxi-Rider-Requests-Processing-App&quot;)
-        @App:description(&quot;Siddhi application that processes Taxi Rider request events&quot;)
+113</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi.io/v1alpha2</span>
+<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SiddhiProcess</span>
+<span class="nt">metadata</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">taxi-rider-requests-processing-app</span>
+<span class="nt">spec</span><span class="p">:</span>
+  <span class="nt">apps</span><span class="p">:</span>
+   <span class="p p-Indicator">-</span> <span class="nt">script</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+        <span class="no">@App:name(&quot;Taxi-Rider-Requests-Processing-App&quot;)</span>
+        <span class="no">@App:description(&quot;Siddhi application that processes Taxi Rider request events&quot;)</span>
 
-        -- TCP source which accepts Taxi rider requests
-        @source(type=&#39;tcp&#39;, context=&#39;taxiRideRequests&#39;, @map(type=&#39;binary&#39;))
-        define stream TaxiRideEventStream(id long, time string, passengerId string, passengerName string, pickUpAddress string, pickUpZone string, 
-        dropOutAddress string, routingDetails string, expectedFare double, status string, passengerGrade string, additionalNote string);
+        <span class="no">-- TCP source which accepts Taxi rider requests</span>
+        <span class="no">@source(type=&#39;tcp&#39;, context=&#39;taxiRideRequests&#39;, @map(type=&#39;binary&#39;))</span>
+        <span class="no">define stream TaxiRideEventStream(id long, time string, passengerId string, passengerName string, pickUpAddress string, pickUpZone string, </span>
+        <span class="no">dropOutAddress string, routingDetails string, expectedFare double, status string, passengerGrade string, additionalNote string);</span>
 
-        -- For testing purposes, offer messages are logged in console. 
-        -- This could be further extended to send as sms to the premium users
-        @sink(type=&#39;log&#39;, @map(type = &#39;text&#39;, 
-            @payload(&quot;&quot;&quot;
-        Hi {{passengerName}}
+        <span class="no">-- For testing purposes, offer messages are logged in console. </span>
+        <span class="no">-- This could be further extended to send as sms to the premium users</span>
+        <span class="no">@sink(type=&#39;log&#39;, @map(type = &#39;text&#39;, </span>
+            <span class="no">@payload(&quot;&quot;&quot;</span>
+        <span class="no">Hi {{passengerName}}</span>
 
-            Unfortunately, you couldn&#39;t travel with us Today. We apologise for the high waiting time.
-            As a token of apology please accept {{offerAmount}} USD off from your next ride.
+            <span class="no">Unfortunately, you couldn&#39;t travel with us Today. We apologise for the high waiting time.</span>
+            <span class="no">As a token of apology please accept {{offerAmount}} USD off from your next ride.</span>
 
-        Truly, 
-        MyTaxi Team&quot;&quot;&quot;)))
-        define stream InstantOfferAlertStream(passengerName string, pickUpZone string, offerAmount double);
+        <span class="no">Truly, </span>
+        <span class="no">MyTaxi Team&quot;&quot;&quot;)))</span>
+        <span class="no">define stream InstantOfferAlertStream(passengerName string, pickUpZone string, offerAmount double);</span>
 
-        -- RDBMS event table which stores events related to the requirement of need more riders
-        @store(type=&quot;rdbms&quot;, jdbc.url=&quot;${MYSQL_DB_URL}&quot;, username=&quot;${MYSQL_USERNAME}&quot;, password=&quot;${MYSQL_PASSWORD}&quot; , jdbc.driver.name=&quot;com.mysql.jdbc.Driver&quot;)
-        define table NeedMoreRidersTable (systemTime string, zone string);
+        <span class="no">-- RDBMS event table which stores events related to the requirement of need more riders</span>
+        <span class="no">@store(type=&quot;rdbms&quot;, jdbc.url=&quot;${MYSQL_DB_URL}&quot;, username=&quot;${MYSQL_USERNAME}&quot;, password=&quot;${MYSQL_PASSWORD}&quot; , jdbc.driver.name=&quot;com.mysql.jdbc.Driver&quot;)</span>
+        <span class="no">define table NeedMoreRidersTable (systemTime string, zone string);</span>
 
-        -- Email sink which send email alerts to the manager of MyTaxi
-        @sink(type = &#39;email&#39;, username = &quot;${EMAIL_USERNAME}&quot;, address = &quot;${SENDER_EMAIL_ADDRESS}&quot;, password = &quot;${EMAIL_PASSWORD}&quot;, 
-        subject = &quot;[Need Immediate Attention] High Waiting Time&quot;, to = &quot;${MANAGER_EMAIL_ADDRESS}&quot;, host = &quot;smtp.gmail.com&quot;, port = &quot;465&quot;, ssl.enable = &quot;true&quot;, auth = &quot;true&quot;, 
-          @map(type = &#39;text&#39;, 
-            @payload(&quot;&quot;&quot;
-        Hi,
+        <span class="no">-- Email sink which send email alerts to the manager of MyTaxi</span>
+        <span class="no">@sink(type = &#39;email&#39;, username = &quot;${EMAIL_USERNAME}&quot;, address = &quot;${SENDER_EMAIL_ADDRESS}&quot;, password = &quot;${EMAIL_PASSWORD}&quot;, </span>
+        <span class="no">subject = &quot;[Need Immediate Attention] High Waiting Time&quot;, to = &quot;${MANAGER_EMAIL_ADDRESS}&quot;, host = &quot;smtp.gmail.com&quot;, port = &quot;465&quot;, ssl.enable = &quot;true&quot;, auth = &quot;true&quot;, </span>
+          <span class="no">@map(type = &#39;text&#39;, </span>
+            <span class="no">@payload(&quot;&quot;&quot;</span>
+        <span class="no">Hi,</span>
 
-            There is an increasing trend of ride cancellations in the {{zone}} area due to high waiting time.  
-            Increasing trend is detected at {{systemTime}}.
-            Please take immediate action to sort this out.
+            <span class="no">There is an increasing trend of ride cancellations in the {{zone}} area due to high waiting time.  </span>
+            <span class="no">Increasing trend is detected at {{systemTime}}.</span>
+            <span class="no">Please take immediate action to sort this out.</span>
 
-        Thanks...&quot;&quot;&quot;)))
-        define stream AttentionRequiredCancellationStream (systemTime string, zone string, lastNoOfCancellations long);
+        <span class="no">Thanks...&quot;&quot;&quot;)))</span>
+        <span class="no">define stream AttentionRequiredCancellationStream (systemTime string, zone string, lastNoOfCancellations long);</span>
 
-        @info(name=&#39;Ride-cancellation-identifier&#39;) 
-        from every e1=TaxiRideEventStream[status == &#39;Assigned&#39;] -&gt; 
-                e2=TaxiRideEventStream[e1.passengerId == passengerId and status == &#39;Cancelled&#39; and additionalNote == &#39;WT is High&#39;]
-                within 30 seconds 
-        select e2.passengerName, e1.passengerGrade, e1.pickUpZone, e1.expectedFare
-        insert into TaxiRideCancelStream;
+        <span class="no">@info(name=&#39;Ride-cancellation-identifier&#39;) </span>
+        <span class="no">from every e1=TaxiRideEventStream[status == &#39;Assigned&#39;] -&gt; </span>
+                <span class="no">e2=TaxiRideEventStream[e1.passengerId == passengerId and status == &#39;Cancelled&#39; and additionalNote == &#39;WT is High&#39;]</span>
+                <span class="no">within 30 seconds </span>
+        <span class="no">select e2.passengerName, e1.passengerGrade, e1.pickUpZone, e1.expectedFare</span>
+        <span class="no">insert into TaxiRideCancelStream;</span>
 
-        @info(name=&#39;Offer-for-premium-users&#39;) 
-        from TaxiRideCancelStream[passengerGrade == &#39;Premium&#39;]
-        select passengerName, pickUpZone, math:floor(expectedFare) / 2.0 as offerAmount
-        insert into InstantOfferAlertStream;
+        <span class="no">@info(name=&#39;Offer-for-premium-users&#39;) </span>
+        <span class="no">from TaxiRideCancelStream[passengerGrade == &#39;Premium&#39;]</span>
+        <span class="no">select passengerName, pickUpZone, math:floor(expectedFare) / 2.0 as offerAmount</span>
+        <span class="no">insert into InstantOfferAlertStream;</span>
 
-        @info(name=&#39;Frequently-ride-cancellation-identifier&#39;) 
-        from TaxiRideCancelStream#window.timeBatch(1 min)
-        select pickUpZone, count() as totalCancellations, time:currentTimestamp() as systemTime
-        group by pickUpZone
-        having totalCancellations &gt; 3
-        insert into NeedMoreRidersStream;
+        <span class="no">@info(name=&#39;Frequently-ride-cancellation-identifier&#39;) </span>
+        <span class="no">from TaxiRideCancelStream#window.timeBatch(1 min)</span>
+        <span class="no">select pickUpZone, count() as totalCancellations, time:currentTimestamp() as systemTime</span>
+        <span class="no">group by pickUpZone</span>
+        <span class="no">having totalCancellations &gt; 3</span>
+        <span class="no">insert into NeedMoreRidersStream;</span>
 
-        @info(name=&#39;Dump-needMoreRider-events&#39;) 
-        from NeedMoreRidersStream
-        select systemTime, pickUpZone as zone
-        insert into NeedMoreRidersTable;
+        <span class="no">@info(name=&#39;Dump-needMoreRider-events&#39;) </span>
+        <span class="no">from NeedMoreRidersStream</span>
+        <span class="no">select systemTime, pickUpZone as zone</span>
+        <span class="no">insert into NeedMoreRidersTable;</span>
 
-        @info(name=&#39;Ride-cancellation-increasing-trend-identifer&#39;) 
-        partition with (pickUpZone of NeedMoreRidersStream)
-        begin
-            from e1 = NeedMoreRidersStream, e2 = NeedMoreRidersStream[totalCancellations &gt; e1.totalCancellations], 
-                e3 = NeedMoreRidersStream[totalCancellations &gt; e2.totalCancellations]
-            select e3.systemTime, e1.pickUpZone as zone, e3.totalCancellations as lastNoOfCancellations
-            insert into AttentionRequiredCancellationStream;
-        end; 
+        <span class="no">@info(name=&#39;Ride-cancellation-increasing-trend-identifer&#39;) </span>
+        <span class="no">partition with (pickUpZone of NeedMoreRidersStream)</span>
+        <span class="no">begin</span>
+            <span class="no">from e1 = NeedMoreRidersStream, e2 = NeedMoreRidersStream[totalCancellations &gt; e1.totalCancellations], </span>
+                <span class="no">e3 = NeedMoreRidersStream[totalCancellations &gt; e2.totalCancellations]</span>
+            <span class="no">select e3.systemTime, e1.pickUpZone as zone, e3.totalCancellations as lastNoOfCancellations</span>
+            <span class="no">insert into AttentionRequiredCancellationStream;</span>
+        <span class="no">end; </span>
 
-  persistentVolumeClaim: 
-      accessModes: 
-        - ReadWriteOnce
-      resources: 
-        requests: 
-          storage: 1Gi
-      storageClassName: hostpath
-      volumeMode: Filesystem
+  <span class="nt">persistentVolumeClaim</span><span class="p">:</span> 
+      <span class="nt">accessModes</span><span class="p">:</span> 
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span>
+      <span class="nt">resources</span><span class="p">:</span> 
+        <span class="nt">requests</span><span class="p">:</span> 
+          <span class="nt">storage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1Gi</span>
+      <span class="nt">storageClassName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">hostpath</span>
+      <span class="nt">volumeMode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Filesystem</span>
 
-  container:
-    env:
-      -
-        name: MYSQL_DB_URL
-        value: &quot;jdbc:mysql://mysql-db:3306/MyTaxi&quot;
-      -
-        name: MYSQL_USERNAME
-        value: &quot;root&quot;
-      - 
-        name: MYSQL_PASSWORD
-        value: &quot;root&quot;
-      -
-        name: EMAIL_PASSWORD
-        value: &quot;siddhi123&quot;
-      -
-        name: EMAIL_USERNAME
-        value: &quot;siddhi.gke.user&quot;
-      - 
-        name: SENDER_EMAIL_ADDRESS
-        value: &quot;siddhi.gke.user@gmail.com&quot;
-      -
-        name: MANAGER_EMAIL_ADDRESS
-        value: &quot;mohan@wso2.com&quot;
+  <span class="nt">container</span><span class="p">:</span>
+    <span class="nt">env</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span>
+        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">MYSQL_DB_URL</span>
+        <span class="nt">value</span><span class="p">:</span> <span class="s">&quot;jdbc:mysql://mysql-db:3306/MyTaxi&quot;</span>
+      <span class="p p-Indicator">-</span>
+        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">MYSQL_USERNAME</span>
+        <span class="nt">value</span><span class="p">:</span> <span class="s">&quot;root&quot;</span>
+      <span class="p p-Indicator">-</span> 
+        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">MYSQL_PASSWORD</span>
+        <span class="nt">value</span><span class="p">:</span> <span class="s">&quot;root&quot;</span>
+      <span class="p p-Indicator">-</span>
+        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">EMAIL_PASSWORD</span>
+        <span class="nt">value</span><span class="p">:</span> <span class="s">&quot;siddhi123&quot;</span>
+      <span class="p p-Indicator">-</span>
+        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">EMAIL_USERNAME</span>
+        <span class="nt">value</span><span class="p">:</span> <span class="s">&quot;siddhi.gke.user&quot;</span>
+      <span class="p p-Indicator">-</span> 
+        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SENDER_EMAIL_ADDRESS</span>
+        <span class="nt">value</span><span class="p">:</span> <span class="s">&quot;siddhi.gke.user@gmail.com&quot;</span>
+      <span class="p p-Indicator">-</span>
+        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">MANAGER_EMAIL_ADDRESS</span>
+        <span class="nt">value</span><span class="p">:</span> <span class="s">&quot;mohan@wso2.com&quot;</span>
 
-    image: &quot;mohanvive/siddhi_mysql:latest&quot;        
-````
+    <span class="nt">image</span><span class="p">:</span> <span class="s">&quot;mohanvive/siddhi_mysql:latest&quot;</span>        
 </pre></div>
 </td></tr></table>
 
@@ -2018,66 +2017,49 @@ spec:
 </li>
 <li>
 <p>Now,  let’s create the above resource in the Kubernetes  cluster with below command.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>   kubectl --namespace=siddhi-mysql-test create -f &lt;absolute-yaml-file-path&gt;/taxi-rider-requests-processing-app.yaml
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl --namespace=siddhi-mysql-test create -f &lt;absolute-yaml-file-path&gt;/taxi-rider-requests-processing-app.yaml
 </pre></div>
 </td></tr></table>
 
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>Once, siddhi app is successfully deployed. You can verify its health with below Kubernetes commands
-</pre></div>
-</td></tr></table>
-
+<p>Once, siddhi app is successfully deployed. You can verify its health with below Kubernetes commands</p>
 <p><img alt="kubernetes_pods_with_mysql" src="../images/k8s-pods-with-siddhi.png" title="Kubernetes Deployment &amp; Pods" /></p>
 </li>
 <li>
 <p>You can find the alert logs in the siddhi runner log file. To see the Siddhi runner log file, you can invoke below command.
-        <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl get pods
+    <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl get pods
 </pre></div>
 </td></tr></table></p>
-<p>Then, find the pod name of the siddhi app deployed. Then invoke below command,
-    <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl logs &lt;siddhi-app-pod-name&gt; -f
-</pre></div>
-</td></tr></table></p>
-</li>
-<li>
-<p>Then, you can set a port forwarding to the Siddhi TCP endpoint which allows you to connect from the Host with below command.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>````
-kubectl port-forward svc/taxi-rider-requests-processing-app-0 9892:9892 --namespace=siddhi-mysql-test   
-````
-
-![tco_port_forwarding](images/tcp-port-forwarding.png &quot;Kubernetes TCP Port Forwarding&quot;)
+<p>Then, find the pod name of the siddhi app deployed. Then invoke below command,</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl logs &lt;siddhi-app-pod-name&gt; -f
 </pre></div>
 </td></tr></table>
 
 </li>
 <li>
+<p>Then, you can set a port forwarding to the Siddhi TCP endpoint which allows you to connect from the Host with below command.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl port-forward svc/taxi-rider-requests-processing-app-0 9892:9892 --namespace=siddhi-mysql-test   
+</pre></div>
+</td></tr></table>
+
+<p><img alt="tco_port_forwarding" src="../images/tcp-port-forwarding.png" title="Kubernetes TCP Port Forwarding" /></p>
+</li>
+<li>
 <p>Then execute below command to send TCP events to Siddhi Stream Processor.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>````
-java -jar tcp-producer-1.0.0-jar-with-dependencies.jar tcp://0.0.0.0:9892/taxiRideRequests
-````
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>java -jar tcp-producer-1.0.0-jar-with-dependencies.jar tcp://0.0.0.0:9892/taxiRideRequests
 </pre></div>
 </td></tr></table>
 
 </li>
 <li>
 <p>Then, you could see below logs get printed in the Siddhi runner console/log, events related to <code>NeedMoreRidersStream</code>  are stored in the database table and escalation email is sent to the manager when there is an increasing trend found in the cancellations.  </p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>![k8s_instant_offer_in_logs](images/k8s-instant-offer-in-logs.png &quot;Instant Offers to Premium Users&quot;)
-
-![k8s_need_more_riders_table](images/k8s-need-more-riders-table.png &quot;Need More Riders Data in Database&quot;)
-
-![k8s_escalation_email_alert](images/k8s-escalation-email-alert.png &quot;Escalation Mail to Manager&quot;)
-</pre></div>
-</td></tr></table>
-
+<p><img alt="k8s_instant_offer_in_logs" src="../images/k8s-instant-offer-in-logs.png" title="Instant Offers to Premium Users" /></p>
+<p><img alt="k8s_need_more_riders_table" src="../images/k8s-need-more-riders-table.png" title="Need More Riders Data in Database" /></p>
+<p><img alt="k8s_escalation_email_alert" src="../images/k8s-escalation-email-alert.png" title="Escalation Mail to Manager" /></p>
+</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Refer <a href="https://siddhi.io/en/v5.1/docs/siddhi-as-a-kubernetes-microservice/">here</a> to get more details about running Siddhi on Kubernetes.</p>
+</div>
 </li>
 </ol>
                 

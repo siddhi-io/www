@@ -1468,16 +1468,18 @@ mohan, silver, true], isExpired=false}
 <ol>
 <li>
 <p>Start Siddhi app with the runner config by executing the following commands from the distribution directory.</p>
-<p>```
- Linux/Mac : ./bin/runner.sh -Dapps=<siddhi-file-path> 
- Windows : bin\runner.bat -Dapps=<siddhi-file-path></p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>Eg: If exported siddhi app in Siddhi home directory,
-    ./bin/runner.sh -Dapps=API-Request-Throttler.siddhi
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>Linux/Mac : ./bin/runner.sh -Dapps=&lt;siddhi-file-path&gt; 
+Windows : bin\runner.bat -Dapps=&lt;siddhi-file-path&gt;
+
+   Eg: If exported siddhi app in Siddhi home directory,
+       ./bin/runner.sh -Dapps=API-Request-Throttler.siddhi
 </pre></div>
 </td></tr></table>
 
-<p>```</p>
 </li>
 <li>
 <p>Download the mock <a href="https://github.com/mohanvive/siddhi-mock-services/releases/download/v1.0.0/logservice-1.0.0.jar">logging service</a> which is used to demonstrate the capability of Siddhi HTTP sink. Execute the below command to run the mock server.</p>
