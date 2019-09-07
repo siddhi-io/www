@@ -215,6 +215,7 @@ Then, as given in the [Setup MySQL](#setup-mysql) section. Download the MySQL da
 #### Siddhi Runtime Configuration
 
 1. Make sure to set the necessary environmental variables as given above.
+    
     Note: In the above provided Siddhi app, there are some environmental variables (MYSQL_DB_URL, MYSQL_USERNAME, and  MYSQL_PASSWORD)  are used. These values are required to be set to try out the scenario end to end. MYSQL related environmental variables are required to store the events of stream `NeedMoreRidersStream` . Environmental variables EMAIL_PASSWORD, EMAIL_USERNAME, SENDER_EMAIL_ADDRESS and MANAGER_EMAIL_ADDRESS  are used to send an email alert when there is an increasing trend of cancellation on specific area. 
     Hence, make sure to set the environmental variables with the proper values in the system (make sure to follow necessary steps based on the underneath operating system).  
     
@@ -225,13 +226,13 @@ Then, as given in the [Setup MySQL](#setup-mysql) section. Download the MySQL da
 
 5. Start Siddhi app with the runner config by executing the following commands from the distribution directory.
         
-     ```
+     ````
      Linux/Mac : ./bin/runner.sh -Dapps=<siddhi-file-path> 
      Windows : bin\runner.bat -Dapps=<siddhi-file-path> 
 
 	    Eg: If exported siddhi app in Siddhi home directory,
             ./bin/runner.sh -Dapps=Taxi-Rider-Requests-Processing-App.siddhi
-      ```
+     ````
      
      ![siddhi_runner_console](images/siddhi-runner-console.png "Siddhi Runner Console") 
       
@@ -253,7 +254,6 @@ Then, as given in the [Setup MySQL](#setup-mysql) section. Download the MySQL da
     ![need_more_riders_table](images/need-more-riders-table.png "Need More Riders Data in Database")
     
     ![escalation_email_alert](images/escalation-email-alert.png "Escalation Mail to Manager")
-
 
 ### Deploy on Docker
 
@@ -288,35 +288,36 @@ MySQL is an external dependency for this use case. Hence, you could use the corr
 
 1. Since, MySQL client jar is required for the Siddhi runner; you have to create the docker image accordingly. Below is the sample Docker file created
 
-````
-FROM siddhiio/siddhi-runner-base-alpine:5.1.0-alpha
-MAINTAINER Siddhi IO Docker Maintainers "siddhi-dev@googlegroups.com"
+    ````
+    FROM siddhiio/siddhi-runner-base-alpine:5.1.0-alpha
+    MAINTAINER Siddhi IO Docker Maintainers "siddhi-dev@googlegroups.com"
+    
+    ARG HOST_BUNDLES_DIR=./files/bundles
+    ARG HOST_JARS_DIR=./files/jars
+    ARG JARS=${RUNTIME_SERVER_HOME}/jars
+    ARG BUNDLES=${RUNTIME_SERVER_HOME}/bundles
+    
+    # copy bundles & jars to the siddhi-runner distribution
+    COPY --chown=siddhi_user:siddhi_io ${HOST_JARS_DIR}/ ${JARS}
+    
+    # expose ports
+    EXPOSE 9090 9443 9712 9612 7711 7611 7070 7443
+    
+    RUN bash ${RUNTIME_SERVER_HOME}/bin/install-jars.sh
+    
+    STOPSIGNAL SIGINT
+    
+    ENTRYPOINT ["/home/siddhi_user/siddhi-runner/bin/runner.sh",  "--"]
+    ````
+    
+    Here, you have to create a folder called `jars` to add necessary external client dependencies to the docker image.
 
-ARG HOST_BUNDLES_DIR=./files/bundles
-ARG HOST_JARS_DIR=./files/jars
-ARG JARS=${RUNTIME_SERVER_HOME}/jars
-ARG BUNDLES=${RUNTIME_SERVER_HOME}/bundles
+    ![directory_tree_structure](images/tree-structure.png "Directory Tree Structure") 
 
-# copy bundles & jars to the siddhi-runner distribution
-COPY --chown=siddhi_user:siddhi_io ${HOST_JARS_DIR}/ ${JARS}
-
-# expose ports
-EXPOSE 9090 9443 9712 9612 7711 7611 7070 7443
-
-RUN bash ${RUNTIME_SERVER_HOME}/bin/install-jars.sh
-
-STOPSIGNAL SIGINT
-
-ENTRYPOINT ["/home/siddhi_user/siddhi-runner/bin/runner.sh",  "--"]
-````
-
-Here, you have to create a folder called `jars` to add necessary external client dependencies to the docker image.
-
-![directory_tree_structure](images/tree-structure.png "Directory Tree Structure") 
-
-You can refer the official Siddhi documentation [reference](https://siddhi.io/en/v5.1/docs/config-guide/#adding-to-siddhi-docker-microservice) for this purpose.
+    You can refer the official Siddhi documentation [reference](https://siddhi.io/en/v5.1/docs/config-guide/#adding-to-siddhi-docker-microservice) for this purpose.
     
 2. Once, Dockerfile is created you can create the docker image with below command.
+
     ````
     docker build -t siddhi_mysql .
     ````
@@ -379,14 +380,14 @@ You can refer the official Siddhi documentation [reference](https://siddhi.io/en
         kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-alpha/01-siddhi-operator.yaml --namespace=siddhi-mysql-test
         ````
         
-     - You can verify the installation by making sure the following deployments are running in your Kubernetes cluster.
+    - You can verify the installation by making sure the following deployments are running in your Kubernetes cluster.
      
         ![kubernetes_siddhi-pods-svc](images/k8s-pods-and-svc.png "K8S Siddhi Pods & Services")
         
 
-5. Siddhi applications can be deployed on Kubernetes using the Siddhi operator.
+4. Siddhi applications can be deployed on Kubernetes using the Siddhi operator.
 
-   - To deploy the above created Siddhi app, we have to create custom resource object yaml file (with the kind as SiddhiProcess) as given below
+    - To deploy the above created Siddhi app, we have to create custom resource object yaml file (with the kind as SiddhiProcess) as given below
     
         ````yaml
         apiVersion: siddhi.io/v1alpha2
@@ -504,31 +505,32 @@ You can refer the official Siddhi documentation [reference](https://siddhi.io/en
             image: "mohanvive/siddhi_mysql:latest"        
         ````
         
-      Note: In the above provided Siddhi app, there are some environmental variables (MYSQL_DB_URL, MYSQL_USERNAME, and  MYSQL_PASSWORD)  are used. These values are required to be set to try out the scenario end to end. MYSQL related environmental variables are required to store the events of stream `NeedMoreRidersStream` . Environmental variables EMAIL_PASSWORD, EMAIL_USERNAME, SENDER_EMAIL_ADDRESS and MANAGER_EMAIL_ADDRESS  are used to send an email alert when there is an increasing trend of cancellation on specific area. Hence, make sure to add proper values for the environmental variables in the above yaml file (check the ‘env’ section of the yaml file).
+        Note: In the above provided Siddhi app, there are some environmental variables (MYSQL_DB_URL, MYSQL_USERNAME, and  MYSQL_PASSWORD)  are used. These values are required to be set to try out the scenario end to end. MYSQL related environmental variables are required to store the events of stream `NeedMoreRidersStream` . Environmental variables EMAIL_PASSWORD, EMAIL_USERNAME, SENDER_EMAIL_ADDRESS and MANAGER_EMAIL_ADDRESS  are used to send an email alert when there is an increasing trend of cancellation on specific area. Hence, make sure to add proper values for the environmental variables in the above yaml file (check the ‘env’ section of the yaml file).
       
-      Here, you can use the docker image that created in the  section since you need a docker images with required extensions and client jars to test it in Kubernetes.
+        Here, you can use the docker image that created in the  section since you need a docker images with required extensions and client jars to test it in Kubernetes.
 
-   - Now,  let’s create the above resource in the Kubernetes  cluster with below command.
+    - Now,  let’s create the above resource in the Kubernetes  cluster with below command.
       	
-     ````
+        ````
         kubectl --namespace=siddhi-mysql-test create -f <absolute-yaml-file-path>/taxi-rider-requests-processing-app.yaml
-     ````
+        ````
       
         Once, siddhi app is successfully deployed. You can verify its health with below Kubernetes commands
         
-    ![kubernetes_pods_with_mysql](images/k8s-pods-with-siddhi.png "Kubernetes Deployment & Pods")
+        ![kubernetes_pods_with_mysql](images/k8s-pods-with-siddhi.png "Kubernetes Deployment & Pods")
     
-   - You can find the alert logs in the siddhi runner log file. To see the Siddhi runner log file, you can invoke below command.
+    - You can find the alert logs in the siddhi runner log file. To see the Siddhi runner log file, you can invoke below command.
         ````
         kubectl get pods
         ````
      
-      Then, find the pod name of the siddhi app deployed. Then invoke below command,
+        Then, find the pod name of the siddhi app deployed. Then invoke below command,
+        
         ````
         kubectl logs <siddhi-app-pod-name> -f
         ````
         
-   - Then, you can set a port forwarding to the Siddhi TCP endpoint which allows you to connect from the Host with below command.
+    - Then, you can set a port forwarding to the Siddhi TCP endpoint which allows you to connect from the Host with below command.
      
         ````
         kubectl port-forward svc/taxi-rider-requests-processing-app-0 9892:9892 --namespace=siddhi-mysql-test   
@@ -536,13 +538,13 @@ You can refer the official Siddhi documentation [reference](https://siddhi.io/en
         
         ![tco_port_forwarding](images/tcp-port-forwarding.png "Kubernetes TCP Port Forwarding")
    
-   - Then execute below command to send TCP events to Siddhi Stream Processor.
+    - Then execute below command to send TCP events to Siddhi Stream Processor.
    
         ````
         java -jar tcp-producer-1.0.0-jar-with-dependencies.jar tcp://0.0.0.0:9892/taxiRideRequests
         ````     
      	
-   - Then, you could see below logs get printed in the Siddhi runner console/log, events related to `NeedMoreRidersStream`  are stored in the database table and escalation email is sent to the manager when there is an increasing trend found in the cancellations.  
+    - Then, you could see below logs get printed in the Siddhi runner console/log, events related to `NeedMoreRidersStream`  are stored in the database table and escalation email is sent to the manager when there is an increasing trend found in the cancellations.  
 
         ![k8s_instant_offer_in_logs](images/k8s-instant-offer-in-logs.png "Instant Offers to Premium Users")
                 
@@ -550,3 +552,5 @@ You can refer the official Siddhi documentation [reference](https://siddhi.io/en
                 
         ![k8s_escalation_email_alert](images/k8s-escalation-email-alert.png "Escalation Mail to Manager")
    
+    !!! info "Refer [here](https://siddhi.io/en/v5.1/docs/siddhi-as-a-kubernetes-microservice/) to get more details about running Siddhi on Kubernetes."
+       

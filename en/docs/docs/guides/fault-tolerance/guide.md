@@ -325,7 +325,8 @@ Then, as given in [Setup Kafka](#setup-kafka) and [Setup MySQL](#setup-mysql) se
 
 	    Eg: If exported siddhi app in Siddhi home directory,
             ./bin/runner.sh -Dapps=Glucose-Reading-PreProcessing-App.siddhi -Dconfig=snapshot.yaml
-      ````
+     ````
+     
      Note: `snapshot.yaml` file contains the configuration to enable state snapshot persistence
     
 6. Once server is started, download the sample Kafka Avro event generator from [here](https://github.com/mohanvive/siddhi-sample-clients/releases/download/v1.0.0/kafka-avro-producer-1.0.0-jar-with-dependencies.jar) and execute below command.
@@ -483,7 +484,7 @@ You can refer the official Siddhi documentation [reference](https://siddhi.io/en
     
         ![docke_mysql_db_indo](images/k8s-mysql-db-info.png "MySQL Docker Database Details") 
 
-3. Next, you can configure Kafka messaging system in the Kubernetes (in the above created namespace). You can use the Kafka Helm chart for this purpose- https://github.com/helm/charts/tree/master/incubator/kafka
+3. Next, you can configure Kafka messaging system in the Kubernetes (in the above created namespace). You can use the Kafka Helm [chart](https://github.com/helm/charts/tree/master/incubator/kafka) for this purpose.
 
     * First, install Kafka helm chart as shown below.
 	
