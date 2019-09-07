@@ -1818,8 +1818,8 @@ Windows : bin\runner.bat -Dapps=&lt;siddhi-file-path&gt; -Dconfig=&lt;config-yam
 </ol>
 <h4 id="siddhi-docker-configuration">Siddhi Docker Configuration<a class="headerlink" href="#siddhi-docker-configuration" title="Permanent link">&para;</a></h4>
 <ol>
-<li>Since, there are some external client jars (Kafka &amp; MySQL) are required for the Siddhi runner. You have to create the docker image accordingly. Below is the sample Docker file created</li>
-</ol>
+<li>
+<p>Since, there are some external client jars (Kafka &amp; MySQL) are required for the Siddhi runner. You have to create the docker image accordingly. Below is the sample Docker file created</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
@@ -1865,11 +1865,13 @@ ENTRYPOINT [&quot;/home/siddhi_user/siddhi-runner/bin/runner.sh&quot;,  &quot;--
 <p>Here, you have to create two folders called <code>bundles</code> and <code>jars</code> to add necessary external client dependencies to the docker image.</p>
 <p><img alt="directory_tree_structure" src="../images/tree-structure.png" title="Directory Tree Structure" /> </p>
 <p>You can refer the official Siddhi documentation <a href="https://siddhi.io/en/v5.1/docs/config-guide/#adding-to-siddhi-docker-microservice">reference</a> for this purpose.</p>
-<ol>
-<li>Once, Dockerfile is created you can create the docker image with below command.
+</li>
+<li>
+<p>Once, Dockerfile is created you can create the docker image with below command.
     <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>docker build -t siddhi_for_kafka .
 </pre></div>
-</td></tr></table></li>
+</td></tr></table></p>
+</li>
 <li>
 <p>Create a folder locally (eg: /home/siddhi-artifacts) and copy the Siddhi app in to it. Also, create a YAML file (snapshot.yaml) with below configuration to enable state snapshot persistence in the created folder.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
@@ -1906,10 +1908,12 @@ ENTRYPOINT [&quot;/home/siddhi_user/siddhi-runner/bin/runner.sh&quot;,  &quot;--
 </td></tr></table>
 
 <ol>
-<li>Then, you could see below log gets printed in the Siddhi runner console and failed events are stored in the database table. </li>
-</ol>
+<li>
+<p>Then, you could see below log gets printed in the Siddhi runner console and failed events are stored in the database table. </p>
 <p><img alt="docker_console_output" src="../images/docker-console-output.png" title="Siddhi Docker Console Output" /> </p>
 <p><img alt="docker_mysql_output" src="../images/mysql-docker-db-output.png" title="MySQL Docker Database Output" /> </p>
+</li>
+</ol>
 <h3 id="deploy-on-kubernetes">Deploy on Kubernetes<a class="headerlink" href="#deploy-on-kubernetes" title="Permanent link">&para;</a></h3>
 <ol>
 <li>

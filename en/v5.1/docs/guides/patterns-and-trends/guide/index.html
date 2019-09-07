@@ -1716,13 +1716,11 @@ ENTRYPOINT [&quot;/home/siddhi_user/siddhi-runner/bin/runner.sh&quot;,  &quot;--
 </li>
 <li>
 <p>You can use the sample <a href="https://github.com/mohanvive/siddhi-sample-clients/releases/download/v1.0.0/tcp-producer-1.0.0-jar-with-dependencies.jar">TCP event publisher</a>  to simulate required events. Use the below command to publish events to TCP endpoint.</p>
-</li>
-</ol>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>java -jar tcp-producer-1.0.0-jar-with-dependencies.jar tcp://localhost:9892/taxiRideRequests
 </pre></div>
 </td></tr></table>
 
-<ol>
+</li>
 <li>
 <p>Then, you could see below logs get printed in the Siddhi runner console/log, events related to <code>NeedMoreRidersStream</code>  are stored in the database table and escalation email is sent to the manager when there is an increasing trend found in the cancellations. </p>
 <p><img alt="docker_instant_offer_in_logs" src="../images/docker-instant-offer-in-logs.png" title="Instant Offers to Premium Users" /></p>
