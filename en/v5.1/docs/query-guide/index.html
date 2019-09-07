@@ -585,6 +585,30 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../guides/fault-tolerance/guide/" title="Fault Tolerance & Error Handling" class="md-nav__link">
+      Fault Tolerance & Error Handling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../guides/patterns-and-trends/guide/" title="Patterns & Trends Over Time" class="md-nav__link">
+      Patterns & Trends Over Time
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -837,26 +861,6 @@
   <a href="#partition" title="Partition" class="md-nav__link">
     Partition
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#inner-stream" title="Inner Stream" class="md-nav__link">
-    Inner Stream
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#purge-partition" title="Purge Partition" class="md-nav__link">
-    Purge Partition
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1609,26 +1613,6 @@
   <a href="#partition" title="Partition" class="md-nav__link">
     Partition
   </a>
-  
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#inner-stream" title="Inner Stream" class="md-nav__link">
-    Inner Stream
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#purge-partition" title="Purge Partition" class="md-nav__link">
-    Purge Partition
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -4516,129 +4500,12 @@ Here, the matching process begins for each event in the <code>RegulatorStream</c
 
 <p>Here, the query outputs the last seen event at the end of each time interval as there are no events stored in no window defined.</p>
 <h2 id="partition">Partition<a class="headerlink" href="#partition" title="Permanent link">&para;</a></h2>
-<p>Partitions divide streams and queries into isolated groups in order to process them in parallel and in isolation.
-A partition can contain one or more queries and there can be multiple instances where the same queries and streams are replicated for each partition.
-Each partition is tagged with a partition key. Those partitions only process the events that match the corresponding partition key.</p>
+<p>Partition provides data parallelism by categorizing events into various isolated partition instance based on their attribute values and by processing each partition instance in isolation. Here each partition instance is tagged with a partition key, and they only process events that match to the corresponding partition key.</p>
 <p><strong>Purpose</strong></p>
-<p>Partitions allow you to process the events groups in isolation so that event processing can be performed using the same set of queries for each group.</p>
-<p><strong>Partition key generation</strong></p>
-<p>A partition key can be generated in the following two methods:</p>
-<ul>
-<li>
-<p>Partition by value</p>
-<p>This is created by generating unique values using input stream attributes.</p>
+<p>Partition provide ways to segment events into groups and allow them to process the same set of queries in parallel and in isolation without redefining the queries for each segment.</p>
+<p>Here, events form multiple steams generating the same partition key will result in the same instance of the partition, and executed together. When a stream is used within the partition block without configuring a partition key, all of its events will be executed in all available partition instances.</p>
 <p><strong>Syntax</strong></p>
-<p><pre>
-partition with ( &lt;expression&gt; of &lt;stream name&gt;,
-                 &lt;expression&gt; of &lt;stream name&gt;, ... )
-begin
-    &lt;query&gt;
-    &lt;query&gt;
-    ...
-end; </pre></p>
-<p><strong>Example</strong></p>
-<p>This query calculates the maximum temperature recorded within the last 10 events per <code>deviceID</code>.</p>
-<p><pre>
-partition with ( deviceID of TempStream )
-begin
-    from TempStream#window.length(10)
-    select roomNo, deviceID, max(temp) as maxTemp
-    insert into DeviceTempStream;
-end;
-</pre></p>
-</li>
-<li>
-<p>Partition by range</p>
-<p>This is created by mapping each partition key to a range condition of the input streams numerical attribute.</p>
-<p><strong>Syntax</strong>
-<pre>
-partition with ( &lt;condition&gt; as &lt;partition key&gt; or
-                 &lt;condition&gt; as &lt;partition key&gt; or ... of &lt;stream name&gt;,
-                 ... )
-begin
-    &lt;query&gt;
-    &lt;query&gt;
-    ...
-end;
-</pre></p>
-<p><strong>Example</strong></p>
-<p>This query calculates the average temperature for the last 10 minutes per office area.</p>
-<p><pre>
-partition with ( roomNo &gt;= 1030 as 'serverRoom' or
-                 roomNo &lt; 1030 and roomNo &gt;= 330 as 'officeRoom' or
-                 roomNo &lt; 330 as 'lobby' of TempStream)
-begin
-    from TempStream#window.time(10 min)
-    select roomNo, deviceID, avg(temp) as avgTemp
-    insert into AreaTempStream
-end;
-</pre>  </p>
-</li>
-</ul>
-<h3 id="inner-stream">Inner Stream<a class="headerlink" href="#inner-stream" title="Permanent link">&para;</a></h3>
-<p>Queries inside a partition block can use inner streams to communicate with each other while preserving partition isolation.
-Inner streams are denoted by a "#" placed before the stream name, and these streams cannot be accessed outside a partition block.</p>
-<p><strong>Purpose</strong></p>
-<p>Inner streams allow you to connect queries within the partition block so that the output of a query can be used as an input only by another query
-within the same partition. Therefore, you do not need to repartition the streams if they are communicating within the partition.</p>
-<p><strong>Example</strong></p>
-<p>This partition calculates the average temperature of every 10 events for each sensor, and sends an output to the <code>DeviceTempIncreasingStream</code> stream if the consecutive average temperature values increase by more than
-5 degrees.</p>
-<pre>
-partition with ( deviceID of TempStream )
-begin
-    from TempStream#window.lengthBatch(10)
-    select roomNo, deviceID, avg(temp) as avgTemp
-    insert into #AvgTempStream
-
-    from every (e1=#AvgTempStream),e2=#AvgTempStream[e1.avgTemp + 5 < avgTemp]
-    select e1.deviceID, e1.avgTemp as initialAvgTemp, e2.avgTemp as finalAvgTemp
-    insert into DeviceTempIncreasingStream
-end;
-</pre>
-
-<h3 id="purge-partition">Purge Partition<a class="headerlink" href="#purge-partition" title="Permanent link">&para;</a></h3>
-<p>Based on the partition key used for the partition, multiple instances of streams and queries will be generated. When an extremely large number of unique partition keys are used there is a possibility of very high instances of streams and queries getting generated and eventually system going out of memory. In order to overcome this, users can define a purge interval to clean partitions that will not be used anymore.</p>
-<p><strong>Purpose</strong></p>
-<p><code>@purge</code> allows you to clean the partition instances that will not be used anymore.</p>
-<p><strong>Syntax</strong></p>
-<p>The syntax of partition purge configuration is as follows:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="n">purge</span><span class="p">(</span><span class="n">enable</span><span class="o">=</span><span class="s1">&#39;true&#39;</span><span class="p">,</span> <span class="nb">interval</span><span class="o">=</span><span class="s1">&#39;&lt;purge interval&gt;&#39;</span><span class="p">,</span> <span class="n">idle</span><span class="p">.</span><span class="n">period</span><span class="o">=</span><span class="s1">&#39;&lt;idle period of partition instance&gt;&#39;</span><span class="p">)</span>
-<span class="n">partition</span> <span class="k">with</span> <span class="p">(</span> <span class="o">&lt;</span><span class="n">partition</span> <span class="k">key</span><span class="o">&gt;</span> <span class="k">of</span> <span class="o">&lt;</span><span class="k">input</span> <span class="n">stream</span><span class="o">&gt;</span> <span class="p">)</span>
-<span class="k">begin</span>
-    <span class="k">from</span> <span class="o">&lt;</span><span class="k">input</span> <span class="n">stream</span><span class="o">&gt;</span> <span class="p">...</span>
-    <span class="k">select</span> <span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...</span>
-    <span class="k">insert</span> <span class="k">into</span> <span class="o">&lt;</span><span class="k">output</span> <span class="n">stream</span><span class="o">&gt;</span>
-<span class="k">end</span><span class="p">;</span>
-</pre></div>
-</td></tr></table>
-
-<table>
-<thead>
-<tr>
-<th>Partition purge configuration</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Purge interval</td>
-<td>The periodic time interval to purge the purgeable partition instances.</td>
-</tr>
-<tr>
-<td>Idle period of partition instance</td>
-<td>The period, a particular partition instance (for a given partition key) needs to be idle before it becomes purgeable.</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Examples</strong></p>
-<p>Mark partition instances eligible for purging, if there are no events from a particular deviceID for 15 seconds, and periodically purge those partition instances every 1 second.</p>
+<p>The syntax for a partition is as follows:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
@@ -4649,20 +4516,174 @@ end;
  8
  9
 10
-11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="n">purge</span><span class="p">(</span><span class="n">enable</span><span class="o">=</span><span class="s1">&#39;true&#39;</span><span class="p">,</span> <span class="nb">interval</span><span class="o">=</span><span class="s1">&#39;1 sec&#39;</span><span class="p">,</span> <span class="n">idle</span><span class="p">.</span><span class="n">period</span><span class="o">=</span><span class="s1">&#39;15 sec&#39;</span><span class="p">)</span>
-<span class="n">partition</span> <span class="k">with</span> <span class="p">(</span> <span class="n">deviceID</span> <span class="k">of</span> <span class="n">TempStream</span> <span class="p">)</span>
+11
+12
+13
+14</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="n">purge</span><span class="p">(</span><span class="n">enable</span><span class="o">=</span><span class="s1">&#39;true&#39;</span><span class="p">,</span> <span class="nb">interval</span><span class="o">=</span><span class="s1">&#39;&lt;purge interval&gt;&#39;</span><span class="p">,</span> <span class="n">idle</span><span class="p">.</span><span class="n">period</span><span class="o">=</span><span class="s1">&#39;&lt;idle period of partition instance&gt;&#39;</span><span class="p">)</span>
+<span class="n">partition</span> <span class="k">with</span> <span class="p">(</span> <span class="o">&lt;</span><span class="k">key</span> <span class="n">selection</span><span class="o">&gt;</span> <span class="k">of</span> <span class="o">&lt;</span><span class="n">stream</span> <span class="n">name</span><span class="o">&gt;</span><span class="p">,</span>
+                 <span class="o">&lt;</span><span class="k">key</span> <span class="n">selection</span><span class="o">&gt;</span> <span class="k">of</span> <span class="o">&lt;</span><span class="n">stream</span> <span class="n">name</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...</span> <span class="p">)</span>
+<span class="k">begin</span>
+    <span class="k">from</span> <span class="o">&lt;</span><span class="n">stream</span> <span class="n">name</span><span class="o">&gt;</span> <span class="p">...</span>
+    <span class="k">select</span> <span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...</span>
+    <span class="k">insert</span> <span class="k">into</span> <span class="p">(</span><span class="o">#</span><span class="p">)</span><span class="o">?&lt;</span><span class="n">stream</span> <span class="n">name</span><span class="o">&gt;</span>
+
+    <span class="k">from</span> <span class="p">(</span><span class="o">#</span><span class="p">)</span><span class="o">?&lt;</span><span class="n">stream</span> <span class="n">name</span><span class="o">&gt;</span> <span class="p">...</span>
+    <span class="k">select</span> <span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...</span>
+    <span class="k">insert</span> <span class="k">into</span> <span class="o">&lt;</span><span class="n">stream</span> <span class="n">name</span><span class="o">&gt;</span>
+
+    <span class="p">...</span>
+<span class="k">end</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<p>Here, a new instance of a partition will be dynamically created for each unique partition key that is generated based on the <code>&lt;key selection&gt;</code> applied on the events of their associated streams (<code>&lt;stream name&gt;</code>). These created partition instances will exist in the system forever unless otherwise a purging policy is defined using the <code>@purge</code> annotation. The inner streams denoted by <code>#&lt;stream name&gt;</code> can be used to chain multiple queries within a partition block without leaving the isolation of the partition instance.</p>
+<p>The <code>&lt;key selection&gt;</code> defines the partition key for each event based on the event attribute value or using range expressions as listed below.</p>
+<table>
+<thead>
+<tr>
+<th>Key selection type</th>
+<th>Syntax</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Partition by value</td>
+<td><code>&lt;attribute name&gt;</code></td>
+<td>Attribute value of the event is used as its partition key.</td>
+</tr>
+<tr>
+<td>Partition by range</td>
+<td><code>&lt;compare condition&gt; as 'value' or &lt;compare condition&gt; as 'value' or ...</code></td>
+<td>Event is executed against all <code>&lt;compare conditions&gt;</code>, and the values associated with the matching conditions are used as its partition key. Here, when the event is matched against multiple conditions, it is processed on all the partition instances that are associated with those matching conditions.</td>
+</tr>
+</tbody>
+</table>
+<p>When there are multiple queries within a partition block, and they can be chained without leaving the isolation of the partition instance using the inner streams denoted by <code>#</code>. More information on inner Streams will be covered in the following secsions.</p>
+<p><strong>Inner Stream</strong></p>
+<p>Inner stream connects the queries inside a partition instance to one another while preserving partition isolation. These are denoted by a <code>#</code> placed before the stream name, and these streams cannot be accessed outside the partition block.</p>
+<p>Through this, without repartitioning the streams, the output of a query instance can be used as the input of another query instance that is also in the same partition instance.</p>
+<div class="admonition note">
+<p class="admonition-title">Using <strong>non</strong> inner streams to chain queries within a partition block.</p>
+<p>When the <strong>connecting stream is not an inner stream and if it is not configured to generate a partition key, then it outputs events to all available partition instances</strong>. However, when the non-inner stream is configured to generate a partition key, it only outputs to the partition instances that are selected based on the repartitioned partition key.</p>
+</div>
+<p><strong>Purge Partition</strong></p>
+<p>Purge partition purges partitions that are not being used for a given period on a regular interval. This is because, by default, when partition instances are created for each unique partition key they exist forever if their queries contain stateful information, and there are use cases (such as partitioning events by date value) where an extremely large number of unique partition keys are used, which generates a large number of partition instances, and this eventually leading to system out of memory.</p>
+<p>The partition instances that will not be used anymore can purged using the <code>@purge</code> annotation. The elements of the annotation and their behavior is as follows.  </p>
+<table>
+<thead>
+<tr>
+<th>Purge partition configuration</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>enable</code></td>
+<td>To enable partition purging.</td>
+</tr>
+<tr>
+<td><code>internal</code></td>
+<td>Periodic time interval to purge the purgeable partition instances.</td>
+</tr>
+<tr>
+<td><code>idle.period</code></td>
+<td>The idle period, a particular partition instance (for a given partition key) needs to be idle before it becomes purgeable.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example 1 (Partition by value)</strong></p>
+<p>Query to calculate the maximum temperature of each <code>deviceID</code>, among its last 10 events.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">partition</span> <span class="k">with</span> <span class="p">(</span> <span class="n">deviceID</span> <span class="k">of</span> <span class="n">TempStream</span> <span class="p">)</span>
+<span class="k">begin</span>
+    <span class="k">from</span> <span class="n">TempStream</span><span class="o">#</span><span class="n">window</span><span class="p">.</span><span class="k">length</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+    <span class="k">select</span> <span class="n">roomNo</span><span class="p">,</span> <span class="n">deviceID</span><span class="p">,</span> <span class="k">max</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span> <span class="k">as</span> <span class="n">maxTemp</span>
+    <span class="k">insert</span> <span class="k">into</span> <span class="n">DeviceTempStream</span><span class="p">;</span>
+<span class="k">end</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<p>Here, each unique <code>deviceID</code> will create a partition instance which retains the last 10 events arrived for its corresponding partition key and calculates the maximum values without interfering with the events of other partition instances.    </p>
+<p><strong>Example 2 (Partition by range)</strong></p>
+<p>Query to calculate the average temperature for the last 10 minutes per each office area, where the office areas are identified based on the <code>roomNo</code> attribute ranges from the events of <code>TempStream</code> stream.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">partition</span> <span class="k">with</span> <span class="p">(</span> <span class="n">roomNo</span> <span class="o">&gt;=</span> <span class="mi">1030</span> <span class="k">as</span> <span class="s1">&#39;serverRoom&#39;</span> <span class="k">or</span>
+                 <span class="n">roomNo</span> <span class="o">&lt;</span> <span class="mi">1030</span> <span class="k">and</span> <span class="n">roomNo</span> <span class="o">&gt;=</span> <span class="mi">330</span> <span class="k">as</span> <span class="s1">&#39;officeRoom&#39;</span> <span class="k">or</span>
+                 <span class="n">roomNo</span> <span class="o">&lt;</span> <span class="mi">330</span> <span class="k">as</span> <span class="s1">&#39;lobby&#39;</span> <span class="k">of</span> <span class="n">TempStream</span><span class="p">)</span>
+<span class="k">begin</span>
+    <span class="k">from</span> <span class="n">TempStream</span><span class="o">#</span><span class="n">window</span><span class="p">.</span><span class="n">time</span><span class="p">(</span><span class="mi">10</span> <span class="k">min</span><span class="p">)</span>
+    <span class="k">select</span> <span class="n">roomNo</span><span class="p">,</span> <span class="n">deviceID</span><span class="p">,</span> <span class="k">avg</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span> <span class="k">as</span> <span class="n">avgTemp</span>
+    <span class="k">insert</span> <span class="k">into</span> <span class="n">AreaTempStream</span>
+<span class="k">end</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<p>Here, partition instances are created for each office area type such as <code>serverRoom</code>, <code>officeRoom</code>, and <code>lobby</code>. Events are processed only in the partition instances which are associated with matching compare condition values that are satisfied by the event's <code>roomNo</code> attribute, and within each partition instance, the average <code>tamp</code> value is calculated based on the events arrived over the last 10 minutes.   </p>
+<p><strong>Example 3 (Inner streams)</strong></p>
+<p>A partition to calculate the average temperature of every 10 events for each sensor, and send the output via the <code>DeviceTempIncreasingStream</code> stream if consecutive average temperature (<code>avgTemp</code>) values increase by more than 5 degrees.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">partition</span> <span class="k">with</span> <span class="p">(</span> <span class="n">deviceID</span> <span class="k">of</span> <span class="n">TempStream</span> <span class="p">)</span>
 <span class="k">begin</span>
     <span class="k">from</span> <span class="n">TempStream</span><span class="o">#</span><span class="n">window</span><span class="p">.</span><span class="n">lengthBatch</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
     <span class="k">select</span> <span class="n">roomNo</span><span class="p">,</span> <span class="n">deviceID</span><span class="p">,</span> <span class="k">avg</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span> <span class="k">as</span> <span class="n">avgTemp</span>
     <span class="k">insert</span> <span class="k">into</span> <span class="o">#</span><span class="n">AvgTempStream</span>
 
-    <span class="k">from</span> <span class="k">every</span> <span class="p">(</span><span class="n">e1</span><span class="o">=#</span><span class="n">AvgTempStream</span><span class="p">),</span><span class="n">e2</span><span class="o">=#</span><span class="n">AvgTempStream</span><span class="p">[</span><span class="n">e1</span><span class="p">.</span><span class="n">avgTemp</span> <span class="o">+</span> <span class="mi">5</span> <span class="o">&lt;</span> <span class="n">avgTemp</span><span class="p">]</span>
+    <span class="k">from</span> <span class="k">every</span> <span class="n">e1</span><span class="o">=#</span><span class="n">AvgTempStream</span><span class="p">,</span> <span class="n">e2</span><span class="o">=#</span><span class="n">AvgTempStream</span><span class="p">[</span><span class="n">e1</span><span class="p">.</span><span class="n">avgTemp</span> <span class="o">+</span> <span class="mi">5</span> <span class="o">&lt;</span> <span class="n">avgTemp</span><span class="p">]</span>
     <span class="k">select</span> <span class="n">e1</span><span class="p">.</span><span class="n">deviceID</span><span class="p">,</span> <span class="n">e1</span><span class="p">.</span><span class="n">avgTemp</span> <span class="k">as</span> <span class="n">initialAvgTemp</span><span class="p">,</span> <span class="n">e2</span><span class="p">.</span><span class="n">avgTemp</span> <span class="k">as</span> <span class="n">finalAvgTemp</span>
     <span class="k">insert</span> <span class="k">into</span> <span class="n">DeviceTempIncreasingStream</span>
 <span class="k">end</span><span class="p">;</span>
 </pre></div>
 </td></tr></table>
 
+<p>Here, the first query calculates the <code>avgTemp</code> for every 10 events for each unique <code>deviceID</code> and passes the output via the inner stream <code>#AvgTempStream</code> to the second query that is also in the same partition instance. The second query then identifies a pair of consecutive events from <code>#AvgTempStream</code>, where the latter event having 5 degrees more on <code>avgTemp</code> value than its previous event.</p>
+<p><strong>Example 4 (Purge partition)</strong></p>
+<p>A partition to identify consecutive three login failure attempts for each session within 1 hour. Here, the number of sessions can be infinite.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">define</span> <span class="n">stream</span> <span class="n">LoginStream</span> <span class="p">(</span> <span class="n">sessionID</span> <span class="n">string</span><span class="p">,</span> <span class="n">loginSuccessful</span> <span class="n">bool</span><span class="p">);</span>
+
+<span class="o">@</span><span class="n">purge</span><span class="p">(</span><span class="n">enable</span><span class="o">=</span><span class="s1">&#39;true&#39;</span><span class="p">,</span> <span class="nb">interval</span><span class="o">=</span><span class="s1">&#39;10 sec&#39;</span><span class="p">,</span> <span class="n">idle</span><span class="p">.</span><span class="n">period</span><span class="o">=</span><span class="s1">&#39;1 hour&#39;</span><span class="p">)</span>
+<span class="n">partition</span> <span class="k">with</span> <span class="p">(</span> <span class="n">sessionID</span> <span class="k">of</span> <span class="n">LoginStream</span> <span class="p">)</span>
+<span class="k">begin</span>
+    <span class="k">from</span> <span class="k">every</span> <span class="n">e1</span><span class="o">=</span><span class="n">LoginStream</span><span class="p">[</span><span class="n">loginSuccessful</span><span class="o">==</span><span class="k">false</span><span class="p">],</span>
+               <span class="n">e2</span><span class="o">=</span><span class="n">LoginStream</span><span class="p">[</span><span class="n">loginSuccessful</span><span class="o">==</span><span class="k">false</span><span class="p">],</span>
+               <span class="n">e3</span><span class="o">=</span><span class="n">LoginStream</span><span class="p">[</span><span class="n">loginSuccessful</span><span class="o">==</span><span class="k">false</span><span class="p">]</span>
+         <span class="n">within</span> <span class="mi">1</span> <span class="n">hour</span>
+    <span class="k">select</span> <span class="n">e1</span><span class="p">.</span><span class="n">sessionID</span> <span class="k">as</span> <span class="n">sessionID</span>
+    <span class="k">insert</span> <span class="k">into</span> <span class="n">LoginFailureStream</span><span class="p">;</span>
+<span class="k">end</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<p>Here, the events in <code>LoginStream</code> is partitioned by their <code>sessionID</code> attribute and matched for consecutive occurrences of events having <code>loginSuccessful==false</code> with 1 hour using a <a href="#sequence">sequence query</a> and inserts the matching pattern's <code>sessionID</code> to <code>LoginFailureStream</code>. As the number of sessions is infinite the <code>@purge</code> annotation is enabled to purge the partition instances. The instances are marked for purging if there are no events from a particular sessionID for the last 1 hour, and the marked instances are periodically purged once every 10 seconds.</p>
 <h2 id="table">Table<a class="headerlink" href="#table" title="Permanent link">&para;</a></h2>
 <p>A table is a stored version of an stream or a table of events. Its schema is defined via the <strong>table definition</strong> that is
 similar to a stream definition. These events are by default stored <code>in-memory</code>, but Siddhi also provides store extensions to work with data/events stored in various data stores through the
