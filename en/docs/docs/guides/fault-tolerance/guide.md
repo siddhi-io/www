@@ -393,34 +393,34 @@ Apache Kafka and MySQL are the external dependencies for this use case. Hence, y
 
 1. Since, there are some external client jars (Kafka & MySQL) are required for the Siddhi runner. You have to create the docker image accordingly. Below is the sample Docker file created
 
-````
-FROM siddhiio/siddhi-runner-base-alpine:5.1.0-alpha
-MAINTAINER Siddhi IO Docker Maintainers "siddhi-dev@googlegroups.com"
+    ````
+    FROM siddhiio/siddhi-runner-base-alpine:5.1.0-alpha
+    MAINTAINER Siddhi IO Docker Maintainers "siddhi-dev@googlegroups.com"
+    
+    ARG HOST_BUNDLES_DIR=./files/bundles
+    ARG HOST_JARS_DIR=./files/jars
+    ARG JARS=${RUNTIME_SERVER_HOME}/jars
+    ARG BUNDLES=${RUNTIME_SERVER_HOME}/bundles
+    
+    # copy bundles & jars to the siddhi-runner distribution
+    COPY --chown=siddhi_user:siddhi_io ${HOST_BUNDLES_DIR}/ ${BUNDLES}
+    COPY --chown=siddhi_user:siddhi_io ${HOST_JARS_DIR}/ ${JARS}
+    
+    # expose ports
+    EXPOSE 9090 9443 9712 9612 7711 7611 7070 7443
+    
+    RUN bash ${RUNTIME_SERVER_HOME}/bin/install-jars.sh
+    
+    STOPSIGNAL SIGINT
+    
+    ENTRYPOINT ["/home/siddhi_user/siddhi-runner/bin/runner.sh",  "--"]
+    ````
 
-ARG HOST_BUNDLES_DIR=./files/bundles
-ARG HOST_JARS_DIR=./files/jars
-ARG JARS=${RUNTIME_SERVER_HOME}/jars
-ARG BUNDLES=${RUNTIME_SERVER_HOME}/bundles
+    Here, you have to create two folders called `bundles` and `jars` to add necessary external client dependencies to the docker image.
 
-# copy bundles & jars to the siddhi-runner distribution
-COPY --chown=siddhi_user:siddhi_io ${HOST_BUNDLES_DIR}/ ${BUNDLES}
-COPY --chown=siddhi_user:siddhi_io ${HOST_JARS_DIR}/ ${JARS}
+    ![directory_tree_structure](images/tree-structure.png "Directory Tree Structure") 
 
-# expose ports
-EXPOSE 9090 9443 9712 9612 7711 7611 7070 7443
-
-RUN bash ${RUNTIME_SERVER_HOME}/bin/install-jars.sh
-
-STOPSIGNAL SIGINT
-
-ENTRYPOINT ["/home/siddhi_user/siddhi-runner/bin/runner.sh",  "--"]
-````
-
-Here, you have to create two folders called `bundles` and `jars` to add necessary external client dependencies to the docker image.
-
-![directory_tree_structure](images/tree-structure.png "Directory Tree Structure") 
-
-You can refer the official Siddhi documentation [reference](https://siddhi.io/en/v5.1/docs/config-guide/#adding-to-siddhi-docker-microservice) for this purpose.
+    You can refer the official Siddhi documentation [reference](https://siddhi.io/en/v5.1/docs/config-guide/#adding-to-siddhi-docker-microservice) for this purpose.
     
 2. Once, Dockerfile is created you can create the docker image with below command.
     ````
@@ -454,9 +454,9 @@ You can refer the official Siddhi documentation [reference](https://siddhi.io/en
    
 6. Then, you could see below log gets printed in the Siddhi runner console and failed events are stored in the database table. 
 
-![docker_console_output](images/docker-console-output.png "Siddhi Docker Console Output") 
+    ![docker_console_output](images/docker-console-output.png "Siddhi Docker Console Output") 
 
-![docker_mysql_output](images/mysql-docker-db-output.png "MySQL Docker Database Output") 
+    ![docker_mysql_output](images/mysql-docker-db-output.png "MySQL Docker Database Output") 
 
 ### Deploy on Kubernetes
 
