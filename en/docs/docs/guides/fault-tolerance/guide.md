@@ -479,7 +479,7 @@ You can refer the official Siddhi documentation [reference](https://siddhi.io/en
 
     * Then, you can login to the MySQL server from your host machine as shown below.
     
-        ![docke_mysql_db_indo](images/docker-mysql-db-info.png "MySQL Docker Database Details") 
+        ![docke_mysql_db_indo](images/k8s-mysql-db-info.png "MySQL Docker Database Details") 
 
 3. Next, you can configure Kafka messaging system in the Kubernetes (in the above created namespace). You can use the Kafka Helm chart for this purpose- https://github.com/helm/charts/tree/master/incubator/kafka
 
@@ -504,7 +504,7 @@ You can refer the official Siddhi documentation [reference](https://siddhi.io/en
         
      - You can verify the installation by making sure the following deployments are running in your Kubernetes cluster.
      
-        ![kubernetes_siddhi-pods](images/k8s-pods-with-siddhi.png "K8S Siddhi Pods")
+        ![kubernetes_siddhi-pods](images/k8s-pods.png "K8S Siddhi Pods")
         
         ![kubernetes_siddhi-svc](images/k8s-svc.png "K8S Siddhi Services")
 
@@ -660,7 +660,7 @@ You can refer the official Siddhi documentation [reference](https://siddhi.io/en
         
       Note: In the above provided Siddhi app, there are some environmental variables (MYSQL_DB_URL, MYSQL_USERNAME and  MYSQL_PASSWORD)  are used. These values are required to be set to tryout the scenario end to end. MYSQL related environmental variables are required to store the events which are failed to publish to the HTTP endpoint. Environmental variable KAFKA_BOOTSTRAP_SERVER_URL is the Kafka endpoint url where Siddhi listens and consume events from. Hence, make sure to add proper values for the environmental variables in the above yaml file (check the `env` section of the yaml file).
             
-      Here, you can use the docker image that created in “Deploy on Docker” section since you need a docker images with required extensions and client jars to test it in Kubernetes.
+      Here, you can use the docker image that created in the [Deploy on Docker](#deploy-on-docker) section since you need a docker images with required extensions and client jars to test it in Kubernetes.
             
       Other than that, Siddhi runtime is configured to enable state snapshot persistence under the `runner` entry as shown above.
 
