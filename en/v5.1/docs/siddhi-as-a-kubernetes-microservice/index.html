@@ -1182,6 +1182,13 @@ or disable Siddhi operator's <a href="#deploy-siddhi-apps-without-ingress-creati
 <p>Siddhi operator automatically creates NGINX ingress. Therefore it to work we can either enable ingress on Docker for mac following the official <a href="https://kubernetes.github.io/ingress-nginx/deploy/#docker-for-mac">documentation</a>
 or disable Siddhi operator's <a href="#deploy-siddhi-apps-without-ingress-creation">automatically ingress creation</a>.</p>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Port Forwarding for Testing &amp; Debugging Purposes</p>
+<p>Instead of creating ingress you can enable port forwarding (<code>kubectl port-forward</code>) to access the application in the Kubernetes cluster. This will help a lot for TCP connections as well.
+<pre>kubectl port-forward svc/mysql-db 13306:3306
+</pre>
+For more details please refer this Kubernetes official <a href="https://kubernetes.io/docs/tasks/access-application-cluster/port-forward-access-application-cluster/#forward-a-local-port-to-a-port-on-the-pod">documentation</a></p>
+</div>
 <h2 id="install-siddhi-operator">Install Siddhi Operator<a class="headerlink" href="#install-siddhi-operator" title="Permanent link">&para;</a></h2>
 <p>To install the Siddhi Kubernetes operator run the following commands.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
