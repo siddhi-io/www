@@ -390,9 +390,6 @@ ARG HOST_JARS_DIR=./files/jars
 ARG JARS=${RUNTIME_SERVER_HOME}/jars
 ARG BUNDLES=${RUNTIME_SERVER_HOME}/bundles
 
-# copy entrypoint bash script to user home
-COPY --chown=siddhi_user:siddhi_io init.sh ${WORKING_DIRECTORY}/
-
 # copy bundles & jars to the siddhi-runner distribution
 COPY --chown=siddhi_user:siddhi_io ${HOST_BUNDLES_DIR}/ ${BUNDLES}
 COPY --chown=siddhi_user:siddhi_io ${HOST_JARS_DIR}/ ${JARS}
@@ -404,7 +401,7 @@ RUN bash ${RUNTIME_SERVER_HOME}/bin/install-jars.sh
 
 STOPSIGNAL SIGINT
 
-ENTRYPOINT ["/home/siddhi_user/init.sh",  "--"]
+ENTRYPOINT ["/home/siddhi_user/siddhi-runner/bin/runner.sh",  "--"]
 ```
 
 Find the necessary artifacts to build the docker from [docker-siddhi](https://github.com/siddhi-io/docker-siddhi/tree/master/docker-files/siddhi-runner) repository.
