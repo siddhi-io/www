@@ -54,6 +54,10 @@ for (var i = 0; i < dropdowns.length; i++) {
 }
 ;
 
+//fix for asciinema-player
+var fullscreenButton = document.querySelector(".fullscreen-button");
+fullscreenButton.outerHTML = "<a target=\"_blank\" href=\"images/siddhi-k8s.html\">" + fullscreenButton.outerHTML + "</a>";
+
 /* 
  * Reading versions
  */
@@ -89,8 +93,11 @@ request.onload = function () {
                     }
 
                     liElem.className = 'md-tabs__item mb-tabs__dropdown';
-                    liElem.innerHTML = '<a href="' + url + '" target="' +
-                        target + '">' + key + '</a>';
+                    var keyText = key;
+                    if (key == data.next) {
+                        keyText = key + " (pre)"
+                    }liElem.innerHTML =  '<a href="' + url + '" target="' +
+                        target + '">' + keyText + '</a>';
 
                     dropdown.insertBefore(liElem, dropdown.firstChild);
                 }

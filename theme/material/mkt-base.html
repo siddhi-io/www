@@ -57,11 +57,11 @@
       <title>{{ page.title }} - {{ config.site_name }}</title>
       {%- else -%}
       <title>{{ config.site_name }}</title>
-      {%- endif -%} {%- endblock -%} 
-      
-      
-      
-      
+      {%- endif -%} {%- endblock -%}
+
+
+
+
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
       <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -71,17 +71,16 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+
+<!-- asciinema player -->
+<link rel="stylesheet" type="text/css" href="css/asciinema-player.css" />
+
+
+
+
+
+
+
       {%- block styles -%}
       <link rel="stylesheet" href="{{ 'assets/stylesheets/application.4031d38b.css' | url }}">
       {%- if palette.primary or palette.accent -%}
@@ -105,7 +104,7 @@
       {%- endblock -%} {%- block extrahead -%}{%- endblock -%}
 
 
-      <link href="//fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet"> 
+      <link href="//fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
 
       <link rel="stylesheet" href="css/siddhi.css">
    </head>
@@ -114,7 +113,7 @@
      {%- set accent = palette.accent | replace(" ", "-") | lower -%}
      <body dir="{{ lang.t('direction') }}" data-md-color-primary="{{ primary }}" data-md-color-accent="{{ accent }}">
 
-      
+
         {%- else -%}
         <body dir="{{ lang.t('direction') }}">
 
@@ -143,10 +142,11 @@
 
 <div class="row cPageHeader">
 <div class="container">
-      <div class="col-md-6 col-sm-6 cPageLogo">
+    {%- include "partials/info.html" -%}
+    <div class="col-md-6 col-sm-6 cPageLogo">
          <img src="images/siddhi-logo.svg"/>
       </div>
-    
+
 </div>
 </div>
 
@@ -161,10 +161,10 @@
                        </div>
                     </div>
                     {%- endif -%} {%- if page.toc -%}
-                 
-                    
+
+
                     {%- endif -%} {%- endblock -%}
-                   
+
                     <div class="md-content" style="width: 100%; margin: 0;">
                        <article class="md-content__inner md-typeset">
                           {%- block content -%} {%- if page.edit_url -%}
@@ -186,7 +186,7 @@
                           {%- block disqus -%} {%- include "partials/integrations/disqus.html" -%} {%- endblock -%}
                        </article>
                     </div>
-                   
+
                  </div>
               </main>
 
@@ -224,6 +224,6 @@
                 }
             });
 </script>
-           
+
      </body>
   </html>

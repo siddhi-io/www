@@ -52,6 +52,8 @@ extra_javascript:
   - assets/lib/backtotop/js/main.js
 extra:
   social:
+  - type: slack
+    link: /community/#community-collaboration
   - type: github
     link: https://github.com/siddhi-io/siddhi
   - type: medium
