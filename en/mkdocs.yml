@@ -116,6 +116,7 @@ nav:
         - Alerts Based on Thresholds: docs/guides/alerts-for-thresholds/guide.md
         - Fault Tolerance & Error Handling: docs/guides/fault-tolerance/guide.md
         - Patterns & Trends Over Time: docs/guides/patterns-and-trends/guide.md
+        - Static Rule Processing using Database Rules: docs/guides/database-static-rule-processing/guide.md
     - Tooling: docs/tooling.md
     - Query Guide: docs/query-guide.md
     - Siddhi APIs:
