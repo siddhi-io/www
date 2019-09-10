@@ -9494,7 +9494,7 @@ define stream BarStream (symbol string, price float, volume long);</code></pre>
     <tr>
         <td style="vertical-align: top">delimiter</td>
         <td style="vertical-align: top; word-wrap: break-word">This parameter specifies how events are separated when a grouped event is received. This must be a whole line and not a single character.</td>
-        <td style="vertical-align: top"><sub><del>~</del></sub><sub>~</sub></td>
+        <td style="vertical-align: top"><sub>~</sub><sub>~</sub><sub>~</sub>~</td>
         <td style="vertical-align: top">STRING</td>
         <td style="vertical-align: top">Yes</td>
         <td style="vertical-align: top">No</td>
@@ -9516,7 +9516,7 @@ define stream FooStream (symbol string, price float, volume long);</code></pre>
 <p><span id="example-2" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 2</span>
 <pre class="codehilite"><code class="linenums">@sink(type='inMemory', topic='stock', @map(type='text', event.grouping.enabled='true'))
 define stream FooStream (symbol string, price float, volume long);</code></pre>
-<p style="word-wrap: break-word">This query performs a default text input mapping with event grouping. The expected output is as follows:<br>symbol:"WSO2",<br>price:55.6,<br>volume:100<br><sub><del>~</del></sub><sub>~</sub><br>symbol:"WSO2",<br>price:55.6,<br>volume:100</p></p>
+<p style="word-wrap: break-word">This query performs a default text input mapping with event grouping. The expected output is as follows:<br>symbol:"WSO2",<br>price:55.6,<br>volume:100<br><sub>~</sub><sub>~</sub><sub>~</sub>~<br>symbol:"WSO2",<br>price:55.6,<br>volume:100</p></p>
 <p><span id="example-3" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 3</span>
 <pre class="codehilite"><code class="linenums">@sink(type='inMemory', topic='stock', @map(type='text',  @payload("SensorID : {{symbol}}/{{volume}}, SensorPrice : Rs{{price}}/=, Value : {{volume}}ml")))
 define stream FooStream (symbol string, price float, volume long);</code></pre>
@@ -9524,7 +9524,7 @@ define stream FooStream (symbol string, price float, volume long);</code></pre>
 <p><span id="example-4" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 4</span>
 <pre class="codehilite"><code class="linenums">@sink(type='inMemory', topic='stock', @map(type='text', event.grouping.enabled='true', @payload("Stock price of {{symbol}} is {{price}}")))
 define stream FooStream (symbol string, price float, volume long);</code></pre>
-<p style="word-wrap: break-word">This query performs a custom text mapping with event grouping. The expected output is as follows:<br>Stock price of WSO2 is 55.6<br><sub><del>~</del></sub><sub><del><br>Stock price of WSO2 is 55.6<br></del></sub><sub><del>~</del></sub><br>Stock price of WSO2 is 55.6<br>for the following siddhi event.<br>{WSO2,55.6,10}</p></p>
+<p style="word-wrap: break-word">This query performs a custom text mapping with event grouping. The expected output is as follows:<br>Stock price of WSO2 is 55.6<br><sub>~</sub><sub>~</sub><sub>~</sub>~<br>Stock price of WSO2 is 55.6<br><sub>~</sub><sub>~</sub><sub>~</sub>~<br>Stock price of WSO2 is 55.6<br>for the following siddhi event.<br>{WSO2,55.6,10}</p></p>
 <p><span id="example-5" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 5</span>
 <pre class="codehilite"><code class="linenums">@sink(type='inMemory', topic='stock', @map(type='text',  @payload("SensorID : {{{symbol}}}/{{{volume}}}, SensorPrice : Rs{{{price}}}/=, Value : {{{volume}}}ml")))
 define stream FooStream (symbol string, price float, volume long);</code></pre>
@@ -11718,7 +11718,7 @@ define stream BarStream (symbol string, price float, volume long);</code></pre>
     <tr>
         <td style="vertical-align: top">delimiter</td>
         <td style="vertical-align: top; word-wrap: break-word">This parameter specifies how events must be separated when multiple events are received. This must be whole line and not a single character.</td>
-        <td style="vertical-align: top"><sub><del>~</del></sub><sub>~</sub></td>
+        <td style="vertical-align: top"><sub>~</sub><sub>~</sub><sub>~</sub>~</td>
         <td style="vertical-align: top">STRING</td>
         <td style="vertical-align: top">Yes</td>
         <td style="vertical-align: top">No</td>
@@ -11736,11 +11736,11 @@ define stream BarStream (symbol string, price float, volume long);</code></pre>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span>
 <pre class="codehilite"><code class="linenums">@source(type='inMemory', topic='stock', @map(type='text'))
 define stream FooStream (symbol string, price float, volume long);</code></pre>
-<p style="word-wrap: break-word">This query performs a default text input mapping. The expected input is as follows:<br>symbol:"WSO2",<br>price:55.6,<br>volume:100<br>OR<br>symbol:'WSO2',<br>price:55.6,<br>volume:100<br><br>If group events is enabled then input should be as follows: <br>symbol:"WSO2",<br>price:55.6,<br>volume:100<br><sub><del>~</del></sub><sub>~</sub><br>symbol:"WSO2",<br>price:55.6,<br>volume:100</p></p>
+<p style="word-wrap: break-word">This query performs a default text input mapping. The expected input is as follows:<br>symbol:"WSO2",<br>price:55.6,<br>volume:100<br>OR<br>symbol:'WSO2',<br>price:55.6,<br>volume:100<br><br>If group events is enabled then input should be as follows: <br>symbol:"WSO2",<br>price:55.6,<br>volume:100<br><sub>~</sub><sub>~</sub><sub>~</sub>~<br>symbol:"WSO2",<br>price:55.6,<br>volume:100</p></p>
 <p><span id="example-2" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 2</span>
 <pre class="codehilite"><code class="linenums">@source(type='inMemory', topic='stock', @map(type='text', fail.on.unknown.attribute = 'true', regex.A='(\w+)\s([-0-9]+)',regex.B='volume\s([-0-9]+)', @attributes(symbol = 'A[1]',price = 'A[2]',volume = 'B')))
 define stream FooStream (symbol string, price float, volume long);</code></pre>
-<p style="word-wrap: break-word">This query performs a custom text mapping. The expected input is as follows:<br>wos2 550 volume 100<br><br>If group events is enabled then input should be as follows: <br>wos2 550 volume 100<br><sub><del>~</del></sub><sub><del><br>wos2 550 volume 100<br></del></sub><sub><del>~</del></sub><br>wos2 550 volume 100<br></p></p>
+<p style="word-wrap: break-word">This query performs a custom text mapping. The expected input is as follows:<br>wos2 550 volume 100<br><br>If group events is enabled then input should be as follows: <br>wos2 550 volume 100<br><sub>~</sub><sub>~</sub><sub>~</sub>~<br>wos2 550 volume 100<br><sub>~</sub><sub>~</sub><sub>~</sub>~<br>wos2 550 volume 100<br></p></p>
 <h3 id="xml-source-mapper">xml <em><a target="_blank" href="../../query-guide/#source-mapper">(Source Mapper)</a></em><a class="headerlink" href="#xml-source-mapper" title="Permanent link">&para;</a></h3>
 <p style="word-wrap: break-word">This mapper converts XML input to Siddhi event. Transports which accepts XML messages can utilize this extension to convert the incoming XML message to Siddhi event. Users can either send a pre-defined XML format where event conversion will happen without any configs or can use xpath to map from a custom XML message.</p>
 
