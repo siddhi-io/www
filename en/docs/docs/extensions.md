@@ -31,6 +31,7 @@ Name | Description | Latest <br/>Tested <br/>Version
 <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-cdc">io-cdc</a> | Captures change data from databases such as MySQL, MS SQL, Postgresql, H2 and Oracle. | [2.0.3](https://mvnrepository.com/artifact/io.siddhi.extension.io.cdc/siddhi-io-cdc/2.0.3)
 <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-tcp">io-tcp</a> | Receives and publishes events through TCP transport. | [3.0.3](https://mvnrepository.com/artifact/io.siddhi.extension.io.tcp/siddhi-io-tcp/3.0.3)
 <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-googlepubsub">io-googlepubsub</a> | Receives and publishes events through Google Pub/Sub.| [2.0.1](https://mvnrepository.com/artifact/io.siddhi.extension.io.googlepubsub/siddhi-io-googlepubsub/2.0.1)
+<a target="_blank" href="https://github.com/siddhi-io/siddhi-io-rabbitmq">io-rabbitmq</a> | Receives and publishes events from/to RabbitMQ.| [3.0.1](https://mvnrepository.com/artifact/io.siddhi.extension.io.rabbitmq/siddhi-io-rabbitmq/3.0.1)
 <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-file">io-file</a> | Receives and publishes event data from/to files. | [2.0.1](https://mvnrepository.com/artifact/io.siddhi.extension.io.file/siddhi-io-file/2.0.1)
 <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-jms">io-jms</a> | Receives and publishes events via Java Message Service (JMS), supporting Message brokers such as ActiveMQ | [2.0.2](https://mvnrepository.com/artifact/io.siddhi.extension.io.jms/siddhi-io-jms/2.0.2)
 <a target="_blank" href="https://siddhi-io.github.io/siddhi-io-prometheus">io-prometheus</a> | Consumes and expose Prometheus metrics from/to Prometheus server. | [2.0.1](https://mvnrepository.com/artifact/io.siddhi.extension.io.prometheus/siddhi-io-prometheus/2.0.1)
@@ -50,10 +51,10 @@ Name | Description | Latest <br/>Tested <br/>Version
 ### Store Extensions
 Name | Description | Latest <br/>Tested <br/>Version
 :-- | :-- | :--
-<a target="_blank" href="https://siddhi-io.github.io/siddhi-store-rdbms">store-rdbms</a> | Persist and retrieve events to/from RDBMS databases such as MySQL, MS SQL, Postgresql, H2 and Oracle. | [6.0.3](https://mvnrepository.com/artifact/io.siddhi.extension.store.rdbms/siddhi-store-rdbms/6.0.3)
-<a target="_blank" href="https://siddhi-io.github.io/siddhi-store-mongodb">store-mongodb</a> | Persist and retrieve events to/from MongoDB. | [2.0.1](https://mvnrepository.com/artifact/io.siddhi.extension.store.mongodb/siddhi-store-mongodb/2.0.1)
-<a target="_blank" href="https://siddhi-io.github.io/siddhi-store-redis">store-redis</a> | Persist and retrieve events to/from Redis. | [3.1.1](https://mvnrepository.com/artifact/io.siddhi.extension.store.redis/siddhi-store-redis/3.1.1)
-<a target="_blank" href="https://siddhi-io.github.io/siddhi-store-elasticsearch">store-elasticsearch</a> | Persist and retrieve events to/from Elasticsearch. | [3.1.0](https://mvnrepository.com/artifact/io.siddhi.extension.store.elasticsearch/siddhi-store-elasticsearch/3.1.0)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-store-rdbms">store-rdbms</a> | Optimally stores, retrieves, and manipulates data on RDBMS databases such as MySQL, MS SQL, Postgresql, H2 and Oracle. | [6.0.3](https://mvnrepository.com/artifact/io.siddhi.extension.store.rdbms/siddhi-store-rdbms/6.0.3)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-store-mongodb">store-mongodb</a> | Stores, retrieves, and manipulates data on MongoDB. | [2.0.1](https://mvnrepository.com/artifact/io.siddhi.extension.store.mongodb/siddhi-store-mongodb/2.0.1)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-store-redis">store-redis</a> | Stores, retrieves, and manipulates data on Redis. | [3.1.1](https://mvnrepository.com/artifact/io.siddhi.extension.store.redis/siddhi-store-redis/3.1.1)
+<a target="_blank" href="https://siddhi-io.github.io/siddhi-store-elasticsearch">store-elasticsearch</a> | Stores, retrieves, and manipulates data on Elasticsearch. | [3.1.0](https://mvnrepository.com/artifact/io.siddhi.extension.store.elasticsearch/siddhi-store-elasticsearch/3.1.0)
 
 ### Script Extensions
 Name | Description | Latest <br/>Tested <br/>Version
