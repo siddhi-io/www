@@ -91,15 +91,16 @@ insert into OutputStream;
 ## Stream
 
 A stream is a logical series of events ordered in time. Its schema is defined via the **stream definition**.
-A stream definition contains the stream name and a set of attributes with specific types and uniquely identifiable names within the stream. All events associated to the stream will have the same schema (i.e., have the same attributes in the same order).
+
+A stream definition contains the stream name and a set of attributes having a specific type and a uniquely identifiable name within the scope of the stream. All events associated with the stream will have the same schema (i.e., have the same attributes in the same order).
 
 **Purpose**
 
-Stream groups common types of events together with a schema. This helps in various ways such as, processing all events together in queries and performing data format transformations together when they are consumed and published via sources and sinks.
+Stream groups common types of events together with a schema. This helps in various ways such as, processing all events in queries together and performing data format transformations together when they are consumed and published via sources and sinks.
 
 **Syntax**
 
-The syntax for defining a new stream is as follows.
+The syntax for defining a stream is as follows.
 
 ```sql
 define stream <stream name> (<attribute name> <attribute type>,
@@ -111,7 +112,7 @@ The following parameters are used to configure a stream definition.
 | Parameter     | Description |
 | ------------- |-------------|
 | `stream name`      | The name of the stream created. (It is recommended to define a stream name in `PascalCase`.) |
-| `attribute name`   | Uniquely identifiable name of the stream attribute. (It is recommended to define attribute names in `camelCase`.)|    |
+| `attribute name`   | Uniquely identifiable name of the stream attribute. (It is recommended to define attribute names in `camelCase`.)|    
 | `attribute type`   | The type of each attribute defined in the schema. <br/> This can be `STRING`, `INT`, `LONG`, `DOUBLE`, `FLOAT`, `BOOL` or `OBJECT`.     |
 
 To use and refer stream and attribute names that do not follow `[a-zA-Z_][a-zA-Z_0-9]*` format enclose them in ``` ` ```. E.g. ``` `$test(0)` ```.
@@ -287,7 +288,7 @@ define stream StockStream (symbol string, price float, volume long);
 
 Sinks consumes events from streams and publish them via multiple transports to external endpoints in various data formats.
 
-A sink configuration allows users to define a mapping to convert the Siddhi events in to the required output data format (such as `JSON`, `TEXT`, `XML`, etc.) and publish the events to the configured endpoints. When customizations to such mappings are not provided, Siddhi converts events to the predefined event format based on the stream definition and the configured message mapper type before publishing the events.
+A sink configuration allows users to define a mapping to convert the Siddhi events in to the required output data format (such as `JSON`, `TEXT`, `XML`, etc.) and publish the events to the configured endpoints. When customizations to such mappings are not provided, Siddhi converts events to the predefined event format based on the stream definition and the configured mapper type, before publishing the events.
 
 **Purpose**
 
@@ -383,7 +384,7 @@ define stream <stream name> (<attribute1> <type>, <attributeN> <type>);
 
 **_Partitioned Distributed Sink_**
 
-Publishes events to defined destinations by partitioning them based on the partitioning key.
+Publish events to the defined destinations by partitioning them based on a partitioning key.
 
 ```sql
 @sink(type='<sink type>', <common.static.key>='<value>', <common.dynamic.key>='{{<value>}}',
@@ -401,7 +402,7 @@ define stream <stream name> (<attribute1> <type>, <attributeN> <type>);
 
 Each `@sink` configuration can have a mapping denoted by the `@map` annotation that defines how to convert Siddhi events to outgoing messages with the defined format.
 
-The `type` parameter of the `@map` defines the map type to be used in converting the outgoing events. The other parameters of `@map` annotation depends on the mapper selected, and some of its parameters can be optional and/or dynamic.
+The `type` parameter of the `@map` defines the map type to be used in converting the outgoing events, and other parameters of `@map` annotation depend on the mapper selected, where some of these parameters can be optional and/or dynamic.
 
 For detailed information about the parameters see the documentation of the relevant mapper.
 
@@ -439,7 +440,7 @@ The following is a list of sink mapping types supported by Siddhi:
 
 **Example 1**
 
-Publishes `OutputStream` events by converting them to `JSON` messages with the default format, and by sending to an `HTTP` endpoint `http://localhost:8005/endpoint1`, using `POST` method, `Accept` header, and basic authentication having `admin` is both username and password.
+Sink to publish `OutputStream` events by converting them to `JSON` messages with the default format, and by sending to an `HTTP` endpoint `http://localhost:8005/endpoint1`, using `POST` method, `Accept` header, and basic authentication having `admin` is both username and password.
 
 The configuration of the `HTTP` sink and `JSON` sink mapper to achieve the above is as follows.
 
@@ -465,7 +466,7 @@ This will publish a `JSON` message on the following format:
 
 **Example 2**
 
-Publishes `StockStream` events by converting them to user defined `JSON` messages, and by sending to an `HTTP` endpoint `http://localhost:8005/stocks`.
+Sink to publish `StockStream` events by converting them to user defined `JSON` messages, and sending them to an `HTTP` endpoint `http://localhost:8005/stocks`.
 
 The configuration of the `HTTP` sink and custom `JSON` sink mapping to achieve the above is as follows.
 
@@ -511,7 +512,7 @@ This can also publish multiple events together as a `JSON` message on the follow
 
 **Example 3**
 
-Publishes events from the `OutputStream` stream to multiple the `HTTP` endpoints using a partitioning strategy. Here the events are sent to either `http://localhost:8005/endpoint1` or `http://localhost:8006/endpoint2` based on the partitioning key `country`. It uses default `JSON` mapping, `POST` method, and used `admin` as both the username and the password when publishing to both the endpoints.
+Sink to publish events from the `OutputStream` stream to multiple `HTTP` endpoints using a partitioning strategy. Here, the events are sent to either `http://localhost:8005/endpoint1` or `http://localhost:8006/endpoint2` based on the partitioning key `country`. It uses default `JSON` mapping, `POST` method, and `admin` as both the username and the password when publishing to both the endpoints.
 
 The configuration of the distributed `HTTP` sink and `JSON` sink mapper to achieve the above is as follows.
 
@@ -678,9 +679,47 @@ The following parameters are used to configure a stream definition.
 | `projection`   | Generates output event attributes using [select](#select), [functions](#function), [aggregation-functions](#aggregation-function), and [group by](#group-by) operations, and filters the generated the output using [having](#having), [limit & offset](#limit-offset), [order by](#order-by), and [output rate limiting](#output-rate-limiting) operations before sending them out. Here the projection is optional and when it is omitted all the input events will be sent to the output as it is. |
 | `output action`| Defines output action (such as `insert into`, `update`, `delete`, etc) that needs to be performed by the generated events on a [stream](#stream), [named-window](#named-window), or [table](#table)  |
 
+## From
+
+All Siddhi queries must always have at least one [stream](#stream) or [named-window](#named-window) as an input (some queries can consume more than one [stream](#stream) or [named-window](#named-window)), and only [join](#join) query can consume events via [tables](#table), or [named-aggregations](#named-aggregations) as the second input.
+
+The input [stream](#stream), [named-window](#named-window), [table](#table), and/or [named-aggregation](#named-aggregations) should be defined before they can be used in a query.
+
+**Syntax**
+
+A high level syntax for consuming events from a stream, named-window, table, and/or named-aggregation is as follow;
+
+```sql
+from (<stream>|<named-window>)<handler>*) ((join (<stream>|<named-window>|<table>|<named-aggregation>)<handler>*)|((,|->)(<stream>|<named-window>)<handler>*)+)?
+<projection>
+insert into (<stream>|<named-window>|<table>)
+```
+
+Here the `<handler>` denotes the processing logic using [filters](#filter), [windows](#window), and [stream-functions](#stream-function), `join` for  [joins](#join), `->` for [patterns](#pattern), and `,` for[sequences](#sequence).
+
+More information on writing queries used these will be discussed in later sections.
+
+## Insert
+
+Allows events to be inserted directly into [streams](#stream), [named-windows](#named-window), or [tables](#table).
+
+When a query is defined to insert events into a stream that is not already defined, Siddhi infers and automatically defines its stream definition, such that queries defined below the current query can use the stream like any other predefined streams.
+
+**Syntax**
+
+Syntax to insert events into a stream, named-window or table from another stream is as follows;
+
+```sql
+from <input>
+<projection>
+insert into (<stream>|<named-window>|<table>)
+```
+
+This inserts all the newly arrived events (`current events`) in to a stream, named-window, or table. There are also other types of events other than `current events` that are produced by queries, the [Event Type](#event-type) section provides more information on, how insertion operation can be modified to support those.
+
 **Example**
 
-A query consumes events from the `TempStream` stream and output only the `roomNo` and `temp` attributes to the `RoomTempStream` stream, from which another query consumes the events and sends all its attributes to `AnotherRoomTempStream` stream.
+A query to consume events from the `TempStream` stream and output only the `roomNo` and `temp` attributes to the `RoomTempStream` stream, from which another query to consume the events and send all its attributes to `AnotherRoomTempStream` stream.
 
 ```sql
 define stream TempStream (deviceID long, roomNo int, temp double);
@@ -1208,9 +1247,9 @@ The event types can be defined using the following keywords to manipulate query 
 
 | Event types | Description |
 |-------------------|-------------|
-| `current events` | Outputs processed events only upon new event arrival to the query. </br> This is default behavior when no specific event type is specified.|
+| `current events` | Outputs processed events only upon new event arrival at the query. </br> This is default behavior when no specific event type is specified.|
 | `expired events` | Outputs processed events only upon event expiry from the window. |
-| `all events` | Outputs processed events when new events arrive to the query as well as </br> when events expire from the window. |
+| `all events` | Outputs processed events when both new events arrive at the query as well as when events expire from the window. |
 
 !!! note
     Controlling query output based on the event types neither alters query execution nor its accuracy.  
@@ -1451,7 +1490,7 @@ When there is no window associated with the joining steam, `window.lengthBatch(0
 
 **Syntax**
 
-The syntax for a join two streams is as follows:
+The syntax to join two streams is as follows:
 
 ```sql
 from <input stream>(#window.<window name>(<parameter>, ... ))? (unidirectional)? (as <reference>)?
@@ -1466,7 +1505,7 @@ Here, both the streams can have a window associated with them and have an option
 !!! Note "Window should be defined as the last element of each joining stream."
     Join query expects a window to be defined as the last element of each joining stream, therefore a filter cannot be defined after the window.
 
-**join types**
+**Supported join types**
 
 Following are the supported join operations.
 
@@ -1474,7 +1513,7 @@ Following are the supported join operations.
 
     This is the default behavior of a join operation, and the `join` keyword is used to join both the streams.
 
-    Here the output is generated only if there is a matching event in both the streams when either stream is triggering the join operation.
+    The output is generated only if there is a matching event in both the stream windows when either of the streams triggers the join operation.
 
  *  **Left outer join**
 
@@ -1484,7 +1523,7 @@ Following are the supported join operations.
 
  *  **Right outer join**
 
-    This is similar to a left outer join and the `Right outer join` keyword is used to join two streams while producing all right stream events to the output.
+    This is similar to a `left outer join` and the `right outer join` keyword is used to join two streams while producing all right stream events to the output.
 
     It generate output in all cases where the right stream triggers the join operation even if there are no matching events in the left stream window.
 
@@ -1495,7 +1534,7 @@ Following are the supported join operations.
     Here, the output is generated in all cases where the left or right stream triggers the join operation, and when a stream finds matching events in the other stream window, it uses them for the join, and if there are no matching events, then it uses null values instead.
 
 !!! Note "Cross join"
-    In either of these cases when join condition is omitted, the triggering event will successfully match against all the events in the other stream window, producing a cross join behavior.
+    In either of these cases, when the join condition is omitted, the triggering event will successfully match against all the events in the other stream window, producing a cross join behavior.
 
 **Unidirectional join operation**
 
@@ -1506,7 +1545,7 @@ By default, events arriving on either stream trigger the join operation and gene
 
 **Example 1 (join)**
 
-The query to generate output when there is a matching event having equal `symbol` and `companyID` combination from the events arrived in the last 10 minutes on `StockStream` stream and the events arrived in the last 20 minutes on `TwitterStream` stream.
+A query to generate output when there is a matching event having equal `symbol` and `companyID` combination from the events arrived in the last 10 minutes on `StockStream` stream and the events arrived in the last 20 minutes on `TwitterStream` stream.
 
 ```sql
 define stream StockStream (symbol string, price float, volume long);
@@ -1527,7 +1566,7 @@ Possible OutputStream outputs as follows
 
 **Example 2 (with no join condition)**
 
-The query to generate output for all possible event combinations from the last 5 events of the `StockStream` stream and the events arrived in the last 1 minutes on `TwitterStream` stream.
+A query to generate output for all possible event combinations from the last 5 events of the `StockStream` stream and the events arrived in the last 1 minutes on `TwitterStream` stream.
 
 ```sql
 define stream StockStream (symbol string, price float, volume long);
@@ -1549,7 +1588,7 @@ Possible OutputStream outputs as follows,
 
 **Example 3 (left outer join)**
 
-The query to generate output for all events arriving in the `StockStream` stream regardless of whether there is a matching `companyID` for `symbol` exist in the events arrived in the last 20 minutes on `TwitterStream` stream, and generate output for the events arriving in the `StockStream` stream only when there is a matchine `symbol` and `companyID` combination exist in the events arrived in the last 10 minutes on `StockStream` stream.
+A query to generate output for all events arriving in the `StockStream` stream regardless of whether there is a matching `companyID` for `symbol` exist in the events arrived in the last 20 minutes on `TwitterStream` stream, and generate output for the events arriving in the `StockStream` stream only when there is a matchine `symbol` and `companyID` combination exist in the events arrived in the last 10 minutes on `StockStream` stream.
 
 ```sql
 define stream StockStream (symbol string, price float, volume long);
@@ -1570,7 +1609,7 @@ Possible OutputStream outputs as follows,
 
 **Example 3 (full outer join)**
 
-The query to generate output for all events arriving in the `StockStream` stream and in the `TwitterStream` stream regardless of whether there is a matching `companyID` for `symbol` exist in the other stream window or not.
+A query to generate output for all events arriving in the `StockStream` stream and in the `TwitterStream` stream regardless of whether there is a matching `companyID` for `symbol` exist in the other stream window or not.
 
 ```sql
 define stream StockStream (symbol string, price float, volume long);
@@ -1592,7 +1631,7 @@ Possible OutputStream outputs as follows,
 
 **Example 3 (unidirectional join)**
 
-The query to generate output only when events arrive on `StockStream` stream find a matching event having equal `symbol` and `companyID` combination against the events arrived in the last 20 minutes on `TwitterStream` stream.
+A query to generate output only when events arrive on `StockStream` stream find a matching event having equal `symbol` and `companyID` combination against the events arrived in the last 20 minutes on `TwitterStream` stream.
 
 ```sql
 define stream StockStream (symbol string, price float, volume long);
@@ -1976,7 +2015,7 @@ insert into StateNotificationStream;
 ```
 Here, the matching process begins for each event in the `RegulatorStream` stream having the `isOn` attribute `true`. It generates an output via the `AlertStream` stream when an event from both `TempStream` stream and `HumidStream` stream arrives immediately after the first event in either order.
 
-### Output rate limiting
+### Output Rate Limiting
 
 Output rate-limiting limits the number of events emitted by the queries based on a specified criterion such as time, and number of events.
 
@@ -2029,7 +2068,7 @@ Here the first event having `avgTemp` > 30 is emitted immediately and the next e
 
 **Example 2 (Event based first event)**
 
-Query to output the initial event, and there onwards every 5th event from `TempStream` stream events.
+A query to output the initial event, and from there onwards every 5th event of `TempStream` stream.
 
 ```sql
 define stream TempStream(deviceID long, roomNo int, temp double);
@@ -2133,7 +2172,7 @@ Key selection type | Syntax | description
 Partition by value| `<attribute name>` | Attribute value of the event is used as its partition key.
 Partition by range| `<compare condition> as 'value' or <compare condition> as 'value' or ...` | Event is executed against all `<compare conditions>`, and the values associated with the matching conditions are used as its partition key. Here, when the event is matched against multiple conditions, it is processed on all the partition instances that are associated with those matching conditions.  
 
-When there are multiple queries within a partition block, and they can be chained without leaving the isolation of the partition instance using the inner streams denoted by `#`. More information on inner Streams will be covered in the following secsions.
+When there are multiple queries within a partition block, and they can be chained without leaving the isolation of the partition instance using the inner streams denoted by `#`. More information on inner Streams will be covered in the following sections.
 
 **Inner Stream**
 
@@ -2231,192 +2270,228 @@ Here, the events in `LoginStream` is partitioned by their `sessionID` attribute 
 
 ## Table
 
-A table is a stored version of an stream or a table of events. Its schema is defined via the **table definition** that is
-similar to a stream definition. These events are by default stored `in-memory`, but Siddhi also provides store extensions to work with data/events stored in various data stores through the
-table abstraction.
+A table is a stored collection of events, and its schema is defined via the **table definition**.
+
+A table definition is similar to the stream definition where it contains the table name and a set of attributes having a specific type and a uniquely identifiable name within the scope of the table. Here, all events associated with the table will have the same schema (i.e., have the same attributes in the same order).
+
+The events of the table are stored `in-memory`, but Siddhi also provides [store extensions](#store) to mirror the table to external databases such as RDBMS, MongoDB, and others, while allowing the events to be stored on those databases.
+
+Table supports primary keys to enforce uniqueness on stored events/recodes, and indexes to improve their searchability.
 
 **Purpose**
 
-Tables allow Siddhi to work with stored events. By defining a schema for tables Siddhi enables them to be processed by queries using their defined attributes with the streaming data. You can also interactively query the state of the stored events in the table.
+Tables helps to work with stored events. It allows to pick and choose the events that need to be stored by performing insert, update, and delete operations and helps to retrieve necessarily events when by performing read operation on the table.
+
+!!! Note "Managing events stored in table"
+    The events in the table can be managed using queries that perform join, insert, update, insert or update, and delete operates, which are either initiated by events arriving in Streams or through the [Store query API](#store-query).
 
 **Syntax**
 
-The syntax for a new table definition is as follows:
+The syntax for defining a table is as follows:
 
 ```sql
+@primaryKey( <key>, <key>, ... )
+@index( <key>, <key>, ...)
+@index( <key>, <key>, ...)
 define table <table name> (<attribute name> <attribute type>, <attribute name> <attribute type>, ... );
 ```
-The following parameters are configured in a table definition:
+The following parameters are used to configure a table definition:
 
 | Parameter     | Description |
 | ------------- |-------------|
-| `table name`      | The name of the table defined. (`PascalCase` is used for table name as a convention.) |
-| `attribute name`   | The schema of the table is defined by its attributes with uniquely identifiable attribute names (`camelCase` is used for attribute names as a convention.)|    |
+| `table name`      | The name of the table created. (It is recommended to define a table name in `PascalCase`.) |
+| `attribute name`   | Uniquely identifiable name of the table attribute. (It is recommended to define attribute names in `camelCase`.)|    
 | `attribute type`   | The type of each attribute defined in the schema. <br/> This can be `STRING`, `INT`, `LONG`, `DOUBLE`, `FLOAT`, `BOOL` or `OBJECT`.     |
 
-
-**Example**
-
-The following defines a table named `RoomTypeTable` with `roomNo` and `type` attributes of data types `int` and `string` respectively.
-
-```sql
-define table RoomTypeTable ( roomNo int, type string );
-```
+To use and refer table and attribute names that do not follow `[a-zA-Z_][a-zA-Z_0-9]*` format enclose them in ``` ` ```. E.g. ``` `$test(0)` ```.
 
 **Primary Keys**
 
-Tables can be configured with primary keys to avoid the duplication of data.
+Primary keys help to avoid duplication of data by enforcing nor two events to have the same value for the selected primary key attributes. They also index the table to access the events much faster.
 
-Primary keys are configured by including the `@PrimaryKey( 'key1', 'key2' )` annotation to the table definition.
-Each event table configuration can have only one `@PrimaryKey` annotation.
-The number of attributes supported differ based on the table implementations. When more than one attribute
- is used for the primary key, the uniqueness of the events stored in the table is determined based on the combination of values for those attributes.
+Primary keys are optional, and they can be configured using the `@primaryKey` annotation. Here, each table can only have at most one `@primaryKey` annotation, which can have one or more `attribute name`s defined as primary keys. When more than one attribute is used, the uniqueness of the events stored in the table is determined based on the composite value for those attributes.
 
-**Examples**
-
-This query creates an event table with the `symbol` attribute as the primary key.
-Therefore each entry in this table must have a unique value for `symbol` attribute.
-
-```sql
-@PrimaryKey('symbol')
-define table StockTable (symbol string, price float, volume long);
-```
+When more than one events having the same primary keys are inserted to the table, the latter event replaces the event/record that already exists in the table.
 
 **Indexes**
 
-Indexes allow tables to be searched/modified much faster.
+Indexes allow events in the tables to be searched/modified much faster, but unlike primary keys, the indexed attributes support duplicate values.
 
-Indexes are configured by including the `@Index( 'key1', 'key2' )` annotation to the table definition.
- Each event table configuration can have 0-1 `@Index` annotations.
- Support for the `@Index` annotation and the number of attributes supported differ based on the table implementations.
- When more then one attribute is used for index, each one of them is used to index the table for fast access of the data.
- Indexes can be configured together with primary keys.
+Indexes are optional, and they can be configured using the `@index` annotation. Here, each `@index` annotation creates an index in the table, and the tables only support one `attribute name` for each index.  
 
-**Examples**
+**Example 1 (Primary key)**
+```sql
+define table RoomTypeTable ( roomNo int, type string );
+```
+The above table definition defines an in-memory table named `RoomTypeTable` having the following attributes.
 
-This query creates an indexed event table named `RoomTypeTable` with the `roomNo` attribute as the index key.
++ `roomNo` of type `int`
++ Room `type` of type `string`
+
+**Example 2 (Primary key)**
 
 ```sql
-@Index('roomNo')
-define table RoomTypeTable (roomNo int, type string);
+@primaryKey('symbol')
+define table StockTable (symbol string, price float, volume long);
 ```
+
+The above table definition defines an in-memory table named `StockTable` having the following attributes.
+
++ `symbol` of type `string`
++ `price` of type `float`
++ `volume` of type `long`
+
+As this table is configured with the primary key `symbol`, there will be only one record/event exist in the table for a particular value of the `symbol` attribute.
+
+**Example 3 (Index)**
+
+```sql
+@index('username')
+@index('salary')
+define table SalaryTable (username string, salary double);
+```
+
+The above table definition defines an in-memory table named `SalaryTable` having the following attributes.
+
++ `username` of type `string`
++ `salary` of type `double`
+
+As this table is configured with indexes for `username` and `salary`, the search operations on `username` and/or `salary` attributes will be much faster than the non-indexed case. Here, the table can contain duplicate events having the same value for username and/or salary.
+
+
+**Example 3 (Primary key and index)**
+
+```sql
+@primaryKey('username')
+@index('salary')
+define table SalaryTable (username string, salary double);
+```
+
+The above table definition defines an in-memory table named `SalaryTable` having the following attributes.
+
++ `username` of type `string`
++ `salary` of type `double`
+
+As this table is configured with the primary key `username` and index `salary`. Hence, there can be only one record/event exist in the table having a particular username value, and the search operations on `username` and/or `salary` attributes will be much faster than the non-indexed case.
 
 ### Store
 
-Store is a table that refers to data/events stored in data stores outside of Siddhi such as RDBMS, Cassandra, etc.
-Store is defined via the `@store` annotation, and the store schema is defined via a **table definition** associated with it.
+Stores allow creating, reading, updating, and deleting events/recodes stored on external data stores such as RDBMS, MongoDB, and others. They produce these functionalities by using the Siddhi tables as a proxy to external databases.
+
+Stores depending on their implementation and the connected external data store, some supports primary keys to enforce uniqueness on stored events/recodes, and indexes to improve their searchability.
+
+Since stores work with external data stores, the i/o latency can be quite higher than in-memory tables, the increase in latency can be eliminated by defining a cache, such that recently accessed data will be cached in-memory providing faster data retrievals.
 
 **Purpose**
 
-Store allows Siddhi to search, retrieve and manipulate data stored in external data stores through Siddhi queries.
+Stores allow searching retrieving and manipulating data stored in external data stores through queries. This is useful for use cases when there is a need to access a common database used by various other systems, to retrieve and transfer data.  
 
 **Syntax**
 
-The syntax for a defining store and it's associated table definition is as follows:
+The syntax for defining a store along with is associated table is as follows:
 
 ```sql
-@store(type='store_type', static.option.key1='static_option_value1', static.option.keyN='static_option_valueN')
-define table TableName (attribute1 Type1, attributeN TypeN);
+@store(type='<store type>', <common.static.key>='<value>', <common.static.key>='<value>'
+       @cache(size='<cache size>', cache.policy='<cache policy>', retention.period='<retention period>', purge.interval="<purge interval>"))
+@primaryKey( <key>, <key>, ... )
+@index( <key>, <key>, ...)
+@index( <key>, <key>, ...)
+define table <table name> (<attribute name> <attribute type>, <attribute name> <attribute type>, ... );
 ```
 
-**Example**
+Here the store is defined via the `@store` annotation, and the schema of the store is defined via the **table definition** associated with it. In this case the table definition will not create an `in-memory` table but rather used as a poxy to read, write, and modify data stored in external store.
 
-The following defines a RDBMS data store pointing to a MySQL database with name `hotel` hosted in `loacalhost:3306`
-having a table `RoomTypeTable` with columns `roomNo` of `INTEGER` and `type` of `VARCHAR(255)` mapped to Siddhi data types `int` and `string` respectively.
+The `type` parameter of the `@store` defines the store type to be used to connect to the external data store, and the other parameters of `@store` annotation other than `@cache` depend on the store selected, where some of these parameters can be optional.
 
-```sql
-@Store(type="rdbms", jdbc.url="jdbc:mysql://localhost:3306/hotel", username="siddhi", password="123",
-       jdbc.driver.name="com.mysql.jdbc.Driver")
-define table RoomTypeTable ( roomNo int, type string );
-```
+The `@primaryKey` and `@index` annotations are optional, and supported by some store implementations. The `@primaryKey` annotation can be defined at most once, and it can have one or more `attribute name`s as composed primary keys based on the implementation. At the same time, `@index` annotation can be defined several times, and it can also have one or more `attribute name`s as composed indexes if the implementation supports them.
 
-**Supported Store Types**
+**Cache**
 
-The following is a list of currently supported store types:
+The `@cache` annotation inside `@store` defines the behavior of the cache.  `@cache` is an optional annotation that can be applied to all store implementations, where when this is not defined, the cache will not be enabled.
 
-* <a target="_blank" href="https://siddhi-io.github.io/siddhi-store-rdbms">RDBMS (MySQL, Oracle, SQL Server, PostgreSQL, DB2, H2)</a>
-* <a target="_blank" href="https://siddhi-io.github.io/siddhi-store-mongodb">MongoDB</a>
-
-
-**Caching in Memory**
-
-Store tables are persisted in high i/o latency storage. Hence, it is beneficial to maintain a cache of store tables in
-memory which has low latency. Siddhi supports caching of store tables through `@cache` annotation. It should be used
-within `@store` annotation in a nested fashion as shown below.
-
-```sql
-@store(type='store_type', static.option.key1='static_option_value1', static.option.keyN='static_option_valueN',
-        @cache(size=10, cache.policy=FIFO))
-define table TableName (attribute1 Type1, attributeN TypeN);
-```
-
-In the above example we have defined a cache with a maximum size of 10 rows with first-in first-out cache policy.
-The following table contains the cache parameters.
+The parameters defining the cache behavior via the `@cache` annotation is as follows.
 
 | Parameter | Mandatory/Optional | Default Value | Description |
 |-----------|--------------------|---------------|-------------|
-|size|Mandatory| - | maximum number of rows to be cached|
-|cache.policy|Optional|FIFO|policy to free up cache when cache miss occurs. There are 3 allowed policies.<br />1. FIFO - First-In, First-Out<br />2. LRU - Least Recently Used<br />3. LFU - Least Frequently Used |
-|retention.period|Optional|-|If user specifies this parameter then cache expiry is enabled. For example if this is 5 min, rows older than 5 mins will be removed and in some cases reloaded from store|
-|purge.interval|optional|equal to retention period|When cache expiry is enabled, a thread will be created for every purge.interval which will check for expired rows and remove them.|
+|`size`       |Mandatory    | - | Maximum number of events/records stored in the cache.|
+|`cache.policy`|Optional|`FIFO`|Policy to remove elements from the cache when the cache is at its maximum size and new entries need to added due to cache miss.
+<br/>Supported policies are <br/>`FIFO` (First-In First-Out), <br/>`LRU` (Least Recently Used)<br/>`LFU` (Least Frequently Used) |
+|`retention.period`|Optional  |-|The period after an event/record will become eligible for removal from the cached irrespective of the case size. This allows the cache to fetch the recent database updates made by other systems.|
+|`purge.interval`|Optional|Equal to retention period.|The periodic time interval the cached events/records that are eligible for removal will be purge.|
 
-The following is an example of caching with expiry.
+Even though the cache is enabled, its behavior and usage depend on the number of recodes in the external store relative to the maximum cache size defined as follows:
+
+1. Cache size being greater than or equal to the number of recodes in the external store:
+  * At startup, all the recodes of the external store data will be preloaded to cached.
+  * The cache is used to process all type of data retrieval operations.  
+  * When `retention.period` (and `purge.interval`) is configured, all records the cache are periodically deleted and reloaded from the external store.
+
+2. Cache size is smaller than the number of recodes in the external store:  
+  * At startup, the number of recodes equal to the maximum cache size is preloaded from the external store.
+  * **The cache is used to process only the data retrieval operations that use all defined primary keys in equal (`==`) comparisons, and when there are multiple comparisons, those are combined using `and`**, _(For example when `customerID` and `companyID` are defined as primary keys then the data retrieval operations with condition `customerID == 'John' and companyID == 'Google' and age > 28` can  be executed in the cache)_. All other operations are directly executed in the external data store.
+  * If the cache is full and when a cache miss occurs, a record is removed from the cache based on the defined cache expiry policy before adding the missed record from the external data store.
+  * When `retention.period` (and `purge.interval`) is configured, the data is cache that are loaded earlier than retention period are periodically deleted. Here, no reloading will be done from the external data store.  
+
+**Supported Store Types**
+
+The following is a list of store types supported by Siddhi:
+
+|Sink mapping type | Description|
+| ------------- |-------------|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-store-rdbms">RDBMS</a> | Optimally stores, retrieves, and manipulates data on RDBMS databases such as MySQL, MS SQL, Postgresql, H2 and Oracle.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-store-mongodb">MongoDB</a> | Stores, retrieves, and manipulates data on MongoDB.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-store-redis">Redis</a> | Stores, retrieves, and manipulates data on Redis.|
+| <a target="_blank" href="https://siddhi-io.github.io/siddhi-store-elasticsearch">Elasticsearch</a> | Supports data access and manipulation operators on Elasticsearch.|
+
+**Example 1**
+
+An RDBMS Store configuration to work with MySQL database.
 
 ```sql
-@store(type='store_type', static.option.key1='static_option_value1', static.option.keyN='static_option_valueN',
-        @cache(size=10, retention.period=5 min, purge.interval=1 min))
-define table TableName (attribute1 Type1, attributeN TypeN);
+@store(type="rdbms", jdbc.url="jdbc:mysql://localhost:3306/hotel",
+       username="siddhi", password="123",
+       jdbc.driver.name="com.mysql.jdbc.Driver")
+define table RoomTypeTable ( roomNo int, type string );
+```
+Here, the store connects to the MySQL table `RoomTypeTable` in the database `hotel` hosted on `localhost:3306`, and its columns mapped as follows.
+
++ `roomNo` of type `INTEGER` mapped to `int`
++ `type` of type `VARCHAR(255)` mapped to `string`
+
+**Example 2**
+
+An RDBMS Store configuration to work with an indexed MySQL database using a cache.
+
+```sql
+@store(type="rdbms", jdbc.url="jdbc:mysql://localhost:3306/hotel",
+       username="siddhi", password="123",
+       jdbc.driver.name="com.mysql.jdbc.Driver"
+       @cache(size=100, retention.period=5 min, purge.interval=1 min))
+@primaryKey('username')
+@index('salary')
+define table SalaryTable (username string, salary double);
 ```
 
-The above query will define and create a store table of given type and a cache with a max size of 10. A thread will be
-created every 1 minute which will check the entire cache table for rows added earlier than 5 minutes and expire them.
+Here, an `RDBMS` store is defined with a cache of size 100 that every minute removes the entries added to the cache which are older than 5 minutes. The store connects to the MySQL table named `SalaryTable`, that is configured with the primary key `username` and index `salary`, and located in a MySQL the database `hotel` hosted on `localhost:3306`. Its columns mapped as follows.
 
-**Cache Behavior**
++ `username` of type `VARCHAR(255)` mapped to `string`
++ `salary` of type `VARCHAR(255)` mapped to `string`
 
-Cache behavior changes profoundly based on the size of store table relative to maximum cache size defined. Since
-memory is a limited resource we don't allow cache to grow more than the user specified maximum size.
-
-Case 1 \
-When store table is smaller than maximum cache size defined we keep the entire content of store table in memory in
-cache table. All types of queries are routed to cache and cache results are directly sent out to the user. Every time
-the expiry thread finds that cache events were loaded earlier than retention period entire cache table will be deleted
-and reloaded from store. In addition, when siddhi app starts, the entire store table, if it exists, will be loaded into
-cache.
-
-Case 2 \
-When store table is bigger than maximum cache size only the queries satisfying the following 2 conditions are sent to
-cache.
-1. the query contains all the primary keys of the table
-2. the query contains only == type of comparison.
-
-Only for the above types of queries we can establish if the cache is hit or missed. Subject to these conditions if the
-cache is hit the results from cache is sent out. If the cache is missed then store is checked.
-
-If the above conditions are not met by a query it is directly sent to the store table. In addition, please note that
-if the store table is pre existing when siddhi app is started and it is bigger than max cache size, cache preloading
-will take only upto max size and put it in cache. For example if store table has 50 entries when the siddhi app is
-defined with cache size of 10, only the first 10 rows will be cached.
-
-When cache miss occurs we look for the answer in the store table. If there is a result from the store table it is added
-to cache. One element from cache is removed using the user given cache policy prior to adding.
-
-When it comes to cache expiry, since not all rows are loaded at once in this case there may be some expired rows and
-some unexpired rows at any time. So for every purge interval a thread will be generated which looks for rows that were
-loaded earlier than retention period and delete only those rows. No reloading is done.
-
-**Operators on Table (and Store)**
+**Table (and Store) Operators**
 
 The following operators can be performed on tables (and stores).
 
 ### Insert
 
-This allows events to be inserted into tables. This is similar to inserting events into streams.
+Allows events (records) to be inserted into tables/stores. This is similar to inserting events into streams.
 
-!!! warning
-    If the table is defined with primary keys, and if you insert duplicate data, primary key constrain violations can occur.
+!!! warning "Primary Keys"
+    If the table is defined with primary keys, and multiple records are inserted with the same primary key, a primary key constrain violations can can occur.
     In such cases use the `update or insert into` operation.
 
 **Syntax**
+
+Syntax to insert events into a table from a stream is as follows;
 
 ```sql
 from <input stream>
@@ -2424,12 +2499,11 @@ select <attribute name>, <attribute name>, ...
 insert into <table>
 ```
 
-Similar to streams, you need to use the `current events`, `expired events` or the `all events` keyword between `insert` and `into` keywords in order to insert only the specific event types.
-For more information, see [Event Type](#event-type)
+Similar to streams, the `current events`, `expired events` or the `all events` keyword can be used between `insert` and `into` keywords in order to insert only the specific event types. For more information, see [Event Type](#event-type)
 
 **Example**
 
-This query inserts all the events from the `TempStream` stream to the `TempTable` table.
+Query to inserts all the events from the `TempStream` stream to the `TempTable` table.
 
 ```sql
 from TempStream
@@ -2439,38 +2513,25 @@ insert into TempTable;
 
 ### Join (Table)
 
-This allows a stream to retrieve information from a table in a streaming manner.
+Allows a stream to retrieve events (records) from a table.
 
-!!! Note
-    Joins can also be performed with [two streams](#join-stream), [aggregation](#join-aggregation) or against externally [named windows](#join-window).
+!!! Note "Other Join Functions"
+    Joins can also be performed with [two streams](#join-stream), [named aggregation](#join-aggregation) or against [named windows](#join-window).
 
 **Syntax**
 
+The syntax to join a stream with a table is as follows:
+
 ```sql
-from <input stream> join <table>
-    on <condition>
+from <input stream> (as <reference>)?
+         <join type> <table> (as <reference>)?
+    (on <join condition>)?
 select (<input stream>|<table>).<attribute name>, (<input stream>|<table>).<attribute name>, ...
 insert into <output stream>
 ```
 
-!!! Note
-    A table can only be joint with a stream. Two tables cannot be joint because there must be at least one active
-    entity to trigger the join operation.
-
-**Example**
-
-This Siddhi App performs a join to retrieve the room type from `RoomTypeTable` table based on the room number, so that it can filter the events related to `server-room`s.
-
-```sql
-define table RoomTypeTable (roomNo int, type string);
-define stream TempStream (deviceID long, roomNo int, temp double);
-
-from TempStream join RoomTypeTable
-    on RoomTypeTable.roomNo == TempStream.roomNo
-select deviceID, RoomTypeTable.type as roomType, type, temp
-    having roomType == 'server-room'
-insert into ServerRoomTempStream;
-```
+!!! Note "Two tables cannot be joined."
+    A table can only be joint with a stream. Two tables cannot be joint because there must be at least one active entity to trigger the join operation.
 
 **Supported join types**
 
@@ -2478,24 +2539,46 @@ Table join supports following join operations.
 
  *  **Inner join (join)**
 
-    This is the default behavior of a join operation. `join` is used as the keyword to join the stream with the table. The output is generated only if there is a matching event in both the stream and the table.
+    This is the default behavior of a join operation, and the `join` keyword is used to join a stream with a table.
+
+    The output is generated only if there is a matching event in both the stream and the table.
 
  *  **Left outer join**
 
-    The `left outer join` operation allows you to join a stream on left side with a table on the right side based on a condition.
-    Here, it returns all the events of left stream even if there are no matching events in the right table by
-    having null values for the attributes of the right table.
+    The `left outer join` keyword is used to join a stream on the left side with a table on the right side based on a condition.
+
+    It returns all the events of the left stream even if there are no matching events in the right table by having `null` values for the attributes of the table on the right.
 
  *  **Right outer join**
 
-    This is similar to a `left outer join`. `right outer join` is used as the keyword to join a stream on right side with a table on the left side based on a condition.
-    It returns all the events of the right stream even if there are no matching events in the left table.
+    This is similar to a `left outer join` and the `right outer join` keyword is used to join a stream on right side with a table on the left side based on a condition.
+
+    It returns all the events of the right stream even if there are no matching events in the left table by having `null` values for the attributes of the table on the left.
+
+!!! Note "Cross join"
+    In either of these cases, when the join condition is omitted, the triggering event will successfully match against all the events in the table, producing a cross join behavior.
+
+**Example**
+
+A query to join and retrieve the room type from `RoomTypeTable` table based on equal `roomNo` attribute of `TempStream`, and insert the results into `RoomTempStream` steam.
+
+```sql
+define table RoomTypeTable (roomNo int, type string);
+define stream TempStream (deviceID long, roomNo int, temp double);
+
+from TempStream as t join RoomTypeTable as r
+    on t.roomNo == r.roomNo
+select t.deviceID, t.roomNo, r.type as roomType, t.temp
+insert into RoomTempStream;
+```
 
 ### Delete
 
-To delete selected events that are stored in a table.
+Allows a stream to delete selected events (records) form a table.
 
 **Syntax**
+
+Syntax to delete selected events in a table based on the events in a stream is as follows;
 
 ```sql
 from <input stream>
@@ -2504,24 +2587,20 @@ delete <table> (for <event type>)?
     on <condition>
 ```
 
-The `condition` element specifies the basis on which events are selected to be deleted.
-When specifying the condition, table attributes should be referred to with the table name.
+The `condition` element specifies the basis on which the events in the table are selected to be deleted. **When specifying the condition, the table attributes should always be referred with the table name**, and and when a condition is not defined, all the events in the table will be deleted.
 
-To execute delete for specific event types, use the `current events`, `expired events` or the `all events` keyword with `for` as shown
-in the syntax. For more information, see [Event Type](#event-type)
+To execute delete, only for specific event types, use the `current events`, `expired events` or the `all events` keyword can be used with `for` as shown in the syntax. For more information refer [Event Type](#event-type).
 
 !!! note
-    Table attributes must be always referred to with the table name as follows:
-    `<table name>.<attibute name>`
+    When defining the condition, the table attributes must be always referred with the table name as follows:
+    `<table name>.<attribute name>`
 
-**Example**
+**Example 1**
 
-In this example, the script deletes a record in the `RoomTypeTable` table if it has a value for the `roomNo` attribute that matches the value for the `roomNumber` attribute of an event in the `DeleteStream` stream.
-
+A query to delete the records in the `RoomTypeTable` table that has matching values for the `roomNo` attribute against the values of `roomNumber` attribute of the events in the `DeleteStream` stream.
 
 ```sql
 define table RoomTypeTable (roomNo int, type string);
-
 define stream DeleteStream (roomNumber int);
 
 from DeleteStream
@@ -2529,9 +2608,21 @@ delete RoomTypeTable
     on RoomTypeTable.roomNo == roomNumber;
 ```
 
+**Example 2**
+
+A query to delete all the records in the `BlacklistTable` table when an event arrives in the `ClearStream` stream.
+
+```sql
+define table BlacklistTable (ip string);
+define stream ClearStream (source string);
+
+from ClearStream
+delete BlacklistTable;
+```
+
 ### Update
 
-This operator updates selected event attributes stored in a table based on a condition.
+Allows a stream to update selected events (records) form a table.
 
 **Syntax**
 
@@ -2543,37 +2634,63 @@ update <table> (for <event type>)?
     on <condition>
 ```
 
-The `condition` element specifies the basis on which events are selected to be updated.
-When specifying the `condition`, table attributes must be referred to with the table name.
+The `condition` element specifies the basis on which the events in the table are selected to be updated. **When referring the table attributes in the `update` clause, they must always be referred to with the table name**, and when a condition is not defined, all the events in the table will be updated.
 
-You can use the `set` keyword to update selected attributes from the table. Here, for each assignment, the attribute specified in the left must be the table attribute, and the one specified in the right can be a stream/table attribute a mathematical operation, or other. When the `set` clause is not provided, all the attributes in the table are updated.
+The `set` keyword can be used to update only the selected attributes from the table. Here, for each assignment, the attribute specified in the left must be the table attribute that is being updated, and the right can contain a query output attribute, a table attribute, a mathematical operation, or any other. When the `set` clause is not provided, all attributes in the table will be updated based on the query output.  
 
-To execute an update for specific event types use the `current events`, `expired events` or the `all events` keyword with `for` as shown
-in the syntax. For more information, see [Event Type](#event-type).
+To execute update, only for specific event types, use the `current events`, `expired events` or the `all events` keyword can be used with `for` as shown in the syntax. For more information refer [Event Type](#event-type).
 
 !!! note
-    Table attributes must be always referred to with the table name as shown below:
-     `<table name>.<attibute name>`.
+    In the `update` clause, the table attributes must be always referred with the table name as follows:
+    `<table name>.<attribute name>`
 
-**Example**
+**Example 1**
 
-This Siddhi application updates the room occupancy in the `RoomOccupancyTable` table for each room number based on new arrivals and exits from the `UpdateStream` stream.
+A query to update the `latestHeartbeatTime` on the `ServerInfoTable` against each `serverIP` for every event on the `HeartbeatStream`.
 
 ```sql
-define table RoomOccupancyTable (roomNo int, people int);
+define table ServerInfoTable (serverIP string, host string, port int, latestHeartbeatTime long);
+define stream HeartbeatStream (serverIP string, timestamp long);
+
+from HeartbeatStream
+select *
+update ServerInfoTable
+    set ServerInfoTable.latestHeartbeatTime = timestamp
+    on ServerInfoTable.serverIP == serverIP;
+```
+
+**Example 2**
+
+A query to update the `peoplePresent` in the `RoomOccupancyTable` table for each `roomNo` based on new people `arrival` and `exit` values from events of the `UpdateStream` stream.
+
+```sql
+define table RoomOccupancyTable (roomNo int, peoplePresent int);
 define stream UpdateStream (roomNumber int, arrival int, exit int);
 
 from UpdateStream
 select *
 update RoomOccupancyTable
-    set RoomOccupancyTable.people = RoomOccupancyTable.people + arrival - exit
+    set RoomOccupancyTable.peoplePresent = RoomOccupancyTable.peoplePresent + arrival - exit
     on RoomOccupancyTable.roomNo == roomNumber;
+```
+
+**Example 2**
+
+A query to update the `latestHeartbeatTime` on the `HeartbeatTable` for each event on the `HeartbeatStream`.
+
+```sql
+define table HeartbeatTable (serverIP string, latestHeartbeatTime long);
+define stream HeartbeatStream (serverIP string, timestamp long);
+
+from HeartbeatStream
+select serverIP, timestamp as latestHeartbeatTime
+update HeartbeatTable
+    on ServerInfoTable.serverIP == serverIP;
 ```
 
 ### Update or Insert
 
-This allows you update if the event attributes already exist in the table based on a condition, or
-else insert the entry as a new attribute.
+Allows a stream to update the events (records) that already exist in the table based on a condition, else inserts the event as a new entry to the table.
 
 **Syntax**
 
@@ -2584,41 +2701,35 @@ update or insert into <table> (for <event type>)?
     set <table>.<attribute name> = <expression>, <table>.<attribute name> = <expression>, ...
     on <condition>
 ```
-The `condition` element specifies the basis on which events are selected for update.
-When specifying the `condition`, table attributes should be referred to with the table name.
-If a record that matches the condition does not already exist in the table, the arriving event is inserted into the table.
 
-The `set` clause is only used when an update is performed during the insert/update operation.
-When `set` clause is used, the attribute to the left is always a table attribute, and the attribute to the right can be a stream/table attribute, mathematical
-operation or other. The attribute to the left (i.e., the attribute in the event table) is updated with the value of the attribute to the right if the given condition is met. When the `set` clause is not provided, all the attributes in the table are updated.
+The `condition` element specifies the basis on which the events in the table are selected to be updated. **When referring the table attributes in the update clause, they must always be referred with the table name**, and when the condition does not match with any event in the table, then a new event (a record) is inserted into the table. Here, when a condition is not defined, all the events in the table will be updated.
 
-!!! note
-    When the attribute to the right is a table attribute, the operations supported differ based on the database type.
+The `set` clause is only used when an update is performed in the update or insert operation. In this case, the `set` keyword can be used to update only the selected attributes from the table. Here, for each assignment, the attribute specified in the left must be the table attribute that is being updated, and the right can contain a query output attribute, a table attribute, a mathematical operation, or any other. When the `set` clause is not provided, all attributes in the table will be updated based on the query output.  
 
-To execute update upon specific event types use the `current events`, `expired events` or the `all events` keyword with `for` as shown
-in the syntax. To understand more see [Event Type](#event-type).
+To execute update or insert, only for specific event types, use the `current events`, `expired events` or the `all events` keyword can be used with `for` as shown in the syntax. For more information refer [Event Type](#event-type).
 
 !!! note
-    Table attributes should be always referred to with the table name as `<table name>.<attibute name>`.
+    In the `update or insert` clause, the table attributes must be always referred with the table name as follows:
+    `<table name>.<attribute name>`
 
 **Example**
 
-The following query update for events in the `UpdateTable` event table that have room numbers that match the same in the `UpdateStream` stream. When such events are found in the event table, they are updated. When a room number available in the stream is not found in the event table, it is inserted from the stream.
+A query to update `assignee` information in the `RoomAllocationTable` table for the corresponding `roomNumber` from the `RoomAllocationStream` stream when at least one matching record is present in the table, and when there are no matching records it inserts a new record to the `RoomAllocationTable` table based on the query output.
 
 ```sql
-define table RoomAssigneeTable (roomNo int, type string, assignee string);
-define stream RoomAssigneeStream (roomNumber int, type string, assignee string);
+define table RoomAllocationTable (roomNo int, type string, assignee string);
+define stream RoomAllocationStream (roomNumber int, type string, assignee string);
 
-from RoomAssigneeStream
+from RoomAllocationStream
 select roomNumber as roomNo, type, assignee
-update or insert into RoomAssigneeTable
-    set RoomAssigneeTable.assignee = assignee
-    on RoomAssigneeTable.roomNo == roomNo;
+update or insert into RoomAllocationTable
+    set RoomAllocationTable.assignee = assignee
+    on RoomAllocationTable.roomNo == roomNo;
 ```
 
 ### In
 
-This allows the stream to check whether the expected value exists in the table as a part of a conditional operation.
+Allows the query to check whether the expected value exists in the table using a condition operation.
 
 **Syntax**
 
@@ -2628,13 +2739,11 @@ select <attribute name>, <attribute name>, ...
 insert into <output stream>
 ```
 
-The `condition` element specifies the basis on which events are selected to be compared.
-When constructing the `condition`, the table attribute must be always referred to with the table name as shown below:
-`<table>.<attibute name>`.
+The `condition` element specifies the basis on which the events in the table are checked for existence. **When referring the table attributes in the `condition`, they must always be referred with the table name** as `<table name>.<attribute name>`.
 
-**Example**
+**Example 1**
 
-This Siddhi application filters only room numbers that are listed in the `ServerRoomTable` table.
+A query to filter only the events of server rooms from the `TempStream` stream using the `ServerRoomTable` table, and pass them for further processing via `ServerRoomTempStream` stream.
 
 ```sql
 define table ServerRoomTable (roomNo int);
@@ -2642,6 +2751,18 @@ define stream TempStream (deviceID long, roomNo int, temp double);
 
 from TempStream[ServerRoomTable.roomNo == roomNo in ServerRoomTable]
 insert into ServerRoomTempStream;
+```
+
+**Example 2**
+
+A query to filter out the blacklisted `serverIP`s from the `RequestStream` stream using the `BlacklistTable` table, and only pass events having IPs that are not blacklisted, for further processing via `FilteredRequestStream` stream.
+
+```sql
+define table BlacklistTable (serverIP string);
+define stream RequestStream (ip string, request string);
+
+from RequestStream[not (BlacklistTable.serverIP == ip in BlacklistTable)]
+insert into FilteredRequestStream;
 ```
 
 ## Named Aggregation
@@ -2914,9 +3035,7 @@ select <attribute name>, <attribute name>, ...
 insert into <window>
 ```
 
-To insert only events of a specific event type, add the `current events`, `expired events` or the `all events` keyword between `insert` and `into` keywords (similar to how it is done for streams).
-
-For more information, see [Event Type](#event-type).
+To insert only events of a specific event type, add the `current events`, `expired events` or the `all events` keyword can be used between `insert` and `into` keywords (similar to how it is done for streams). For more information, see [Event Type](#event-type).
 
 **Example**
 
@@ -3270,7 +3389,7 @@ The `condition` element specifies the basis on which records are selected to be 
 
 !!! note
     Table attributes must always be referred to with the table name as shown below: <br />
-     `<table name>.<attibute name>`.
+    `<table name>.<attribute name>`.
 
 **Example**
 
@@ -3309,7 +3428,7 @@ You can use the `set` keyword to update selected attributes from the table. Here
 
 !!! note
     Table attributes must always be referred to with the table name as shown below: <br />
-     `<table name>.<attibute name>`.
+     `<table name>.<attribute name>`.
 
 **Example**
 
@@ -3331,8 +3450,7 @@ update RoomTypeTable
 
 ### Update or Insert
 
-This allows you to update selected attributes if a record that meets the given conditions already exists in the specified  table.
-If a matching record does not exist, the entry is inserted as a new record.
+Allows a stream to update selected records form a table if they exist, and if not a new entry is inserted in to the table.
 
 **Syntax**
 
@@ -3352,7 +3470,7 @@ operation or other. The attribute to the left (i.e., the attribute in the event 
 
 !!! note
     Table attributes must always be referred to with the table name as shown below: <br />
-     `<table name>.<attibute name>`.
+     `<table name>.<attribute name>`.
 
 **Example**
 
