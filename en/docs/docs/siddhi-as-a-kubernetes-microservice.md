@@ -322,6 +322,21 @@ $ kubectl logs power-surge-app-0-646c4f9dd5-rxzkq
 [2019-07-12 07:17:22,219]  INFO {io.siddhi.core.stream.output.sink.LogSink} - LOGGER : Event{timestamp=1562915842182, data=[dryer, 60000], isExpired=false}
 ```
 
+## Change the Default Configurations of Siddhi Runner
+
+Siddhi runner use `<SIDDHI_RUNNER_HOME>/conf/runner/deployment.yaml` file as the default configuration file. In the `deployment.yaml` the file you can configure data sources that you planned to use, add refs, and enable state persistence, etc. To change the configurations of the `deployment.yaml`, you can add `runner` YAML spec like below to your SiddhiProcess YAML file. For example, the following config change will enable file system state persistence.
+
+```yaml
+  runner: |
+    state.persistence:
+      enabled: true
+      intervalInMin: 1
+      revisionsToKeep: 2
+      persistenceStore: io.siddhi.distribution.core.persistence.FileSystemPersistenceStore
+      config:
+        location: siddhi-app-persistence
+```
+
 ## Deploy and run Siddhi App using config maps
 
 Siddhi operator allows you to deploy Siddhi app configurations via config maps instead of just adding them inline. Through this, you can also run multiple Siddhi Apps in a single SiddhiProcess.
