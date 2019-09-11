@@ -586,7 +586,7 @@ The default ingress creation of the Siddhi operator allows accessing HTTP/HTTPS 
 define stream inputStream (name string, age int, country string);
 ```
 
-To access these TCP connections externally you can do it as the following example.
+To access these TCP connections externally you can do it as in the following example.
 
 First, you have to disable [automatic ingress creation in the Siddhi operator](#deploy-siddhi-apps-without-ingress-creation). Then you have to manually create ingress and enable the TCP configurations. To enable TCP configurations in NGINX ingress [please refer to this documentation](https://kubernetes.github.io/ingress-nginx/user-guide/exposing-tcp-udp-services/). 
 
