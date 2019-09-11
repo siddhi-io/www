@@ -562,6 +562,172 @@ $ kubectl logs monitor-app-667c97c898-rrtfs
 [2019-07-12 09:07:50,098]  INFO {io.siddhi.core.stream.output.sink.LogSink} - LOGGER : Event{timestamp=1562922470093, data=[dryer, 60000], isExpired=false}
 ```
 
+## Deploy and Run Siddhi App with TCP Endpoints
+
+The default ingress creation of the Siddhi operator allows accessing HTTP/HTTPS endpoints externally. By default, it will not support TCP endpoints. Sometimes you may have some TCP endpoints to configure like NATS and Kafka sources and access those endpoints externally.
+
+```sql
+@source(type='nats', @map(type='text'), destination='SP_NATS_INPUT_TEST', bootstrap.servers='nats://localhost:4222',client.id='nats_client',server.id='test-cluster',queue.group.name = 'group_nats',durable.name = 'nats-durable',subscription.sequence = '100')
+define stream inputStream (name string, age int, country string);
+```
+
+To access these TCP connections externally you can do it as the following example.
+
+First, you have to disable [automatic ingress creation in the Siddhi operator](#deploy-siddhi-apps-without-ingress-creation). Then you have to manually create ingress and enable the TCP configurations. To enable TCP configurations in NGINX ingress [please refer to this documentation](https://kubernetes.github.io/ingress-nginx/user-guide/exposing-tcp-udp-services/). 
+
+To create NATS cluster you will need a NATS spec like below.
+
+```yaml
+apiVersion: nats.io/v1alpha2
+kind: NatsCluster
+metadata:
+  name: nats-siddhi
+spec:
+  size: 1
+```
+
+Save this yaml as `nats-cluster.yaml` and deploy it using `kubeclt`.
+
+```sh
+$ kubeclt apply -f nats-cluster.yaml
+```
+
+Likewise, create a nats streaming cluster as below.
+
+```yaml
+apiVersion: streaming.nats.io/v1alpha1
+kind: NatsStreamingCluster
+metadata:
+  name: stan-siddhi
+spec:
+  size: 1
+  natsSvc: nats-siddhi
+```
+
+Save this yaml as `stan-cluster.yaml` and deploy it using `kubeclt`.
+
+```sh
+$ kubeclt apply -f stan-cluster.yaml
+```
+
+Now you can deploy the following Siddhi app that contained a NATS source.
+
+```yaml
+apiVersion: siddhi.io/v1alpha2
+kind: SiddhiProcess
+metadata: 
+  name: power-consume-app
+spec: 
+  apps: 
+    - script: |
+        @App:name("PowerConsumptionSurgeDetection")
+        @App:description("App consumes events from NATS as a text message of { 'deviceType': 'dryer', 'power': 6000 } format and inserts the events into DevicePowerStream, and alerts the user if the power consumption in 1 minute is greater than or equal to 10000W by printing a message in the log for every 30 seconds.")
+
+        /*
+            Input: deviceType string and powerConsuption int(Joules)
+            Output: Alert user from printing a log, if there is a power surge in the dryer within 1 minute period. 
+                    Notify the user in every 30 seconds when total power consumption is greater than or equal to 10000W in 1 minute time period.
+        */
+
+        @source(
+          type='nats',
+          cluster.id='siddhi-stan',
+          destination = 'PowerStream', 
+          bootstrap.servers='nats://siddhi-nats:4222',
+          @map(type='text')
+        )
+        define stream DevicePowerStream(deviceType string, power int);
+
+        @sink(type='log', prefix='LOGGER')
+        define stream PowerSurgeAlertStream(deviceType string, powerConsumed long);
+
+        @info(name='surge-detector')
+        from DevicePowerStream#window.time(1 min)
+        select deviceType, sum(power) as powerConsumed
+        group by deviceType
+        having powerConsumed > 10000
+        output every 30 sec
+        insert into PowerSurgeAlertStream;
+
+  container: 
+    image: "siddhiio/siddhi-runner-ubuntu:5.1.0-alpha"
+  
+  persistentVolumeClaim: 
+    accessModes: 
+      - ReadWriteOnce
+    resources: 
+      requests: 
+        storage: 1Gi
+    storageClassName: standard
+    volumeMode: Filesystem
+  
+  runner: |
+    state.persistence:
+      enabled: true
+      intervalInMin: 1
+      revisionsToKeep: 2
+      persistenceStore: io.siddhi.distribution.core.persistence.FileSystemPersistenceStore
+      config:
+        location: siddhi-app-persistence
+```
+
+Save this yaml as `power-consume-app.yaml` and deploy it using `kubeclt`.
+
+```sh
+$ kubeclt apply -f power-consume-app.yaml
+```
+
+This commands will create Kubernetes artifacts like below.
+
+```sh
+$ kubectl get svc
+NAME                  TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)                      AGE
+kubernetes            ClusterIP      10.96.0.1        <none>        443/TCP                      12d
+power-consume-app-0   ClusterIP      10.99.148.217    <none>        4222/TCP                     5m
+siddhi-nats           ClusterIP      10.105.250.215   <none>        4222/TCP                     5m
+siddhi-nats-mgmt      ClusterIP      None             <none>        6222/TCP,8222/TCP,7777/TCP   5m
+siddhi-operator       ClusterIP      10.102.251.237   <none>        8383/TCP                     5m
+
+$ kubectl get pods
+NAME                                       READY     STATUS    RESTARTS   AGE
+nats-operator-b8f4977fc-8gnjd              1/1       Running   0          5m
+nats-streaming-operator-64b565bcc7-r9rpw   1/1       Running   0          5m
+power-consume-app-0-84f6774bd8-jl95w       1/1       Running   0          5m
+siddhi-nats-1                              1/1       Running   0          5m
+siddhi-operator-6c6c5d8fcc-hvl7j           1/1       Running   0          5m
+siddhi-stan-1                              1/1       Running   0          5m
+```
+
+Now you have to create an ingress for the `siddhi-nats` service.
+
+```yaml
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: siddhi-nats
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /nats
+        backend:
+          serviceName: siddhi-nats
+          servicePort: 4222
+```
+
+Save this yaml as `siddhi-nats.yaml` and deploy it using `kubeclt`.
+
+```sh
+$ kubeclt apply -f siddhi-nats.yaml
+```
+
+Now you can send messages directly to the NATS streaming server that running on your Kubernetes cluster. You have to send those messages to `nats://<KUBERNETES_CLUSTER_IP>:4222` URI. To send messages to this NATS streaming cluster you can use a Siddhi app that has NATS sink or samples provided by NATS.
+
+!!! Note "Minikube External TCP Access"
+    The TCP configuration change that described in the ingress NGINX [documentation](https://kubernetes.github.io/ingress-nginx/user-guide/exposing-tcp-udp-services/) occurred connection refused problems in Minikube. To configure TCP external access properly in Minikube please refer to the steps described in [this comment](https://github.com/nats-io/nats-streaming-operator/issues/41#issuecomment-488625055).
+
 ## Deploy and run Siddhi App in Distributed Mode
 
 Siddhi apps can be in two different types.
