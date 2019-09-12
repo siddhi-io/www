@@ -167,6 +167,14 @@ Please find the complete changes [here](https://github.com/siddhi-io/distributio
 
 ## Siddhi K8s Operator Releases
 
+### Siddhi Operator 0.2.0-beta
+
+#### Bug Fixes 
+
+ 1. Fix for the stateful Siddhi Application failure if persistence volume is unavailable [(#92)](https://github.com/siddhi-io/siddhi-operator/issues/92)
+ 
+ !!! info "Please find more details about the release [here](https://github.com/siddhi-io/siddhi-operator/releases/tag/v0.2.0-beta)"
+
 ### Siddhi Operator 0.2.0-alpha
 
 #### Highlights
