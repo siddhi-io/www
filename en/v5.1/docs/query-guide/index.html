@@ -756,6 +756,20 @@
     Query
   </a>
   
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#from" title="From" class="md-nav__link">
+    From
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#insert" title="Insert" class="md-nav__link">
+    Insert
+  </a>
+  
     <nav class="md-nav">
       <ul class="md-nav__list">
         
@@ -858,8 +872,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#output-rate-limiting" title="Output rate limiting" class="md-nav__link">
-    Output rate limiting
+  <a href="#output-rate-limiting" title="Output Rate Limiting" class="md-nav__link">
+    Output Rate Limiting
   </a>
   
 </li>
@@ -892,7 +906,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#insert" title="Insert" class="md-nav__link">
+  <a href="#insert_1" title="Insert" class="md-nav__link">
     Insert
   </a>
   
@@ -974,7 +988,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#insert_1" title="Insert" class="md-nav__link">
+  <a href="#insert_2" title="Insert" class="md-nav__link">
     Insert
   </a>
   
@@ -988,7 +1002,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#from" title="From" class="md-nav__link">
+  <a href="#from_1" title="From" class="md-nav__link">
     From
   </a>
   
@@ -1036,7 +1050,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#insert_2" title="Insert" class="md-nav__link">
+  <a href="#insert_3" title="Insert" class="md-nav__link">
     Insert
   </a>
   
@@ -1508,6 +1522,20 @@
     Query
   </a>
   
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#from" title="From" class="md-nav__link">
+    From
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#insert" title="Insert" class="md-nav__link">
+    Insert
+  </a>
+  
     <nav class="md-nav">
       <ul class="md-nav__list">
         
@@ -1610,8 +1638,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#output-rate-limiting" title="Output rate limiting" class="md-nav__link">
-    Output rate limiting
+  <a href="#output-rate-limiting" title="Output Rate Limiting" class="md-nav__link">
+    Output Rate Limiting
   </a>
   
 </li>
@@ -1644,7 +1672,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#insert" title="Insert" class="md-nav__link">
+  <a href="#insert_1" title="Insert" class="md-nav__link">
     Insert
   </a>
   
@@ -1726,7 +1754,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#insert_1" title="Insert" class="md-nav__link">
+  <a href="#insert_2" title="Insert" class="md-nav__link">
     Insert
   </a>
   
@@ -1740,7 +1768,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#from" title="From" class="md-nav__link">
+  <a href="#from_1" title="From" class="md-nav__link">
     From
   </a>
   
@@ -1788,7 +1816,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#insert_2" title="Insert" class="md-nav__link">
+  <a href="#insert_3" title="Insert" class="md-nav__link">
     Insert
   </a>
   
@@ -2023,12 +2051,12 @@ named <code>5minAvgQuery</code>.</p>
 </td></tr></table>
 
 <h2 id="stream">Stream<a class="headerlink" href="#stream" title="Permanent link">&para;</a></h2>
-<p>A stream is a logical series of events ordered in time. Its schema is defined via the <strong>stream definition</strong>.
-A stream definition contains the stream name and a set of attributes with specific types and uniquely identifiable names within the stream. All events associated to the stream will have the same schema (i.e., have the same attributes in the same order).</p>
+<p>A stream is a logical series of events ordered in time. Its schema is defined via the <strong>stream definition</strong>.</p>
+<p>A stream definition contains the stream name and a set of attributes having a specific type and a uniquely identifiable name within the scope of the stream. All events associated with the stream will have the same schema (i.e., have the same attributes in the same order).</p>
 <p><strong>Purpose</strong></p>
-<p>Stream groups common types of events together with a schema. This helps in various ways such as, processing all events together in queries and performing data format transformations together when they are consumed and published via sources and sinks.</p>
+<p>Stream groups common types of events together with a schema. This helps in various ways such as, processing all events in queries together and performing data format transformations together when they are consumed and published via sources and sinks.</p>
 <p><strong>Syntax</strong></p>
-<p>The syntax for defining a new stream is as follows.</p>
+<p>The syntax for defining a stream is as follows.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">define</span> <span class="n">stream</span> <span class="o">&lt;</span><span class="n">stream</span> <span class="n">name</span><span class="o">&gt;</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">attribute</span> <span class="k">type</span><span class="o">&gt;</span><span class="p">,</span>
                              <span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">attribute</span> <span class="k">type</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...</span> <span class="p">);</span>
@@ -2293,7 +2321,7 @@ Here the incoming <code>JSON</code>, as given below, do not adhere to the defaul
 
 <h3 id="sink">Sink<a class="headerlink" href="#sink" title="Permanent link">&para;</a></h3>
 <p>Sinks consumes events from streams and publish them via multiple transports to external endpoints in various data formats.</p>
-<p>A sink configuration allows users to define a mapping to convert the Siddhi events in to the required output data format (such as <code>JSON</code>, <code>TEXT</code>, <code>XML</code>, etc.) and publish the events to the configured endpoints. When customizations to such mappings are not provided, Siddhi converts events to the predefined event format based on the stream definition and the configured message mapper type before publishing the events.</p>
+<p>A sink configuration allows users to define a mapping to convert the Siddhi events in to the required output data format (such as <code>JSON</code>, <code>TEXT</code>, <code>XML</code>, etc.) and publish the events to the configured endpoints. When customizations to such mappings are not provided, Siddhi converts events to the predefined event format based on the stream definition and the configured mapper type, before publishing the events.</p>
 <p><strong>Purpose</strong></p>
 <p>Sink provides a way to publish Siddhi events of a stream to external systems by converting events to their supported format.</p>
 <p><strong>Syntax</strong></p>
@@ -2414,7 +2442,7 @@ along with the common parameters also add the <code>@distribution</code> annotat
 </td></tr></table>
 
 <p><strong><em>Partitioned Distributed Sink</em></strong></p>
-<p>Publishes events to defined destinations by partitioning them based on the partitioning key.</p>
+<p>Publish events to the defined destinations by partitioning them based on a partitioning key.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
@@ -2437,7 +2465,7 @@ along with the common parameters also add the <code>@distribution</code> annotat
 
 <h4 id="sink-mapper">Sink Mapper<a class="headerlink" href="#sink-mapper" title="Permanent link">&para;</a></h4>
 <p>Each <code>@sink</code> configuration can have a mapping denoted by the <code>@map</code> annotation that defines how to convert Siddhi events to outgoing messages with the defined format.</p>
-<p>The <code>type</code> parameter of the <code>@map</code> defines the map type to be used in converting the outgoing events. The other parameters of <code>@map</code> annotation depends on the mapper selected, and some of its parameters can be optional and/or dynamic.</p>
+<p>The <code>type</code> parameter of the <code>@map</code> defines the map type to be used in converting the outgoing events, and other parameters of <code>@map</code> annotation depend on the mapper selected, where some of these parameters can be optional and/or dynamic.</p>
 <p>For detailed information about the parameters see the documentation of the relevant mapper.</p>
 <p><strong>Map Payload</strong></p>
 <p><code>@payload</code> is an optional annotation used with <code>@map</code> to define custom mapping. When the <code>@payload</code> annotation is not provided, each mapper maps the outgoing events to its own default event format. The <code>@payload</code> annotation allow users to configure mappers to produce the output payload of their choice, and by using dynamic properties within the payload they can selectively extract and add data from the published Siddhi events.</p>
@@ -2499,7 +2527,7 @@ along with the common parameters also add the <code>@distribution</code> annotat
 </div>
 <p><a href="../api/latest/#passthrough-sink-mapper">PassThrough</a> is the only sink mapper inbuilt in Siddhi, and all other sink mappers are implemented as extensions.</p>
 <p><strong>Example 1</strong></p>
-<p>Publishes <code>OutputStream</code> events by converting them to <code>JSON</code> messages with the default format, and by sending to an <code>HTTP</code> endpoint <code>http://localhost:8005/endpoint1</code>, using <code>POST</code> method, <code>Accept</code> header, and basic authentication having <code>admin</code> is both username and password.</p>
+<p>Sink to publish <code>OutputStream</code> events by converting them to <code>JSON</code> messages with the default format, and by sending to an <code>HTTP</code> endpoint <code>http://localhost:8005/endpoint1</code>, using <code>POST</code> method, <code>Accept</code> header, and basic authentication having <code>admin</code> is both username and password.</p>
 <p>The configuration of the <code>HTTP</code> sink and <code>JSON</code> sink mapper to achieve the above is as follows.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
@@ -2532,7 +2560,7 @@ along with the common parameters also add the <code>@distribution</code> annotat
 </pre></div>
 </td></tr></table></p>
 <p><strong>Example 2</strong></p>
-<p>Publishes <code>StockStream</code> events by converting them to user defined <code>JSON</code> messages, and by sending to an <code>HTTP</code> endpoint <code>http://localhost:8005/stocks</code>.</p>
+<p>Sink to publish <code>StockStream</code> events by converting them to user defined <code>JSON</code> messages, and sending them to an <code>HTTP</code> endpoint <code>http://localhost:8005/stocks</code>.</p>
 <p>The configuration of the <code>HTTP</code> sink and custom <code>JSON</code> sink mapping to achieve the above is as follows.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
@@ -2598,7 +2626,7 @@ This can also publish multiple events together as a <code>JSON</code> message on
 </td></tr></table>
 
 <p><strong>Example 3</strong></p>
-<p>Publishes events from the <code>OutputStream</code> stream to multiple the <code>HTTP</code> endpoints using a partitioning strategy. Here the events are sent to either <code>http://localhost:8005/endpoint1</code> or <code>http://localhost:8006/endpoint2</code> based on the partitioning key <code>country</code>. It uses default <code>JSON</code> mapping, <code>POST</code> method, and used <code>admin</code> as both the username and the password when publishing to both the endpoints.</p>
+<p>Sink to publish events from the <code>OutputStream</code> stream to multiple <code>HTTP</code> endpoints using a partitioning strategy. Here, the events are sent to either <code>http://localhost:8005/endpoint1</code> or <code>http://localhost:8006/endpoint2</code> based on the partitioning key <code>country</code>. It uses default <code>JSON</code> mapping, <code>POST</code> method, and <code>admin</code> as both the username and the password when publishing to both the endpoints.</p>
 <p>The configuration of the distributed <code>HTTP</code> sink and <code>JSON</code> sink mapper to achieve the above is as follows.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
@@ -2798,8 +2826,37 @@ The following parameters are used to configure a stream definition.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="from">From<a class="headerlink" href="#from" title="Permanent link">&para;</a></h2>
+<p>All Siddhi queries must always have at least one <a href="#stream">stream</a> or <a href="#named-window">named-window</a> as an input (some queries can consume more than one <a href="#stream">stream</a> or <a href="#named-window">named-window</a>), and only <a href="#join">join</a> query can consume events via <a href="#table">tables</a>, or <a href="#named-aggregations">named-aggregations</a> as the second input.</p>
+<p>The input <a href="#stream">stream</a>, <a href="#named-window">named-window</a>, <a href="#table">table</a>, and/or <a href="#named-aggregations">named-aggregation</a> should be defined before they can be used in a query.</p>
+<p><strong>Syntax</strong></p>
+<p>A high level syntax for consuming events from a stream, named-window, table, and/or named-aggregation is as follow;</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">from</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">stream</span><span class="o">&gt;|&lt;</span><span class="n">named</span><span class="o">-</span><span class="n">window</span><span class="o">&gt;</span><span class="p">)</span><span class="o">&lt;</span><span class="k">handler</span><span class="o">&gt;*</span><span class="p">)</span> <span class="p">((</span><span class="k">join</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">stream</span><span class="o">&gt;|&lt;</span><span class="n">named</span><span class="o">-</span><span class="n">window</span><span class="o">&gt;|&lt;</span><span class="k">table</span><span class="o">&gt;|&lt;</span><span class="n">named</span><span class="o">-</span><span class="n">aggregation</span><span class="o">&gt;</span><span class="p">)</span><span class="o">&lt;</span><span class="k">handler</span><span class="o">&gt;*</span><span class="p">)</span><span class="o">|</span><span class="p">((,</span><span class="o">|-&gt;</span><span class="p">)(</span><span class="o">&lt;</span><span class="n">stream</span><span class="o">&gt;|&lt;</span><span class="n">named</span><span class="o">-</span><span class="n">window</span><span class="o">&gt;</span><span class="p">)</span><span class="o">&lt;</span><span class="k">handler</span><span class="o">&gt;*</span><span class="p">)</span><span class="o">+</span><span class="p">)</span><span class="o">?</span>
+<span class="o">&lt;</span><span class="n">projection</span><span class="o">&gt;</span>
+<span class="k">insert</span> <span class="k">into</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">stream</span><span class="o">&gt;|&lt;</span><span class="n">named</span><span class="o">-</span><span class="n">window</span><span class="o">&gt;|&lt;</span><span class="k">table</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<p>Here the <code>&lt;handler&gt;</code> denotes the processing logic using <a href="#filter">filters</a>, <a href="#window">windows</a>, and <a href="#stream-function">stream-functions</a>, <code>join</code> for  <a href="#join">joins</a>, <code>-&gt;</code> for <a href="#pattern">patterns</a>, and <code>,</code> for<a href="#sequence">sequences</a>.</p>
+<p>More information on writing queries used these will be discussed in later sections.</p>
+<h2 id="insert">Insert<a class="headerlink" href="#insert" title="Permanent link">&para;</a></h2>
+<p>Allows events to be inserted directly into <a href="#stream">streams</a>, <a href="#named-window">named-windows</a>, or <a href="#table">tables</a>.</p>
+<p>When a query is defined to insert events into a stream that is not already defined, Siddhi infers and automatically defines its stream definition, such that queries defined below the current query can use the stream like any other predefined streams.</p>
+<p><strong>Syntax</strong></p>
+<p>Syntax to insert events into a stream, named-window or table from another stream is as follows;</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">from</span> <span class="o">&lt;</span><span class="k">input</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">projection</span><span class="o">&gt;</span>
+<span class="k">insert</span> <span class="k">into</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">stream</span><span class="o">&gt;|&lt;</span><span class="n">named</span><span class="o">-</span><span class="n">window</span><span class="o">&gt;|&lt;</span><span class="k">table</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
+</td></tr></table>
+
+<p>This inserts all the newly arrived events (<code>current events</code>) in to a stream, named-window, or table. There are also other types of events other than <code>current events</code> that are produced by queries, the <a href="#event-type">Event Type</a> section provides more information on, how insertion operation can be modified to support those.</p>
 <p><strong>Example</strong></p>
-<p>A query consumes events from the <code>TempStream</code> stream and output only the <code>roomNo</code> and <code>temp</code> attributes to the <code>RoomTempStream</code> stream, from which another query consumes the events and sends all its attributes to <code>AnotherRoomTempStream</code> stream.</p>
+<p>A query to consume events from the <code>TempStream</code> stream and output only the <code>roomNo</code> and <code>temp</code> attributes to the <code>RoomTempStream</code> stream, from which another query to consume the events and send all its attributes to <code>AnotherRoomTempStream</code> stream.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
@@ -3479,7 +3536,7 @@ and insert the filtered results into <code>HighTempStream</code> stream.</p>
 <tbody>
 <tr>
 <td><code>current events</code></td>
-<td>Outputs processed events only upon new event arrival to the query. </br> This is default behavior when no specific event type is specified.</td>
+<td>Outputs processed events only upon new event arrival at the query. </br> This is default behavior when no specific event type is specified.</td>
 </tr>
 <tr>
 <td><code>expired events</code></td>
@@ -3487,7 +3544,7 @@ and insert the filtered results into <code>HighTempStream</code> stream.</p>
 </tr>
 <tr>
 <td><code>all events</code></td>
-<td>Outputs processed events when new events arrive to the query as well as </br> when events expire from the window.</td>
+<td>Outputs processed events when both new events arrive at the query as well as when events expire from the window.</td>
 </tr>
 </tbody>
 </table>
@@ -3763,7 +3820,7 @@ and insert the filtered results into <code>HighTempStream</code> stream.</p>
 <p>Join can also be performed with <a href="#join-table">stored data</a>, <a href="#join-aggregation">aggregation</a> or externally <a href="#join-window">named windows</a>.</p>
 </div>
 <p><strong>Syntax</strong></p>
-<p>The syntax for a join two streams is as follows:</p>
+<p>The syntax to join two streams is as follows:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
@@ -3781,13 +3838,13 @@ and insert the filtered results into <code>HighTempStream</code> stream.</p>
 <p class="admonition-title">Window should be defined as the last element of each joining stream.</p>
 <p>Join query expects a window to be defined as the last element of each joining stream, therefore a filter cannot be defined after the window.</p>
 </div>
-<p><strong>join types</strong></p>
+<p><strong>Supported join types</strong></p>
 <p>Following are the supported join operations.</p>
 <ul>
 <li>
 <p><strong>Inner join (join)</strong></p>
 <p>This is the default behavior of a join operation, and the <code>join</code> keyword is used to join both the streams.</p>
-<p>Here the output is generated only if there is a matching event in both the streams when either stream is triggering the join operation.</p>
+<p>The output is generated only if there is a matching event in both the stream windows when either of the streams triggers the join operation.</p>
 </li>
 <li>
 <p><strong>Left outer join</strong></p>
@@ -3796,7 +3853,7 @@ and insert the filtered results into <code>HighTempStream</code> stream.</p>
 </li>
 <li>
 <p><strong>Right outer join</strong></p>
-<p>This is similar to a left outer join and the <code>Right outer join</code> keyword is used to join two streams while producing all right stream events to the output.</p>
+<p>This is similar to a <code>left outer join</code> and the <code>right outer join</code> keyword is used to join two streams while producing all right stream events to the output.</p>
 <p>It generate output in all cases where the right stream triggers the join operation even if there are no matching events in the left stream window.</p>
 </li>
 <li>
@@ -3807,7 +3864,7 @@ and insert the filtered results into <code>HighTempStream</code> stream.</p>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Cross join</p>
-<p>In either of these cases when join condition is omitted, the triggering event will successfully match against all the events in the other stream window, producing a cross join behavior.</p>
+<p>In either of these cases, when the join condition is omitted, the triggering event will successfully match against all the events in the other stream window, producing a cross join behavior.</p>
 </div>
 <p><strong>Unidirectional join operation</strong></p>
 <p>By default, events arriving on either stream trigger the join operation and generate the corresponding output. However, this join behavior can be controlled by adding the <code>unidirectional</code> keyword next to one of the streams as depicted in the join query syntax above. This enables only the stream with the <code>unidirectional</code> to trigger the join operation. Therefore the events arriving on the other stream will neither trigger the join operation nor produce any output, but rather they only update their stream's window state.</p>
@@ -3816,7 +3873,7 @@ and insert the filtered results into <code>HighTempStream</code> stream.</p>
 <p>This is because the default behavior already allows both the streams to trigger the join operation.</p>
 </div>
 <p><strong>Example 1 (join)</strong></p>
-<p>The query to generate output when there is a matching event having equal <code>symbol</code> and <code>companyID</code> combination from the events arrived in the last 10 minutes on <code>StockStream</code> stream and the events arrived in the last 20 minutes on <code>TwitterStream</code> stream.</p>
+<p>A query to generate output when there is a matching event having equal <code>symbol</code> and <code>companyID</code> combination from the events arrived in the last 10 minutes on <code>StockStream</code> stream and the events arrived in the last 20 minutes on <code>TwitterStream</code> stream.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
@@ -3842,7 +3899,7 @@ and insert the filtered results into <code>HighTempStream</code> stream.</p>
 </pre></div>
 </td></tr></table></p>
 <p><strong>Example 2 (with no join condition)</strong></p>
-<p>The query to generate output for all possible event combinations from the last 5 events of the <code>StockStream</code> stream and the events arrived in the last 1 minutes on <code>TwitterStream</code> stream.</p>
+<p>A query to generate output for all possible event combinations from the last 5 events of the <code>StockStream</code> stream and the events arrived in the last 1 minutes on <code>TwitterStream</code> stream.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
@@ -3870,7 +3927,7 @@ and insert the filtered results into <code>HighTempStream</code> stream.</p>
 </pre></div>
 </td></tr></table></p>
 <p><strong>Example 3 (left outer join)</strong></p>
-<p>The query to generate output for all events arriving in the <code>StockStream</code> stream regardless of whether there is a matching <code>companyID</code> for <code>symbol</code> exist in the events arrived in the last 20 minutes on <code>TwitterStream</code> stream, and generate output for the events arriving in the <code>StockStream</code> stream only when there is a matchine <code>symbol</code> and <code>companyID</code> combination exist in the events arrived in the last 10 minutes on <code>StockStream</code> stream.</p>
+<p>A query to generate output for all events arriving in the <code>StockStream</code> stream regardless of whether there is a matching <code>companyID</code> for <code>symbol</code> exist in the events arrived in the last 20 minutes on <code>TwitterStream</code> stream, and generate output for the events arriving in the <code>StockStream</code> stream only when there is a matchine <code>symbol</code> and <code>companyID</code> combination exist in the events arrived in the last 10 minutes on <code>StockStream</code> stream.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
@@ -3896,7 +3953,7 @@ and insert the filtered results into <code>HighTempStream</code> stream.</p>
 </pre></div>
 </td></tr></table></p>
 <p><strong>Example 3 (full outer join)</strong></p>
-<p>The query to generate output for all events arriving in the <code>StockStream</code> stream and in the <code>TwitterStream</code> stream regardless of whether there is a matching <code>companyID</code> for <code>symbol</code> exist in the other stream window or not.</p>
+<p>A query to generate output for all events arriving in the <code>StockStream</code> stream and in the <code>TwitterStream</code> stream regardless of whether there is a matching <code>companyID</code> for <code>symbol</code> exist in the other stream window or not.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
@@ -3924,7 +3981,7 @@ and insert the filtered results into <code>HighTempStream</code> stream.</p>
 </pre></div>
 </td></tr></table></p>
 <p><strong>Example 3 (unidirectional join)</strong></p>
-<p>The query to generate output only when events arrive on <code>StockStream</code> stream find a matching event having equal <code>symbol</code> and <code>companyID</code> combination against the events arrived in the last 20 minutes on <code>TwitterStream</code> stream.</p>
+<p>A query to generate output only when events arrive on <code>StockStream</code> stream find a matching event having equal <code>symbol</code> and <code>companyID</code> combination against the events arrived in the last 20 minutes on <code>TwitterStream</code> stream.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
@@ -4369,7 +4426,7 @@ Some possible indexes and their behavior is as follows.</p>
 </pre></div>
 </td></tr></table>
 Here, the matching process begins for each event in the <code>RegulatorStream</code> stream having the <code>isOn</code> attribute <code>true</code>. It generates an output via the <code>AlertStream</code> stream when an event from both <code>TempStream</code> stream and <code>HumidStream</code> stream arrives immediately after the first event in either order.</p>
-<h3 id="output-rate-limiting">Output rate limiting<a class="headerlink" href="#output-rate-limiting" title="Permanent link">&para;</a></h3>
+<h3 id="output-rate-limiting">Output Rate Limiting<a class="headerlink" href="#output-rate-limiting" title="Permanent link">&para;</a></h3>
 <p>Output rate-limiting limits the number of events emitted by the queries based on a specified criterion such as time, and number of events.</p>
 <p><strong>Purpose</strong></p>
 <p>Output rate-limiting helps to reduce the load on the subsequent executions such as query processing, I/O operations, and notifications by reducing the output frequency of the events.</p>
@@ -4439,7 +4496,7 @@ Here, the matching process begins for each event in the <code>RegulatorStream</c
 
 <p>Here the first event having <code>avgTemp</code> &gt; 30 is emitted immediately and the next event is only emitted after 15 minutes.</p>
 <p><strong>Example 2 (Event based first event)</strong></p>
-<p>Query to output the initial event, and there onwards every 5<sup>th</sup> event from <code>TempStream</code> stream events.</p>
+<p>A query to output the initial event, and from there onwards every 5<sup>th</sup> event of <code>TempStream</code> stream.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
@@ -4571,7 +4628,7 @@ Here, the matching process begins for each event in the <code>RegulatorStream</c
 </tr>
 </tbody>
 </table>
-<p>When there are multiple queries within a partition block, and they can be chained without leaving the isolation of the partition instance using the inner streams denoted by <code>#</code>. More information on inner Streams will be covered in the following secsions.</p>
+<p>When there are multiple queries within a partition block, and they can be chained without leaving the isolation of the partition instance using the inner streams denoted by <code>#</code>. More information on inner Streams will be covered in the following sections.</p>
 <p><strong>Inner Stream</strong></p>
 <p>Inner stream connects the queries inside a partition instance to one another while preserving partition isolation. These are denoted by a <code>#</code> placed before the stream name, and these streams cannot be accessed outside the partition block.</p>
 <p>Through this, without repartitioning the streams, the output of a query instance can be used as the input of another query instance that is also in the same partition instance.</p>
@@ -4697,17 +4754,28 @@ Here, the matching process begins for each event in the <code>RegulatorStream</c
 
 <p>Here, the events in <code>LoginStream</code> is partitioned by their <code>sessionID</code> attribute and matched for consecutive occurrences of events having <code>loginSuccessful==false</code> with 1 hour using a <a href="#sequence">sequence query</a> and inserts the matching pattern's <code>sessionID</code> to <code>LoginFailureStream</code>. As the number of sessions is infinite the <code>@purge</code> annotation is enabled to purge the partition instances. The instances are marked for purging if there are no events from a particular sessionID for the last 1 hour, and the marked instances are periodically purged once every 10 seconds.</p>
 <h2 id="table">Table<a class="headerlink" href="#table" title="Permanent link">&para;</a></h2>
-<p>A table is a stored version of an stream or a table of events. Its schema is defined via the <strong>table definition</strong> that is
-similar to a stream definition. These events are by default stored <code>in-memory</code>, but Siddhi also provides store extensions to work with data/events stored in various data stores through the
-table abstraction.</p>
+<p>A table is a stored collection of events, and its schema is defined via the <strong>table definition</strong>.</p>
+<p>A table definition is similar to the stream definition where it contains the table name and a set of attributes having a specific type and a uniquely identifiable name within the scope of the table. Here, all events associated with the table will have the same schema (i.e., have the same attributes in the same order).</p>
+<p>The events of the table are stored <code>in-memory</code>, but Siddhi also provides <a href="#store">store extensions</a> to mirror the table to external databases such as RDBMS, MongoDB, and others, while allowing the events to be stored on those databases.</p>
+<p>Table supports primary keys to enforce uniqueness on stored events/recodes, and indexes to improve their searchability.</p>
 <p><strong>Purpose</strong></p>
-<p>Tables allow Siddhi to work with stored events. By defining a schema for tables Siddhi enables them to be processed by queries using their defined attributes with the streaming data. You can also interactively query the state of the stored events in the table.</p>
+<p>Tables helps to work with stored events. It allows to pick and choose the events that need to be stored by performing insert, update, and delete operations and helps to retrieve necessarily events when by performing read operation on the table.</p>
+<div class="admonition note">
+<p class="admonition-title">Managing events stored in table</p>
+<p>The events in the table can be managed using queries that perform join, insert, update, insert or update, and delete operates, which are either initiated by events arriving in Streams or through the <a href="#store-query">Store query API</a>.</p>
+</div>
 <p><strong>Syntax</strong></p>
-<p>The syntax for a new table definition is as follows:</p>
-<p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">define</span> <span class="k">table</span> <span class="o">&lt;</span><span class="k">table</span> <span class="n">name</span><span class="o">&gt;</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">attribute</span> <span class="k">type</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">attribute</span> <span class="k">type</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...</span> <span class="p">);</span>
+<p>The syntax for defining a table is as follows:</p>
+<p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="n">primaryKey</span><span class="p">(</span> <span class="o">&lt;</span><span class="k">key</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="k">key</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...</span> <span class="p">)</span>
+<span class="o">@</span><span class="k">index</span><span class="p">(</span> <span class="o">&lt;</span><span class="k">key</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="k">key</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...)</span>
+<span class="o">@</span><span class="k">index</span><span class="p">(</span> <span class="o">&lt;</span><span class="k">key</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="k">key</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...)</span>
+<span class="n">define</span> <span class="k">table</span> <span class="o">&lt;</span><span class="k">table</span> <span class="n">name</span><span class="o">&gt;</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">attribute</span> <span class="k">type</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">attribute</span> <span class="k">type</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...</span> <span class="p">);</span>
 </pre></div>
 </td></tr></table>
-The following parameters are configured in a table definition:</p>
+The following parameters are used to configure a table definition:</p>
 <table>
 <thead>
 <tr>
@@ -4718,11 +4786,11 @@ The following parameters are configured in a table definition:</p>
 <tbody>
 <tr>
 <td><code>table name</code></td>
-<td>The name of the table defined. (<code>PascalCase</code> is used for table name as a convention.)</td>
+<td>The name of the table created. (It is recommended to define a table name in <code>PascalCase</code>.)</td>
 </tr>
 <tr>
 <td><code>attribute name</code></td>
-<td>The schema of the table is defined by its attributes with uniquely identifiable attribute names (<code>camelCase</code> is used for attribute names as a convention.)</td>
+<td>Uniquely identifiable name of the table attribute. (It is recommended to define attribute names in <code>camelCase</code>.)</td>
 </tr>
 <tr>
 <td><code>attribute type</code></td>
@@ -4730,86 +4798,95 @@ The following parameters are configured in a table definition:</p>
 </tr>
 </tbody>
 </table>
-<p><strong>Example</strong></p>
-<p>The following defines a table named <code>RoomTypeTable</code> with <code>roomNo</code> and <code>type</code> attributes of data types <code>int</code> and <code>string</code> respectively.</p>
+<p>To use and refer table and attribute names that do not follow <code>[a-zA-Z_][a-zA-Z_0-9]*</code> format enclose them in <code>`</code>. E.g. <code>`$test(0)`</code>.</p>
+<p><strong>Primary Keys</strong></p>
+<p>Primary keys help to avoid duplication of data by enforcing nor two events to have the same value for the selected primary key attributes. They also index the table to access the events much faster.</p>
+<p>Primary keys are optional, and they can be configured using the <code>@primaryKey</code> annotation. Here, each table can only have at most one <code>@primaryKey</code> annotation, which can have one or more <code>attribute name</code>s defined as primary keys. When more than one attribute is used, the uniqueness of the events stored in the table is determined based on the composite value for those attributes.</p>
+<p>When more than one events having the same primary keys are inserted to the table, the latter event replaces the event/record that already exists in the table.</p>
+<p><strong>Indexes</strong></p>
+<p>Indexes allow events in the tables to be searched/modified much faster, but unlike primary keys, the indexed attributes support duplicate values.</p>
+<p>Indexes are optional, and they can be configured using the <code>@index</code> annotation. Here, each <code>@index</code> annotation creates an index in the table, and the tables only support one <code>attribute name</code> for each index.  </p>
+<p><strong>Example 1 (Primary key)</strong>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">define</span> <span class="k">table</span> <span class="n">RoomTypeTable</span> <span class="p">(</span> <span class="n">roomNo</span> <span class="nb">int</span><span class="p">,</span> <span class="k">type</span> <span class="n">string</span> <span class="p">);</span>
 </pre></div>
 </td></tr></table>
-
-<p><strong>Primary Keys</strong></p>
-<p>Tables can be configured with primary keys to avoid the duplication of data.</p>
-<p>Primary keys are configured by including the <code>@PrimaryKey( 'key1', 'key2' )</code> annotation to the table definition.
-Each event table configuration can have only one <code>@PrimaryKey</code> annotation.
-The number of attributes supported differ based on the table implementations. When more than one attribute
- is used for the primary key, the uniqueness of the events stored in the table is determined based on the combination of values for those attributes.</p>
-<p><strong>Examples</strong></p>
-<p>This query creates an event table with the <code>symbol</code> attribute as the primary key.
-Therefore each entry in this table must have a unique value for <code>symbol</code> attribute.</p>
+The above table definition defines an in-memory table named <code>RoomTypeTable</code> having the following attributes.</p>
+<ul>
+<li><code>roomNo</code> of type <code>int</code></li>
+<li>Room <code>type</code> of type <code>string</code></li>
+</ul>
+<p><strong>Example 2 (Primary key)</strong></p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="n">PrimaryKey</span><span class="p">(</span><span class="s1">&#39;symbol&#39;</span><span class="p">)</span>
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="n">primaryKey</span><span class="p">(</span><span class="s1">&#39;symbol&#39;</span><span class="p">)</span>
 <span class="n">define</span> <span class="k">table</span> <span class="n">StockTable</span> <span class="p">(</span><span class="n">symbol</span> <span class="n">string</span><span class="p">,</span> <span class="n">price</span> <span class="nb">float</span><span class="p">,</span> <span class="n">volume</span> <span class="n">long</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
 
-<p><strong>Indexes</strong></p>
-<p>Indexes allow tables to be searched/modified much faster.</p>
-<p>Indexes are configured by including the <code>@Index( 'key1', 'key2' )</code> annotation to the table definition.
- Each event table configuration can have 0-1 <code>@Index</code> annotations.
- Support for the <code>@Index</code> annotation and the number of attributes supported differ based on the table implementations.
- When more then one attribute is used for index, each one of them is used to index the table for fast access of the data.
- Indexes can be configured together with primary keys.</p>
-<p><strong>Examples</strong></p>
-<p>This query creates an indexed event table named <code>RoomTypeTable</code> with the <code>roomNo</code> attribute as the index key.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="k">Index</span><span class="p">(</span><span class="s1">&#39;roomNo&#39;</span><span class="p">)</span>
-<span class="n">define</span> <span class="k">table</span> <span class="n">RoomTypeTable</span> <span class="p">(</span><span class="n">roomNo</span> <span class="nb">int</span><span class="p">,</span> <span class="k">type</span> <span class="n">string</span><span class="p">);</span>
-</pre></div>
-</td></tr></table>
-
-<h3 id="store">Store<a class="headerlink" href="#store" title="Permanent link">&para;</a></h3>
-<p>Store is a table that refers to data/events stored in data stores outside of Siddhi such as RDBMS, Cassandra, etc.
-Store is defined via the <code>@store</code> annotation, and the store schema is defined via a <strong>table definition</strong> associated with it.</p>
-<p><strong>Purpose</strong></p>
-<p>Store allows Siddhi to search, retrieve and manipulate data stored in external data stores through Siddhi queries.</p>
-<p><strong>Syntax</strong></p>
-<p>The syntax for a defining store and it's associated table definition is as follows:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="n">store</span><span class="p">(</span><span class="k">type</span><span class="o">=</span><span class="s1">&#39;store_type&#39;</span><span class="p">,</span> <span class="k">static</span><span class="p">.</span><span class="k">option</span><span class="p">.</span><span class="n">key1</span><span class="o">=</span><span class="s1">&#39;static_option_value1&#39;</span><span class="p">,</span> <span class="k">static</span><span class="p">.</span><span class="k">option</span><span class="p">.</span><span class="n">keyN</span><span class="o">=</span><span class="s1">&#39;static_option_valueN&#39;</span><span class="p">)</span>
-<span class="n">define</span> <span class="k">table</span> <span class="n">TableName</span> <span class="p">(</span><span class="n">attribute1</span> <span class="n">Type1</span><span class="p">,</span> <span class="n">attributeN</span> <span class="n">TypeN</span><span class="p">);</span>
-</pre></div>
-</td></tr></table>
-
-<p><strong>Example</strong></p>
-<p>The following defines a RDBMS data store pointing to a MySQL database with name <code>hotel</code> hosted in <code>loacalhost:3306</code>
-having a table <code>RoomTypeTable</code> with columns <code>roomNo</code> of <code>INTEGER</code> and <code>type</code> of <code>VARCHAR(255)</code> mapped to Siddhi data types <code>int</code> and <code>string</code> respectively.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="n">Store</span><span class="p">(</span><span class="k">type</span><span class="o">=</span><span class="ss">&quot;rdbms&quot;</span><span class="p">,</span> <span class="n">jdbc</span><span class="p">.</span><span class="n">url</span><span class="o">=</span><span class="ss">&quot;jdbc:mysql://localhost:3306/hotel&quot;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="ss">&quot;siddhi&quot;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="ss">&quot;123&quot;</span><span class="p">,</span>
-       <span class="n">jdbc</span><span class="p">.</span><span class="n">driver</span><span class="p">.</span><span class="n">name</span><span class="o">=</span><span class="ss">&quot;com.mysql.jdbc.Driver&quot;</span><span class="p">)</span>
-<span class="n">define</span> <span class="k">table</span> <span class="n">RoomTypeTable</span> <span class="p">(</span> <span class="n">roomNo</span> <span class="nb">int</span><span class="p">,</span> <span class="k">type</span> <span class="n">string</span> <span class="p">);</span>
-</pre></div>
-</td></tr></table>
-
-<p><strong>Supported Store Types</strong></p>
-<p>The following is a list of currently supported store types:</p>
+<p>The above table definition defines an in-memory table named <code>StockTable</code> having the following attributes.</p>
 <ul>
-<li><a target="_blank" href="https://siddhi-io.github.io/siddhi-store-rdbms">RDBMS (MySQL, Oracle, SQL Server, PostgreSQL, DB2, H2)</a></li>
-<li><a target="_blank" href="https://siddhi-io.github.io/siddhi-store-mongodb">MongoDB</a></li>
+<li><code>symbol</code> of type <code>string</code></li>
+<li><code>price</code> of type <code>float</code></li>
+<li><code>volume</code> of type <code>long</code></li>
 </ul>
-<p><strong>Caching in Memory</strong></p>
-<p>Store tables are persisted in high i/o latency storage. Hence, it is beneficial to maintain a cache of store tables in
-memory which has low latency. Siddhi supports caching of store tables through <code>@cache</code> annotation. It should be used
-within <code>@store</code> annotation in a nested fashion as shown below.</p>
+<p>As this table is configured with the primary key <code>symbol</code>, there will be only one record/event exist in the table for a particular value of the <code>symbol</code> attribute.</p>
+<p><strong>Example 3 (Index)</strong></p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="n">store</span><span class="p">(</span><span class="k">type</span><span class="o">=</span><span class="s1">&#39;store_type&#39;</span><span class="p">,</span> <span class="k">static</span><span class="p">.</span><span class="k">option</span><span class="p">.</span><span class="n">key1</span><span class="o">=</span><span class="s1">&#39;static_option_value1&#39;</span><span class="p">,</span> <span class="k">static</span><span class="p">.</span><span class="k">option</span><span class="p">.</span><span class="n">keyN</span><span class="o">=</span><span class="s1">&#39;static_option_valueN&#39;</span><span class="p">,</span>
-        <span class="o">@</span><span class="k">cache</span><span class="p">(</span><span class="k">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="k">cache</span><span class="p">.</span><span class="n">policy</span><span class="o">=</span><span class="n">FIFO</span><span class="p">))</span>
-<span class="n">define</span> <span class="k">table</span> <span class="n">TableName</span> <span class="p">(</span><span class="n">attribute1</span> <span class="n">Type1</span><span class="p">,</span> <span class="n">attributeN</span> <span class="n">TypeN</span><span class="p">);</span>
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="k">index</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">)</span>
+<span class="o">@</span><span class="k">index</span><span class="p">(</span><span class="s1">&#39;salary&#39;</span><span class="p">)</span>
+<span class="n">define</span> <span class="k">table</span> <span class="n">SalaryTable</span> <span class="p">(</span><span class="n">username</span> <span class="n">string</span><span class="p">,</span> <span class="n">salary</span> <span class="n">double</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
 
-<p>In the above example we have defined a cache with a maximum size of 10 rows with first-in first-out cache policy.
-The following table contains the cache parameters.</p>
+<p>The above table definition defines an in-memory table named <code>SalaryTable</code> having the following attributes.</p>
+<ul>
+<li><code>username</code> of type <code>string</code></li>
+<li><code>salary</code> of type <code>double</code></li>
+</ul>
+<p>As this table is configured with indexes for <code>username</code> and <code>salary</code>, the search operations on <code>username</code> and/or <code>salary</code> attributes will be much faster than the non-indexed case. Here, the table can contain duplicate events having the same value for username and/or salary.</p>
+<p><strong>Example 3 (Primary key and index)</strong></p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="n">primaryKey</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">)</span>
+<span class="o">@</span><span class="k">index</span><span class="p">(</span><span class="s1">&#39;salary&#39;</span><span class="p">)</span>
+<span class="n">define</span> <span class="k">table</span> <span class="n">SalaryTable</span> <span class="p">(</span><span class="n">username</span> <span class="n">string</span><span class="p">,</span> <span class="n">salary</span> <span class="n">double</span><span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<p>The above table definition defines an in-memory table named <code>SalaryTable</code> having the following attributes.</p>
+<ul>
+<li><code>username</code> of type <code>string</code></li>
+<li><code>salary</code> of type <code>double</code></li>
+</ul>
+<p>As this table is configured with the primary key <code>username</code> and index <code>salary</code>. Hence, there can be only one record/event exist in the table having a particular username value, and the search operations on <code>username</code> and/or <code>salary</code> attributes will be much faster than the non-indexed case.</p>
+<h3 id="store">Store<a class="headerlink" href="#store" title="Permanent link">&para;</a></h3>
+<p>Stores allow creating, reading, updating, and deleting events/recodes stored on external data stores such as RDBMS, MongoDB, and others. They produce these functionalities by using the Siddhi tables as a proxy to external databases.</p>
+<p>Stores depending on their implementation and the connected external data store, some supports primary keys to enforce uniqueness on stored events/recodes, and indexes to improve their searchability.</p>
+<p>Since stores work with external data stores, the i/o latency can be quite higher than in-memory tables, the increase in latency can be eliminated by defining a cache, such that recently accessed data will be cached in-memory providing faster data retrievals.</p>
+<p><strong>Purpose</strong></p>
+<p>Stores allow searching retrieving and manipulating data stored in external data stores through queries. This is useful for use cases when there is a need to access a common database used by various other systems, to retrieve and transfer data.  </p>
+<p><strong>Syntax</strong></p>
+<p>The syntax for defining a store along with is associated table is as follows:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="n">store</span><span class="p">(</span><span class="k">type</span><span class="o">=</span><span class="s1">&#39;&lt;store type&gt;&#39;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">common</span><span class="p">.</span><span class="k">static</span><span class="p">.</span><span class="k">key</span><span class="o">&gt;=</span><span class="s1">&#39;&lt;value&gt;&#39;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">common</span><span class="p">.</span><span class="k">static</span><span class="p">.</span><span class="k">key</span><span class="o">&gt;=</span><span class="s1">&#39;&lt;value&gt;&#39;</span>
+       <span class="o">@</span><span class="k">cache</span><span class="p">(</span><span class="k">size</span><span class="o">=</span><span class="s1">&#39;&lt;cache size&gt;&#39;</span><span class="p">,</span> <span class="k">cache</span><span class="p">.</span><span class="n">policy</span><span class="o">=</span><span class="s1">&#39;&lt;cache policy&gt;&#39;</span><span class="p">,</span> <span class="n">retention</span><span class="p">.</span><span class="n">period</span><span class="o">=</span><span class="s1">&#39;&lt;retention period&gt;&#39;</span><span class="p">,</span> <span class="n">purge</span><span class="p">.</span><span class="nb">interval</span><span class="o">=</span><span class="ss">&quot;&lt;purge interval&gt;&quot;</span><span class="p">))</span>
+<span class="o">@</span><span class="n">primaryKey</span><span class="p">(</span> <span class="o">&lt;</span><span class="k">key</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="k">key</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...</span> <span class="p">)</span>
+<span class="o">@</span><span class="k">index</span><span class="p">(</span> <span class="o">&lt;</span><span class="k">key</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="k">key</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...)</span>
+<span class="o">@</span><span class="k">index</span><span class="p">(</span> <span class="o">&lt;</span><span class="k">key</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="k">key</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...)</span>
+<span class="n">define</span> <span class="k">table</span> <span class="o">&lt;</span><span class="k">table</span> <span class="n">name</span><span class="o">&gt;</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">attribute</span> <span class="k">type</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">attribute</span> <span class="k">type</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...</span> <span class="p">);</span>
+</pre></div>
+</td></tr></table>
+
+<p>Here the store is defined via the <code>@store</code> annotation, and the schema of the store is defined via the <strong>table definition</strong> associated with it. In this case the table definition will not create an <code>in-memory</code> table but rather used as a poxy to read, write, and modify data stored in external store.</p>
+<p>The <code>type</code> parameter of the <code>@store</code> defines the store type to be used to connect to the external data store, and the other parameters of <code>@store</code> annotation other than <code>@cache</code> depend on the store selected, where some of these parameters can be optional.</p>
+<p>The <code>@primaryKey</code> and <code>@index</code> annotations are optional, and supported by some store implementations. The <code>@primaryKey</code> annotation can be defined at most once, and it can have one or more <code>attribute name</code>s as composed primary keys based on the implementation. At the same time, <code>@index</code> annotation can be defined several times, and it can also have one or more <code>attribute name</code>s as composed indexes if the implementation supports them.</p>
+<p><strong>Cache</strong></p>
+<p>The <code>@cache</code> annotation inside <code>@store</code> defines the behavior of the cache.  <code>@cache</code> is an optional annotation that can be applied to all store implementations, where when this is not defined, the cache will not be enabled.</p>
+<p>The parameters defining the cache behavior via the <code>@cache</code> annotation is as follows.</p>
 <table>
 <thead>
 <tr>
@@ -4821,77 +4898,131 @@ The following table contains the cache parameters.</p>
 </thead>
 <tbody>
 <tr>
-<td>size</td>
+<td><code>size</code></td>
 <td>Mandatory</td>
 <td>-</td>
-<td>maximum number of rows to be cached</td>
+<td>Maximum number of events/records stored in the cache.</td>
 </tr>
 <tr>
-<td>cache.policy</td>
+<td><code>cache.policy</code></td>
 <td>Optional</td>
-<td>FIFO</td>
-<td>policy to free up cache when cache miss occurs. There are 3 allowed policies.<br />1. FIFO - First-In, First-Out<br />2. LRU - Least Recently Used<br />3. LFU - Least Frequently Used</td>
+<td><code>FIFO</code></td>
+<td>Policy to remove elements from the cache when the cache is at its maximum size and new entries need to added due to cache miss.</td>
 </tr>
 <tr>
-<td>retention.period</td>
+<td><br/>Supported policies are <br/><code>FIFO</code> (First-In First-Out), <br/><code>LRU</code> (Least Recently Used)<br/><code>LFU</code> (Least Frequently Used)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>retention.period</code></td>
 <td>Optional</td>
 <td>-</td>
-<td>If user specifies this parameter then cache expiry is enabled. For example if this is 5 min, rows older than 5 mins will be removed and in some cases reloaded from store</td>
+<td>The period after an event/record will become eligible for removal from the cached irrespective of the case size. This allows the cache to fetch the recent database updates made by other systems.</td>
 </tr>
 <tr>
-<td>purge.interval</td>
-<td>optional</td>
-<td>equal to retention period</td>
-<td>When cache expiry is enabled, a thread will be created for every purge.interval which will check for expired rows and remove them.</td>
+<td><code>purge.interval</code></td>
+<td>Optional</td>
+<td>Equal to retention period.</td>
+<td>The periodic time interval the cached events/records that are eligible for removal will be purge.</td>
 </tr>
 </tbody>
 </table>
-<p>The following is an example of caching with expiry.</p>
+<p>Even though the cache is enabled, its behavior and usage depend on the number of recodes in the external store relative to the maximum cache size defined as follows:</p>
+<ol>
+<li>Cache size being greater than or equal to the number of recodes in the external store:</li>
+<li>At startup, all the recodes of the external store data will be preloaded to cached.</li>
+<li>The cache is used to process all type of data retrieval operations.  </li>
+<li>
+<p>When <code>retention.period</code> (and <code>purge.interval</code>) is configured, all records the cache are periodically deleted and reloaded from the external store.</p>
+</li>
+<li>
+<p>Cache size is smaller than the number of recodes in the external store:  </p>
+</li>
+<li>At startup, the number of recodes equal to the maximum cache size is preloaded from the external store.</li>
+<li><strong>The cache is used to process only the data retrieval operations that use all defined primary keys in equal (<code>==</code>) comparisons, and when there are multiple comparisons, those are combined using <code>and</code></strong>, <em>(For example when <code>customerID</code> and <code>companyID</code> are defined as primary keys then the data retrieval operations with condition <code>customerID == 'John' and companyID == 'Google' and age &gt; 28</code> can  be executed in the cache)</em>. All other operations are directly executed in the external data store.</li>
+<li>If the cache is full and when a cache miss occurs, a record is removed from the cache based on the defined cache expiry policy before adding the missed record from the external data store.</li>
+<li>When <code>retention.period</code> (and <code>purge.interval</code>) is configured, the data is cache that are loaded earlier than retention period are periodically deleted. Here, no reloading will be done from the external data store.  </li>
+</ol>
+<p><strong>Supported Store Types</strong></p>
+<p>The following is a list of store types supported by Siddhi:</p>
+<table>
+<thead>
+<tr>
+<th>Sink mapping type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" href="https://siddhi-io.github.io/siddhi-store-rdbms">RDBMS</a></td>
+<td>Optimally stores, retrieves, and manipulates data on RDBMS databases such as MySQL, MS SQL, Postgresql, H2 and Oracle.</td>
+</tr>
+<tr>
+<td><a target="_blank" href="https://siddhi-io.github.io/siddhi-store-mongodb">MongoDB</a></td>
+<td>Stores, retrieves, and manipulates data on MongoDB.</td>
+</tr>
+<tr>
+<td><a target="_blank" href="https://siddhi-io.github.io/siddhi-store-redis">Redis</a></td>
+<td>Stores, retrieves, and manipulates data on Redis.</td>
+</tr>
+<tr>
+<td><a target="_blank" href="https://siddhi-io.github.io/siddhi-store-elasticsearch">Elasticsearch</a></td>
+<td>Supports data access and manipulation operators on Elasticsearch.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example 1</strong></p>
+<p>An RDBMS Store configuration to work with MySQL database.</p>
+<p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="n">store</span><span class="p">(</span><span class="k">type</span><span class="o">=</span><span class="ss">&quot;rdbms&quot;</span><span class="p">,</span> <span class="n">jdbc</span><span class="p">.</span><span class="n">url</span><span class="o">=</span><span class="ss">&quot;jdbc:mysql://localhost:3306/hotel&quot;</span><span class="p">,</span>
+       <span class="n">username</span><span class="o">=</span><span class="ss">&quot;siddhi&quot;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="ss">&quot;123&quot;</span><span class="p">,</span>
+       <span class="n">jdbc</span><span class="p">.</span><span class="n">driver</span><span class="p">.</span><span class="n">name</span><span class="o">=</span><span class="ss">&quot;com.mysql.jdbc.Driver&quot;</span><span class="p">)</span>
+<span class="n">define</span> <span class="k">table</span> <span class="n">RoomTypeTable</span> <span class="p">(</span> <span class="n">roomNo</span> <span class="nb">int</span><span class="p">,</span> <span class="k">type</span> <span class="n">string</span> <span class="p">);</span>
+</pre></div>
+</td></tr></table>
+Here, the store connects to the MySQL table <code>RoomTypeTable</code> in the database <code>hotel</code> hosted on <code>localhost:3306</code>, and its columns mapped as follows.</p>
+<ul>
+<li><code>roomNo</code> of type <code>INTEGER</code> mapped to <code>int</code></li>
+<li><code>type</code> of type <code>VARCHAR(255)</code> mapped to <code>string</code></li>
+</ul>
+<p><strong>Example 2</strong></p>
+<p>An RDBMS Store configuration to work with an indexed MySQL database using a cache.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="n">store</span><span class="p">(</span><span class="k">type</span><span class="o">=</span><span class="s1">&#39;store_type&#39;</span><span class="p">,</span> <span class="k">static</span><span class="p">.</span><span class="k">option</span><span class="p">.</span><span class="n">key1</span><span class="o">=</span><span class="s1">&#39;static_option_value1&#39;</span><span class="p">,</span> <span class="k">static</span><span class="p">.</span><span class="k">option</span><span class="p">.</span><span class="n">keyN</span><span class="o">=</span><span class="s1">&#39;static_option_valueN&#39;</span><span class="p">,</span>
-        <span class="o">@</span><span class="k">cache</span><span class="p">(</span><span class="k">size</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">retention</span><span class="p">.</span><span class="n">period</span><span class="o">=</span><span class="mi">5</span> <span class="k">min</span><span class="p">,</span> <span class="n">purge</span><span class="p">.</span><span class="nb">interval</span><span class="o">=</span><span class="mi">1</span> <span class="k">min</span><span class="p">))</span>
-<span class="n">define</span> <span class="k">table</span> <span class="n">TableName</span> <span class="p">(</span><span class="n">attribute1</span> <span class="n">Type1</span><span class="p">,</span> <span class="n">attributeN</span> <span class="n">TypeN</span><span class="p">);</span>
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="n">store</span><span class="p">(</span><span class="k">type</span><span class="o">=</span><span class="ss">&quot;rdbms&quot;</span><span class="p">,</span> <span class="n">jdbc</span><span class="p">.</span><span class="n">url</span><span class="o">=</span><span class="ss">&quot;jdbc:mysql://localhost:3306/hotel&quot;</span><span class="p">,</span>
+       <span class="n">username</span><span class="o">=</span><span class="ss">&quot;siddhi&quot;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="ss">&quot;123&quot;</span><span class="p">,</span>
+       <span class="n">jdbc</span><span class="p">.</span><span class="n">driver</span><span class="p">.</span><span class="n">name</span><span class="o">=</span><span class="ss">&quot;com.mysql.jdbc.Driver&quot;</span>
+       <span class="o">@</span><span class="k">cache</span><span class="p">(</span><span class="k">size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">retention</span><span class="p">.</span><span class="n">period</span><span class="o">=</span><span class="mi">5</span> <span class="k">min</span><span class="p">,</span> <span class="n">purge</span><span class="p">.</span><span class="nb">interval</span><span class="o">=</span><span class="mi">1</span> <span class="k">min</span><span class="p">))</span>
+<span class="o">@</span><span class="n">primaryKey</span><span class="p">(</span><span class="s1">&#39;username&#39;</span><span class="p">)</span>
+<span class="o">@</span><span class="k">index</span><span class="p">(</span><span class="s1">&#39;salary&#39;</span><span class="p">)</span>
+<span class="n">define</span> <span class="k">table</span> <span class="n">SalaryTable</span> <span class="p">(</span><span class="n">username</span> <span class="n">string</span><span class="p">,</span> <span class="n">salary</span> <span class="n">double</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
 
-<p>The above query will define and create a store table of given type and a cache with a max size of 10. A thread will be
-created every 1 minute which will check the entire cache table for rows added earlier than 5 minutes and expire them.</p>
-<p><strong>Cache Behavior</strong></p>
-<p>Cache behavior changes profoundly based on the size of store table relative to maximum cache size defined. Since
-memory is a limited resource we don't allow cache to grow more than the user specified maximum size.</p>
-<p>Case 1 \
-When store table is smaller than maximum cache size defined we keep the entire content of store table in memory in
-cache table. All types of queries are routed to cache and cache results are directly sent out to the user. Every time
-the expiry thread finds that cache events were loaded earlier than retention period entire cache table will be deleted
-and reloaded from store. In addition, when siddhi app starts, the entire store table, if it exists, will be loaded into
-cache.</p>
-<p>Case 2 \
-When store table is bigger than maximum cache size only the queries satisfying the following 2 conditions are sent to
-cache.
-1. the query contains all the primary keys of the table
-2. the query contains only == type of comparison.</p>
-<p>Only for the above types of queries we can establish if the cache is hit or missed. Subject to these conditions if the
-cache is hit the results from cache is sent out. If the cache is missed then store is checked.</p>
-<p>If the above conditions are not met by a query it is directly sent to the store table. In addition, please note that
-if the store table is pre existing when siddhi app is started and it is bigger than max cache size, cache preloading
-will take only upto max size and put it in cache. For example if store table has 50 entries when the siddhi app is
-defined with cache size of 10, only the first 10 rows will be cached.</p>
-<p>When cache miss occurs we look for the answer in the store table. If there is a result from the store table it is added
-to cache. One element from cache is removed using the user given cache policy prior to adding.</p>
-<p>When it comes to cache expiry, since not all rows are loaded at once in this case there may be some expired rows and
-some unexpired rows at any time. So for every purge interval a thread will be generated which looks for rows that were
-loaded earlier than retention period and delete only those rows. No reloading is done.</p>
-<p><strong>Operators on Table (and Store)</strong></p>
+<p>Here, an <code>RDBMS</code> store is defined with a cache of size 100 that every minute removes the entries added to the cache which are older than 5 minutes. The store connects to the MySQL table named <code>SalaryTable</code>, that is configured with the primary key <code>username</code> and index <code>salary</code>, and located in a MySQL the database <code>hotel</code> hosted on <code>localhost:3306</code>. Its columns mapped as follows.</p>
+<ul>
+<li><code>username</code> of type <code>VARCHAR(255)</code> mapped to <code>string</code></li>
+<li><code>salary</code> of type <code>VARCHAR(255)</code> mapped to <code>string</code></li>
+</ul>
+<p><strong>Table (and Store) Operators</strong></p>
 <p>The following operators can be performed on tables (and stores).</p>
-<h3 id="insert">Insert<a class="headerlink" href="#insert" title="Permanent link">&para;</a></h3>
-<p>This allows events to be inserted into tables. This is similar to inserting events into streams.</p>
+<h3 id="insert_1">Insert<a class="headerlink" href="#insert_1" title="Permanent link">&para;</a></h3>
+<p>Allows events (records) to be inserted into tables/stores. This is similar to inserting events into streams.</p>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>If the table is defined with primary keys, and if you insert duplicate data, primary key constrain violations can occur.
+<p class="admonition-title">Primary Keys</p>
+<p>If the table is defined with primary keys, and multiple records are inserted with the same primary key, a primary key constrain violations can can occur.
 In such cases use the <code>update or insert into</code> operation.</p>
 </div>
 <p><strong>Syntax</strong></p>
+<p>Syntax to insert events into a table from a stream is as follows;</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">from</span> <span class="o">&lt;</span><span class="k">input</span> <span class="n">stream</span><span class="o">&gt;</span>
@@ -4900,10 +5031,9 @@ In such cases use the <code>update or insert into</code> operation.</p>
 </pre></div>
 </td></tr></table>
 
-<p>Similar to streams, you need to use the <code>current events</code>, <code>expired events</code> or the <code>all events</code> keyword between <code>insert</code> and <code>into</code> keywords in order to insert only the specific event types.
-For more information, see <a href="#event-type">Event Type</a></p>
+<p>Similar to streams, the <code>current events</code>, <code>expired events</code> or the <code>all events</code> keyword can be used between <code>insert</code> and <code>into</code> keywords in order to insert only the specific event types. For more information, see <a href="#event-type">Event Type</a></p>
 <p><strong>Example</strong></p>
-<p>This query inserts all the events from the <code>TempStream</code> stream to the <code>TempTable</code> table.</p>
+<p>Query to inserts all the events from the <code>TempStream</code> stream to the <code>TempTable</code> table.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">from</span> <span class="n">TempStream</span>
@@ -4913,69 +5043,74 @@ For more information, see <a href="#event-type">Event Type</a></p>
 </td></tr></table>
 
 <h3 id="join-table">Join (Table)<a class="headerlink" href="#join-table" title="Permanent link">&para;</a></h3>
-<p>This allows a stream to retrieve information from a table in a streaming manner.</p>
+<p>Allows a stream to retrieve events (records) from a table.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Joins can also be performed with <a href="#join-stream">two streams</a>, <a href="#join-aggregation">aggregation</a> or against externally <a href="#join-window">named windows</a>.</p>
+<p class="admonition-title">Other Join Functions</p>
+<p>Joins can also be performed with <a href="#join-stream">two streams</a>, <a href="#join-aggregation">named aggregation</a> or against <a href="#join-window">named windows</a>.</p>
 </div>
 <p><strong>Syntax</strong></p>
+<p>The syntax to join a stream with a table is as follows:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">from</span> <span class="o">&lt;</span><span class="k">input</span> <span class="n">stream</span><span class="o">&gt;</span> <span class="k">join</span> <span class="o">&lt;</span><span class="k">table</span><span class="o">&gt;</span>
-    <span class="k">on</span> <span class="o">&lt;</span><span class="n">condition</span><span class="o">&gt;</span>
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">from</span> <span class="o">&lt;</span><span class="k">input</span> <span class="n">stream</span><span class="o">&gt;</span> <span class="p">(</span><span class="k">as</span> <span class="o">&lt;</span><span class="n">reference</span><span class="o">&gt;</span><span class="p">)</span><span class="o">?</span>
+         <span class="o">&lt;</span><span class="k">join</span> <span class="k">type</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="k">table</span><span class="o">&gt;</span> <span class="p">(</span><span class="k">as</span> <span class="o">&lt;</span><span class="n">reference</span><span class="o">&gt;</span><span class="p">)</span><span class="o">?</span>
+    <span class="p">(</span><span class="k">on</span> <span class="o">&lt;</span><span class="k">join</span> <span class="n">condition</span><span class="o">&gt;</span><span class="p">)</span><span class="o">?</span>
 <span class="k">select</span> <span class="p">(</span><span class="o">&lt;</span><span class="k">input</span> <span class="n">stream</span><span class="o">&gt;|&lt;</span><span class="k">table</span><span class="o">&gt;</span><span class="p">).</span><span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">(</span><span class="o">&lt;</span><span class="k">input</span> <span class="n">stream</span><span class="o">&gt;|&lt;</span><span class="k">table</span><span class="o">&gt;</span><span class="p">).</span><span class="o">&lt;</span><span class="n">attribute</span> <span class="n">name</span><span class="o">&gt;</span><span class="p">,</span> <span class="p">...</span>
 <span class="k">insert</span> <span class="k">into</span> <span class="o">&lt;</span><span class="k">output</span> <span class="n">stream</span><span class="o">&gt;</span>
 </pre></div>
 </td></tr></table>
 
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>A table can only be joint with a stream. Two tables cannot be joint because there must be at least one active
-entity to trigger the join operation.</p>
+<p class="admonition-title">Two tables cannot be joined.</p>
+<p>A table can only be joint with a stream. Two tables cannot be joint because there must be at least one active entity to trigger the join operation.</p>
+</div>
+<p><strong>Supported join types</strong></p>
+<p>Table join supports following join operations.</p>
+<ul>
+<li>
+<p><strong>Inner join (join)</strong></p>
+<p>This is the default behavior of a join operation, and the <code>join</code> keyword is used to join a stream with a table.</p>
+<p>The output is generated only if there is a matching event in both the stream and the table.</p>
+</li>
+<li>
+<p><strong>Left outer join</strong></p>
+<p>The <code>left outer join</code> keyword is used to join a stream on the left side with a table on the right side based on a condition.</p>
+<p>It returns all the events of the left stream even if there are no matching events in the right table by having <code>null</code> values for the attributes of the table on the right.</p>
+</li>
+<li>
+<p><strong>Right outer join</strong></p>
+<p>This is similar to a <code>left outer join</code> and the <code>right outer join</code> keyword is used to join a stream on right side with a table on the left side based on a condition.</p>
+<p>It returns all the events of the right stream even if there are no matching events in the left table by having <code>null</code> values for the attributes of the table on the left.</p>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Cross join</p>
+<p>In either of these cases, when the join condition is omitted, the triggering event will successfully match against all the events in the table, producing a cross join behavior.</p>
 </div>
 <p><strong>Example</strong></p>
-<p>This Siddhi App performs a join to retrieve the room type from <code>RoomTypeTable</code> table based on the room number, so that it can filter the events related to <code>server-room</code>s.</p>
+<p>A query to join and retrieve the room type from <code>RoomTypeTable</code> table based on equal <code>roomNo</code> attribute of <code>TempStream</code>, and insert the results into <code>RoomTempStream</code> steam.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
 4
 5
 6
-7
-8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">define</span> <span class="k">table</span> <span class="n">RoomTypeTable</span> <span class="p">(</span><span class="n">roomNo</span> <span class="nb">int</span><span class="p">,</span> <span class="k">type</span> <span class="n">string</span><span class="p">);</span>
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">define</span> <span class="k">table</span> <span class="n">RoomTypeTable</span> <span class="p">(</span><span class="n">roomNo</span> <span class="nb">int</span><span class="p">,</span> <span class="k">type</span> <span class="n">string</span><span class="p">);</span>
 <span class="n">define</span> <span class="n">stream</span> <span class="n">TempStream</span> <span class="p">(</span><span class="n">deviceID</span> <span class="n">long</span><span class="p">,</span> <span class="n">roomNo</span> <span class="nb">int</span><span class="p">,</span> <span class="n">temp</span> <span class="n">double</span><span class="p">);</span>
 
-<span class="k">from</span> <span class="n">TempStream</span> <span class="k">join</span> <span class="n">RoomTypeTable</span>
-    <span class="k">on</span> <span class="n">RoomTypeTable</span><span class="p">.</span><span class="n">roomNo</span> <span class="o">==</span> <span class="n">TempStream</span><span class="p">.</span><span class="n">roomNo</span>
-<span class="k">select</span> <span class="n">deviceID</span><span class="p">,</span> <span class="n">RoomTypeTable</span><span class="p">.</span><span class="k">type</span> <span class="k">as</span> <span class="n">roomType</span><span class="p">,</span> <span class="k">type</span><span class="p">,</span> <span class="n">temp</span>
-    <span class="k">having</span> <span class="n">roomType</span> <span class="o">==</span> <span class="s1">&#39;server-room&#39;</span>
-<span class="k">insert</span> <span class="k">into</span> <span class="n">ServerRoomTempStream</span><span class="p">;</span>
+<span class="k">from</span> <span class="n">TempStream</span> <span class="k">as</span> <span class="n">t</span> <span class="k">join</span> <span class="n">RoomTypeTable</span> <span class="k">as</span> <span class="n">r</span>
+    <span class="k">on</span> <span class="n">t</span><span class="p">.</span><span class="n">roomNo</span> <span class="o">==</span> <span class="n">r</span><span class="p">.</span><span class="n">roomNo</span>
+<span class="k">select</span> <span class="n">t</span><span class="p">.</span><span class="n">deviceID</span><span class="p">,</span> <span class="n">t</span><span class="p">.</span><span class="n">roomNo</span><span class="p">,</span> <span class="n">r</span><span class="p">.</span><span class="k">type</span> <span class="k">as</span> <span class="n">roomType</span><span class="p">,</span> <span class="n">t</span><span class="p">.</span><span class="n">temp</span>
+<span class="k">insert</span> <span class="k">into</span> <span class="n">RoomTempStream</span><span class="p">;</span>
 </pre></div>
 </td></tr></table>
 
-<p><strong>Supported join types</strong></p>
-<p>Table join supports following join operations.</p>
-<ul>
-<li>
-<p><strong>Inner join (join)</strong></p>
-<p>This is the default behavior of a join operation. <code>join</code> is used as the keyword to join the stream with the table. The output is generated only if there is a matching event in both the stream and the table.</p>
-</li>
-<li>
-<p><strong>Left outer join</strong></p>
-<p>The <code>left outer join</code> operation allows you to join a stream on left side with a table on the right side based on a condition.
-Here, it returns all the events of left stream even if there are no matching events in the right table by
-having null values for the attributes of the right table.</p>
-</li>
-<li>
-<p><strong>Right outer join</strong></p>
-<p>This is similar to a <code>left outer join</code>. <code>right outer join</code> is used as the keyword to join a stream on right side with a table on the left side based on a condition.
-It returns all the events of the right stream even if there are no matching events in the left table.</p>
-</li>
-</ul>
 <h3 id="delete">Delete<a class="headerlink" href="#delete" title="Permanent link">&para;</a></h3>
-<p>To delete selected events that are stored in a table.</p>
+<p>Allows a stream to delete selected events (records) form a table.</p>
 <p><strong>Syntax</strong></p>
+<p>Syntax to delete selected events in a table based on the events in a stream is as follows;</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
@@ -4986,25 +5121,21 @@ It returns all the events of the right stream even if there are no matching even
 </pre></div>
 </td></tr></table>
 
-<p>The <code>condition</code> element specifies the basis on which events are selected to be deleted.
-When specifying the condition, table attributes should be referred to with the table name.</p>
-<p>To execute delete for specific event types, use the <code>current events</code>, <code>expired events</code> or the <code>all events</code> keyword with <code>for</code> as shown
-in the syntax. For more information, see <a href="#event-type">Event Type</a></p>
+<p>The <code>condition</code> element specifies the basis on which the events in the table are selected to be deleted. <strong>When specifying the condition, the table attributes should always be referred with the table name</strong>, and and when a condition is not defined, all the events in the table will be deleted.</p>
+<p>To execute delete, only for specific event types, use the <code>current events</code>, <code>expired events</code> or the <code>all events</code> keyword can be used with <code>for</code> as shown in the syntax. For more information refer <a href="#event-type">Event Type</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Table attributes must be always referred to with the table name as follows:
-<code>&lt;table name&gt;.&lt;attibute name&gt;</code></p>
+<p>When defining the condition, the table attributes must be always referred with the table name as follows:
+<code>&lt;table name&gt;.&lt;attribute name&gt;</code></p>
 </div>
-<p><strong>Example</strong></p>
-<p>In this example, the script deletes a record in the <code>RoomTypeTable</code> table if it has a value for the <code>roomNo</code> attribute that matches the value for the <code>roomNumber</code> attribute of an event in the <code>DeleteStream</code> stream.</p>
+<p><strong>Example 1</strong></p>
+<p>A query to delete the records in the <code>RoomTypeTable</code> table that has matching values for the <code>roomNo</code> attribute against the values of <code>roomNumber</code> attribute of the events in the <code>DeleteStream</code> stream.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
 4
 5
-6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">define</span> <span class="k">table</span> <span class="n">RoomTypeTable</span> <span class="p">(</span><span class="n">roomNo</span> <span class="nb">int</span><span class="p">,</span> <span class="k">type</span> <span class="n">string</span><span class="p">);</span>
-
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">define</span> <span class="k">table</span> <span class="n">RoomTypeTable</span> <span class="p">(</span><span class="n">roomNo</span> <span class="nb">int</span><span class="p">,</span> <span class="k">type</span> <span class="n">string</span><span class="p">);</span>
 <span class="n">define</span> <span class="n">stream</span> <span class="n">DeleteStream</span> <span class="p">(</span><span class="n">roomNumber</span> <span class="nb">int</span><span class="p">);</span>
 
 <span class="k">from</span> <span class="n">DeleteStream</span>
@@ -5013,8 +5144,22 @@ in the syntax. For more information, see <a href="#event-type">Event Type</a></p
 </pre></div>
 </td></tr></table>
 
+<p><strong>Example 2</strong></p>
+<p>A query to delete all the records in the <code>BlacklistTable</code> table when an event arrives in the <code>ClearStream</code> stream.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">define</span> <span class="k">table</span> <span class="n">BlacklistTable</span> <span class="p">(</span><span class="n">ip</span> <span class="n">string</span><span class="p">);</span>
+<span class="n">define</span> <span class="n">stream</span> <span class="n">ClearStream</span> <span class="p">(</span><span class="k">source</span> <span class="n">string</span><span class="p">);</span>
+
+<span class="k">from</span> <span class="n">ClearStream</span>
+<span class="k">delete</span> <span class="n">BlacklistTable</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
 <h3 id="update">Update<a class="headerlink" href="#update" title="Permanent link">&para;</a></h3>
-<p>This operator updates selected event attributes stored in a table based on a condition.</p>
+<p>Allows a stream to update selected events (records) form a table.</p>
 <p><strong>Syntax</strong></p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
@@ -5028,18 +5173,16 @@ in the syntax. For more information, see <a href="#event-type">Event Type</a></p
 </pre></div>
 </td></tr></table>
 
-<p>The <code>condition</code> element specifies the basis on which events are selected to be updated.
-When specifying the <code>condition</code>, table attributes must be referred to with the table name.</p>
-<p>You can use the <code>set</code> keyword to update selected attributes from the table. Here, for each assignment, the attribute specified in the left must be the table attribute, and the one specified in the right can be a stream/table attribute a mathematical operation, or other. When the <code>set</code> clause is not provided, all the attributes in the table are updated.</p>
-<p>To execute an update for specific event types use the <code>current events</code>, <code>expired events</code> or the <code>all events</code> keyword with <code>for</code> as shown
-in the syntax. For more information, see <a href="#event-type">Event Type</a>.</p>
+<p>The <code>condition</code> element specifies the basis on which the events in the table are selected to be updated. <strong>When referring the table attributes in the <code>update</code> clause, they must always be referred to with the table name</strong>, and when a condition is not defined, all the events in the table will be updated.</p>
+<p>The <code>set</code> keyword can be used to update only the selected attributes from the table. Here, for each assignment, the attribute specified in the left must be the table attribute that is being updated, and the right can contain a query output attribute, a table attribute, a mathematical operation, or any other. When the <code>set</code> clause is not provided, all attributes in the table will be updated based on the query output.  </p>
+<p>To execute update, only for specific event types, use the <code>current events</code>, <code>expired events</code> or the <code>all events</code> keyword can be used with <code>for</code> as shown in the syntax. For more information refer <a href="#event-type">Event Type</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Table attributes must be always referred to with the table name as shown below:
- <code>&lt;table name&gt;.&lt;attibute name&gt;</code>.</p>
+<p>In the <code>update</code> clause, the table attributes must be always referred with the table name as follows:
+<code>&lt;table name&gt;.&lt;attribute name&gt;</code></p>
 </div>
-<p><strong>Example</strong></p>
-<p>This Siddhi application updates the room occupancy in the <code>RoomOccupancyTable</code> table for each room number based on new arrivals and exits from the <code>UpdateStream</code> stream.</p>
+<p><strong>Example 1</strong></p>
+<p>A query to update the <code>latestHeartbeatTime</code> on the <code>ServerInfoTable</code> against each <code>serverIP</code> for every event on the <code>HeartbeatStream</code>.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
@@ -5047,22 +5190,59 @@ in the syntax. For more information, see <a href="#event-type">Event Type</a>.</
 5
 6
 7
-8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">define</span> <span class="k">table</span> <span class="n">RoomOccupancyTable</span> <span class="p">(</span><span class="n">roomNo</span> <span class="nb">int</span><span class="p">,</span> <span class="n">people</span> <span class="nb">int</span><span class="p">);</span>
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">define</span> <span class="k">table</span> <span class="n">ServerInfoTable</span> <span class="p">(</span><span class="n">serverIP</span> <span class="n">string</span><span class="p">,</span> <span class="k">host</span> <span class="n">string</span><span class="p">,</span> <span class="n">port</span> <span class="nb">int</span><span class="p">,</span> <span class="n">latestHeartbeatTime</span> <span class="n">long</span><span class="p">);</span>
+<span class="n">define</span> <span class="n">stream</span> <span class="n">HeartbeatStream</span> <span class="p">(</span><span class="n">serverIP</span> <span class="n">string</span><span class="p">,</span> <span class="k">timestamp</span> <span class="n">long</span><span class="p">);</span>
+
+<span class="k">from</span> <span class="n">HeartbeatStream</span>
+<span class="k">select</span> <span class="o">*</span>
+<span class="k">update</span> <span class="n">ServerInfoTable</span>
+    <span class="k">set</span> <span class="n">ServerInfoTable</span><span class="p">.</span><span class="n">latestHeartbeatTime</span> <span class="o">=</span> <span class="k">timestamp</span>
+    <span class="k">on</span> <span class="n">ServerInfoTable</span><span class="p">.</span><span class="n">serverIP</span> <span class="o">==</span> <span class="n">serverIP</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<p><strong>Example 2</strong></p>
+<p>A query to update the <code>peoplePresent</code> in the <code>RoomOccupancyTable</code> table for each <code>roomNo</code> based on new people <code>arrival</code> and <code>exit</code> values from events of the <code>UpdateStream</code> stream.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">define</span> <span class="k">table</span> <span class="n">RoomOccupancyTable</span> <span class="p">(</span><span class="n">roomNo</span> <span class="nb">int</span><span class="p">,</span> <span class="n">peoplePresent</span> <span class="nb">int</span><span class="p">);</span>
 <span class="n">define</span> <span class="n">stream</span> <span class="n">UpdateStream</span> <span class="p">(</span><span class="n">roomNumber</span> <span class="nb">int</span><span class="p">,</span> <span class="n">arrival</span> <span class="nb">int</span><span class="p">,</span> <span class="n">exit</span> <span class="nb">int</span><span class="p">);</span>
 
 <span class="k">from</span> <span class="n">UpdateStream</span>
 <span class="k">select</span> <span class="o">*</span>
 <span class="k">update</span> <span class="n">RoomOccupancyTable</span>
-    <span class="k">set</span> <span class="n">RoomOccupancyTable</span><span class="p">.</span><span class="n">people</span> <span class="o">=</span> <span class="n">RoomOccupancyTable</span><span class="p">.</span><span class="n">people</span> <span class="o">+</span> <span class="n">arrival</span> <span class="o">-</span> <span class="n">exit</span>
+    <span class="k">set</span> <span class="n">RoomOccupancyTable</span><span class="p">.</span><span class="n">peoplePresent</span> <span class="o">=</span> <span class="n">RoomOccupancyTable</span><span class="p">.</span><span class="n">peoplePresent</span> <span class="o">+</span> <span class="n">arrival</span> <span class="o">-</span> <span class="n">exit</span>
     <span class="k">on</span> <span class="n">RoomOccupancyTable</span><span class="p">.</span><span class="n">roomNo</span> <span class="o">==</span> <span class="n">roomNumber</span><span class="p">;</span>
 </pre></div>
 </td></tr></table>
 
+<p><strong>Example 2</strong></p>
+<p>A query to update the <code>latestHeartbeatTime</code> on the <code>HeartbeatTable</code> for each event on the <code>HeartbeatStream</code>.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">define</span> <span class="k">table</span> <span class="n">HeartbeatTable</span> <span class="p">(</span><span class="n">serverIP</span> <span class="n">string</span><span class="p">,</span> <span class="n">latestHeartbeatTime</span> <span class="n">long</span><span class="p">);</span>
+<span class="n">define</span> <span class="n">stream</span> <span class="n">HeartbeatStream</span> <span class="p">(</span><span class="n">serverIP</span> <span class="n">string</span><span class="p">,</span> <span class="k">timestamp</span> <span class="n">long</span><span class="p">);</span>
+
+<span class="k">from</span> <span class="n">HeartbeatStream</span>
+<span class="k">select</span> <span class="n">serverIP</span><span class="p">,</span> <span class="k">timestamp</span> <span class="k">as</span> <span class="n">latestHeartbeatTime</span>
+<span class="k">update</span> <span class="n">HeartbeatTable</span>
+    <span class="k">on</span> <span class="n">ServerInfoTable</span><span class="p">.</span><span class="n">serverIP</span> <span class="o">==</span> <span class="n">serverIP</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
 <h3 id="update-or-insert">Update or Insert<a class="headerlink" href="#update-or-insert" title="Permanent link">&para;</a></h3>
-<p>This allows you update if the event attributes already exist in the table based on a condition, or
-else insert the entry as a new attribute.</p>
+<p>Allows a stream to update the events (records) that already exist in the table based on a condition, else inserts the event as a new entry to the table.</p>
 <p><strong>Syntax</strong></p>
-<p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
 4
@@ -5073,24 +5253,17 @@ else insert the entry as a new attribute.</p>
     <span class="k">on</span> <span class="o">&lt;</span><span class="n">condition</span><span class="o">&gt;</span>
 </pre></div>
 </td></tr></table>
-The <code>condition</code> element specifies the basis on which events are selected for update.
-When specifying the <code>condition</code>, table attributes should be referred to with the table name.
-If a record that matches the condition does not already exist in the table, the arriving event is inserted into the table.</p>
-<p>The <code>set</code> clause is only used when an update is performed during the insert/update operation.
-When <code>set</code> clause is used, the attribute to the left is always a table attribute, and the attribute to the right can be a stream/table attribute, mathematical
-operation or other. The attribute to the left (i.e., the attribute in the event table) is updated with the value of the attribute to the right if the given condition is met. When the <code>set</code> clause is not provided, all the attributes in the table are updated.</p>
+
+<p>The <code>condition</code> element specifies the basis on which the events in the table are selected to be updated. <strong>When referring the table attributes in the update clause, they must always be referred with the table name</strong>, and when the condition does not match with any event in the table, then a new event (a record) is inserted into the table. Here, when a condition is not defined, all the events in the table will be updated.</p>
+<p>The <code>set</code> clause is only used when an update is performed in the update or insert operation. In this case, the <code>set</code> keyword can be used to update only the selected attributes from the table. Here, for each assignment, the attribute specified in the left must be the table attribute that is being updated, and the right can contain a query output attribute, a table attribute, a mathematical operation, or any other. When the <code>set</code> clause is not provided, all attributes in the table will be updated based on the query output.  </p>
+<p>To execute update or insert, only for specific event types, use the <code>current events</code>, <code>expired events</code> or the <code>all events</code> keyword can be used with <code>for</code> as shown in the syntax. For more information refer <a href="#event-type">Event Type</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>When the attribute to the right is a table attribute, the operations supported differ based on the database type.</p>
-</div>
-<p>To execute update upon specific event types use the <code>current events</code>, <code>expired events</code> or the <code>all events</code> keyword with <code>for</code> as shown
-in the syntax. To understand more see <a href="#event-type">Event Type</a>.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Table attributes should be always referred to with the table name as <code>&lt;table name&gt;.&lt;attibute name&gt;</code>.</p>
+<p>In the <code>update or insert</code> clause, the table attributes must be always referred with the table name as follows:
+<code>&lt;table name&gt;.&lt;attribute name&gt;</code></p>
 </div>
 <p><strong>Example</strong></p>
-<p>The following query update for events in the <code>UpdateTable</code> event table that have room numbers that match the same in the <code>UpdateStream</code> stream. When such events are found in the event table, they are updated. When a room number available in the stream is not found in the event table, it is inserted from the stream.</p>
+<p>A query to update <code>assignee</code> information in the <code>RoomAllocationTable</code> table for the corresponding <code>roomNumber</code> from the <code>RoomAllocationStream</code> stream when at least one matching record is present in the table, and when there are no matching records it inserts a new record to the <code>RoomAllocationTable</code> table based on the query output.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
@@ -5098,19 +5271,19 @@ in the syntax. To understand more see <a href="#event-type">Event Type</a>.</p>
 5
 6
 7
-8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">define</span> <span class="k">table</span> <span class="n">RoomAssigneeTable</span> <span class="p">(</span><span class="n">roomNo</span> <span class="nb">int</span><span class="p">,</span> <span class="k">type</span> <span class="n">string</span><span class="p">,</span> <span class="n">assignee</span> <span class="n">string</span><span class="p">);</span>
-<span class="n">define</span> <span class="n">stream</span> <span class="n">RoomAssigneeStream</span> <span class="p">(</span><span class="n">roomNumber</span> <span class="nb">int</span><span class="p">,</span> <span class="k">type</span> <span class="n">string</span><span class="p">,</span> <span class="n">assignee</span> <span class="n">string</span><span class="p">);</span>
+8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">define</span> <span class="k">table</span> <span class="n">RoomAllocationTable</span> <span class="p">(</span><span class="n">roomNo</span> <span class="nb">int</span><span class="p">,</span> <span class="k">type</span> <span class="n">string</span><span class="p">,</span> <span class="n">assignee</span> <span class="n">string</span><span class="p">);</span>
+<span class="n">define</span> <span class="n">stream</span> <span class="n">RoomAllocationStream</span> <span class="p">(</span><span class="n">roomNumber</span> <span class="nb">int</span><span class="p">,</span> <span class="k">type</span> <span class="n">string</span><span class="p">,</span> <span class="n">assignee</span> <span class="n">string</span><span class="p">);</span>
 
-<span class="k">from</span> <span class="n">RoomAssigneeStream</span>
+<span class="k">from</span> <span class="n">RoomAllocationStream</span>
 <span class="k">select</span> <span class="n">roomNumber</span> <span class="k">as</span> <span class="n">roomNo</span><span class="p">,</span> <span class="k">type</span><span class="p">,</span> <span class="n">assignee</span>
-<span class="k">update</span> <span class="k">or</span> <span class="k">insert</span> <span class="k">into</span> <span class="n">RoomAssigneeTable</span>
-    <span class="k">set</span> <span class="n">RoomAssigneeTable</span><span class="p">.</span><span class="n">assignee</span> <span class="o">=</span> <span class="n">assignee</span>
-    <span class="k">on</span> <span class="n">RoomAssigneeTable</span><span class="p">.</span><span class="n">roomNo</span> <span class="o">==</span> <span class="n">roomNo</span><span class="p">;</span>
+<span class="k">update</span> <span class="k">or</span> <span class="k">insert</span> <span class="k">into</span> <span class="n">RoomAllocationTable</span>
+    <span class="k">set</span> <span class="n">RoomAllocationTable</span><span class="p">.</span><span class="n">assignee</span> <span class="o">=</span> <span class="n">assignee</span>
+    <span class="k">on</span> <span class="n">RoomAllocationTable</span><span class="p">.</span><span class="n">roomNo</span> <span class="o">==</span> <span class="n">roomNo</span><span class="p">;</span>
 </pre></div>
 </td></tr></table>
 
 <h3 id="in">In<a class="headerlink" href="#in" title="Permanent link">&para;</a></h3>
-<p>This allows the stream to check whether the expected value exists in the table as a part of a conditional operation.</p>
+<p>Allows the query to check whether the expected value exists in the table using a condition operation.</p>
 <p><strong>Syntax</strong></p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
@@ -5120,11 +5293,9 @@ in the syntax. To understand more see <a href="#event-type">Event Type</a>.</p>
 </pre></div>
 </td></tr></table>
 
-<p>The <code>condition</code> element specifies the basis on which events are selected to be compared.
-When constructing the <code>condition</code>, the table attribute must be always referred to with the table name as shown below:
-<code>&lt;table&gt;.&lt;attibute name&gt;</code>.</p>
-<p><strong>Example</strong></p>
-<p>This Siddhi application filters only room numbers that are listed in the <code>ServerRoomTable</code> table.</p>
+<p>The <code>condition</code> element specifies the basis on which the events in the table are checked for existence. <strong>When referring the table attributes in the <code>condition</code>, they must always be referred with the table name</strong> as <code>&lt;table name&gt;.&lt;attribute name&gt;</code>.</p>
+<p><strong>Example 1</strong></p>
+<p>A query to filter only the events of server rooms from the <code>TempStream</code> stream using the <code>ServerRoomTable</code> table, and pass them for further processing via <code>ServerRoomTempStream</code> stream.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
@@ -5134,6 +5305,20 @@ When constructing the <code>condition</code>, the table attribute must be always
 
 <span class="k">from</span> <span class="n">TempStream</span><span class="p">[</span><span class="n">ServerRoomTable</span><span class="p">.</span><span class="n">roomNo</span> <span class="o">==</span> <span class="n">roomNo</span> <span class="k">in</span> <span class="n">ServerRoomTable</span><span class="p">]</span>
 <span class="k">insert</span> <span class="k">into</span> <span class="n">ServerRoomTempStream</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<p><strong>Example 2</strong></p>
+<p>A query to filter out the blacklisted <code>serverIP</code>s from the <code>RequestStream</code> stream using the <code>BlacklistTable</code> table, and only pass events having IPs that are not blacklisted, for further processing via <code>FilteredRequestStream</code> stream.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">define</span> <span class="k">table</span> <span class="n">BlacklistTable</span> <span class="p">(</span><span class="n">serverIP</span> <span class="n">string</span><span class="p">);</span>
+<span class="n">define</span> <span class="n">stream</span> <span class="n">RequestStream</span> <span class="p">(</span><span class="n">ip</span> <span class="n">string</span><span class="p">,</span> <span class="n">request</span> <span class="n">string</span><span class="p">);</span>
+
+<span class="k">from</span> <span class="n">RequestStream</span><span class="p">[</span><span class="k">not</span> <span class="p">(</span><span class="n">BlacklistTable</span><span class="p">.</span><span class="n">serverIP</span> <span class="o">==</span> <span class="n">ip</span> <span class="k">in</span> <span class="n">BlacklistTable</span><span class="p">)]</span>
+<span class="k">insert</span> <span class="k">into</span> <span class="n">FilteredRequestStream</span><span class="p">;</span>
 </pre></div>
 </td></tr></table>
 
@@ -5544,7 +5729,7 @@ Events can be inserted to a named window from one or more queries and it can pro
 
 <p><strong>Operators on Named Windows</strong></p>
 <p>The following operators can be performed on named windows.</p>
-<h3 id="insert_1">Insert<a class="headerlink" href="#insert_1" title="Permanent link">&para;</a></h3>
+<h3 id="insert_2">Insert<a class="headerlink" href="#insert_2" title="Permanent link">&para;</a></h3>
 <p>This allows events to be inserted into windows. This is similar to inserting events into streams.</p>
 <p><strong>Syntax</strong></p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
@@ -5555,8 +5740,7 @@ Events can be inserted to a named window from one or more queries and it can pro
 </pre></div>
 </td></tr></table>
 
-<p>To insert only events of a specific event type, add the <code>current events</code>, <code>expired events</code> or the <code>all events</code> keyword between <code>insert</code> and <code>into</code> keywords (similar to how it is done for streams).</p>
-<p>For more information, see <a href="#event-type">Event Type</a>.</p>
+<p>To insert only events of a specific event type, add the <code>current events</code>, <code>expired events</code> or the <code>all events</code> keyword can be used between <code>insert</code> and <code>into</code> keywords (similar to how it is done for streams). For more information, see <a href="#event-type">Event Type</a>.</p>
 <p><strong>Example</strong></p>
 <p>This query inserts all events from the <code>TempStream</code> stream to the <code>OneMinTempWindow</code> window.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
@@ -5633,7 +5817,7 @@ It returns all the events of the right stream/window even if there are no matchi
 Here, output event are generated for each incoming event even if there are no matching events in the other stream/window.</p>
 </li>
 </ul>
-<h3 id="from">From<a class="headerlink" href="#from" title="Permanent link">&para;</a></h3>
+<h3 id="from_1">From<a class="headerlink" href="#from_1" title="Permanent link">&para;</a></h3>
 <p>A window can be an input to a query, similar to streams.</p>
 <p>Note !!!
      When window is used as an input to a query, another window cannot be applied on top of this.</p>
@@ -5920,7 +6104,7 @@ and granularity.</p>
 </pre></div>
 </td></tr></table>
 
-<h3 id="insert_2">Insert<a class="headerlink" href="#insert_2" title="Permanent link">&para;</a></h3>
+<h3 id="insert_3">Insert<a class="headerlink" href="#insert_3" title="Permanent link">&para;</a></h3>
 <p>This allows you to insert a new record to the table with the attribute values you define in the <code>select</code> section.</p>
 <p><strong>Syntax</strong></p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
@@ -5952,7 +6136,7 @@ and granularity.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Table attributes must always be referred to with the table name as shown below: <br />
- <code>&lt;table name&gt;.&lt;attibute name&gt;</code>.</p>
+<code>&lt;table name&gt;.&lt;attribute name&gt;</code>.</p>
 </div>
 <p><strong>Example</strong></p>
 <p>In this example, query deletes a record in the table named <code>RoomTypeTable</code> if it has value for the <code>roomNo</code>
@@ -5990,7 +6174,7 @@ When specifying the <code>condition</code>, table attributes must be referred to
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Table attributes must always be referred to with the table name as shown below: <br />
- <code>&lt;table name&gt;.&lt;attibute name&gt;</code>.</p>
+ <code>&lt;table name&gt;.&lt;attribute name&gt;</code>.</p>
 </div>
 <p><strong>Example</strong></p>
 <p>The following query updates the room occupancy by increasing the value of <code>people</code> by 1, in the <code>RoomOccupancyTable</code>
@@ -6014,8 +6198,7 @@ table for each room number greater than 10.</p>
 </td></tr></table>
 
 <h3 id="update-or-insert_1">Update or Insert<a class="headerlink" href="#update-or-insert_1" title="Permanent link">&para;</a></h3>
-<p>This allows you to update selected attributes if a record that meets the given conditions already exists in the specified  table.
-If a matching record does not exist, the entry is inserted as a new record.</p>
+<p>Allows a stream to update selected records form a table if they exist, and if not a new entry is inserted in to the table.</p>
 <p><strong>Syntax</strong></p>
 <p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
@@ -6035,7 +6218,7 @@ operation or other. The attribute to the left (i.e., the attribute in the event 
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Table attributes must always be referred to with the table name as shown below: <br />
- <code>&lt;table name&gt;.&lt;attibute name&gt;</code>.</p>
+ <code>&lt;table name&gt;.&lt;attribute name&gt;</code>.</p>
 </div>
 <p><strong>Example</strong></p>
 <p>The following query tries to update the records in the <code>RoomAssigneeTable</code> table that have room numbers that match the
