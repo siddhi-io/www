@@ -12,7 +12,7 @@ Select the appropriate Siddhi distribution for your use case.
 
 ### **5.1.0-beta**
 
-Based on Siddhi Core 5.1.3 | &nbsp;      | &nbsp;  | &nbsp; |  &nbsp; |
+Based on Siddhi Core 5.1.4 | &nbsp;      | &nbsp;  | &nbsp; |  &nbsp; |
 ------     | -----    | ----- | ----- | ----- |
 [Siddhi Tooling](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-beta/siddhi-tooling-5.1.0-beta.zip) | [md5](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-beta/siddhi-tooling-5.1.0-beta.zip.md5) | [SHA-1](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-beta/siddhi-tooling-5.1.0-beta.zip.sha1) | [asc](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-beta/siddhi-tooling-5.1.0-beta.zip.asc) | [source code](https://github.com/siddhi-io/distribution/releases/tag/v5.1.0-beta) 
 [Siddhi Runner](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-beta/siddhi-runner-5.1.0-beta.zip) | [md5](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-beta/siddhi-runner-5.1.0-beta.zip.md5) | [SHA-1](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-beta/siddhi-runner-5.1.0-beta.zip.sha1) | [asc](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-beta/siddhi-runner-5.1.0-beta.zip.asc) | [source code](https://github.com/siddhi-io/distribution/releases/tag/v5.1.0-beta)
