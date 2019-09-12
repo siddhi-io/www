@@ -2,7 +2,23 @@
 
 ## Siddhi Core Libraries Releases
 
-### Siddhi Core 5.1.2
+### Siddhi Core 5.1.4
+
+#### Highlights
+* Improvements related to `@index` annotation usage in stores and some dependency upgrades.
+
+#### Features & Improvements
+* Change the behavior of in-memory tables to support multiple '@index' annotations. [(#1491)](https://github.com/siddhi-io/siddhi/pull/1491)
+
+#### Bug Fixes
+* Fix NPE when count() AttributeFunction is used [(#1485)](https://github.com/siddhi-io/siddhi/pull/1485)
+
+#### Complete Changes 
+Please find the complete changes [here](https://github.com/siddhi-io/siddhi/compare/v5.1.3...v5.1.4)
+
+!!! info "Please find more details about the release [here](https://github.com/siddhi-io/siddhi/releases/tag/v5.1.4)"
+
+### Siddhi Core 5.1.3
 
 #### Highlights
 * Improvements done for use cases such as throttling, continuous testing & integration and error handling.
@@ -72,6 +88,30 @@ Please find the complete changes [here](https://github.com/siddhi-io/siddhi/comp
 !!! info "Please find more details about the release [here](https://github.com/siddhi-io/siddhi/releases/tag/v5.1.0)"
 
 ## Siddhi Distribution Releases
+
+### Siddhi Distribution 5.1.0-Beta
+
+#### Highlights
+* Refer the Siddhi 5.1.4 [release note](https://github.com/siddhi-io/siddhi/releases/tag/v5.1.4) to get to know about the latest feature improvements and bug fixes done for Siddhi engine.
+
+#### Features & Improvements
+* Add preview support to receive/publish gRpc events. [(#396)](https://github.com/siddhi-io/distribution/pull/396)
+* Skip empty jar/bundle selections in Docker/Kubernetes export. [(#367)](https://github.com/siddhi-io/distribution/pull/367)
+* UI/UX improvements in k8/Docker export feature. [(#373)](https://github.com/siddhi-io/distribution/pull/373), [(#369)](https://github.com/siddhi-io/distribution/pull/369)
+* Improve startup scripts carbon.sh and carbon.bat to support JDK 11. [(#394)](https://github.com/siddhi-io/distribution/pull/394)
+
+#### Bug Fixes
+* Bug fixes related to Docker/Kubernetes artifacts export features. [(#372)](https://github.com/siddhi-io/distribution/pull/372)
+* Change export file names and replace init script from the Dockerfile. [(#383)](https://github.com/siddhi-io/distribution/pull/383)
+* Remove unnecessary and unprotected API from runner distribution. [(#389)](https://github.com/siddhi-io/distribution/pull/389)
+* Bug: Switching from design view to source view after changing any element causes the conversion of triple-quotes into single ones in the avro scheme definition. [(#353)](https://github.com/siddhi-io/distribution/pull/353)
+
+#### Complete Changes 
+Please find the complete changes [here](https://github.com/siddhi-io/distribution/compare/v5.1.0-alpha...v5.1.0-beta) 
+
+!!! info "Please find more details about the release [here](https://github.com/siddhi-io/distribution/releases/tag/v5.1.0-beta)"
+
+!!! info "Please find the details of the corresponding docker release [here](https://github.com/siddhi-io/docker-siddhi/releases/tag/v5.1.0-beta)"
 
 ### Siddhi Distribution 5.1.0-Alpha
 
