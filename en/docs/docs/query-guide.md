@@ -46,8 +46,8 @@ Below table provides brief description of a few key elements in the Siddhi Strea
 | Stream    | A logical series of events ordered in time with a uniquely identifiable name, and a defined set of typed attributes defining its schema. |
 | Event     | An event is a single event object associated with a stream. All events of a stream contains a timestamp and an identical set of typed attributes based on the schema of the stream they belong to.|
 | Table     | A structured representation of data stored with a defined schema. Stored data can be backed by `In-Memory`, or external data stores such as `RDBMS`, `MongoDB`, etc. The tables can be accessed and manipulated at runtime.
-| Named Window     | A structured representation of data stored with a defined schema and eviction policy. Window data is stored `In-Memory` and automatically cleared by the named window constrain. Other siddhi elements can only query the values in windows at runtime but they cannot modify them.
-| Named Aggregation     | A structured representation of data that's incrementally aggregated and stored with a defined schema and aggregation granularity such as seconds, minutes, hours, etc. Aggregation data is stored both `In-Memory` and in external data stores such as `RDBMS`. Other siddhi elements can only query the values in windows at runtime but they cannot modify them.
+| Named-Window     | A structured representation of data stored with a defined schema and eviction policy. Window data is stored `In-Memory` and automatically cleared by the named-window constrain. Other siddhi elements can only query the values in windows at runtime but they cannot modify them.
+| Named-Aggregation     | A structured representation of data that's incrementally aggregated and stored with a defined schema and aggregation granularity such as seconds, minutes, hours, etc. Aggregation data is stored both `In-Memory` and in external data stores such as `RDBMS`. Other siddhi elements can only query the values in windows at runtime but they cannot modify them.
 | Query	    | A logical construct that processes events in streaming manner by by consuming data from one or more streams, tables, windows and aggregations, and publishes output events into a stream, table or a window.
 | Source    | A construct that consumes data from external sources (such as `TCP`, `Kafka`, `HTTP`, etc) with various event formats such as `XML`, `JSON`, `binary`, etc, convert then to Siddhi events, and passes into streams for processing.
 | Sink      | A construct that consumes events arriving at a stream, maps them to a predefined data format (such as `XML`, `JSON`, `binary`, etc), and publishes them to external endpoints (such as `E-mail`, `TCP`, `Kafka`, `HTTP`, etc).
@@ -111,9 +111,9 @@ The following parameters are used to configure a stream definition.
 
 | Parameter     | Description |
 | ------------- |-------------|
-| `stream name`      | The name of the stream created. (It is recommended to define a stream name in `PascalCase`.) |
-| `attribute name`   | Uniquely identifiable name of the stream attribute. (It is recommended to define attribute names in `camelCase`.)|    
-| `attribute type`   | The type of each attribute defined in the schema. <br/> This can be `STRING`, `INT`, `LONG`, `DOUBLE`, `FLOAT`, `BOOL` or `OBJECT`.     |
+| `<stream name>`      | The name of the stream created. (It is recommended to define a stream name in `PascalCase`.) |
+| `<attribute name>`   | Uniquely identifiable name of the stream attribute. (It is recommended to define attribute names in `camelCase`.)|    
+| `<attribute type>`   | The type of each attribute defined in the schema. <br/> This can be `STRING`, `INT`, `LONG`, `DOUBLE`, `FLOAT`, `BOOL` or `OBJECT`.     |
 
 To use and refer stream and attribute names that do not follow `[a-zA-Z_][a-zA-Z_0-9]*` format enclose them in ``` ` ```. E.g. ``` `$test(0)` ```.
 
@@ -132,6 +132,7 @@ The above creates a stream with name `TempStream` having the following attribute
 
 
 ### Source
+
 Sources receive events via multiple transports and in various data formats, and direct them into streams for processing.
 
 A source configuration allows to define a mapping in order to convert each incoming event from its native data format to a Siddhi event. When customizations to such mappings are not provided, Siddhi assumes that the arriving event adheres to the predefined format based on the stream definition and the configured message mapping type.
@@ -230,6 +231,7 @@ The following is the list of source mapping types supported by Siddhi:
 
 Receive `JSON` messages by exposing an `HTTP` service, and direct them to `InputStream` stream for processing.
 Here the `HTTP` service will be secured with basic authentication, receives events on all network interfaces on port `8080` and context `/foo`. The service expects the `JSON` messages to be on the default data format that's supported by the `JSON` mapper as follows.
+
 ```json
 {
   "name":"Paul",
@@ -674,10 +676,10 @@ The following parameters are used to configure a stream definition.
 
 | Parameter&nbsp;&nbsp;&nbsp;&nbsp;| Description |
 |----------------|-------------|
-| `query name`   | The name of the query. Since naming the query (i.e the `@info(name = '<query name>')` annotation) is optional, when the name is not provided Siddhi assign a system generated name for the query. |
-| `input`        | Defines the means of event consumption via [streams](#stream), [named-windows](#named-window), [tables](#table), and/or [named-aggregations](#named-aggregations), and defines the processing logic using [filters](#filter), [windows](#window), [stream-functions](#stream-function), [joins](#join), [patterns](#pattern) and [sequences](#sequence). |
-| `projection`   | Generates output event attributes using [select](#select), [functions](#function), [aggregation-functions](#aggregation-function), and [group by](#group-by) operations, and filters the generated the output using [having](#having), [limit & offset](#limit-offset), [order by](#order-by), and [output rate limiting](#output-rate-limiting) operations before sending them out. Here the projection is optional and when it is omitted all the input events will be sent to the output as it is. |
-| `output action`| Defines output action (such as `insert into`, `update`, `delete`, etc) that needs to be performed by the generated events on a [stream](#stream), [named-window](#named-window), or [table](#table)  |
+| `<query name>`   | The name of the query. Since naming the query (i.e the `@info(name = '<query name>')` annotation) is optional, when the name is not provided Siddhi assign a system generated name for the query. |
+| `<input>`        | Defines the means of event consumption via [streams](#stream), [named-windows](#named-window), [tables](#table), and/or [named-aggregations](#named-aggregations), and defines the processing logic using [filters](#filter), [windows](#window), [stream-functions](#stream-function), [joins](#join), [patterns](#pattern) and [sequences](#sequence). |
+| `<projection>`   | Generates output event attributes using [select](#select), [functions](#function), [aggregation-functions](#aggregation-function), and [group by](#group-by) operations, and filters the generated the output using [having](#having), [limit & offset](#limit-offset), [order by](#order-by), and [output rate limiting](#output-rate-limiting) operations before sending them out. Here the projection is optional and when it is omitted all the input events will be sent to the output as it is. |
+| `<output action>`| Defines output action (such as `insert into`, `update`, `delete`, etc) that needs to be performed by the generated events on a [stream](#stream), [named-window](#named-window), or [table](#table)  |
 
 ## From
 
@@ -690,7 +692,7 @@ The input [stream](#stream), [named-window](#named-window), [table](#table), and
 A high level syntax for consuming events from a stream, named-window, table, and/or named-aggregation is as follow;
 
 ```sql
-from (<stream>|<named-window>)<handler>*) ((join (<stream>|<named-window>|<table>|<named-aggregation>)<handler>*)|((,|->)(<stream>|<named-window>)<handler>*)+)?
+from ((<stream>|<named-window>)<handler>*) ((join (<stream>|<named-window>|<table>|<named-aggregation>)<handler>*)|((,|->)(<stream>|<named-window>)<handler>*)+)?
 <projection>
 insert into (<stream>|<named-window>|<table>)
 ```
@@ -992,7 +994,7 @@ It encapsulate pre-configured reusable execution logic allowing users to execute
 The syntax of function is as follows,
 
 ```sql
-<function name>( <parameter>* )
+<function name>( (<parameter>(, <parameter>)*)? )
 ```
 
 Here `<function name>` uniquely identifies the function. The `<parameter>` defined input parameters the function can accept. The input parameters can be attributes, constant values, results of other functions, results of mathematical or logical expressions, or time values. The number and type of parameters a function accepts depend on the function itself.
@@ -1486,21 +1488,21 @@ During the joining process each incoming event of each stream is matched against
 When there is no window associated with the joining steam, `window.lengthBatch(0)` is assigned by default to the steam to enable the join process and to preserve stream's stateless nature.
 
 !!! Note
-    Join can also be performed with [stored data](#join-table), [aggregation](#join-aggregation) or externally [named windows](#join-window).
+    Join can also be performed with [table](#join-table), [named-aggregation](#join-named-aggregation), or [named-windows](#join-named-window).
 
 **Syntax**
 
 The syntax to join two streams is as follows:
 
 ```sql
-from <input stream>(#window.<window name>(<parameter>, ... ))? (unidirectional)? (as <reference>)?
-         <join type> <input stream>(#window.<window name>(<parameter>,  ... ))? (unidirectional)? (as <reference>)?
+from <input stream>(<non window handler>)*(#window.<window name>(<parameter>, ... ))? (unidirectional)? (as <reference>)?
+         <join type> <input stream>(<non window handler>)*(#window.<window name>(<parameter>,  ... ))? (unidirectional)? (as <reference>)?
     (on <join condition>)?
-select <attribute name>, <attribute name>, ...
+select <reference>.<attribute name>, <reference>.<attribute name>, ...
 insert into <output stream>
 ```
 
-Here, both the streams can have a window associated with them and have an optional `<join condition>`  next to the `on` keyword to match events from both windows to generate combined output events.
+Here, both the streams can have optional non window handlers (filters, stream functions, and stream processors) followed by a window associated with them. They can also have an optional `<join condition>` next to the `on` keyword to match events from both windows to generate combined output events.
 
 !!! Note "Window should be defined as the last element of each joining stream."
     Join query expects a window to be defined as the last element of each joining stream, therefore a filter cannot be defined after the window.
@@ -2272,7 +2274,7 @@ Here, the events in `LoginStream` is partitioned by their `sessionID` attribute 
 
 A table is a stored collection of events, and its schema is defined via the **table definition**.
 
-A table definition is similar to the stream definition where it contains the table name and a set of attributes having a specific type and a uniquely identifiable name within the scope of the table. Here, all events associated with the table will have the same schema (i.e., have the same attributes in the same order).
+A table definition is similar to the stream definition where it contains the table name and a set of attributes having specific types and uniquely identifiable names within the scope of the table. Here, all events associated with the table will have the same schema (i.e., have the same attributes in the same order).
 
 The events of the table are stored `in-memory`, but Siddhi also provides [store extensions](#store) to mirror the table to external databases such as RDBMS, MongoDB, and others, while allowing the events to be stored on those databases.
 
@@ -2280,10 +2282,10 @@ Table supports primary keys to enforce uniqueness on stored events/recodes, and 
 
 **Purpose**
 
-Tables helps to work with stored events. It allows to pick and choose the events that need to be stored by performing insert, update, and delete operations and helps to retrieve necessarily events when by performing read operation on the table.
+Tables help to work with stored events. They allow to pick and choose the events that need to be stored by performing insert, update, and delete operations, and help to retrieve necessarily events when by performing read operations.
 
 !!! Note "Managing events stored in table"
-    The events in the table can be managed using queries that perform join, insert, update, insert or update, and delete operates, which are either initiated by events arriving in Streams or through the [Store query API](#store-query).
+    The events in the table can be managed using queries that perform join, insert, update, insert or update, and delete operates, which are either initiated by events arriving in Streams or through [on-demand queries](#on-demand-query).
 
 **Syntax**
 
@@ -2292,16 +2294,15 @@ The syntax for defining a table is as follows:
 ```sql
 @primaryKey( <key>, <key>, ... )
 @index( <key>, <key>, ...)
-@index( <key>, <key>, ...)
 define table <table name> (<attribute name> <attribute type>, <attribute name> <attribute type>, ... );
 ```
-The following parameters are used to configure a table definition:
+The following parameters are used to configure the table definition:
 
 | Parameter     | Description |
 | ------------- |-------------|
-| `table name`      | The name of the table created. (It is recommended to define a table name in `PascalCase`.) |
-| `attribute name`   | Uniquely identifiable name of the table attribute. (It is recommended to define attribute names in `camelCase`.)|    
-| `attribute type`   | The type of each attribute defined in the schema. <br/> This can be `STRING`, `INT`, `LONG`, `DOUBLE`, `FLOAT`, `BOOL` or `OBJECT`.     |
+| `<table nam>`      | The name of the table created. (It is recommended to define a table name in `PascalCase`.) |
+| `<attribute name>`   | Uniquely identifiable name of the table attribute. (It is recommended to define attribute names in `camelCase`.)|    
+| `<attribute type>`   | The type of each attribute defined in the schema. <br/> This can be `STRING`, `INT`, `LONG`, `DOUBLE`, `FLOAT`, `BOOL` or `OBJECT`.     |
 
 To use and refer table and attribute names that do not follow `[a-zA-Z_][a-zA-Z_0-9]*` format enclose them in ``` ` ```. E.g. ``` `$test(0)` ```.
 
@@ -2309,7 +2310,7 @@ To use and refer table and attribute names that do not follow `[a-zA-Z_][a-zA-Z_
 
 Primary keys help to avoid duplication of data by enforcing nor two events to have the same value for the selected primary key attributes. They also index the table to access the events much faster.
 
-Primary keys are optional, and they can be configured using the `@primaryKey` annotation. Here, each table can only have at most one `@primaryKey` annotation, which can have one or more `attribute name`s defined as primary keys. When more than one attribute is used, the uniqueness of the events stored in the table is determined based on the composite value for those attributes.
+Primary keys are optional, and they can be configured using the `@primaryKey` annotation. Here, each table can only have at most one `@primaryKey` annotation, which can have one or more `<attribute name>`s defined as primary keys. When more than one attribute is used, the uniqueness of the events stored in the table is determined based on the composite value for those attributes.
 
 When more than one events having the same primary keys are inserted to the table, the latter event replaces the event/record that already exists in the table.
 
@@ -2317,9 +2318,10 @@ When more than one events having the same primary keys are inserted to the table
 
 Indexes allow events in the tables to be searched/modified much faster, but unlike primary keys, the indexed attributes support duplicate values.
 
-Indexes are optional, and they can be configured using the `@index` annotation. Here, each `@index` annotation creates an index in the table, and the tables only support one `attribute name` for each index.  
+Indexes are optional, and they can be configured using the `@index` annotation. Here, each `@index` annotation creates an index in the table, and the tables only support one `<attribute name>` for each index.  
 
 **Example 1 (Primary key)**
+
 ```sql
 define table RoomTypeTable ( roomNo int, type string );
 ```
@@ -2395,7 +2397,6 @@ The syntax for defining a store along with is associated table is as follows:
        @cache(size='<cache size>', cache.policy='<cache policy>', retention.period='<retention period>', purge.interval="<purge interval>"))
 @primaryKey( <key>, <key>, ... )
 @index( <key>, <key>, ...)
-@index( <key>, <key>, ...)
 define table <table name> (<attribute name> <attribute type>, <attribute name> <attribute type>, ... );
 ```
 
@@ -2403,7 +2404,7 @@ Here the store is defined via the `@store` annotation, and the schema of the sto
 
 The `type` parameter of the `@store` defines the store type to be used to connect to the external data store, and the other parameters of `@store` annotation other than `@cache` depend on the store selected, where some of these parameters can be optional.
 
-The `@primaryKey` and `@index` annotations are optional, and supported by some store implementations. The `@primaryKey` annotation can be defined at most once, and it can have one or more `attribute name`s as composed primary keys based on the implementation. At the same time, `@index` annotation can be defined several times, and it can also have one or more `attribute name`s as composed indexes if the implementation supports them.
+The `@primaryKey` and `@index` annotations are optional, and supported by some store implementations. The `@primaryKey` annotation can be defined at most once, and it can have one or more `<attribute name>`s as composed primary keys based on the implementation. At the same time, `@index` annotation can be defined several times, and it can also have one or more `<attribute name>`s as composed indexes if the implementation supports them.
 
 **Cache**
 
@@ -2413,24 +2414,25 @@ The parameters defining the cache behavior via the `@cache` annotation is as fol
 
 | Parameter | Mandatory/Optional | Default Value | Description |
 |-----------|--------------------|---------------|-------------|
-|`size`       |Mandatory    | - | Maximum number of events/records stored in the cache.|
-|`cache.policy`|Optional|`FIFO`|Policy to remove elements from the cache when the cache is at its maximum size and new entries need to added due to cache miss.
-<br/>Supported policies are <br/>`FIFO` (First-In First-Out), <br/>`LRU` (Least Recently Used)<br/>`LFU` (Least Frequently Used) |
+| `size`       |Mandatory    | - | Maximum number of events/records stored in the cache.|
+| `cache.policy` | Optional | `FIFO` | Policy to remove elements from the cache when the cache is at its maximum size and new entries need to added due to cache miss.<br/>Supported policies are <br/>`FIFO` (First-In First-Out), <br/>`LRU` (Least Recently Used)<br/>`LFU` (Least Frequently Used) |
 |`retention.period`|Optional  |-|The period after an event/record will become eligible for removal from the cached irrespective of the case size. This allows the cache to fetch the recent database updates made by other systems.|
 |`purge.interval`|Optional|Equal to retention period.|The periodic time interval the cached events/records that are eligible for removal will be purge.|
 
 Even though the cache is enabled, its behavior and usage depend on the number of recodes in the external store relative to the maximum cache size defined as follows:
 
 1. Cache size being greater than or equal to the number of recodes in the external store:
-  * At startup, all the recodes of the external store data will be preloaded to cached.
-  * The cache is used to process all type of data retrieval operations.  
-  * When `retention.period` (and `purge.interval`) is configured, all records the cache are periodically deleted and reloaded from the external store.
+
+    * At startup, all the recodes of the external store data will be preloaded to cached.
+    * The cache is used to process all type of data retrieval operations.  
+    * When `retention.period` (and `purge.interval`) is configured, all records the cache are periodically deleted and reloaded from the external store.
 
 2. Cache size is smaller than the number of recodes in the external store:  
-  * At startup, the number of recodes equal to the maximum cache size is preloaded from the external store.
-  * **The cache is used to process only the data retrieval operations that use all defined primary keys in equal (`==`) comparisons, and when there are multiple comparisons, those are combined using `and`**, _(For example when `customerID` and `companyID` are defined as primary keys then the data retrieval operations with condition `customerID == 'John' and companyID == 'Google' and age > 28` can  be executed in the cache)_. All other operations are directly executed in the external data store.
-  * If the cache is full and when a cache miss occurs, a record is removed from the cache based on the defined cache expiry policy before adding the missed record from the external data store.
-  * When `retention.period` (and `purge.interval`) is configured, the data is cache that are loaded earlier than retention period are periodically deleted. Here, no reloading will be done from the external data store.  
+
+    * At startup, the number of recodes equal to the maximum cache size is preloaded from the external store.
+    * **The cache is used to process only the data retrieval operations that use all defined primary keys in equal (`==`) comparisons, and when there are multiple comparisons, those are combined using `and`**, _(For example when `customerID` and `companyID` are defined as primary keys then the data retrieval operations with condition `customerID == 'John' and companyID == 'Google' and age > 28` can  be executed in the cache)_. All other operations are directly executed in the external data store.
+    * If the cache is full and when a cache miss occurs, a record is removed from the cache based on the defined cache expiry policy before adding the missed record from the external data store.
+    * When `retention.period` (and `purge.interval`) is configured, the data is cache that are loaded earlier than retention period are periodically deleted. Here, no reloading will be done from the external data store.  
 
 **Supported Store Types**
 
@@ -2479,7 +2481,7 @@ Here, an `RDBMS` store is defined with a cache of size 100 that every minute rem
 
 **Table (and Store) Operators**
 
-The following operators can be performed on tables (and stores).
+The following operations can be performed on tables (and stores).
 
 ### Insert
 
@@ -2499,13 +2501,16 @@ select <attribute name>, <attribute name>, ...
 insert into <table>
 ```
 
-Similar to streams, the `current events`, `expired events` or the `all events` keyword can be used between `insert` and `into` keywords in order to insert only the specific event types. For more information, see [Event Type](#event-type)
+Similar to streams, the `current events`, `expired events` or the `all events` keyword can be used between `insert` and `into` keywords in order to insert only the specific event types. For more information, refer [Event Type](#event-type) section.
 
 **Example**
 
 Query to inserts all the events from the `TempStream` stream to the `TempTable` table.
 
 ```sql
+define stream TempStream(tempId string, temp double);
+define table TempTable(tempId string, temp double);
+
 from TempStream
 select *
 insert into TempTable;
@@ -2513,25 +2518,27 @@ insert into TempTable;
 
 ### Join (Table)
 
-Allows a stream to retrieve events (records) from a table.
+Allows stream or [named-window](#named-window) to retrieve events (records) from a table.
 
 !!! Note "Other Join Functions"
-    Joins can also be performed with [two streams](#join-stream), [named aggregation](#join-aggregation) or against [named windows](#join-window).
+    Joins can also be performed among [two streams](#join-stream), with [named-aggregation](#join-named-aggregation), or [named-window](#join-named-window).
 
 **Syntax**
 
-The syntax to join a stream with a table is as follows:
+The syntax for a stream or a named-window to join with a table is as follows:
 
 ```sql
-from <input stream> (as <reference>)?
+from (<input stream>(<non window handler>)*(<window>)?|<named-window>) (as <reference>)?
          <join type> <table> (as <reference>)?
     (on <join condition>)?
-select (<input stream>|<table>).<attribute name>, (<input stream>|<table>).<attribute name>, ...
+select <reference>.<attribute name>, <reference>.<attribute name>, ...
 insert into <output stream>
 ```
 
+A join with table is similar to the join of [two streams](#join-stream), where one of the inputs is a table and other can be either a stream or a [named-window](#named-window). Here, the table and named-window cannot have any optional handlers associated with it.
+
 !!! Note "Two tables cannot be joined."
-    A table can only be joint with a stream. Two tables cannot be joint because there must be at least one active entity to trigger the join operation.
+    A table can only be joint with a stream or named-window. Two tables, or table and named-aggregation cannot be joint because there must be at least one active entity to trigger the join operation.
 
 **Supported join types**
 
@@ -2560,7 +2567,7 @@ Table join supports following join operations.
 
 **Example**
 
-A query to join and retrieve the room type from `RoomTypeTable` table based on equal `roomNo` attribute of `TempStream`, and insert the results into `RoomTempStream` steam.
+A query to join and retrieve the room type from `RoomTypeTable` table based on equal `roomNo` attribute of `TempStream`, and to insert the results into `RoomTempStream` steam.
 
 ```sql
 define table RoomTypeTable (roomNo int, type string);
@@ -2584,7 +2591,7 @@ Syntax to delete selected events in a table based on the events in a stream is a
 from <input stream>
 select <attribute name>, <attribute name>, ...
 delete <table> (for <event type>)?
-    on <condition>
+    (on <condition>)?
 ```
 
 The `condition` element specifies the basis on which the events in the table are selected to be deleted. **When specifying the condition, the table attributes should always be referred with the table name**, and and when a condition is not defined, all the events in the table will be deleted.
@@ -2626,17 +2633,19 @@ Allows a stream to update selected events (records) form a table.
 
 **Syntax**
 
+Syntax to update events on a table is as follows;
+
 ```sql
 from <input stream>
 select <attribute name>, <attribute name>, ...
 update <table> (for <event type>)?
-    set <table>.<attribute name> = (<attribute name>|<expression>)?, <table>.<attribute name> = (<attribute name>|<expression>)?, ...
-    on <condition>
+    (set <table>.<attribute name> = (<attribute name>|<expression>), <table>.<attribute name> = (<attribute name>|<expression>), ...)?
+    (on <condition>)?
 ```
 
 The `condition` element specifies the basis on which the events in the table are selected to be updated. **When referring the table attributes in the `update` clause, they must always be referred to with the table name**, and when a condition is not defined, all the events in the table will be updated.
 
-The `set` keyword can be used to update only the selected attributes from the table. Here, for each assignment, the attribute specified in the left must be the table attribute that is being updated, and the right can contain a query output attribute, a table attribute, a mathematical operation, or any other. When the `set` clause is not provided, all attributes in the table will be updated based on the query output.  
+The `set` keyword can be used to update only the selected attributes from the table. Here, for each assignment, the left side should contain the table attribute that is being updated, and the right side can contain a query output attribute, a table attribute, a mathematical operation, or any other. When the `set` clause is not provided, all attributes in the table will be updated based on the query output.  
 
 To execute update, only for specific event types, use the `current events`, `expired events` or the `all events` keyword can be used with `for` as shown in the syntax. For more information refer [Event Type](#event-type).
 
@@ -2674,7 +2683,7 @@ update RoomOccupancyTable
     on RoomOccupancyTable.roomNo == roomNumber;
 ```
 
-**Example 2**
+**Example 3**
 
 A query to update the `latestHeartbeatTime` on the `HeartbeatTable` for each event on the `HeartbeatStream`.
 
@@ -2694,17 +2703,19 @@ Allows a stream to update the events (records) that already exist in the table b
 
 **Syntax**
 
+Syntax to update or insert events on a table is as follows;
+
 ```sql
 from <input stream>
 select <attribute name>, <attribute name>, ...
 update or insert into <table> (for <event type>)?
-    set <table>.<attribute name> = <expression>, <table>.<attribute name> = <expression>, ...
-    on <condition>
+    (set <table>.<attribute name> = (<attribute name>|<expression>), <table>.<attribute name> = (<attribute name>|<expression>), ...)?
+    (on <condition>)?
 ```
 
 The `condition` element specifies the basis on which the events in the table are selected to be updated. **When referring the table attributes in the update clause, they must always be referred with the table name**, and when the condition does not match with any event in the table, then a new event (a record) is inserted into the table. Here, when a condition is not defined, all the events in the table will be updated.
 
-The `set` clause is only used when an update is performed in the update or insert operation. In this case, the `set` keyword can be used to update only the selected attributes from the table. Here, for each assignment, the attribute specified in the left must be the table attribute that is being updated, and the right can contain a query output attribute, a table attribute, a mathematical operation, or any other. When the `set` clause is not provided, all attributes in the table will be updated based on the query output.  
+The `set` clause is only used when an update is performed in the update or insert operation. In this case, the `set` keyword can be used to update only the selected attributes from the table. Here, for each assignment, the left side should contain the table attribute that is being updated, and the right side can contain a query output attribute, a table attribute, a mathematical operation, or any other. When the `set` clause is not provided, all attributes in the table will be updated based on the query output.  
 
 To execute update or insert, only for specific event types, use the `current events`, `expired events` or the `all events` keyword can be used with `for` as shown in the syntax. For more information refer [Event Type](#event-type).
 
@@ -2727,7 +2738,7 @@ update or insert into RoomAllocationTable
     on RoomAllocationTable.roomNo == roomNo;
 ```
 
-### In
+### In (Table)
 
 Allows the query to check whether the expected value exists in the table using a condition operation.
 
@@ -2765,49 +2776,62 @@ from RequestStream[not (BlacklistTable.serverIP == ip in BlacklistTable)]
 insert into FilteredRequestStream;
 ```
 
-## Named Aggregation
+## Named-Aggregation
 
-Named aggregation allows you to obtain aggregates in an incremental manner for a specified set of time periods.
+Named-aggregation aggregates events incrementally for a specified set of time granularities, and allows interactively accessing them to produce reports, dashboards, and to take decisions in realtime with millisecond accuracy. The aggregation logic and schema is defined via the **aggregation definition**.
 
-This not only allows you to calculate aggregations with varied time granularity, but also allows you to access them in an interactive
- manner for reports, dashboards, and for further processing. Its schema is defined via the **aggregation definition**.
+A aggregation definition contains the aggregation name, input, aggregation logic, the time granularities on which the aggregations are calculated, and the set of aggregated output attributes having specific types and uniquely identifiable names within the scope of the named-aggregation.
+
+The aggregated events of the named-aggregation are stored by default `in-memory`, but Siddhi also provides [store extensions](#store) to mirror the named-aggregation to external databases such as RDBMS, while allowing the aggregated events to be stored on databases such that allowing it to hold data for longer durations, preserve data at failures, and to aggregate data in a distributed manner.
+
+The historical data stored in named-aggregations are purged automatically to limit data growth overtime, and when purging is not configured, system automatically purges the data every 15 minutes, by only retaining the default number of records for each time granularity.
 
 **Purpose**
 
-Named aggregation allows you to retrieve the aggregate values for different time durations.
-That is, it allows you to obtain aggregates such as `sum`, `count`, `avg`, `min`, `max`, `count` and `distinctCount`
-of stream attributes for durations such as `sec`, `min`, `hour`, etc.
+Named-aggregations helps to calculate aggregations over long durations and retrieve the aggregated values over various time ranges, It can perform aggregation using operations such as `sum`, `count`, `avg`, `min`, `max`, `count` and `distinctCount` on stream attributes for time granularities such as `sec`, `min`, `hour`, `day`, `month`, and `year`.
 
-This is of considerable importance in many Analytics scenarios because aggregate values are often needed for several time periods.
-Furthermore, this ensures that the aggregations are not lost due to unexpected system failures because aggregates can be stored in different persistence `stores`.
+This can be used for in many analytics scenarios as this provides time-series aggregates on calendar time, over long durations, even for out-of-order events, and helps to retrieve historical data for selected time range and time granularity.
 
 **Syntax**
 
+The syntax for defining a named-aggregation is as follows:
+
 ```sql
-@store(type="<store type>", ...)
-@purge(enable="<true or false>",interval=<purging interval>,@retentionPeriod(<granularity> = <retention period>, ...) )
-define aggregation <aggregator name>
-from <input stream>
+@store(type='<store type>', ...)
+@purge(enable="<enable purging>", interval='<purging interval>',
+       @retentionPeriod(<granularity> = '<retention period>', ...))
+@PartitionById(enable="<enable distributed aggregation>")
+define aggregation <aggregation name>
+from (<stream>|<named-window>)
 select <attribute name>, <aggregate function>(<attribute name>) as <attribute name>, ...
     group by <attribute name>
-    aggregate by <timestamp attribute> every <time periods> ;
+    aggregate by <timestamp attribute> every <time granularities> ;
 ```
-The above syntax includes the following:
 
-|Item                          |Description
+The following parameters are used to configure the aggregation definition:
+
+|Parameter                     |Description
 ---------------                |---------
-|`@store`                      |This annotation is used to refer to the data store where the calculated <br/>aggregate results are stored. This annotation is optional. When <br/>no annotation is provided, the data is stored in the `in-memory` store.
-|`@purge`                      |This annotation is used to configure purging in aggregation granularities.<br/> If this annotation is not provided, the default purging mentioned above is applied.<br/> If you want to disable automatic data purging, you can use this annotation as follows:</br>'@purge(enable=false)</br>/You should disable data purging if the aggregation query in included in the Siddhi application for read-only purposes.
-|`@retentionPeriod`            |This annotation is used to specify the length of time the data needs to be retained when carrying out data purging.<br/> If this annotation is not provided, the default retention period is applied.
-|`<aggregator name>`           |This specifies a unique name for the aggregation so that it can be referred <br/>when accessing aggregate results.
-|`<input stream>`              |The stream that feeds the aggregation. **Note! this stream should be <br/>already defined.**
-|`group by <attribute name>`   |The `group by` clause is optional. If it is included in a Siddhi application, aggregate values <br/> are calculated per each `group by` attribute. If it is not used, all the<br/> events are aggregated together.
-|`by <timestamp attribute>`    |This clause is optional. This defines the attribute that should be used as<br/> the timestamp. If this clause is not used, the event time is used by default.<br/> The timestamp could be given as either a `string` or a `long` value. If it is a `long` value,<br/> the unix timestamp in milliseconds is expected (e.g. `1496289950000`). If it is <br/>a `string` value, the supported formats are `<yyyy>-<MM>-<dd> <HH>:<mm>:<ss>` <br/>(if time is in GMT) and  `<yyyy>-<MM>-<dd> <HH>:<mm>:<ss> <Z>` (if time is <br/>not in GMT), here the ISO 8601 UTC offset must be provided for `<Z>` .<br/>(e.g., `+05:30`, `-11:00`).
-|`<time periods>`              |Time periods can be specified as a range where the minimum and the maximum value are separated by three dots, or as comma-separated values. <br><br> e.g., A range can be specified as sec...year where aggregation is done per second, minute, hour, day, month and year. Comma-separated values can be specified as min, hour. <br><br> Skipping time durations (e.g., min, day where the hour duration is skipped) when specifying comma-separated values is supported only from v4.1.1 onwards
+|`@store`                      |Annotation to configure the data store to store the aggregated records. This annotation is optional and when not provided, the results are stored in `in-memory` tables.
+|`@purge`                      |Annotation to configure data purging on aggregated data. This annotation is optional, and when not provided, the default data purging configuration is enabled. To disable data purging, use `@purge(enable='false')` configuration, and also make sure to disable when named-aggregation is used only for read-only purposes. Detail information on data purging is explained in the following section.
+|`@PartitionById` |Annotation to enable multiple named-aggregations to process in a distributed manner. Detail information on this is discussed in the distributed named-aggregation section.
+|`<aggregation name>`           |The name of the named-aggregation created. (It is recommended to define an aggregation name in `PascalCase`.)
+|`<input stream>`              |The stream that feeds the named-aggregation, **and this stream must be defined before the aggregation definition**.
+|`group by <attribute name>`   |The `group by` clause to aggregate the events per each unique `group by` attribute value combination. This is optional, and when not provided, all events are aggregated together.
+|`by <timestamp attribute>`    |Configures a stream attribute to be used as the event timestamp in the aggregation. This is optional, and if not provided, the event time is used by default. When the stream attribute is used as the event timestamp it could be either a `long` in Unix timestamp in milliseconds (e.g. `1496289950000`), or a `string` in the format `<yyyy>-<MM>-<dd> <HH>:<mm>:<ss>` (if time is in GMT) or `<yyyy>-<MM>-<dd> <HH>:<mm>:<ss> <Z>` (if the time is not in GMT) with ISO 8601 UTC offset for `<Z>` (e.g., `+05:30`, `-11:00`).
+|`<time granularities>`         |Defines the granularity ranges on which the aggregations should be performed using `second`, `minute`, `hour`, `day`, `month`, and/or `year` keywords. Here, the granularity range can be defined with minimum and maximum granularities separating them with three dots (e.g. `sec ... year` where the aggregation will be performed per each second, minute, hour, day, month, and year), or using comma-separated granularities (e.g. `min, hour` where the aggregation will be only performed per each minute and hour).
 
- Aggregation's granularity data holders are automatically purged every 15 minutes. When carrying out data purging, the retention period you have specified for each granularity in the named aggregation query is taken into account. The retention period defined for a granularity needs to be greater than or equal to its minimum retention period as specified in the table below. If no valid retention period is defined for a granularity, the default retention period (as specified in the table below) is applied.
+!!! Note "The named-aggregation uses calendar time."
+    The named-aggregations aggregate events at calendar start times for each granularity based on GMT timezone.
 
-|Granularity           |Default retention      |Minimum retention
+!!! Note "Handles out-of-order event arrival."
+    Named-aggregations aggregates out-of-order event arrivals into their corresponding time range and granularity.
+
+**Data Purging**
+
+Data purging on named-aggregations are enabled by default with `15 min` purging interval and the following retention periods;
+
+|Time granularity           |Default retention period     |Minimum retention period
 ---------------        |--------------         |------------------  
 |`second`              |`120` seconds          |`120` seconds
 |`minute`              |`24`  hours            |`120` minutes
@@ -2816,20 +2840,38 @@ The above syntax includes the following:
 |`month`               |`All`                  |`13`  month
 |`year`                |`All`                  |`none`
 
-!!! Note
-    Aggregation is carried out at calendar start times for each granularity with the GMT timezone
+This can be modified using the `@purge` annotation by optionally providing `interval` parameter to configure the purging interval, and by optionally configuring the `@retentionPeriod` annotation, the duration the aggregated data needs to be retained when carrying out data purging is defined for each time granularity period using the `<granularity> = '<retention period>'` pairs. Here for each granularity, the configured granularity period should be greater than or equal to the respective minimum retention period, and when not defined, the default retention period is applied as specified in the above table.
 
-!!! Note
-    The same aggregation can be defined in multiple Siddhi apps for joining, however, *only one siddhi app should carry out the processing* (i.e. the aggregation input stream should only feed events to one aggregation definition).
+!!! warning "Beware of defining the same named-aggregation in multiple SiddhiApps."
+    The same named-aggregation can be defined in multiple SiddhiApps for data aggregation and data retrieval purposes.
+    In this case, make sure all the named-aggregations to have the same purging configuration or enable purging only in one of the named-aggregations to ensure that data is purged as expected.  
+    Further, when these named-aggregations are configured to use the same physical data store using the `@stroe` annotation while the distributed named-aggregation configuration discussed in the following sections is not used,  make sure a named-aggregation in only one of the SiddhiApps performs data aggregation (i.e., the aggregation input stream only feeds events into one of the aggregation definitions) while others are only used for data retrieval either using join, or on-demand select queries.
 
-**Example**
+**Distributed Named-Aggregations**
 
-This Siddhi Application defines an aggregation named `TradeAggregation` to calculate the average and sum for the `price` attribute of events arriving at the `TradeStream` stream. These aggregates are calculated per every time granularity in the second-year range.
+The system will result in an error when more than one named-aggregation, with same aggregation name pointing to the same physical store using the `@store` annotation, is defined on multiple SiddhiApps unless otherwise Siddhi is configured to perform aggregations in a distributed manner.
+
+Distributed named-aggregation configurations allow each SiddhiApp to work as independent shards by partially aggregating the data fed to them. These partial results are combined during data retrieval.
+
+Named-aggregations can be configured to process data parallelly and in a distributed manner, by adding the following Siddhi properties to Siddhi configuration. Refer [Siddhi configuration guide](../config-guide/#configuring-siddhi-properties) for detail steps.
+
+Siddhi Property| Description| Possible Values | Optional | Default Value
+---------|---------|---------|---------|------
+`shardId`| An ID to uniquely identify the running process (Siddhi Manager/ Siddhi Runner). This helps different instances of the same SiddhiApp running on separate processes to aggregate and store data separately. | Any string | No | `""` (Empty string)
+`partitionById` | Enables all named-aggregations on the running process (Siddhi Manager/ Siddhi Runner) to aggregate data in a distributed manner. | `true`, `false` | Yes | `false`
+
+The named-aggregations that are enabled to process in a distributed manner using the Siddhi properties can be selectively disabled by adding the `@PartitionById` annotation to the corresponding aggregation definition and setting its `enable` property to false as `@PartitionById(enable='false')`.
+
+!!! warning "Once a `shardId` is introduced it should not be dropped arbitrarily!"
+    When a process (Siddhi Manager/ Siddhi Runner) configured with a specific `shardId` is permanently removed, it will result in unexpected aggregate results unless otherwise the data belonging to that shard is migrated or cleaned in the data store.
+
+**Example 1**
+
+An in-memory named-aggregation with default default purging named as `TradeAggregation` to calculate the average and sum for `price` attribute for each unique `symbol` for all time granularities from second to year using `timestamp` attribute as the event time, on the events arriving via the `TradeStream` stream.
 
 ```sql
 define stream TradeStream (symbol string, price double, volume long, timestamp long);
 
-@purge(enable='true', interval='10 sec',@retentionPeriod(sec='120 sec',min='24 hours',hours='30 days',days='1 year',months='all',years='all'))
 define aggregation TradeAggregation
   from TradeStream
   select symbol, avg(price) as avgPrice, sum(price) as total
@@ -2837,197 +2879,197 @@ define aggregation TradeAggregation
     aggregate by timestamp every sec ... year;
 ```
 
-### Distributed Aggregation
+**Example 2**
 
-
-Distributed Aggregation allows you to partially process aggregations in different shards. This allows Siddhi
-app in one shard to be responsible only for processing a part of the aggregation.
-However for this, all aggregations must be based on a common physical database(@store).
-
-**Syntax**
+A custom purging enabled RDBMS store based named-aggregation with name `TradeAggregation` to calculate the min and max `price` for each unique `symbol` for time granularities hour, day, and month using Siddhi event timestamp, on the events arriving via the `TradeStream` stream.
 
 ```sql
-@store(type="<store type>", ...)
-@PartitionById
-define aggregation <aggregator name>
-from <input stream>
-select <attribute name>, <aggregate function>(<attribute name>) as <attribute name>, ...
-    group by <attribute name>
-    aggregate by <timestamp attribute> every <time periods> ;
+define stream TradeStream (symbol string, price double, volume long, timestamp long);
+
+@store(type="rdbms", jdbc.url="jdbc:mysql://localhost:3306/sweetFactoryDB",
+       username="root", password="root",
+       jdbc.driver.name="com.mysql.jdbc.Driver")
+@purge(enable='true', interval='10 min',
+       @retentionPeriod(hour='24 hours', days='1 year', months='all'))
+define aggregation TradeMinMax
+  from TradeStream
+  select symbol, min(price) as minPrice, max(price) as maxPrice
+    group by symbol
+    aggregate every hour, day, month;
 ```
 
-Following table includes the `annotation` to be used to enable distributed aggregation,
+Here, the aggregated data is stored in a MySQL store hosted at `mysql://localhost:3306/sweetFactoryDB` and the data is periodically purged for every `10 min` while retaining data for hour, day, and month granularities for `24 hours`, `1 year`, and forever respectively.
 
-Item | Description
-------|------
-`@PartitionById` | If the annotation is given, then the distributed aggregation is enabled. Further this can be disabled by using `enable` element, </br>`@PartitionById(enable='false')`.</br>
+**Named-Aggregation Operators**
 
+The following operation can be performed on named-aggregation.
 
-Further, following system properties are also available,
+### Join (Named-Aggregation)
 
-System Property| Description| Possible Values | Optional | Default Value
----------|---------|---------|---------|------
-shardId| The id of the shard one of the distributed aggregation is running in. This should be unique to a single shard | Any string | No | <Empty_String>
-partitionById| This allows user to enable/disable distributed aggregation for all aggregations running in one siddhi manager .(Available from v4.3.3) | true/false | Yes | false
+Allows stream or named-window to retrieve aggregated results from the named-aggregation.
 
-!!! Note
-    ShardIds should not be changed after the first configuration in order to keep data consistency.
-
-### Join (Aggregation)
-
-This allows a stream to retrieve calculated aggregate values from the aggregation.
-
-!!! Note
-    A join can also be performed with [two streams](#join-stream), with a [table](#join-table) and a stream, or with a stream against externally [named windows](#join-window).
-
+!!! Note "Other Join Functions"
+    Joins can also be performed among [two streams](#join-stream), with [table](#join-table), or [named-window](#join-named-window).
 
 **Syntax**
 
-A join with aggregation is similer to the join with [table](#join-table), but with additional `within` and `per` clauses.
+The syntax for a stream or a named-window to join with a named-aggregation is as follows:
 
 ```sql
-from <input stream> join <aggrigation>
+from (<input stream>(<non window handler>)*(<window>)?|<named-window>) (as <reference>)?
+    <join type> <named-aggregation> (as <reference>)?
   on <join condition>
   within <time range>
   per <time granularity>
-select <attribute name>, <attribute name>, ...
+select <reference>.<attribute name>, <reference>.<attribute name>, ...
 insert into <output stream>;
 ```
-Apart from constructs of [table join](#join-table) this includes the following. Please note that the 'on' condition is optional :
+
+A join with named-aggregation is similar to the [table](#join-table) join with additional `within` and `per` clauses, where table is being replaced by a named-aggregation. Here, the named-aggregation cannot have any optional handlers associated with it.
+
+Apart from the [standard join constructs](#join-stream) this supports the `within` and `per` clauses as follows.
 
 Item|Description
 ---------|---------
-`within  <time range>`| This allows you to specify the time interval for which the aggregate values need to be retrieved. This can be specified by providing the start and end time separated by a comma as `string` or `long` values, or by using the wildcard `string` specifying the data range. For details refer examples.            
-`per <time granularity>`|This specifies the time granularity by which the aggregate values must be grouped and returned. e.g., If you specify `days`, the retrieved aggregate values are grouped for each day within the selected time interval.
+`within  <time range>`| Specifies the time interval for which the aggregate values should to be retrieved. This can be specified either by providing a start and an end timestamps (in `string` or `long` values) separating them by a comma as in `"2014-02-15 00:00:00 +05:30", "2014-03-16 00:00:00 +05:30"` and `1496200000000L, 1596434876000L`, or by using a wildcard `string` specifying the data range as in `"2014-02-15 **:**:** +05:30"`.            
+`per <time granularity>`|Specifies the time granularity by which the data should be grouped and aggregated when data is retrieved. For instance, when `days` is specified for granularity, the named-aggregation returns aggregated results grouped for each day within the selected time interval. Here, the timestamp of each group can be obtained using the `AGG_TIMESTAMP` attribute, that is internal to the named-aggregation.
 
-`within` and `per` clauses also accept attribute values from the stream.<br>
-The timestamp of the aggregations can be accessed through the `AGG_TIMESTAMP` attribute.
+!!! Note "Named-aggregations can only be joint with a stream or named-window."
+    Two named-aggregations, or table and named-aggregation cannot be joint because there must be at least one active entity to trigger the join operation.
 
-**Example**
+**Supported join types**
 
-Following aggregation definition will be used for the examples.
+Named-aggregation join supports inner join (`join`), `left outer join`, `right outer join`, and cross join (when join condition is omitted) similar to the [table join](#join-table).
+
+**Examples**
+
+Following aggregation definition is used for all the examples.
 
 ```sql
 define stream TradeStream (symbol string, price double, volume long, timestamp long);
 
 define aggregation TradeAggregation
   from TradeStream
-  select AGG_TIMESTAMP, symbol, avg(price) as avgPrice, sum(price) as total
+  select symbol, avg(price) as avgPrice, sum(price) as total
     group by symbol
     aggregate by timestamp every sec ... year;
 ```
 
-This query retrieves daily aggregations within the time range `"2014-02-15 00:00:00 +05:30", "2014-03-16 00:00:00 +05:30"` (Please note that +05:30 can be omitted if timezone is GMT)
+**Example 1**
+
+A query to join and retrieve daily aggregations within the time range of `"2014-02-15 00:00:00 +05:30", "2014-03-16 00:00:00 +05:30"` from `TradeAggregation` based on equal `symbol` attribute of `StockStream`, and to insert the results into `AggregateStockStream` steam. Here, `+05:30` in time range can be omitted if the timezone is GMT.
 
 ```sql
 define stream StockStream (symbol string, value int);
 
-from StockStream as S join TradeAggregation as T
-  on S.symbol == T.symbol
+from StockStream as s join TradeAggregation as t
+  on s.symbol == t.symbol
   within "2014-02-15 00:00:00 +05:30", "2014-03-16 00:00:00 +05:30"
   per "days"
-select S.symbol, T.total, T.avgPrice
+select AGG_TIMESTAMP as timestamp, s.symbol, t.total, t.avgPrice
 insert into AggregateStockStream;
 ```
 
-This query retrieves hourly aggregations within the day `2014-02-15`.
+**Example 2**
+
+A query to join and retrieve all the hourly aggregations within the day of `2014-02-15` from `TradeAggregation` each event in `RequestStream` stream, order the results by `symbol`, and to insert the results into `AggregateStockStream` steam.
 
 ```sql
-define stream StockStream (symbol string, value int);
+define stream RequestStream (request string);
 
-from StockStream as S join TradeAggregation as T
-  on S.symbol == T.symbol
+from RequestStream join TradeAggregation as t
   within "2014-02-15 **:**:** +05:30"
   per "hours"
-select S.symbol, T.total, T.avgPrice
+select AGG_TIMESTAMP as timestamp, t.symbol, t.total, t.avgPrice
+order by symbol
 insert into AggregateStockStream;
 ```
 
-This query retrieves all aggregations per `perValue` stream attribute within the time period
-between timestamps `1496200000000` and `1596434876000`.
+**Example 3**
+
+A query to join and retrieve aggregated results from `TradeAggregation` for respective `granularity` and `symbol` attributes between the `start` and the `end` timestamps of events arriving on `StockStream`, and to insert the results into `AggregateStockStream` steam.
 
 ```sql
-define stream StockStream (symbol string, value int, perValue string);
+define stream StockStream (symbol string, granularity string, start long, end long);
 
-from StockStream as S join TradeAggregation as T
-  on S.symbol == T.symbol
-  within 1496200000000L, 1596434876000L
-  per S.perValue
-select S.symbol, T.total, T.avgPrice
+from StockStream as s join TradeAggregation as t
+  on s.symbol == t.symbol
+  within s.start, s.end
+  per s.granularity
+select AGG_TIMESTAMP as timestamp, s.symbol, t.total, t.avgPrice
 insert into AggregateStockStream;
 ```
 
-**Supported join types**
+Here, `granularity`, `start` and `end` can have values such as `"hour"`, `1496200000000`, and `1596434876000` respectively.
 
-Aggregation join supports following join operations.
+## Named-Window
 
- *  **Inner join (join)**
+A named-window is a window that is shared across multiple queries, where multiple queries can insert, join and consume output from the window. Its schema is defined via the **window definition**.
 
-    This is the default behavior of a join operation. `join` is used as the keyword to join the stream with the aggregation. The output is generated only if there is a matching event in the stream and the aggregation.
+A window definition is similar to the stream definition where it contains the name of named-window, a of attributes having specific types and uniquely identifiable names within the scope of the named-window along with the [window](#window) type and output [event type](#event-type). Here, all events associated with the named-window will have the same schema (i.e., have the same attributes in the same order).
 
- *  **Left outer join**
+The events of named-window are expired automatically based on the configured [window](#window) type, and they cannot be explicitly removed by other means.
 
-    The `left outer join` operation allows you to join a stream on left side with a aggregation on the right side based on a condition.
-    Here, it returns all the events of left stream even if there are no matching events in the right aggregation by
-    having null values for the attributes of the right aggregation.
+**Purpose**
 
- *  **Right outer join**
+Named-windows help to use the same instance of a window in multiple queries, this reduces memory consumption, supports calculating various types of aggregations and output them via multiple streams, and allows multiple queries to query on the same window data.
 
-    This is similar to a `left outer join`. `right outer join` is used as the keyword to join a stream on right side with a aggregation on the left side based on a condition.
-    It returns all the events of the right stream even if there are no matching events in the left aggregation.
-
-
-##Named Window
-
-A named window is a window that can be shared across multiple queries.
-Events can be inserted to a named window from one or more queries and it can produce output events based on the named window type.
+!!! Note "Cannot selectively remove events from named-window."
+    The events in the named-window cannot be selectively removed using delete operations, and the only way they are removed is via the automatic expiry operations of the defined [window](#window) type.
 
 **Syntax**
 
-The syntax for a named window is as follows:
+The syntax for defining a named-window is as follows:
 
 ```sql
-define window <window name> (<attribute name> <attribute type>, <attribute name> <attribute type>, ... ) <window type>(<parameter>, <parameter>, …) <event type>;
+define window <window name> (<attribute name> <attribute type>, <attribute name> <attribute type>, ... ) <window type>(<parameter>, <parameter>, …) (output <event type>)?;
 ```
 
-The following parameters are configured in a table definition:
+The following parameters are used configure the window definition:
 
 | Parameter     | Description |
 | ------------- |-------------|
-| `window name`      | The name of the window defined. (`PascalCase` is used for window names as a convention.) |
-| `attribute name`   | The schema of the window is defined by its attributes with uniquely identifiable attribute names (`camelCase` is used for attribute names as a convention.)|    |
-| `attribute type`   | The type of each attribute defined in the schema. <br/> This can be `STRING`, `INT`, `LONG`, `DOUBLE`, `FLOAT`, `BOOL` or `OBJECT`.     |
-| `<window type>(<parameter>, ...)`   | The window type associated with the window and its parameters.     |
-| `output <event type>` | This is optional. Keywords such as `current events`, `expired events` and `all events` (the default) can be used to specify when the window output should be exposed. For more information, see [Event Type](#event-type).
+| `<window name>`      | The name of the named-window created. (It is recommended to define a window name in `PascalCase`.) |
+| `<attribute name>`   | Uniquely identifiable name of the named-window attribute. (It is recommended to define attribute names in `camelCase`.)|
+| `<attribute type>`   | The type of each attribute defined in the schema. <br/> This can be `STRING`, `INT`, `LONG`, `DOUBLE`, `FLOAT`, `BOOL` or `OBJECT`.        |
+| `<window type>(<parameter>, ...)`   | The window implementation associated with the named-window and its parameters.     |
+| `<event type>` | Defines when the window should be emitting the events, by specifying keywords such as `current events`, `expired events`, or `all events`. Here, when the `output` is omitted, `all events` are emitted by default. For more information, refer [Event Type](#event-type) section.
 
-
-**Examples**
-
-+ Returning all output when events arrive and when events expire from the window.
-
-    In this query, the event type is not specified. Therefore, it returns both current and expired events as the output.
+**Example 1**
 
 ```sql
-  define window SensorWindow (name string, value float, roomNo int, deviceID string) timeBatch(1 second);
+define window SensorWindow (deviceID string, value float, roomNo int) timeBatch(1 second);
 ```
 
-+ Returning an output only when events expire from the window.
+The above window definition with the name `SensorWindow` defines a named-window that is configured to retain events for 1 second in `timeBatch` window, and produce output upon event arrival and expiry to the window. This named-window contains the following attributes.
 
-    In this query, the event type of the window is `expired events`. Therefore, it only returns the events that have expired from the window as the output.
++ `deviceID` of type `string`
++ `value` of type `float`
++ `roomNo` of type `int`
+
+**Example 2**
 
 ```sql
-  define window SensorWindow (name string, value float, roomNo int, deviceID string) timeBatch(1 second) output expired events;
+define window SensorWindow (deviceID string, value float, roomNo int) time(1 min) output expired events;
 ```
 
-**Operators on Named Windows**
+The above window definition with the name `SensorWindow` defines a named-window that is configured to retain events for last 1 minute via `time` window, and produce output upon event expiry form the window. This named-window contains the following attributes.
 
-The following operators can be performed on named windows.
++ `deviceID` of type `string`
++ `value` of type `float`
++ `roomNo` of type `int`
+
+**Named-Windows Operators**
+
+The following operations can be performed on named-windows.
 
 ### Insert
 
-This allows events to be inserted into windows. This is similar to inserting events into streams.
+Allows events to be inserted into named-windows. This is similar to inserting events into streams.
 
 **Syntax**
+
+Syntax to insert events into a named-window from a stream is as follows;
 
 ```sql
 from <input stream>
@@ -3035,7 +3077,7 @@ select <attribute name>, <attribute name>, ...
 insert into <window>
 ```
 
-To insert only events of a specific event type, add the `current events`, `expired events` or the `all events` keyword can be used between `insert` and `into` keywords (similar to how it is done for streams). For more information, see [Event Type](#event-type).
+Similar to streams, the `current events`, `expired events` or the `all events` keyword can be used between `insert` and `into` keywords in order to insert only the specific event types. For more information, refer [Event Type](#event-type) section.
 
 **Example**
 
@@ -3050,184 +3092,180 @@ select *
 insert into OneMinTempWindow;
 ```
 
-### Join (Window)
+### Join (Named-Window)
 
-To allow a stream to retrieve information from a window based on a condition.
+Allows stream or named-window to retrieve events from another named-window.
 
-!!! Note
-    A join can also be performed with [two streams](#join-stream), [aggregation](#join-aggregation) or with tables [tables](#join-table).
+!!! Note "Other Join Functions"
+    Joins can also be performed among [two streams](#join-stream), with [named-aggregation](#join-named-aggregation), or [table](#join-table).
 
 **Syntax**
 
+The syntax for a stream or a named-window to join with another named-window is as follows:
+
 ```sql
-from <input stream> join <window>
-    on <condition>
-select (<input stream>|<window>).<attribute name>, (<input stream>|<window>).<attribute name>, ...
+from (<input stream>(<non window handler>)*(<window>)?|<named-window>) (as <reference>)?
+  <join type> <named-window> (as <reference>)?
+  on <condition>
+select <reference>.<attribute name>, <reference>.<attribute name>, ...
 insert into <output stream>
 ```
 
+A join with named-window is similar to the join of [two streams](#join-stream), where either both the inputs are named-windows, or one is a stream and other is a named-window. Here, the named-window cannot have any optional handlers associated with it.
+
+**Supported join types**
+
+Named-window join supports inner join (`join`), `left outer join`, `right outer join`, `full outer join`, and cross join (when join condition is omitted) similar to the [stream join](#join-stream).
+
 **Example**
 
-This Siddhi Application performs a join count the number of temperature events having more then 40 degrees
- within the last 2 minutes.
+A query, for each event on `CheckStream`, to join and calculate the number of temperature events having greater than 40 degrees for the `temp` attribute value, within the last 2 minutes of the `TwoMinTempWindow` named-window, and to insert the results into `HighTempCountStream` steam.
 
 ```sql
 define window TwoMinTempWindow (roomNo int, temp double) time(2 min);
 define stream CheckStream (requestId string);
 
-from CheckStream as C join TwoMinTempWindow as T
-    on T.temp > 40
-select requestId, count(T.temp) as count
+from CheckStream as c join TwoMinTempWindow as t
+    on t.temp > 40
+select requestId, count(t.temp) as count
 insert into HighTempCountStream;
 ```
 
-**Supported join types**
+### From (Named-Window)
 
-Window join supports following operations of a join clause.
-
- *  **Inner join (join)**
-
-    This is the default behavior of a join operation. `join` is used as the keyword to join two windows or a stream with a window. The output is generated only if there is a matching event in both stream/window.
-
- *  **Left outer join**
-
-    The `left outer join` operation allows you to join two windows or a stream with a window to be merged based on a condition.
-    Here, it returns all the events of left stream/window even if there are no matching events in the right stream/window by
-    having null values for the attributes of the right stream/window.
-
- *  **Right outer join**
-
-    This is similar to a left outer join. `Right outer join` is used as the keyword to join two windows or a stream with a window.
-    It returns all the events of the right stream/window even if there are no matching events in the left stream/window.
-
- *  **Full outer join**
-
-    The full outer join combines the results of `left outer join` and `right outer join`. `full outer join` is used as the keyword to join two windows or a stream with a window.
-    Here, output event are generated for each incoming event even if there are no matching events in the other stream/window.
-
-### From
-
-A window can be an input to a query, similar to streams.
-
-Note !!!
-     When window is used as an input to a query, another window cannot be applied on top of this.
+Named-windows can be used as an input to any query, similar to streams.  
 
 **Syntax**
 
+Syntax for using named-window as an input to a simple query is as follows;
+
 ```sql
-from <window>
-select <attribute name>, <attribute name>, ...
-insert into <output stream>
+from <named-window><non window handler>* ((join (<stream><handler>*|<named-window>|<table>|<named-aggregation>))|((,|->)(<stream>|<named-window>)<non window handler>*)+)?
+<projection>
+<output action>
 ```
 
+Named-windows can be used as input for any query type, like [how streams are being used](#from). They can be associated with optional non window handlers (such as filters, stream functions, and stream processors) in queries other than when they are used in join query.
+
 **Example**
-This Siddhi Application calculates the maximum temperature within the last 5 minutes.
+
+Queries to calculate the `max` temperature among all rooms, and `avg` temperature per each `room`, in the last 5 minutes, using `FiveMinTempWindow`, and publish the results via `MaxTempStream` stream, and `AvgTempStream` stream respectively.
 
 ```sql
 define window FiveMinTempWindow (roomNo int, temp double) time(5 min);
 
+from FiveMinTempWindow
+select max(temp) as maxValue
+insert into MaxTempStream;
 
 from FiveMinTempWindow
-select max(temp) as maxValue, roomNo
-insert into MaxSensorReadingStream;
+select roomNo, avg(temp) as avgTemp
+group by roomNo
+insert into AvgTempStream;
 ```
 
 ## Trigger
 
-Triggers allow events to be periodically generated. **Trigger definition** can be used to define a trigger.
-A trigger also works like a stream with a predefined schema.
+Trigger produces events periodically based on a given internal with a predefined schema. They can be used in any query, similar to the streams, and defined via the **trigger definition**.
 
 **Purpose**
 
-For some use cases the system should be able to periodically generate events based on a specified time interval to perform
-some periodic executions.
-
-A trigger can be performed for a `'start'` operation, for a given `<time interval>`, or for a given `'<cron expression>'`.
-
+Triggers help to periodically generate events based on a specified time interval or cron expression, to perform periodic execution of queries. They can also be produced at SiddhiApp startup to perform initialization operations.
 
 **Syntax**
 
-The syntax for a trigger definition is as follows.
+The syntax for defining a trigger is as follows:
 
 ```sql
-define trigger <trigger name> at ('start'| every <time interval>| '<cron expression>');
+define trigger <trigger name> at ( 'start'| every <time interval>| '<cron expression>');
 ```
 
-Similar to streams, triggers can be used as inputs. They adhere to the following stream definition and produce the `triggered_time` attribute of the `long` type.
+Triggers can be used as input to any query, similar to the streams. Because, when defined, they are represented as a stream having one attribute with name `triggered_time`, and type `long` as follows.
 
 ```sql
 define stream <trigger name> (triggered_time long);
 ```
 
-The following types of triggeres are currently supported:
+The supported trigger types are as follows.
 
 |Trigger type| Description|
 |-------------|-----------|
-|`'start'`| An event is triggered when Siddhi is started.|
-|`every <time interval>`| An event is triggered periodically at the given time interval.
-|`'<cron expression>'`| An event is triggered periodically based on the given cron expression. For configuration details, see <a target="_blank" href="http://www.quartz-scheduler.org/documentation/quartz-2.1.7/tutorials/tutorial-lesson-06.html">quartz-scheduler</a>.
+|`'start'`| Produces a single event when SiddhiApp starts.|
+|`every <time interval>`| Produces events periodically at the given time interval.|
+|`'<cron expression>'`| Produces events periodically based on the given cron expression. For configuration details, refer <a target="_blank" href="http://www.quartz-scheduler.org/documentation/quartz-2.1.7/tutorials/tutorial-lesson-06.html">quartz-scheduler</a>.
 
+**Example 1**
 
-**Examples**
-
-+ Triggering events regularly at specific time intervals
-
-    The following query triggers events every 5 minutes.
+A trigger to generate events every 5 minutes.
 
 ```sql
-     define trigger FiveMinTriggerStream at every 5 min;
+define trigger FiveMinTrigger at every 5 min;
 ```
 
-+ Triggering events at a specific time on specified days
+**Example 2**
 
-    The following query triggers an event at 10.15 AM on every weekdays.
+A trigger to generate events at 10.15 AM on every weekdays.
 
 ```sql
-     define trigger FiveMinTriggerStream at '0 15 10 ? * MON-FRI';
+define trigger FiveMinTriggerStream at '0 15 10 ? * MON-FRI';
+```
+
+**Example 3**
+
+A trigger to generate an event at SiddhiApp startup.
+
+```sql
+define trigger InitTrigger at 'start';
 ```
 
 ## Script
 
-Scripts allow you to write functions in other programming languages and execute them within Siddhi queries.
-Functions defined via scripts can be accessed in queries similar to any other inbuilt function.
-**Function definitions** can be used to define these scripts.
-
-Function parameters are passed into the function logic as `Object[]` and with the name `data` .
+The script provides the ability to write custom functions in other programming languages and execute them within Siddhi queries. The custom functions using scripts can be defined via the **function definitions** and accessed in queries similar to any other inbuilt [functions](#function).
 
 **Purpose**
 
-Scripts allow you to define a function operation that is not provided in Siddhi core or its extension. It is not required to write an extension to define the function logic.
+Scripts help to define custom functions in other programming languages such as javascript. This can eliminate the need for writing extensions to fulfill the functionalities that are not provided in Siddhi core or by its extension.
 
 **Syntax**
 
-The syntax for a Script definition is as follows.
+The syntax for defining the script is as follows.
 
 ```sql
 define function <function name>[<language name>] return <return type> {
-    <operation of the function>
+    <function logic>
 };
 ```
 
-The following parameters are configured when defining a script.
+The defined function can be used in the queries similar to inbuilt [functions](#function) as follows.
+
+```sql
+<function name>( (<function parameter>(, <function parameter>)*)? )
+```
+
+Here, the `<function parameter>`s are passed into the `<function logic>` of the definition as an `Object[]` with the name `data`.
+
+The functions defined via the function definitions have higher precedence compared to inbuilt functions and the functions provided via extensions.
+
+The following parameters are used to configure the function definition:
 
 | Parameter     | Description |
 | ------------- |-------------|
-| `function name`| 	The name of the function (`camelCase` is used for the function name) as a convention.|
-|`language name`| The name of the programming language used to define the script, such as `javascript`, `r` and `scala`.|
-| `return type`| The attribute type of the function’s return. This can be `int`, `long`, `float`, `double`, `string`, `bool` or `object`. Here the function implementer should be responsible for returning the output attribute on the defined return type for proper functionality.
-|`operation of the function`| Here, the execution logic of the function is added. This logic should be written in the language specified under the `language name`, and it should return the output in the data type specified via the `return type` parameter.
+| `<function name>`| 	The name of the function created. (It is recommended to define a function name in `camelCase`.)|
+|`<language name>`| Name of the programming language used to define the script, such as `javascript`, `r`, or `scala`.|
+| `<return type>`| The return type of the function. This can be `int`, `long`, `float`, `double`, `string`, `bool`, or `object`. Here, the function implementer is responsible for returning the output according on the defined return type to ensure proper functionality.|
+|`<function logic>`|The execution logic that is written in the language specified under the `<language name>`, where it consumes the `<function parameter>`s through the `data` variable and returns the output in the type specified via the `<return type>` parameter.|
 
-**Examples**
+**Example 1**
 
-This query performs concatenation using JavaScript, and returns the output as a string.
+A function to concatenate three strings into one using JavaScript.
 
 ```sql
 define function concatFn[javascript] return string {
     var str1 = data[0];
     var str2 = data[1];
     var str3 = data[2];
-    var responce = str1 + str2 + str3;
-    return responce;
+    var response = str1 + str2 + str3;
+    return response;
 };
 
 define stream TempStream(deviceID long, roomNo int, temp double);
@@ -3237,52 +3275,53 @@ select concatFn(roomNo,'-',deviceID) as id, temp
 insert into DeviceTempStream;
 ```
 
-## Store Query
+Here, the defined `concatFn` function is used in the query by passing three string parameters for concatenation.
 
-Siddhi store queries are a set of on-demand queries that can be used to perform operations on Siddhi tables, windows, and aggregators.
+## On-Demand Query
+
+On-demand queries provide a way of performing add hock operations on Siddhi [tables](#table) ([stores](#store)), [named-windows](#named-window), and [named-aggregations](#named-aggregation).
+
+The On-demand query can be submitted to the SiddhiApp using the `query()` method of the respective Siddhi application runtime as follows.
+
+```java
+siddhiAppRuntime.query(<on-demand query>);
+```
+
+To successfully execute an on-demand query, the SiddhiApp of the respective siddhiAppRuntime should have the corresponding table, named-window, or named-aggregation defined, that is being used in the on-demand query.
 
 **Purpose**
 
-Store queries allow you to execute the following operations on Siddhi tables, windows, and aggregators without the intervention of streams.
+On-demand queries allow to retrieve, add, delete and update events/data in Siddhi [tables](#table) ([stores](#store)), [named-windows](#named-window), and [named-aggregations](#named-aggregation) without the intervention of streams. This can be used to retrieve the status of the system, extract information for reporting and dashboarding purposes, and many others.
 
-Queries supported for tables:
+The operations supported on tables are:
 
-* SELECT
-* INSERT
-* DELETE
-* UPDATE
-* UPDATE OR INSERT
+* Select
+* Insert
+* Delete
+* Update
+* Update or insert
 
-Queries supported for windows and aggregators:
+The operation supported on [named-windows](#named-window), and [named-aggregations](#named-aggregation) is:
 
-* SELECT
+* Select
 
-This is be done by submitting the store query to the Siddhi application runtime using its `query()` method.
+**On-Demand Query Operators**
 
-In order to execute store queries, the Siddhi application of the Siddhi application runtime you are using, should have
- a store defined, which contains the table that needs to be queried.
+The following operations can be performed via on-demand queries.
 
+### _(Table/Named-Window)_ Select
 
-**Example**
+On-demand query to retrieve records from the specified [table](#table)(/[store](#store)) or [named-window](#named-window), based on the given condition.
 
-If you need to query the table named `RoomTypeTable` the it should have been defined in the Siddhi application.
-
-In order to execute a store query on `RoomTypeTable`, you need to submit the store query using `query()`
-method of `SiddhiAppRuntime` instance as below.
-
-```java
-siddhiAppRuntime.query(<store query>);
-```
-
-### _(Table/Window)_ Select
-
-The `SELECT` store query retrieves records from the specified table or window, based on the given condition.
+To retrieve data from Named-Aggregation, refer the [Named-Aggregation Select](#named-aggregation-select) section.
 
 **Syntax**
 
+Syntax to retrieve events from table or named-window is as follows;
+
 ```sql
-from <table/window>
-<on condition>?
+from (<table>|<named-window>)
+(on <condition>)?
 select <attribute name>, <attribute name>, ...
 <group by>?
 <having>?
@@ -3290,26 +3329,48 @@ select <attribute name>, <attribute name>, ...
 <limit>?
 ```
 
-**Example**
+Here, the input can be either [table](#table)(/[store](#store)) or [named-window](#named-window), and the other parameters are similar to the standard Siddhi [query](#query).
 
-This query retrieves room numbers and types of the rooms starting from room no 10.
+**Examples**
+
+The on-demand queries used in the examples are performed on a SiddhiApp that contains a table definition similar to the following.
 
 ```sql
-from roomTypeTable
+define table RoomTypeTable (roomNo int, type string);
+```
+
+**Example 1**
+
+An on-demand query to retrieve room numbers and their types from the `RoomTypeTable` table, for all room numbers that are greater than or equal to 10.
+
+```sql
+from RoomTypeTable
 on roomNo >= 10;
 select roomNo, type
 ```
 
+**Example 2**
+
+An on-demand query to calculate the total number of rooms in the `RoomTypeTable` table.
+
+```sql
+from RoomTypeTable
+select count(roomNo) as totalRooms
+```
+
 ### _(Aggregation)_ Select
 
-The `SELECT` store query retrieves records from the specified aggregation, based on the given condition, time range,
-and granularity.
+On-demand query to retrieve records from the specified [named-aggregation](#named-aggregation), based on the time range, time granularity, and the given condition.
+
+To retrieve data from table (store), or named-window, refer the [Table/Named-Window Select](#tablenamed-window-select) section.
 
 **Syntax**
 
+Syntax to retrieve events from named-aggregation is as follows;
+
 ```sql
 from <aggregation>
-<on condition>?
+(on <condition>)?
 within <time range>
 per <time granularity>
 select <attribute name>, <attribute name>, ...
@@ -3319,9 +3380,11 @@ select <attribute name>, <attribute name>, ...
 <limit>?
 ```
 
-**Example**
+This is similar to the [Table/Named-Window Select](#tablenamed-window-select), but the input should be a [named-aggregation](#named-aggregation), and the `within <time range>` and `per <time granularity>` should be provided as in [named-aggregation join](#join-aggregation) specifying the time interval for which the aggregate values need to be retrieved, and the the time granularity by which the aggregate values must be grouped and returned respectively.
 
-Following aggregation definition will be used for the examples.
+**Examples**
+
+The on-demand queries used in the examples are performed on a SiddhiApp that contains an aggregation definition similar to the following.
 
 ```sql
 define stream TradeStream (symbol string, price double, volume long, timestamp long);
@@ -3333,16 +3396,20 @@ define aggregation TradeAggregation
     aggregate by timestamp every sec ... year;
 ```
 
-This query retrieves daily aggregations within the time range `"2014-02-15 00:00:00 +05:30", "2014-03-16 00:00:00 +05:30"` (Please note that +05:30 can be omitted if timezone is GMT)
+**Example 1**
+
+An on-demand query to retrieve daily aggregations from the `TradeAggregation` within the time range of `"2014-02-15 00:00:00 +05:30", "2014-03-16 00:00:00 +05:30"` (Here, `+05:30` can be omitted if timezone is in GMT).
 
 ```sql
 from TradeAggregation
   within "2014-02-15 00:00:00 +05:30", "2014-03-16 00:00:00 +05:30"
   per "days"
-select symbol, total, avgPrice ;
+select symbol, total, avgPrice;
 ```
 
-This query retrieves hourly aggregations of "FB" symbol within the day `2014-02-15`.
+**Example 2**
+
+An on-demand query to retrieve the hourly aggregations from the `TradeAggregation` for `"FB"` symbol within the day of `2014-02-15`.
 
 ```sql
 from TradeAggregation
@@ -3354,9 +3421,11 @@ select symbol, total, avgPrice;
 
 ### Insert
 
-This allows you to insert a new record to the table with the attribute values you define in the `select` section.
+On-demand query to insert a new record to a [table](#table)(/[store](#store)), based on the attribute values defined in the `select` clause.
 
 **Syntax**
+
+Syntax to insert events into a table (store) is as follows;
 
 ```sql
 select <attribute name>, <attribute name>, ...
@@ -3365,75 +3434,103 @@ insert into <table>;
 
 **Example**
 
-This store query inserts a new record to the table `RoomOccupancyTable`, with the specified attribute values.
-
+An on-demand query to insert a new record into the table `RoomOccupancyTable` having values for its `roomNo` and `people` attributes as `10` and `2` respectively.
 
 ```sql
 select 10 as roomNo, 2 as people
 insert into RoomOccupancyTable
 ```
 
+Here, the respective SiddhiApp should have a `RoomOccupancyTable` table something similar to the following.
+
+```sql
+define table RoomOccupancyTable (roomNo int, people int);
+```
+
 ### Delete
 
-The `DELETE` store query deletes selected records from a specified table.
+On-demand query to delete records from a [table](#table)(/[store](#store)), based on the specified condition.
 
 **Syntax**
+
+Syntax to delete events from a table (store) is as follows;
 
 ```sql
 <select>?  
 delete <table>  
-on <conditional expresssion>
+    (on <condition>)?
 ```
 
-The `condition` element specifies the basis on which records are selected to be deleted.
+Here, the `on <condition>` specifies the basis on which records are selected to be deleted, and when omitted, all recodes in the table will be removed.
 
 !!! note
-    Table attributes must always be referred to with the table name as shown below: <br />
+    In the `delete` clause, the table attributes must be always referred with the table name as follows:
     `<table name>.<attribute name>`.
 
 **Example**
 
-In this example, query deletes a record in the table named `RoomTypeTable` if it has value for the `roomNo`
-attribute that matches the value for the `roomNumber` attribute of the selection which has 10 as the actual value.
+On-demand queries to delete records in the `RoomTypeTable` table that have `10` as the value for their `roomNo` attribute.
 
 ```sql
 select 10 as roomNumber
 delete RoomTypeTable
-on RoomTypeTable.roomNo == roomNumber;
+    on RoomTypeTable.roomNo == roomNumber;
 ```
 
 ```sql
 delete RoomTypeTable
-on RoomTypeTable.roomNo == 10;
+    on RoomTypeTable.roomNo == 10;
+```
+
+Both the above queries result in the same. For the above queries to be performed, the respective SiddhiApp should have a `RoomTypeTable` table defined something similar to the following.
+
+```sql
+define table RoomTypeTable (roomNo int, type string);
 ```
 
 ### Update
 
-The `UPDATE` store query updates selected attributes stored in a specific table, based on a given condition.
+On-demand query to update selected attributes of records from a [table](#table)(/[store](#store)), based on the specified condition.
 
 **Syntax**
+
+Syntax to update events on a table (store) is as follows;
 
 ```sql
 select <attribute name>, <attribute name>, ...?
 update <table>
-    set <table>.<attribute name> = (<attribute name>|<expression>)?, <table>.<attribute name> = (<attribute name>|<expression>)?, ...
-    on <condition>
+    (set <table>.<attribute name> = (<attribute name>|<expression>), <table>.<attribute name> = (<attribute name>|<expression>), ...)?
+    (on <condition>)?
 ```
 
-The `condition` element specifies the basis on which records are selected to be updated.
-When specifying the `condition`, table attributes must be referred to with the table name.
+The `condition` element specifies the basis on which the events in the table are selected to be updated. **When referring the table attributes in the `update` clause, they must always be referred to with the table name**, and when a condition is not defined, all the events in the table will be updated.
 
-You can use the `set` keyword to update selected attributes from the table. Here, for each assignment, the attribute specified in the left must be the table attribute, and the one specified in the right can be a stream/table attribute a mathematical operation, or other. When the `set` clause is not provided, all the attributes in the table are updated.
-
+The `set` keyword can be used to update only the selected attributes from the table. Here, for each assignment, the left side should contain the table attribute that is being updated, and the right side can contain a query output attribute, a table attribute, a mathematical operation, or any other. When the `set` clause is not provided, all attributes in the table will be updated based on the query output.
 
 !!! note
-    Table attributes must always be referred to with the table name as shown below: <br />
-     `<table name>.<attribute name>`.
+    In the `update` clause, the table attributes must be always referred with the table name as follows: `<table name>.<attribute name>`
 
-**Example**
+**Examples**
 
-The following query updates the room occupancy by increasing the value of `people` by 1, in the `RoomOccupancyTable`
-table for each room number greater than 10.
+The on-demand queries used in the examples are performed on a SiddhiApp that contains a table definition similar to the following.
+
+```sql
+define table RoomOccupancyTable (roomNo int, people int);
+```
+
+**Example 1**
+
+An on-demand query to increment the number of `people` by `1` for the `roomNo` `10`, in the `RoomOccupancyTable` table.
+
+```sql
+update RoomTypeTable
+    set RoomTypeTable.people = RoomTypeTable.people + 1
+    on RoomTypeTable.roomNo == 10;
+```
+
+**Example 2**
+
+An on-demand query to increment the number of `people` by the `arrival` amount for the given `roomNumber`, in the `RoomOccupancyTable` table.
 
 ```sql
 select 10 as roomNumber, 1 as arrival
@@ -3442,46 +3539,45 @@ update RoomTypeTable
     on RoomTypeTable.roomNo == roomNumber;
 ```
 
-```sql
-update RoomTypeTable
-    set RoomTypeTable.people = RoomTypeTable.people + 1
-    on RoomTypeTable.roomNo == 10;
-```
-
 ### Update or Insert
 
-Allows a stream to update selected records form a table if they exist, and if not a new entry is inserted in to the table.
+On-demand query to update the events (records) that already exist in the [table](#table)(/[store](#store)) based on a condition, else inserts the event as a new entry to the table.
 
 **Syntax**
+
+Syntax to update or insert events on a table (store) is as follows;
 
 ```sql
 select <attribute name>, <attribute name>, ...
 update or insert into <table>
-    set <table>.<attribute name> = <expression>, <table>.<attribute name> = <expression>, ...
-    on <condition>
+    (set <table>.<attribute name> = (<attribute name>|<expression>), <table>.<attribute name> = (<attribute name>|<expression>), ...)?
+    (on <condition>)?
 ```
-The `condition` element specifies the basis on which records are selected for update.
-When specifying the `condition`, table attributes should be referred to with the table name.
-If a record that matches the condition does not already exist in the table, the arriving event is inserted into the table.
 
-The `set` clause is only used when an update is performed during the insert/update operation.
-When `set` clause is used, the attribute to the left is always a table attribute, and the attribute to the right can be a stream/table attribute, mathematical
-operation or other. The attribute to the left (i.e., the attribute in the event table) is updated with the value of the attribute to the right if the given condition is met. When the `set` clause is not provided, all the attributes in the table are updated.
+
+The `condition` element specifies the basis on which the events in the table are selected to be updated. **When referring the table attributes in the update clause, they must always be referred with the table name**, and when the condition does not match with any event in the table, then a new event (a record) is inserted into the table. Here, when a condition is not defined, all the events in the table will be updated.
+
+The `set` clause is only used when an update is performed in the update or insert operation. In this case, the `set` keyword can be used to update only the selected attributes from the table. Here, for each assignment, the left side should contain the table attribute that is being updated, and the right side can contain a query output attribute, a table attribute, a mathematical operation, or any other. When the `set` clause is not provided, all attributes in the table will be updated based on the query output.  
 
 !!! note
-    Table attributes must always be referred to with the table name as shown below: <br />
-     `<table name>.<attribute name>`.
+    In the `update or insert` clause, the table attributes must be always referred with the table name as follows:
+    `<table name>.<attribute name>`
 
 **Example**
 
-The following query tries to update the records in the `RoomAssigneeTable` table that have room numbers that match the
- same in the selection. If such records are not found, it inserts a new record based on the values provided in the selection.
+An on-demand query to update the record with `assignee` `"John"` when there is already and record for `roomNo` `10` in the `RoomAssigneeTable` table, else to insert a new record with values `10`, `"single"` and `"John"` for the attributes `roomNo`, `type`, and `assignee` respectively.
 
 ```sql
-select 10 as roomNo, "single" as type, "abc" as assignee
+select 10 as roomNo, "single" as type, "John" as assignee
 update or insert into RoomAssigneeTable
     set RoomAssigneeTable.assignee = assignee
     on RoomAssigneeTable.roomNo == roomNo;
+```
+
+For the above query to be performed, the respective SiddhiApp should have a `RoomAssigneeTable` table defined something similar to the following.
+
+```sql
+define table RoomAssigneeTable (roomNo int, type string, assignee string);
 ```
 
 ## Extensions
@@ -3507,9 +3603,9 @@ The following parameters are configured when referring a script function.
 
 | Parameter     | Description |
 | ------------- |-------------|
-|`namespace` | Allows Siddhi to identify the extension without conflict|
-| `function name`| 	The name of the function referred.|
-| `parameter`| 	The function input parameter for function execution.|
+|`<namespace>` | Allows Siddhi to identify the extension without conflict|
+| `<function name>`| 	The name of the function referred.|
+| `<parameter>`| 	The function input parameter for function execution.|
 
 <a name="ExtensionTypes"></a>
 **Extension Types**
