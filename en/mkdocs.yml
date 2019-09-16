@@ -128,5 +128,6 @@ nav:
     - Source: development/source.md
     - Build: development/build.md
     - Architecture: development/architecture.md
+    - Roadmap: development/roadmap.md
   - License:
     - License: /license/
