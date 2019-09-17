@@ -117,8 +117,8 @@ The following parameters are used to configure a stream definition.
 
 To use and refer stream and attribute names that do not follow `[a-zA-Z_][a-zA-Z_0-9]*` format enclose them in ``` ` ```. E.g. ``` `$test(0)` ```.
 
-To make the stream process events in multi-threading and asynchronous way use the `@Async` annotation as shown in
-[Multi-threading and Asynchronous Processing](##multi-threading-and-asynchronous-processing) configuration section.
+To make the stream process events in multi-threading and asynchronous way use the `@async` annotation as shown in
+[Threading and synchronization](#threading-and-synchronization) configuration section.
 
 **Example**
 ```sql
@@ -207,7 +207,7 @@ There are two ways to configure `@attributes`.
 2. Define the mapping configurations in the same order as the attributes defined in stream definition:<br/>
   `@attributes( '<mapping for attribute1>', '<mapping for attributeN>')`
 
-**Supported Source Mapping Types**
+**Supported source mapping types**
 
 The following is the list of source mapping types supported by Siddhi:
 
@@ -420,7 +420,7 @@ There are two ways you to configure `@payload` annotation.
   `@payload( key1='mapping_1', 'key2'='user : {{user}}')` <br/>
   Here, the keys of payload mapping can be defined using the dot notation as ```a.b.c```, or using any constant string value as `'$abc'`.
 
-**Supported Sink Mapping Types**
+**Supported sink mapping types**
 
 The following is a list of sink mapping types supported by Siddhi:
 
@@ -994,32 +994,17 @@ It encapsulate pre-configured reusable execution logic allowing users to execute
 The syntax of function is as follows,
 
 ```sql
-<function name>( (<parameter>(, <parameter>)*)? )
+(<namespace>:)?<function name>( (<parameter>(, <parameter>)*)? )
 ```
 
-Here `<function name>` uniquely identifies the function. The `<parameter>` defined input parameters the function can accept. The input parameters can be attributes, constant values, results of other functions, results of mathematical or logical expressions, or time values. The number and type of parameters a function accepts depend on the function itself.
+Here, the `<namespace>` and `<function name>` together uniquely identifies the function. The `<function name>` is used to specify the operation provided by the function, and the `<namespace>` is used to identify the extension where the function exists. The inbuilt functions do not belong to a namespace, and hence `<namespace>` is omitted when they are defined. The `<parameter>`s define the input parameters that the function accepts. The input parameters can be attributes, constant values, results of other functions, results of mathematical or logical expressions, or time values. The number and type of parameters a function accepts depend on the function itself.
 
 !!! note
     Functions, mathematical expressions, and logical expressions can be used in a nested manner.
 
-**Example 1**
-
-Function with name `add` accepting two input parameters, one being an attribute named `input` and other being a constant value `75`.  
-```
-add(input, 75)
-```
-
-**Example 2**
-
-Function name `alertAfter` accepting two input parameters, one being a time value `1 hour and 25 minutes` and the other a mathematical addition of `startTime` and `56`.
-
-```
-alertAfter(1 hour and 25 minutes, startTime + 56)
-```
-
 **Inbuilt functions**
 
-Following are some inbuilt Siddhi functions, for more functions refer [execution extensions](../extensions/) .
+Following are some inbuilt Siddhi functions.
 
 |Inbuilt function | Description|
 | ------------- |-------------|
@@ -1042,7 +1027,33 @@ Following are some inbuilt Siddhi functions, for more functions refer [execution
 | <a target="_blank" href="../api/latest/#createset-function">createSet</a> | Creates  HashSet with given input parameters. |
 | <a target="_blank" href="../api/latest/#minimum-function">sizeOfSet</a> | Returns number of items in the HashSet, that's passed as a parameter. |
 
-**Example**
+
+**Extension functions**
+
+Several pre written functions can be found in the Siddhi extensions available **<a target="_blank" href="../extensions/">here</a>**.
+
+
+Several pre written functions can be found under `siddhi-execution-*` extensions available **<a target="_blank" href="../extensions/">here</a>**.
+
+**Example 1**
+
+Function with name `ifThenElse` accepting three input parameters, first parameter being a `bool` condition `price>700` and the second and the third parameters being the output for if case `'high'`, and else case `'low'`.
+
+```
+ifThenElse(price>700, 'high', 'low')
+```
+
+**Example 2**
+
+math:ceil(inValue)
+
+Function with name `ceil` in `math` namespace accepting a single input parameters `56.89` and produces ceiling value `57` as output.
+
+```
+math:ceil(56.89)
+```
+
+**Example 3**
 
 Query to convert the `roomNo` to `string` using `convert` function, find the maximum temperature reading with `maximum` function, and to add a unique `messageID` using the `UUID` function.
 
@@ -1083,6 +1094,52 @@ select roomNo, temp
 insert into HighTempStream;
 ```
 
+### Stream Function
+
+Stream functions process the events that arrive via the input stream (or [named-window](#named-window)), to generate zero or more new events with one or more additional output attributes for each event. Unlike the standard functions, they operate directly on the streams or (or [named-windows](#named-window)) and can add the function outputs via predefined attributes on the generated events.
+
+**Purpose**
+
+Stream function is useful when a function produces more than one output for the given input parameters. In this case, the outputs are added to the event, using newly introduced attributes with predefined attribute names.
+
+**Syntax**
+
+Stream function should be defined next to the input stream or [named-windows](#named-window) along the `#` prefix as shown below.
+
+```sql
+from <input stream>#(<namespace>:)?<stream function name>(<parameter>, <parameter>, ... )
+select <attribute name>, <attribute name>, ...
+insert into <output stream>
+```
+
+Here, the `<namespace>` and `<stream function name>` together uniquely identifies the stream function. The `<stream function name>` is used to specify the operation provided by the window, and the `<namespace>` is used to identify the extension where the stream function exists. The inbuilt stream functions do not belong to a namespace, and hence `<namespace>` is omitted when they are defined. The `<parameter>`s define the input parameters that the stream function accepts. The input parameters can be attributes, constant values, functions, mathematical or logical expressions, or time values. The number and type of parameters a stream function accepts depend on the stream function itself.
+
+**Inbuilt stream functions**
+
+Following is an inbuilt Siddhi stream function.
+
+|Inbuilt stream function | Description|
+| ------------- |-------------|
+| <a target="_blank" href="../api/latest/#pol2cart-stream-function">pol2Cart</a> | Calculates cartesian coordinates `x` and `y` for the given `theta`, and `rho` coordinates.|
+
+**Extension stream functions**
+
+Several pre written stream functions can be found in the Siddhi extensions available **<a target="_blank" href="../extensions/">here</a>**.
+
+**Example**
+
+A query to calculate cartesian coordinates from `theta`, and `rho` attribute values optioned from the `PolarStream` stream, and to insert the results `x` and `y` via `CartesianStream` stream.
+
+```sql
+define stream PolarStream (theta double, rho double);
+
+from PolarStream#pol2Cart(theta, rho)
+select x, y
+insert into CartesianStream;
+```
+
+Here, the `pol2Cart` stream function amend the events with `x` and `y` attributes with respective cartesian values.
+
 ### Window
 
 Windows capture a subset of events from input streams and retain them for a period of time based on a specified criterion. The criterion defines when and how the events should be evicted from the window. Such as events getting evicted based on time duration, or number of events in the window, and the way they get evicted is in sliding (one by one) or tumbling (batch) manner.
@@ -1098,17 +1155,19 @@ Windows help to retain events based on a criterion, such that the values of thos
 Window should be defined next to the input stream along the `#window` prefix as shown below.
 
 ```sql
-from <input stream>#window.<window name>(<parameter>, <parameter>, ... )
+from <input stream>#window.(<namespace>:)?<window name>(<parameter>, <parameter>, ... )
 select <attribute name>, <attribute name>, ...
-insert <ouput event type>? into <output stream>
+insert <output event type>? into <output stream>
 ```
 
+Here, the `<namespace>` and `<window name>` together uniquely identifies the window. The `<window name>` is used to specify the operation provided by the window, and the `<namespace>` is used to identify the extension where the window exists. The inbuilt windows do not belong to a namespace, and hence `<namespace>` is omitted when they are defined. The `<parameter>`s define the input parameters that the window accepts. The input parameters can be attributes, constant values, functions, mathematical or logical expressions, or time values. The number and type of parameters a window accepts depend on the window itself.
+
 !!! note
-    Filter conditions can be applied both before and/or after the window.
+    Filter conditions and stream functions can be applied both before and/or after the window.
 
 **Inbuilt windows**
 
-Following are some inbuilt Siddhi windows, for more windows refer [execution extensions](../extensions/).
+Following are some inbuilt Siddhi windows.
 
 |Inbuilt function | Description|
 | ------------- |-------------|
@@ -1125,6 +1184,9 @@ Following are some inbuilt Siddhi windows, for more windows refer [execution ext
 | <a target="_blank" href="../api/latest/#externaltimebatch-window">externalTimeBatch</a> | Retains events based on event time value passed as a parameter in a a tumbling/batch manner.|
 | <a target="_blank" href="../api/latest/#delay-window">delay</a> | Retains events and delays the output by the given time period in a sliding manner.|
 
+**Extension windows**
+
+Several pre written windows can be found under `siddhi-execution-*` extensions available **<a target="_blank" href="../extensions/">here</a>**.
 
 **Example 1**
 
@@ -1190,13 +1252,25 @@ select max(temp) as maxTemp
 insert into MaxTempStream;
 ```
 
-Here, the window operates in a batch/tumbling manner where the window will process evetns in the following 3 time durations and output aggregated events when a list of events are received in a sequential order.
+Here, the window operates in a batch/tumbling manner where the window will process events in the following 3 time durations and output aggregated events when a list of events are received in a sequential order.
 
 |Subset|Time Range (in ms)|
 |------|-----------|
 | 1 | 1:00:00.001 - 1:10:00.000 |
 | 2 | 1:10:00.001 - 1:20:00.000 |
 | 3 | 1:20:00.001 - 1:30:00.000 |
+
+**Example 5**
+
+Query to find out the unique number of `deviceID`s arrived over last **1 minute**, using the `time` window in the `unique` extension, and to insert the results into the `UniqueCountStream` stream.
+
+```sql
+define stream TempStream (deviceID long, roomNo int, temp double);
+
+from TempStream#window.unique:time(deviceID, 1 sec)
+select count(deviceID) as deviceIDs
+insert into UniqueCountStream ;
+```
 
 ### Event Type
 
@@ -1285,15 +1359,15 @@ The syntax of aggregate function is as follows,
 
 ```sql
 from <input stream>#window.<window name>(<parameter>, <parameter>, ... )
-select <aggregate function>(<parameter>, <parameter>, ... ) as <attribute name>, <attribute2 name>, ...
+select (<namespace>:)?<aggregate function name>(<parameter>, <parameter>, ... ) as <attribute name>, <attribute2 name>, ...
 insert into <output stream>;
 ```
 
-Here `<aggregate function>` uniquely identifies the aggregate function. The `<parameter>` defined input parameters the aggregate function can accept. The input parameters can be attributes, constant values, results of other functions or aggregate functions, results of mathematical or logical expressions, or time values. The number and type of parameters an aggregate function accepts depend on the aggregate function itself.
+Here, the `<namespace>` and `<aggregate function name>` together uniquely identifies the aggregate function. The `<aggregate function name>` is used to specify the operation provided by the aggregate function, and the `<namespace>` is used to identify the extension where the aggregate function exists. The inbuilt aggregate functions do not belong to a namespace, and hence `<namespace>` is omitted when they are defined. The `<parameter>`s define the input parameters the aggregate function accepts. The input parameters can be attributes, constant values, results of other functions or aggregate functions, results of mathematical or logical expressions, or time values. The number and type of parameters an aggregate function accepts depend on the aggregate function itself.
 
 **Inbuilt aggregate functions**
 
-Following are some inbuilt aggregation functions, for more aggregate functions refer [execution extensions](../extensions/).
+Following are some inbuilt aggregation functions.
 
 |Inbuilt aggregate function | Description|
 | ------------- |-------------|
@@ -1310,14 +1384,18 @@ Following are some inbuilt aggregation functions, for more aggregate functions r
 | <a target="_blank" href="../api/latest/#or-aggregate-function">or</a> | Calculates boolean `or` from a set of values. |
 | <a target="_blank" href="../api/latest/#unionset-aggregate-function">unionSet</a> | Constructs a Set by unioning set of values. |
 
+**Extension aggregate functions**
+
+Several pre written aggregate functions can be found under `siddhi-execution-*` extensions available **<a target="_blank" href="../extensions/">here</a>**.
+
 **Example**
 
-Query to calculate average, maximum, and minimum values on `temp` attribute of the `TempStream` stream in a sliding manner, from the events arrived over the last 10 minutes and to produce output events with attributes `avgTemp`, `maxTemp` and `minTemp` respectively to the `AvgTempStream` stream.
+Query to calculate average, maximum, minimum and 97th percentile values on `temp` attribute of the `TempStream` stream in a sliding manner, from the events arrived over the last 10 minutes and to produce output events with attributes `avgTemp`, `maxTemp`, `minTemp` and `percentile97` respectively to the `AggTempStream` stream.
 
 ```sql
 from TempStream#window.time(10 min)
-select avg(temp) as avgTemp, max(temp) as maxTemp, min(temp) as minTemp
-insert into AvgTempStream;
+select avg(temp) as avgTemp, max(temp) as maxTemp, min(temp) as minTemp, math:percentile(temp, 97.0) as percentile97
+insert into AggTempStream;
 ```
 
 ### Group By
@@ -1471,6 +1549,53 @@ order by avgTemp desc
 limit 3
 offset 2
 insert into HighestAvgTempStream;
+```
+
+### Stream Processor
+
+Stream processors are a combination of stream [stream functions](#stream-function) and [windows](#windows). They work directly on the input streams (or [named-windows](#named-window)), to generate zero or more new events with zero or more additional output attributes while having the ability to retain and arbitrarily emit events.
+
+They are more advanced than stream functions as they can retain and arbitrarily emit events, and they are more advanced than windows because they can add additional attributes to the events.
+
+**Purpose**
+
+Stream processors help to achieve complex execution logics that cannot be achieved by other constructs such as [functions](#function), [aggregate functions](#aggregate-function), [stream functions](#stream-function) and  [windows](#windows).
+
+**Syntax**
+
+Stream processor should be defined next to the input stream or [named-windows](#named-window) along the `#` prefix as shown below.
+
+```sql
+from <input stream>#(<namespace>:)?<stream processor name>(<parameter>, <parameter>, ... )
+select <attribute name>, <attribute name>, ...
+insert into <output stream>
+```
+
+Here, the `<namespace>` and `<stream processor name>` together uniquely identifies the stream processor. The `<stream processor name>` is used to specify the operation provided by the window, and the `<namespace>` is used to identify the extension where the stream processor exists. The inbuilt stream processors do not belong to a namespace, and hence `<namespace>` is omitted when they are defined. The `<parameter>`s define the input parameters that the stream processor accepts. The input parameters can be attributes, constant values, processors, mathematical or logical expressions, or time values. The number and type of parameters a stream processor accepts depend on the stream processor itself.
+
+**Inbuilt stream processors**
+
+Following is an inbuilt Siddhi stream processor.
+
+|Inbuilt stream processor | Description|
+| ------------- |-------------|
+| <a target="_blank" href="../api/latest/#log-stream-processor">log</a> | Logs the message on the given priority with or without the processed event.|
+
+**Extension stream processors**
+
+Several pre written stream processors can be found in the Siddhi extensions available **<a target="_blank" href="../extensions/">here</a>**.
+
+!!! note
+    Stream processors can be used before or after [filters](#filter), [stream functions](#stream-function), [windows](#windows), or other stream processors.
+
+**Example**
+
+A query to log a message `"Sample Event :"` along with the event on `"INFO"` log level for all events of `InputStream` Stream.
+
+```sql
+from InputStream#log("INFO", "Sample Event :", true)
+select *
+insert into IgnoreStream;
 ```
 
 ### Join (Stream)
@@ -2434,7 +2559,7 @@ Even though the cache is enabled, its behavior and usage depend on the number of
     * If the cache is full and when a cache miss occurs, a record is removed from the cache based on the defined cache expiry policy before adding the missed record from the external data store.
     * When `retention.period` (and `purge.interval`) is configured, the data is cache that are loaded earlier than retention period are periodically deleted. Here, no reloading will be done from the external data store.  
 
-**Supported Store Types**
+**Supported store types**
 
 The following is a list of store types supported by Siddhi:
 
@@ -2479,7 +2604,7 @@ Here, an `RDBMS` store is defined with a cache of size 100 that every minute rem
 + `username` of type `VARCHAR(255)` mapped to `string`
 + `salary` of type `VARCHAR(255)` mapped to `string`
 
-**Table (and Store) Operators**
+**Table (and store) operators**
 
 The following operations can be performed on tables (and stores).
 
@@ -2900,7 +3025,7 @@ define aggregation TradeMinMax
 
 Here, the aggregated data is stored in a MySQL store hosted at `mysql://localhost:3306/sweetFactoryDB` and the data is periodically purged for every `10 min` while retaining data for hour, day, and month granularities for `24 hours`, `1 year`, and forever respectively.
 
-**Named-Aggregation Operators**
+**Named-aggregation operators**
 
 The following operation can be performed on named-aggregation.
 
@@ -3059,7 +3184,7 @@ The above window definition with the name `SensorWindow` defines a named-window 
 + `value` of type `float`
 + `roomNo` of type `int`
 
-**Named-Windows Operators**
+**Named-windows operators**
 
 The following operations can be performed on named-windows.
 
@@ -3305,15 +3430,15 @@ The operation supported on [named-windows](#named-window), and [named-aggregatio
 
 * Select
 
-**On-Demand Query Operators**
+**On-Demand query operators**
 
 The following operations can be performed via on-demand queries.
 
-### _(Table/Named-Window)_ Select
+### Select _(Table/Named-Window)_
 
 On-demand query to retrieve records from the specified [table](#table)(/[store](#store)) or [named-window](#named-window), based on the given condition.
 
-To retrieve data from Named-Aggregation, refer the [Named-Aggregation Select](#named-aggregation-select) section.
+To retrieve data from Named-Aggregation, refer the [Named-Aggregation Select](#select-named-aggregation) section.
 
 **Syntax**
 
@@ -3358,11 +3483,11 @@ from RoomTypeTable
 select count(roomNo) as totalRooms
 ```
 
-### _(Aggregation)_ Select
+### Select _(Named-Aggregation)_
 
 On-demand query to retrieve records from the specified [named-aggregation](#named-aggregation), based on the time range, time granularity, and the given condition.
 
-To retrieve data from table (store), or named-window, refer the [Table/Named-Window Select](#tablenamed-window-select) section.
+To retrieve data from table (store), or named-window, refer the [Table/Named-Window Select](#select-tablenamed-window) section.
 
 **Syntax**
 
@@ -3580,409 +3705,116 @@ For the above query to be performed, the respective SiddhiApp should have a `Roo
 define table RoomAssigneeTable (roomNo int, type string, assignee string);
 ```
 
-## Extensions
+## SiddhiApp Configuration and Monitoring
 
-Siddhi supports an extension architecture to enhance its functionality by incorporating other libraries in a seamless manner.
+### Threading and Synchronization
+
+The threading and synchronization behavior of SiddhiApps can be modified by using the `@async` annotation on the Streams. By default, SiddhiApp uses the request threads for all the processing. Here, the request threads follow through the streams and process each query in the order they are defined. By using the `@async` annotation, processing of events can be handed over to a new set of worker threads.
 
 **Purpose**
 
-Extensions are supported because, Siddhi core cannot have all the functionality that's needed for all the use cases, mostly use cases require
-different type of functionality, and for some cases there can be gaps and you need to write the functionality by yourself.
-
-All extensions have a namespace. This is used to identify the relevant extensions together, and to let you specifically call the extension.
+The `@async` annotation helps to improve the SiddhiApp performance using parallel processing and event chunking, and it can also help to synchronize the execution across multiple operations.
 
 **Syntax**
 
-Extensions follow the following syntax;
+The syntax for configuring threading in Siddhi is as follows.
 
 ```sql
-<namespace>:<function name>(<parameter>, <parameter>, ... )
-```
-
-The following parameters are configured when referring a script function.
-
-| Parameter     | Description |
-| ------------- |-------------|
-|`<namespace>` | Allows Siddhi to identify the extension without conflict|
-| `<function name>`| 	The name of the function referred.|
-| `<parameter>`| 	The function input parameter for function execution.|
-
-<a name="ExtensionTypes"></a>
-**Extension Types**
-
-Siddhi supports following extension types:
-
-* **Function**
-
-    For each event, it consumes zero or more parameters as input parameters and returns a single attribute. This can be used to manipulate existing event attributes to generate new attributes like any Function operation.
-
-    This is implemented by extending `io.siddhi.core.executor.function.FunctionExecutor`.
-
-    Example :
-
-    `math:sin(x)`
-
-    Here, the `sin` function of `math` extension returns the sin value for the `x` parameter.
-
-* **Aggregate Function**
-
-    For each event, it consumes zero or more parameters as input parameters and returns a single attribute with aggregated results. This can be used in conjunction with a window in order to find the aggregated results based on the given window like any Aggregate Function operation.
-
-     This is implemented by extending `io.siddhi.core.query.selector.attribute.aggregator.AttributeAggregatorExecutor`.
-
-    Example :
-
-    `custom:std(x)`
-
-    Here, the `std` aggregate function of `custom` extension returns the standard deviation of the `x` value based on its assigned window query.
-
-* **Window**
-
-    This allows events to be **collected, generated, dropped and expired anytime** **without altering** the event format based on the given input parameters, similar to any other Window operator.
-
-    This is implemented by extending `io.siddhi.core.query.processor.stream.window.WindowProcessor`.
-
-    Example :
-
-    `custom:unique(key)`
-
-    Here, the `unique` window of the `custom` extension retains one event for each unique `key` parameter.
-
-* **Stream Function**
-
-    This allows events to be  **generated or dropped only during event arrival** and **altered** by adding one or more attributes to it.
-
-    This is implemented by extending  `io.siddhi.core.query.processor.stream.function.StreamFunctionProcessor`.
-
-    Example :  
-
-    `custom:pol2cart(theta,rho)`
-
-    Here, the `pol2cart` function of the `custom` extension returns all the events by calculating the cartesian coordinates `x` & `y` and adding them as new attributes to the events.
-
-* **Stream Processor**
-
-    This allows events to be **collected, generated, dropped and expired anytime** by **altering** the event format by adding one or more attributes to it based on the given input parameters.
-
-    Implemented by extending `io.siddhi.core.query.processor.stream.StreamProcessor`.
-
-    Example :  
-
-    `custom:perMinResults(<parameter>, <parameter>, ...)`
-
-    Here, the `perMinResults` function of the `custom` extension returns all events by adding one or more attributes to the events based on the conversion logic. Altered events are output every minute regardless of event arrivals.
-
-* **Sink**
-
-    Sinks provide a way to **publish Siddhi events to external systems** in the preferred data format. Sinks publish events from the streams via multiple transports to external endpoints in various data formats.
-
-    Implemented by extending `io.siddhi.core.stream.output.sink.Sink`.
-
-    Example :
-
-    `@sink(type='sink_type', static_option_key1='static_option_value1')`
-
-    To configure a stream to publish events via a sink, add the sink configuration to a stream definition by adding the @sink annotation with the required parameter values. The sink syntax is as above
-
-* **Source**
-
-    Source allows Siddhi to **consume events from external systems**, and map the events to adhere to the associated stream. Sources receive events via multiple transports and in various data formats, and direct them into streams for processing.
-
-    Implemented by extending `io.siddhi.core.stream.input.source.Source`.
-
-    Example :
-
-    `@source(type='source_type', static.option.key1='static_option_value1')`
-
-    To configure a stream that consumes events via a source, add the source configuration to a stream definition by adding the @source annotation with the required parameter values. The source syntax is as above
-
-* **Store**
-
-    You can use Store extension type to work with data/events **stored in various data stores through the table abstraction**. You can find more information about these extension types under the heading 'Extension types' in this document.
-
-    Implemented by extending `io.siddhi.core.table.record.AbstractRecordTable`.
-
-* **Script**
-
-    Scripts allow you to **define a function** operation that is not provided in Siddhi core or its extension. It is not required to write an extension to define the function logic. Scripts allow you to write functions in other programming languages and execute them within Siddhi queries. Functions defined via scripts can be accessed in queries similar to any other inbuilt function.
-
-    Implemented by extending `io.siddhi.core.function.Script`.
-
-* **Source Mapper**
-
-    Each `@source` configuration has a mapping denoted by the `@map` annotation that **converts the incoming messages format to Siddhi events**.The type parameter of the @map defines the map type to be used to map the data. The other parameters to be configured depends on the mapper selected. Some of these parameters are optional.
-
-    Implemented by extending `io.siddhi.core.stream.output.sink.SourceMapper`.
-
-    Example :
-
-    `@map(type='map_type', static_option_key1='static_option_value1')`
-
-* **Sink Mapper**
-
-    Each `@sink` configuration has a mapping denoted by the `@map` annotation that **converts the outgoing Siddhi events to configured messages format**.The type parameter of the @map defines the map type to be used to map the data. The other parameters to be configured depends on the mapper selected. Some of these parameters are optional.
-
-    Implemented by extending `io.siddhi.core.stream.output.sink.SinkMapper`.
-
-    Example :
-
-    `@map(type='map_type', static_option_key1='static_option_value1')`
-
-**Example**
-
-A window extension created with namespace `foo` and function name `unique` can be referred as follows:
-
-```sql
-from StockExchangeStream[price >= 20]#window.foo:unique(symbol)
-select symbol, price
-insert into StockQuote
-```
-
-**Available Extensions**
-
-Siddhi currently has several pre written extensions that are available **<a target="_blank" href="../extensions/">here</a>**
-
-_We value your contribution on improving Siddhi and its extensions further._
-
-
-### Writing Custom Extensions
-
-Custom extensions can be written in order to cater use case specific logic that are not available in Siddhi out of the box or as an existing extension.
-
-There are five types of Siddhi extensions that you can write to cater your specific use cases. These
-extension types and the related maven archetypes are given below. You can use these archetypes to generate Maven projects for each
-extension type.
-
-* Follow the procedure for the required archetype, based on your project:
-
-!!! Note
-    When using the generated archetype please make sure you complete the @Extension
-    annotation with proper values. This annotation will be used to identify and document the extension, hence your
-    extension will not work without @Extension annotation.
-
-**siddhi-execution**
-
-Siddhi-execution provides following extension types:
-
-* Function
-* Aggregate Function
-* Stream Function
-* Stream Processor
-* Window
-
-You can use one or more from above mentioned extension types and implement according to your requirement.
-
-For more information about these extension types, see [Extension Types](#ExtensionTypes).
-
-To install and implement the siddhi-io extension archetype, follow the procedure below:
-
-1. Issue the following command from your CLI.
-
-                mvn archetype:generate
-                    -DarchetypeGroupId=io.siddhi.extension.archetype
-                    -DarchetypeArtifactId=siddhi-archetype-execution
-                    -DgroupId=io.siddhi.extension.execution
-                    -Dversion=1.0.0-SNAPSHOT
-
-2. Enter the mandatory properties prompted, please see the description for all properties below.
-
-    |Properties | Description | Mandatory | Default Value |
-    |------------- |-------------| ---- | ----- |
-    |_nameOfFunction | Name of the custom function to be created | Y | - |
-    |_nameSpaceOfFunction | Namespace of the function, used to grouped similar custom functions | Y | -
-    |groupIdPostfix| Namespace of the function is added as postfix to the groupId as a convention | N | {_nameSpaceOfFunction}
-    |artifactId | Artifact Id of the project | N | siddhi-execution-{_nameSpaceOfFunction}
-    |classNameOfAggregateFunction| Class name of the Aggregate Function | N | ${_nameOfFunction}AggregateFunction
-    |classNameOfFunction|Class name of the Function|N|${_nameOfFunction}Function
-    |classNameOfStreamFunction|Class name of the Stream Function|N|${_nameOfFunction}StreamFunction
-    |classNameOfStreamProcessor|Class name of the Stream Processor|N|${_nameOfFunction}StreamProcessor
-    |classNameOfWindow|Class name of the Window|N|${_nameOfFunction}Window
-
-3. To confirm that all property values are correct, type `Y` in the console. If not, press `N`.
-
-**siddhi-io**
-
-Siddhi-io provides following extension types:
-
-* Sink
-* Source
-
-You can use one or more from above mentioned extension types and implement according to your requirement. siddhi-io is generally used to work with IO operations as follows:
- * The Source extension type gets inputs to your Siddhi application.
- * The Sink extension publishes outputs from your Siddhi application.
-
-For more information about these extension types, see [Extension Types](#ExtensionTypes).
-
-To implement the siddhi-io extension archetype, follow the procedure below:
-
-1. Issue the following command from your CLI.
-
-               mvn archetype:generate
-                   -DarchetypeGroupId=io.siddhi.extension.archetype
-                   -DarchetypeArtifactId=siddhi-archetype-io
-                   -DgroupId=io.siddhi.extension.io
-                   -Dversion=1.0.0-SNAPSHOT
-
-1. Enter the mandatory properties prompted, please see the description for all properties below.
-
-    | Properties | Description | Mandatory | Default Value |
-    | ------------- |-------------| ---- | ----- |
-    | _IOType | Type of IO for which Siddhi-io extension is written | Y | -
-    | groupIdPostfix| Type of the IO is added as postfix to the groupId as a convention | N | {_IOType}
-    | artifactId | Artifact Id of the project | N | siddhi-io-{_IOType}
-    | classNameOfSink | Class name of the Sink | N | {_IOType}Sink
-    | classNameOfSource | Class name of the Source | N | {_IOType}Source
-
-3. To confirm that all property values are correct, type `Y` in the console. If not, press `N`.
-
-**siddhi-map**
-
-Siddhi-map provides following extension types,
-
-* Sink Mapper
-* Source Mapper
-
-You can use one or more from above mentioned extension types and implement according to your requirement as follows.
-
-* The Source Mapper maps events to a predefined data format (such as XML, JSON, binary, etc), and publishes them to external endpoints (such as E-mail, TCP, Kafka, HTTP, etc).
-* The Sink Mapper also maps events to a predefined data format, but it does it at the time of publishing events from a Siddhi application.
-
-For more information about these extension types, see [Extension Types](#ExtensionTypes).
-
-To implement the siddhi-map extension archetype, follow the procedure below:
-
-1. Issue the following command from your CLI.                
-
-                mvn archetype:generate
-                    -DarchetypeGroupId=io.siddhi.extension.archetype
-                    -DarchetypeArtifactId=siddhi-archetype-map
-                    -DgroupId=io.siddhi.extension.map
-                    -Dversion=1.0.0-SNAPSHOT
-
-2. Enter the mandatory properties prompted, please see the description for all properties below.
-
-    | Properties | Description | Mandatory | Default Value |
-    | ------------- |-------------| ---- | ----- |
-    | _mapType | Type of Mapper for which Siddhi-map extension is written | Y | -
-    | groupIdPostfix| Type of the Map is added as postfix to the groupId as a convention | N | {_mapType}
-    | artifactId | Artifact Id of the project | N | siddhi-map-{_mapType}
-    | classNameOfSinkMapper | Class name of the Sink Mapper| N | {_mapType}SinkMapper
-    | classNameOfSourceMapper | Class name of the Source Mapper | N | {_mapType}SourceMapper   
-
-3. To confirm that all property values are correct, type `Y` in the console. If not, press `N`.
-
-**siddhi-script**
-
-Siddhi-script provides the `Script` extension type.
-
-The script extension type allows you to write functions in other programming languages and execute them within Siddhi queries. Functions defined via scripts can be accessed in queries similar to any other inbuilt function.
-
-For more information about these extension types, see [Extension Types](#ExtensionTypes).
-
-To implement the siddhi-script extension archetype, follow the procedure below:
-
-1. Issue the following command from your CLI.                   
-
-               mvn archetype:generate
-                   -DarchetypeGroupId=io.siddhi.extension.archetype
-                   -DarchetypeArtifactId=siddhi-archetype-script
-                   -DgroupId=io.siddhi.extension.script
-                   -Dversion=1.0.0-SNAPSHOT
-
-2. Enter the mandatory properties prompted, please see the description for all properties below.
-
-    | Properties | Description | Mandatory | Default Value |
-    | ------------- |-------------| ---- | ----- |
-    | _nameOfScript | Name of Custom Script for which Siddhi-script extension is written | Y | -
-    | groupIdPostfix| Name of the Script is added as postfix to the groupId as a convention | N | {_nameOfScript}
-    | artifactId | Artifact Id of the project | N | siddhi-script-{_nameOfScript}
-    | classNameOfScript | Class name of the Script | N | Eval{_nameOfScript}
-
-3. To confirm that all property values are correct, type `Y` in the console. If not, press `N`.
-
-**siddhi-store**
-
-Siddhi-store provides the `Store` extension type.
-
-The Store extension type allows you to work with data/events stored in various data stores through the table abstraction.
-
-For more information about these extension types, see [Extension Types](#ExtensionTypes).
-
-To implement the siddhi-store extension archetype, follow the procedure below:
-
-1. Issue the following command from your CLI.                      
-
-               mvn archetype:generate
-                  -DarchetypeGroupId=io.siddhi.extension.archetype
-                  -DarchetypeArtifactId=siddhi-archetype-store
-                  -DgroupId=io.siddhi.extension.store
-                  -Dversion=1.0.0-SNAPSHOT
-
-2. Enter the mandatory properties prompted, please see the description for all properties below.
-
-    | Properties | Description | Mandatory | Default Value |
-    | ------------- |-------------| ---- | ----- |
-    | _storeType | Type of Store for which Siddhi-store extension is written | Y | -
-    | groupIdPostfix| Type of the Store is added as postfix to the groupId as a convention | N | {_storeType}
-    | artifactId | Artifact Id of the project | N | siddhi-store-{_storeType}
-    | className | Class name of the Store | N | {_storeType}EventTable
-
-3. To confirm that all property values are correct, type `Y` in the console. If not, press `N`.
-
-## Configuring and Monitoring Siddhi Applications
-
-### Multi-threading and Asynchronous Processing
-
-When `@Async` annotation is added to the Streams it enable the Streams to introduce asynchronous and multi-threading
-behavior.
-
-```sql
-@Async(buffer.size='256', workers='2', batch.size.max='5')
+@async(buffer.size='<buffer size>', workers='<workers>', batch.size.max='max <batch size>')
 define stream <stream name> (<attribute name> <attribute type>, <attribute name> <attribute type>, ... );
 ```
-The following elements are configured with this annotation.
 
-|Annotation| Description| Default Value|
-| ------------- |-------------|-------------|
-|`buffer.size`|The size of the event buffer that will be used to handover the execution to other threads. | - |
-|`workers`|Number of worker threads that will be be used to process the buffered events.|`1`|
-|`batch.size.max`|The maximum number of events that will be processed together by a worker thread at a given time.| `buffer.size`|
+The following parameters are used to configure the `@async` definition.
+
+|Parameter| Description| Optional | Default Value|
+| ------------- |-------------|-------------|-------------|
+|`buffer.size`|The size of the event buffer (in power of 2) that holds the events until they are picked by worker threads for processing. | No | - |
+|`workers`| The number of worker threads that process the buffered events.| Yes |`1`|
+|`batch.size.max`|The maximum number of events that will be fetched from the event buffer to be processed together by a worker thread, at a given time.| Yes| `buffer.size`|
+
+**Parallel processing**
+
+Parallel processing helps to improve the performance by letting multiple threads to process events in parallel. By default, Siddhi does not process events in parallel, unless otherwise, it uses multi-threaded windows, triggers, or the events are sent to Siddhi using multiple input threads either from the sources defined via `@source` annotation or from the applications calling the Siddhi via `InputHander`.
+
+Parallel processing within a SiddhiApp can be explicitly achieved by defining `@async` annotations on the appropriate streams with the number of `workers` being greater than `1`. Here, the whole execution flow beginning from that stream will be executed by multiple workers in parallel.
+
+**Event chunking**
+
+Event chunking helps to improve the performance by processing multiple events to together, especially when the operations are I/O bound. By default, Siddhi does not attempt to chunk/group events together.
+
+Event chunking in a SiddhiApp can be explicitly achieved, by defining `@async` annotations on appropriate streams with `batch.size.max` set to greater than one. Here, the whole execution flow beginning from those streams will execute multiple events together, where each event group will have up to `batch.size.max`  number of events.  
+
+!!! tip "Use a combination of parallel processing, and event chunking to achieve the best performance."
+    The optimal values for `buffer.size`, `workers` and `batch.size.max` parameters vary depending on the use case and the environment. Therefore, they can be only identified by testing the setup in a staging environment.
+
+**synchronized execution**
+
+Synchronized execution eliminates possible concurrent updates and race conditions among queries. By default, Siddhi provides synchronization only within its operators and not across queries.
+
+Synchronized execution across multiple queries can be explicitly achieved by defining `@async` annotation on appropriate streams with `workers` set to `1`. Here, the whole execution flow beginning from that stream will be executed synchronously by a single thread.  
+
+!!! warning "Too many async annotations can reduce performance!"
+    Having multiple `@async` annotations will result in many threads being used for processing, this increases the context switching overhead, and thereby reducing the overall performance of the SiddhiApp.  Therefore, **use `@async` annotation only when it is necessary**.
 
 ### Statistics
 
-Use `@app:statistics` app level annotation to evaluate the performance of an application, you can enable the statistics of a Siddhi application to be published. This is done via the `@app:statistics` annotation that can be added to a Siddhi application as shown in the following example.
+The throughput, latency, and memory consumption of SiddhiApps, and their internal operators can be monitored through Siddhi statistics. SiddhiApps can have preconfigured statistics configurations using the `@app:statistics` annotation applied on SiddhiApp level, and they can also be dynamically modified at runtime using the `setStatisticsLevel()` method available on the `SiddhiAppRuntime`.
 
-```sql
-@app:statistics(reporter = 'console')
-```
-The following elements are configured with this annotation.
+**Purpose**
 
-|Annotation| Description| Default Value|
-| ------------- |-------------|-------------|
-|`reporter`|The interface in which statistics for the Siddhi application are published. Possible values are as follows:<br/> `console`<br/> `jmx`|`console`|
-|`interval`|The time interval (in seconds) at  which the statistics for the Siddhi application are reported.|`60`|
-|`include`|If this parameter is added, only the types of metrics you specify are included in the reporting. The required metric types can be specified as a comma-separated list. It is also possible to use wild cards| All (*.*)|
+Siddhi statistics helps to identify the bottlenecks in the SiddhiApp execution flows, and thereby facilitate to improve SiddhiApp performance by appropriately handling them.
 
-The metrics are reported in the following format.
-`io.siddhi.SiddhiApps.<SiddhiAppName>.Siddhi.<Component Type>.<Component Name>. <Metrics name>`
+The name of the statistics metrics follow the below format.<br/>
+`io.siddhi.SiddhiApps.<SiddhiApp name>.Siddhi.<component type>.<component name>. <metrics type>`.
 
-The following table lists the types of metrics supported for different Siddhi application component types.
+The following table lists the component types and their supported of metrics types.
 
 |Component Type|Metrics Type|
 | ------------- |-------------|
-|Stream|Throughput<br/>The size of the buffer if parallel processing is enabled via the @async annotation.|
-|Trigger|Throughput (Trigger and Stream)|
-|Source|Throughput|
-|Sink|Throughput|
-|Mapper|Latency<br/>Input/output throughput<br/>
-|Table|Memory<br/>Throughput (For all operations)<br/>Throughput (For all operations)|
-|Query|Memory<br/>Latency|
-|Window|Throughput (For all operations)<br/>Latency (For all operation)|
-|Partition|Throughput (For all operations)<br/>Latency (For all operation)|
+|Stream|throughput<br/>size (The number of buffered events when asynchronous processing is enabled via `@async` annotation.|
+|Trigger|throughput (For both trigger and corresponding stream)|
+|Source|throughput|
+|Sink|throughput|
+|Mapper|latency<br/>throughput (For both input and output)<br/>
+|Table|memory<br/>throughput (For all operations)<br/>Latency (For all operations)|
+|Query|memory<br/>latency|
+|Window|throughput (For all operations)<br/>latency (For all operation)|
+|Partition|throughput (For all operations)<br/>latency (For all operation)|
 
+**Syntax**
 
+The syntax for defining the statistics for **SiddhiApps running on Java or Python modes** is as follows.
 
-e.g., the following is a Siddhi application that includes the `@app` annotation to report performance statistics.
+```sql
+@app:statistics( reporter='<reporter>', interval='<internal>',
+                 include='<included metrics for reporting>')
+```
+
+The following parameters are used to configure statistics in Java and Python modes.
+
+|Parameter| Description| Default Value|
+| ------------- |-------------|-------------|
+|`reporter`| The implementation of the statistics reporter. Supported values are:<br/> `console`<br/> `jmx`|`console`|
+|`interval`|The statistics reporting time interval (in seconds).|`60`|
+|`include`|Specifies the metricizes that should report statistics using a comma-separated list or via wildcards.| `*.*` (All)|
+
+The syntax for defining the statistics for **SiddhiApps running on Local, Docker, or Kubernetes modes** is as follows.
+
+```sql
+@app:statistics(enable = '<is enable>', include = `'<included metrics for reporting>'`)
+```
+The following parameters are used to configure statistics in Local, Docker, and Kubernetes modes.
+
+|Parameter| Description| Default Value|
+| ------------- |-------------|-------------|
+|`enable`|Enables statistics reporting. Supported values are:<br/> `true`, `false`|`false`|
+|`include`|Specifies the metricizes that should report statistics using a comma-separated list or via wildcards.| `*.*` (All)|
+
+Here, other statistics configurations are applied commonly to all SiddhiApps, as specified in the [Configuration Guide](../config-guide/#configuring-statistics).
+
+**Example**
+
+A SiddhiApp running on Java, to report statistics every minute, by logging its stats on the console.
 
 ```sql
 @App:name('TestMetrics')
@@ -3995,7 +3827,7 @@ from TestSream#log("Message:")
 insert into TempSream;
 ```
 
-Statistics are reported for this Siddhi application as shown in the extract below.
+The statistics reported via console log will be as follows.
 
 <details>
   <summary>Click to view the extract</summary>
@@ -4050,14 +3882,41 @@ Statistics are reported for this Siddhi application as shown in the extract belo
 
 ### Event Playback
 
-When `@app:playback` annotation is added to the app, the timestamp of the event (specified via an attribute) is treated as the current time. This results in events being processed faster.
-The following elements are configured with this annotation.
+The speed of time within the SiddhiApp can be altered based on the actual event timestamp, using the `@app:playback` SiddhiApp annotation. Here, the event playback updates the current SiddhiApp time to the largest event time seen so far.
 
-|Annotation| Description|
+**Purpose**
+
+Event playback helps to reprocess previously consumed and stored events in much faster speed, without losing the time-based properties of Siddhi queries, by rapidly replaying the events.
+
+**Syntax**
+
+The syntax for defining event playback is as follows.
+
+```sql
+@app:playback(idle.time = '<idle time before incrementing timestamp>', increment = '<incremented time interval>')
+```
+
+The following parameters are used to configure this annotation.
+
+|Parameter| Description|
 | ------------- |-------------|
-|`idle.time`|If no events are received during a time interval specified (in milliseconds) via this element, the Siddhi system time is incremented by a number of seconds specified via the `increment` element.|
-|`increment`|The number of seconds by which the Siddhi system time must be incremented if no events are received during the time interval specified via the `idle.time` element.|
+|`idle.time`|The time duration (in milliseconds), within which when no events arrive, the current SiddhiApp time will be incremented by the value specified under the `increment` parameter.|
+|`increment`|The number of seconds, by which, the current SiddhiApp time must be incremented when no events receive during the `idle.time` period.|
 
-e.g., In the following example, the Siddhi system time is incremented by two seconds if no events arrive for a time interval of 100 milliseconds.
+Here, both the parameters are optional, and when omitted, the current SiddhiApp time will not be automatically incremented when events do not arrive.
 
-`@app:playback(idle.time = '100 millisecond', increment = '2 sec') `
+**Example 1**
+
+SiddhiApp to perform playback while incrementing the current SiddhiApp time by `2` seconds when no events arrive for every `100 milliseconds`.
+
+```sql
+@app:playback(idle.time = '100 millisecond', increment = '2 sec')
+```
+
+**Example 2**
+
+SiddhiApp to perform playback while not incrementing the current SiddhiApp time when no events arrive.
+
+```sql
+@app:playback()
+```
