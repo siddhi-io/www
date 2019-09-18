@@ -463,8 +463,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#extensions-released-under-apache-20-license" title="Extensions released under Apache 2.0 License" class="md-nav__link">
-    Extensions released under Apache 2.0 License
+  <a href="#available-extensions" title="Available Extensions" class="md-nav__link">
+    Available Extensions
   </a>
   
     <nav class="md-nav">
@@ -507,6 +507,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#writing-custom-extensions" title="Writing Custom Extensions" class="md-nav__link">
+    Writing Custom Extensions
+  </a>
   
 </li>
       
@@ -808,8 +815,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#extensions-released-under-apache-20-license" title="Extensions released under Apache 2.0 License" class="md-nav__link">
-    Extensions released under Apache 2.0 License
+  <a href="#available-extensions" title="Available Extensions" class="md-nav__link">
+    Available Extensions
   </a>
   
     <nav class="md-nav">
@@ -852,6 +859,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#writing-custom-extensions" title="Writing Custom Extensions" class="md-nav__link">
+    Writing Custom Extensions
+  </a>
   
 </li>
       
@@ -1108,8 +1122,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#extensions-released-under-apache-20-license" title="Extensions released under Apache 2.0 License" class="md-nav__link">
-    Extensions released under Apache 2.0 License
+  <a href="#available-extensions" title="Available Extensions" class="md-nav__link">
+    Available Extensions
   </a>
   
     <nav class="md-nav">
@@ -1155,6 +1169,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#writing-custom-extensions" title="Writing Custom Extensions" class="md-nav__link">
+    Writing Custom Extensions
+  </a>
+  
+</li>
+      
       
       
       
@@ -1176,8 +1197,48 @@
                 
                 
                 <h1 id="siddhi-extensions">Siddhi Extensions<a class="headerlink" href="#siddhi-extensions" title="Permanent link">&para;</a></h1>
-<p>Following are some supported Siddhi extensions;</p>
-<h2 id="extensions-released-under-apache-20-license">Extensions released under Apache 2.0 License<a class="headerlink" href="#extensions-released-under-apache-20-license" title="Permanent link">&para;</a></h2>
+<p>Siddhi provides an extension architecture to enhance its functionality by incorporating other libraries and custom logic in a seamless manner. Each extension has a namespace that can be used to identify and specifically access the functionality of the relevant extension.</p>
+<p>Following are the supported Siddhi extension types: </p>
+<ul>
+<li>
+<p>Execution extension types</p>
+<ul>
+<li><a href="../query-guide/#function">Function</a> extension.</li>
+<li><a href="../query-guide/#aggregate-function">Aggregate Function</a> extension.</li>
+<li><a href="../query-guide/#window">Window</a> extension.</li>
+<li><a href="../query-guide/#stream-function">Stream Function</a> extension.</li>
+<li><a href="../query-guide/#stream-processor">Stream Processor</a> extension.</li>
+</ul>
+</li>
+<li>
+<p>IO extension types</p>
+<ul>
+<li><a href="../query-guide/#sink">Source</a> extension.</li>
+<li><a href="../query-guide/#sink">Sink</a> extension.</li>
+</ul>
+</li>
+<li>
+<p>Map extension types</p>
+<ul>
+<li><a href="../query-guide/#source-mapper">Source Mapper</a> extension.</li>
+<li><a href="../query-guide/#sink-mapper">Sink Mapper</a> extension.</li>
+</ul>
+</li>
+<li>
+<p>Store extension types</p>
+<ul>
+<li><a href="../query-guide/#store">Store</a> extension.</li>
+</ul>
+</li>
+<li>
+<p>Script extension types</p>
+<ul>
+<li><a href="../query-guide/#script">Script</a> extension.</li>
+</ul>
+</li>
+</ul>
+<h2 id="available-extensions">Available Extensions<a class="headerlink" href="#available-extensions" title="Permanent link">&para;</a></h2>
+<p>All the Siddhi extensions are released under Apache 2.0 License.</p>
 <h3 id="execution-extensions">Execution Extensions<a class="headerlink" href="#execution-extensions" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -1415,6 +1476,326 @@
 <td align="left"><a target="_blank" href="https://siddhi-io.github.io/siddhi-script-js">script-js</a></td>
 <td align="left">Allows writing user defined JavaScript functions within Siddhi Applications to process events.</td>
 <td align="left"><a href="https://mvnrepository.com/artifact/io.siddhi.extension.script.js/siddhi-script-js/5.0.2">5.0.2</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="writing-custom-extensions">Writing Custom Extensions<a class="headerlink" href="#writing-custom-extensions" title="Permanent link">&para;</a></h2>
+<p>Custom extensions can be written in order to cater use case specific logics that are not by default available in Siddhi core, or in existing extensions.</p>
+<p>The following Maven Archetypes can be used to generate the necessary Maven project to create the relevant extensions.</p>
+<p><strong>Writing Execution Executions</strong></p>
+<p>Maven archetype for execution execution that is used to generate the extension types such as:</p>
+<ul>
+<li><a href="../query-guide/#function">Function</a> extension, by extending <code>io.siddhi.core.executor.function.FunctionExecutor</code>.</li>
+<li><a href="../query-guide/#aggregate-function">Aggregate Function</a> extension, by extending <code>io.siddhi.core.query.selector.attribute.aggregator.AttributeAggregatorExecutor</code>.</li>
+<li><a href="../query-guide/#window">Window</a> extension, by extending <code>io.siddhi.core.query.processor.stream.window.WindowProcessor</code>.</li>
+<li><a href="../query-guide/#stream-function">Stream Function</a> extension, by extending <code>io.siddhi.core.query.processor.stream.function.StreamFunctionProcessor</code>.</li>
+<li><a href="../query-guide/#stream-processor">Stream Processor</a> extension, by extending <code>io.siddhi.core.query.processor.stream.StreamProcessor</code>.</li>
+</ul>
+<p>The CLI command to generate the Maven project for the extension is as follows.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>mvn archetype:generate
+    -DarchetypeGroupId=io.siddhi.extension.archetype
+    -DarchetypeArtifactId=siddhi-archetype-execution
+    -DgroupId=io.siddhi.extension.execution
+    -Dversion=1.0.0-SNAPSHOT
+</pre></div>
+</td></tr></table>
+
+<p>When the command is executed, the following properties will be prompted. At last, confirm that all the property values are correct by typing <code>Y</code> for yes, and <code>N</code> if they are not.  </p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+<th>Mandatory</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>_nameOfFunction</td>
+<td>The name of the custom function (function, aggregate function, window, stream function, or stream processor) that is being created.</td>
+<td>Yes</td>
+<td>-</td>
+</tr>
+<tr>
+<td>_nameSpaceOfFunction</td>
+<td>The namespace of the function that groups similar custom functions.</td>
+<td>Yes</td>
+<td>-</td>
+</tr>
+<tr>
+<td>groupIdPostfix</td>
+<td>Postfix for the group ID. (As a convention, the function namespace is used).</td>
+<td>No</td>
+<td><code>${_nameSpaceOfFunction}</code></td>
+</tr>
+<tr>
+<td>artifactId</td>
+<td>Artifact ID for the project.</td>
+<td>No</td>
+<td><code>siddhi-execution-${_nameSpaceOfFunction}</code></td>
+</tr>
+<tr>
+<td>classNameOfFunction</td>
+<td>Class name of the Function.</td>
+<td>No</td>
+<td><code>${_nameOfFunction}Function</code></td>
+</tr>
+<tr>
+<td>classNameOfAggregateFunction</td>
+<td>Class name of the Aggregate Function.</td>
+<td>No</td>
+<td><code>${_nameOfFunction}AggregateFunction</code></td>
+</tr>
+<tr>
+<td>classNameOfWindow</td>
+<td>Class name of the Window.</td>
+<td>No</td>
+<td><code>${_nameOfFunction}Window</code></td>
+</tr>
+<tr>
+<td>classNameOfStreamFunction</td>
+<td>Class name of the Stream Function.</td>
+<td>No</td>
+<td><code>${_nameOfFunction}StreamFunction</code></td>
+</tr>
+<tr>
+<td>classNameOfStreamProcessor</td>
+<td>Class name of the Stream Processor.</td>
+<td>No</td>
+<td><code>${_nameOfFunction}StreamProcessor</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Writing Input/Output Executions</strong></p>
+<p>Maven archetype for input/output execution that is used to generate the extension types such as:</p>
+<ul>
+<li><a href="../query-guide/#sink">Source</a> extension, by extending <code>io.siddhi.core.stream.input.source.Source</code>.</li>
+<li><a href="../query-guide/#sink">Sink</a> extension, by extending  <code>io.siddhi.core.stream.output.sink.Sink</code>.</li>
+</ul>
+<p>The CLI command to generate the Maven project for the extension is as follows.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>mvn archetype:generate
+    -DarchetypeGroupId=io.siddhi.extension.archetype
+    -DarchetypeArtifactId=siddhi-archetype-io
+    -DgroupId=io.siddhi.extension.io
+    -Dversion=1.0.0-SNAPSHOT
+</pre></div>
+</td></tr></table>
+
+<p>When the command is executed, the following properties will be prompted. At last, confirm that all the property values are correct by typing <code>Y</code> for yes, and <code>N</code> if they are not.  </p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+<th>Mandatory</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>_IOType</td>
+<td>The name of the custom IO type that is being created.</td>
+<td>Yes</td>
+<td>-</td>
+</tr>
+<tr>
+<td>groupIdPostfix</td>
+<td>Postfix for the group ID. (As a convention, the name of the IO type is used).</td>
+<td>No</td>
+<td><code>${_IOType}</code></td>
+</tr>
+<tr>
+<td>artifactId</td>
+<td>Artifact ID for the project.</td>
+<td>No</td>
+<td><code>siddhi-io-${_IOType}</code></td>
+</tr>
+<tr>
+<td>classNameOfSink</td>
+<td>Class name of the Sink.</td>
+<td>No</td>
+<td><code>${_IOType}Sink</code></td>
+</tr>
+<tr>
+<td>classNameOfSource</td>
+<td>Class name of the Source.</td>
+<td>No</td>
+<td><code>${_IOType}Source</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Writing Data Mapping Executions</strong></p>
+<p>Maven archetype for data mapping execution that is used to generate the extension types such as:</p>
+<ul>
+<li><a href="../query-guide/#source-mapper">Source Mapper</a> extension, by extending  <code>io.siddhi.core.stream.output.sink.SourceMapper</code>.</li>
+<li><a href="../query-guide/#sink-mapper">Sink Mapper</a> extension, by extending <code>io.siddhi.core.stream.output.sink.SinkMapper</code>.</li>
+</ul>
+<p>The CLI command to generate the Maven project for the extension is as follows.  </p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>mvn archetype:generate
+    -DarchetypeGroupId=io.siddhi.extension.archetype
+    -DarchetypeArtifactId=siddhi-archetype-map
+    -DgroupId=io.siddhi.extension.map
+    -Dversion=1.0.0-SNAPSHOT
+</pre></div>
+</td></tr></table>
+
+<p>When the command is executed, the following properties will be prompted. At last, confirm that all the property values are correct by typing <code>Y</code> for yes, and <code>N</code> if they are not.  </p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+<th>Mandatory</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>_mapType</td>
+<td>The name of the custom mapper type that is being created.</td>
+<td>Yes</td>
+<td>-</td>
+</tr>
+<tr>
+<td>groupIdPostfix</td>
+<td>Postfix for the group ID. (As a convention, the name of the mapper type is used).</td>
+<td>No</td>
+<td><code>${_mapType}</code></td>
+</tr>
+<tr>
+<td>artifactId</td>
+<td>Artifact ID of the project.</td>
+<td>No</td>
+<td><code>siddhi-map-${_mapType}</code></td>
+</tr>
+<tr>
+<td>classNameOfSinkMapper</td>
+<td>Class name of the Sink Mapper.</td>
+<td>No</td>
+<td><code>${_mapType}SinkMapper</code></td>
+</tr>
+<tr>
+<td>classNameOfSourceMapper</td>
+<td>Class name of the Source Mapper.</td>
+<td>No</td>
+<td><code>${_mapType}SourceMapper</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Writing Store Executions</strong></p>
+<p>Maven archetype to generate <a href="../query-guide/#store">store</a> extension, by extending either <code>io.siddhi.core.table.record.AbstractRecordTable</code> or <code>io.siddhi.core.table.record.AbstractQueryableRecordTable</code>. Here, the former allows Siddhi queries to perform conditional filters on the store while the latter allows performing both the conditional filters and select aggregations directly on the store.  </p>
+<p>The CLI command to generate the Maven project for the extension is as follows.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>mvn archetype:generate
+   -DarchetypeGroupId=io.siddhi.extension.archetype
+   -DarchetypeArtifactId=siddhi-archetype-store
+   -DgroupId=io.siddhi.extension.store
+   -Dversion=1.0.0-SNAPSHOT
+</pre></div>
+</td></tr></table>
+
+<p>When the command is executed, the following properties will be prompted. At last, confirm that all the property values are correct by typing <code>Y</code> for yes, and <code>N</code> if they are not.  </p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+<th>Mandatory</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>_storeType</td>
+<td>The name of the custom store that is being created.</td>
+<td>Yes</td>
+<td>-</td>
+</tr>
+<tr>
+<td>groupIdPostfix</td>
+<td>Postfix for the group ID. (As a convention, the name of the store type is used).</td>
+<td>No</td>
+<td><code>${_storeType}</code></td>
+</tr>
+<tr>
+<td>artifactId</td>
+<td>Artifact ID for the project.</td>
+<td>No</td>
+<td><code>siddhi-store-${_storeType}</code></td>
+</tr>
+<tr>
+<td>className</td>
+<td>Class name of the store.</td>
+<td>No</td>
+<td><code>${_storeType}EventTable</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Writing Script Executions</strong></p>
+<p>Maven archetype to generate <a href="../query-guide/#script">script</a> extension, by extending either <code>io.siddhi.core.function.Script</code>.</p>
+<p>The CLI command to generate the Maven project for the extension is as follows.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>mvn archetype:generate
+    -DarchetypeGroupId=io.siddhi.extension.archetype
+    -DarchetypeArtifactId=siddhi-archetype-script
+    -DgroupId=io.siddhi.extension.script
+    -Dversion=1.0.0-SNAPSHOT
+</pre></div>
+</td></tr></table>
+
+<p>When the command is executed, the following properties will be prompted. At last, confirm that all the property values are correct by typing <code>Y</code> for yes, and <code>N</code> if they are not.  </p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+<th>Mandatory</th>
+<th>Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>_nameOfScript</td>
+<td>The name of the custom script that is being created.</td>
+<td>Yes</td>
+<td>-</td>
+</tr>
+<tr>
+<td>groupIdPostfix</td>
+<td>Postfix for the group ID. (As a convention, the name of the script type is used).</td>
+<td>No</td>
+<td><code>${_nameOfScript}</code></td>
+</tr>
+<tr>
+<td>artifactId</td>
+<td>Artifact ID for the project.</td>
+<td>No</td>
+<td><code>siddhi-script-${_nameOfScript}</code></td>
+</tr>
+<tr>
+<td>classNameOfScript</td>
+<td>Class name of the Script.</td>
+<td>No</td>
+<td><code>Eval${_nameOfScript}</code></td>
 </tr>
 </tbody>
 </table>
