@@ -592,6 +592,12 @@ $ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/downloa
 $ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-beta/01-siddhi-operator.yaml
 ```
 
+Now you need to create your own docker image with including all the custom libraries and configuration changes that you have made. Use following command to build and push the docker image with the tag `<DOCKER_HUB_USER_NAME>/siddhi-runner-alpine:latest`.
+
+```sh
+$ docker build -t <DOCKER_HUB_USER_NAME>/siddhi-runner-alpine:latest .
+$ docker push <DOCKER_HUB_USER_NAME>/siddhi-runner-alpine:latest
+```
 After the Kubernetes export now you already have this `siddhi-process.yaml` file.
 
 ```yaml
@@ -718,6 +724,7 @@ spec:
       value: siddhi-stan
     - name: STAN_SERVER_URL
       value: nats://siddhi-nats:4222
+    image: <DOCKER_HUB_USER_NAME>/siddhi-runner-alpine:latest
   runner: |
     wso2.carbon:
       id: siddhi-runner
@@ -761,7 +768,7 @@ spec:
           isAutoCommit: false
 ```
 
-Now you can install the SiddhiProcess using following `kubectl` command.
+Now you can install the SiddhiProcess using following `kubectl` command. Before you install the `SiddhiProcess` you have to add the docker image tag in the `siddhi-process.yaml` file. You have to add the docker image name(<DOCKER_HUB_USER_NAME>/siddhi-runner-alpine:latest) in the YAML entry `spec.container.image`.
 
 ```sh
 $ kubectl apply -f siddhi-process.yaml

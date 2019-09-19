@@ -469,13 +469,193 @@ Now you can access the MySQL cluster externally. Accessing MySQL cluster externa
 
 Siddhi operator will automatically set up the external access to any HTTP service in a Siddhi app. To set up that external access Siddhi operator by default uses ingress NGINX. Set up the NGINX controller in your Kubernetes cluster as described in [this document](https://kubernetes.github.io/ingress-nginx/deploy/).
 
-Hereafter, deploy the Kubernetes YAML file using the following command.
+Now you need to create your own docker image with including all the custom libraries and configuration changes that you have made. Use following command to build and push the docker image with the tag `<DOCKER_HUB_USER_NAME>/siddhi-runner-alpine:latest`.
+
+```sh
+$ docker build -t <DOCKER_HUB_USER_NAME>/siddhi-runner-alpine:latest .
+$ docker push <DOCKER_HUB_USER_NAME>/siddhi-runner-alpine:latest
+```
+After the Kubernetes export now you already have this `siddhi-process.yaml` file.
+
+```yaml
+apiVersion: siddhi.io/v1alpha2
+kind: SiddhiProcess
+metadata:
+  name: combo-super-mart
+
+spec:
+  apps:
+  - script: |
+      @App:name("ComboSuperMartPromoProcess")
+      @App:description("The promotion selection process of Combo super mart.")
+
+
+      /*
+      Purpose:
+          The combo supermart has multiple promotion card that given to their loyal users. For a particular season combo supermart plan to give discounts for each card. These discounts will change according to the card type and several rules. So, combo supermart needed an automatic system to retrieve the discounts for a given card. To do that we implement this Siddhi app which interacts with a MySQL database and executes their functionalities. All card details and rules were stored in a MySQL database. All the rules for a particular card were in the templated format. Therefore all rules executed dynamically and give the final result.
+
+      Input:
+              HTTP POST with JSON payload {
+              "event": {
+                  "promoCardId": "PC001",
+                  "amount": 20000
+                }
+              }
+
+      Output:
+          {
+          "event": {
+              "messageId": "1817d06b-22ae-438e-990d-42fedcb50607",
+              "discountAmount": 15.0,
+              "discountApplied": true
+          }
+      }
+
+      */
+      -- HTTP source
+      @source(
+          type='http-service',
+          source.id='adder',
+          receiver.url='http://0.0.0.0:8088/comboSuperMart/promo',
+          basic.auth.enabled='',
+          @map(type='json', @attributes(messageId='trp:messageId', promoCardId='$.event.promoCardId', amount='$.event.amount'))
+      )
+      define stream InputTransactionStream(messageId string, promoCardId string, amount long);
+
+      -- RDBMS data stores
+      @Store(type="rdbms", datasource="COMBO_SUPERMART_DB")
+      define table Customer(customerId string, promoCardId string);
+      @Store(type="rdbms", datasource="COMBO_SUPERMART_DB")
+      define table PromoCard(promoCardId string, promoCardTypeId string, promoCardIssueDate string);
+      @Store(type="rdbms", datasource="COMBO_SUPERMART_DB")
+      define table PromoRule(promoRuleId string, promoCardTypeId string, promoRule string);
+      @Store(type="rdbms", datasource="COMBO_SUPERMART_DB")
+      define table PromoCardType(promoCardTypeId string, promoCardTypeDiscount double);
+
+      -- Output stream
+      @sink(type='http-service-response', source.id='adder',
+            message.id='{{messageId}}', @map(type = 'json'))
+      define stream ResultStream (messageId string, discountAmount double, discountApplied bool);
+
+      -- Find and execute rules
+      @info(name='get-promocard-type')
+      from InputTransactionStream#window.length(1) join PromoCard on InputTransactionStream.promoCardId==PromoCard.promoCardId
+      select InputTransactionStream.messageId, InputTransactionStream.promoCardId, PromoCard.promoCardTypeId, PromoCard.promoCardIssueDate, InputTransactionStream.amount
+      insert into GetPromoCardTypeStream;
+
+      @info(name='get-promocard-type-details')
+      from GetPromoCardTypeStream#window.length(1) join PromoCardType on GetPromoCardTypeStream.promoCardTypeId==PromoCardType.promoCardTypeId
+      select GetPromoCardTypeStream.messageId, GetPromoCardTypeStream.promoCardId, GetPromoCardTypeStream.promoCardTypeId, GetPromoCardTypeStream.amount, PromoCardType.promoCardTypeDiscount, GetPromoCardTypeStream.promoCardIssueDate
+      insert into GetPromoCardTypeDetailsStream;
+
+      @info(name='get-promocard-rules')
+      from GetPromoCardTypeDetailsStream#window.length(1) right outer join PromoRule on GetPromoCardTypeDetailsStream.promoCardTypeId==PromoRule.promoCardTypeId
+      select GetPromoCardTypeDetailsStream.messageId, GetPromoCardTypeDetailsStream.promoCardId, GetPromoCardTypeDetailsStream.promoCardTypeId, GetPromoCardTypeDetailsStream.amount, GetPromoCardTypeDetailsStream.promoCardTypeDiscount, PromoRule.promoRuleId, PromoRule.promoRule, GetPromoCardTypeDetailsStream.promoCardIssueDate
+      insert into RuleStream;
+
+      @info(name='execute-promocard-rules')
+      from RuleStream#window.length(1)
+      select RuleStream.messageId, RuleStream.promoCardTypeDiscount, js:eval(str:fillTemplate(RuleStream.promoRule, map:create("amount", RuleStream.amount, "cardPeriod", time:dateDiff(time:currentDate(), RuleStream.promoCardIssueDate, 'yyyy-MM-dd', 'yyyy-MM-dd'))), 'bool') as result
+      insert into RuleReslutsStream;
+
+      -- Output results
+      @info(name='filter-true-rules')
+      from RuleReslutsStream[result == true]#window.batch()
+      select RuleReslutsStream.messageId, RuleReslutsStream.promoCardTypeDiscount, count(result) as result
+      insert into TrueResultStream;
+
+      @info(name='get-all-results')
+      from RuleReslutsStream#window.batch()
+      select RuleReslutsStream.messageId, RuleReslutsStream.promoCardTypeDiscount, count(result) as result
+      insert into AllResultStream;
+
+      @info(name='discout-reply-stream')
+      from AllResultStream#window.length(1) unidirectional join  TrueResultStream#window.length(1) on TrueResultStream.result==AllResultStream.result
+      select AllResultStream.messageId, AllResultStream.promoCardTypeDiscount as discountAmount, true as discountApplied
+      insert into ResultStream;
+
+      @info(name='filter-true-rules-and-reply')
+      from RuleReslutsStream[result == false]#window.batch()
+      select RuleReslutsStream.messageId, 0.00 as discountAmount, false as discountApplied
+      insert into ResultStream;
+  runner: |
+    wso2.carbon:
+      id: siddhi-runner
+      name: Siddhi Runner Distribution
+      ports:
+        offset: 0
+    transports:
+      http:
+        listenerConfigurations:
+        - id: default
+          host: 0.0.0.0
+          port: 9090
+        - id: msf4j-https
+          host: 0.0.0.0
+          port: 9443
+          scheme: https
+          keyStoreFile: ${carbon.home}/resources/security/wso2carbon.jks
+          keyStorePassword: wso2carbon
+          certPass: wso2carbon
+        transportProperties:
+        - name: server.bootstrap.socket.timeout
+          value: 60
+        - name: client.bootstrap.socket.timeout
+          value: 60
+        - name: latency.metrics.enabled
+          value: true
+    dataSources:
+    - name: WSO2_CARBON_DB
+      description: The datasource used for registry and user manager
+      definition:
+        type: RDBMS
+        configuration:
+          jdbcUrl: jdbc:h2:${sys:carbon.home}/wso2/${sys:wso2.runtime}/database/WSO2_CARBON_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000
+          username: wso2carbon
+          password: wso2carbon
+          driverClassName: org.h2.Driver
+          maxPoolSize: 10
+          idleTimeout: 60000
+          connectionTestQuery: SELECT 1
+          validationTimeout: 30000
+          isAutoCommit: false
+    - name: COMBO_SUPERMART_DB
+      description: The datasource used for lending process of the Combo supermarket
+      jndiConfig:
+        name: jdbc/ComboSuperMart
+      definition:
+        type: RDBMS
+        configuration:
+          jdbcUrl: jdbc:mysql://mysql-db:3306/ComboSuperMart
+          username: siddhi_user
+          password: siddhiio
+          driverClassName: com.mysql.jdbc.Driver
+          maxPoolSize: 10
+          idleTimeout: 60000
+          connectionTestQuery: SELECT 1
+          validationTimeout: 30000
+          isAutoCommit: false
+
+  persistentVolumeClaim: 
+    accessModes: 
+      - ReadWriteOnce
+    resources: 
+      requests: 
+        storage: 1Gi
+    storageClassName: standard
+    volumeMode: Filesystem
+
+  container:
+    image: <DOCKER_HUB_USER_NAME>/siddhi-runner-alpine:latest
+```
+
+Now you can install the SiddhiProcess using following `kubectl` command. Before you install the `SiddhiProcess` you have to add the docker image tag in the `siddhi-process.yaml` file. You have to add the docker image name(`<DOCKER_HUB_USER_NAME>/siddhi-runner-alpine:latest`) in the YAML entry `spec.container.image`.
 
 ```sh
 $ kubectl apply -f siddhi-process.yaml
 ```
 
-The ingress created by Siddhi operator will use the hostname as siddhi. Therefore you have to update your /etc/host file with siddhi hostname along with the external IP of ingress.
+The ingress created by Siddhi operator will use the hostname as siddhi. Therefore you have to update your `/etc/host` file with siddhi hostname along with the external IP of ingress.
 
 !!! Note "External IP of Ingress"
     For minikube the ingress external IP is minikube IP and in docker, for Mac, the external IP is 0.0.0.0. For more details about Siddhi, ingress setup refer to [this documentation](https://siddhi.io/en/v5.1/docs/siddhi-as-a-kubernetes-microservice/).
