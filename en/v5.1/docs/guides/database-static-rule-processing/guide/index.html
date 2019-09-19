@@ -817,6 +817,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../integrate-various-enterprise-systems/guide/" title="Integrate Various Enterprise Systems" class="md-nav__link">
+      Integrate Various Enterprise Systems
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -1675,7 +1687,7 @@
 <li>Download the <a href="https://siddhi.io/en/v5.1/download/">Siddhi runner distribution pack from here</a> and unzip it.</li>
 <li>
 <p>Add following YAML block to the <code>&lt;RUNNER_HOME&gt;/conf/runner/deployment.yaml</code>.</p>
-<p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -1708,11 +1720,16 @@
       <span class="nt">isAutoCommit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
 </pre></div>
 </td></tr></table>
-1. Download the MySQL connector JAR from <a href="https://dev.mysql.com/downloads/connector/j/5.1.html">here</a> and copy that JAR into <code>&lt;RUNNER_HOME&gt;/jars</code> directory.
-1. Copy your Siddhi file into <code>&lt;RUNNER_HOME&gt;/wso2/runner/deployment/siddhi-files</code>
-1. Start the following binary file. Using this link http://localhost:9390/editor now you can access the Siddhi tooling editor from your web browser.
-1. For Linux/Mac: <code>&lt;RUNNER_HOME&gt;/bin/runner.sh</code>
-1. For Windows: <code>&lt;RUNNER_HOME&gt;/bin/runner.bat</code></p>
+
+</li>
+<li>
+<p>Download the MySQL connector JAR from <a href="https://dev.mysql.com/downloads/connector/j/5.1.html">here</a> and copy that JAR into <code>&lt;RUNNER_HOME&gt;/jars</code> directory.</p>
+</li>
+<li>Copy your Siddhi file into <code>&lt;RUNNER_HOME&gt;/wso2/runner/deployment/siddhi-files</code></li>
+<li>Start the following binary file. Using this link http://localhost:9390/editor now you can access the Siddhi tooling editor from your web browser.<ol>
+<li>For Linux/Mac: <code>&lt;RUNNER_HOME&gt;/bin/runner.sh</code></li>
+<li>For Windows: <code>&lt;RUNNER_HOME&gt;/bin/runner.bat</code></li>
+</ol>
 </li>
 </ol>
 <p>Execute the following CURL command.</p>
@@ -1814,8 +1831,8 @@
           <span class="nt">dockerfile</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./Dockerfile</span>
         <span class="nt">ports</span><span class="p">:</span>
             <span class="p p-Indicator">-</span> <span class="s">&quot;8088:8088&quot;</span>
-        <span class="nt">links</span><span class="p">:</span>
-            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">mysqldb</span>
+        <span class="l l-Scalar l-Scalar-Plain">links:Now you need to have a Docker compose file like below to set up all the prerequisites. This compose file contains volume mounts to change configurations of the MySQL container.</span>
+            <span class="l l-Scalar l-Scalar-Plain">- mysqldb</span>
         <span class="nt">networks</span><span class="p">:</span>
             <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">default</span>
         <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">on-failure</span>
@@ -1851,7 +1868,7 @@
 <li>Port: 3304</li>
 <li>Root user: root</li>
 <li>Root password: siddhiio</li>
-<li>Custom user: siddhiio</li>
+<li>Custom user: siddhi_user</li>
 <li>Custom user password: siddhiio</li>
 </ol>
 <p>Then you can create the database schema in that MySQL container. After that, you can start the Siddhi runtime using the following command.</p>
@@ -1930,7 +1947,13 @@
 </pre></div>
 </td></tr></table>
 
-<p>First, you need to install the Siddhi Kubernetes operator. To install Siddhi operator please refer to <a href="https://siddhi.io/en/v5.1/docs/siddhi-as-a-kubernetes-microservice/#install-siddhi-operator">this documentation</a>.</p>
+<p>First, you need to install the Siddhi Kubernetes operator using following commands. For more details about the Siddhi operator refer to <a href="https://siddhi.io/en/v5.1/docs/siddhi-as-a-kubernetes-microservice/#install-siddhi-operator">this documentation</a>.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-beta/00-prereqs.yaml
+$ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-beta/01-siddhi-operator.yaml
+</pre></div>
+</td></tr></table>
+
 <p>Now you have to set up MySQL in your Kubernetes cluster. To do that use the following helm command.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ helm install --name mysql-db --set <span class="nv">mysqlRootPassword</span><span class="o">=</span>siddhiio,mysqlUser<span class="o">=</span>siddhi_user,mysqlPassword<span class="o">=</span>siddhiio,mysqlDatabase<span class="o">=</span>ComboSuperMart stable/mysql
 </pre></div>
@@ -1981,12 +2004,359 @@
 </td></tr></table>
 
 <p>Siddhi operator will automatically set up the external access to any HTTP service in a Siddhi app. To set up that external access Siddhi operator by default uses ingress NGINX. Set up the NGINX controller in your Kubernetes cluster as described in <a href="https://kubernetes.github.io/ingress-nginx/deploy/">this document</a>.</p>
-<p>Hereafter, deploy the Kubernetes YAML file using the following command.</p>
+<p>Now you need to create your own docker image with including all the custom libraries and configuration changes that you have made. Use following command to build and push the docker image with the tag <code>&lt;DOCKER_HUB_USER_NAME&gt;/siddhi-runner-alpine:latest</code>.</p>
+<p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ docker build -t &lt;DOCKER_HUB_USER_NAME&gt;/siddhi-runner-alpine:latest .
+$ docker push &lt;DOCKER_HUB_USER_NAME&gt;/siddhi-runner-alpine:latest
+</pre></div>
+</td></tr></table>
+After the Kubernetes export now you already have this <code>siddhi-process.yaml</code> file.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>  1
+  2
+  3
+  4
+  5
+  6
+  7
+  8
+  9
+ 10
+ 11
+ 12
+ 13
+ 14
+ 15
+ 16
+ 17
+ 18
+ 19
+ 20
+ 21
+ 22
+ 23
+ 24
+ 25
+ 26
+ 27
+ 28
+ 29
+ 30
+ 31
+ 32
+ 33
+ 34
+ 35
+ 36
+ 37
+ 38
+ 39
+ 40
+ 41
+ 42
+ 43
+ 44
+ 45
+ 46
+ 47
+ 48
+ 49
+ 50
+ 51
+ 52
+ 53
+ 54
+ 55
+ 56
+ 57
+ 58
+ 59
+ 60
+ 61
+ 62
+ 63
+ 64
+ 65
+ 66
+ 67
+ 68
+ 69
+ 70
+ 71
+ 72
+ 73
+ 74
+ 75
+ 76
+ 77
+ 78
+ 79
+ 80
+ 81
+ 82
+ 83
+ 84
+ 85
+ 86
+ 87
+ 88
+ 89
+ 90
+ 91
+ 92
+ 93
+ 94
+ 95
+ 96
+ 97
+ 98
+ 99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi.io/v1alpha2</span>
+<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SiddhiProcess</span>
+<span class="nt">metadata</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">combo-super-mart</span>
+
+<span class="nt">spec</span><span class="p">:</span>
+  <span class="nt">apps</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">script</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+      <span class="no">@App:name(&quot;ComboSuperMartPromoProcess&quot;)</span>
+      <span class="no">@App:description(&quot;The promotion selection process of Combo super mart.&quot;)</span>
+
+
+      <span class="no">/*</span>
+      <span class="no">Purpose:</span>
+          <span class="no">The combo supermart has multiple promotion card that given to their loyal users. For a particular season combo supermart plan to give discounts for each card. These discounts will change according to the card type and several rules. So, combo supermart needed an automatic system to retrieve the discounts for a given card. To do that we implement this Siddhi app which interacts with a MySQL database and executes their functionalities. All card details and rules were stored in a MySQL database. All the rules for a particular card were in the templated format. Therefore all rules executed dynamically and give the final result.</span>
+
+      <span class="no">Input:</span>
+              <span class="no">HTTP POST with JSON payload {</span>
+              <span class="no">&quot;event&quot;: {</span>
+                  <span class="no">&quot;promoCardId&quot;: &quot;PC001&quot;,</span>
+                  <span class="no">&quot;amount&quot;: 20000</span>
+                <span class="no">}</span>
+              <span class="no">}</span>
+
+      <span class="no">Output:</span>
+          <span class="no">{</span>
+          <span class="no">&quot;event&quot;: {</span>
+              <span class="no">&quot;messageId&quot;: &quot;1817d06b-22ae-438e-990d-42fedcb50607&quot;,</span>
+              <span class="no">&quot;discountAmount&quot;: 15.0,</span>
+              <span class="no">&quot;discountApplied&quot;: true</span>
+          <span class="no">}</span>
+      <span class="no">}</span>
+
+      <span class="no">*/</span>
+      <span class="no">-- HTTP source</span>
+      <span class="no">@source(</span>
+          <span class="no">type=&#39;http-service&#39;,</span>
+          <span class="no">source.id=&#39;adder&#39;,</span>
+          <span class="no">receiver.url=&#39;http://0.0.0.0:8088/comboSuperMart/promo&#39;,</span>
+          <span class="no">basic.auth.enabled=&#39;&#39;,</span>
+          <span class="no">@map(type=&#39;json&#39;, @attributes(messageId=&#39;trp:messageId&#39;, promoCardId=&#39;$.event.promoCardId&#39;, amount=&#39;$.event.amount&#39;))</span>
+      <span class="no">)</span>
+      <span class="no">define stream InputTransactionStream(messageId string, promoCardId string, amount long);</span>
+
+      <span class="no">-- RDBMS data stores</span>
+      <span class="no">@Store(type=&quot;rdbms&quot;, datasource=&quot;COMBO_SUPERMART_DB&quot;)</span>
+      <span class="no">define table Customer(customerId string, promoCardId string);</span>
+      <span class="no">@Store(type=&quot;rdbms&quot;, datasource=&quot;COMBO_SUPERMART_DB&quot;)</span>
+      <span class="no">define table PromoCard(promoCardId string, promoCardTypeId string, promoCardIssueDate string);</span>
+      <span class="no">@Store(type=&quot;rdbms&quot;, datasource=&quot;COMBO_SUPERMART_DB&quot;)</span>
+      <span class="no">define table PromoRule(promoRuleId string, promoCardTypeId string, promoRule string);</span>
+      <span class="no">@Store(type=&quot;rdbms&quot;, datasource=&quot;COMBO_SUPERMART_DB&quot;)</span>
+      <span class="no">define table PromoCardType(promoCardTypeId string, promoCardTypeDiscount double);</span>
+
+      <span class="no">-- Output stream</span>
+      <span class="no">@sink(type=&#39;http-service-response&#39;, source.id=&#39;adder&#39;,</span>
+            <span class="no">message.id=&#39;{{messageId}}&#39;, @map(type = &#39;json&#39;))</span>
+      <span class="no">define stream ResultStream (messageId string, discountAmount double, discountApplied bool);</span>
+
+      <span class="no">-- Find and execute rules</span>
+      <span class="no">@info(name=&#39;get-promocard-type&#39;)</span>
+      <span class="no">from InputTransactionStream#window.length(1) join PromoCard on InputTransactionStream.promoCardId==PromoCard.promoCardId</span>
+      <span class="no">select InputTransactionStream.messageId, InputTransactionStream.promoCardId, PromoCard.promoCardTypeId, PromoCard.promoCardIssueDate, InputTransactionStream.amount</span>
+      <span class="no">insert into GetPromoCardTypeStream;</span>
+
+      <span class="no">@info(name=&#39;get-promocard-type-details&#39;)</span>
+      <span class="no">from GetPromoCardTypeStream#window.length(1) join PromoCardType on GetPromoCardTypeStream.promoCardTypeId==PromoCardType.promoCardTypeId</span>
+      <span class="no">select GetPromoCardTypeStream.messageId, GetPromoCardTypeStream.promoCardId, GetPromoCardTypeStream.promoCardTypeId, GetPromoCardTypeStream.amount, PromoCardType.promoCardTypeDiscount, GetPromoCardTypeStream.promoCardIssueDate</span>
+      <span class="no">insert into GetPromoCardTypeDetailsStream;</span>
+
+      <span class="no">@info(name=&#39;get-promocard-rules&#39;)</span>
+      <span class="no">from GetPromoCardTypeDetailsStream#window.length(1) right outer join PromoRule on GetPromoCardTypeDetailsStream.promoCardTypeId==PromoRule.promoCardTypeId</span>
+      <span class="no">select GetPromoCardTypeDetailsStream.messageId, GetPromoCardTypeDetailsStream.promoCardId, GetPromoCardTypeDetailsStream.promoCardTypeId, GetPromoCardTypeDetailsStream.amount, GetPromoCardTypeDetailsStream.promoCardTypeDiscount, PromoRule.promoRuleId, PromoRule.promoRule, GetPromoCardTypeDetailsStream.promoCardIssueDate</span>
+      <span class="no">insert into RuleStream;</span>
+
+      <span class="no">@info(name=&#39;execute-promocard-rules&#39;)</span>
+      <span class="no">from RuleStream#window.length(1)</span>
+      <span class="no">select RuleStream.messageId, RuleStream.promoCardTypeDiscount, js:eval(str:fillTemplate(RuleStream.promoRule, map:create(&quot;amount&quot;, RuleStream.amount, &quot;cardPeriod&quot;, time:dateDiff(time:currentDate(), RuleStream.promoCardIssueDate, &#39;yyyy-MM-dd&#39;, &#39;yyyy-MM-dd&#39;))), &#39;bool&#39;) as result</span>
+      <span class="no">insert into RuleReslutsStream;</span>
+
+      <span class="no">-- Output results</span>
+      <span class="no">@info(name=&#39;filter-true-rules&#39;)</span>
+      <span class="no">from RuleReslutsStream[result == true]#window.batch()</span>
+      <span class="no">select RuleReslutsStream.messageId, RuleReslutsStream.promoCardTypeDiscount, count(result) as result</span>
+      <span class="no">insert into TrueResultStream;</span>
+
+      <span class="no">@info(name=&#39;get-all-results&#39;)</span>
+      <span class="no">from RuleReslutsStream#window.batch()</span>
+      <span class="no">select RuleReslutsStream.messageId, RuleReslutsStream.promoCardTypeDiscount, count(result) as result</span>
+      <span class="no">insert into AllResultStream;</span>
+
+      <span class="no">@info(name=&#39;discout-reply-stream&#39;)</span>
+      <span class="no">from AllResultStream#window.length(1) unidirectional join  TrueResultStream#window.length(1) on TrueResultStream.result==AllResultStream.result</span>
+      <span class="no">select AllResultStream.messageId, AllResultStream.promoCardTypeDiscount as discountAmount, true as discountApplied</span>
+      <span class="no">insert into ResultStream;</span>
+
+      <span class="no">@info(name=&#39;filter-true-rules-and-reply&#39;)</span>
+      <span class="no">from RuleReslutsStream[result == false]#window.batch()</span>
+      <span class="no">select RuleReslutsStream.messageId, 0.00 as discountAmount, false as discountApplied</span>
+      <span class="no">insert into ResultStream;</span>
+  <span class="nt">runner</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+    <span class="no">wso2.carbon:</span>
+      <span class="no">id: siddhi-runner</span>
+      <span class="no">name: Siddhi Runner Distribution</span>
+      <span class="no">ports:</span>
+        <span class="no">offset: 0</span>
+    <span class="no">transports:</span>
+      <span class="no">http:</span>
+        <span class="no">listenerConfigurations:</span>
+        <span class="no">- id: default</span>
+          <span class="no">host: 0.0.0.0</span>
+          <span class="no">port: 9090</span>
+        <span class="no">- id: msf4j-https</span>
+          <span class="no">host: 0.0.0.0</span>
+          <span class="no">port: 9443</span>
+          <span class="no">scheme: https</span>
+          <span class="no">keyStoreFile: ${carbon.home}/resources/security/wso2carbon.jks</span>
+          <span class="no">keyStorePassword: wso2carbon</span>
+          <span class="no">certPass: wso2carbon</span>
+        <span class="no">transportProperties:</span>
+        <span class="no">- name: server.bootstrap.socket.timeout</span>
+          <span class="no">value: 60</span>
+        <span class="no">- name: client.bootstrap.socket.timeout</span>
+          <span class="no">value: 60</span>
+        <span class="no">- name: latency.metrics.enabled</span>
+          <span class="no">value: true</span>
+    <span class="no">dataSources:</span>
+    <span class="no">- name: WSO2_CARBON_DB</span>
+      <span class="no">description: The datasource used for registry and user manager</span>
+      <span class="no">definition:</span>
+        <span class="no">type: RDBMS</span>
+        <span class="no">configuration:</span>
+          <span class="no">jdbcUrl: jdbc:h2:${sys:carbon.home}/wso2/${sys:wso2.runtime}/database/WSO2_CARBON_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000</span>
+          <span class="no">username: wso2carbon</span>
+          <span class="no">password: wso2carbon</span>
+          <span class="no">driverClassName: org.h2.Driver</span>
+          <span class="no">maxPoolSize: 10</span>
+          <span class="no">idleTimeout: 60000</span>
+          <span class="no">connectionTestQuery: SELECT 1</span>
+          <span class="no">validationTimeout: 30000</span>
+          <span class="no">isAutoCommit: false</span>
+    <span class="no">- name: COMBO_SUPERMART_DB</span>
+      <span class="no">description: The datasource used for lending process of the Combo supermarket</span>
+      <span class="no">jndiConfig:</span>
+        <span class="no">name: jdbc/ComboSuperMart</span>
+      <span class="no">definition:</span>
+        <span class="no">type: RDBMS</span>
+        <span class="no">configuration:</span>
+          <span class="no">jdbcUrl: jdbc:mysql://mysql-db:3306/ComboSuperMart</span>
+          <span class="no">username: siddhi_user</span>
+          <span class="no">password: siddhiio</span>
+          <span class="no">driverClassName: com.mysql.jdbc.Driver</span>
+          <span class="no">maxPoolSize: 10</span>
+          <span class="no">idleTimeout: 60000</span>
+          <span class="no">connectionTestQuery: SELECT 1</span>
+          <span class="no">validationTimeout: 30000</span>
+          <span class="no">isAutoCommit: false</span>
+
+  <span class="nt">persistentVolumeClaim</span><span class="p">:</span> 
+    <span class="nt">accessModes</span><span class="p">:</span> 
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span>
+    <span class="nt">resources</span><span class="p">:</span> 
+      <span class="nt">requests</span><span class="p">:</span> 
+        <span class="nt">storage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1Gi</span>
+    <span class="nt">storageClassName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">standard</span>
+    <span class="nt">volumeMode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Filesystem</span>
+
+  <span class="nt">container</span><span class="p">:</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;DOCKER_HUB_USER_NAME&gt;/siddhi-runner-alpine:latest</span>
+</pre></div>
+</td></tr></table>
+
+<p>Now you can install the SiddhiProcess using following <code>kubectl</code> command. Before you install the <code>SiddhiProcess</code> you have to add the docker image tag in the <code>siddhi-process.yaml</code> file. You have to add the docker image name(<code>&lt;DOCKER_HUB_USER_NAME&gt;/siddhi-runner-alpine:latest</code>) in the YAML entry <code>spec.container.image</code>.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ kubectl apply -f siddhi-process.yaml
 </pre></div>
 </td></tr></table>
 
-<p>The ingress created by Siddhi operator will use the hostname as siddhi. Therefore you have to update your /etc/host file with siddhi hostname along with the external IP of ingress.</p>
+<p>The ingress created by Siddhi operator will use the hostname as siddhi. Therefore you have to update your <code>/etc/host</code> file with siddhi hostname along with the external IP of ingress.</p>
 <div class="admonition note">
 <p class="admonition-title">External IP of Ingress</p>
 <p>For minikube the ingress external IP is minikube IP and in docker, for Mac, the external IP is 0.0.0.0. For more details about Siddhi, ingress setup refer to <a href="https://siddhi.io/en/v5.1/docs/siddhi-as-a-kubernetes-microservice/">this documentation</a>.</p>
@@ -2071,13 +2441,13 @@
           </a>
         
         
-          <a href="../../../tooling/" title="Tooling" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../integrate-various-enterprise-systems/guide/" title="Integrate Various Enterprise Systems" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Tooling
+                Integrate Various Enterprise Systems
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

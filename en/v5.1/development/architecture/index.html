@@ -619,6 +619,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../docs/guides/integrate-various-enterprise-systems/guide/" title="Integrate Various Enterprise Systems" class="md-nav__link">
+      Integrate Various Enterprise Systems
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -1277,7 +1289,7 @@ aggregation operations, windows, etc.</li>
 <p>At a high level, Siddhi consumes events from various events sources, processes them according to the defined Siddhi application, 
 and produces results to the subscribed event sinks. 
 Siddhi can store and consume events from in-memory tables or from external data stores such as <code>RDBMS</code>, <code>MongoDB</code>, 
-<code>Hazelcast</code> in-memory grid, etc. (i.e., when configured to do so). Siddhi also allows applications and users to query Siddhi via its Store Query API to interactively 
+<code>Hazelcast</code> in-memory grid, etc. (i.e., when configured to do so). Siddhi also allows applications and users to query Siddhi via its On-Demand Query API to interactively 
 retrieve data from in-memory and other stores.</p>
 <h3 id="main-modules-in-siddhi-engine">Main Modules in Siddhi Engine<a class="headerlink" href="#main-modules-in-siddhi-engine" title="Permanent link">&para;</a></h3>
 <p>Siddhi Engine comprises four main modules, they are: </p>
@@ -1565,7 +1577,7 @@ This allows data composition across various granularity time durations when retr
 Aggregation can also work in a distributed manner and across system restarts. This is done by storing node specific IDs and granularity time duration information in the tables. 
 To make sure tables do not go out of memory <a href="https://github.com/siddhi-io/siddhi/blob/master/modules/siddhi-core/src/main/java/io/siddhi/core/aggregation/IncrementalDataPurger.java">IncrementalDataPurger</a> 
 is used to purge old data. </p>
-<p>When aggregation is queried through join or store query for a given time granularity it reads the data 
+<p>When aggregation is queried through join or on-demand query for a given time granularity it reads the data 
 from the in-memory <code>BaseIncrementalValueStore</code> and from the tables computes the composite results as described, and presents the results. </p>
 <h2 id="siddhi-event-formats">Siddhi Event Formats<a class="headerlink" href="#siddhi-event-formats" title="Permanent link">&para;</a></h2>
 <p>Siddhi has three event formats. </p>
