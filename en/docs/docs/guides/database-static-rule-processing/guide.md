@@ -258,6 +258,7 @@ This request will response back the following JSON.
           validationTimeout: 30000
           isAutoCommit: false
     ```
+
 1. Download the MySQL connector JAR from [here](https://dev.mysql.com/downloads/connector/j/5.1.html) and copy that JAR into `<RUNNER_HOME>/jars` directory.
 1. Copy your Siddhi file into `<RUNNER_HOME>/wso2/runner/deployment/siddhi-files`
 1. Start the following binary file. Using this link http://localhost:9390/editor now you can access the Siddhi tooling editor from your web browser.
@@ -324,7 +325,7 @@ services:
           dockerfile: ./Dockerfile
         ports:
             - "8088:8088"
-        links:
+        links:Now you need to have a Docker compose file like below to set up all the prerequisites. This compose file contains volume mounts to change configurations of the MySQL container.
             - mysqldb
         networks:
             - default
@@ -362,7 +363,7 @@ Now you can connect to the MySQL server using the following configurations.
 1. Port: 3304
 1. Root user: root
 1. Root password: siddhiio
-1. Custom user: siddhiio
+1. Custom user: siddhi_user
 1. Custom user password: siddhiio
 
 Then you can create the database schema in that MySQL container. After that, you can start the Siddhi runtime using the following command.
@@ -423,7 +424,12 @@ In the tooling editor itself, you can export your Siddhi app into a runnable Kub
 └── siddhi-process.yaml
 ```
 
-First, you need to install the Siddhi Kubernetes operator. To install Siddhi operator please refer to [this documentation](https://siddhi.io/en/v5.1/docs/siddhi-as-a-kubernetes-microservice/#install-siddhi-operator).
+First, you need to install the Siddhi Kubernetes operator using following commands. For more details about the Siddhi operator refer to [this documentation](https://siddhi.io/en/v5.1/docs/siddhi-as-a-kubernetes-microservice/#install-siddhi-operator).
+
+```sh
+$ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-beta/00-prereqs.yaml
+$ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-beta/01-siddhi-operator.yaml
+```
 
 Now you have to set up MySQL in your Kubernetes cluster. To do that use the following helm command.
 
