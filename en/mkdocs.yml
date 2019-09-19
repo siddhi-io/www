@@ -117,6 +117,7 @@ nav:
         - Fault Tolerance & Error Handling: docs/guides/fault-tolerance/guide.md
         - Patterns & Trends Over Time: docs/guides/patterns-and-trends/guide.md
         - Static Rule Processing using Database Rules: docs/guides/database-static-rule-processing/guide.md
+        - Integrate Various Enterprise Systems: docs/guides/integrate-various-enterprise-systems/guide.md
     - Tooling: docs/tooling.md
     - Query Guide: docs/query-guide.md
     - Siddhi APIs:
