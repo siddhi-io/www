@@ -32,7 +32,7 @@ aggregation operations, windows, etc.
 At a high level, Siddhi consumes events from various events sources, processes them according to the defined Siddhi application, 
 and produces results to the subscribed event sinks. 
 Siddhi can store and consume events from in-memory tables or from external data stores such as `RDBMS`, `MongoDB`, 
-`Hazelcast` in-memory grid, etc. (i.e., when configured to do so). Siddhi also allows applications and users to query Siddhi via its Store Query API to interactively 
+`Hazelcast` in-memory grid, etc. (i.e., when configured to do so). Siddhi also allows applications and users to query Siddhi via its On-Demand Query API to interactively 
 retrieve data from in-memory and other stores.
  
 ### Main Modules in Siddhi Engine
@@ -346,7 +346,7 @@ Aggregation can also work in a distributed manner and across system restarts. Th
 To make sure tables do not go out of memory [IncrementalDataPurger](https://github.com/siddhi-io/siddhi/blob/master/modules/siddhi-core/src/main/java/io/siddhi/core/aggregation/IncrementalDataPurger.java) 
 is used to purge old data. 
 
-When aggregation is queried through join or store query for a given time granularity it reads the data 
+When aggregation is queried through join or on-demand query for a given time granularity it reads the data 
 from the in-memory `BaseIncrementalValueStore` and from the tables computes the composite results as described, and presents the results. 
 
 ## Siddhi Event Formats
