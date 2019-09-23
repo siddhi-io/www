@@ -14,7 +14,7 @@
 | Authentication          | Not Required                                                                                       |
 | Username                | N/A                                                                                                |
 | Password                | N/A                                                                                                |
-| Runtime                 | Worker                                                                                             |
+| Runtime                 | Runner                                                                                             |
 
 
 ### curl command syntax
