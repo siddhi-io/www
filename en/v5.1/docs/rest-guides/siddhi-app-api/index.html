@@ -2696,80 +2696,72 @@
                 
                 <h1 id="siddhi-application-management-apis">Siddhi Application Management APIs<a class="headerlink" href="#siddhi-application-management-apis" title="Permanent link">&para;</a></h1>
 <ul>
-<li><a href="#SiddhiApplicationManagementAPIs-UpdatingaSiddhiApplication">Updating a Siddhi
-    Application</a></li>
-<li><a href="#SiddhiApplicationManagementAPIs-DeletingaSiddhiapplication">Deleting a Siddhi
-    application</a></li>
-<li><a href="#SiddhiApplicationManagementAPIs-ListingallactiveSiddhiapplications">Listing all active Siddhi
-    applications</a></li>
-<li><a href="#SiddhiApplicationManagementAPIs-RetrievingaspecificSiddhiapplication">Retrieving a specific Siddhi
-    application</a></li>
-<li><a href="#SiddhiApplicationManagementAPIs-FetchingthestatusofaSiddhiApplication">Fetching the status of a Siddhi
-    Application</a></li>
-<li><a href="#SiddhiApplicationManagementAPIs-TakingasnapshotofaSiddhiApplicationSnapshot">Taking a snapshot of a Siddhi
-    Application</a></li>
-<li><a href="#SiddhiApplicationManagementAPIs-RestoringaSiddhiApplicationviaasnapshot">Restoring a Siddhi Application via a
-    snapshot</a></li>
-<li><a href="#SiddhiApplicationManagementAPIs-Returningreal-timestatisticsofarunner">Returning real-time statistics of a
-    runner</a></li>
-<li><a href="#SiddhiApplicationManagementAPIs-Enabling/disablingrunnerstatistics">Enabling/disabling runner
-    statistics</a></li>
-<li><a href="#SiddhiApplicationManagementAPIs-Returninggeneraldetailsofarunner">Returning general details of a
-    runner</a></li>
-<li><a href="#SiddhiApplicationManagementAPIs-ReturningdetailedstatisticsofallSiddhiapplications">Returning detailed statistics of all Siddhi
-    applications</a></li>
-<li><a href="#SiddhiApplicationManagementAPIs-Enabling/disablingthestatisticsofaspecificSiddhiapplication">Enabling/disabling the statistics of a specific Siddhi
-    application</a></li>
-<li><a href="#SiddhiApplicationManagementAPIs-Enabling/disablingthestatisticsofallSiddhiapplications">Enabling/disabling the statistics of all Siddhi
-    applications</a></li>
+<li><a href="#creating-a-siddhi-application">Creating a Siddhi Application</a></li>
+<li><a href="#updating-a-siddhi-application">Updating a Siddhi Application</a></li>
+<li><a href="#deleting-a-siddhi-application">Deleting a Siddhi Application</a></li>
+<li><a href="#listing-all-active-siddhi-applications">Listing all active Siddhi Applications</a></li>
+<li><a href="#retrieving-a-specific-siddhi-application">Retrieving a specific Siddhi Application</a></li>
+<li><a href="#fetching-the-status-of-a-siddhi-application">Fetching the status of a Siddhi Application</a></li>
+<li><a href="#taking-a-snapshot-of-a-siddhi-application-snapshot">Taking a snapshot of a Siddhi Application</a></li>
+<li><a href="#restoring-a-siddhi-application-via-a-snapshot">Restoring a Siddhi Application via a snapshot</a></li>
+<li><a href="#returning-real-time-statistics-of-a-runner">Returning real-time statistics of a runner</a></li>
+<li><a href="#disabling-runner-statistics">Enabling/disabling runner statistics</a></li>
+<li><a href="#returning-general-details-of-a-runner">Returning general details of a runner</a></li>
+<li><a href="#returning-detailed-statistics-of-all-siddhi-applications">Returning detailed statistics of all Siddhi Applications</a></li>
+<li><a href="#enablingdisabling-the-statistics-of-a-specific-siddhi-application">Enabling/disabling the statistics of a specific Siddhi Application</a></li>
+<li><a href="#enablingdisabling-the-statistics-of-all-siddhi-applications">Enabling/disabling the statistics of all Siddhi Applications</a></li>
 </ul>
 <h3 id="creating-a-siddhi-application">Creating a Siddhi application<a class="headerlink" href="#creating-a-siddhi-application" title="Permanent link">&para;</a></h3>
 <h3 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h3>
 <table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>Description</td>
 <td>Creates a new Siddhi Application.</td>
 </tr>
-<tr class="even">
+<tr>
 <td>API Context</td>
-<td><code>             /siddhi-apps            </code></td>
+<td><code>/siddhi-apps</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>HTTP Method</td>
 <td>POST</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Request/Response format</td>
-<td><strong>Request</strong> : text/plain<br />
-<strong>Response</strong> : application/json</td>
+<td><strong>Request</strong> : text/plain<br />    <strong>Response</strong> : application/json</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Authentication</td>
 <td>Basic</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Username</td>
 <td>admin</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Password</td>
 <td>admin</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Runtime</td>
 <td>Runner</td>
 </tr>
 </tbody>
 </table>
-
 <h3 id="curl-command-syntax">curl command syntax<a class="headerlink" href="#curl-command-syntax" title="Permanent link">&para;</a></h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    <span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> <span class="s">&quot;https://localhost:9443/siddhi-apps&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;Content-Type: text/plain&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="nd">@TestSiddhiApp.siddhi</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> <span class="s">&quot;https://localhost:9443/siddhi-apps&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;Content-Type: text/plain&quot;</span> <span class="o">--</span><span class="n">data</span><span class="o">-</span><span class="n">binary</span> <span class="nd">@TestSiddhiApp.siddhi</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
 </pre></div>
 </td></tr></table>
 
 <h3 id="sample-curl-command">Sample curl command<a class="headerlink" href="#sample-curl-command" title="Permanent link">&para;</a></h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    <span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> <span class="s">&quot;https://localhost:9443/siddhi-apps&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;Content-Type: text/plain&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="nd">@TestSiddhiApp.siddhi</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> <span class="s">&quot;https://localhost:9443/siddhi-apps&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;Content-Type: text/plain&quot;</span> <span class="o">--</span><span class="n">data</span><span class="o">-</span><span class="n">binary</span> <span class="nd">@TestSiddhiApp.siddhi</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
 </pre></div>
 </td></tr></table>
 
@@ -2783,7 +2775,13 @@ following.</p>
     generated with response code 201. This response contains a location
     header with the path of the newly created file from product root
     home.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">{</span>
+    <span class="s">&quot;type&quot;</span><span class="o">:</span><span class="s">&quot;success&quot;</span><span class="o">,</span>
+    <span class="s">&quot;message&quot;</span><span class="o">:</span><span class="s">&quot;Siddhi App saved succesfully and will be deployed in next deployment cycle&quot;</span>
+<span class="o">}</span>
 </pre></div>
 </td></tr></table>
 
@@ -2795,10 +2793,10 @@ following.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>        <span class="o">{</span>
-          <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;conflict&quot;</span><span class="o">,</span>
-          <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="s">&quot;There is a Siddhi App already exists with same name&quot;</span> 
-        <span class="o">}</span>
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">{</span>
+    <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;conflict&quot;</span><span class="o">,</span>
+    <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="s">&quot;There is a Siddhi App already exists with same name&quot;</span> 
+<span class="o">}</span>
 </pre></div>
 </td></tr></table>
 
@@ -2811,11 +2809,11 @@ following.</p>
 2
 3
 4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>        <span class="o">{</span>
-          <span class="s">&quot;code&quot;</span><span class="o">:</span> <span class="mi">800101</span><span class="o">,</span>
-          <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;validation error&quot;</span><span class="o">,</span>
-          <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="s">&quot;You have an error in your SiddhiQL at line 8:8, missing INTO at &#39;BarStream&#39;&quot;</span> 
-        <span class="o">}</span>
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">{</span>
+    <span class="s">&quot;code&quot;</span><span class="o">:</span> <span class="mi">800101</span><span class="o">,</span>
+    <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;validation error&quot;</span><span class="o">,</span>
+    <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="s">&quot;You have an error in your SiddhiQL at line 8:8, missing INTO at &#39;BarStream&#39;&quot;</span> 
+<span class="o">}</span>
 </pre></div>
 </td></tr></table>
 
@@ -2828,11 +2826,11 @@ following.</p>
 2
 3
 4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>        <span class="o">{</span>
-          <span class="s">&quot;code&quot;</span><span class="o">:</span> <span class="mi">800102</span><span class="o">,</span>
-          <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;file processing error&quot;</span><span class="o">,</span>
-          <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="o">&lt;</span><span class="n">error</span><span class="o">-</span><span class="n">message</span><span class="o">&gt;</span>
-        <span class="o">}</span>
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">{</span>
+    <span class="s">&quot;code&quot;</span><span class="o">:</span> <span class="mi">800102</span><span class="o">,</span>
+    <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;file processing error&quot;</span><span class="o">,</span>
+    <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="o">&lt;</span><span class="n">error</span><span class="o">-</span><span class="n">message</span><span class="o">&gt;</span>
+<span class="o">}</span>
 </pre></div>
 </td></tr></table>
 
@@ -2840,62 +2838,70 @@ following.</p>
 </ul>
 <h3 id="response">Response<a class="headerlink" href="#response" title="Permanent link">&para;</a></h3>
 <table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>HTTP Status Code</td>
-<td><p>Possible codes are 201, 409, 400, and 500.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<td>Possible codes are 201, 409, 400, and 500. <br/>For descriptions of the HTTP status codes, see <a href="/rest-guides/http-status-code">HTTP Status Codes</a></td>
 </tr>
 </tbody>
 </table>
-
 <h2 id="updating-a-siddhi-application">Updating a Siddhi Application<a class="headerlink" href="#updating-a-siddhi-application" title="Permanent link">&para;</a></h2>
 <h3 id="overview_1">Overview<a class="headerlink" href="#overview_1" title="Permanent link">&para;</a></h3>
 <table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>Description</td>
 <td>Updates a Siddhi Application.</td>
 </tr>
-<tr class="even">
+<tr>
 <td>API Context</td>
-<td><code>             /siddhi-apps            </code></td>
+<td><code>/siddhi-apps</code></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>HTTP Method</td>
 <td>PUT</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Request/Response format</td>
-<td><strong>Request</strong> : text/plain<br />
-<strong>Response</strong> : application/json</td>
+<td><strong>Request</strong> : text/plain<br />    <strong>Response</strong> : application/json</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Authentication</td>
 <td>Basic</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Username</td>
 <td>admin</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>Password</td>
 <td>admin</td>
 </tr>
-<tr class="even">
+<tr>
 <td>Runtime</td>
 <td>Runner</td>
 </tr>
 </tbody>
 </table>
-
 <h3 id="curl-command-syntax_1">curl command syntax<a class="headerlink" href="#curl-command-syntax_1" title="Permanent link">&para;</a></h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    <span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">PUT</span> <span class="s">&quot;http://localhost:9090/siddhi-apps&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;Content-Type: text/plain&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="err">@</span><span class="o">&lt;</span><span class="n">SIDDHI_APPLICATION_NAME</span><span class="o">&gt;.</span><span class="na">siddhi</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">PUT</span> <span class="s">&quot;http://localhost:9090/siddhi-apps&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;Content-Type: text/plain&quot;</span> <span class="o">--</span><span class="n">data</span><span class="o">-</span><span class="n">binary</span> <span class="err">@</span><span class="o">&lt;</span><span class="n">SIDDHI_APPLICATION_NAME</span><span class="o">&gt;.</span><span class="na">siddhi</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
 </pre></div>
 </td></tr></table>
 
 <h3 id="sample-curl-command_1">Sample curl command<a class="headerlink" href="#sample-curl-command_1" title="Permanent link">&para;</a></h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    <span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">PUT</span> <span class="s">&quot;https://localhost:9443/siddhi-apps&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;Content-Type: text/plain&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="nd">@TestSiddhiApp.siddhi</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">PUT</span> <span class="s">&quot;https://localhost:9443/siddhi-apps&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;Content-Type: text/plain&quot;</span> <span class="o">--</span><span class="n">data</span><span class="o">-</span><span class="n">binary</span> <span class="nd">@TestSiddhiApp.siddhi</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
 </pre></div>
 </td></tr></table>
 
@@ -2909,11 +2915,11 @@ following.</p>
 2
 3
 4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>        <span class="o">{</span>
-          <span class="s">&quot;code&quot;</span><span class="o">:</span> <span class="mi">800101</span><span class="o">,</span>
-          <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;validation error&quot;</span><span class="o">,</span>
-          <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="s">&quot;You have an error in your SiddhiQL at line 8:8, missing INTO at &#39;BarStream&#39;&quot;</span> 
-        <span class="o">}</span>
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">{</span>
+    <span class="s">&quot;code&quot;</span><span class="o">:</span> <span class="mi">800101</span><span class="o">,</span>
+    <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;validation error&quot;</span><span class="o">,</span>
+    <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="s">&quot;You have an error in your SiddhiQL at line 8:8, missing INTO at &#39;BarStream&#39;&quot;</span> 
+<span class="o">}</span>
 </pre></div>
 </td></tr></table>
 
@@ -2926,11 +2932,11 @@ following.</p>
 2
 3
 4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>        <span class="o">{</span>
-          <span class="s">&quot;code&quot;</span><span class="o">:</span> <span class="mi">800102</span><span class="o">,</span>
-          <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;file processing error&quot;</span><span class="o">,</span>
-          <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="o">&lt;</span><span class="n">error</span><span class="o">-</span><span class="n">message</span><span class="o">&gt;</span>
-        <span class="o">}</span>
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">{</span>
+    <span class="s">&quot;code&quot;</span><span class="o">:</span> <span class="mi">800102</span><span class="o">,</span>
+    <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;file processing error&quot;</span><span class="o">,</span>
+    <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="o">&lt;</span><span class="n">error</span><span class="o">-</span><span class="n">message</span><span class="o">&gt;</span>
+<span class="o">}</span>
 </pre></div>
 </td></tr></table>
 
@@ -2938,15 +2944,19 @@ following.</p>
 </ul>
 <h3 id="response_1">Response<a class="headerlink" href="#response_1" title="Permanent link">&para;</a></h3>
 <table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>HTTP Status Code</td>
-<td><p>Possible codes are 200, 201, 400, and 500.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<td>Possible codes are 200, 201, 400, and 500. <br/>For descriptions of the HTTP status codes, see <a href="/rest-guides/http-status-code">HTTP Status Codes</a></td>
 </tr>
 </tbody>
 </table>
-
 <h2 id="deleting-a-siddhi-application">Deleting a Siddhi application<a class="headerlink" href="#deleting-a-siddhi-application" title="Permanent link">&para;</a></h2>
 <h3 id="overview_2">Overview<a class="headerlink" href="#overview_2" title="Permanent link">&para;</a></h3>
 <table>
@@ -3007,27 +3017,23 @@ following.</p>
 </tbody>
 </table>
 <h3 id="curl-command-syntax_2">curl command syntax<a class="headerlink" href="#curl-command-syntax_2" title="Permanent link">&para;</a></h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    <span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">DELETE</span> <span class="s">&quot;http://localhost:9090/siddhi-apps/{app-name}&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">DELETE</span> <span class="s">&quot;http://localhost:9090/siddhi-apps/{app-name}&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
 </pre></div>
 </td></tr></table>
 
 <h3 id="sample-curl-command_2">Sample curl command<a class="headerlink" href="#sample-curl-command_2" title="Permanent link">&para;</a></h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    <span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">DELETE</span> <span class="s">&quot;https://localhost:9443/siddhi-apps/TestSiddhiApp&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">DELETE</span> <span class="s">&quot;https://localhost:9443/siddhi-apps/TestSiddhiApp&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
 </pre></div>
 </td></tr></table>
 
 <h3 id="sample-output_2">Sample output<a class="headerlink" href="#sample-output_2" title="Permanent link">&para;</a></h3>
-<p>The respose for the sample curl command given above can be one of the
+<p>The response for the sample curl command given above can be one of the
 following:</p>
 <ul>
 <li>
 <p>If the API request is valid and a Siddhi application with the given
-    name exists, the following response is received with response
+    name exists, a received with response
     code 200.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>        <span class="n">http</span><span class="o">:</span><span class="c1">//localhost:9090/siddhi-apps/TestExecutionPlan1</span>
-</pre></div>
-</td></tr></table>
-
 </li>
 <li>
 <p>If the API request is valid, but a Siddhi application with the given
@@ -3036,10 +3042,10 @@ following:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>        <span class="o">{</span>
-          <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;not found&quot;</span><span class="o">,</span>
-          <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="s">&quot;There is no Siddhi App exist with provided name : TestExecutionPlan1&quot;</span> 
-        <span class="o">}</span>
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">{</span>
+    <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;not found&quot;</span><span class="o">,</span>
+    <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="s">&quot;There is no Siddhi App exist with provided name : TestExecutionPlan1&quot;</span> 
+<span class="o">}</span>
 </pre></div>
 </td></tr></table>
 
@@ -3052,11 +3058,11 @@ following:</p>
 2
 3
 4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>        <span class="o">{</span>
-          <span class="s">&quot;code&quot;</span><span class="o">:</span> <span class="mi">800102</span><span class="o">,</span>
-          <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;file processing error&quot;</span><span class="o">,</span>
-          <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="o">&lt;</span><span class="n">error</span><span class="o">-</span><span class="n">message</span><span class="o">&gt;</span>
-        <span class="o">}</span>
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">{</span>
+    <span class="s">&quot;code&quot;</span><span class="o">:</span> <span class="mi">800102</span><span class="o">,</span>
+    <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;file processing error&quot;</span><span class="o">,</span>
+    <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="o">&lt;</span><span class="n">error</span><span class="o">-</span><span class="n">message</span><span class="o">&gt;</span>
+<span class="o">}</span>
 </pre></div>
 </td></tr></table>
 
@@ -3069,11 +3075,11 @@ following:</p>
 2
 3
 4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>        <span class="o">{</span>
-          <span class="s">&quot;code&quot;</span><span class="o">:</span> <span class="mi">800101</span><span class="o">,</span>
-          <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;validation error&quot;</span><span class="o">,</span>
-          <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="s">&quot;File name contains restricted path elements . : ../../siddhiApp2&#39;&quot;</span> 
-        <span class="o">}</span>
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">{</span>
+    <span class="s">&quot;code&quot;</span><span class="o">:</span> <span class="mi">800101</span><span class="o">,</span>
+    <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;validation error&quot;</span><span class="o">,</span>
+    <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="s">&quot;File name contains restricted path elements . : ../../siddhiApp2&#39;&quot;</span> 
+<span class="o">}</span>
 </pre></div>
 </td></tr></table>
 
@@ -3081,18 +3087,26 @@ following:</p>
 </ul>
 <h3 id="response_2">Response<a class="headerlink" href="#response_2" title="Permanent link">&para;</a></h3>
 <table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>HTTP Status Code</td>
-<td><p>200, 404, 500 or 400.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<td>Possible codes are 200, 404, 400, and 500. <br/>For descriptions of the HTTP status codes, see <a href="/rest-guides/http-status-code">HTTP Status Codes</a></td>
 </tr>
 </tbody>
 </table>
-
 <h2 id="listing-all-active-siddhi-applications">Listing all active Siddhi applications<a class="headerlink" href="#listing-all-active-siddhi-applications" title="Permanent link">&para;</a></h2>
 <h3 id="overview_3">Overview<a class="headerlink" href="#overview_3" title="Permanent link">&para;</a></h3>
 <table>
+<tr>
+   <th></th>
+   <th></th>
+ </tr>
 <tbody>
 <tr class="odd">
 <td>Description</td>
@@ -3132,12 +3146,12 @@ following:</p>
 </table>
 
 <h3 id="curl-command-syntax_3">curl command syntax<a class="headerlink" href="#curl-command-syntax_3" title="Permanent link">&para;</a></h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    <span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> <span class="s">&quot;http://localhost:9090/siddhi-apps&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> <span class="s">&quot;http://localhost:9090/siddhi-apps&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
 </pre></div>
 </td></tr></table>
 
 <h3 id="sample-curl-command_3">Sample curl command<a class="headerlink" href="#sample-curl-command_3" title="Permanent link">&para;</a></h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    <span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> <span class="s">&quot;https://localhost:9443/siddhi-apps?isActive=true&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> <span class="s">&quot;https://localhost:9443/siddhi-apps?isActive=true&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
 </pre></div>
 </td></tr></table>
 
@@ -3148,7 +3162,7 @@ following:</p>
 <p>If the API request is valid and there are Siddhi applications
     deployed in your SP setup, a response similar to the following is
     returned with response code 200.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>        <span class="o">[</span><span class="s">&quot;TestExecutionPlan3&quot;</span><span class="o">,</span> <span class="s">&quot;TestExecutionPlan4&quot;</span><span class="o">]</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">[</span><span class="s">&quot;TestExecutionPlan3&quot;</span><span class="o">,</span> <span class="s">&quot;TestExecutionPlan4&quot;</span><span class="o">]</span>
 </pre></div>
 </td></tr></table>
 
@@ -3159,18 +3173,9 @@ following:</p>
     response similar to the following is returned with response
     code 200. This response only contains Siddhi applications that are
     active.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>!!! info
-
-If these conditions are met, but the `           isActive          `
-parameter is set to `           false          ` , the response
-contains only inactive Siddhi applications.
-</pre></div>
-</td></tr></table>
-
+<div class="admonition info">
+<p class="admonition-title">If these conditions are met, but the <code>isActive</code> parameter is set to <code>false</code> , the response contains only inactive Siddhi applications.</p>
+</div>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    <span class="o">[</span><span class="s">&quot;TestExecutionPlan3&quot;</span><span class="o">]</span>
 </pre></div>
 </td></tr></table>
@@ -3187,15 +3192,19 @@ contains only inactive Siddhi applications.
 </ul>
 <h3 id="response_3">Response<a class="headerlink" href="#response_3" title="Permanent link">&para;</a></h3>
 <table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>HTTP Status Code</td>
-<td><p>200</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<td>200. <br/>For descriptions of the HTTP status codes, see <a href="/rest-guides/http-status-code">HTTP Status Codes</a></td>
 </tr>
 </tbody>
 </table>
-
 <h2 id="retrieving-a-specific-siddhi-application">Retrieving a specific Siddhi application<a class="headerlink" href="#retrieving-a-specific-siddhi-application" title="Permanent link">&para;</a></h2>
 <h3 id="overview_4">Overview<a class="headerlink" href="#overview_4" title="Permanent link">&para;</a></h3>
 <table>
@@ -3256,12 +3265,12 @@ contains only inactive Siddhi applications.
 </tbody>
 </table>
 <h3 id="curl-command-syntax_4">curl command syntax<a class="headerlink" href="#curl-command-syntax_4" title="Permanent link">&para;</a></h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    <span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> <span class="s">&quot;http://localhost:9090/siddhi-apps/{app-name}&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> <span class="s">&quot;http://localhost:9090/siddhi-apps/{app-name}&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
 </pre></div>
 </td></tr></table>
 
 <h3 id="sample-curl-command_4">Sample curl command<a class="headerlink" href="#sample-curl-command_4" title="Permanent link">&para;</a></h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    <span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> <span class="s">&quot;https://localhost:9443/siddhi-apps/SiddhiTestApp&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> <span class="s">&quot;https://localhost:9443/siddhi-apps/SiddhiTestApp&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
 </pre></div>
 </td></tr></table>
 
@@ -3274,9 +3283,9 @@ contains only inactive Siddhi applications.
     response code 200.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>        <span class="o">{</span>
-          <span class="s">&quot;content&quot;</span><span class="o">:</span> <span class="s">&quot;\n@Plan:name(&#39;TestExecutionPlan&#39;)\ndefine stream FooStream (symbol string, price float, volume long);\n\n@source(type=&#39;inMemory&#39;, topic=&#39;symbol&#39;, @map(type=&#39;passThrough&#39;))Define stream BarStream (symbol string, price float, volume long);\n\nfrom FooStream\nselect symbol, price, volume\ninsert into BarStream;&quot;</span> 
-        <span class="o">}</span>
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">{</span>
+    <span class="s">&quot;content&quot;</span><span class="o">:</span> <span class="s">&quot;\n@Plan:name(&#39;TestExecutionPlan&#39;)\ndefine stream FooStream (symbol string, price float, volume long);\n\n@source(type=&#39;inMemory&#39;, topic=&#39;symbol&#39;, @map(type=&#39;passThrough&#39;))Define stream BarStream (symbol string, price float, volume long);\n\nfrom FooStream\nselect symbol, price, volume\ninsert into BarStream;&quot;</span> 
+<span class="o">}</span>
 </pre></div>
 </td></tr></table>
 
@@ -3288,10 +3297,10 @@ contains only inactive Siddhi applications.
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>        <span class="o">{</span>
-          <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;not found&quot;</span><span class="o">,</span>
-          <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="s">&quot;There is no Siddhi App exist with provided name : TestExecutionPlan1&quot;</span> 
-        <span class="o">}</span>
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">{</span>
+    <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;not found&quot;</span><span class="o">,</span>
+    <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="s">&quot;There is no Siddhi App exist with provided name : TestExecutionPlan1&quot;</span> 
+<span class="o">}</span>
 </pre></div>
 </td></tr></table>
 
@@ -3299,18 +3308,26 @@ contains only inactive Siddhi applications.
 </ul>
 <h3 id="response_4">Response<a class="headerlink" href="#response_4" title="Permanent link">&para;</a></h3>
 <table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>HTTP Status Code</td>
-<td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<td>Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see <a href="/rest-guides/http-status-code">HTTP Status Codes</a></td>
 </tr>
 </tbody>
 </table>
-
 <h2 id="fetching-the-status-of-a-siddhi-application">Fetching the status of a Siddhi Application<a class="headerlink" href="#fetching-the-status-of-a-siddhi-application" title="Permanent link">&para;</a></h2>
 <h3 id="overview_5">Overview<a class="headerlink" href="#overview_5" title="Permanent link">&para;</a></h3>
 <table>
+<tr>
+   <th></th>
+   <th></th>
+ </tr>
 <colgroup>
 <col style="width: 33%" />
 <col style="width: 66%" />
@@ -3367,12 +3384,12 @@ contains only inactive Siddhi applications.
 </tbody>
 </table>
 <h3 id="curl-command-syntax_5">curl command syntax<a class="headerlink" href="#curl-command-syntax_5" title="Permanent link">&para;</a></h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    <span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> <span class="s">&quot;http://localhost:9090/siddhi-apps/{app-file-name}/status&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> <span class="s">&quot;http://localhost:9090/siddhi-apps/{app-file-name}/status&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
 </pre></div>
 </td></tr></table>
 
 <h3 id="sample-curl-command_5">Sample curl command<a class="headerlink" href="#sample-curl-command_5" title="Permanent link">&para;</a></h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    <span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> <span class="s">&quot;https://localhost:9443/siddhi-apps/TestSiddhiApp/status&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> <span class="s">&quot;https://localhost:9443/siddhi-apps/TestSiddhiApp/status&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
 </pre></div>
 </td></tr></table>
 
@@ -3381,7 +3398,7 @@ contains only inactive Siddhi applications.
 <li>
 <p>If the Siddhi application is active, the following is returned with
     response code 200.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>        <span class="o">{</span><span class="s">&quot;status&quot;</span><span class="o">:</span><span class="s">&quot;active&quot;</span><span class="o">}</span> 
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">{</span><span class="s">&quot;status&quot;</span><span class="o">:</span><span class="s">&quot;active&quot;</span><span class="o">}</span> 
 </pre></div>
 </td></tr></table>
 
@@ -3389,7 +3406,7 @@ contains only inactive Siddhi applications.
 <li>
 <p>If the Siddhi application is inactive, the following is returned
     with response code 200.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>        <span class="o">{</span><span class="s">&quot;status&quot;</span><span class="o">:</span><span class="s">&quot;inactive&quot;</span><span class="o">}</span> 
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">{</span><span class="s">&quot;status&quot;</span><span class="o">:</span><span class="s">&quot;inactive&quot;</span><span class="o">}</span> 
 </pre></div>
 </td></tr></table>
 
@@ -3400,10 +3417,10 @@ contains only inactive Siddhi applications.
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>        <span class="o">{</span>
-          <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;not found&quot;</span><span class="o">,</span>
-          <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="s">&quot;There is no Siddhi App exist with provided name : TestExecutionPlan1&quot;</span> 
-        <span class="o">}</span>
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">{</span>
+    <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;not found&quot;</span><span class="o">,</span>
+    <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="s">&quot;There is no Siddhi App exist with provided name : TestExecutionPlan1&quot;</span> 
+<span class="o">}</span>
 </pre></div>
 </td></tr></table>
 
@@ -3411,15 +3428,19 @@ contains only inactive Siddhi applications.
 </ul>
 <h3 id="response_5">Response<a class="headerlink" href="#response_5" title="Permanent link">&para;</a></h3>
 <table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>HTTP Status Code</td>
-<td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<td>Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see <a href="/rest-guides/http-status-code">HTTP Status Codes</a></td>
 </tr>
 </tbody>
 </table>
-
 <h2 id="taking-a-snapshot-of-a-siddhi-application">Taking a snapshot of a Siddhi Application<a class="headerlink" href="#taking-a-snapshot-of-a-siddhi-application" title="Permanent link">&para;</a></h2>
 <h3 id="overview_6">Overview<a class="headerlink" href="#overview_6" title="Permanent link">&para;</a></h3>
 <table>
@@ -3480,12 +3501,12 @@ contains only inactive Siddhi applications.
 </tbody>
 </table>
 <h3 id="curl-command-syntax_6">curl command syntax<a class="headerlink" href="#curl-command-syntax_6" title="Permanent link">&para;</a></h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    <span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> <span class="s">&quot;http://localhost:9090/siddhi-apps/{appName}/backup&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> <span class="s">&quot;http://localhost:9090/siddhi-apps/{appName}/backup&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
 </pre></div>
 </td></tr></table>
 
 <h3 id="sample-curl-command_6">Sample curl command<a class="headerlink" href="#sample-curl-command_6" title="Permanent link">&para;</a></h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    <span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> <span class="s">&quot;https://localhost:9443/siddhi-apps/TestSiddhiApp/backup&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> <span class="s">&quot;https://localhost:9443/siddhi-apps/TestSiddhiApp/backup&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
 </pre></div>
 </td></tr></table>
 
@@ -3496,7 +3517,7 @@ contains only inactive Siddhi applications.
 <p>If the API request is valid and a Siddhi application exists with the
     given name, an output similar to the following (i.e., with the
     snapshot revision number) is returned with response code 201.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>        <span class="o">{</span><span class="s">&quot;revision&quot;</span><span class="o">:</span> <span class="s">&quot;89489242494242&quot;</span><span class="o">}</span> 
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">{</span><span class="s">&quot;revision&quot;</span><span class="o">:</span> <span class="s">&quot;89489242494242&quot;</span><span class="o">}</span> 
 </pre></div>
 </td></tr></table>
 
@@ -3508,10 +3529,10 @@ contains only inactive Siddhi applications.
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>        <span class="o">{</span>
-          <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;not found&quot;</span><span class="o">,</span>
-          <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="s">&quot;There is no Siddhi App exist with provided name : TestExecutionPlan1&quot;</span> 
-        <span class="o">}</span>
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">{</span>
+    <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;not found&quot;</span><span class="o">,</span>
+    <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="s">&quot;There is no Siddhi App exist with provided name : TestExecutionPlan1&quot;</span> 
+<span class="o">}</span>
 </pre></div>
 </td></tr></table>
 
@@ -3524,11 +3545,11 @@ contains only inactive Siddhi applications.
 2
 3
 4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>        <span class="o">{</span>
-          <span class="s">&quot;code&quot;</span><span class="o">:</span> <span class="mi">800102</span><span class="o">,</span>
-          <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;file processing error&quot;</span><span class="o">,</span>
-          <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="o">&lt;</span><span class="n">error</span><span class="o">-</span><span class="n">message</span><span class="o">&gt;</span>
-        <span class="o">}</span>
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">{</span>
+    <span class="s">&quot;code&quot;</span><span class="o">:</span> <span class="mi">800102</span><span class="o">,</span>
+    <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;file processing error&quot;</span><span class="o">,</span>
+    <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="o">&lt;</span><span class="n">error</span><span class="o">-</span><span class="n">message</span><span class="o">&gt;</span>
+<span class="o">}</span>
 </pre></div>
 </td></tr></table>
 
@@ -3536,25 +3557,27 @@ contains only inactive Siddhi applications.
 </ul>
 <h3 id="response_6">Response<a class="headerlink" href="#response_6" title="Permanent link">&para;</a></h3>
 <table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>HTTP Status Code</td>
-<td><p>201, 404, or 500.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<td>Possible codes are 201, 404, and 500. <br/>For descriptions of the HTTP status codes, see <a href="/rest-guides/http-status-code">HTTP Status Codes</a></td>
 </tr>
 </tbody>
 </table>
-
 <h2 id="restoring-a-siddhi-application-via-a-snapshot">Restoring a Siddhi Application via a snapshot<a class="headerlink" href="#restoring-a-siddhi-application-via-a-snapshot" title="Permanent link">&para;</a></h2>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
-</div>
-<p>In order to call this API, you need tohave already taken a snapshot of
-the Siddhi application to be restored. For more information about the
-API via which the snapshow is taken, see <a href="#SiddhiApplicationManagementAPIs-Snapshot">Taking a snapshot of a Siddhi
-application</a> .</p>
+<p>!!! info "In order to call this API, you need to have already taken a snapshot of the Siddhi application to be restored. For more information about the API via which the snapshot is taken, see <a href="#taking-a-snapshot-of-a-siddhi-application">Taking a snapshot of a Siddhi Application</a> .</p>
 <h3 id="overview_7">Overview<a class="headerlink" href="#overview_7" title="Permanent link">&para;</a></h3>
 <table>
+<tr>
+   <th></th>
+   <th></th>
+ </tr>
 <tbody>
 <tr class="odd">
 <td><p>Description</p></td>
@@ -3611,12 +3634,12 @@ application</a> .</p>
 </table>
 
 <h3 id="curl-command-syntax_7">curl command syntax<a class="headerlink" href="#curl-command-syntax_7" title="Permanent link">&para;</a></h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    <span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> <span class="s">&quot;http://localhost:9090/siddhi-apps/{appName}/restore&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> <span class="s">&quot;http://localhost:9090/siddhi-apps/{appName}/restore&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
 </pre></div>
 </td></tr></table>
 
 <h3 id="sample-curl-command_7">Sample curl command<a class="headerlink" href="#sample-curl-command_7" title="Permanent link">&para;</a></h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    <span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> <span class="s">&quot;https://localhost:9443/siddhi-apps/TestSiddhiApp/restore?revision=1514981290838_TestSiddhiApp&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> <span class="s">&quot;https://localhost:9443/siddhi-apps/TestSiddhiApp/restore?revision=1514981290838_TestSiddhiApp&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
 </pre></div>
 </td></tr></table>
 
@@ -3632,10 +3655,10 @@ responses:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>        <span class="o">{</span>
-          <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;success&quot;</span><span class="o">,</span>
-          <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="s">&quot;State restored to last revision for Siddhi App :TestExecutionPlan&quot;</span> 
-        <span class="o">}</span>
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">{</span>
+    <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;success&quot;</span><span class="o">,</span>
+    <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="s">&quot;State restored to last revision for Siddhi App :TestExecutionPlan&quot;</span> 
+<span class="o">}</span>
 </pre></div>
 </td></tr></table>
 
@@ -3649,10 +3672,10 @@ responses:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>        <span class="o">{</span>
-          <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;success&quot;</span><span class="o">,</span>
-          <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="s">&quot;State restored to revision 1234563 for Siddhi App :TestExecutionPlan&quot;</span> 
-        <span class="o">}</span>
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">{</span>
+    <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;success&quot;</span><span class="o">,</span>
+    <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="s">&quot;State restored to revision 1234563 for Siddhi App :TestExecutionPlan&quot;</span> 
+<span class="o">}</span>
 </pre></div>
 </td></tr></table>
 
@@ -3664,10 +3687,10 @@ responses:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>        <span class="o">{</span>
-          <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;not found&quot;</span><span class="o">,</span>
-          <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="s">&quot;There is no Siddhi App exist with provided name : TestExecutionPlan1&quot;</span> 
-        <span class="o">}</span>
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">{</span>
+    <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;not found&quot;</span><span class="o">,</span>
+    <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="s">&quot;There is no Siddhi App exist with provided name : TestExecutionPlan1&quot;</span> 
+<span class="o">}</span>
 </pre></div>
 </td></tr></table>
 
@@ -3680,11 +3703,11 @@ responses:</p>
 2
 3
 4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>        <span class="o">{</span>
-          <span class="s">&quot;code&quot;</span><span class="o">:</span> <span class="mi">800102</span><span class="o">,</span>
-          <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;file processing error&quot;</span><span class="o">,</span>
-          <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="o">&lt;</span><span class="n">error</span><span class="o">-</span><span class="n">message</span><span class="o">&gt;</span>
-        <span class="o">}</span>
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">{</span>
+    <span class="s">&quot;code&quot;</span><span class="o">:</span> <span class="mi">800102</span><span class="o">,</span>
+    <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;file processing error&quot;</span><span class="o">,</span>
+    <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="o">&lt;</span><span class="n">error</span><span class="o">-</span><span class="n">message</span><span class="o">&gt;</span>
+<span class="o">}</span>
 </pre></div>
 </td></tr></table>
 
@@ -3692,15 +3715,19 @@ responses:</p>
 </ul>
 <h3 id="response_7">Response<a class="headerlink" href="#response_7" title="Permanent link">&para;</a></h3>
 <table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>HTTP Status Code</td>
-<td><p>200, 404 or 500.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<td>Possible codes are 200, 404, and 500. <br/>For descriptions of the HTTP status codes, see <a href="/rest-guides/http-status-code">HTTP Status Codes</a></td>
 </tr>
 </tbody>
 </table>
-
 <h2 id="returning-real-time-statistics-of-a-runner">Returning real-time statistics of a runner<a class="headerlink" href="#returning-real-time-statistics-of-a-runner" title="Permanent link">&para;</a></h2>
 <h3 id="overview_8">Overview<a class="headerlink" href="#overview_8" title="Permanent link">&para;</a></h3>
 <table>
@@ -3747,27 +3774,31 @@ responses:</p>
 </table>
 <h4 id="parameter-description_5">Parameter Description<a class="headerlink" href="#parameter-description_5" title="Permanent link">&para;</a></h4>
 <h3 id="curl-command-syntax_8">curl command syntax<a class="headerlink" href="#curl-command-syntax_8" title="Permanent link">&para;</a></h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> <span class="s">&quot;https://localhost:9443/statistics&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
 </pre></div>
 </td></tr></table>
 
 <h3 id="sample-curl-command_8">Sample curl command<a class="headerlink" href="#sample-curl-command_8" title="Permanent link">&para;</a></h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    <span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> <span class="s">&quot;https://localhost:9443/statistics&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> <span class="s">&quot;https://localhost:9443/statistics&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
 </pre></div>
 </td></tr></table>
 
 <h3 id="sample-output_8">Sample output<a class="headerlink" href="#sample-output_8" title="Permanent link">&para;</a></h3>
 <h3 id="response_8">Response<a class="headerlink" href="#response_8" title="Permanent link">&para;</a></h3>
 <table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>HTTP Status Code</td>
-<td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<td>Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see <a href="/rest-guides/http-status-code">HTTP Status Codes</a></td>
 </tr>
 </tbody>
 </table>
-
 <h2 id="enablingdisabling-runner-statistics">Enabling/disabling runner statistics<a class="headerlink" href="#enablingdisabling-runner-statistics" title="Permanent link">&para;</a></h2>
 <h3 id="overview_9">Overview<a class="headerlink" href="#overview_9" title="Permanent link">&para;</a></h3>
 <table>
@@ -3814,27 +3845,31 @@ responses:</p>
 </table>
 <h4 id="parameter-description_6">Parameter Description<a class="headerlink" href="#parameter-description_6" title="Permanent link">&para;</a></h4>
 <h3 id="curl-command-syntax_9">curl command syntax<a class="headerlink" href="#curl-command-syntax_9" title="Permanent link">&para;</a></h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">PUT</span> <span class="s">&quot;https://localhost:9443/statistics&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s">&quot;{“statsEnable”:”true”}&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
 </pre></div>
 </td></tr></table>
 
 <h3 id="sample-curl-command_9">Sample curl command<a class="headerlink" href="#sample-curl-command_9" title="Permanent link">&para;</a></h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    <span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">PUT</span> <span class="s">&quot;https://localhost:9443/statistics&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s">&quot;{“statsEnable”:”true”}&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">PUT</span> <span class="s">&quot;https://localhost:9443/statistics&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s">&quot;{“statsEnable”:”true”}&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
 </pre></div>
 </td></tr></table>
 
 <h3 id="sample-output_9">Sample output<a class="headerlink" href="#sample-output_9" title="Permanent link">&para;</a></h3>
 <h3 id="response_9">Response<a class="headerlink" href="#response_9" title="Permanent link">&para;</a></h3>
 <table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>HTTP Status Code</td>
-<td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<td>Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see <a href="/rest-guides/http-status-code">HTTP Status Codes</a></td>
 </tr>
 </tbody>
 </table>
-
 <h2 id="returning-general-details-of-a-runner">Returning general details of a runner<a class="headerlink" href="#returning-general-details-of-a-runner" title="Permanent link">&para;</a></h2>
 <h3 id="overview_10">Overview<a class="headerlink" href="#overview_10" title="Permanent link">&para;</a></h3>
 <table>
@@ -3881,27 +3916,31 @@ responses:</p>
 </table>
 <h4 id="parameter-description_7">Parameter Description<a class="headerlink" href="#parameter-description_7" title="Permanent link">&para;</a></h4>
 <h3 id="curl-command-syntax_10">curl command syntax<a class="headerlink" href="#curl-command-syntax_10" title="Permanent link">&para;</a></h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> <span class="s">&quot;https://localhost:9443/system-details&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
 </pre></div>
 </td></tr></table>
 
 <h3 id="sample-curl-command_10">Sample curl command<a class="headerlink" href="#sample-curl-command_10" title="Permanent link">&para;</a></h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    <span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> <span class="s">&quot;https://localhost:9443/system-details&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> <span class="s">&quot;https://localhost:9443/system-details&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
 </pre></div>
 </td></tr></table>
 
 <h3 id="sample-output_10">Sample output<a class="headerlink" href="#sample-output_10" title="Permanent link">&para;</a></h3>
 <h3 id="response_10">Response<a class="headerlink" href="#response_10" title="Permanent link">&para;</a></h3>
 <table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>HTTP Status Code</td>
-<td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<td>Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see <a href="/rest-guides/http-status-code">HTTP Status Codes</a></td>
 </tr>
 </tbody>
 </table>
-
 <h2 id="returning-detailed-statistics-of-all-siddhi-applications">Returning detailed statistics of all Siddhi applications<a class="headerlink" href="#returning-detailed-statistics-of-all-siddhi-applications" title="Permanent link">&para;</a></h2>
 <h3 id="overview_11">Overview<a class="headerlink" href="#overview_11" title="Permanent link">&para;</a></h3>
 <table>
@@ -3948,27 +3987,31 @@ responses:</p>
 </table>
 <h4 id="parameter-description_8">Parameter Description<a class="headerlink" href="#parameter-description_8" title="Permanent link">&para;</a></h4>
 <h3 id="curl-command-syntax_11">curl command syntax<a class="headerlink" href="#curl-command-syntax_11" title="Permanent link">&para;</a></h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> <span class="s">&quot;https://localhost:9443/siddhi-apps/statistics&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
 </pre></div>
 </td></tr></table>
 
 <h3 id="sample-curl-command_11">Sample curl command<a class="headerlink" href="#sample-curl-command_11" title="Permanent link">&para;</a></h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    <span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> <span class="s">&quot;https://localhost:9443/siddhi-apps/statistics&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">GET</span> <span class="s">&quot;https://localhost:9443/siddhi-apps/statistics&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
 </pre></div>
 </td></tr></table>
 
 <h3 id="sample-output_11">Sample output<a class="headerlink" href="#sample-output_11" title="Permanent link">&para;</a></h3>
 <h3 id="response_11">Response<a class="headerlink" href="#response_11" title="Permanent link">&para;</a></h3>
 <table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>HTTP Status Code</td>
-<td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<td>Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see <a href="/rest-guides/http-status-code">HTTP Status Codes</a></td>
 </tr>
 </tbody>
 </table>
-
 <h2 id="enablingdisabling-the-statistics-of-a-specific-siddhi-application">Enabling/disabling the statistics of a specific Siddhi application<a class="headerlink" href="#enablingdisabling-the-statistics-of-a-specific-siddhi-application" title="Permanent link">&para;</a></h2>
 <h3 id="overview_12">Overview<a class="headerlink" href="#overview_12" title="Permanent link">&para;</a></h3>
 <table>
@@ -4029,27 +4072,31 @@ responses:</p>
 </tbody>
 </table>
 <h3 id="curl-command-syntax_12">curl command syntax<a class="headerlink" href="#curl-command-syntax_12" title="Permanent link">&para;</a></h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">PUT</span> <span class="s">&quot;https://localhost:9443/siddhi-apps/{appName}/statistics&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s">&quot;{“statsEnable”:”true”}&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
 </pre></div>
 </td></tr></table>
 
 <h3 id="sample-curl-command_12">Sample curl command<a class="headerlink" href="#sample-curl-command_12" title="Permanent link">&para;</a></h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    <span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">PUT</span> <span class="s">&quot;https://localhost:9443/siddhi-apps/TestSiddhiApp/statistics&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s">&quot;{“statsEnable”:”true”}&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">PUT</span> <span class="s">&quot;https://localhost:9443/siddhi-apps/TestSiddhiApp/statistics&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s">&quot;{“statsEnable”:”true”}&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
 </pre></div>
 </td></tr></table>
 
 <h3 id="sample-output_12">Sample output<a class="headerlink" href="#sample-output_12" title="Permanent link">&para;</a></h3>
 <h3 id="response_12">Response<a class="headerlink" href="#response_12" title="Permanent link">&para;</a></h3>
 <table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>HTTP Status Code</td>
-<td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<td>Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see <a href="/rest-guides/http-status-code">HTTP Status Codes</a></td>
 </tr>
 </tbody>
 </table>
-
 <h2 id="enablingdisabling-the-statistics-of-all-siddhi-applications">Enabling/disabling the statistics of all Siddhi applications<a class="headerlink" href="#enablingdisabling-the-statistics-of-all-siddhi-applications" title="Permanent link">&para;</a></h2>
 <h3 id="overview_13">Overview<a class="headerlink" href="#overview_13" title="Permanent link">&para;</a></h3>
 <table>
@@ -4096,23 +4143,28 @@ responses:</p>
 </table>
 <h4 id="parameter-description_10">Parameter Description<a class="headerlink" href="#parameter-description_10" title="Permanent link">&para;</a></h4>
 <h3 id="curl-command-syntax_13">curl command syntax<a class="headerlink" href="#curl-command-syntax_13" title="Permanent link">&para;</a></h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">PUT</span> <span class="s">&quot;https://localhost:9443/siddhi-apps/statistics&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s">&quot;{“statsEnable”:”true”}&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
 </pre></div>
 </td></tr></table>
 
 <h3 id="sample-curl-command_13">Sample curl command<a class="headerlink" href="#sample-curl-command_13" title="Permanent link">&para;</a></h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    <span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">PUT</span> <span class="s">&quot;https://localhost:9443/siddhi-apps/statistics&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s">&quot;{“statsEnable”:”true”}&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">PUT</span> <span class="s">&quot;https://localhost:9443/siddhi-apps/statistics&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;accept: application/json&quot;</span> <span class="o">-</span><span class="n">H</span> <span class="s">&quot;Content-Type: application/json&quot;</span> <span class="o">-</span><span class="n">d</span> <span class="s">&quot;{“statsEnable”:”true”}&quot;</span> <span class="o">-</span><span class="n">u</span> <span class="n">admin</span><span class="o">:</span><span class="n">admin</span> <span class="o">-</span><span class="n">k</span>
 </pre></div>
 </td></tr></table>
 
 <h3 id="sample-output_13">Sample output<a class="headerlink" href="#sample-output_13" title="Permanent link">&para;</a></h3>
 <h3 id="response_13">Response<a class="headerlink" href="#response_13" title="Permanent link">&para;</a></h3>
 <table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>HTTP Status Code</td>
-<td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
+<td>Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see <a href="/rest-guides/http-status-code">HTTP Status Codes</a></td>
 </tr>
 </tbody>
 </table>
