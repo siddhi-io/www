@@ -1,84 +1,46 @@
 # Siddhi Application Management APIs
 
--   [Updating a Siddhi
-    Application](#SiddhiApplicationManagementAPIs-UpdatingaSiddhiApplication)
--   [Deleting a Siddhi
-    application](#SiddhiApplicationManagementAPIs-DeletingaSiddhiapplication)
--   [Listing all active Siddhi
-    applications](#SiddhiApplicationManagementAPIs-ListingallactiveSiddhiapplications)
--   [Retrieving a specific Siddhi
-    application](#SiddhiApplicationManagementAPIs-RetrievingaspecificSiddhiapplication)
--   [Fetching the status of a Siddhi
-    Application](#SiddhiApplicationManagementAPIs-FetchingthestatusofaSiddhiApplication)
--   [Taking a snapshot of a Siddhi
-    Application](#SiddhiApplicationManagementAPIs-TakingasnapshotofaSiddhiApplicationSnapshot)
--   [Restoring a Siddhi Application via a
-    snapshot](#SiddhiApplicationManagementAPIs-RestoringaSiddhiApplicationviaasnapshot)
--   [Returning real-time statistics of a
-    runner](#SiddhiApplicationManagementAPIs-Returningreal-timestatisticsofarunner)
--   [Enabling/disabling runner
-    statistics](#SiddhiApplicationManagementAPIs-Enabling/disablingrunnerstatistics)
--   [Returning general details of a
-    runner](#SiddhiApplicationManagementAPIs-Returninggeneraldetailsofarunner)
--   [Returning detailed statistics of all Siddhi
-    applications](#SiddhiApplicationManagementAPIs-ReturningdetailedstatisticsofallSiddhiapplications)
--   [Enabling/disabling the statistics of a specific Siddhi
-    application](#SiddhiApplicationManagementAPIs-Enabling/disablingthestatisticsofaspecificSiddhiapplication)
--   [Enabling/disabling the statistics of all Siddhi
-    applications](#SiddhiApplicationManagementAPIs-Enabling/disablingthestatisticsofallSiddhiapplications)
+-   [Creating a Siddhi Application](#creating-a-siddhi-application)
+-   [Updating a Siddhi Application](#updating-a-siddhi-application)
+-   [Deleting a Siddhi Application](#deleting-a-siddhi-application)
+-   [Listing all active Siddhi Applications](#listing-all-active-siddhi-applications)
+-   [Retrieving a specific Siddhi Application](#retrieving-a-specific-siddhi-application)
+-   [Fetching the status of a Siddhi Application](#fetching-the-status-of-a-siddhi-application)
+-   [Taking a snapshot of a Siddhi Application](#taking-a-snapshot-of-a-siddhi-application-snapshot)
+-   [Restoring a Siddhi Application via a snapshot](#restoring-a-siddhi-application-via-a-snapshot)
+-   [Returning real-time statistics of a runner](#returning-real-time-statistics-of-a-runner)
+-   [Enabling/disabling runner statistics](#disabling-runner-statistics)
+-   [Returning general details of a runner](#returning-general-details-of-a-runner)
+-   [Returning detailed statistics of all Siddhi Applications](#returning-detailed-statistics-of-all-siddhi-applications)
+-   [Enabling/disabling the statistics of a specific Siddhi Application](#enablingdisabling-the-statistics-of-a-specific-siddhi-application)
+-   [Enabling/disabling the statistics of all Siddhi Applications](#enablingdisabling-the-statistics-of-all-siddhi-applications)
 
 ### Creating a Siddhi application
 
 ### Overview
 
-<table>
-<tbody>
-<tr class="odd">
-<td>Description</td>
-<td>Creates a new Siddhi Application.</td>
-</tr>
-<tr class="even">
-<td>API Context</td>
-<td><code>             /siddhi-apps            </code></td>
-</tr>
-<tr class="odd">
-<td>HTTP Method</td>
-<td>POST</td>
-</tr>
-<tr class="even">
-<td>Request/Response format</td>
-<td><strong>Request</strong> : text/plain<br />
-<strong>Response</strong> : application/json</td>
-</tr>
-<tr class="odd">
-<td>Authentication</td>
-<td>Basic</td>
-</tr>
-<tr class="even">
-<td>Username</td>
-<td>admin</td>
-</tr>
-<tr class="odd">
-<td>Password</td>
-<td>admin</td>
-</tr>
-<tr class="even">
-<td>Runtime</td>
-<td>Runner</td>
-</tr>
-</tbody>
-</table>
+|                         |                                                             |
+|-------------------------|-------------------------------------------------------------|
+| Description             | Creates a new Siddhi Application.                           |
+| API Context             | `             /siddhi-apps            `                     |
+| HTTP Method             | POST                                                        |
+| Request/Response format | <strong>Request</strong> : text/plain<br />    <strong>Response</strong> : application/json |
+| Authentication          | Basic                                                       |
+| Username                | admin                                                       |
+| Password                | admin                                                       |
+| Runtime                 | Runner                                                      |
+
 
 ### curl command syntax
 
 ``` java
-    curl -X POST "https://localhost:9443/siddhi-apps" -H "accept: application/json" -H "Content-Type: text/plain" -d @TestSiddhiApp.siddhi -u admin:admin -k
+curl -X POST "https://localhost:9443/siddhi-apps" -H "accept: application/json" -H "Content-Type: text/plain" --data-binary @TestSiddhiApp.siddhi -u admin:admin -k
 ```
 
 ### Sample curl command
 
 ``` java
-    curl -X POST "https://localhost:9443/siddhi-apps" -H "accept: application/json" -H "Content-Type: text/plain" -d @TestSiddhiApp.siddhi -u admin:admin -k
+curl -X POST "https://localhost:9443/siddhi-apps" -H "accept: application/json" -H "Content-Type: text/plain" --data-binary @TestSiddhiApp.siddhi -u admin:admin -k
 ```
 
 ### Sample output
@@ -93,6 +55,10 @@ following.
     home.
 
     ``` java
+    {
+        "type":"success",
+        "message":"Siddhi App saved succesfully and will be deployed in next deployment cycle"
+    }
     ```
 
 -   If the API request is valid, but a Siddhi application with the given
@@ -100,10 +66,10 @@ following.
     generated with response code 409.
 
     ``` java
-            {
-              "type": "conflict",
-              "message": "There is a Siddhi App already exists with same name" 
-            }
+    {
+        "type": "conflict",
+        "message": "There is a Siddhi App already exists with same name" 
+    }
     ```
 
 -   If the API request is invalid due to invalid content in the Siddhi
@@ -111,11 +77,11 @@ following.
     to the following is generated is generated with response code 400.
 
     ``` java
-            {
-              "code": 800101,
-              "type": "validation error",
-              "message": "You have an error in your SiddhiQL at line 8:8, missing INTO at 'BarStream'" 
-            }
+    {
+        "code": 800101,
+        "type": "validation error",
+        "message": "You have an error in your SiddhiQL at line 8:8, missing INTO at 'BarStream'" 
+    }
     ```
 
 -   If the API request is valid, but an exception occured during file
@@ -123,77 +89,46 @@ following.
     response code 500.
 
     ``` java
-            {
-              "code": 800102,
-              "type": "file processing error",
-              "message": <error-message>
-            }
+    {
+        "code": 800102,
+        "type": "file processing error",
+        "message": <error-message>
+    }
     ```
 
 ### Response
 
-<table>
-<tbody>
-<tr class="odd">
-<td>HTTP Status Code</td>
-<td><p>Possible codes are 201, 409, 400, and 500.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
-</tr>
-</tbody>
-</table>
+|                         |                                                             |
+|-------------------------|-------------------------------------------------------------|
+| HTTP Status Code        | Possible codes are 201, 409, 400, and 500. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](/rest-guides/http-status-code)                 |
+
 
 ## Updating a Siddhi Application
 
 ### Overview
 
-<table>
-<tbody>
-<tr class="odd">
-<td>Description</td>
-<td>Updates a Siddhi Application.</td>
-</tr>
-<tr class="even">
-<td>API Context</td>
-<td><code>             /siddhi-apps            </code></td>
-</tr>
-<tr class="odd">
-<td>HTTP Method</td>
-<td>PUT</td>
-</tr>
-<tr class="even">
-<td>Request/Response format</td>
-<td><strong>Request</strong> : text/plain<br />
-<strong>Response</strong> : application/json</td>
-</tr>
-<tr class="odd">
-<td>Authentication</td>
-<td>Basic</td>
-</tr>
-<tr class="even">
-<td>Username</td>
-<td>admin</td>
-</tr>
-<tr class="odd">
-<td>Password</td>
-<td>admin</td>
-</tr>
-<tr class="even">
-<td>Runtime</td>
-<td>Runner</td>
-</tr>
-</tbody>
-</table>
+|                         |                                                             |
+|-------------------------|-------------------------------------------------------------|
+| Description             | Updates a Siddhi Application.                               |
+| API Context             | `             /siddhi-apps            `                     |
+| HTTP Method             | PUT                                                         |
+| Request/Response format | <strong>Request</strong> : text/plain<br />    <strong>Response</strong> : application/json |
+| Authentication          | Basic                                                       |
+| Username                | admin                                                       |
+| Password                | admin                                                       |
+| Runtime                 | Runner                                                      |
+
 
 ### curl command syntax
 
 ``` java
-    curl -X PUT "http://localhost:9090/siddhi-apps" -H "accept: application/json" -H "Content-Type: text/plain" -d @<SIDDHI_APPLICATION_NAME>.siddhi -u admin:admin -k
+curl -X PUT "http://localhost:9090/siddhi-apps" -H "accept: application/json" -H "Content-Type: text/plain" --data-binary @<SIDDHI_APPLICATION_NAME>.siddhi -u admin:admin -k
 ```
 
 ### Sample curl command
 
 ``` java
-    curl -X PUT "https://localhost:9443/siddhi-apps" -H "accept: application/json" -H "Content-Type: text/plain" -d @TestSiddhiApp.siddhi -u admin:admin -k
+curl -X PUT "https://localhost:9443/siddhi-apps" -H "accept: application/json" -H "Content-Type: text/plain" --data-binary @TestSiddhiApp.siddhi -u admin:admin -k
 ```
 
 ### Sample output
@@ -203,11 +138,11 @@ following.
     code 400.
 
     ``` java
-            {
-              "code": 800101,
-              "type": "validation error",
-              "message": "You have an error in your SiddhiQL at line 8:8, missing INTO at 'BarStream'" 
-            }
+    {
+        "code": 800101,
+        "type": "validation error",
+        "message": "You have an error in your SiddhiQL at line 8:8, missing INTO at 'BarStream'" 
+    }
     ```
 
 -   If the API request is valid, but an exception occured when saving or
@@ -215,26 +150,19 @@ following.
     with response code 500.
 
     ``` java
-            {
-              "code": 800102,
-              "type": "file processing error",
-              "message": <error-message>
-            }
+    {
+        "code": 800102,
+        "type": "file processing error",
+        "message": <error-message>
+    }
     ```
 
 ### Response
 
-<table>
-<tbody>
-<tr class="odd">
-<td>HTTP Status Code</td>
-<td><p>Possible codes are 200, 201, 400, and 500.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
-</tr>
-</tbody>
-</table>
+|                         |                                                             |
+|-------------------------|-------------------------------------------------------------|
+| HTTP Status Code        | Possible codes are 200, 201, 400, and 500. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](/rest-guides/http-status-code)                 |
 
-  
 
 ## Deleting a Siddhi application
 
@@ -249,7 +177,7 @@ following.
 | Authentication          | Basic                                                      |
 | Username                | admin                                                      |
 | Password                | admin                                                      |
-| Runtime                 | Runner                                             |
+| Runtime                 | Runner                                                     |
 
   
 
@@ -264,37 +192,33 @@ following.
 ### curl command syntax
 
 ``` java
-    curl -X DELETE "http://localhost:9090/siddhi-apps/{app-name}" -H "accept: application/json" -u admin:admin -k
+curl -X DELETE "http://localhost:9090/siddhi-apps/{app-name}" -H "accept: application/json" -u admin:admin -k
 ```
 
 ### Sample curl command
 
 ``` java
-    curl -X DELETE "https://localhost:9443/siddhi-apps/TestSiddhiApp" -H "accept: application/json" -u admin:admin -k
+curl -X DELETE "https://localhost:9443/siddhi-apps/TestSiddhiApp" -H "accept: application/json" -u admin:admin -k
 ```
 
 ### Sample output
 
-The respose for the sample curl command given above can be one of the
+The response for the sample curl command given above can be one of the
 following:
 
 -   If the API request is valid and a Siddhi application with the given
-    name exists, the following response is received with response
+    name exists, a received with response
     code 200.
-
-    ``` java
-            http://localhost:9090/siddhi-apps/TestExecutionPlan1
-    ```
 
 -   If the API request is valid, but a Siddhi application with the given
     name is not deployed, the following response is received with
     response code 404.
 
     ``` java
-            {
-              "type": "not found",
-              "message": "There is no Siddhi App exist with provided name : TestExecutionPlan1" 
-            }
+    {
+        "type": "not found",
+        "message": "There is no Siddhi App exist with provided name : TestExecutionPlan1" 
+    }
     ```
 
 -   If the API request is valid, but an exception occured when deleting
@@ -302,11 +226,11 @@ following:
     with response code 500.
 
     ``` java
-            {
-              "code": 800102,
-              "type": "file processing error",
-              "message": <error-message>
-            }
+    {
+        "code": 800102,
+        "type": "file processing error",
+        "message": <error-message>
+    }
     ```
 
 -   If the API request is valid, but there are restricted characters in
@@ -314,30 +238,29 @@ following:
     received with response code 400.
 
     ``` java
-            {
-              "code": 800101,
-              "type": "validation error",
-              "message": "File name contains restricted path elements . : ../../siddhiApp2'" 
-            }
+    {
+        "code": 800101,
+        "type": "validation error",
+        "message": "File name contains restricted path elements . : ../../siddhiApp2'" 
+    }
     ```
 
 ### Response
 
-<table>
-<tbody>
-<tr class="odd">
-<td>HTTP Status Code</td>
-<td><p>200, 404, 500 or 400.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
-</tr>
-</tbody>
-</table>
+|                         |                                                             |
+|-------------------------|-------------------------------------------------------------|
+| HTTP Status Code        | Possible codes are 200, 404, 400, and 500. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](/rest-guides/http-status-code)                 |
+
 
 ## Listing all active Siddhi applications
 
 ### Overview
 
 <table>
+<tr>
+   <th></th>
+   <th></th>
+ </tr>
 <tbody>
 <tr class="odd">
 <td>Description</td>
@@ -379,13 +302,13 @@ following:
 ### curl command syntax
 
 ``` java
-    curl -X GET "http://localhost:9090/siddhi-apps" -H "accept: application/json" -u admin:admin -k
+curl -X GET "http://localhost:9090/siddhi-apps" -H "accept: application/json" -u admin:admin -k
 ```
 
 ### Sample curl command
 
 ``` java
-    curl -X GET "https://localhost:9443/siddhi-apps?isActive=true" -H "accept: application/json" -u admin:admin -k
+curl -X GET "https://localhost:9443/siddhi-apps?isActive=true" -H "accept: application/json" -u admin:admin -k
 ```
 
 ### Sample output
@@ -397,7 +320,7 @@ Possible responses are as follows:
     returned with response code 200.
 
     ``` java
-            ["TestExecutionPlan3", "TestExecutionPlan4"]
+    ["TestExecutionPlan3", "TestExecutionPlan4"]
     ```
 
 -   If the API request is valid, there are Siddhi applications deployed
@@ -406,13 +329,8 @@ Possible responses are as follows:
     code 200. This response only contains Siddhi applications that are
     active.
 
-        !!! info
+    !!! info "If these conditions are met, but the `isActive` parameter is set to `false` , the response contains only inactive Siddhi applications."
     
-        If these conditions are met, but the `           isActive          `
-        parameter is set to `           false          ` , the response
-        contains only inactive Siddhi applications.
-    
-
     ``` java
         ["TestExecutionPlan3"]
     ```
@@ -426,15 +344,10 @@ Possible responses are as follows:
 
 ### Response
 
-<table>
-<tbody>
-<tr class="odd">
-<td>HTTP Status Code</td>
-<td><p>200</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
-</tr>
-</tbody>
-</table>
+|                         |                                                             |
+|-------------------------|-------------------------------------------------------------|
+| HTTP Status Code        | 200. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](/rest-guides/http-status-code)|
+
 
 ## Retrieving a specific Siddhi application
 
@@ -464,13 +377,13 @@ Possible responses are as follows:
 ### curl command syntax
 
 ``` java
-    curl -X GET "http://localhost:9090/siddhi-apps/{app-name}" -H "accept: application/json" -u admin:admin -k
+curl -X GET "http://localhost:9090/siddhi-apps/{app-name}" -H "accept: application/json" -u admin:admin -k
 ```
 
 ### Sample curl command
 
 ``` java
-    curl -X GET "https://localhost:9443/siddhi-apps/SiddhiTestApp" -H "accept: application/json" -u admin:admin -k
+curl -X GET "https://localhost:9443/siddhi-apps/SiddhiTestApp" -H "accept: application/json" -u admin:admin -k
 ```
 
 ### Sample output
@@ -482,9 +395,9 @@ The possible outputs are as follows:
     response code 200.
 
     ``` java
-            {
-              "content": "\n@Plan:name('TestExecutionPlan')\ndefine stream FooStream (symbol string, price float, volume long);\n\n@source(type='inMemory', topic='symbol', @map(type='passThrough'))Define stream BarStream (symbol string, price float, volume long);\n\nfrom FooStream\nselect symbol, price, volume\ninsert into BarStream;" 
-            }
+    {
+        "content": "\n@Plan:name('TestExecutionPlan')\ndefine stream FooStream (symbol string, price float, volume long);\n\n@source(type='inMemory', topic='symbol', @map(type='passThrough'))Define stream BarStream (symbol string, price float, volume long);\n\nfrom FooStream\nselect symbol, price, volume\ninsert into BarStream;" 
+    }
     ```
 
 -   If the API request is valid, but a Siddhi application of the given
@@ -492,29 +405,28 @@ The possible outputs are as follows:
     returned with response code 404.
 
     ``` java
-            {
-              "type": "not found",
-              "message": "There is no Siddhi App exist with provided name : TestExecutionPlan1" 
-            }
+    {
+        "type": "not found",
+        "message": "There is no Siddhi App exist with provided name : TestExecutionPlan1" 
+    }
     ```
 
 ### Response
 
-<table>
-<tbody>
-<tr class="odd">
-<td>HTTP Status Code</td>
-<td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
-</tr>
-</tbody>
-</table>
+|                         |                                                             |
+|-------------------------|-------------------------------------------------------------|
+| HTTP Status Code        | Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](/rest-guides/http-status-code)                 |
+
 
 ## Fetching the status of a Siddhi Application
 
 ### Overview
 
 <table>
+<tr>
+   <th></th>
+   <th></th>
+ </tr>
 <colgroup>
 <col style="width: 33%" />
 <col style="width: 66%" />
@@ -568,13 +480,13 @@ The possible outputs are as follows:
 ### curl command syntax
 
 ``` java
-    curl -X GET "http://localhost:9090/siddhi-apps/{app-file-name}/status" -H "accept: application/json" -u admin:admin -k
+curl -X GET "http://localhost:9090/siddhi-apps/{app-file-name}/status" -H "accept: application/json" -u admin:admin -k
 ```
 
 ### Sample curl command
 
 ``` java
-    curl -X GET "https://localhost:9443/siddhi-apps/TestSiddhiApp/status" -H "accept: application/json" -u admin:admin -k
+curl -X GET "https://localhost:9443/siddhi-apps/TestSiddhiApp/status" -H "accept: application/json" -u admin:admin -k
 ```
 
 ### Sample output
@@ -583,37 +495,32 @@ The possible outputs are as follows:
     response code 200.
 
     ``` java
-            {"status":"active"} 
+    {"status":"active"} 
     ```
 
 -   If the Siddhi application is inactive, the following is returned
     with response code 200.
 
     ``` java
-            {"status":"inactive"} 
+    {"status":"inactive"} 
     ```
 
 -   If the Siddhi application does not exist, but the REST API call is
     valid, the following is returned with the response code 404.
 
     ``` java
-            {
-              "type": "not found",
-              "message": "There is no Siddhi App exist with provided name : TestExecutionPlan1" 
-            }
+    {
+        "type": "not found",
+        "message": "There is no Siddhi App exist with provided name : TestExecutionPlan1" 
+    }
     ```
 
 ### Response
 
-<table>
-<tbody>
-<tr class="odd">
-<td>HTTP Status Code</td>
-<td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
-</tr>
-</tbody>
-</table>
+|                         |                                                             |
+|-------------------------|-------------------------------------------------------------|
+| HTTP Status Code        | Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](/rest-guides/http-status-code)                 |
+
 
 ## Taking a snapshot of a Siddhi Application
 
@@ -643,13 +550,13 @@ The possible outputs are as follows:
 ### curl command syntax
 
 ``` java
-    curl -X POST "http://localhost:9090/siddhi-apps/{appName}/backup" -H "accept: application/json" -u admin:admin -k
+curl -X POST "http://localhost:9090/siddhi-apps/{appName}/backup" -H "accept: application/json" -u admin:admin -k
 ```
 
 ### Sample curl command
 
 ``` java
-    curl -X POST "https://localhost:9443/siddhi-apps/TestSiddhiApp/backup" -H "accept: application/json" -u admin:admin -k
+curl -X POST "https://localhost:9443/siddhi-apps/TestSiddhiApp/backup" -H "accept: application/json" -u admin:admin -k
 ```
 
 ### Sample output
@@ -661,7 +568,7 @@ The output can be one of the following:
     snapshot revision number) is returned with response code 201.
 
     ``` java
-            {"revision": "89489242494242"} 
+    {"revision": "89489242494242"} 
     ```
 
 -   If the API request is valid, but no Siddhi application with the
@@ -669,10 +576,10 @@ The output can be one of the following:
     returned with response code 404.
 
     ``` java
-            {
-              "type": "not found",
-              "message": "There is no Siddhi App exist with provided name : TestExecutionPlan1" 
-            }
+    {
+        "type": "not found",
+        "message": "There is no Siddhi App exist with provided name : TestExecutionPlan1" 
+    }
     ```
 
 -   If the API request is valid, but an exception has occured when
@@ -680,38 +587,31 @@ The output can be one of the following:
     following is returned with response code 500.
 
     ``` java
-            {
-              "code": 800102,
-              "type": "file processing error",
-              "message": <error-message>
-            }
+    {
+        "code": 800102,
+        "type": "file processing error",
+        "message": <error-message>
+    }
     ```
 
 ### Response
 
-<table>
-<tbody>
-<tr class="odd">
-<td>HTTP Status Code</td>
-<td><p>201, 404, or 500.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
-</tr>
-</tbody>
-</table>
+|                         |                                                             |
+|-------------------------|-------------------------------------------------------------|
+| HTTP Status Code        | Possible codes are 201, 404, and 500. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](/rest-guides/http-status-code)                 |
+
 
 ## Restoring a Siddhi Application via a snapshot
 
-!!! info
-
-In order to call this API, you need tohave already taken a snapshot of
-the Siddhi application to be restored. For more information about the
-API via which the snapshow is taken, see [Taking a snapshot of a Siddhi
-application](#SiddhiApplicationManagementAPIs-Snapshot) .
-
+!!! info "In order to call this API, you need to have already taken a snapshot of the Siddhi application to be restored. For more information about the API via which the snapshot is taken, see [Taking a snapshot of a Siddhi Application](#taking-a-snapshot-of-a-siddhi-application) .
 
 ### Overview
 
 <table>
+<tr>
+   <th></th>
+   <th></th>
+ </tr>
 <tbody>
 <tr class="odd">
 <td><p>Description</p></td>
@@ -773,13 +673,13 @@ application](#SiddhiApplicationManagementAPIs-Snapshot) .
 ### curl command syntax
 
 ``` java
-    curl -X POST "http://localhost:9090/siddhi-apps/{appName}/restore" -H "accept: application/json" -u admin:admin -k
+curl -X POST "http://localhost:9090/siddhi-apps/{appName}/restore" -H "accept: application/json" -u admin:admin -k
 ```
 
 ### Sample curl command
 
 ``` java
-    curl -X POST "https://localhost:9443/siddhi-apps/TestSiddhiApp/restore?revision=1514981290838_TestSiddhiApp" -H "accept: application/json" -u admin:admin -k
+curl -X POST "https://localhost:9443/siddhi-apps/TestSiddhiApp/restore?revision=1514981290838_TestSiddhiApp" -H "accept: application/json" -u admin:admin -k
 ```
 
 ### Sample output
@@ -793,10 +693,10 @@ responses:
     code 200.
 
     ``` java
-            {
-              "type": "success",
-              "message": "State restored to last revision for Siddhi App :TestExecutionPlan" 
-            }
+    {
+        "type": "success",
+        "message": "State restored to last revision for Siddhi App :TestExecutionPlan" 
+    }
     ```
 
 -   If the API request is valid, a Siddhi application with the given
@@ -806,10 +706,10 @@ responses:
     file system.
 
     ``` java
-            {
-              "type": "success",
-              "message": "State restored to revision 1234563 for Siddhi App :TestExecutionPlan" 
-            }
+    {
+        "type": "success",
+        "message": "State restored to revision 1234563 for Siddhi App :TestExecutionPlan" 
+    }
     ```
 
 -   If the API request is valid, but no Siddhi application is deployed
@@ -817,10 +717,10 @@ responses:
     response code 404.
 
     ``` java
-            {
-              "type": "not found",
-              "message": "There is no Siddhi App exist with provided name : TestExecutionPlan1" 
-            }
+    {
+        "type": "not found",
+        "message": "There is no Siddhi App exist with provided name : TestExecutionPlan1" 
+    }
     ```
 
 -   If the API request is valid, but an exception occured when restoring
@@ -828,24 +728,19 @@ responses:
     response code 500.
 
     ``` java
-            {
-              "code": 800102,
-              "type": "file processing error",
-              "message": <error-message>
-            }
+    {
+        "code": 800102,
+        "type": "file processing error",
+        "message": <error-message>
+    }
     ```
 
 ### Response
 
-<table>
-<tbody>
-<tr class="odd">
-<td>HTTP Status Code</td>
-<td><p>200, 404 or 500.</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
-</tr>
-</tbody>
-</table>
+|                         |                                                             |
+|-------------------------|-------------------------------------------------------------|
+| HTTP Status Code        | Possible codes are 200, 404, and 500. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](/rest-guides/http-status-code)                 |
+
 
 ## Returning real-time statistics of a runner
 
@@ -860,7 +755,7 @@ responses:
 | Authentication          | Basic                                         |
 | Username                | admin                                         |
 | Password                | admin                                         |
-| Runtime                 | Runner                                |
+| Runtime                 | Runner                                        |
 
   
 
@@ -869,27 +764,23 @@ responses:
 ### curl command syntax
 
 ``` java
+curl -X GET "https://localhost:9443/statistics" -H "accept: application/json" -u admin:admin -k
 ```
 
 ### Sample curl command
 
 ``` java
-    curl -X GET "https://localhost:9443/statistics" -H "accept: application/json" -u admin:admin -k
+curl -X GET "https://localhost:9443/statistics" -H "accept: application/json" -u admin:admin -k
 ```
 
 ### Sample output
 
 ### Response
 
-<table>
-<tbody>
-<tr class="odd">
-<td>HTTP Status Code</td>
-<td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
-</tr>
-</tbody>
-</table>
+|                         |                                                             |
+|-------------------------|-------------------------------------------------------------|
+| HTTP Status Code        | Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](/rest-guides/http-status-code)                 |
+
 
 ## Enabling/disabling runner statistics
 
@@ -913,27 +804,23 @@ responses:
 ### curl command syntax
 
 ``` java
+curl -X PUT "https://localhost:9443/statistics" -H "accept: application/json" -H "Content-Type: application/json" -d "{“statsEnable”:”true”}" -u admin:admin -k
 ```
 
 ### Sample curl command
 
 ``` java
-    curl -X PUT "https://localhost:9443/statistics" -H "accept: application/json" -H "Content-Type: application/json" -d "{“statsEnable”:”true”}" -u admin:admin -k
+curl -X PUT "https://localhost:9443/statistics" -H "accept: application/json" -H "Content-Type: application/json" -d "{“statsEnable”:”true”}" -u admin:admin -k
 ```
 
 ### Sample output
 
 ### Response
 
-<table>
-<tbody>
-<tr class="odd">
-<td>HTTP Status Code</td>
-<td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
-</tr>
-</tbody>
-</table>
+|                         |                                                             |
+|-------------------------|-------------------------------------------------------------|
+| HTTP Status Code        | Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](/rest-guides/http-status-code)                 |
+
 
 ## Returning general details of a runner
 
@@ -951,33 +838,28 @@ responses:
 | Runtime                 | Runner                             |
 
   
-
 #### Parameter Description
 
 ### curl command syntax
 
 ``` java
+curl -X GET "https://localhost:9443/system-details" -H "accept: application/json" -u admin:admin -k
 ```
 
 ### Sample curl command
 
 ``` java
-    curl -X GET "https://localhost:9443/system-details" -H "accept: application/json" -u admin:admin -k
+curl -X GET "https://localhost:9443/system-details" -H "accept: application/json" -u admin:admin -k
 ```
 
 ### Sample output
 
 ### Response
 
-<table>
-<tbody>
-<tr class="odd">
-<td>HTTP Status Code</td>
-<td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
-</tr>
-</tbody>
-</table>
+|                         |                                                             |
+|-------------------------|-------------------------------------------------------------|
+| HTTP Status Code        | Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](/rest-guides/http-status-code)                 |
+
 
 ## Returning detailed statistics of all Siddhi applications
 
@@ -1001,27 +883,23 @@ responses:
 ### curl command syntax
 
 ``` java
+curl -X GET "https://localhost:9443/siddhi-apps/statistics" -H "accept: application/json" -u admin:admin -k
 ```
 
 ### Sample curl command
 
 ``` java
-    curl -X GET "https://localhost:9443/siddhi-apps/statistics" -H "accept: application/json" -u admin:admin -k
+curl -X GET "https://localhost:9443/siddhi-apps/statistics" -H "accept: application/json" -u admin:admin -k
 ```
 
 ### Sample output
 
 ### Response
 
-<table>
-<tbody>
-<tr class="odd">
-<td>HTTP Status Code</td>
-<td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
-</tr>
-</tbody>
-</table>
+|                         |                                                             |
+|-------------------------|-------------------------------------------------------------|
+| HTTP Status Code        | Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](/rest-guides/http-status-code)                 |
+
 
 ## Enabling/disabling the statistics of a specific Siddhi application
 
@@ -1051,27 +929,23 @@ responses:
 ### curl command syntax
 
 ``` java
+curl -X PUT "https://localhost:9443/siddhi-apps/{appName}/statistics" -H "accept: application/json" -H "Content-Type: application/json" -d "{“statsEnable”:”true”}" -u admin:admin -k
 ```
 
 ### Sample curl command
 
 ``` java
-    curl -X PUT "https://localhost:9443/siddhi-apps/TestSiddhiApp/statistics" -H "accept: application/json" -H "Content-Type: application/json" -d "{“statsEnable”:”true”}" -u admin:admin -k
+curl -X PUT "https://localhost:9443/siddhi-apps/TestSiddhiApp/statistics" -H "accept: application/json" -H "Content-Type: application/json" -d "{“statsEnable”:”true”}" -u admin:admin -k
 ```
 
 ### Sample output
 
 ### Response
 
-<table>
-<tbody>
-<tr class="odd">
-<td>HTTP Status Code</td>
-<td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
-</tr>
-</tbody>
-</table>
+|                         |                                                             |
+|-------------------------|-------------------------------------------------------------|
+| HTTP Status Code        | Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](/rest-guides/http-status-code)                 |
+
 
 ## Enabling/disabling the statistics of all Siddhi applications
 
@@ -1095,24 +969,20 @@ responses:
 ### curl command syntax
 
 ``` java
+curl -X PUT "https://localhost:9443/siddhi-apps/statistics" -H "accept: application/json" -H "Content-Type: application/json" -d "{“statsEnable”:”true”}" -u admin:admin -k
 ```
 
 ### Sample curl command
 
 ``` java
-    curl -X PUT "https://localhost:9443/siddhi-apps/statistics" -H "accept: application/json" -H "Content-Type: application/json" -d "{“statsEnable”:”true”}" -u admin:admin -k
+curl -X PUT "https://localhost:9443/siddhi-apps/statistics" -H "accept: application/json" -H "Content-Type: application/json" -d "{“statsEnable”:”true”}" -u admin:admin -k
 ```
 
 ### Sample output
 
 ### Response
 
-<table>
-<tbody>
-<tr class="odd">
-<td>HTTP Status Code</td>
-<td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
-</tr>
-</tbody>
-</table>
+|                         |                                                             |
+|-------------------------|-------------------------------------------------------------|
+| HTTP Status Code        | Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](/rest-guides/http-status-code)                 |
+

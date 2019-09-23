@@ -1,6 +1,6 @@
 # Store APIs
 
--   [Query records in Siddhi store](#StoreAPIs-QueryrecordsinSiddhistore)
+-   [Query records in Siddhi store](#query-records-in-siddhi-store)
 
 ## Query records in Siddhi store
 
@@ -20,16 +20,13 @@
 ### curl command syntax
 
 ``` java
-    curl -X POST https://localhost:9443/stores/query -H "content-type: application/json" -u "admin:admin" 
-    -d '{"appName" : "AggregationTest", "query" : "from stockAggregation select *" }' -k
+curl -X POST https://localhost:9443/stores/query -H "content-type: application/json" -u "admin:admin"  -d '{"appName" : "AggregationTest", "query" : "from stockAggregation select *" }' -k
 ```
-
-  
 
 ### Sample curl command
 
 ``` java
-    curl -X POST https://localhost:9443/stores/query -H "content-type: application/json" -u "admin:admin" -d '{"appName" : "RoomService", "query" : "select 10 as roomNumber, 1 as arrival update RoomTypeTable  set RoomTypeTable.people = RoomTypeTable.people + arrival on RoomTypeTable.roomNo == roomNumber;" }' -k
+curl -X POST https://localhost:9443/stores/query -H "content-type: application/json" -u "admin:admin" -d '{"appName" : "RoomService", "query" : "select 10 as roomNumber, 1 as arrival update RoomTypeTable  set RoomTypeTable.people = RoomTypeTable.people + arrival on RoomTypeTable.roomNo == roomNumber;" }' -k
 ```
 
 ### Sample output
@@ -39,12 +36,7 @@
 
 ### Response
 
-<table>
-<tbody>
-<tr class="odd">
-<td>HTTP Status Code</td>
-<td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
-</tr>
-</tbody>
-</table>
+|                         |                                                             |
+|-------------------------|-------------------------------------------------------------|
+| HTTP Status Code        | Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](/rest-guides/http-status-code)                 |
+
