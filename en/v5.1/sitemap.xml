@@ -96,6 +96,11 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>http://siddhi.io/en/v5.1/docs/rest-guides/http-status-code/</loc>
+     <lastmod>2019-09-23</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>http://siddhi.io/en/v5.1/docs/extensions/</loc>
      <lastmod>2019-09-23</lastmod>
      <changefreq>daily</changefreq>
