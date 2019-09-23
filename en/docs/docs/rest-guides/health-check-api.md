@@ -40,5 +40,5 @@ curl -k -X GET http://localhost:9090/health
 
 |                         |                                                             |
 |-------------------------|-------------------------------------------------------------|
-| HTTP Status Code        | Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](/rest-guides/http-status-code)                 |
+| HTTP Status Code        | Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](/http-status-code)                 |
 
