@@ -38,5 +38,5 @@ curl -X POST https://localhost:9443/stores/query -H "content-type: application/j
 
 |                         |                                                             |
 |-------------------------|-------------------------------------------------------------|
-| HTTP Status Code        | Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](/http-status-code)                 |
+| HTTP Status Code        | Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](./http-status-code)                 |
 
