@@ -100,7 +100,7 @@ following.
 
 |                         |                                                             |
 |-------------------------|-------------------------------------------------------------|
-| HTTP Status Code        | Possible codes are 201, 409, 400, and 500. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](/http-status-code)                 |
+| HTTP Status Code        | Possible codes are 201, 409, 400, and 500. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](./http-status-code)                 |
 
 
 ## Updating a Siddhi Application
@@ -161,7 +161,7 @@ curl -X PUT "https://localhost:9443/siddhi-apps" -H "accept: application/json" -
 
 |                         |                                                             |
 |-------------------------|-------------------------------------------------------------|
-| HTTP Status Code        | Possible codes are 200, 201, 400, and 500. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](/http-status-code)                 |
+| HTTP Status Code        | Possible codes are 200, 201, 400, and 500. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](./http-status-code)                 |
 
 
 ## Deleting a Siddhi application
@@ -249,7 +249,7 @@ following:
 
 |                         |                                                             |
 |-------------------------|-------------------------------------------------------------|
-| HTTP Status Code        | Possible codes are 200, 404, 400, and 500. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](/http-status-code)                 |
+| HTTP Status Code        | Possible codes are 200, 404, 400, and 500. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](./http-status-code)                 |
 
 
 ## Listing all active Siddhi applications
@@ -346,7 +346,7 @@ Possible responses are as follows:
 
 |                         |                                                             |
 |-------------------------|-------------------------------------------------------------|
-| HTTP Status Code        | 200. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](/http-status-code)|
+| HTTP Status Code        | 200. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](./http-status-code)|
 
 
 ## Retrieving a specific Siddhi application
@@ -415,7 +415,7 @@ The possible outputs are as follows:
 
 |                         |                                                             |
 |-------------------------|-------------------------------------------------------------|
-| HTTP Status Code        | Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](/http-status-code)                 |
+| HTTP Status Code        | Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](./http-status-code)                 |
 
 
 ## Fetching the status of a Siddhi Application
@@ -519,7 +519,7 @@ curl -X GET "https://localhost:9443/siddhi-apps/TestSiddhiApp/status" -H "accept
 
 |                         |                                                             |
 |-------------------------|-------------------------------------------------------------|
-| HTTP Status Code        | Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](/http-status-code)                 |
+| HTTP Status Code        | Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](./http-status-code)                 |
 
 
 ## Taking a snapshot of a Siddhi Application
@@ -598,7 +598,7 @@ The output can be one of the following:
 
 |                         |                                                             |
 |-------------------------|-------------------------------------------------------------|
-| HTTP Status Code        | Possible codes are 201, 404, and 500. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](/http-status-code)                 |
+| HTTP Status Code        | Possible codes are 201, 404, and 500. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](./http-status-code)                 |
 
 
 ## Restoring a Siddhi Application via a snapshot
@@ -739,7 +739,7 @@ responses:
 
 |                         |                                                             |
 |-------------------------|-------------------------------------------------------------|
-| HTTP Status Code        | Possible codes are 200, 404, and 500. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](/http-status-code)                 |
+| HTTP Status Code        | Possible codes are 200, 404, and 500. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](./http-status-code)                 |
 
 
 ## Returning real-time statistics of a runner
@@ -779,7 +779,7 @@ curl -X GET "https://localhost:9443/statistics" -H "accept: application/json" -u
 
 |                         |                                                             |
 |-------------------------|-------------------------------------------------------------|
-| HTTP Status Code        | Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](/http-status-code)                 |
+| HTTP Status Code        | Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](./http-status-code)                 |
 
 
 ## Enabling/disabling runner statistics
@@ -819,7 +819,7 @@ curl -X PUT "https://localhost:9443/statistics" -H "accept: application/json" -H
 
 |                         |                                                             |
 |-------------------------|-------------------------------------------------------------|
-| HTTP Status Code        | Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](/http-status-code)                 |
+| HTTP Status Code        | Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](./http-status-code)                 |
 
 
 ## Returning general details of a runner
@@ -858,7 +858,7 @@ curl -X GET "https://localhost:9443/system-details" -H "accept: application/json
 
 |                         |                                                             |
 |-------------------------|-------------------------------------------------------------|
-| HTTP Status Code        | Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](/http-status-code)                 |
+| HTTP Status Code        | Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](./http-status-code)                 |
 
 
 ## Returning detailed statistics of all Siddhi applications
@@ -898,7 +898,7 @@ curl -X GET "https://localhost:9443/siddhi-apps/statistics" -H "accept: applicat
 
 |                         |                                                             |
 |-------------------------|-------------------------------------------------------------|
-| HTTP Status Code        | Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](/http-status-code)                 |
+| HTTP Status Code        | Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](./http-status-code)                 |
 
 
 ## Enabling/disabling the statistics of a specific Siddhi application
@@ -944,7 +944,7 @@ curl -X PUT "https://localhost:9443/siddhi-apps/TestSiddhiApp/statistics" -H "ac
 
 |                         |                                                             |
 |-------------------------|-------------------------------------------------------------|
-| HTTP Status Code        | Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](/http-status-code)                 |
+| HTTP Status Code        | Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](./http-status-code)                 |
 
 
 ## Enabling/disabling the statistics of all Siddhi applications
@@ -984,5 +984,5 @@ curl -X PUT "https://localhost:9443/siddhi-apps/statistics" -H "accept: applicat
 
 |                         |                                                             |
 |-------------------------|-------------------------------------------------------------|
-| HTTP Status Code        | Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](/http-status-code)                 |
+| HTTP Status Code        | Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](./http-status-code)                 |
 
