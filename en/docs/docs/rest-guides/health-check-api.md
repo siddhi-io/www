@@ -1,9 +1,10 @@
-# Healthcheck APIs
+# Health Check APIs
 
--   [Updating a Siddhi Application](#SiddhiApplicationManagementAPIs-UpdatingaSiddhiApplication)
+-   [Fetch Health status of the Siddhi Runner](#fetch-health-status-of-the-siddhi-runner)
+
+## Fetch Health status of the Siddhi Runner
 
 ### Overview
-
 
 |                         |                                                                                                    |
 |-------------------------|----------------------------------------------------------------------------------------------------|
@@ -20,31 +21,24 @@
 ### curl command syntax
 
 ``` java
-    curl -k -X GET http://localhost:9090/health
+curl -k -X GET http://localhost:9090/health
 ```
-
-  
-
+ 
 ### Sample curl command
 
 ``` java
-    curl -k -X GET http://localhost:9090/health
+curl -k -X GET http://localhost:9090/health
 ```
 
 ### Sample output
 
 ``` java
-    {"status":"healthy"}
+{"status":"healthy"}
 ```
 
 ### Response
 
-<table>
-<tbody>
-<tr class="odd">
-<td>HTTP Status Code</td>
-<td><p>200 or 404</p>
-<p>For descriptions of the HTTP status codes, see <a href="_HTTP_Status_Codes_">HTTP Status Codes</a> .</p></td>
-</tr>
-</tbody>
-</table>
+|                         |                                                             |
+|-------------------------|-------------------------------------------------------------|
+| HTTP Status Code        | Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](/rest-guides/http-status-code)                 |
+
