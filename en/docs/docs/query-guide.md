@@ -2593,7 +2593,7 @@ An RDBMS Store configuration to work with an indexed MySQL database using a cach
 @store(type="rdbms", jdbc.url="jdbc:mysql://localhost:3306/hotel",
        username="siddhi", password="123",
        jdbc.driver.name="com.mysql.jdbc.Driver"
-       @cache(size=100, retention.period=5 min, purge.interval=1 min))
+       @cache(size="100", retention.period="5 min", purge.interval="1 min"))
 @primaryKey('username')
 @index('salary')
 define table SalaryTable (username string, salary double);
