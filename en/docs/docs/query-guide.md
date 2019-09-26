@@ -1890,8 +1890,7 @@ The `event reference` in pattern queries is used to retrieve the matched events.
 
 + `e1.symbol`, refers to the `symbol` attribute value of the matching event `e1`.
 
-But when the pattern condition is associated with `<<min count>:<max count>>`, it is expected to match against on multiple events. Therefore, an event from the matched event collection should be retrieved using the event index from its reference. Here the 
-are specified in square brackets next to event reference, where index `0` referring to the first event, and a special index `last` referring to the last available event in the collection.
+But when the pattern condition is associated with `<<min count>:<max count>>`, it is expected to match against on multiple events. Therefore, an event from the matched event collection should be retrieved using the event index from its reference. Here the indexes are specified in square brackets next to event reference, where index `0` referring to the first event, and a special index `last` referring to the last available event in the collection.
 Attribute values of all the events in the matching event collection can be accessed a list, by referring to their `<event reference>` without an index.
 Some possible indexes and their behavior is as follows.
 
