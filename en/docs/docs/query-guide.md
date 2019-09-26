@@ -1890,7 +1890,8 @@ The `event reference` in pattern queries is used to retrieve the matched events.
 
 + `e1.symbol`, refers to the `symbol` attribute value of the matching event `e1`.
 
-But when the pattern condition is associated with `<<min count>:<max count>>`, it is expected to match against on multiple events. Therefore, an event from the matched event collection should be retrieved using the event index from its reference. Here the indexes are specified in square brackets next to event reference, where index `0` referring to the first event, and a special index `last` referring to the last available event in the collection.
+But when the pattern condition is associated with `<<min count>:<max count>>`, it is expected to match against on multiple events. Therefore, an event from the matched event collection should be retrieved using the event index from its reference. Here the 
+are specified in square brackets next to event reference, where index `0` referring to the first event, and a special index `last` referring to the last available event in the collection.
 Attribute values of all the events in the matching event collection can be accessed a list, by referring to their `<event reference>` without an index.
 Some possible indexes and their behavior is as follows.
 
@@ -2435,7 +2436,7 @@ To use and refer table and attribute names that do not follow `[a-zA-Z_][a-zA-Z_
 
 Primary keys help to avoid duplication of data by enforcing nor two events to have the same value for the selected primary key attributes. They also index the table to access the events much faster.
 
-Primary keys are optional, and they can be configured using the `@primaryKey` annotation. Here, each table can only have at most one `@primaryKey` annotation, which can have one or more `<attribute name>`s defined as primary keys. When more than one attribute is used, the uniqueness of the events stored in the table is determined based on the composite value for those attributes.
+Primary keys are optional, and they can be configured using the `@primaryKey` annotation. Here, each table can only have at most one `@primaryKey` annotation, which can have one or more `<attribute name>`s defined as primary keys (The number of `<attribute name>` supported can differ based on the differet store implementations). When more than one attribute is used, the uniqueness of the events stored in the table is determined based on the composite value for those attributes.
 
 When more than one events having the same primary keys are inserted to the table, the latter event replaces the event/record that already exists in the table.
 
@@ -2443,7 +2444,7 @@ When more than one events having the same primary keys are inserted to the table
 
 Indexes allow events in the tables to be searched/modified much faster, but unlike primary keys, the indexed attributes support duplicate values.
 
-Indexes are optional, and they can be configured using the `@index` annotation. Here, each `@index` annotation creates an index in the table, and the tables only support one `<attribute name>` for each index.  
+Indexes are optional, and they can be configured using the `@index` annotation. Here, each `@index` annotation creates an index in the table, and the tables only support one `<attribute name>` for each index (The number of @Index annotations and `<attribute name>` inside the annotation can differ based on different store implementations).
 
 **Example 1 (Primary key)**
 
