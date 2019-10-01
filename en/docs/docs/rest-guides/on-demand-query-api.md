@@ -1,17 +1,17 @@
-# Store APIs (Deprecated)
+# On-Demand Query APIs
 
--   [Query records in Siddhi store](#query-records-in-siddhi-store)
+-   [Query records through ad-hoc queries](#query-records-through-ad-hoc-queries)
 
-## Query records in Siddhi store
+## Query records through ad-hoc queries
 
 ### Overview
 
-Replaced with on-demand queries. Please check [here](on-demand-query-api.md) for more details.
+On-demand queries provide a way of performing add hock operations on Siddhi tables (stores), named-windows, and named-aggregations.
 
 |                         |                                                                                                    |
 |-------------------------|----------------------------------------------------------------------------------------------------|
-| Description             | Queries records in the Siddhi store. For more information, see Managing Stored Data via REST API . |
-| API Context             | `             /stores/query            `                                                           |
+| Description             | Queries records in the Siddhi stores, named windows and named aggregations.                         |
+| API Context             | `             /query            `                                                                  |
 | HTTP Method             | `             POST            `                                                                    |
 | Request/Response Format | `             application/json            `                                                        |
 | Authentication          | Basic                                                                                              |
@@ -22,13 +22,13 @@ Replaced with on-demand queries. Please check [here](on-demand-query-api.md) for
 ### curl command syntax
 
 ``` java
-curl -X POST https://localhost:9443/stores/query -H "content-type: application/json" -u "admin:admin"  -d '{"appName" : "AggregationTest", "query" : "from stockAggregation select *" }' -k
+curl -X POST https://localhost:9443/query -H "content-type: application/json" -u "admin:admin"  -d '{"appName" : "AggregationTest", "query" : "from stockAggregation select *" }' -k
 ```
 
 ### Sample curl command
 
 ``` java
-curl -X POST https://localhost:9443/stores/query -H "content-type: application/json" -u "admin:admin" -d '{"appName" : "RoomService", "query" : "select 10 as roomNumber, 1 as arrival update RoomTypeTable  set RoomTypeTable.people = RoomTypeTable.people + arrival on RoomTypeTable.roomNo == roomNumber;" }' -k
+curl -X POST https://localhost:9443/query -H "content-type: application/json" -u "admin:admin" -d '{"appName" : "RoomService", "query" : "select 10 as roomNumber, 1 as arrival update RoomTypeTable  set RoomTypeTable.people = RoomTypeTable.people + arrival on RoomTypeTable.roomNo == roomNumber;" }' -k
 ```
 
 ### Sample output
