@@ -126,9 +126,10 @@ nav:
       - 5.1.0: docs/api/5.1.0.md
     - REST API Guides:
         - Siddhi App APIs: docs/rest-guides/siddhi-app-api.md
-        - Store APIs: docs/rest-guides/store-api.md
+        - On-Demand Query APIs: docs/rest-guides/on-demand-query-api.md
         - Health Check APIs: docs/rest-guides/health-check-api.md
         - HTTP Status Codes: docs/rest-guides/http-status-code.md
+        - Store APIs (Deprecated): docs/rest-guides/store-api.md
     - Extensions: docs/extensions.md
     - Siddhi Java library: docs/siddhi-as-a-java-library.md
     - Siddhi Local Microservice: docs/siddhi-as-a-local-microservice.md
