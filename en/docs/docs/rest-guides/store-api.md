@@ -28,12 +28,24 @@ curl -X POST https://localhost:9443/stores/query -H "content-type: application/j
 ### Sample curl command
 
 ``` java
-curl -X POST https://localhost:9443/stores/query -H "content-type: application/json" -u "admin:admin" -d '{"appName" : "RoomService", "query" : "select 10 as roomNumber, 1 as arrival update RoomTypeTable  set RoomTypeTable.people = RoomTypeTable.people + arrival on RoomTypeTable.roomNo == roomNumber;" }' -k
+curl -X POST https://localhost:9443/query -H "content-type: application/json" -u "admin:admin" -d '{"appName" : "ProductDetails", "query" : "from productTable select *" }' -k
 ```
 
 ### Sample output
 
 ``` java
+{
+   "records": [
+       [
+           "ID234",
+           "Chocolate"
+       ],
+       [
+           "ID235",
+           "Ice Cream"
+       ]
+   ]
+}
 ```
 
 ### Response
