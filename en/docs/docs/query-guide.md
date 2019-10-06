@@ -3332,7 +3332,7 @@ define trigger FiveMinTrigger at every 5 min;
 A trigger to generate events at 10.15 AM on every weekdays.
 
 ```sql
-define trigger FiveMinTriggerStream at '0 15 10 ? * MON-FRI';
+define trigger WorkStartTrigger at '0 15 10 ? * MON-FRI';
 ```
 
 **Example 3**
