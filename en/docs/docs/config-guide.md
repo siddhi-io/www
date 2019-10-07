@@ -623,6 +623,64 @@ wso2.carbon:
     offset: 1
 ```
 
+## Configuring Admin REST APIs
+
+Admin API can be configured under the namespace `transports >> http`. 
+
+Sample Config and the parameters are as follows,
+```yaml
+transports:
+  http:
+    listenerConfigurations:
+      - 
+        id: "default"
+        host: "0.0.0.0"
+        port: 9090
+      - 
+        id: "msf4j-https"
+        host: "0.0.0.0"
+        port: 9443
+        scheme: https
+        sslConfig:
+          keyStore: "${carbon.home}/resources/security/wso2carbon.jks"
+          keyStorePassword: wso2carbon
+    transportProperties:
+      - name: "server.bootstrap.socket.timeout"
+        value: 60
+      - name: "latency.metrics.enabled"
+        value: false
+```
+
+| Parameter | Default Value | Description |
+| ------------- |:-------------:|-------------|
+| id | default | Id of the server |
+| host | 0.0.0.0 | Hostname of the server |
+| port | 8080 | Port of the APIs |
+| scheme | http | Scheme of the APIs. It can be either `http` or `https` |
+| httpTraceLogEnabled | false | Enable HTTP trace logs |
+| httpAccessLogEnabled | false | Enable HTTP access logs |
+| socketIdleTimeout | 0 | Timeout for socket for which requests received. Not set by default. |
+
+SSL configurations (listenerConfigurations >> sslConfig)
+
+| Parameter | Default Value | Description |
+| ------------- |:-------------:|-------------|
+| keyStore | `${carbon.home}/resources/security/wso2carbon.jks` | The file containing the private key of the client |
+| keyStorePass | wso2carbon | Password of the private key if it is encrypted |
+| enableProtocols | All | SSL/TLS protocols to be enabled (e.g.: TLSv1,TLSv1.1,TLSv1.2) |
+| cipherSuites | All | List of ciphers to be used eg: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA |
+| enableSessionCreation |  | Enable/disable new SSL session creation |
+| sessionTimeOut | 0 | SSL session time out. Not set by default. |
+| handshakeTimeOut | 0 | SSL handshake time out. Not set by default. |
+
+Transport Properties (transportProperties)
+
+| Parameter | Default Value | Description |
+| ------------- |:-------------:|-------------|
+| server.bootstrap.connect.timeout | 15000 | Timout in millisecond to establish connection |
+| server.bootstrap.socket.timeout | 60 | Socket connection timeouts |
+| latency.metrics.enabled | false | Enable/Disable latency metrics by carbon metrics component |
+
 ## Configuring Databridge Transport
 
 Siddhi uses Databridge transport to send and receive events over Thrift/Binary protocols, This can be used through `siddhi-io-wso2event` extension.
@@ -796,61 +854,3 @@ transports:
 | secureMinIdleTimeInPool | 5500 | Min idle time in pool in SSL publishing |
 | sslEnabledProtocols | TLSv1.1,TLSv1.2 | SSL enabled protocols |
 | ciphers | TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,<br>TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,<br>TLS_DHE_RSA_WITH_AES_128_CBC_SHA256,<br>TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,<br>TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,<br>TLS_DHE_RSA_WITH_AES_128_CBC_SHA,<br>TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,<br>TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,<br>TLS_DHE_RSA_WITH_AES_128_GCM_SHA256 | Ciphers used in transmission |
-
-## Configuring Admin REST APIs
-
-Admin API can be configured under the namespace `transports >> http`. 
-
-Sample Config and the parameters are as follows,
-```yaml
-transports:
-  http:
-    listenerConfigurations:
-      - 
-        id: "default"
-        host: "0.0.0.0"
-        port: 9090
-      - 
-        id: "msf4j-https"
-        host: "0.0.0.0"
-        port: 9443
-        scheme: https
-        sslConfig:
-          keyStore: "${carbon.home}/resources/security/wso2carbon.jks"
-          keyStorePassword: wso2carbon
-    transportProperties:
-      - name: "server.bootstrap.socket.timeout"
-        value: 60
-      - name: "latency.metrics.enabled"
-        value: false
-```
-
-| Parameter | Default Value | Description |
-| ------------- |:-------------:|-------------|
-| id | default | Id of the server |
-| host | 0.0.0.0 | Hostname of the server |
-| port | 8080 | Port of the APIs |
-| scheme | http | Scheme of the APIs. It can be either `http` or `https` |
-| httpTraceLogEnabled | false | Enable HTTP trace logs |
-| httpAccessLogEnabled | false | Enable HTTP access logs |
-| socketIdleTimeout | 0 | Timeout for socket for which requests received. Not set by default. |
-
-SSL configurations (listenerConfigurations >> sslConfig)
-
-| Parameter | Default Value | Description |
-| ------------- |:-------------:|-------------|
-| keyStore | `${carbon.home}/resources/security/wso2carbon.jks` | The file containing the private key of the client |
-| keyStorePass | wso2carbon | Password of the private key if it is encrypted |
-| enableProtocols | All | SSL/TLS protocols to be enabled (e.g.: TLSv1,TLSv1.1,TLSv1.2) |
-| cipherSuites | All | List of ciphers to be used eg: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA |
-| enableSessionCreation |  | Enable/disable new SSL session creation |
-| sessionTimeOut | 0 | SSL session time out. Not set by default. |
-| handshakeTimeOut | 0 | SSL handshake time out. Not set by default. |
-
-Transport Properties (transportProperties)
-
-| Parameter | Default Value | Description |
-| ------------- |:-------------:|-------------|
-| server.bootstrap.connect.timeout | 15000 | Timout in millisecond to establish connection |
-| server.bootstrap.socket.timeout | 60 | Socket connection timeouts |
-| latency.metrics.enabled | false | Enable/Disable latency metrics by carbon metrics component |

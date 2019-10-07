@@ -1,6 +1,6 @@
 # Store APIs (Deprecated)
 
--   [Query records in Siddhi store](#query-records-in-siddhi-store)
+- [Query records in Siddhi store](#query-records-in-siddhi-store)
 
 ## Query records in Siddhi store
 
@@ -11,12 +11,12 @@ Replaced with on-demand queries. Please check [here](on-demand-query-api.md) for
 |                         |                                                                                                    |
 |-------------------------|----------------------------------------------------------------------------------------------------|
 | Description             | Queries records in the Siddhi store. For more information, see Managing Stored Data via REST API . |
-| API Context             | `             /stores/query            `                                                           |
-| HTTP Method             | `             POST            `                                                                    |
-| Request/Response Format | `             application/json            `                                                        |
+| API Context             | `/stores/query`                                                           |
+| HTTP Method             | `POST`                                                                    |
+| Request/Response Format | `application/json`                                                        |
 | Authentication          | Basic                                                                                              |
-| Username                | `             admin            `                                                                   |
-| Password                | `             admin            `                                                                   |
+| Username                | `admin`                                                                   |
+| Password                | `admin`                                                                   |
 | Runtime                 | Runner                                                                                             |
 
 ### curl command syntax
@@ -25,10 +25,16 @@ Replaced with on-demand queries. Please check [here](on-demand-query-api.md) for
 curl -X POST https://localhost:9443/stores/query -H "content-type: application/json" -u "admin:admin"  -d '{"appName" : "AggregationTest", "query" : "from stockAggregation select *" }' -k
 ```
 
-### Sample curl command
+### Sample curl command for runner distribution
 
 ``` java
 curl -X POST https://localhost:9443/query -H "content-type: application/json" -u "admin:admin" -d '{"appName" : "ProductDetails", "query" : "from productTable select *" }' -k
+```
+
+### Sample curl command for tooling distribution
+
+``` java
+curl -X POST https://localhost:9743/query -H "content-type: application/json" -u "admin:admin" -d '{"appName" : "ProductDetails", "query" : "from productTable select *" }' -k
 ```
 
 ### Sample output
@@ -53,4 +59,3 @@ curl -X POST https://localhost:9443/query -H "content-type: application/json" -u
 |                         |                                                             |
 |-------------------------|-------------------------------------------------------------|
 | HTTP Status Code        | Possible codes are 200 and 404. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](../http-status-code)                 |
-

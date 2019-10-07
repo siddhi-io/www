@@ -128,8 +128,9 @@ nav:
         - Siddhi App APIs: docs/rest-guides/siddhi-app-api.md
         - On-Demand Query APIs: docs/rest-guides/on-demand-query-api.md
         - Health Check APIs: docs/rest-guides/health-check-api.md
-        - HTTP Status Codes: docs/rest-guides/http-status-code.md
         - Store APIs (Deprecated): docs/rest-guides/store-api.md
+        - Default Ports: docs/rest-guides/default-ports.md
+        - HTTP Status Codes: docs/rest-guides/http-status-code.md
     - Extensions: docs/extensions.md
     - Siddhi Java library: docs/siddhi-as-a-java-library.md
     - Siddhi Local Microservice: docs/siddhi-as-a-local-microservice.md

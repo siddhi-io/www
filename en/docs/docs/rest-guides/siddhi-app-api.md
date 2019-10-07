@@ -1,35 +1,36 @@
 # Siddhi Application Management APIs
 
--   [Creating a Siddhi Application](#creating-a-siddhi-application)
--   [Updating a Siddhi Application](#updating-a-siddhi-application)
--   [Deleting a Siddhi Application](#deleting-a-siddhi-application)
--   [Listing all active Siddhi Applications](#listing-all-active-siddhi-applications)
--   [Retrieving a specific Siddhi Application](#retrieving-a-specific-siddhi-application)
--   [Fetching the status of a Siddhi Application](#fetching-the-status-of-a-siddhi-application)
--   [Taking a snapshot of a Siddhi Application](#taking-a-snapshot-of-a-siddhi-application-snapshot)
--   [Restoring a Siddhi Application via a snapshot](#restoring-a-siddhi-application-via-a-snapshot)
--   [Returning real-time statistics of a runner](#returning-real-time-statistics-of-a-runner)
--   [Enabling/disabling runner statistics](#disabling-runner-statistics)
--   [Returning general details of a runner](#returning-general-details-of-a-runner)
--   [Returning detailed statistics of all Siddhi Applications](#returning-detailed-statistics-of-all-siddhi-applications)
--   [Enabling/disabling the statistics of a specific Siddhi Application](#enablingdisabling-the-statistics-of-a-specific-siddhi-application)
--   [Enabling/disabling the statistics of all Siddhi Applications](#enablingdisabling-the-statistics-of-all-siddhi-applications)
+!!! note "Only available in runner distribution"
 
-### Creating a Siddhi application
+- [Creating a Siddhi Application](#creating-a-siddhi-application)
+- [Updating a Siddhi Application](#updating-a-siddhi-application)
+- [Deleting a Siddhi Application](#deleting-a-siddhi-application)
+- [Listing all active Siddhi Applications](#listing-all-active-siddhi-applications)
+- [Retrieving a specific Siddhi Application](#retrieving-a-specific-siddhi-application)
+- [Fetching the status of a Siddhi Application](#fetching-the-status-of-a-siddhi-application)
+- [Taking a snapshot of a Siddhi Application](#taking-a-snapshot-of-a-siddhi-application-snapshot)
+- [Restoring a Siddhi Application via a snapshot](#restoring-a-siddhi-application-via-a-snapshot)
+- [Returning real-time statistics of a runner](#returning-real-time-statistics-of-a-runner)
+- [Enabling/disabling runner statistics](#disabling-runner-statistics)
+- [Returning general details of a runner](#returning-general-details-of-a-runner)
+- [Returning detailed statistics of all Siddhi Applications](#returning-detailed-statistics-of-all-siddhi-applications)
+- [Enabling/disabling the statistics of a specific Siddhi Application](#enablingdisabling-the-statistics-of-a-specific-siddhi-application)
+- [Enabling/disabling the statistics of all Siddhi Applications](#enablingdisabling-the-statistics-of-all-siddhi-applications)
+
+## Creating a Siddhi application
 
 ### Overview
 
 |                         |                                                             |
 |-------------------------|-------------------------------------------------------------|
 | Description             | Creates a new Siddhi Application.                           |
-| API Context             | `             /siddhi-apps            `                     |
+| API Context             | `/siddhi-apps`                     |
 | HTTP Method             | POST                                                        |
 | Request/Response format | <strong>Request</strong> : text/plain<br />    <strong>Response</strong> : application/json |
 | Authentication          | Basic                                                       |
 | Username                | admin                                                       |
 | Password                | admin                                                       |
 | Runtime                 | Runner                                                      |
-
 
 ### curl command syntax
 
@@ -48,11 +49,11 @@ curl -X POST "https://localhost:9443/siddhi-apps" -H "accept: application/json" 
 The response for the sample curl command given above can be one of the
 following.
 
--   If API request is valid and there is no existing Siddhi application
-    with the given name, a response similar to the following is
-    generated with response code 201. This response contains a location
-    header with the path of the newly created file from product root
-    home.
+- If API request is valid and there is no existing Siddhi application
+  with the given name, a response similar to the following is
+  generated with response code 201. This response contains a location
+  header with the path of the newly created file from product root
+  home.
 
     ``` java
     {
@@ -61,30 +62,30 @@ following.
     }
     ```
 
--   If the API request is valid, but a Siddhi application with the given
-    name already exists,  a response similar to the following is
-    generated with response code 409.
+- If the API request is valid, but a Siddhi application with the given
+  name already exists,  a response similar to the following is
+  generated with response code 409.
 
     ``` java
     {
         "type": "conflict",
-        "message": "There is a Siddhi App already exists with same name" 
+        "message": "There is a Siddhi App already exists with same name"
     }
     ```
 
--   If the API request is invalid due to invalid content in the Siddhi
-    queries you have included in the request body,  a response similar
-    to the following is generated is generated with response code 400.
+- If the API request is invalid due to invalid content in the Siddhi
+  queries you have included in the request body,  a response similar
+  to the following is generated is generated with response code 400.
 
     ``` java
     {
         "code": 800101,
         "type": "validation error",
-        "message": "You have an error in your SiddhiQL at line 8:8, missing INTO at 'BarStream'" 
+        "message": "You have an error in your SiddhiQL at line 8:8, missing INTO at 'BarStream'"
     }
     ```
 
--   If the API request is valid, but an exception occured during file
+- If the API request is valid, but an exception occured during file
     processing or saving, the following response is generated with
     response code 500.
 
@@ -101,7 +102,6 @@ following.
 |                         |                                                             |
 |-------------------------|-------------------------------------------------------------|
 | HTTP Status Code        | Possible codes are 201, 409, 400, and 500. <br/>For descriptions of the HTTP status codes, see [HTTP Status Codes](../http-status-code)                 |
-
 
 ## Updating a Siddhi Application
 
