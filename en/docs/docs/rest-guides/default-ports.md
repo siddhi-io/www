@@ -1,6 +1,6 @@
 # Configuring Default Ports
 
-This page describes the default ports that are used for each runtime for the RET API.
+This page describes the default ports that are used for the REST API.
 
 ## Default Ports
 

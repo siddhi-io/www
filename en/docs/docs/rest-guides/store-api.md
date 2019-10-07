@@ -25,13 +25,13 @@ Replaced with on-demand queries. Please check [here](on-demand-query-api.md) for
 curl -X POST https://localhost:9443/stores/query -H "content-type: application/json" -u "admin:admin"  -d '{"appName" : "AggregationTest", "query" : "from stockAggregation select *" }' -k
 ```
 
-### Sample curl command in runner distribution
+### Sample curl command for runner distribution
 
 ``` java
 curl -X POST https://localhost:9443/query -H "content-type: application/json" -u "admin:admin" -d '{"appName" : "ProductDetails", "query" : "from productTable select *" }' -k
 ```
 
-### Sample curl command in tooling distribution
+### Sample curl command for tooling distribution
 
 ``` java
 curl -X POST https://localhost:9743/query -H "content-type: application/json" -u "admin:admin" -d '{"appName" : "ProductDetails", "query" : "from productTable select *" }' -k
