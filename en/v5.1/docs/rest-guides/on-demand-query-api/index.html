@@ -810,8 +810,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#sample-curl-command" title="Sample curl command" class="md-nav__link">
-    Sample curl command
+  <a href="#sample-curl-command-for-runner-distribution" title="Sample curl command for runner distribution" class="md-nav__link">
+    Sample curl command for runner distribution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-curl-command-for-tooling-distribution" title="Sample curl command for tooling distribution" class="md-nav__link">
+    Sample curl command for tooling distribution
   </a>
   
 </li>
@@ -864,8 +871,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../http-status-code/" title="HTTP Status Codes" class="md-nav__link">
-      HTTP Status Codes
+    <a href="../store-api/" title="Store APIs (Deprecated)" class="md-nav__link">
+      Store APIs (Deprecated)
     </a>
   </li>
 
@@ -876,8 +883,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../store-api/" title="Store APIs (Deprecated)" class="md-nav__link">
-      Store APIs (Deprecated)
+    <a href="../default-ports/" title="Default Ports" class="md-nav__link">
+      Default Ports
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../http-status-code/" title="HTTP Status Codes" class="md-nav__link">
+      HTTP Status Codes
     </a>
   </li>
 
@@ -1163,8 +1182,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#sample-curl-command" title="Sample curl command" class="md-nav__link">
-    Sample curl command
+  <a href="#sample-curl-command-for-runner-distribution" title="Sample curl command for runner distribution" class="md-nav__link">
+    Sample curl command for runner distribution
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sample-curl-command-for-tooling-distribution" title="Sample curl command for tooling distribution" class="md-nav__link">
+    Sample curl command for tooling distribution
   </a>
   
 </li>
@@ -1262,8 +1288,13 @@
 </pre></div>
 </td></tr></table>
 
-<h3 id="sample-curl-command">Sample curl command<a class="headerlink" href="#sample-curl-command" title="Permanent link">&para;</a></h3>
+<h3 id="sample-curl-command-for-runner-distribution">Sample curl command for runner distribution<a class="headerlink" href="#sample-curl-command-for-runner-distribution" title="Permanent link">&para;</a></h3>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> <span class="n">https</span><span class="o">:</span><span class="c1">//localhost:9443/query -H &quot;content-type: application/json&quot; -u &quot;admin:admin&quot; -d &#39;{&quot;appName&quot; : &quot;ProductDetails&quot;, &quot;query&quot; : &quot;from productTable select *&quot; }&#39; -k</span>
+</pre></div>
+</td></tr></table>
+
+<h3 id="sample-curl-command-for-tooling-distribution">Sample curl command for tooling distribution<a class="headerlink" href="#sample-curl-command-for-tooling-distribution" title="Permanent link">&para;</a></h3>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">X</span> <span class="n">POST</span> <span class="n">https</span><span class="o">:</span><span class="c1">//localhost:9743/query -H &quot;content-type: application/json&quot; -u &quot;admin:admin&quot; -d &#39;{&quot;appName&quot; : &quot;ProductDetails&quot;, &quot;query&quot; : &quot;from productTable select *&quot; }&#39; -k</span>
 </pre></div>
 </td></tr></table>
 

@@ -783,8 +783,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../rest-guides/http-status-code/" title="HTTP Status Codes" class="md-nav__link">
-      HTTP Status Codes
+    <a href="../rest-guides/store-api/" title="Store APIs (Deprecated)" class="md-nav__link">
+      Store APIs (Deprecated)
     </a>
   </li>
 
@@ -795,8 +795,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../rest-guides/store-api/" title="Store APIs (Deprecated)" class="md-nav__link">
-      Store APIs (Deprecated)
+    <a href="../rest-guides/default-ports/" title="Default Ports" class="md-nav__link">
+      Default Ports
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rest-guides/http-status-code/" title="HTTP Status Codes" class="md-nav__link">
+      HTTP Status Codes
     </a>
   </li>
 
@@ -1083,6 +1095,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#configuring-admin-rest-apis" title="Configuring Admin REST APIs" class="md-nav__link">
+    Configuring Admin REST APIs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configuring-databridge-transport" title="Configuring Databridge Transport" class="md-nav__link">
     Configuring Databridge Transport
   </a>
@@ -1106,13 +1125,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configuring-admin-rest-apis" title="Configuring Admin REST APIs" class="md-nav__link">
-    Configuring Admin REST APIs
-  </a>
   
 </li>
       
@@ -1493,6 +1505,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#configuring-admin-rest-apis" title="Configuring Admin REST APIs" class="md-nav__link">
+    Configuring Admin REST APIs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configuring-databridge-transport" title="Configuring Databridge Transport" class="md-nav__link">
     Configuring Databridge Transport
   </a>
@@ -1516,13 +1535,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configuring-admin-rest-apis" title="Configuring Admin REST APIs" class="md-nav__link">
-    Configuring Admin REST APIs
-  </a>
   
 </li>
       
@@ -2493,6 +2505,170 @@ Information about the parameters configured under the <code>securevault</code> s
 </pre></div>
 </td></tr></table>
 
+<h2 id="configuring-admin-rest-apis">Configuring Admin REST APIs<a class="headerlink" href="#configuring-admin-rest-apis" title="Permanent link">&para;</a></h2>
+<p>Admin API can be configured under the namespace <code>transports &gt;&gt; http</code>. </p>
+<p>Sample Config and the parameters are as follows,
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">transports</span><span class="p">:</span>
+  <span class="nt">http</span><span class="p">:</span>
+    <span class="nt">listenerConfigurations</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> 
+        <span class="nt">id</span><span class="p">:</span> <span class="s">&quot;default&quot;</span>
+        <span class="nt">host</span><span class="p">:</span> <span class="s">&quot;0.0.0.0&quot;</span>
+        <span class="nt">port</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">9090</span>
+      <span class="p p-Indicator">-</span> 
+        <span class="nt">id</span><span class="p">:</span> <span class="s">&quot;msf4j-https&quot;</span>
+        <span class="nt">host</span><span class="p">:</span> <span class="s">&quot;0.0.0.0&quot;</span>
+        <span class="nt">port</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">9443</span>
+        <span class="nt">scheme</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https</span>
+        <span class="nt">sslConfig</span><span class="p">:</span>
+          <span class="nt">keyStore</span><span class="p">:</span> <span class="s">&quot;${carbon.home}/resources/security/wso2carbon.jks&quot;</span>
+          <span class="nt">keyStorePassword</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">wso2carbon</span>
+    <span class="nt">transportProperties</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;server.bootstrap.socket.timeout&quot;</span>
+        <span class="nt">value</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">60</span>
+      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;latency.metrics.enabled&quot;</span>
+        <span class="nt">value</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+</pre></div>
+</td></tr></table></p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th align="center">Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td align="center">default</td>
+<td>Id of the server</td>
+</tr>
+<tr>
+<td>host</td>
+<td align="center">0.0.0.0</td>
+<td>Hostname of the server</td>
+</tr>
+<tr>
+<td>port</td>
+<td align="center">8080</td>
+<td>Port of the APIs</td>
+</tr>
+<tr>
+<td>scheme</td>
+<td align="center">http</td>
+<td>Scheme of the APIs. It can be either <code>http</code> or <code>https</code></td>
+</tr>
+<tr>
+<td>httpTraceLogEnabled</td>
+<td align="center">false</td>
+<td>Enable HTTP trace logs</td>
+</tr>
+<tr>
+<td>httpAccessLogEnabled</td>
+<td align="center">false</td>
+<td>Enable HTTP access logs</td>
+</tr>
+<tr>
+<td>socketIdleTimeout</td>
+<td align="center">0</td>
+<td>Timeout for socket for which requests received. Not set by default.</td>
+</tr>
+</tbody>
+</table>
+<p>SSL configurations (listenerConfigurations &gt;&gt; sslConfig)</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th align="center">Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>keyStore</td>
+<td align="center"><code>${carbon.home}/resources/security/wso2carbon.jks</code></td>
+<td>The file containing the private key of the client</td>
+</tr>
+<tr>
+<td>keyStorePass</td>
+<td align="center">wso2carbon</td>
+<td>Password of the private key if it is encrypted</td>
+</tr>
+<tr>
+<td>enableProtocols</td>
+<td align="center">All</td>
+<td>SSL/TLS protocols to be enabled (e.g.: TLSv1,TLSv1.1,TLSv1.2)</td>
+</tr>
+<tr>
+<td>cipherSuites</td>
+<td align="center">All</td>
+<td>List of ciphers to be used eg: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</td>
+</tr>
+<tr>
+<td>enableSessionCreation</td>
+<td align="center"></td>
+<td>Enable/disable new SSL session creation</td>
+</tr>
+<tr>
+<td>sessionTimeOut</td>
+<td align="center">0</td>
+<td>SSL session time out. Not set by default.</td>
+</tr>
+<tr>
+<td>handshakeTimeOut</td>
+<td align="center">0</td>
+<td>SSL handshake time out. Not set by default.</td>
+</tr>
+</tbody>
+</table>
+<p>Transport Properties (transportProperties)</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th align="center">Default Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>server.bootstrap.connect.timeout</td>
+<td align="center">15000</td>
+<td>Timout in millisecond to establish connection</td>
+</tr>
+<tr>
+<td>server.bootstrap.socket.timeout</td>
+<td align="center">60</td>
+<td>Socket connection timeouts</td>
+</tr>
+<tr>
+<td>latency.metrics.enabled</td>
+<td align="center">false</td>
+<td>Enable/Disable latency metrics by carbon metrics component</td>
+</tr>
+</tbody>
+</table>
 <h2 id="configuring-databridge-transport">Configuring Databridge Transport<a class="headerlink" href="#configuring-databridge-transport" title="Permanent link">&para;</a></h2>
 <p>Siddhi uses Databridge transport to send and receive events over Thrift/Binary protocols, This can be used through <code>siddhi-io-wso2event</code> extension.</p>
 <p>Sample Configuration is as follows,
@@ -2927,170 +3103,6 @@ Here, <code>transports &gt;&gt; databridge</code> includes listenerConfiguration
 <td>ciphers</td>
 <td align="center">TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,<br>TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,<br>TLS_DHE_RSA_WITH_AES_128_CBC_SHA256,<br>TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,<br>TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,<br>TLS_DHE_RSA_WITH_AES_128_CBC_SHA,<br>TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,<br>TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,<br>TLS_DHE_RSA_WITH_AES_128_GCM_SHA256</td>
 <td>Ciphers used in transmission</td>
-</tr>
-</tbody>
-</table>
-<h2 id="configuring-admin-rest-apis">Configuring Admin REST APIs<a class="headerlink" href="#configuring-admin-rest-apis" title="Permanent link">&para;</a></h2>
-<p>Admin API can be configured under the namespace <code>transports &gt;&gt; http</code>. </p>
-<p>Sample Config and the parameters are as follows,
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">transports</span><span class="p">:</span>
-  <span class="nt">http</span><span class="p">:</span>
-    <span class="nt">listenerConfigurations</span><span class="p">:</span>
-      <span class="p p-Indicator">-</span> 
-        <span class="nt">id</span><span class="p">:</span> <span class="s">&quot;default&quot;</span>
-        <span class="nt">host</span><span class="p">:</span> <span class="s">&quot;0.0.0.0&quot;</span>
-        <span class="nt">port</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">9090</span>
-      <span class="p p-Indicator">-</span> 
-        <span class="nt">id</span><span class="p">:</span> <span class="s">&quot;msf4j-https&quot;</span>
-        <span class="nt">host</span><span class="p">:</span> <span class="s">&quot;0.0.0.0&quot;</span>
-        <span class="nt">port</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">9443</span>
-        <span class="nt">scheme</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https</span>
-        <span class="nt">sslConfig</span><span class="p">:</span>
-          <span class="nt">keyStore</span><span class="p">:</span> <span class="s">&quot;${carbon.home}/resources/security/wso2carbon.jks&quot;</span>
-          <span class="nt">keyStorePassword</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">wso2carbon</span>
-    <span class="nt">transportProperties</span><span class="p">:</span>
-      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;server.bootstrap.socket.timeout&quot;</span>
-        <span class="nt">value</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">60</span>
-      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;latency.metrics.enabled&quot;</span>
-        <span class="nt">value</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
-</pre></div>
-</td></tr></table></p>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th align="center">Default Value</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id</td>
-<td align="center">default</td>
-<td>Id of the server</td>
-</tr>
-<tr>
-<td>host</td>
-<td align="center">0.0.0.0</td>
-<td>Hostname of the server</td>
-</tr>
-<tr>
-<td>port</td>
-<td align="center">8080</td>
-<td>Port of the APIs</td>
-</tr>
-<tr>
-<td>scheme</td>
-<td align="center">http</td>
-<td>Scheme of the APIs. It can be either <code>http</code> or <code>https</code></td>
-</tr>
-<tr>
-<td>httpTraceLogEnabled</td>
-<td align="center">false</td>
-<td>Enable HTTP trace logs</td>
-</tr>
-<tr>
-<td>httpAccessLogEnabled</td>
-<td align="center">false</td>
-<td>Enable HTTP access logs</td>
-</tr>
-<tr>
-<td>socketIdleTimeout</td>
-<td align="center">0</td>
-<td>Timeout for socket for which requests received. Not set by default.</td>
-</tr>
-</tbody>
-</table>
-<p>SSL configurations (listenerConfigurations &gt;&gt; sslConfig)</p>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th align="center">Default Value</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>keyStore</td>
-<td align="center"><code>${carbon.home}/resources/security/wso2carbon.jks</code></td>
-<td>The file containing the private key of the client</td>
-</tr>
-<tr>
-<td>keyStorePass</td>
-<td align="center">wso2carbon</td>
-<td>Password of the private key if it is encrypted</td>
-</tr>
-<tr>
-<td>enableProtocols</td>
-<td align="center">All</td>
-<td>SSL/TLS protocols to be enabled (e.g.: TLSv1,TLSv1.1,TLSv1.2)</td>
-</tr>
-<tr>
-<td>cipherSuites</td>
-<td align="center">All</td>
-<td>List of ciphers to be used eg: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA</td>
-</tr>
-<tr>
-<td>enableSessionCreation</td>
-<td align="center"></td>
-<td>Enable/disable new SSL session creation</td>
-</tr>
-<tr>
-<td>sessionTimeOut</td>
-<td align="center">0</td>
-<td>SSL session time out. Not set by default.</td>
-</tr>
-<tr>
-<td>handshakeTimeOut</td>
-<td align="center">0</td>
-<td>SSL handshake time out. Not set by default.</td>
-</tr>
-</tbody>
-</table>
-<p>Transport Properties (transportProperties)</p>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th align="center">Default Value</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>server.bootstrap.connect.timeout</td>
-<td align="center">15000</td>
-<td>Timout in millisecond to establish connection</td>
-</tr>
-<tr>
-<td>server.bootstrap.socket.timeout</td>
-<td align="center">60</td>
-<td>Socket connection timeouts</td>
-</tr>
-<tr>
-<td>latency.metrics.enabled</td>
-<td align="center">false</td>
-<td>Enable/Disable latency metrics by carbon metrics component</td>
 </tr>
 </tbody>
 </table>

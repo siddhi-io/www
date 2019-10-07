@@ -780,40 +780,46 @@
     Creating a Siddhi application
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#overview" title="Overview" class="md-nav__link">
     Overview
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#curl-command-syntax" title="curl command syntax" class="md-nav__link">
     curl command syntax
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#sample-curl-command" title="Sample curl command" class="md-nav__link">
     Sample curl command
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#sample-output" title="Sample output" class="md-nav__link">
     Sample output
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#response" title="Response" class="md-nav__link">
     Response
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1625,8 +1631,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../http-status-code/" title="HTTP Status Codes" class="md-nav__link">
-      HTTP Status Codes
+    <a href="../store-api/" title="Store APIs (Deprecated)" class="md-nav__link">
+      Store APIs (Deprecated)
     </a>
   </li>
 
@@ -1637,8 +1643,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../store-api/" title="Store APIs (Deprecated)" class="md-nav__link">
-      Store APIs (Deprecated)
+    <a href="../default-ports/" title="Default Ports" class="md-nav__link">
+      Default Ports
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../http-status-code/" title="HTTP Status Codes" class="md-nav__link">
+      HTTP Status Codes
     </a>
   </li>
 
@@ -1906,40 +1924,46 @@
     Creating a Siddhi application
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#overview" title="Overview" class="md-nav__link">
     Overview
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#curl-command-syntax" title="curl command syntax" class="md-nav__link">
     curl command syntax
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#sample-curl-command" title="Sample curl command" class="md-nav__link">
     Sample curl command
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#sample-output" title="Sample output" class="md-nav__link">
     Sample output
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#response" title="Response" class="md-nav__link">
     Response
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2731,6 +2755,9 @@
                 
                 
                 <h1 id="siddhi-application-management-apis">Siddhi Application Management APIs<a class="headerlink" href="#siddhi-application-management-apis" title="Permanent link">&para;</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Only available in runner distribution</p>
+</div>
 <ul>
 <li><a href="#creating-a-siddhi-application">Creating a Siddhi Application</a></li>
 <li><a href="#updating-a-siddhi-application">Updating a Siddhi Application</a></li>
@@ -2747,7 +2774,7 @@
 <li><a href="#enablingdisabling-the-statistics-of-a-specific-siddhi-application">Enabling/disabling the statistics of a specific Siddhi Application</a></li>
 <li><a href="#enablingdisabling-the-statistics-of-all-siddhi-applications">Enabling/disabling the statistics of all Siddhi Applications</a></li>
 </ul>
-<h3 id="creating-a-siddhi-application">Creating a Siddhi application<a class="headerlink" href="#creating-a-siddhi-application" title="Permanent link">&para;</a></h3>
+<h2 id="creating-a-siddhi-application">Creating a Siddhi application<a class="headerlink" href="#creating-a-siddhi-application" title="Permanent link">&para;</a></h2>
 <h3 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -2807,10 +2834,10 @@ following.</p>
 <ul>
 <li>
 <p>If API request is valid and there is no existing Siddhi application
-    with the given name, a response similar to the following is
-    generated with response code 201. This response contains a location
-    header with the path of the newly created file from product root
-    home.</p>
+  with the given name, a response similar to the following is
+  generated with response code 201. This response contains a location
+  header with the path of the newly created file from product root
+  home.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
@@ -2824,14 +2851,14 @@ following.</p>
 </li>
 <li>
 <p>If the API request is valid, but a Siddhi application with the given
-    name already exists,  a response similar to the following is
-    generated with response code 409.</p>
+  name already exists,  a response similar to the following is
+  generated with response code 409.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
 4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">{</span>
     <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;conflict&quot;</span><span class="o">,</span>
-    <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="s">&quot;There is a Siddhi App already exists with same name&quot;</span> 
+    <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="s">&quot;There is a Siddhi App already exists with same name&quot;</span>
 <span class="o">}</span>
 </pre></div>
 </td></tr></table>
@@ -2839,8 +2866,8 @@ following.</p>
 </li>
 <li>
 <p>If the API request is invalid due to invalid content in the Siddhi
-    queries you have included in the request body,  a response similar
-    to the following is generated is generated with response code 400.</p>
+  queries you have included in the request body,  a response similar
+  to the following is generated is generated with response code 400.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
@@ -2848,7 +2875,7 @@ following.</p>
 5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">{</span>
     <span class="s">&quot;code&quot;</span><span class="o">:</span> <span class="mi">800101</span><span class="o">,</span>
     <span class="s">&quot;type&quot;</span><span class="o">:</span> <span class="s">&quot;validation error&quot;</span><span class="o">,</span>
-    <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="s">&quot;You have an error in your SiddhiQL at line 8:8, missing INTO at &#39;BarStream&#39;&quot;</span> 
+    <span class="s">&quot;message&quot;</span><span class="o">:</span> <span class="s">&quot;You have an error in your SiddhiQL at line 8:8, missing INTO at &#39;BarStream&#39;&quot;</span>
 <span class="o">}</span>
 </pre></div>
 </td></tr></table>

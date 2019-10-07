@@ -1267,8 +1267,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../rest-guides/http-status-code/" title="HTTP Status Codes" class="md-nav__link">
-      HTTP Status Codes
+    <a href="../rest-guides/store-api/" title="Store APIs (Deprecated)" class="md-nav__link">
+      Store APIs (Deprecated)
     </a>
   </li>
 
@@ -1279,8 +1279,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../rest-guides/store-api/" title="Store APIs (Deprecated)" class="md-nav__link">
-      Store APIs (Deprecated)
+    <a href="../rest-guides/default-ports/" title="Default Ports" class="md-nav__link">
+      Default Ports
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rest-guides/http-status-code/" title="HTTP Status Codes" class="md-nav__link">
+      HTTP Status Codes
     </a>
   </li>
 
@@ -6109,7 +6121,7 @@ Further, when these named-aggregations are configured to use the same physical d
 
 <p><strong>Example 2</strong></p>
 <p>A trigger to generate events at 10.15 AM on every weekdays.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">define</span> <span class="k">trigger</span> <span class="n">FiveMinTriggerStream</span> <span class="k">at</span> <span class="s1">&#39;0 15 10 ? * MON-FRI&#39;</span><span class="p">;</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="n">define</span> <span class="k">trigger</span> <span class="n">WorkStartTrigger</span> <span class="k">at</span> <span class="s1">&#39;0 15 10 ? * MON-FRI&#39;</span><span class="p">;</span>
 </pre></div>
 </td></tr></table>
 
