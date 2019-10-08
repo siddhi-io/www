@@ -588,8 +588,8 @@ For more details about the NATS streaming server, refer to this [documentation](
 Use the following kubectl commands to install the Siddhi operator in your Kubernetes cluster.
 
 ```sh
-$ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-beta/00-prereqs.yaml
-$ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-beta/01-siddhi-operator.yaml
+$ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/00-prereqs.yaml
+$ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/01-siddhi-operator.yaml
 ```
 
 Now you need to create your own docker image with including all the custom libraries and configuration changes that you have made. Use following command to build and push the docker image with the tag `<DOCKER_HUB_USER_NAME>/siddhi-runner-alpine:latest`.
