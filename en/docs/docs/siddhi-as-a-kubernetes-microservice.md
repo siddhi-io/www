@@ -44,8 +44,8 @@ Here, the Siddhi applications containing stream processing logic can be written 
 To install the Siddhi Kubernetes operator run the following commands.
 
 ```sh
-kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-beta/00-prereqs.yaml
-kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-beta/01-siddhi-operator.yaml
+kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/00-prereqs.yaml
+kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/01-siddhi-operator.yaml
 ```
 
 You can verify the installation by making sure the following deployments are running in your Kubernetes cluster.
