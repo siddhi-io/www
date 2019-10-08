@@ -427,8 +427,8 @@ In the tooling editor itself, you can export your Siddhi app into a runnable Kub
 First, you need to install the Siddhi Kubernetes operator using following commands. For more details about the Siddhi operator refer to [this documentation](https://siddhi.io/en/v5.1/docs/siddhi-as-a-kubernetes-microservice/#install-siddhi-operator).
 
 ```sh
-$ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-beta/00-prereqs.yaml
-$ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-beta/01-siddhi-operator.yaml
+$ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/00-prereqs.yaml
+$ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/01-siddhi-operator.yaml
 ```
 
 Now you have to set up MySQL in your Kubernetes cluster. To do that use the following helm command.
