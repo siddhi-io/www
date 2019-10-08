@@ -322,20 +322,4 @@ There are specification changes in Siddhi Process Custom Resource Definition. Yo
 1. Getting segmentation fault error when creating PVC automatically (https://github.com/siddhi-io/siddhi-operator/issues/86)
 1. Stateful Siddhi Application fails deployment if persistence volume is unavailable (https://github.com/siddhi-io/siddhi-operator/issues/92)
 
-
-### Note
-
-Please refer to the [Siddhi documentation](https://siddhi-io.github.io/siddhi/documentation/siddhi-5.x/user-guide-5.x/#using-siddhi-as-kubernetes-micro-service) and [medium publications](https://medium.com/siddhi-io) to find out more details about the siddhi kubernetes operator.
-
-Reporting Issues
-Issues can be reported using at [GitHub Issue Tracker](https://github.com/siddhi-io/siddhi-operator/issues).
-
-Contact us
-[Siddhi-Dev Google Group](https://groups.google.com/forum/#!forum/siddhi-dev) Group is for Siddhi project discussion forum for developers.
-
-Users can use [Siddhi-User Google Group](https://groups.google.com/forum/#!forum/siddhi-user) to raise any queries and get some help to achieve their use cases.
-
-Also, to get more support you can get support from our [Slack](https://siddhi.io/community/#community-collaboration) channel or using [StackOverflow](https://stackoverflow.com/questions/tagged/siddhi)
-
--- Siddhi Team --
  
