@@ -42,6 +42,12 @@ Based on Siddhi distribution `5.1.0` and Siddhi Core `5.1.7`.
 
 Refer the user guide to use [Siddhi as Kubernetes Microservice](../deployment/siddhi-as-a-kubernetes-microservice/).
 
+## PySiddhi
+
+Based on Siddhi SDK `5.1.0` and Siddhi Core `5.1.7`.
+
+Refer the guide to use [PySiddhi](https://siddhi-io.github.io/PySiddhi/).
+
 ## Siddhi Libs 
 
 ### **5.1.x** 
