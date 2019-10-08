@@ -187,12 +187,14 @@ request.onload = function() {
           document.getElementById('current-version-release-notes-link')
                   .setAttribute('href', docSetUrl + data.all[data.current].notes + "/release-notes");
 
-          // Pre-release version update
-          document.getElementById('pre-release-version-version-download-link')
-              .setAttribute('href', docSetUrl + data.next + '/download');
-          document.getElementById('pre-release-version-documentation-link')
-              .setAttribute('href', docSetUrl + data.next + '/docs');
-          document.getElementById('pre-release-version-name').innerHTML =  data.next;
+          if (data.next !== "") {
+              // Pre-release version update
+              document.getElementById('pre-release-version-version-download-link')
+                  .setAttribute('href', docSetUrl + data.next + '/download');
+              document.getElementById('pre-release-version-documentation-link')
+                  .setAttribute('href', docSetUrl + data.next + '/docs');
+              document.getElementById('pre-release-version-name').innerHTML =  data.next;
+          }
       }
 
   } else {
