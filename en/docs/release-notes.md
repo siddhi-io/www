@@ -226,61 +226,116 @@ Please find the complete changes [here](https://github.com/siddhi-io/siddhi/comp
 
 ### Siddhi Operator 0.2.0
 
-#### Highlights
-#### Changed
+Siddhi team is excited to announce the Siddhi Operator Release 0.2.0. Please find the major improvements and features introduced in this release.
 
-1. Change YAML naming convention of the messaging system and persistent volume claim.
-    - Change `clusterId` -> `streamingClusterId`
-    - Change `persistentVolume`  -> `persistentVolumeClaim`
+### Compatibility & Support
 
-        ```yaml
-        messagingSystem:
-            type: nats
-            config: 
-            bootstrapServers: 
-                - "nats://nats-siddhi:4222"
-            streamingClusterId: stan-siddhi
-        
-        persistentVolumeClaim: 
-            accessModes: 
-            - ReadWriteOnce
-            resources: 
-            requests: 
-                storage: 1Gi
-            storageClassName: standard
-            volumeMode: Filesystem
-        ```
-2. Change YAML naming convention to the Camel case.
+There are specification changes in Siddhi Process Custom Resource Definition. You have to use siddhi.io/v1alpha2 custom resources with this release.
+
+### Features & Improvements
+
+#### SiddhiProcess Spec Changes from 0.1.1
+
+
+1. Aggregate previous `apps` and `query` specs to a single spec called `apps`.
+
     ```yaml
-    messagingSystem:
+    apps:
+    -
+        configMap: app
+    -
+        script: |-
+            @App:name("MonitorApp")
+            @App:description("Description of the plan")  
+            @sink(type='log', prefix='LOGGER')
+            @source(
+                type='http',
+                receiver.url='http://0.0.0.0:8080/example',
+                basic.auth.enabled='false',
+                @map(type='json')
+            )
+            define stream DevicePowerStream (type string, deviceID string, power int);
+            @sink(type='log', prefix='LOGGER')
+            define stream MonitorDevicesPowerStream(sumPower long);
+            @info(name='monitored-filter')
+            from DevicePowerStream#window.time(100 min)
+            select sum(power) as sumPower
+            insert all events into MonitorDevicesPowerStream;
+    ```
+
+1. Replace previous `pod` spec with the container spec.
+
+    ```yaml
+    container:
+        env:
+            -
+            name: RECEIVER_URL
+            value: "http://0.0.0.0:8080/example"
+            -
+            name: BASIC_AUTH_ENABLED
+            value: "false"
+            -
+            name: NATS_URL
+            value: "nats://siddhi-nats:4222"
+            -
+            name: NATS_DEST
+            value: siddhi
+            -
+            name: NATS_CLUSTER_ID
+            value: siddhi-stan
+        image: "siddhiio/siddhi-runner-ubuntu:latest"
+    ```
+
+1. The `imagePullSecret` under `pod` spec which was in previous releases move to the upper level in the YAML. (i.e Directly under the `spec` of CR )
+1. Remove previous `tls` spec. Now you can configure ingress TLS secret using the `siddhi-operator-config` config map.
+1. Change YAML naming convention to the Camel case.
+    ```yaml
+      messagingSystem:
         type: nats
         config: 
-        bootstrapServers: 
+          bootstrapServers: 
             - "nats://nats-siddhi:4222"
-        clusterId: stan-siddhi
-
-    persistentVolume: 
+          streamingClusterId: stan-siddhi
+      
+      persistentVolumeClaim: 
         accessModes: 
-        - ReadWriteOnce
+          - ReadWriteOnce
         resources: 
-        requests: 
+          requests: 
             storage: 1Gi
         storageClassName: standard
         volumeMode: Filesystem
     ```
-    
-#### Features & Improvements
-1. Enable version controlling for SiddhiProcesses.(https://github.com/siddhi-io/siddhi-operator/pull/57, https://github.com/siddhi-io/siddhi-operator/pull/66)
+
+1. Enable the version controlling to the SiddhiProcesses.(https://github.com/siddhi-io/siddhi-operator/pull/57, https://github.com/siddhi-io/siddhi-operator/pull/66)
 1. NGINX ingress 0.22.0+ support.
-1. Enabling readiness and liveness probes with the Siddhi runner. (https://github.com/siddhi-io/siddhi-operator/pull/46)
+1. Adding readiness and liveness probes to the Siddhi runner. (https://github.com/siddhi-io/siddhi-operator/pull/46)
+1. Change previous static Siddhi parser to a dynamic one which embedded with the Siddhi runner. (https://github.com/siddhi-io/siddhi-operator/pull/71)
 
-#### Bug Fixes 
 
-* Fix for the stateful Siddhi Application failure if persistence volume is unavailable [(#92)](https://github.com/siddhi-io/siddhi-operator/issues/92)
-* Getting segmentation fault error when creating PVC automatically [(#86)](https://github.com/siddhi-io/siddhi-operator/issues/86)
-* Use a dynamic Siddhi Parser for each Siddhi Custom Resource object, embedded within the Siddhi Runner distribution in-order to share the classpaths . [(#71)](https://github.com/siddhi-io/siddhi-operator/pull/71)
-* Fix Operator startup failing when NATS Operator is unavailable. [(#50)](https://github.com/siddhi-io/siddhi-operator/issues/50)
-* Fix Siddhi Process not getting updated when the Config map used to pass the Siddhi application in Siddhi custom resource object is updated. [(#42)](https://github.com/siddhi-io/siddhi-operator/issues/42)
- 
- !!! info "Please find more details about the release [here](https://github.com/siddhi-io/siddhi-operator/releases/tag/v0.2.0)"
+
+### Bug Fixes
+
+1. Failover Deployment Support - Added Features https://github.com/siddhi-io/siddhi-operator/issues/33
+1. Operator crashes the when NATS unavailable in the cluster (https://github.com/siddhi-io/siddhi-operator/issues/50)
+1. Versioning in siddhi application level ( https://github.com/siddhi-io/siddhi-operator/issues/42)
+1. Getting segmentation fault error when creating PVC automatically (https://github.com/siddhi-io/siddhi-operator/issues/86)
+1. Stateful Siddhi Application fails deployment if persistence volume is unavailable (https://github.com/siddhi-io/siddhi-operator/issues/92)
+
+
+### Note
+
+Please refer to the [Siddhi documentation](https://siddhi-io.github.io/siddhi/documentation/siddhi-5.x/user-guide-5.x/#using-siddhi-as-kubernetes-micro-service) and [medium publications](https://medium.com/siddhi-io) to find out more details about the siddhi kubernetes operator.
+
+Reporting Issues
+Issues can be reported using at [GitHub Issue Tracker](https://github.com/siddhi-io/siddhi-operator/issues).
+
+Contact us
+[Siddhi-Dev Google Group](https://groups.google.com/forum/#!forum/siddhi-dev) Group is for Siddhi project discussion forum for developers.
+
+Users can use [Siddhi-User Google Group](https://groups.google.com/forum/#!forum/siddhi-user) to raise any queries and get some help to achieve their use cases.
+
+Also, to get more support you can get support from our [Slack](https://siddhi.io/community/#community-collaboration) channel or using [StackOverflow](https://stackoverflow.com/questions/tagged/siddhi)
+
+-- Siddhi Team --
  
