@@ -118,11 +118,11 @@ Please find the complete changes [here](https://github.com/siddhi-io/siddhi/comp
 #### Highlights
 * Bug fixes covering various execution parts of Siddhi; mainly it contains fixes related to in-memory event table, error handling, extension loading, and event synchronization.
 
-### Features & Improvements
+#### Features & Improvements
 * Improve logs for duplicate extension additions [(#1521)](https://github.com/siddhi-io/siddhi/pull/1521)
 * Code refactoring changes to rename `store query` to `On-Demand query` [(#1506)](https://github.com/siddhi-io/siddhi/pull/1506) 
 
-### Bug Fixes
+#### Bug Fixes
 * Fix for NPE when using stream name to refer to attributes in aggregation join queries. [(#1503)](https://github.com/siddhi-io/siddhi/pull/1503)
 * Fix `update or insert` operation in InMemoryTable for EventChunks. [(#1497)](https://github.com/siddhi-io/siddhi/pull/1497) , [(#1512)](https://github.com/siddhi-io/siddhi/pull/1512)
 * Fix for extension loading issue in certain OS environments (slow environments) [(#1507)](https://github.com/siddhi-io/siddhi/pull/1507)
