@@ -39,39 +39,39 @@
 
 <details>
 <summary>More Info on Bug Fixes</summary>
-
-* Refactor gRPC related samples. [(#502)](https://github.com/siddhi-io/distribution/pull/502) <br/>
-* Fix UI issues in Docker/Kubernets export. [(#504)](https://github.com/siddhi-io/distribution/pull/504) <br/>
-* Add proper error handling to Docker/Kubernets export backend services. [(#503)](https://github.com/siddhi-io/distribution/pull/503) <br/>
-* Maintain templated Siddhi app in runtime without overriding with the populated app. [(#505)](https://github.com/siddhi-io/distribution/pull/505) <br/>
-* Fix console reconnection issue in editor. [(#506)](https://github.com/siddhi-io/distribution/pull/506) <br/>
-* Show only the started siddhi apps in on-demand query dialog box. [(#522)](https://github.com/siddhi-io/distribution/pull/522) <br/>
-* Avoid passing empty values for unset variables in Docker/Kubernetes export. [(#525)](https://github.com/siddhi-io/distribution/pull/525) <br/>
-* Prettify error messages in editor console. [(#531)](https://github.com/siddhi-io/distribution/pull/531) <br/>
-* Sample test client failures in windows environment. [(#534)](https://github.com/siddhi-io/distribution/pull/534) <br/>
-* Log error trace (if any) while trying to start Siddhi app from editor. [(#542)](https://github.com/siddhi-io/distribution/pull/542) <br/>
-* Jar to Bundle conversion failure in Windows environment. [(#554)](https://github.com/siddhi-io/distribution/pull/554) <br/>
-* Maintain a single Siddhi manager and reuse it across components. [(#556)](https://github.com/siddhi-io/distribution/pull/556) <br/>
-* Faulty Siddhi app not recovers even after the valid changes. [(#559)](https://github.com/siddhi-io/distribution/pull/559) <br/>
-* Siddhi app cannot be saved is the app name annotation is not given. [(#563)](https://github.com/siddhi-io/distribution/pull/563) <br/>
-* Docker push is not working in Widnows environment. [(#565)](https://github.com/siddhi-io/distribution/pull/565) <br/>
-* CSS issue when deleting elements in editor design view. [(#571)](https://github.com/siddhi-io/distribution/pull/571) <br/>
-* Simulator controls are not get disabled when app becomes faulty. [(#574)](https://github.com/siddhi-io/distribution/pull/574) <br/>
-* Case sensitivity issue in fault stream annotations. [(#578)](https://github.com/siddhi-io/distribution/pull/578) <br/>
-* Fix K8s unexpected character issue and set default messaging. [(#583)](https://github.com/siddhi-io/distribution/pull/583) <br/>
-* Issue in docker export with 'Could not acquire image ID or digest following build'. [(#587)](https://github.com/siddhi-io/distribution/pull/587) <br/>
-* Duplicate ports being added to docker file and readme. [(#589)](https://github.com/siddhi-io/distribution/pull/589) <br/>
-* Docker export does not list all the Siddhi apps. [(#591)](https://github.com/siddhi-io/distribution/pull/591) <br/>
-* Avoid parser creating multiple passthrough queries. [(#593)](https://github.com/siddhi-io/distribution/pull/593) <br/>
-* Add validation in docker export to select either download or push. [(#597)](https://github.com/siddhi-io/distribution/pull/597) <br/>
-* Duplicate stream definitions being added to Siddhi topology. [(#599)](https://github.com/siddhi-io/distribution/pull/599) <br/>
-* Bug fixes related to Docker/Kubernetes artifacts export features. [(#372)](https://github.com/siddhi-io/distribution/pull/372) <br/>
-* Change export file names and replace init script from the Dockerfile. [(#383)](https://github.com/siddhi-io/distribution/pull/383) <br/>
-* Remove unnecessary and unprotected API from runner distribution. [(#389)](https://github.com/siddhi-io/distribution/pull/389) <br/>
-* Bug: Switching from design view to source view after changing any element causes the conversion of triple-quotes into single ones in the avro scheme definition. [(#353)](https://github.com/siddhi-io/distribution/pull/353) <br/>
-* Fix for snakeyaml dependency issue. [(#310)](https://github.com/siddhi-io/distribution/pull/310) <br/>
-* Fix design view toggle button position ([#243](https://github.com/siddhi-io/distribution/pull/243)) <br/>
-
+<ul>
+<li> Refactor gRPC related samples. <a href="https://github.com/siddhi-io/siddhi/pull/502">(#502)</a></li>
+<li> Fix UI issues in Docker/Kubernets export. <a href="https://github.com/siddhi-io/siddhi/pull/504">(#504)</a></li>
+<li> Add proper error handling to Docker/Kubernets export backend services. <a href="https://github.com/siddhi-io/siddhi/pull/503">(#503)</a></li>
+<li> Maintain templated Siddhi app in runtime without overriding with the populated app. <a href="https://github.com/siddhi-io/siddhi/pull/505">(#505)</a></li>
+<li> Fix console reconnection issue in editor. <a href="https://github.com/siddhi-io/siddhi/pull/506">(#506)</a></li>
+<li> Show only the started siddhi apps in on-demand query dialog box. <a href="https://github.com/siddhi-io/siddhi/pull/522">(#522)</a></li>
+<li> Avoid passing empty values for unset variables in Docker/Kubernetes export. <a href="https://github.com/siddhi-io/siddhi/pull/525">(#525)</a></li>
+<li> Prettify error messages in editor console. <a href="https://github.com/siddhi-io/siddhi/pull/531">(#531)</a></li>
+<li> Sample test client failures in windows environment. <a href="https://github.com/siddhi-io/siddhi/pull/534">(#534)</a></li>
+<li> Log error trace (if any) while trying to start Siddhi app from editor. <a href="https://github.com/siddhi-io/siddhi/pull/542">(#542)</a></li>
+<li> Jar to Bundle conversion failure in Windows environment. <a href="https://github.com/siddhi-io/siddhi/pull/554">(#554)</a></li>
+<li> Maintain a single Siddhi manager and reuse it across components. <a href="https://github.com/siddhi-io/siddhi/pull/556">(#556)</a></li>
+<li> Faulty Siddhi app not recovers even after the valid changes. <a href="https://github.com/siddhi-io/siddhi/pull/559">(#559)</a></li>
+<li> Siddhi app cannot be saved is the app name annotation is not given. <a href="https://github.com/siddhi-io/siddhi/pull/563">(#563)</a></li>
+<li> Docker push is not working in Widnows environment. <a href="https://github.com/siddhi-io/siddhi/pull/565">(#565)</a></li>
+<li> CSS issue when deleting elements in editor design view. <a href="https://github.com/siddhi-io/siddhi/pull/571">(#571)</a></li>
+<li> Simulator controls are not get disabled when app becomes faulty. <a href="https://github.com/siddhi-io/siddhi/pull/574">(#574)</a></li>
+<li> Case sensitivity issue in fault stream annotations. <a href="https://github.com/siddhi-io/siddhi/pull/578">(#578)</a></li>
+<li> Fix K8s unexpected character issue and set default messaging. <a href="https://github.com/siddhi-io/siddhi/pull/583">(#583)</a></li>
+<li> Issue in docker export with 'Could not acquire image ID or digest following build'. <a href="https://github.com/siddhi-io/siddhi/pull/587">(#587)</a></li>
+<li> Duplicate ports being added to docker file and readme. <a href="https://github.com/siddhi-io/siddhi/pull/589">(#589)</a></li>
+<li> Docker export does not list all the Siddhi apps. <a href="https://github.com/siddhi-io/siddhi/pull/591">(#591)</a></li>
+<li> Avoid parser creating multiple passthrough queries. <a href="https://github.com/siddhi-io/siddhi/pull/593">(#593)</a></li>
+<li> Add validation in docker export to select either download or push. <a href="https://github.com/siddhi-io/siddhi/pull/597">(#597)</a></li>
+<li> Duplicate stream definitions being added to Siddhi topology. <a href="https://github.com/siddhi-io/siddhi/pull/599">(#599)</a></li>
+<li> Bug fixes related to Docker/Kubernetes artifacts export features. <a href="https://github.com/siddhi-io/siddhi/pull/372">(#372)</a></li>
+<li> Change export file names and replace init script from the Dockerfile. <a href="https://github.com/siddhi-io/siddhi/pull/383">(#383)</a></li>
+<li> Remove unnecessary and unprotected API from runner distribution. <a href="https://github.com/siddhi-io/siddhi/pull/389">(#389)</a></li>
+<li> Bug: Switching from design view to source view after changing any element causes the conversion of triple-quotes into single ones in the avro scheme definition. <a href="https://github.com/siddhi-io/siddhi/pull/353">(#353)</a></li>
+<li> Fix for snakeyaml dependency issue. <a href="https://github.com/siddhi-io/siddhi/pull/310">(#310)</a></li>
+<li> Fix design view toggle button position <a href="https://github.com/siddhi-io/siddhi/pull/243">(#243)</a></li>
+</ul>
 </details>
 
 #### Complete Changes 
