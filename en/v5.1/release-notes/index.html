@@ -857,19 +857,11 @@
     Siddhi Operator 0.2.0
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#highlights_6" title="Highlights" class="md-nav__link">
-    Highlights
-  </a>
-  
 </li>
         
           <li class="md-nav__item">
-  <a href="#changed" title="Changed" class="md-nav__link">
-    Changed
+  <a href="#compatibility-support" title="Compatibility &amp; Support" class="md-nav__link">
+    Compatibility &amp; Support
   </a>
   
 </li>
@@ -879,17 +871,25 @@
     Features &amp; Improvements
   </a>
   
-</li>
+    <nav class="md-nav">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#bug-fixes_8" title="Bug Fixes" class="md-nav__link">
-    Bug Fixes
+  <a href="#siddhiprocess-spec-changes-from-011" title="SiddhiProcess Spec Changes from 0.1.1" class="md-nav__link">
+    SiddhiProcess Spec Changes from 0.1.1
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bug-fixes_8" title="Bug Fixes" class="md-nav__link">
+    Bug Fixes
+  </a>
   
 </li>
         
@@ -1901,19 +1901,11 @@
     Siddhi Operator 0.2.0
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#highlights_6" title="Highlights" class="md-nav__link">
-    Highlights
-  </a>
-  
 </li>
         
           <li class="md-nav__item">
-  <a href="#changed" title="Changed" class="md-nav__link">
-    Changed
+  <a href="#compatibility-support" title="Compatibility &amp; Support" class="md-nav__link">
+    Compatibility &amp; Support
   </a>
   
 </li>
@@ -1923,17 +1915,25 @@
     Features &amp; Improvements
   </a>
   
-</li>
+    <nav class="md-nav">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#bug-fixes_8" title="Bug Fixes" class="md-nav__link">
-    Bug Fixes
+  <a href="#siddhiprocess-spec-changes-from-011" title="SiddhiProcess Spec Changes from 0.1.1" class="md-nav__link">
+    SiddhiProcess Spec Changes from 0.1.1
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bug-fixes_8" title="Bug Fixes" class="md-nav__link">
+    Bug Fixes
+  </a>
   
 </li>
         
@@ -2196,14 +2196,15 @@
 </div>
 <h2 id="siddhi-k8s-operator-releases">Siddhi K8s Operator Releases<a class="headerlink" href="#siddhi-k8s-operator-releases" title="Permanent link">&para;</a></h2>
 <h3 id="siddhi-operator-020">Siddhi Operator 0.2.0<a class="headerlink" href="#siddhi-operator-020" title="Permanent link">&para;</a></h3>
-<h4 id="highlights_6">Highlights<a class="headerlink" href="#highlights_6" title="Permanent link">&para;</a></h4>
-<h4 id="changed">Changed<a class="headerlink" href="#changed" title="Permanent link">&para;</a></h4>
+<p>Siddhi team is excited to announce the Siddhi Operator Release 0.2.0. Please find the major improvements and features introduced in this release.</p>
+<h3 id="compatibility-support">Compatibility &amp; Support<a class="headerlink" href="#compatibility-support" title="Permanent link">&para;</a></h3>
+<p>There are specification changes in Siddhi Process Custom Resource Definition. You have to use siddhi.io/v1alpha2 custom resources with this release.</p>
+<h3 id="features-improvements_8">Features &amp; Improvements<a class="headerlink" href="#features-improvements_8" title="Permanent link">&para;</a></h3>
+<h4 id="siddhiprocess-spec-changes-from-011">SiddhiProcess Spec Changes from 0.1.1<a class="headerlink" href="#siddhiprocess-spec-changes-from-011" title="Permanent link">&para;</a></h4>
 <ol>
-<li>Change YAML naming convention of the messaging system and persistent volume claim.<ul>
-<li>Change <code>clusterId</code> -&gt; <code>streamingClusterId</code></li>
 <li>
-<p>Change <code>persistentVolume</code>  -&gt; <code>persistentVolumeClaim</code></p>
-<p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+<p>Aggregate previous <code>apps</code> and <code>query</code> specs to a single spec called <code>apps</code>.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
  4
@@ -2217,24 +2218,84 @@
 12
 13
 14
-15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">messagingSystem</span><span class="p">:</span>
-    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nats</span>
-    <span class="nt">config</span><span class="p">:</span> 
-    <span class="nt">bootstrapServers</span><span class="p">:</span> 
-        <span class="p p-Indicator">-</span> <span class="s">&quot;nats://nats-siddhi:4222&quot;</span>
-    <span class="nt">streamingClusterId</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">stan-siddhi</span>
-
-<span class="nt">persistentVolumeClaim</span><span class="p">:</span> 
-    <span class="nt">accessModes</span><span class="p">:</span> 
-    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span>
-    <span class="nt">resources</span><span class="p">:</span> 
-    <span class="nt">requests</span><span class="p">:</span> 
-        <span class="nt">storage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1Gi</span>
-    <span class="nt">storageClassName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">standard</span>
-    <span class="nt">volumeMode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Filesystem</span>
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">apps</span><span class="p">:</span>
+<span class="p p-Indicator">-</span>
+    <span class="nt">configMap</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">app</span>
+<span class="p p-Indicator">-</span>
+    <span class="nt">script</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
+        <span class="no">@App:name(&quot;MonitorApp&quot;)</span>
+        <span class="no">@App:description(&quot;Description of the plan&quot;)  </span>
+        <span class="no">@sink(type=&#39;log&#39;, prefix=&#39;LOGGER&#39;)</span>
+        <span class="no">@source(</span>
+            <span class="no">type=&#39;http&#39;,</span>
+            <span class="no">receiver.url=&#39;http://0.0.0.0:8080/example&#39;,</span>
+            <span class="no">basic.auth.enabled=&#39;false&#39;,</span>
+            <span class="no">@map(type=&#39;json&#39;)</span>
+        <span class="no">)</span>
+        <span class="no">define stream DevicePowerStream (type string, deviceID string, power int);</span>
+        <span class="no">@sink(type=&#39;log&#39;, prefix=&#39;LOGGER&#39;)</span>
+        <span class="no">define stream MonitorDevicesPowerStream(sumPower long);</span>
+        <span class="no">@info(name=&#39;monitored-filter&#39;)</span>
+        <span class="no">from DevicePowerStream#window.time(100 min)</span>
+        <span class="no">select sum(power) as sumPower</span>
+        <span class="no">insert all events into MonitorDevicesPowerStream;</span>
 </pre></div>
 </td></tr></table>
-2. Change YAML naming convention to the Camel case.
+
+</li>
+<li>
+<p>Replace previous <code>pod</code> spec with the container spec.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">container</span><span class="p">:</span>
+    <span class="nt">env</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span>
+        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">RECEIVER_URL</span>
+        <span class="nt">value</span><span class="p">:</span> <span class="s">&quot;http://0.0.0.0:8080/example&quot;</span>
+        <span class="p p-Indicator">-</span>
+        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">BASIC_AUTH_ENABLED</span>
+        <span class="nt">value</span><span class="p">:</span> <span class="s">&quot;false&quot;</span>
+        <span class="p p-Indicator">-</span>
+        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">NATS_URL</span>
+        <span class="nt">value</span><span class="p">:</span> <span class="s">&quot;nats://siddhi-nats:4222&quot;</span>
+        <span class="p p-Indicator">-</span>
+        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">NATS_DEST</span>
+        <span class="nt">value</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi</span>
+        <span class="p p-Indicator">-</span>
+        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">NATS_CLUSTER_ID</span>
+        <span class="nt">value</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi-stan</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="s">&quot;siddhiio/siddhi-runner-ubuntu:latest&quot;</span>
+</pre></div>
+</td></tr></table>
+
+</li>
+<li>
+<p>The <code>imagePullSecret</code> under <code>pod</code> spec which was in previous releases move to the upper level in the YAML. (i.e Directly under the <code>spec</code> of CR )</p>
+</li>
+<li>Remove previous <code>tls</code> spec. Now you can configure ingress TLS secret using the <code>siddhi-operator-config</code> config map.</li>
+<li>
+<p>Change YAML naming convention to the Camel case.
     <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
@@ -2249,42 +2310,39 @@
 12
 13
 14
-15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">messagingSystem</span><span class="p">:</span>
+15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>  <span class="nt">messagingSystem</span><span class="p">:</span>
     <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nats</span>
     <span class="nt">config</span><span class="p">:</span> 
-    <span class="nt">bootstrapServers</span><span class="p">:</span> 
+      <span class="nt">bootstrapServers</span><span class="p">:</span> 
         <span class="p p-Indicator">-</span> <span class="s">&quot;nats://nats-siddhi:4222&quot;</span>
-    <span class="nt">clusterId</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">stan-siddhi</span>
+      <span class="nt">streamingClusterId</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">stan-siddhi</span>
 
-<span class="nt">persistentVolume</span><span class="p">:</span> 
+  <span class="nt">persistentVolumeClaim</span><span class="p">:</span> 
     <span class="nt">accessModes</span><span class="p">:</span> 
-    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span>
     <span class="nt">resources</span><span class="p">:</span> 
-    <span class="nt">requests</span><span class="p">:</span> 
+      <span class="nt">requests</span><span class="p">:</span> 
         <span class="nt">storage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1Gi</span>
     <span class="nt">storageClassName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">standard</span>
     <span class="nt">volumeMode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Filesystem</span>
 </pre></div>
 </td></tr></table></p>
 </li>
-</ul>
+<li>
+<p>Enable the version controlling to the SiddhiProcesses.(https://github.com/siddhi-io/siddhi-operator/pull/57, https://github.com/siddhi-io/siddhi-operator/pull/66)</p>
 </li>
-</ol>
-<h4 id="features-improvements_8">Features &amp; Improvements<a class="headerlink" href="#features-improvements_8" title="Permanent link">&para;</a></h4>
-<ol>
-<li>Enable version controlling for SiddhiProcesses.(https://github.com/siddhi-io/siddhi-operator/pull/57, https://github.com/siddhi-io/siddhi-operator/pull/66)</li>
 <li>NGINX ingress 0.22.0+ support.</li>
-<li>Enabling readiness and liveness probes with the Siddhi runner. (https://github.com/siddhi-io/siddhi-operator/pull/46)</li>
+<li>Adding readiness and liveness probes to the Siddhi runner. (https://github.com/siddhi-io/siddhi-operator/pull/46)</li>
+<li>Change previous static Siddhi parser to a dynamic one which embedded with the Siddhi runner. (https://github.com/siddhi-io/siddhi-operator/pull/71)</li>
 </ol>
-<h4 id="bug-fixes_8">Bug Fixes<a class="headerlink" href="#bug-fixes_8" title="Permanent link">&para;</a></h4>
-<ul>
-<li>Fix for the stateful Siddhi Application failure if persistence volume is unavailable <a href="https://github.com/siddhi-io/siddhi-operator/issues/92">(#92)</a></li>
-<li>Getting segmentation fault error when creating PVC automatically <a href="https://github.com/siddhi-io/siddhi-operator/issues/86">(#86)</a></li>
-<li>Use a dynamic Siddhi Parser for each Siddhi Custom Resource object, embedded within the Siddhi Runner distribution in-order to share the classpaths . <a href="https://github.com/siddhi-io/siddhi-operator/pull/71">(#71)</a></li>
-<li>Fix Operator startup failing when NATS Operator is unavailable. <a href="https://github.com/siddhi-io/siddhi-operator/issues/50">(#50)</a></li>
-<li>Fix Siddhi Process not getting updated when the Config map used to pass the Siddhi application in Siddhi custom resource object is updated. <a href="https://github.com/siddhi-io/siddhi-operator/issues/42">(#42)</a></li>
-</ul>
-<p>!!! info "Please find more details about the release <a href="https://github.com/siddhi-io/siddhi-operator/releases/tag/v0.2.0">here</a>"</p>
+<h3 id="bug-fixes_8">Bug Fixes<a class="headerlink" href="#bug-fixes_8" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Failover Deployment Support - Added Features https://github.com/siddhi-io/siddhi-operator/issues/33</li>
+<li>Operator crashes the when NATS unavailable in the cluster (https://github.com/siddhi-io/siddhi-operator/issues/50)</li>
+<li>Versioning in siddhi application level ( https://github.com/siddhi-io/siddhi-operator/issues/42)</li>
+<li>Getting segmentation fault error when creating PVC automatically (https://github.com/siddhi-io/siddhi-operator/issues/86)</li>
+<li>Stateful Siddhi Application fails deployment if persistence volume is unavailable (https://github.com/siddhi-io/siddhi-operator/issues/92)</li>
+</ol>
                 
                   
                 
