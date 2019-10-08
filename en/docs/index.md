@@ -49,7 +49,7 @@ These are the latest changes that have yet to be released.
 <table>
     <tbody>
         <tr>
-            <th id="pre-release-version-name">next</th>
+            <th id="pre-release-version-name">Work In Progress</th>
             <td>
                 <a id="pre-release-version-version-download-link">Download</a>
             </td>
