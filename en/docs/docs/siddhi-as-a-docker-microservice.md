@@ -131,22 +131,21 @@ insert into ProductionTable;
 The runner config can be configured with the relevant datasource information and passed when starting the runner
 
 ```yaml
-wso2.datasources:
-  dataSources:
-  - name: TEST_DB
-    description: The datasource used for testing
-    definition:
-      type: RDBMS
-      configuration:
-        jdbcUrl: 'jdbc:h2:${sys:carbon.home}/wso2/${sys:wso2.runtime}/database/TEST_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000'
-        username: admin
-        password: admin
-        driverClassName: org.h2.Driver
-        maxPoolSize: 10
-        idleTimeout: 60000
-        connectionTestQuery: SELECT 1
-        validationTimeout: 30000
-        isAutoCommit: false 
+dataSources:
+- name: TEST_DB
+  description: The datasource used for testing
+  definition:
+    type: RDBMS
+    configuration:
+      jdbcUrl: 'jdbc:h2:${sys:carbon.home}/wso2/${sys:wso2.runtime}/database/TEST_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000'
+      username: admin
+      password: admin
+      driverClassName: org.h2.Driver
+      maxPoolSize: 10
+      idleTimeout: 60000
+      connectionTestQuery: SELECT 1
+      validationTimeout: 30000
+      isAutoCommit: false 
 ```
 
 <ul>
@@ -255,22 +254,21 @@ insert into FilteredProductionStream;
 The runner config is configured with a gmail account to send email messages in `EmailConfig.yaml` by templating sending `EMAIL_ADDRESS`, `EMAIL_USERNAME` and `EMAIL_PASSWORD`.   
 
 ```yaml
-siddhi:
-  refs:
-    -
-      ref:
-        name: 'email-sink'
-        type: 'email'
-        properties:
-          port: '465'
-          host: 'smtp.gmail.com'
-          ssl.enable: 'true'
-          auth: 'true'
-          ssl.enable: 'true'
-          # User your gmail configurations here
-          address: '${EMAIL_ADDRESS}'   #E.g. test@gmail.com
-          username: '${EMAIL_USERNAME}' #E.g. test
-          password: '${EMAIL_PASSWORD}' #E.g. password
+refs:
+  -
+    ref:
+      name: 'email-sink'
+      type: 'email'
+      properties:
+        port: '465'
+        host: 'smtp.gmail.com'
+        ssl.enable: 'true'
+        auth: 'true'
+        ssl.enable: 'true'
+        # User your gmail configurations here
+        address: '${EMAIL_ADDRESS}'   #E.g. test@gmail.com
+        username: '${EMAIL_USERNAME}' #E.g. test
+        password: '${EMAIL_PASSWORD}' #E.g. password
 ```
 
 <ul>
