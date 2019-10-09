@@ -250,21 +250,21 @@ insert into FilteredProductionStream;
 The runner config is configured with a gmail account to send email messages in `EmailConfig.yaml` by templating sending `EMAIL_ADDRESS`, `EMAIL_USERNAME` and `EMAIL_PASSWORD`.   
 
 ```yaml
-  refs:
-    -
-      ref:
-        name: 'email-sink'
-        type: 'email'
-        properties:
-          port: '465'
-          host: 'smtp.gmail.com'
-          ssl.enable: 'true'
-          auth: 'true'
-          ssl.enable: 'true'
-          # User your gmail configurations here
-          address: '${EMAIL_ADDRESS}'   #E.g. test@gmail.com
-          username: '${EMAIL_USERNAME}' #E.g. test
-          password: '${EMAIL_PASSWORD}' #E.g. password
+refs:
+  -
+    ref:
+      name: 'email-sink'
+      type: 'email'
+      properties:
+        port: '465'
+        host: 'smtp.gmail.com'
+        ssl.enable: 'true'
+        auth: 'true'
+        ssl.enable: 'true'
+        # User your gmail configurations here
+        address: '${EMAIL_ADDRESS}'   #E.g. test@gmail.com
+        username: '${EMAIL_USERNAME}' #E.g. test
+        password: '${EMAIL_PASSWORD}' #E.g. password
 ```
 
 <ul>
