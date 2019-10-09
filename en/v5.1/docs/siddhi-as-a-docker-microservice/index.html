@@ -1359,23 +1359,21 @@ curl -X POST http://localhost:8006/production \
 12
 13
 14
-15
-16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">wso2.datasources</span><span class="p">:</span>
-  <span class="nt">dataSources</span><span class="p">:</span>
-  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">TEST_DB</span>
-    <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">The datasource used for testing</span>
-    <span class="nt">definition</span><span class="p">:</span>
-      <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">RDBMS</span>
-      <span class="nt">configuration</span><span class="p">:</span>
-        <span class="nt">jdbcUrl</span><span class="p">:</span> <span class="s">&#39;jdbc:h2:${sys:carbon.home}/wso2/${sys:wso2.runtime}/database/TEST_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000&#39;</span>
-        <span class="nt">username</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">admin</span>
-        <span class="nt">password</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">admin</span>
-        <span class="nt">driverClassName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">org.h2.Driver</span>
-        <span class="nt">maxPoolSize</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
-        <span class="nt">idleTimeout</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">60000</span>
-        <span class="nt">connectionTestQuery</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SELECT 1</span>
-        <span class="nt">validationTimeout</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">30000</span>
-        <span class="nt">isAutoCommit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span> 
+15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">dataSources</span><span class="p">:</span>
+<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">TEST_DB</span>
+  <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">The datasource used for testing</span>
+  <span class="nt">definition</span><span class="p">:</span>
+    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">RDBMS</span>
+    <span class="nt">configuration</span><span class="p">:</span>
+      <span class="nt">jdbcUrl</span><span class="p">:</span> <span class="s">&#39;jdbc:h2:${sys:carbon.home}/wso2/${sys:wso2.runtime}/database/TEST_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000&#39;</span>
+      <span class="nt">username</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">admin</span>
+      <span class="nt">password</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">admin</span>
+      <span class="nt">driverClassName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">org.h2.Driver</span>
+      <span class="nt">maxPoolSize</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+      <span class="nt">idleTimeout</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">60000</span>
+      <span class="nt">connectionTestQuery</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SELECT 1</span>
+      <span class="nt">validationTimeout</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">30000</span>
+      <span class="nt">isAutoCommit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span> 
 </pre></div>
 </td></tr></table>
 
@@ -1512,23 +1510,21 @@ curl -X POST https://localhost:9443/stores/query \
 12
 13
 14
-15
-16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">siddhi</span><span class="p">:</span>
-  <span class="nt">refs</span><span class="p">:</span>
-    <span class="p p-Indicator">-</span>
-      <span class="nt">ref</span><span class="p">:</span>
-        <span class="nt">name</span><span class="p">:</span> <span class="s">&#39;email-sink&#39;</span>
-        <span class="nt">type</span><span class="p">:</span> <span class="s">&#39;email&#39;</span>
-        <span class="nt">properties</span><span class="p">:</span>
-          <span class="nt">port</span><span class="p">:</span> <span class="s">&#39;465&#39;</span>
-          <span class="nt">host</span><span class="p">:</span> <span class="s">&#39;smtp.gmail.com&#39;</span>
-          <span class="nt">ssl.enable</span><span class="p">:</span> <span class="s">&#39;true&#39;</span>
-          <span class="nt">auth</span><span class="p">:</span> <span class="s">&#39;true&#39;</span>
-          <span class="nt">ssl.enable</span><span class="p">:</span> <span class="s">&#39;true&#39;</span>
-          <span class="c1"># User your gmail configurations here</span>
-          <span class="nt">address</span><span class="p">:</span> <span class="s">&#39;${EMAIL_ADDRESS}&#39;</span>   <span class="c1">#E.g. test@gmail.com</span>
-          <span class="nt">username</span><span class="p">:</span> <span class="s">&#39;${EMAIL_USERNAME}&#39;</span> <span class="c1">#E.g. test</span>
-          <span class="nt">password</span><span class="p">:</span> <span class="s">&#39;${EMAIL_PASSWORD}&#39;</span> <span class="c1">#E.g. password</span>
+15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">refs</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span>
+    <span class="nt">ref</span><span class="p">:</span>
+      <span class="nt">name</span><span class="p">:</span> <span class="s">&#39;email-sink&#39;</span>
+      <span class="nt">type</span><span class="p">:</span> <span class="s">&#39;email&#39;</span>
+      <span class="nt">properties</span><span class="p">:</span>
+        <span class="nt">port</span><span class="p">:</span> <span class="s">&#39;465&#39;</span>
+        <span class="nt">host</span><span class="p">:</span> <span class="s">&#39;smtp.gmail.com&#39;</span>
+        <span class="nt">ssl.enable</span><span class="p">:</span> <span class="s">&#39;true&#39;</span>
+        <span class="nt">auth</span><span class="p">:</span> <span class="s">&#39;true&#39;</span>
+        <span class="nt">ssl.enable</span><span class="p">:</span> <span class="s">&#39;true&#39;</span>
+        <span class="c1"># User your gmail configurations here</span>
+        <span class="nt">address</span><span class="p">:</span> <span class="s">&#39;${EMAIL_ADDRESS}&#39;</span>   <span class="c1">#E.g. test@gmail.com</span>
+        <span class="nt">username</span><span class="p">:</span> <span class="s">&#39;${EMAIL_USERNAME}&#39;</span> <span class="c1">#E.g. test</span>
+        <span class="nt">password</span><span class="p">:</span> <span class="s">&#39;${EMAIL_PASSWORD}&#39;</span> <span class="c1">#E.g. password</span>
 </pre></div>
 </td></tr></table>
 
