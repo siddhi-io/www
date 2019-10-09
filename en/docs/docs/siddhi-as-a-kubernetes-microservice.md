@@ -152,11 +152,6 @@ NAME      HOSTS     ADDRESS     PORTS     AGE
 siddhi    siddhi    10.0.2.15   80        2m
 ```
 
-!!! Note "Using a custom-built Siddhi runner image"
-    If you need to use a custom-built `siddhi-runner` image for a specific `SiddhiProcess` deployment, you have to configure `container.image` spec in the `power-surge-app.yaml`.
-    Refer the documentation on creating custom Siddhi runner images bundling additional JARs [here](../docs/config-guide.md#adding-to-siddhi-docker-microservice).
-    If you are pulling the custom-built image from a private Docker registry/repository, specify the corresponding kubernetes secret as `imagePullSecret` argument in the `power-surge-app.yaml` file. For more details on using docker images from private registries/repositories refer [this documentation](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/).
-
 **_Invoke Siddhi Applications_**
 
 To invoke the Siddhi App, obtain the external IP of the ingress load balancer using `kubectl get ingress` command as following.
@@ -337,6 +332,36 @@ Siddhi runner use `<SIDDHI_RUNNER_HOME>/conf/runner/deployment.yaml` file as the
         location: siddhi-app-persistence
 ```
 
+## Using a custom-built Siddhi runner image
+
+You can change the custom built `siddhi-runner` image in two ways.
+
+1. Change the image to all the SiddhiProcess deployments.
+1. Change the image only for a particular SiddhiProcess deployment.
+
+To change the `siddhi-runner` image for all the SiddhiProcess deployments you can use the `siddhi-operator-config` config map. You can update `siddhiImage` to change the image and if you are using a private docker registry/repository, then you can create a Kubernetes secret that contains credentials to the registry and specify that secret name `siddhiImageSecret` spec. Refer the documentation on creating custom Siddhi runner images bundling additional JARs [here](../docs/config-guide.md#adding-to-siddhi-docker-microservice). For more details on using docker images from private registries/repositories refer [this documentation](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/).
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: siddhi-operator-config
+data:
+  siddhiHome: /home/siddhi_user/siddhi-runner/
+  siddhiProfile: runner
+  siddhiImage: <YOUR-CUSTOM-IMAGE>
+  autoIngressCreation: "true"
+  siddhiImageSecret: <SECRET>
+```
+
+If you need to use a custom-built `siddhi-runner` image for a specific `SiddhiProcess` deployment, you have to configure `container.image` spec in the `SiddhiProcess`. If you are pulling the custom-built image from a private Docker registry/repository, specify the corresponding Kubernetes secret as `imagePullSecret` argument in the `SiddhiProcess` YAML file.
+
+```yaml
+  container: 
+    image: <YOUR-CUSTOM-IMAGE>
+  imagePullSecret: <SECRET>
+
+```
 ## Deploy and run Siddhi App using config maps
 
 Siddhi operator allows you to deploy Siddhi app configurations via config maps instead of just adding them inline. Through this, you can also run multiple Siddhi Apps in a single SiddhiProcess.
