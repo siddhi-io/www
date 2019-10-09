@@ -123,7 +123,6 @@ insert into ProductionTable;
 The runner config can by configured with the relevant datasource information and passed when starting the runner
 
 ```yaml
-wso2.datasources:
   dataSources:
   - name: TEST_DB
     description: The datasource used for testing
@@ -251,7 +250,6 @@ insert into FilteredProductionStream;
 The runner config is configured with a gmail account to send email messages in `EmailConfig.yaml` by templating sending `EMAIL_ADDRESS`, `EMAIL_USERNAME` and `EMAIL_PASSWORD`.   
 
 ```yaml
-siddhi:
   refs:
     -
       ref:
