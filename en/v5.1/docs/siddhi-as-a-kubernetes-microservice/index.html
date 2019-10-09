@@ -961,6 +961,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#using-a-custom-built-siddhi-runner-image" title="Using a custom-built Siddhi runner image" class="md-nav__link">
+    Using a custom-built Siddhi runner image
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#deploy-and-run-siddhi-app-using-config-maps" title="Deploy and run Siddhi App using config maps" class="md-nav__link">
     Deploy and run Siddhi App using config maps
   </a>
@@ -1262,6 +1269,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#using-a-custom-built-siddhi-runner-image" title="Using a custom-built Siddhi runner image" class="md-nav__link">
+    Using a custom-built Siddhi runner image
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#deploy-and-run-siddhi-app-using-config-maps" title="Deploy and run Siddhi App using config maps" class="md-nav__link">
     Deploy and run Siddhi App using config maps
   </a>
@@ -1528,12 +1542,6 @@ siddhi    siddhi    <span class="m">10</span>.0.2.15   <span class="m">80</span>
 </pre></div>
 </td></tr></table>
 
-<div class="admonition note">
-<p class="admonition-title">Using a custom-built Siddhi runner image</p>
-<p>If you need to use a custom-built <code>siddhi-runner</code> image for a specific <code>SiddhiProcess</code> deployment, you have to configure <code>container.image</code> spec in the <code>power-surge-app.yaml</code>.
-Refer the documentation on creating custom Siddhi runner images bundling additional JARs <a href="../config-guide/#adding-to-siddhi-docker-microservice">here</a>.
-If you are pulling the custom-built image from a private Docker registry/repository, specify the corresponding kubernetes secret as <code>imagePullSecret</code> argument in the <code>power-surge-app.yaml</code> file. For more details on using docker images from private registries/repositories refer <a href="https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/">this documentation</a>.</p>
-</div>
 <p><strong><em>Invoke Siddhi Applications</em></strong></p>
 <p>To invoke the Siddhi App, obtain the external IP of the ingress load balancer using <code>kubectl get ingress</code> command as following.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
@@ -1792,6 +1800,44 @@ A sample output logs are of this command is as follows.</p>
       <span class="no">persistenceStore: io.siddhi.distribution.core.persistence.FileSystemPersistenceStore</span>
       <span class="no">config:</span>
         <span class="no">location: siddhi-app-persistence</span>
+</pre></div>
+</td></tr></table>
+
+<h2 id="using-a-custom-built-siddhi-runner-image">Using a custom-built Siddhi runner image<a class="headerlink" href="#using-a-custom-built-siddhi-runner-image" title="Permanent link">&para;</a></h2>
+<p>You can change the custom built <code>siddhi-runner</code> image in two ways.</p>
+<ol>
+<li>Change the image to all the SiddhiProcess deployments.</li>
+<li>Change the image only for a particular SiddhiProcess deployment.</li>
+</ol>
+<p>To change the <code>siddhi-runner</code> image for all the SiddhiProcess deployments you can use the <code>siddhi-operator-config</code> config map. You can update <code>siddhiImage</code> to change the image and if you are using a private docker registry/repository, then you can create a Kubernetes secret that contains credentials to the registry and specify that secret name <code>siddhiImageSecret</code> spec. Refer the documentation on creating custom Siddhi runner images bundling additional JARs <a href="../config-guide/#adding-to-siddhi-docker-microservice">here</a>. For more details on using docker images from private registries/repositories refer <a href="https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/">this documentation</a>.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
+<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ConfigMap</span>
+<span class="nt">metadata</span><span class="p">:</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi-operator-config</span>
+<span class="nt">data</span><span class="p">:</span>
+  <span class="nt">siddhiHome</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/home/siddhi_user/siddhi-runner/</span>
+  <span class="nt">siddhiProfile</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">runner</span>
+  <span class="nt">siddhiImage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;YOUR-CUSTOM-IMAGE&gt;</span>
+  <span class="nt">autoIngressCreation</span><span class="p">:</span> <span class="s">&quot;true&quot;</span>
+  <span class="nt">siddhiImageSecret</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;SECRET&gt;</span>
+</pre></div>
+</td></tr></table>
+
+<p>If you need to use a custom-built <code>siddhi-runner</code> image for a specific <code>SiddhiProcess</code> deployment, you have to configure <code>container.image</code> spec in the <code>SiddhiProcess</code>. If you are pulling the custom-built image from a private Docker registry/repository, specify the corresponding Kubernetes secret as <code>imagePullSecret</code> argument in the <code>SiddhiProcess</code> YAML file.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>  <span class="nt">container</span><span class="p">:</span> 
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;YOUR-CUSTOM-IMAGE&gt;</span>
+  <span class="nt">imagePullSecret</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;SECRET&gt;</span>
 </pre></div>
 </td></tr></table>
 
