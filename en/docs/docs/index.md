@@ -2,7 +2,7 @@
 
 This section provides information on using and running Siddhi.
 
-Checkout the [Siddhi features](features) to get and idea on what it can do in brief. 
+Checkout the [Siddhi features](features) to get an idea on what it can do in brief. 
 
 ## Writing Siddhi Applications
 
