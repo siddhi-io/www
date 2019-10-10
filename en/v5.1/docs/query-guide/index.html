@@ -4799,7 +4799,7 @@ Here, the matching process begins for each event in the <code>RegulatorStream</c
 <p>Partition provides data parallelism by categorizing events into various isolated partition instance based on their attribute values and by processing each partition instance in isolation. Here each partition instance is tagged with a partition key, and they only process events that match to the corresponding partition key.</p>
 <p><strong>Purpose</strong></p>
 <p>Partition provide ways to segment events into groups and allow them to process the same set of queries in parallel and in isolation without redefining the queries for each segment.</p>
-<p>Here, events form multiple steams generating the same partition key will result in the same instance of the partition, and executed together. When a stream is used within the partition block without configuring a partition key, all of its events will be executed in all available partition instances.</p>
+<p>Here, events form multiple streams generating the same partition key will result in the same instance of the partition, and executed together. When a stream is used within the partition block without configuring a partition key, all of its events will be executed in all available partition instances.</p>
 <p><strong>Syntax</strong></p>
 <p>The syntax for a partition is as follows:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
@@ -4925,7 +4925,7 @@ Here, the matching process begins for each event in the <code>RegulatorStream</c
 </pre></div>
 </td></tr></table>
 
-<p>Here, partition instances are created for each office area type such as <code>serverRoom</code>, <code>officeRoom</code>, and <code>lobby</code>. Events are processed only in the partition instances which are associated with matching compare condition values that are satisfied by the event's <code>roomNo</code> attribute, and within each partition instance, the average <code>tamp</code> value is calculated based on the events arrived over the last 10 minutes.   </p>
+<p>Here, partition instances are created for each office area type such as <code>serverRoom</code>, <code>officeRoom</code>, and <code>lobby</code>. Events are processed only in the partition instances which are associated with matching compare condition values that are satisfied by the event's <code>roomNo</code> attribute, and within each partition instance, the average <code>temp</code> value is calculated based on the events arrived over the last 10 minutes.   </p>
 <p><strong>Example 3 (Inner streams)</strong></p>
 <p>A partition to calculate the average temperature of every 10 events for each sensor, and send the output via the <code>DeviceTempIncreasingStream</code> stream if consecutive average temperature (<code>avgTemp</code>) values increase by more than 5 degrees.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
