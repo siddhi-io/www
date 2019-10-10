@@ -2267,7 +2267,7 @@ Partition provides data parallelism by categorizing events into various isolated
 
 Partition provide ways to segment events into groups and allow them to process the same set of queries in parallel and in isolation without redefining the queries for each segment.
 
-Here, events form multiple steams generating the same partition key will result in the same instance of the partition, and executed together. When a stream is used within the partition block without configuring a partition key, all of its events will be executed in all available partition instances.
+Here, events form multiple streams generating the same partition key will result in the same instance of the partition, and executed together. When a stream is used within the partition block without configuring a partition key, all of its events will be executed in all available partition instances.
 
 **Syntax**
 
@@ -2353,7 +2353,7 @@ begin
 end;
 ```
 
-Here, partition instances are created for each office area type such as `serverRoom`, `officeRoom`, and `lobby`. Events are processed only in the partition instances which are associated with matching compare condition values that are satisfied by the event's `roomNo` attribute, and within each partition instance, the average `tamp` value is calculated based on the events arrived over the last 10 minutes.   
+Here, partition instances are created for each office area type such as `serverRoom`, `officeRoom`, and `lobby`. Events are processed only in the partition instances which are associated with matching compare condition values that are satisfied by the event's `roomNo` attribute, and within each partition instance, the average `temp` value is calculated based on the events arrived over the last 10 minutes.   
 
 **Example 3 (Inner streams)**
 
