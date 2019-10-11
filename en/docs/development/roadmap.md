@@ -2,18 +2,9 @@
 
 The Siddhi road map shows the key features and improvements that are in the pipeline for future releases. We have only listed the high level features and issues in below; we will certainly work on other minor improvements, bug fixes and etc… as well in future releases.
 
-## Latest
+## Latest (Siddhi 5.1.0)
 
-- Siddhi Core 5.0.0
-    - Localized state management & partition support
-    - Fault Stream support for error handling
-    - Multiple levels of Metrics (OFF, BASIC, DETAIL) support for Siddhi
-    - Extension APIs are improved/changed thus custom extensions that you have written with Siddhi 4.x.x, no longer works in Siddhi 5.0.0. 
-- Siddhi documentation upgrades - https://siddhi.io/en/v5.0/docs/
-
-## 2019-Q3
-
-- Siddhi Core 5.1.x
+- Siddhi Core 5.1.7
     - Introduce RESET processing mode to preserve memory optimization.
     - Support to create a Sandbox SiddhiAppRuntime for testing purposes
     - Support error handling (log/wait/fault-stream) when event sinks publish data asynchronously.
