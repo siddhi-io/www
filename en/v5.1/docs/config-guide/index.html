@@ -645,6 +645,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../guides/long-term-aggregation/guide/" title="Long-running time based Aggregations" class="md-nav__link">
+      Long-running time based Aggregations
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -1095,6 +1107,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#disabling-host-name-verification" title="Disabling host name verification" class="md-nav__link">
+    Disabling host name verification
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configuring-admin-rest-apis" title="Configuring Admin REST APIs" class="md-nav__link">
     Configuring Admin REST APIs
   </a>
@@ -1501,6 +1520,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#disabling-host-name-verification" title="Disabling host name verification" class="md-nav__link">
+    Disabling host name verification
+  </a>
   
 </li>
       
@@ -2502,6 +2528,19 @@ Information about the parameters configured under the <code>securevault</code> s
   <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Siddhi Runner Distribution</span>
   <span class="nt">ports</span><span class="p">:</span>
     <span class="nt">offset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+</pre></div>
+</td></tr></table>
+
+<h2 id="disabling-host-name-verification">Disabling host name verification<a class="headerlink" href="#disabling-host-name-verification" title="Permanent link">&para;</a></h2>
+<p>Hostname verification can be disabled in Admin APIs in analytics server side, with <code>hostnameVerificationEnabled</code></p>
+<p>Below is the sample configuration,</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">wso2.carbon</span><span class="p">:</span>
+  <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi-runner</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Siddhi Runner Distribution</span>
+  <span class="nt">hostnameVerificationEnabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
 </pre></div>
 </td></tr></table>
 

@@ -645,6 +645,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../guides/long-term-aggregation/guide/" title="Long-running time based Aggregations" class="md-nav__link">
+      Long-running time based Aggregations
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -1255,52 +1267,73 @@ Here, the Siddhi application (<code>.siddhi</code> file) contains stream process
 </td></tr></table>
 
 <ul>
-    <li>Copy the above SiddhiApp, and create the SiddhiApp file <code>CountOverTime.siddhi</code>.</li>
-    <li>Run the SiddhiApp by executing following commands from the distribution directory
-        <ul>
-            <li>Linux/Mac :
-            <pre style="white-space:pre-wrap;">./bin/runner.sh -Dapps=&lt;absolute-siddhi-file-path&gt;/CountOverTime.siddhi</pre>
-            </li>
-            <li>Windows :
-            <pre style="white-space:pre-wrap;">bin\runner.bat -Dapps=&lt;absolute-siddhi-file-path&gt;\CountOverTime.siddhi</pre>
-            </li>
-        </ul>
-    </li>
-    <li>Test the SiddhiApp by calling the HTTP endpoint using curl or Postman as follows
-        <ul>
-            <li><b>Publish events with curl command:</b><br/>
-            Publish few json to the http endpoint as follows,
-<pre style="white-space:pre-wrap;">
-curl -X POST http://localhost:8006/production \
-  --header "Content-Type:application/json" \
-  -d '{"event":{"name":"Cake","amount":20.12}}'
-</pre>
-            </li>
-            <li><b>Publish events with Postman:</b>
-              <ol>
-                <li>Install 'Postman' application from Chrome web store</li>
-                <li>Launch the application</li>
-                <li>Make a 'Post' request to 'http://localhost:8006/production' endpoint. Set the Content-Type to <code>'application/json'</code> and set the request body in json format as follows,
-<pre>
-{
-  "event": {
-    "name": "Cake",
-    "amount": 20.12
-  }
-}</pre>
-                </li>
-              </ol>
-            </li>
-        </ul>
-    </li>
-    <li>Runner logs the total count on the console. Note, how the count increments with every event sent.
-<pre style="white-space:pre-wrap;">
-[2019-04-11 13:36:03,517]  INFO {io.siddhi.core.stream.output.sink.LogSink} - CountOverTime : TotalCountStream : Event{timestamp=1554969963512, data=[1], isExpired=false}
-[2019-04-11 13:36:10,267]  INFO {io.siddhi.core.stream.output.sink.LogSink} - CountOverTime : TotalCountStream : Event{timestamp=1554969970267, data=[2], isExpired=false}
-[2019-04-11 13:36:41,694]  INFO {io.siddhi.core.stream.output.sink.LogSink} - CountOverTime : TotalCountStream : Event{timestamp=1554970001694, data=[1], isExpired=false}
-</pre>
-    </li>
+<li>
+<p>Copy the above SiddhiApp, and create the SiddhiApp file <code>CountOverTime.siddhi</code></p>
+</li>
+<li>
+<p>Run the SiddhiApp by executing following commands from the distribution directory</p>
+</li>
+<li>
+<p>Linux/Mac :</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">./bin/runner.sh -Dapps=&lt;absolute-siddhi-file-path&gt;/CountOverTime.siddhi</span>
+</pre></div>
+</td></tr></table>
+
+</li>
+<li>
+<p>Windows :</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">bin\runner.bat -Dapps=&lt;absolute-siddhi-file-path&gt;\CountOverTime.siddhi</span>
+</pre></div>
+</td></tr></table>
+
+</li>
+<li>
+<p>Test the SiddhiApp by calling the HTTP endpoint using curl or Postman as follows,</p>
+</li>
+<li>
+<p>Publish events with curl command:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">curl -X POST http://localhost:8006/production \</span>
+<span class="go">-header &quot;Content-Type:application/json&quot; \</span>
+<span class="go">-d &#39;{&quot;event&quot;:{&quot;name&quot;:&quot;Cake&quot;,&quot;amount&quot;:20.12}}&#39;</span>
+</pre></div>
+</td></tr></table>
+
+</li>
+<li>
+<p>Publish events with Postman:</p>
+<ul>
+<li>Install 'Postman' application from Chrome web store</li>
+<li>Launch the application</li>
+<li>Make a 'Post' request to 'http://localhost:8006/production' endpoint. Set the Content-Type to <code>'application/json'</code> and set the request body in json format as follows,</li>
 </ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="p">{</span>
+  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Cake&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;amount&quot;</span><span class="p">:</span> <span class="mf">20.12</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table>
+
+</li>
+<li>
+<p>Runner logs the total count on the console. Note, how the count increments with every event sent.</p>
+</li>
+</ul>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">[2019-04-11 13:36:03,517]  INFO {io.siddhi.core.stream.output.sink.LogSink} - CountOverTime : TotalCountStream : Event{timestamp=1554969963512, data=[1], isExpired=false}</span>
+<span class="go">[2019-04-11 13:36:10,267]  INFO {io.siddhi.core.stream.output.sink.LogSink} - CountOverTime : TotalCountStream : Event{timestamp=1554969970267, data=[2], isExpired=false}</span>
+<span class="go">[2019-04-11 13:36:41,694]  INFO {io.siddhi.core.stream.output.sink.LogSink} - CountOverTime : TotalCountStream : Event{timestamp=1554970001694, data=[1], isExpired=false}</span>
+</pre></div>
+</td></tr></table>
 
 <h3 id="running-with-runner-config">Running with runner config<a class="headerlink" href="#running-with-runner-config" title="Permanent link">&para;</a></h3>
 <p>When running SiddhiApps users can optionally provide a config yaml to Siddhi runner to manage configurations such as state persistence, databases connections and secure vault.</p>
@@ -1364,7 +1397,7 @@ curl -X POST http://localhost:8006/production \
         <span class="nt">idleTimeout</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">60000</span>
         <span class="nt">connectionTestQuery</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SELECT 1</span>
         <span class="nt">validationTimeout</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">30000</span>
-        <span class="nt">isAutoCommit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span> 
+        <span class="nt">isAutoCommit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
 </pre></div>
 </td></tr></table>
 
@@ -1382,7 +1415,7 @@ curl -X POST http://localhost:8006/production \
             </li>
         </ul>
     </li>
-    <li>Test the SiddhiApp by calling the HTTP endpoint using curl or Postman as follows
+    <li>Add data to H2 Database by calling the Siddhi Input stream HTTP endpoint
         <ul>
             <li><b>Publish events with curl command:</b><br/>
             Publish few json to the http endpoint as follows,
