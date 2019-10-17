@@ -623,7 +623,7 @@ wso2.carbon:
     offset: 1
 ```
 
-## Disabling host name verification
+### Disabling host name verification
 
 Hostname verification can be disabled in Admin APIs in analytics server side, with `hostnameVerificationEnabled`
 
