@@ -119,6 +119,7 @@ nav:
         - Static Rule Processing using Database Rules: docs/guides/database-static-rule-processing/guide.md
         - Integrate Various Enterprise Systems: docs/guides/integrate-various-enterprise-systems/guide.md
         - Realtime predictions with pre-trained ML models: docs/guides/realtime-movie-recommendation/guide.md
+        - Long-running time based Aggregations: docs/guides/long-term-aggregation/guide.md
     - Tooling: docs/tooling.md
     - Query Guide: docs/query-guide.md
     - Siddhi APIs:

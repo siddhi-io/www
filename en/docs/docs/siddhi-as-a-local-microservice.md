@@ -50,53 +50,51 @@ select count() as totalCount
 insert into TotalCountStream;
 ```
 
-<ul>
-    <li>Copy the above SiddhiApp, and create the SiddhiApp file <code>CountOverTime.siddhi</code>.</li>
-    <li>Run the SiddhiApp by executing following commands from the distribution directory
-        <ul>
-            <li>Linux/Mac :
-            <pre style="white-space:pre-wrap;">./bin/runner.sh -Dapps=&lt;absolute-siddhi-file-path&gt;/CountOverTime.siddhi</pre>
-            </li>
-            <li>Windows :
-            <pre style="white-space:pre-wrap;">bin\runner.bat -Dapps=&lt;absolute-siddhi-file-path&gt;\CountOverTime.siddhi</pre>
-            </li>
-        </ul>
-    </li>
-    <li>Test the SiddhiApp by calling the HTTP endpoint using curl or Postman as follows
-        <ul>
-            <li><b>Publish events with curl command:</b><br/>
-            Publish few json to the http endpoint as follows,
-<pre style="white-space:pre-wrap;">
-curl -X POST http://localhost:8006/production \
-  --header "Content-Type:application/json" \
-  -d '{"event":{"name":"Cake","amount":20.12}}'
-</pre>
-            </li>
-            <li><b>Publish events with Postman:</b>
-              <ol>
-                <li>Install 'Postman' application from Chrome web store</li>
-                <li>Launch the application</li>
-                <li>Make a 'Post' request to 'http://localhost:8006/production' endpoint. Set the Content-Type to <code>'application/json'</code> and set the request body in json format as follows,
-<pre>
-{
-  "event": {
-    "name": "Cake",
-    "amount": 20.12
-  }
-}</pre>
-                </li>
-              </ol>
-            </li>
-        </ul>
-    </li>
-    <li>Runner logs the total count on the console. Note, how the count increments with every event sent.
-<pre style="white-space:pre-wrap;">
+* Copy the above SiddhiApp, and create the SiddhiApp file `CountOverTime.siddhi`
+
+* Run the SiddhiApp by executing following commands from the distribution directory
+  * Linux/Mac :
+  
+    ```console
+    ./bin/runner.sh -Dapps=<absolute-siddhi-file-path>/CountOverTime.siddhi
+    ```
+
+  * Windows :
+
+      ```console
+      bin\runner.bat -Dapps=<absolute-siddhi-file-path>\CountOverTime.siddhi
+      ```
+
+* Test the SiddhiApp by calling the HTTP endpoint using curl or Postman as follows,
+  * Publish events with curl command:
+
+    ```console
+    curl -X POST http://localhost:8006/production \
+    -header "Content-Type:application/json" \
+    -d '{"event":{"name":"Cake","amount":20.12}}'
+    ```
+
+  * Publish events with Postman:
+    * Install 'Postman' application from Chrome web store
+    * Launch the application
+    * Make a 'Post' request to 'http://localhost:8006/production' endpoint. Set the Content-Type to <code>'application/json'</code> and set the request body in json format as follows,
+  
+      ```json
+      {
+        "event": {
+        "name": "Cake",
+        "amount": 20.12
+        }
+      }
+      ```
+
+* Runner logs the total count on the console. Note, how the count increments with every event sent.
+
+```console
 [2019-04-11 13:36:03,517]  INFO {io.siddhi.core.stream.output.sink.LogSink} - CountOverTime : TotalCountStream : Event{timestamp=1554969963512, data=[1], isExpired=false}
 [2019-04-11 13:36:10,267]  INFO {io.siddhi.core.stream.output.sink.LogSink} - CountOverTime : TotalCountStream : Event{timestamp=1554969970267, data=[2], isExpired=false}
 [2019-04-11 13:36:41,694]  INFO {io.siddhi.core.stream.output.sink.LogSink} - CountOverTime : TotalCountStream : Event{timestamp=1554970001694, data=[1], isExpired=false}
-</pre>
-    </li>
-</ul>
+```
 
 ### Running with runner config
 When running SiddhiApps users can optionally provide a config yaml to Siddhi runner to manage configurations such as state persistence, databases connections and secure vault.
@@ -137,7 +135,7 @@ dataSources:
         idleTimeout: 60000
         connectionTestQuery: SELECT 1
         validationTimeout: 30000
-        isAutoCommit: false 
+        isAutoCommit: false
 ```
 
 <ul>
@@ -154,7 +152,7 @@ dataSources:
             </li>
         </ul>
     </li>
-    <li>Test the SiddhiApp by calling the HTTP endpoint using curl or Postman as follows
+    <li>Add data to H2 Database by calling the Siddhi Input stream HTTP endpoint
         <ul>
             <li><b>Publish events with curl command:</b><br/>
             Publish few json to the http endpoint as follows,

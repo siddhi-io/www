@@ -623,6 +623,19 @@ wso2.carbon:
     offset: 1
 ```
 
+## Disabling host name verification
+
+Hostname verification can be disabled in Admin APIs in analytics server side, with `hostnameVerificationEnabled`
+
+ Below is the sample configuration,
+
+```yaml
+wso2.carbon:
+  id: siddhi-runner
+  name: Siddhi Runner Distribution
+  hostnameVerificationEnabled: false
+```
+
 ## Configuring Admin REST APIs
 
 Admin API can be configured under the namespace `transports >> http`. 
