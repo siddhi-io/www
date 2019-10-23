@@ -99,3 +99,8 @@ public class SimpleFilterSample {
     }
 }
 ```
+
+## Configuration
+
+Siddhi running as a embedded Java library can be configured with environment specific properties using `Extension System Parameters`, `References`, and `Siddhi Properties` using either `InMemoryConfigManager` or `YAMLConfigManager`. Please refer the [blog](https://medium.com/siddhi-io/introducing-siddhi-yaml-config-manager-5499625a99e) for details.
+
