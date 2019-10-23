@@ -17,7 +17,7 @@ Based on Siddhi Core 5.1.7 | &nbsp;      | &nbsp;  | &nbsp; |  &nbsp; |
 [Siddhi Tooling](https://github.com/siddhi-io/distribution/releases/download/v5.1.0/siddhi-tooling-5.1.0.zip) | [md5](https://github.com/siddhi-io/distribution/releases/download/v5.1.0/siddhi-tooling-5.1.0.zip.md5) | [SHA-1](https://github.com/siddhi-io/distribution/releases/download/v5.1.0/siddhi-tooling-5.1.0.zip.sha1) | [asc](https://github.com/siddhi-io/distribution/releases/download/v5.1.0/siddhi-tooling-5.1.0.zip.asc) | [source code](https://github.com/siddhi-io/distribution/releases/tag/v5.1.0) 
 [Siddhi Runner](https://github.com/siddhi-io/distribution/releases/download/v5.1.0/siddhi-runner-5.1.0.zip) | [md5](https://github.com/siddhi-io/distribution/releases/download/v5.1.0/siddhi-runner-5.1.0.zip.md5) | [SHA-1](https://github.com/siddhi-io/distribution/releases/download/v5.1.0/siddhi-runner-5.1.0.zip.sha1) | [asc](https://github.com/siddhi-io/distribution/releases/download/v5.1.0/siddhi-runner-5.1.0.zip.asc) | [source code](https://github.com/siddhi-io/distribution/releases/tag/v5.1.0)
 
-Refer the user guide to use [Siddhi as a Local Microservice](../deployment/siddhi-as-a-local-microservice/).
+Refer the user guide to use [Siddhi as a Local Microservice](../docs/siddhi-as-a-local-microservice/).
 
 ## Siddhi Docker
 
@@ -29,7 +29,7 @@ Based on Siddhi distribution `5.1.0` and Siddhi Core `5.1.7`.
 * [Siddhi Runner - Alpine](https://hub.docker.com/r/siddhiio/siddhi-runner-alpine) 
 * [Siddhi Runner - Ubuntu](https://hub.docker.com/r/siddhiio/siddhi-runner-ubuntu)
 
-Refer the user guide to use [Siddhi as a Docker Microservice](../deployment/siddhi-as-a-docker-microservice/).
+Refer the user guide to use [Siddhi as a Docker Microservice](../docs/siddhi-as-a-docker-microservice/).
 
 ## Siddhi Kubernetes 
 
@@ -40,7 +40,7 @@ Based on Siddhi distribution `5.1.0` and Siddhi Core `5.1.7`.
 * [Siddhi CRD](https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/00-prereqs.yaml)
 * [Siddhi Operator](https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/01-siddhi-operator.yaml)
 
-Refer the user guide to use [Siddhi as Kubernetes Microservice](../deployment/siddhi-as-a-kubernetes-microservice/).
+Refer the user guide to use [Siddhi as Kubernetes Microservice](../docs/siddhi-as-a-kubernetes-microservice/).
 
 ## PySiddhi
 
@@ -63,6 +63,6 @@ Refer the guide to use [PySiddhi](https://siddhi-io.github.io/PySiddhi/#quick-de
 * [Siddhi Query Compiler](https://mvnrepository.com/artifact/io.siddhi/siddhi-annotations)
 * [Siddhi Annotation](https://mvnrepository.com/artifact/io.siddhi/siddhi-query-compiler)
 
-Refer the user guide to use [Siddhi as a Java library](../deployment/siddhi-as-a-java-library/).
+Refer the user guide to use [Siddhi as a Java library](../docs/siddhi-as-a-java-library/).
 
 !!! Info "For other Siddhi Versions refer the [Download Archives](../../versions/)."
