@@ -537,7 +537,7 @@ a.cDistribution:hover {
     /*background-color: #e9e9e9;*/
     display: inline-block;
     /* padding: 30px; */
-    padding: 10px 60px 0 0;
+    padding: 10px 0 0 0;
     margin-bottom: 20px;
 }
 
@@ -759,4 +759,12 @@ a.cTryIt:hover {
     float: left;
     border: none;
     min-width: 220px;
+}
+
+[data-md-color-primary=teal] .cUseCasesContainer a {
+    color: black;
+}
+
+[data-md-color-primary=teal] .cUseCasesContainer a img{
+    width: 10px;
 }

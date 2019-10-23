@@ -28,7 +28,6 @@ Fully open source, cloud native, scalable, streaming, and complex event processi
 </p>
 <p>
 Event processing logic can be written using Streaming SQL queries via Siddhi graphical and source editor, to capture events from diverse data sources, process and analyze events, integrate with multiple services and data stores, and publish output to various endpoints in real-time. 
-Fully open source, cloud native, scalable, streaming, and complex event processing system capable of building event-driven applications via data integration, real-time analytics, notification, and adaptive decision-making capabilities.
 </p>
 
 <!-- <a href="#" class="cDownloadButton">Download</a> -->
@@ -165,10 +164,10 @@ Fully open source, cloud native, scalable, streaming, and complex event processi
 <div class="cUseCasesContainer">
 <h3>Streaming Data Integration</h3>
 <ul>
-    <li>Retrieve and publish data from various enterprise systems.</li>
+    <li><a href="en/_latest_version_/docs/guides/integrate-various-enterprise-systems/guide/" target="_blank">Retrieve and publish data from various enterprise systems. <img src="images/external-link-symbol.svg"/></a></li>
     <li>Perform data transformation on JSON, XML, Text, Avro, and CSV.</li>
     <li>Integrate with databases, services, and realtime event streams.</li>
-    <li>Data preprocessing, fault tolerance, and error handling.</li>
+    <li><a href="en/_latest_version_/docs/guides/fault-tolerance/guide/" target="_blank">Data preprocessing, fault tolerance, and error handling. <img src="images/external-link-symbol.svg"/></a></li>
 </ul>
 </div>
 </div>
@@ -178,9 +177,9 @@ Fully open source, cloud native, scalable, streaming, and complex event processi
 <h3>Streaming Data Analytics</h3>
 <ul>
     <li>Calculate aggregations over time, length, and session windows.</li>
-    <li>Long-running time-series aggregations from seconds to years.</li>
-    <li>Analyze event occurrence patterns and trends over time.</li>
-    <li>Realtime predictions with online and pre-trained ML models.</li>
+    <li><a href="en/_latest_version_/docs/guides/long-term-aggregation/guide/" target="_blank">Long-running time-series aggregations from seconds to years. <img src="images/external-link-symbol.svg"/></a></li>
+    <li><a href="en/_latest_version_/docs/guides/patterns-and-trends/guide/" target="_blank">Analyze event occurrence patterns and trends over time. <img src="images/external-link-symbol.svg"/></a></li>
+    <li><a href="en/_latest_version_/docs/guides/realtime-movie-recommendation/guide/" target="_blank">Realtime predictions with online and pre-trained ML models. <img src="images/external-link-symbol.svg"/></a></li>
 </ul>
 </div>
 </div>
@@ -191,7 +190,7 @@ Fully open source, cloud native, scalable, streaming, and complex event processi
 <div class="cUseCasesContainer">
 <h3>Alerts & Notifications</h3>
 <ul>
-    <li>Generate alerts based on static and dynamic thresholds.</li>
+    <li><a href="en/_latest_version_/docs/guides/alerts-for-thresholds/guide/" target="_blank">Generate alerts based on static and dynamic thresholds. <img src="images/external-link-symbol.svg"/></a></li>
     <li>Correlate data to detect event anomalies and missing events.</li>
     <li>Support scheduling, digest, and auto-retry of notifications.</li>
     <li>Publish alerts via various event sinks such as email, and MQs.</li>
@@ -204,7 +203,7 @@ Fully open source, cloud native, scalable, streaming, and complex event processi
 <div class="cUseCasesContainer">
 <h3>Adaptive Decision Making</h3>
 <ul>
-    <li>Static rule processing via predefined and database based rules.</li>
+    <li><a href="en/_latest_version_/docs/guides/database-static-rule-processing/guide/" target="_blank">Static rule processing via predefined and database based rules. <img src="images/external-link-symbol.svg"/></a></li>
     <li>Dynamic rule processing through stateful queries and system state.</li>
     <li>Decision making through synchronous RPC (HTTP, gRPC).</li>
     <li>Incremental learning and decision making online ML models.</li>
