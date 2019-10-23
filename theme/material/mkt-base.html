@@ -144,9 +144,9 @@
 <div class="container">
     {%- include "partials/info.html" -%}
     <div class="col-md-6 col-sm-6 cPageLogo">
-         <img src="images/siddhi-logo.svg"/>
-      </div>
-
+        <img src="images/siddhi-logo.svg"/>
+        <h4>Cloud Native Stream Processor</h4>
+    </div>
 </div>
 </div>
 
@@ -168,6 +168,9 @@
                     <div class="md-content" style="width: 100%; margin: 0;">
                        <article class="md-content__inner md-typeset">
                           {%- block content -%} {%- if page.edit_url -%}
+                           <div class="tagLine container">
+                               <h2>Tool to build fully-fledged event-driven applications</h2>
+                           </div>
                            <div class="container"><a href="{{ page.edit_url }}" title="{{ lang.t('edit.link.title') }}"
                                                      class="md-icon md-content__icon">&#xE3C9;</a></div> {%- endif -%}
                            {%- if not "\x3ch1" in page.content -%}
