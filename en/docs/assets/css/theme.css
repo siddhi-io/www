@@ -624,3 +624,6 @@ html .md-typeset .superfences-tabs > label:hover {
     width: 150%;
 }
 
+.md-sidebar__scrollwrap {
+    max-height: 90%;
+}
