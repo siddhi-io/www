@@ -647,3 +647,21 @@ html .md-typeset .superfences-tabs > label:hover {
 .cInfo a {
     color: #009688;
 }
+
+.tagLine {
+    padding-bottom: 1rem;
+    position: relative;
+    min-height: 1px;
+    padding-right: 30px;
+    padding-left: 30px;
+    margin-bottom: 1rem;
+}
+
+.tagLine h2{
+    font-weight: 200;
+    margin: 0;
+}
+
+.md-container {
+    padding-top: 1rem;
+}

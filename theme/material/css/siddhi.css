@@ -162,7 +162,7 @@ label.md-icon.md-icon--menu.md-header-nav__button {
     background-image: url(../images/siddhi-w-bg.jpg);
     background-position: bottom;
     background-size: 100%;
-    /* padding-bottom: 0px; */
+    background-repeat: repeat-x;
 }
 
 .cTerminal {
@@ -640,7 +640,7 @@ a.cDiagramLinks:hover img {
 }
 
 a.md-icon.md-content__icon {
-    margin: -2rem .5rem 0 0;
+    margin: -3rem .5rem 0 0;
 }
 
 nav.md-footer-nav__inner.md-grid {

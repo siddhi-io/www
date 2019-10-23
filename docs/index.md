@@ -19,17 +19,16 @@ template: templates/mkt-webpage.html
  * specific language governing permissions and limitations
  * under the License.
 -->
-
 <div class="row cIntroRow">
 <div class="container">
 <div class="col-md-6 col-sm-6">
 <h1>Siddhi</h1>
-<h2>Cloud Native Stream Processor</h2>
 <p>
-Fully open source, cloud-native, scalable, Streaming and Complex Event Processing System capable of building real-time analytics, data integration, notification and surveillance usecases.
+Fully open source, cloud native, scalable, streaming, and complex event processing system capable of building event-driven applications for real-time analytics, data integration, notification, and adaptive decision-making usecases.
 </p>
 <p>
-Siddhi understands Streaming SQL queries in order to capture events from diverse data sources, process them, integrate with multiple services and data sources, and publish output to various endpoints in real-time. 
+Event processing logic can be written using Streaming SQL queries via Siddhi graphical and source editor, to capture events from diverse data sources, process and analyze events, integrate with multiple services and data stores, and publish output to various endpoints in real-time. 
+Fully open source, cloud native, scalable, streaming, and complex event processing system capable of building event-driven applications via data integration, real-time analytics, notification, and adaptive decision-making capabilities.
 </p>
 
 <!-- <a href="#" class="cDownloadButton">Download</a> -->
@@ -124,7 +123,7 @@ Siddhi understands Streaming SQL queries in order to capture events from diverse
 <img src="images/integration.svg"/>
 <h3>System Integration</h3>
 </div>
-<p>Integrates with messaging systems (NATS, Kafka, JMS), Databases (RDBMS, NoSQL), Services (HTTP, gRPC), File systems and others.</p></div>
+<p>Integrates with messaging systems (NATS, Kafka, JMS), Databases (RDBMS, NoSQL), Services (HTTP, gRPC), File systems, E-mail and others.</p></div>
 </div>
 <div class="col-md-4 col-sm-12">
 <div class="cBenefits">
