@@ -18,6 +18,7 @@ Siddhi provides tooling that supports following features to develop and test str
     </p>
 </div>
 
+
 ## How to configure the Tooling
 
 ### Configure Tooling in Local Machine
@@ -55,10 +56,10 @@ http://localhost:9390/editor
 **More info,**
 
 There is a situation that you wanted to add any external dependencies (such as MySQL client jars), change the configurations and etc. Then, it would be ideal to create few mounting paths for the docker tooling as give below.
-* Mounting path for the editor workspace (eg: `workspace`) - To avoid losing Siddhi apps if there are any failures with the docker container.
-* Mounting path to add jars (eg: `jars`) - To add any external jars to the Siddhi tooling (for validation and testing purposes).
-* Mounting path to add bundles (eg: `bundles`) - To add any external OSGI bundles to the Siddhi tooling (for validation and testing purposes).
-* Mounting path to add configuration files (eg: `configs`) - To set any custom configurations or any other resources for the testing purposes.
+- Mounting path for the editor workspace (eg: `workspace`) - To avoid losing Siddhi apps if there are any failures with the docker container.
+- Mounting path to add jars (eg: `jars`) - To add any external jars to the Siddhi tooling (for validation and testing purposes).
+- Mounting path to add bundles (eg: `bundles`) - To add any external OSGI bundles to the Siddhi tooling (for validation and testing purposes).
+- Mounting path to add configuration files (eg: `configs`) - To set any custom configurations or any other resources for the testing purposes.
 
 In that case, you can directories locally as per your requirement and issue a similar command as shown below,
 
@@ -82,6 +83,6 @@ docker run -it -p 9390:9390 \
   siddhiio/siddhi-tooling:5.1.0 -Dconfig=/artifacts/EmailConfig.yaml
 ``` 
 
-### Siddhi App export tool for Docker/Kubernetes 
+### Siddhi App Export Tool for Docker/Kubernetes 
 
 <iframe width="675" height="375" src="https://www.youtube.com/embed/e7xo2pO0DXg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
