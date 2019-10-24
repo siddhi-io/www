@@ -695,12 +695,33 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#siddhi-editor" title="Siddhi Editor" class="md-nav__link">
-    Siddhi Editor
+  <a href="#overview" title="Overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-configure-the-tooling" title="How to configure the Tooling" class="md-nav__link">
+    How to configure the Tooling
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-tooling-in-local-machine" title="Configure Tooling in Local Machine" class="md-nav__link">
+    Configure Tooling in Local Machine
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-tooling-in-docker" title="Configure Tooling in Docker" class="md-nav__link">
+    Configure Tooling in Docker
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#siddhi-app-export-tool-for-dockerkubernetes" title="Siddhi App export tool for Docker/Kubernetes" class="md-nav__link">
@@ -1135,12 +1156,33 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#siddhi-editor" title="Siddhi Editor" class="md-nav__link">
-    Siddhi Editor
+  <a href="#overview" title="Overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-configure-the-tooling" title="How to configure the Tooling" class="md-nav__link">
+    How to configure the Tooling
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configure-tooling-in-local-machine" title="Configure Tooling in Local Machine" class="md-nav__link">
+    Configure Tooling in Local Machine
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-tooling-in-docker" title="Configure Tooling in Docker" class="md-nav__link">
+    Configure Tooling in Docker
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#siddhi-app-export-tool-for-dockerkubernetes" title="Siddhi App export tool for Docker/Kubernetes" class="md-nav__link">
@@ -1175,7 +1217,7 @@
                 
                 
                 <h1 id="siddhi-51-tooling">Siddhi 5.1 Tooling<a class="headerlink" href="#siddhi-51-tooling" title="Permanent link">&para;</a></h1>
-<h2 id="siddhi-editor">Siddhi Editor<a class="headerlink" href="#siddhi-editor" title="Permanent link">&para;</a></h2>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
 <p>Siddhi provides tooling that supports following features to develop and test stream processing applications: </p>
 <ul>
 <li><strong>Text Query Editor</strong> with syntax highlighting and advanced auto completion support.</li>
@@ -1192,6 +1234,75 @@
         <img alt="" src="/images/editor/source-editor.png" title="Source Editor">
     </p>
 </div>
+
+<h2 id="how-to-configure-the-tooling">How to configure the Tooling<a class="headerlink" href="#how-to-configure-the-tooling" title="Permanent link">&para;</a></h2>
+<h3 id="configure-tooling-in-local-machine">Configure Tooling in Local Machine<a class="headerlink" href="#configure-tooling-in-local-machine" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Install <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Oracle Java SE Development Kit (JDK)</a> version 1.8.</li>
+<li><a href="https://docs.oracle.com/cd/E19182-01/820-7851/inst_cli_jdk_javahome_t/">Set the JAVA_HOME</a> environment
+   variable.</li>
+<li>Download the latest tooling distribution from <a href="https://github.com/siddhi-io/distribution/releases/download/v5.1.0/siddhi-tooling-5.1.0.zip">here</a>.</li>
+<li>Extract the downloaded zip and navigate to <code>&lt;TOOLING_HOME&gt;/bin</code>. <br> (<code>TOOLING_HOME</code> refers to the extracted folder).</li>
+<li>
+<p>Issue the following command in the command prompt (Windows) / terminal (Linux/Mac)</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>For Windows: tooling.bat
+For Linux/Mac: ./tooling.sh
+</pre></div>
+</td></tr></table>
+
+</li>
+</ol>
+<h3 id="configure-tooling-in-docker">Configure Tooling in Docker<a class="headerlink" href="#configure-tooling-in-docker" title="Permanent link">&para;</a></h3>
+<p>There is a docker image for Siddhi tooling with all the dependencies that required for the Siddhi development. If you are familiar with Docker then you could use it.
+You find the Siddhi tooling docker images in the <a href="https://hub.docker.com/r/siddhiio/siddhi-tooling">docker hub</a></p>
+<p>You can issue the below command to run Siddhi docker container. Make sure, you already have a docker installation (Docker for Mac or Docker for Windows or Docker CE or any other docker engines) locally.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>docker run -p 9390:9390 siddhiio/siddhi-tooling:5.1.0
+</pre></div>
+</td></tr></table>
+
+<p>After successfully starting the Siddhi Editor, the terminal should look like as shown below:
+<img alt="" src="../../images/editor/docker-tooling.png?raw=true" title="Terminal after starting Siddhi Editor" /></p>
+<p>As you can see, we have exposed the port 9390 to the host machine since you have to access the Tooling web editor through that. After starting the Siddhi Editor, access the Editor GUI by visiting the following link in your browser (Google Chrome is the recommended). This takes you to the Siddhi Editor landing page.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>http://localhost:9390/editor
+</pre></div>
+</td></tr></table>
+
+<p><strong>More info,</strong></p>
+<p>There is a situation that you wanted to add any external dependencies (such as MySQL client jars), change the configurations and etc. Then, it would be ideal to create few mounting paths for the docker tooling as give below.
+* Mounting path for the editor workspace (eg: <code>workspace</code>) - To avoid losing Siddhi apps if there are any failures with the docker container.
+* Mounting path to add jars (eg: <code>jars</code>) - To add any external jars to the Siddhi tooling (for validation and testing purposes).
+* Mounting path to add bundles (eg: <code>bundles</code>) - To add any external OSGI bundles to the Siddhi tooling (for validation and testing purposes).
+* Mounting path to add configuration files (eg: <code>configs</code>) - To set any custom configurations or any other resources for the testing purposes.</p>
+<p>In that case, you can directories locally as per your requirement and issue a similar command as shown below,</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>docker run -it -p 9390:9390 \ 
+  -v &lt;absolute path&gt;/configs:/artifacts \
+  -v &lt;absolute path&gt;/workspace:/home/siddhi_user/siddhi-tooling/wso2/tooling/deployment/workspace \
+  -v &lt;absolute path&gt;/jars:/home/siddhi_user/siddhi-tooling/jars \
+  -v &lt;absolute path&gt;/bundles:/home/siddhi_user/siddhi-tooling/bundles \
+  siddhiio/siddhi-tooling:5.1.0
+</pre></div>
+</td></tr></table>
+
+<p>For example, let's assume that your email configuration as a file that you wanted to use within the Siddhi editor. In that case, you can add the email configuration file (eg: <code>EmailConfig.yaml</code>) into the <code>configs</code> mounting directory that you have created locally and issue below command to apply the configuration in Siddhi tooling.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>docker run -it -p 9390:9390 \ 
+  -v &lt;absolute path&gt;/configs:/artifacts \
+  -v &lt;absolute path&gt;/workspace:/home/siddhi_user/siddhi-tooling/wso2/tooling/deployment/workspace \
+  -v &lt;absolute path&gt;/jars:/home/siddhi_user/siddhi-tooling/jars \
+  -v &lt;absolute path&gt;/bundles:/home/siddhi_user/siddhi-tooling/bundles \
+  siddhiio/siddhi-tooling:5.1.0 -Dconfig=/artifacts/EmailConfig.yaml
+</pre></div>
+</td></tr></table>
 
 <h3 id="siddhi-app-export-tool-for-dockerkubernetes">Siddhi App export tool for Docker/Kubernetes<a class="headerlink" href="#siddhi-app-export-tool-for-dockerkubernetes" title="Permanent link">&para;</a></h3>
 <iframe width="675" height="375" src="https://www.youtube.com/embed/e7xo2pO0DXg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
