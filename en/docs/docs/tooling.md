@@ -56,6 +56,7 @@ http://localhost:9390/editor
 **More info,**
 
 There is a situation that you wanted to add any external dependencies (such as MySQL client jars), change the configurations and etc. Then, it would be ideal to create few mounting paths for the docker tooling as give below.
+
 - Mounting path for the editor workspace (eg: `workspace`) - To avoid losing Siddhi apps if there are any failures with the docker container.
 - Mounting path to add jars (eg: `jars`) - To add any external jars to the Siddhi tooling (for validation and testing purposes).
 - Mounting path to add bundles (eg: `bundles`) - To add any external OSGI bundles to the Siddhi tooling (for validation and testing purposes).
