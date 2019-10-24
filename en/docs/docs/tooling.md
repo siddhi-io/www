@@ -40,7 +40,7 @@ You find the Siddhi tooling docker images in the [docker hub](https://hub.docker
 You can issue the below command to run Siddhi docker container. Make sure, you already have a docker installation (Docker for Mac or Docker for Windows or Docker CE or any other docker engines) locally.
 
 ```
-docker run -p 9390:9390 siddhiio/siddhi-tooling:5.1.0
+docker run -it -p 9390:9390 siddhiio/siddhi-tooling:5.1.0
 ```
 
 After successfully starting the Siddhi Editor, the terminal should look like as shown below:
