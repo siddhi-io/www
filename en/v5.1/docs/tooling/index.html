@@ -1269,11 +1269,13 @@ You find the Siddhi tooling docker images in the <a href="https://hub.docker.com
 </td></tr></table>
 
 <p><strong>More info,</strong></p>
-<p>There is a situation that you wanted to add any external dependencies (such as MySQL client jars), change the configurations and etc. Then, it would be ideal to create few mounting paths for the docker tooling as give below.
-- Mounting path for the editor workspace (eg: <code>workspace</code>) - To avoid losing Siddhi apps if there are any failures with the docker container.
-- Mounting path to add jars (eg: <code>jars</code>) - To add any external jars to the Siddhi tooling (for validation and testing purposes).
-- Mounting path to add bundles (eg: <code>bundles</code>) - To add any external OSGI bundles to the Siddhi tooling (for validation and testing purposes).
-- Mounting path to add configuration files (eg: <code>configs</code>) - To set any custom configurations or any other resources for the testing purposes.</p>
+<p>There is a situation that you wanted to add any external dependencies (such as MySQL client jars), change the configurations and etc. Then, it would be ideal to create few mounting paths for the docker tooling as give below.</p>
+<ul>
+<li>Mounting path for the editor workspace (eg: <code>workspace</code>) - To avoid losing Siddhi apps if there are any failures with the docker container.</li>
+<li>Mounting path to add jars (eg: <code>jars</code>) - To add any external jars to the Siddhi tooling (for validation and testing purposes).</li>
+<li>Mounting path to add bundles (eg: <code>bundles</code>) - To add any external OSGI bundles to the Siddhi tooling (for validation and testing purposes).</li>
+<li>Mounting path to add configuration files (eg: <code>configs</code>) - To set any custom configurations or any other resources for the testing purposes.</li>
+</ul>
 <p>In that case, you can directories locally as per your requirement and issue a similar command as shown below,</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
