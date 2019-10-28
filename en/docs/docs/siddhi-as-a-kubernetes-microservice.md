@@ -602,7 +602,7 @@ $ kubectl logs monitor-app-667c97c898-rrtfs
 [2019-07-12 09:07:50,098]  INFO {io.siddhi.core.stream.output.sink.LogSink} - LOGGER : Event{timestamp=1562922470093, data=[dryer, 60000], isExpired=false}
 ```
 
-## Deploy and Run Siddhi App with TCP Endpoints
+## Externally publish data to NATS from Siddhi
 
 The default ingress creation of the Siddhi operator allows accessing HTTP/HTTPS endpoints externally. By default, it will not support TCP endpoints. Sometimes you may have some TCP endpoints to configure like NATS and Kafka sources and access those endpoints externally.
 
