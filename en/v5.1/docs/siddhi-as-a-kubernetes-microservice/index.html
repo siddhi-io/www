@@ -1001,8 +1001,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#deploy-and-run-siddhi-app-with-tcp-endpoints" title="Deploy and Run Siddhi App with TCP Endpoints" class="md-nav__link">
-    Deploy and Run Siddhi App with TCP Endpoints
+  <a href="#externally-publish-data-to-nats-from-siddhi" title="Externally publish data to NATS from Siddhi" class="md-nav__link">
+    Externally publish data to NATS from Siddhi
   </a>
   
 </li>
@@ -1309,8 +1309,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#deploy-and-run-siddhi-app-with-tcp-endpoints" title="Deploy and Run Siddhi App with TCP Endpoints" class="md-nav__link">
-    Deploy and Run Siddhi App with TCP Endpoints
+  <a href="#externally-publish-data-to-nats-from-siddhi" title="Externally publish data to NATS from Siddhi" class="md-nav__link">
+    Externally publish data to NATS from Siddhi
   </a>
   
 </li>
@@ -2157,7 +2157,7 @@ $ kubectl logs monitor-app-667c97c898-rrtfs
 </pre></div>
 </td></tr></table>
 
-<h2 id="deploy-and-run-siddhi-app-with-tcp-endpoints">Deploy and Run Siddhi App with TCP Endpoints<a class="headerlink" href="#deploy-and-run-siddhi-app-with-tcp-endpoints" title="Permanent link">&para;</a></h2>
+<h2 id="externally-publish-data-to-nats-from-siddhi">Externally publish data to NATS from Siddhi<a class="headerlink" href="#externally-publish-data-to-nats-from-siddhi" title="Permanent link">&para;</a></h2>
 <p>The default ingress creation of the Siddhi operator allows accessing HTTP/HTTPS endpoints externally. By default, it will not support TCP endpoints. Sometimes you may have some TCP endpoints to configure like NATS and Kafka sources and access those endpoints externally.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="k">source</span><span class="p">(</span><span class="k">type</span><span class="o">=</span><span class="s1">&#39;nats&#39;</span><span class="p">,</span> <span class="o">@</span><span class="k">map</span><span class="p">(</span><span class="k">type</span><span class="o">=</span><span class="s1">&#39;text&#39;</span><span class="p">),</span> <span class="n">destination</span><span class="o">=</span><span class="s1">&#39;SP_NATS_INPUT_TEST&#39;</span><span class="p">,</span> <span class="n">bootstrap</span><span class="p">.</span><span class="n">servers</span><span class="o">=</span><span class="s1">&#39;nats://localhost:4222&#39;</span><span class="p">,</span><span class="n">client</span><span class="p">.</span><span class="n">id</span><span class="o">=</span><span class="s1">&#39;nats_client&#39;</span><span class="p">,</span><span class="n">server</span><span class="p">.</span><span class="n">id</span><span class="o">=</span><span class="s1">&#39;test-cluster&#39;</span><span class="p">,</span><span class="n">queue</span><span class="p">.</span><span class="k">group</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;group_nats&#39;</span><span class="p">,</span><span class="n">durable</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;nats-durable&#39;</span><span class="p">,</span><span class="n">subscription</span><span class="p">.</span><span class="n">sequence</span> <span class="o">=</span> <span class="s1">&#39;100&#39;</span><span class="p">)</span>
