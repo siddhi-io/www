@@ -22,7 +22,7 @@ To file non-security issues:
 
 ### Obtaining the Source Code and Building the Project
 
-Refer [Source & Build](../../development/) section for details on obtaining the source code, building the projects, and for their relevant prerequisites.
+Refer [Source & Build](../../en/_latest_version_/development/) section for details on obtaining the source code, building the projects, and for their relevant prerequisites.
 
 ### Making Code Changes and Sending PRs
 
