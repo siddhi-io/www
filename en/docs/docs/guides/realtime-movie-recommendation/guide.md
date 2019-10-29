@@ -46,8 +46,8 @@ Below are the prerequisites that should be considered to implement the above use
 * Java 8 or higher
 * [Siddhi Gpl Execution PMML extension](https://maven.wso2.org/nexus/service/local/repositories/releases/content/io/siddhi/extension/gpl/execution/pmml/siddhi-gpl-execution-pmml/5.0.1/siddhi-gpl-execution-pmml-5.0.1.jar)
 * [Siddhi Execution Tensorflow extension](https://mvnrepository.com/artifact/io.siddhi.extension.execution.tensorflow/siddhi-execution-tensorflow/2.0.2) 
-* [Pre-trained sentiment analysis tensorflow model](https://github.com/pcnfernando/MovieRecommendationSystem/tree/master/tf/SentimentAnalysisModel/bert)
-* [Pre-trained movie recommendation PMML model](https://github.com/pcnfernando/MovieRecommendationSystem/tree/master/pmml/MovieRecommendationModel)
+* [Pre-trained sentiment analysis tensorflow model](https://github.com/pcnfernando/MovieRecommendationSystem/releases/download/v1.0/bert.zip)
+* [Pre-trained movie recommendation PMML model](https://github.com/pcnfernando/MovieRecommendationSystem/releases/download/v1.0/text_input_model.zip)
 
 ##### Training Tensorflow model for Sentiment Analysis
 We use the IMDB dataset that contains the text of 50,000 movie reviews from the Internet Movie Database. 
@@ -166,7 +166,7 @@ When you run the Siddhi app in the editor, you will see below logs getting print
 
 ### Run Mock Logger service
 
-In the provided Siddhi app, there is a HTTP sink configured to push output events to an HTTP endpoint. To verify that, please download the mock server [jar](https://github.com/pcnfernando/MovieRecommendationSystem/util/logservice-1.0.0.jar) and run that mock service by executing below command.
+In the provided Siddhi app, there is a HTTP sink configured to push output events to an HTTP endpoint. To verify that, please download the mock server [jar](https://github.com/pcnfernando/MovieRecommendationSystem/blob/master/util/logservice-1.0.0.jar) and run that mock service by executing below command.
 
 ````
 java -jar logservice-1.0.0.jar
@@ -218,7 +218,7 @@ NOTE: In the above provided Siddhi app, there are some environmental variables (
            ./bin/runner.sh -Dapps=Realtime-Movie-Recommendation-App.siddhi
      ````
     
-5. Download the mock [logging service](https://github.com/pcnfernando/MovieRecommendationSystem/util/logservice-1.0.0.jar) which is used to demonstrate the capability of Siddhi HTTP sink. Execute the below command to run the mock server.
+5. Download the mock [logging service](https://github.com/pcnfernando/MovieRecommendationSystem/blob/master/util/logservice-1.0.0.jar) which is used to demonstrate the capability of Siddhi HTTP sink. Execute the below command to run the mock server.
 
 	    java -jar logservice-1.0.0.jar
 
@@ -260,7 +260,7 @@ NOTE: In the above provided Siddhi app, there are some environmental variables (
     NOTE: In the above provided Siddhi app, there are some environmental variables (SENTIMENT_ANALYSIS_TF_SAVED_MODEL_PATH and MOVIE_RECOMMENDATION_PMML_MODEL_PATH)  which are mandatory to be set for Siddhi application to execute. Again, there is a mock service configured to receive the recommended movies (instructions given below), and its host is configured via LOGGER_SERVICE_HOST environment property. 
     Hence, make sure to add proper values for the environmental variables in the above command.
 
-4. Download the mock [logging service](https://github.com/pcnfernando/MovieRecommendationSystem/util/logservice-1.0.0.jar)  which is used to demonstrate the capability of SIddhi HTTP sink. Execute below command to run the mock server.
+4. Download the mock [logging service](https://github.com/pcnfernando/MovieRecommendationSystem/blob/master/util/logservice-1.0.0.jar)  which is used to demonstrate the capability of SIddhi HTTP sink. Execute below command to run the mock server.
 
     ````
 	    java -jar logservice-1.0.0.jar
@@ -298,7 +298,7 @@ NOTE: In the above provided Siddhi app, there are some environmental variables (
         ![kubernetes_siddhi-deployments](images/kubernetes-siddhi-deployments.png "K8S Siddhi deployments")
 
 
-2. Download the mock [logging service](https://github.com/pcnfernando/MovieRecommendationSystem/util/logservice-1.0.0.jar) 
+2. Download the mock [logging service](https://github.com/pcnfernando/MovieRecommendationSystem/blob/master/util/logservice-1.0.0.jar) 
 which is used to demonstrate the capability of Siddhi HTTP sink. Execute the below command to run the mock server.
 
     ````
