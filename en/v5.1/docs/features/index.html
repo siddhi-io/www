@@ -1426,22 +1426,22 @@
 <h2 id="functionality">Functionality<a class="headerlink" href="#functionality" title="Permanent link">&para;</a></h2>
 <h3 id="consume-and-publish-events-with-various-data-formats">Consume and publish events with various data formats<a class="headerlink" href="#consume-and-publish-events-with-various-data-formats" title="Permanent link">&para;</a></h3>
 <ul>
-<li><a href="../query-guide/#source">Consume</a> and <a href="(../query-guide/#sink)">publish</a> events via <code>NATS</code>, <code>Kafka</code>, <code>RabbitMQ</code>, <code>HTTP</code>, <code>gRPC</code>, <code>TCP</code>, <code>JMS</code>, <code>IBM MQ</code>, <code>MQTT</code>, <code>Amazon SQS</code>, <code>Google Pub/Sub</code>, <code>Email</code>, <code>WebSocket</code>, <code>File</code>, <code>Change Data Capture (CDC)</code> (From <code>MySQL</code>, <code>Oracle</code>, <code>MSSQL</code>, <code>DB2</code>, <code>Postgre</code>), <code>S3</code>, <code>Google Cloud Storage</code>, and <code>in-memory</code>.</li>
-<li>Support <a href="..query-guide/#source-mapper">message formats</a> such as <code>JSON</code>, <code>XML</code>, <code>Avro</code>, <code>Protobuf</code>, <code>Text</code>, <code>Binary</code>, <code>Key-value</code>, and <code>CSV</code>.</li>
+<li><a href="../query-guide/#source">Consume</a> and <a href="../query-guide/#sink">publish</a> events via <code>NATS</code>, <code>Kafka</code>, <code>RabbitMQ</code>, <code>HTTP</code>, <code>gRPC</code>, <code>TCP</code>, <code>JMS</code>, <code>IBM MQ</code>, <code>MQTT</code>, <code>Amazon SQS</code>, <code>Google Pub/Sub</code>, <code>Email</code>, <code>WebSocket</code>, <code>File</code>, <code>Change Data Capture (CDC)</code> (From <code>MySQL</code>, <code>Oracle</code>, <code>MSSQL</code>, <code>DB2</code>, <code>Postgre</code>), <code>S3</code>, <code>Google Cloud Storage</code>, and <code>in-memory</code>.</li>
+<li>Support <a href="../query-guide/#source-mapper">message formats</a> such as <code>JSON</code>, <code>XML</code>, <code>Avro</code>, <code>Protobuf</code>, <code>Text</code>, <code>Binary</code>, <code>Key-value</code>, and <code>CSV</code>.</li>
 <li>Rate-limit the output based on <a href="../query-guide/#output-rate-limiting">time and number of events</a>. </li>
 <li>Perform <a href="../query-guide/#distributed-sink">load balancing and failover</a> when publishing events to endpoints.</li>
 </ul>
 <h3 id="data-filtering-and-preprocessing">Data filtering and preprocessing<a class="headerlink" href="#data-filtering-and-preprocessing" title="Permanent link">&para;</a></h3>
 <ul>
-<li><a href="query-guide/#filter">Filter</a> event based on conditions such as value ranges, string matching, regex, and others.</li>
+<li><a href="../query-guide/#filter">Filter</a> event based on conditions such as value ranges, string matching, regex, and others.</li>
 <li>Clean data by setting defaults, and handling nulls, using <a href="../api/latest/#default-function"><code>default</code></a>, <a href="../api/latest/#ifthenelse-function"><code>if-then-else</code></a> functions, and many others.</li>
 </ul>
 <h3 id="date-transformation">Date transformation<a class="headerlink" href="#date-transformation" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Support <a href="../api/latest/#getbool-function">data extraction</a> and <a href="../api/latest/#group-aggregate-function">reconstruction of massages</a>.</li>
-<li>Inline <a href="query-guide/#select">mathematical and logical operations</a>.</li>
+<li>Inline <a href="../query-guide/#select">mathematical and logical operations</a>.</li>
 <li>Inbuilt functions and <a href="../extensions/#available-extensions">60+ extensions</a> for processing <code>JSON</code>, <code>string</code>, <code>time</code>, <code>math</code>, <code>regex</code>, and others.</li>
-<li>Ability to write custom functions in <a href="query-guide/#script"><code>JavaScript</code></a>, and <a href="extensions/#writing-custom-extensions"><code>Java</code></a>.</li>
+<li>Ability to write custom functions in <a href="../query-guide/#script"><code>JavaScript</code></a>, and <a href="../extensions/#writing-custom-extensions"><code>Java</code></a>.</li>
 </ul>
 <h3 id="data-store-integration-with-caching">Data store integration with caching<a class="headerlink" href="#data-store-integration-with-caching" title="Permanent link">&para;</a></h3>
 <ul>
@@ -1498,7 +1498,7 @@
 </ul>
 <h3 id="snapshot-and-restore">Snapshot and restore<a class="headerlink" href="#snapshot-and-restore" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Support for <a href="config-guide/#configuring-periodic-state-persistence">periodic incremental state persistence</a> to allow state restoration during failures.</li>
+<li>Support for <a href="../config-guide/#configuring-periodic-state-persistence">periodic incremental state persistence</a> to allow state restoration during failures.</li>
 </ul>
                 
                   

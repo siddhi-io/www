@@ -1460,8 +1460,8 @@ If the user’s comment is positive, we pass the UserId and the MovieId as input
 <li>Java 8 or higher</li>
 <li><a href="https://maven.wso2.org/nexus/service/local/repositories/releases/content/io/siddhi/extension/gpl/execution/pmml/siddhi-gpl-execution-pmml/5.0.1/siddhi-gpl-execution-pmml-5.0.1.jar">Siddhi Gpl Execution PMML extension</a></li>
 <li><a href="https://mvnrepository.com/artifact/io.siddhi.extension.execution.tensorflow/siddhi-execution-tensorflow/2.0.2">Siddhi Execution Tensorflow extension</a> </li>
-<li><a href="https://github.com/pcnfernando/MovieRecommendationSystem/tree/master/tf/SentimentAnalysisModel/bert">Pre-trained sentiment analysis tensorflow model</a></li>
-<li><a href="https://github.com/pcnfernando/MovieRecommendationSystem/tree/master/pmml/MovieRecommendationModel">Pre-trained movie recommendation PMML model</a></li>
+<li><a href="https://github.com/pcnfernando/MovieRecommendationSystem/releases/download/v1.0/bert.zip">Pre-trained sentiment analysis tensorflow model</a></li>
+<li><a href="https://github.com/pcnfernando/MovieRecommendationSystem/releases/download/v1.0/text_input_model.zip">Pre-trained movie recommendation PMML model</a></li>
 </ul>
 <h5 id="training-tensorflow-model-for-sentiment-analysis">Training Tensorflow model for Sentiment Analysis<a class="headerlink" href="#training-tensorflow-model-for-sentiment-analysis" title="Permanent link">&para;</a></h5>
 <p>We use the IMDB dataset that contains the text of 50,000 movie reviews from the Internet Movie Database. 
@@ -1605,7 +1605,7 @@ For Linux/Mac: ./tooling.sh
 <li>Then, you can also simulate some events through HTTP to test the application. The following sections explain how you can test the Siddhi app via HTTP using cURL. </li>
 </ul>
 <h3 id="run-mock-logger-service">Run Mock Logger service<a class="headerlink" href="#run-mock-logger-service" title="Permanent link">&para;</a></h3>
-<p>In the provided Siddhi app, there is a HTTP sink configured to push output events to an HTTP endpoint. To verify that, please download the mock server <a href="https://github.com/pcnfernando/MovieRecommendationSystem/util/logservice-1.0.0.jar">jar</a> and run that mock service by executing below command.</p>
+<p>In the provided Siddhi app, there is a HTTP sink configured to push output events to an HTTP endpoint. To verify that, please download the mock server <a href="https://github.com/pcnfernando/MovieRecommendationSystem/blob/master/util/logservice-1.0.0.jar">jar</a> and run that mock service by executing below command.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>java -jar logservice-1.0.0.jar
 </pre></div>
 </td></tr></table>
@@ -1658,7 +1658,7 @@ Eg: If exported siddhi app in Siddhi home directory,
 
 </li>
 <li>
-<p>Download the mock <a href="https://github.com/pcnfernando/MovieRecommendationSystem/util/logservice-1.0.0.jar">logging service</a> which is used to demonstrate the capability of Siddhi HTTP sink. Execute the below command to run the mock server.</p>
+<p>Download the mock <a href="https://github.com/pcnfernando/MovieRecommendationSystem/blob/master/util/logservice-1.0.0.jar">logging service</a> which is used to demonstrate the capability of Siddhi HTTP sink. Execute the below command to run the mock server.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>java -jar logservice-1.0.0.jar
 </pre></div>
 </td></tr></table>
@@ -1712,7 +1712,7 @@ Eg: If exported siddhi app in Siddhi home directory,
 Hence, make sure to add proper values for the environmental variables in the above command.</p>
 </li>
 <li>
-<p>Download the mock <a href="https://github.com/pcnfernando/MovieRecommendationSystem/util/logservice-1.0.0.jar">logging service</a>  which is used to demonstrate the capability of SIddhi HTTP sink. Execute below command to run the mock server.</p>
+<p>Download the mock <a href="https://github.com/pcnfernando/MovieRecommendationSystem/blob/master/util/logservice-1.0.0.jar">logging service</a>  which is used to demonstrate the capability of SIddhi HTTP sink. Execute below command to run the mock server.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    java -jar logservice-1.0.0.jar
 </pre></div>
 </td></tr></table>
@@ -1760,7 +1760,7 @@ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/
 </ul>
 </li>
 <li>
-<p>Download the mock <a href="https://github.com/pcnfernando/MovieRecommendationSystem/util/logservice-1.0.0.jar">logging service</a> 
+<p>Download the mock <a href="https://github.com/pcnfernando/MovieRecommendationSystem/blob/master/util/logservice-1.0.0.jar">logging service</a> 
 which is used to demonstrate the capability of Siddhi HTTP sink. Execute the below command to run the mock server.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    java -jar logservice-1.0.0.jar
 </pre></div>

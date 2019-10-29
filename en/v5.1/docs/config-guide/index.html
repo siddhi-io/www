@@ -1949,7 +1949,7 @@
 </pre></div>
 </td></tr></table></p>
 <p>For each separate refs you want to configure, add a sub-section named <code>ref</code> under the <code>refs</code> subsection.</p>
-<p>The ref configured in Siddhi Configuration yaml can be referred from a Siddhi Application <a href="../../query-guide/#source">Source</a> as follows.
+<p>The ref configured in Siddhi Configuration yaml can be referred from a Siddhi Application <a href="../query-guide/#source">Source</a> as follows.
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="nf">Source</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;&lt;name&gt;&#39;</span><span class="p">,</span>
@@ -1957,7 +1957,7 @@
 <span class="n">define</span> <span class="n">stream</span> <span class="nf">SweetProductionStream</span> <span class="p">(</span><span class="n">name</span> <span class="n">string</span><span class="p">,</span> <span class="n">amount</span> <span class="kt">double</span><span class="p">);</span>
 </pre></div>
 </td></tr></table>
-Similarly <a href="../../query-guide/#sink">Sinks</a> and <a href="../../query-guide/#store">Store Tables</a> can also be configured and referred from Siddhi Apps.</p>
+Similarly <a href="../query-guide/#sink">Sinks</a> and <a href="../query-guide/#store">Store Tables</a> can also be configured and referred from Siddhi Apps.</p>
 <p><strong>Example</strong>: Configuring http source using <code>ref</code></p>
 <p>Following configuration defines the <code>url</code> and details about <code>basic.auth</code>, in the Siddhi Configuration yaml.
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
@@ -2045,7 +2045,7 @@ For each separate extension you want to configure, add a sub-section named <code
 </pre></div>
 </td></tr></table></p>
 <h3 id="configuring-siddhi-properties">Configuring Siddhi Properties<a class="headerlink" href="#configuring-siddhi-properties" title="Permanent link">&para;</a></h3>
-<p>Siddhi supports setting following properties to be specify distribution based behaviours, for instance all <a href="../../query-guide/#named-aggregation">Named Aggregation</a> in the distribution can be changed to <a href="../../query-guide/#distributed-aggregation">Distributed Named Aggregation</a> with the following siddhi properties.</p>
+<p>Siddhi supports setting following properties to be specify distribution based behaviours, for instance all <a href="../query-guide/#named-aggregation">Named Aggregation</a> in the distribution can be changed to <a href="../query-guide/#distributed-aggregation">Distributed Named Aggregation</a> with the following siddhi properties.</p>
 <table>
 <thead>
 <tr>
@@ -2223,7 +2223,7 @@ These Jars will be converted as OSGI bundles and copied to Siddhi Runner distrib
 <p>This section is not applicable for Java and Python modes.</p>
 </div>
 <p>Siddhi uses <a href="https://metrics.dropwizard.io/">dropwizard</a> metrics library to calculate Siddhi and JVM statistics, and it can report the results via JMX Mbeans, console or database.</p>
-<p>To enable statistics, the relevant configuration under <code>metrics</code> section should be added to the Siddhi Configuration yaml as follows, and at the same time the statistics collection should be enabled in the Siddhi Application which is being monitored. Refer <a href="../../query-guide/#statistics">Siddhi Application Statistics</a> documentation for enabling Siddhi Application level statistics.</p>
+<p>To enable statistics, the relevant configuration under <code>metrics</code> section should be added to the Siddhi Configuration yaml as follows, and at the same time the statistics collection should be enabled in the Siddhi Application which is being monitored. Refer <a href="../query-guide/#statistics">Siddhi Application Statistics</a> documentation for enabling Siddhi Application level statistics.</p>
 <div class="admonition note">
 <p class="admonition-title">Configuring Metrics reporting level.</p>
 <p>To modify the statistics reporting, relevant metric names can be added under the <code>metrics.levels</code> subsection in the Siddhi Configurations yaml, along with the metrics level (i.e., OFF, INFO, DEBUG, TRACE, or ALL) as given below.

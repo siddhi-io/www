@@ -1343,7 +1343,7 @@
                 
                 
                 <h1 id="siddhi-51-as-a-kubernetes-microservice">Siddhi 5.1 as a Kubernetes Microservice<a class="headerlink" href="#siddhi-51-as-a-kubernetes-microservice" title="Permanent link">&para;</a></h1>
-<p>This section provides information on running <a href="../introduction/#siddhi-application">Siddhi Apps</a> natively in Kubernetes via Siddhi Kubernetes Operator.</p>
+<p>This section provides information on running <a href="../#siddhi-application">Siddhi Apps</a> natively in Kubernetes via Siddhi Kubernetes Operator.</p>
 <p>Siddhi can be configured using <code>SiddhiProcess</code> kind and passed to the Siddhi operator for deployment.
 Here, the Siddhi applications containing stream processing logic can be written inline in <code>SiddhiProcess</code> yaml or passed as <code>.siddhi</code> files via contig maps. <code>SiddhiProcess</code> yaml can also be configured with the necessary system configurations.</p>
 <h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
@@ -1500,7 +1500,7 @@ If you are pulling the custom-built image from a private Docker registry/reposit
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Siddhi Tooling</p>
-<p>You can also use the powerful <a href="../../quckstart/#3-using-siddhi-for-the-first-time">Siddhi Editor</a> to implement and test steam processing applications. </p>
+<p>You can also use the powerful <a href="../quick-start/#3-using-siddhi-for-the-first-time">Siddhi Editor</a> to implement and test steam processing applications. </p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">Configuring Siddhi</p>
@@ -1916,7 +1916,7 @@ insert into PowerSurgeAlertStream;
 
 <div class="admonition tip">
 <p class="admonition-title">Siddhi Tooling</p>
-<p>You can also use the powerful <a href="../../quckstart/#3-using-siddhi-for-the-first-time">Siddhi Editor</a> to implement and test steam processing applications. </p>
+<p>You can also use the powerful <a href="../quick-start/#3-using-siddhi-for-the-first-time">Siddhi Editor</a> to implement and test steam processing applications. </p>
 </div>
 <p>Save the above Siddhi App file as <code>PowerSurgeDetection.siddhi</code>, and use this file to create a Kubernetes config map with the name <code>power-surge-cm</code>.
 This can be achieved by running the following command.</p>
@@ -2411,7 +2411,7 @@ siddhi-stan-1                              <span class="m">1</span>/1       Runn
 <li>Stateless Siddhi apps</li>
 <li>Stateful Siddhi apps</li>
 </ol>
-<p>The deployment of the stateful Siddhi apps follows distributed architecture to ensure high availability. The fully distributed scenario of Siddhi deployments handle using Siddhi <a href="./query-guide/#distributed-sink">distributed annotations</a>.</p>
+<p>The deployment of the stateful Siddhi apps follows distributed architecture to ensure high availability. The fully distributed deployment of Siddhi apps will be handle using Siddhi distributed annotations.</p>
 <table>
   <tr>
     <th width='20%'></th>

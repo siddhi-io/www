@@ -551,8 +551,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#writing-siddhi-applications" title="Writing Siddhi Applications" class="md-nav__link">
-    Writing Siddhi Applications
+  <a href="#siddhi-application" title="Siddhi Application" class="md-nav__link">
+    Siddhi Application
   </a>
   
 </li>
@@ -1143,8 +1143,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#writing-siddhi-applications" title="Writing Siddhi Applications" class="md-nav__link">
-    Writing Siddhi Applications
+  <a href="#siddhi-application" title="Siddhi Application" class="md-nav__link">
+    Siddhi Application
   </a>
   
 </li>
@@ -1193,11 +1193,8 @@
                 <h1 id="siddhi-51-user-guide">Siddhi 5.1 User Guide<a class="headerlink" href="#siddhi-51-user-guide" title="Permanent link">&para;</a></h1>
 <p>This section provides information on using and running Siddhi.</p>
 <p>Checkout the <a href="features">Siddhi features</a> to get an idea on what it can do in brief. </p>
-<h2 id="writing-siddhi-applications">Writing Siddhi Applications<a class="headerlink" href="#writing-siddhi-applications" title="Permanent link">&para;</a></h2>
-<p>Writing steam processing logic in Siddhi is all about building Siddhi Applications. A Siddhi Application is a script with <code>.siddhi</code> file extension having self-contained stream processing logic. The stream processing constructs, such as streams and queries, defined within a Siddhi App is not visible even to the other Siddhi Apps running in the same JVM.</p>
-<p>It is recommended to have different business usecase in separate Siddhi Applications, where it allow users to selectively deploy the applications based on business needs.
-It is also recommended to move the repeated steam processing logics that exist in multiple Siddhi Applications, such as message retrieval and preprocessing, to a common Siddhi Application, whereby reducing code duplication and improving maintainability.
-In this case, to pass the events from one Siddhi App to another, users can configure common topic using <a href="api/latest/#inmemory-sink">In-Memory Sink</a> and <a href="api/latest/#inmemory-source">In-Memory Source</a> in order to communicate between them.</p>
+<h2 id="siddhi-application">Siddhi Application<a class="headerlink" href="#siddhi-application" title="Permanent link">&para;</a></h2>
+<p>Siddhi Application is the artifact that defines the real-time event processing logic of Siddhi as a SQL like script with <code>.siddhi</code> file extension. It contains consumers(sources), producers(sinks), streams, queries, tables, functions and other necessary contracts depicting how the events should be consumed, processed and published. </p>
 <p>To write Siddhi Applications using Siddhi Streaming SQL refer <a href="query-guide">Siddhi Query Guide</a> for details.</p>
 <p>For specific API information on Siddhi functions and features refer <a href="api/latest">Siddhi API Guide</a>.</p>
 <p>Find out about the supported Siddhi extensions and their versions <a href="extensions">here</a>.</p>
@@ -1208,7 +1205,7 @@ In this case, to pass the events from one Siddhi App to another, users can confi
 <li><a href="siddhi-as-a-local-microservice/">As a Local Microservice</a></li>
 <li><a href="siddhi-as-a-docker-microservice/">As a Docker Microservice</a></li>
 <li><a href="siddhi-as-a-kubernetes-microservice/">As a Kubernetes Microservice</a></li>
-<li>As a Python Library <em>(WIP)</em></li>
+<li><a href="https://siddhi-io.github.io/PySiddhi/">As a Python Library</a></li>
 </ul>
 <h2 id="siddhi-configurations">Siddhi Configurations<a class="headerlink" href="#siddhi-configurations" title="Permanent link">&para;</a></h2>
 <p>Refer the <a href="config-guide">Siddhi Config Guide</a> for information on advance Siddhi execution configurations.</p>
