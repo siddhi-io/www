@@ -4,13 +4,9 @@ This section provides information on using and running Siddhi.
 
 Checkout the [Siddhi features](features) to get an idea on what it can do in brief. 
 
-## Writing Siddhi Applications
+## Siddhi Application
 
-Writing steam processing logic in Siddhi is all about building Siddhi Applications. A Siddhi Application is a script with `.siddhi` file extension having self-contained stream processing logic. The stream processing constructs, such as streams and queries, defined within a Siddhi App is not visible even to the other Siddhi Apps running in the same JVM.
-
-It is recommended to have different business usecase in separate Siddhi Applications, where it allow users to selectively deploy the applications based on business needs.
-It is also recommended to move the repeated steam processing logics that exist in multiple Siddhi Applications, such as message retrieval and preprocessing, to a common Siddhi Application, whereby reducing code duplication and improving maintainability.
-In this case, to pass the events from one Siddhi App to another, users can configure common topic using [In-Memory Sink](api/latest/#inmemory-sink) and [In-Memory Source](api/latest/#inmemory-source) in order to communicate between them.
+Siddhi Application is the artifact that defines the real-time event processing logic of Siddhi as a SQL like script with `.siddhi` file extension. It contains consumers(sources), producers(sinks), streams, queries, tables, functions and other necessary contracts depicting how the events should be consumed, processed and published. 
 
 To write Siddhi Applications using Siddhi Streaming SQL refer [Siddhi Query Guide](query-guide) for details.
 
@@ -26,7 +22,7 @@ Siddhi can run in multiple environments as follows.
 * [As a Local Microservice](siddhi-as-a-local-microservice/)
 * [As a Docker Microservice](siddhi-as-a-docker-microservice/)
 * [As a Kubernetes Microservice](siddhi-as-a-kubernetes-microservice/)
-* As a Python Library _(WIP)_
+* [As a Python Library](https://siddhi-io.github.io/PySiddhi/)
 
 ## Siddhi Configurations
 

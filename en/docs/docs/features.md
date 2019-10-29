@@ -30,22 +30,22 @@
 
 ### Consume and publish events with various data formats
 
-- [Consume](../query-guide/#source) and [publish]((../query-guide/#sink)) events via `NATS`, `Kafka`, `RabbitMQ`, `HTTP`, `gRPC`, `TCP`, `JMS`, `IBM MQ`, `MQTT`, `Amazon SQS`, `Google Pub/Sub`, `Email`, `WebSocket`, `File`, `Change Data Capture (CDC)` (From `MySQL`, `Oracle`, `MSSQL`, `DB2`, `Postgre`), `S3`, `Google Cloud Storage`, and `in-memory`.
-- Support [message formats](..query-guide/#source-mapper) such as `JSON`, `XML`, `Avro`, `Protobuf`, `Text`, `Binary`, `Key-value`, and `CSV`.
+- [Consume](../query-guide/#source) and [publish](../query-guide/#sink) events via `NATS`, `Kafka`, `RabbitMQ`, `HTTP`, `gRPC`, `TCP`, `JMS`, `IBM MQ`, `MQTT`, `Amazon SQS`, `Google Pub/Sub`, `Email`, `WebSocket`, `File`, `Change Data Capture (CDC)` (From `MySQL`, `Oracle`, `MSSQL`, `DB2`, `Postgre`), `S3`, `Google Cloud Storage`, and `in-memory`.
+- Support [message formats](../query-guide/#source-mapper) such as `JSON`, `XML`, `Avro`, `Protobuf`, `Text`, `Binary`, `Key-value`, and `CSV`.
 - Rate-limit the output based on [time and number of events](../query-guide/#output-rate-limiting). 
 - Perform [load balancing and failover](../query-guide/#distributed-sink) when publishing events to endpoints.
 
 ### Data filtering and preprocessing    
                 
-- [Filter](query-guide/#filter) event based on conditions such as value ranges, string matching, regex, and others.
+- [Filter](../query-guide/#filter) event based on conditions such as value ranges, string matching, regex, and others.
 - Clean data by setting defaults, and handling nulls, using [`default`](../api/latest/#default-function), [`if-then-else`](../api/latest/#ifthenelse-function) functions, and many others.
 
 ### Date transformation
 
 - Support [data extraction](../api/latest/#getbool-function) and [reconstruction of massages](../api/latest/#group-aggregate-function).
-- Inline [mathematical and logical operations](query-guide/#select).
+- Inline [mathematical and logical operations](../query-guide/#select).
 - Inbuilt functions and [60+ extensions](../extensions/#available-extensions) for processing `JSON`, `string`, `time`, `math`, `regex`, and others.
-- Ability to write custom functions in [`JavaScript`](query-guide/#script), and [`Java`](extensions/#writing-custom-extensions).
+- Ability to write custom functions in [`JavaScript`](../query-guide/#script), and [`Java`](../extensions/#writing-custom-extensions).
 
 ### Data store integration with caching
 
@@ -100,4 +100,4 @@
 
 ### Snapshot and restore
 
-- Support for [periodic incremental state persistence](config-guide/#configuring-periodic-state-persistence) to allow state restoration during failures.
+- Support for [periodic incremental state persistence](../config-guide/#configuring-periodic-state-persistence) to allow state restoration during failures.

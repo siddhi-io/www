@@ -1,6 +1,6 @@
 # Siddhi 5.1 as a Kubernetes Microservice
 
-This section provides information on running [Siddhi Apps](../introduction/#siddhi-application) natively in Kubernetes via Siddhi Kubernetes Operator.
+This section provides information on running [Siddhi Apps](../#siddhi-application) natively in Kubernetes via Siddhi Kubernetes Operator.
 
 Siddhi can be configured using `SiddhiProcess` kind and passed to the Siddhi operator for deployment.
 Here, the Siddhi applications containing stream processing logic can be written inline in `SiddhiProcess` yaml or passed as `.siddhi` files via contig maps. `SiddhiProcess` yaml can also be configured with the necessary system configurations.
@@ -113,9 +113,9 @@ spec:
 
 !!! Note "Always listen on 0.0.0.0 with the Siddhi Application running inside a container environment."
     If you listen on localhost inside the container, nothing outside the container can connect to your application. 
-    
+     
 !!! Tip "Siddhi Tooling"
-    You can also use the powerful [Siddhi Editor](../../quckstart/#3-using-siddhi-for-the-first-time) to implement and test steam processing applications. 
+    You can also use the powerful [Siddhi Editor](../quick-start/#3-using-siddhi-for-the-first-time) to implement and test steam processing applications. 
 
 !!! Info "Configuring Siddhi"
     To configure databases, extensions, authentication, periodic state persistence, and statistics for Siddhi as Kubernetes Microservice refer [Siddhi Config Guide](../config-guide/). 
@@ -405,7 +405,7 @@ insert into PowerSurgeAlertStream;
 ```
 
 !!! Tip "Siddhi Tooling"
-    You can also use the powerful [Siddhi Editor](../../quckstart/#3-using-siddhi-for-the-first-time) to implement and test steam processing applications. 
+    You can also use the powerful [Siddhi Editor](../quick-start/#3-using-siddhi-for-the-first-time) to implement and test steam processing applications. 
 
 Save the above Siddhi App file as `PowerSurgeDetection.siddhi`, and use this file to create a Kubernetes config map with the name `power-surge-cm`.
 This can be achieved by running the following command.
@@ -775,7 +775,7 @@ Siddhi apps can be in two different types.
 1. Stateless Siddhi apps
 1. Stateful Siddhi apps
 
-The deployment of the stateful Siddhi apps follows distributed architecture to ensure high availability. The fully distributed scenario of Siddhi deployments handle using Siddhi [distributed annotations](./query-guide/#distributed-sink).
+The deployment of the stateful Siddhi apps follows distributed architecture to ensure high availability. The fully distributed deployment of Siddhi apps will be handle using Siddhi distributed annotations.
 
 <table>
   <tr>

@@ -1,6 +1,6 @@
 # Siddhi 5.1 as a Docker Microservice
 
-This section provides information on running [Siddhi Apps](../introduction/#siddhi-application) on Docker. 
+This section provides information on running [Siddhi Apps](../#siddhi-application) on Docker. 
 
 Siddhi Microservice can run one or more Siddhi Applications with required system configurations.
 Here, the Siddhi application (`.siddhi` file) contains stream processing logic and the necessary system configurations can be passed via the Siddhi configuration `.yaml` file. 
@@ -28,7 +28,7 @@ docker run -it -v /home/me/siddhi-apps:/apps -v /home/me/siddhi-configs:/configs
     Providing absolute path of SiddhiApp file, or directory in `-Dapps` parameter, and when providing the Siddhi runner config yaml on `-Dconfig` parameter while starting Siddhi runner.
 
 !!! Tip "Siddhi Tooling"
-    You can also use the powerful [Siddhi Editor](../../quckstart/#3-using-siddhi-for-the-first-time) to implement and test steam processing applications. 
+    You can also use the powerful [Siddhi Editor](../quick-start/#3-using-siddhi-for-the-first-time) to implement and test steam processing applications. 
 
 !!! Info "Configuring Siddhi"
     To configure databases, extensions, authentication, periodic state persistence, and statistics for Siddhi as Docker Microservice refer [Siddhi Config Guide](../config-guide/). 

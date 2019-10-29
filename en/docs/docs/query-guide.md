@@ -16,7 +16,7 @@ according to their accepted event formats. It also supports exposing rule based
 and adaptive decision making as service endpoints such that external programs
 and systems can synchronously get decision support form Siddhi.  
 
-The following sections explains how to write processing logic using Siddhi Streaming SQL.
+The following sections explains how to write event processing logic using Siddhi Streaming SQL.
 
 ## Siddhi Application
 The processing logic for your program can be written using the Streaming SQL and
@@ -33,6 +33,11 @@ deploy and execute processing logic independent of other SiddhiApp in the system
 Therefore it's always recommended to have a processing logic related to single
 use case in a single SiddhiApp. This will help you to group
 processing logic and easily manage addition and removal of various use cases.
+
+!!! tip "Have different business use cases in separate Siddhi Applications."
+    This is recommended as it allows users to selectively deploy the applications based their on business needs.
+    It is also recommended to move the repeated steam processing logic that exist in multiple Siddhi Applications such as message retrieval and preprocessing, to a common Siddhi Application, whereby reducing code duplication and improving maintainability.
+    In this case, to pass the events from one Siddhi App to another, configure them using a common topic using [In-Memory Sink](../api/latest/#inmemory-sink) and [In-Memory Source](../api/latest/#inmemory-source).
 
 The following diagram depicts some of the key Siddhi Streaming SQL elements of Siddhi Application and
 how **event flows** through the elements.
