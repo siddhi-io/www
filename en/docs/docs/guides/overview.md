@@ -1,4 +1,4 @@
-# Use case Guides Overview
+# Overview of Use case Guides
 Siddhi Cloud Native Stream Processor contains various set up [features](../features) to cater the use cases in the stream processing and complex event processing domain. We have taken a few of such commonly used use cases and discussed in this section. These use case guides are written end to end from the developer to deployment. Please find the high level overview details of the guides below. 
 
 ## Generating Alerts Based on Static and Dynamic Thresholds
