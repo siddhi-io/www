@@ -134,10 +134,11 @@ nav:
         - Default Ports: docs/rest-guides/default-ports.md
         - HTTP Status Codes: docs/rest-guides/http-status-code.md
     - Extensions: docs/extensions.md
-    - Siddhi Java library: docs/siddhi-as-a-java-library.md
+    - Siddhi Java Library: docs/siddhi-as-a-java-library.md
     - Siddhi Local Microservice: docs/siddhi-as-a-local-microservice.md
     - Siddhi Docker Microservice: docs/siddhi-as-a-docker-microservice.md
     - Siddhi Kubernetes Microservice: docs/siddhi-as-a-kubernetes-microservice.md
+    - Siddhi Python Library: docs/siddhi-as-a-python-library.md
     - Configuration Guide: docs/config-guide.md
   - Community:
     - Community: /community/
