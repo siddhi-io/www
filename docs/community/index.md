@@ -37,9 +37,11 @@ You can get help on Siddhi in the following ways.
 
 * Users can ask questions and get support via [StackOverflow](https://stackoverflow.com/questions/tagged/siddhi), make sure to add the `siddhi` tag to the issue for better response.
 
-### Weekly Sync-up Meeting
-There is a weekly sync-up meeting to discuss the Siddhi development and its progress. Anyone can join this meeting through the zoom meeting details given below. This will be an opportunity for the community to collaborate with Siddhi team and developers.
-The meeting is on every Tuesday at 9.00PM IST (8.30AM PST).
+### Weekly Community Call
+
+We conduct community call to discuss and review the Siddhi development, usage, its progress (possible improvements, bug fixes, features, tasks of the projects, design and architectural improvements), the first preview of features, demo, and others. Anyone can join this meeting through the zoom meeting details given below. This will be an opportunity for the community to collaborate with the Siddhi team and developers.
+
+The meeting is on every Tuesday at 8:30AM PST (3:30PM UTC, 9:00PM IST).
 
 ```
 Join from PC, Mac, Linux, iOS or Android: https://wso2.zoom.us/j/110491677
@@ -56,9 +58,11 @@ Or Telephone:
     International numbers available: https://zoom.us/u/aKhEU57G
 ```
 
-World Time Zone Converter is [here](http://www.thetimezoneconverter.com/?t=8:30%20am&tz=San%20Francisco&)
+You can add the event to your google calender by clicking [here](https://calendar.google.com/calendar?cid=i5kqrlfsghittr5alvqqepskk4@group.calendar.google.com).
 
-The Meeting notes are available in [here](https://docs.google.com/document/d/1pvEvmK8aVxytn2H4SyH2VZo-Eok51q_ImM0RNyJoTio/edit)
+Check the meeting time on our local time zone via [World Time Zone Converter](http://www.thetimezoneconverter.com/?t=8:30%20am&tz=San%20Francisco&).
+
+All the meeting notes and topics are available [here](https://docs.google.com/document/d/1pvEvmK8aVxytn2H4SyH2VZo-Eok51q_ImM0RNyJoTio/edit).
 
 ## Production Support
 
