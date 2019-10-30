@@ -1615,7 +1615,7 @@ Two streams cannot directly join as they are stateless, and they do not retain e
 
 During the joining process each incoming event of each stream is matched against all the events in the other stream's window based on the given condition, and the output events are generated for all the matching event pairs.
 
-When there is no window associated with the joining steam, `window.lengthBatch(0)` is assigned by default to the steam to enable the join process and to preserve stream's stateless nature.
+When there is no window associated with the joining steam, and empty window with length zero is assigned to the steam by default, to enable join process while preserving stream's stateless nature.
 
 !!! Note
     Join can also be performed with [table](#join-table), [named-aggregation](#join-named-aggregation), or [named-windows](#join-named-window).
