@@ -1,5 +1,5 @@
 # Overview of Use case Guides
-Siddhi Cloud Native Stream Processor contains various set up [features](../features) to cater the use cases in the stream processing and complex event processing domain. We have taken a few of such commonly used use cases and discussed in this section. These use case guides are written end to end from the developer to deployment. Please find the high level overview details of the guides below. 
+Siddhi Cloud Native Stream Processor contains various set of [features](../features) to cater the use cases in the stream processing and complex event processing domain. We have taken a few of such commonly used use cases and discussed in this section. These use case guides are written end to end from the development to deployment. Please find the high level overview details of the guides below. 
 
 ## Generating Alerts Based on Static and Dynamic Thresholds
 In this guide, you will understand one of the common requirements of a Stream Processing which is generating alerts based on static and dynamic thresholds. To understand this requirement, we'll discuss how to implement the `Throttling` requirement with Siddhi. Throttling has become one of the unavoidable needs with the evolution of APIs and API management. Throttling is a process that is used to control the usage of APIs by consumers during a given period.
