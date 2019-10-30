@@ -579,6 +579,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../guides/overview/" title="Overview" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../guides/alerts-for-thresholds/guide/" title="Alerts Based on Thresholds" class="md-nav__link">
       Alerts Based on Thresholds
     </a>
@@ -4059,7 +4071,7 @@ and insert the filtered results into <code>HighTempStream</code> stream.</p>
 <p>Join provides a way of correlating events of two steams and in addition aggregating them based on the defined windows.</p>
 <p>Two streams cannot directly join as they are stateless, and they do not retain events. Therefore, each stream needs to be associated with a window for joining as it can retain events. Join also accepts a condition to match events against each event stream window.</p>
 <p>During the joining process each incoming event of each stream is matched against all the events in the other stream's window based on the given condition, and the output events are generated for all the matching event pairs.</p>
-<p>When there is no window associated with the joining steam, <code>window.lengthBatch(0)</code> is assigned by default to the steam to enable the join process and to preserve stream's stateless nature.</p>
+<p>When there is no window associated with the joining steam, and empty window with length zero is assigned to the steam by default, to enable join process while preserving stream's stateless nature.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Join can also be performed with <a href="#join-table">table</a>, <a href="#join-named-aggregation">named-aggregation</a>, or <a href="#join-named-window">named-windows</a>.</p>

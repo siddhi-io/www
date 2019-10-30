@@ -36,6 +36,11 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>http://siddhi.io/en/v5.1/docs/guides/overview/</loc>
+     <lastmod>2019-10-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>http://siddhi.io/en/v5.1/docs/guides/alerts-for-thresholds/guide/</loc>
      <lastmod>2019-10-30</lastmod>
      <changefreq>daily</changefreq>
