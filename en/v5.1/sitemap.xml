@@ -151,6 +151,11 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>http://siddhi.io/en/v5.1/docs/siddhi-as-a-python-library/</loc>
+     <lastmod>2019-10-30</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>http://siddhi.io/en/v5.1/docs/config-guide/</loc>
      <lastmod>2019-10-30</lastmod>
      <changefreq>daily</changefreq>
