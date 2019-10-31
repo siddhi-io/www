@@ -22,7 +22,7 @@
 
 ### Multiple deployment options
 
-- Embedded execution in [Java](../siddhi-as-a-java-library/) and [Python](https://siddhi-io.github.io/PySiddhi/Installation-Guide/) as libraries.
+- Embedded execution in [Java](../siddhi-as-a-java-library/) and [Python](../siddhi-as-a-python-library) as libraries.
 - Run as a standalone microservice in [bare-metal, VM](../siddhi-as-a-local-microservice/), or [Docker](../siddhi-as-a-docker-microservice/).
 - Deploy and run as a standalone or as distributed microservices [natively in Kubernetes](../siddhi-as-a-kubernetes-microservice/), using Siddhi Kubernetes operator. 
 

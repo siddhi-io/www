@@ -22,7 +22,7 @@ Siddhi can run in multiple environments as follows.
 * [As a Local Microservice](siddhi-as-a-local-microservice/)
 * [As a Docker Microservice](siddhi-as-a-docker-microservice/)
 * [As a Kubernetes Microservice](siddhi-as-a-kubernetes-microservice/)
-* [As a Python Library](https://siddhi-io.github.io/PySiddhi/)
+* [As a Python Library](siddhi-as-a-python-library)
 
 ## Siddhi Configurations
 
