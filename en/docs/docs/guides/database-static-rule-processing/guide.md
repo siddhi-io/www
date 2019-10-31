@@ -204,6 +204,106 @@ Before you run the application your database should have sample data to be proce
 
 ![Promo Card Type Table](images/promocard-type-table.png "Promo Card Type Table")
 
+To connect to the database Siddhi app will use a user called `siddhi_user` identified by password `siddhiio`. To access the database you have to give correct permissions to the user. For testing purposes, you can grant all privileges to this user using the following command.
+
+```sql
+> GRANT ALL PRIVILEGES ON ComboSuperMart.* TO 'siddhi_user'@'siddhiio';
+```
+
+To create those tables, you can use the following SQL script.
+
+```sql
+CREATE DATABASE  IF NOT EXISTS `ComboSuperMart` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `ComboSuperMart`;
+
+--
+-- Table structure for table `PromoCardType`
+--
+
+DROP TABLE IF EXISTS `PromoCardType`;
+CREATE TABLE `PromoCardType` (
+  `promoCardTypeId` varchar(45) NOT NULL,
+  `promoCardType` varchar(45) NOT NULL,
+  `promoCardTypeDiscount` decimal(5,2) DEFAULT NULL,
+  PRIMARY KEY (`promoCardTypeId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `PromoCardType`
+--
+
+LOCK TABLES `PromoCardType` WRITE;
+INSERT INTO `PromoCardType` VALUES ('PCT01','PLATINUM',15.00),('PCT02','GOLD',10.00),('PCT03','SILVER',5.00);
+UNLOCK TABLES;
+
+--
+-- Table structure for table `PromoCard`
+--
+
+DROP TABLE IF EXISTS `PromoCard`;
+CREATE TABLE `PromoCard` (
+  `promoCardId` varchar(40) NOT NULL,
+  `promoCardIssueDate` date NOT NULL,
+  `promoCardTypeId` varchar(45) NOT NULL,
+  PRIMARY KEY (`promoCardId`),
+  KEY `promoCardTypeIdKF_idx` (`promoCardTypeId`),
+  CONSTRAINT `promoCardIdTypeFK` FOREIGN KEY (`promoCardTypeId`) REFERENCES `PromoCardType` (`promoCardTypeId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `PromoCard`
+--
+
+LOCK TABLES `PromoCard` WRITE;
+INSERT INTO `PromoCard` VALUES ('PC001','2018-04-03','PCT01'),('PC002','2017-04-30','PCT02'),('PC003','2017-08-09','PCT03'),('PC004','2018-03-06','PCT01');
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Customer`
+--
+
+DROP TABLE IF EXISTS `Customer`;
+CREATE TABLE `Customer` (
+  `customerId` varchar(45) NOT NULL,
+  `cutomerName` varchar(60) NOT NULL,
+  `promoCardId` varchar(40) NOT NULL,
+  PRIMARY KEY (`customerId`),
+  KEY `promoCardIdFK_idx` (`promoCardId`),
+  CONSTRAINT `promoCardIdFK` FOREIGN KEY (`promoCardId`) REFERENCES `PromoCard` (`promoCardId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `Customer`
+--
+
+LOCK TABLES `Customer` WRITE;
+INSERT INTO `Customer` VALUES ('C001','John Doy','PC001'),('C002','Micheal Dawson','PC002'),('C003','Neil Clain','PC003'),('C004','Anne Cath','PC004');
+UNLOCK TABLES;
+
+--
+-- Table structure for table `PromoRule`
+--
+
+DROP TABLE IF EXISTS `PromoRule`;
+CREATE TABLE `PromoRule` (
+  `promoRuleId` varchar(40) NOT NULL,
+  `promoCardTypeId` varchar(45) NOT NULL,
+  `promoRule` varchar(200) NOT NULL,
+  PRIMARY KEY (`promoRuleId`),
+  KEY `cardId_idx` (`promoCardTypeId`),
+  CONSTRAINT `promoCardTypeIdFK` FOREIGN KEY (`promoCardTypeId`) REFERENCES `PromoCardType` (`promoCardTypeId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `PromoRule`
+--
+
+LOCK TABLES `PromoRule` WRITE;
+INSERT INTO `PromoRule` VALUES ('RULE001','PCT01','{{amount}} > 10000 && {{amount}} < 50000'),('RULE002','PCT01','{{cardPeriod}} > 200');
+UNLOCK TABLES;
+
+```
+
 The above Siddhi app will start an HTTP service in 8088 port. Therefore, you can send a request to that service using the following CURL command.
 
 ```sh
@@ -301,7 +401,31 @@ It will results the following JSON.
 
 #### Siddhi Docker Configurations
 
-In the tooling editor itself, you can export your Siddhi app into a runnable docker artifact. You can go to `Export->For Docker` and it will give to a zip file that contained the following files.
+In the tooling editor itself, you can export your Siddhi app into a runnable docker artifact. You can go to `Export->For Docker` and it will give to a zip file.
+
+!!! Note "Database URL for Docker"
+    When you changing the `deployment.yaml` configuration of the data source in the Docker export process, you have to specify this URL in the configuration as below.
+
+```yaml
+   - name: COMBO_SUPERMART_DB
+     description: The datasource used for lending process of the Combo supermarket
+     jndiConfig:
+       name: jdbc/ComboSuperMart
+     definition:
+       type: RDBMS
+       configuration:
+         jdbcUrl: jdbc:mysql://mysqldb:3306/ComboSuperMart
+         username: siddhi_user
+         password: siddhiio
+         driverClassName: com.mysql.jdbc.Driver
+         maxPoolSize: 10
+         idleTimeout: 60000
+         connectionTestQuery: SELECT 1
+         validationTimeout: 30000
+         isAutoCommit: false
+```
+
+The extracted zip file will be looks like follows.
 
 ```sh
 ├── Dockerfile
@@ -312,7 +436,7 @@ In the tooling editor itself, you can export your Siddhi app into a runnable doc
     └── ComboSuperMartPromoProcess.siddhi
 ```
 
-You also need to set up a MySQL docker container and connect it into the Siddhi docker runtime. You can do it very easily from writing a docker composer file like below.
+You also need to set up a MySQL docker container and connect it into the Siddhi docker runtime. You can do it very easily from writing a docker composer file like below. Now you need to have a Docker compose file like below to set up all the prerequisites. This compose file contains volume mounts to change configurations of the MySQL container.
 
 ```yaml
 version: "3"
@@ -325,7 +449,7 @@ services:
           dockerfile: ./Dockerfile
         ports:
             - "8088:8088"
-        links:Now you need to have a Docker compose file like below to set up all the prerequisites. This compose file contains volume mounts to change configurations of the MySQL container.
+        links:
             - mysqldb
         networks:
             - default
@@ -345,13 +469,25 @@ services:
         restart: on-failure
 ```
 
-First, you have to build the docker composer.
+Save this file as `docker-compose.yaml` to the root directory of the extracted zip file. And the extracted zip file directory now looks like below:
+
+```sh
+├── Dockerfile
+├── configurations.yaml
+├── docker-compose.yaml
+├── jars
+│   └── mysql-connector.jar
+└── siddhi-files
+    └── ComboSuperMartPromoProcess.siddhi
+```
+
+Now, you have to build the docker composer.
 
 ```sh
 $ docker-compose build
 ```
 
-Now you have to start the MySQL container.
+Now you have to start the MySQL container. And then set up your MySQL database as described [above](#testing).
 
 ```sh
 $ docker-compose up -d mysqldb
