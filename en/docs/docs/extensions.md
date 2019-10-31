@@ -96,6 +96,8 @@ All the Siddhi extensions are released under Apache 2.0 License.
 |:-- | :-- | :--
 |<a target="_blank" href="https://siddhi-io.github.io/siddhi-script-js">script-js</a> | Allows writing user defined JavaScript functions within Siddhi Applications to process events. |[5.0.2](https://mvnrepository.com/artifact/io.siddhi.extension.script.js/siddhi-script-js/5.0.2)
 
+Siddhi extensions cater use-case specific logic that is not available by default in Siddhi. Some of these extensions have system parameter configurations to define/modify their behavior. These extensions usually have default values for the parameters, but when needed, they can be overridden by configuring the parameters in Siddhi Configuration yaml and passing it at startup. Refer more details on this in [here](https://siddhi.io/en/v5.1/docs/config-guide/#configuring-extensions-system-parameters)
+
 ## Writing Custom Extensions
 
 Custom extensions can be written in order to cater use case specific logics that are not by default available in Siddhi core, or in existing extensions.
