@@ -1782,6 +1782,190 @@
 <p><img alt="Promo Card Rule Table" src="../images/promocard-rule-table.png" title="Promo Card Rule Table" /></p>
 <h3 id="promo-card-type-table">Promo Card Type Table<a class="headerlink" href="#promo-card-type-table" title="Permanent link">&para;</a></h3>
 <p><img alt="Promo Card Type Table" src="../images/promocard-type-table.png" title="Promo Card Type Table" /></p>
+<p>To connect to the database Siddhi app will use a user called <code>siddhi_user</code> identified by password <code>siddhiio</code>. To access the database you have to give correct permissions to the user. For testing purposes, you can grant all privileges to this user using the following command.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">&gt;</span> <span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">PRIVILEGES</span> <span class="k">ON</span> <span class="n">ComboSuperMart</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="s1">&#39;siddhi_user&#39;</span><span class="o">@</span><span class="s1">&#39;siddhiio&#39;</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
+<p>To create those tables, you can use the following SQL script.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">CREATE</span> <span class="k">DATABASE</span>  <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">ComboSuperMart</span><span class="o">`</span> <span class="cm">/*!40100 DEFAULT CHARACTER SET utf8 */</span><span class="p">;</span>
+<span class="n">USE</span> <span class="o">`</span><span class="n">ComboSuperMart</span><span class="o">`</span><span class="p">;</span>
+
+<span class="c1">--</span>
+<span class="c1">-- Table structure for table `PromoCardType`</span>
+<span class="c1">--</span>
+
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">PromoCardType</span><span class="o">`</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">PromoCardType</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">promoCardTypeId</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">promoCardType</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">promoCardTypeDiscount</span><span class="o">`</span> <span class="nb">decimal</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">promoCardTypeId</span><span class="o">`</span><span class="p">)</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span><span class="p">;</span>
+
+<span class="c1">--</span>
+<span class="c1">-- Dumping data for table `PromoCardType`</span>
+<span class="c1">--</span>
+
+<span class="k">LOCK</span> <span class="n">TABLES</span> <span class="o">`</span><span class="n">PromoCardType</span><span class="o">`</span> <span class="k">WRITE</span><span class="p">;</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">`</span><span class="n">PromoCardType</span><span class="o">`</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;PCT01&#39;</span><span class="p">,</span><span class="s1">&#39;PLATINUM&#39;</span><span class="p">,</span><span class="mi">15</span><span class="p">.</span><span class="mi">00</span><span class="p">),(</span><span class="s1">&#39;PCT02&#39;</span><span class="p">,</span><span class="s1">&#39;GOLD&#39;</span><span class="p">,</span><span class="mi">10</span><span class="p">.</span><span class="mi">00</span><span class="p">),(</span><span class="s1">&#39;PCT03&#39;</span><span class="p">,</span><span class="s1">&#39;SILVER&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">.</span><span class="mi">00</span><span class="p">);</span>
+<span class="n">UNLOCK</span> <span class="n">TABLES</span><span class="p">;</span>
+
+<span class="c1">--</span>
+<span class="c1">-- Table structure for table `PromoCard`</span>
+<span class="c1">--</span>
+
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">PromoCard</span><span class="o">`</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">PromoCard</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">promoCardId</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">promoCardIssueDate</span><span class="o">`</span> <span class="nb">date</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">promoCardTypeId</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">promoCardId</span><span class="o">`</span><span class="p">),</span>
+  <span class="k">KEY</span> <span class="o">`</span><span class="n">promoCardTypeIdKF_idx</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">promoCardTypeId</span><span class="o">`</span><span class="p">),</span>
+  <span class="k">CONSTRAINT</span> <span class="o">`</span><span class="n">promoCardIdTypeFK</span><span class="o">`</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">promoCardTypeId</span><span class="o">`</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="o">`</span><span class="n">PromoCardType</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">promoCardTypeId</span><span class="o">`</span><span class="p">)</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">NO</span> <span class="n">ACTION</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">NO</span> <span class="n">ACTION</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span><span class="p">;</span>
+
+<span class="c1">--</span>
+<span class="c1">-- Dumping data for table `PromoCard`</span>
+<span class="c1">--</span>
+
+<span class="k">LOCK</span> <span class="n">TABLES</span> <span class="o">`</span><span class="n">PromoCard</span><span class="o">`</span> <span class="k">WRITE</span><span class="p">;</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">`</span><span class="n">PromoCard</span><span class="o">`</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;PC001&#39;</span><span class="p">,</span><span class="s1">&#39;2018-04-03&#39;</span><span class="p">,</span><span class="s1">&#39;PCT01&#39;</span><span class="p">),(</span><span class="s1">&#39;PC002&#39;</span><span class="p">,</span><span class="s1">&#39;2017-04-30&#39;</span><span class="p">,</span><span class="s1">&#39;PCT02&#39;</span><span class="p">),(</span><span class="s1">&#39;PC003&#39;</span><span class="p">,</span><span class="s1">&#39;2017-08-09&#39;</span><span class="p">,</span><span class="s1">&#39;PCT03&#39;</span><span class="p">),(</span><span class="s1">&#39;PC004&#39;</span><span class="p">,</span><span class="s1">&#39;2018-03-06&#39;</span><span class="p">,</span><span class="s1">&#39;PCT01&#39;</span><span class="p">);</span>
+<span class="n">UNLOCK</span> <span class="n">TABLES</span><span class="p">;</span>
+
+<span class="c1">--</span>
+<span class="c1">-- Table structure for table `Customer`</span>
+<span class="c1">--</span>
+
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">Customer</span><span class="o">`</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">Customer</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">customerId</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">cutomerName</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">promoCardId</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">customerId</span><span class="o">`</span><span class="p">),</span>
+  <span class="k">KEY</span> <span class="o">`</span><span class="n">promoCardIdFK_idx</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">promoCardId</span><span class="o">`</span><span class="p">),</span>
+  <span class="k">CONSTRAINT</span> <span class="o">`</span><span class="n">promoCardIdFK</span><span class="o">`</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">promoCardId</span><span class="o">`</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="o">`</span><span class="n">PromoCard</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">promoCardId</span><span class="o">`</span><span class="p">)</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">CASCADE</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">CASCADE</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span><span class="p">;</span>
+
+<span class="c1">--</span>
+<span class="c1">-- Dumping data for table `Customer`</span>
+<span class="c1">--</span>
+
+<span class="k">LOCK</span> <span class="n">TABLES</span> <span class="o">`</span><span class="n">Customer</span><span class="o">`</span> <span class="k">WRITE</span><span class="p">;</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">`</span><span class="n">Customer</span><span class="o">`</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;C001&#39;</span><span class="p">,</span><span class="s1">&#39;John Doy&#39;</span><span class="p">,</span><span class="s1">&#39;PC001&#39;</span><span class="p">),(</span><span class="s1">&#39;C002&#39;</span><span class="p">,</span><span class="s1">&#39;Micheal Dawson&#39;</span><span class="p">,</span><span class="s1">&#39;PC002&#39;</span><span class="p">),(</span><span class="s1">&#39;C003&#39;</span><span class="p">,</span><span class="s1">&#39;Neil Clain&#39;</span><span class="p">,</span><span class="s1">&#39;PC003&#39;</span><span class="p">),(</span><span class="s1">&#39;C004&#39;</span><span class="p">,</span><span class="s1">&#39;Anne Cath&#39;</span><span class="p">,</span><span class="s1">&#39;PC004&#39;</span><span class="p">);</span>
+<span class="n">UNLOCK</span> <span class="n">TABLES</span><span class="p">;</span>
+
+<span class="c1">--</span>
+<span class="c1">-- Table structure for table `PromoRule`</span>
+<span class="c1">--</span>
+
+<span class="k">DROP</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">PromoRule</span><span class="o">`</span><span class="p">;</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">PromoRule</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">promoRuleId</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">promoCardTypeId</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">promoRule</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">promoRuleId</span><span class="o">`</span><span class="p">),</span>
+  <span class="k">KEY</span> <span class="o">`</span><span class="n">cardId_idx</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">promoCardTypeId</span><span class="o">`</span><span class="p">),</span>
+  <span class="k">CONSTRAINT</span> <span class="o">`</span><span class="n">promoCardTypeIdFK</span><span class="o">`</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">promoCardTypeId</span><span class="o">`</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="o">`</span><span class="n">PromoCardType</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">promoCardTypeId</span><span class="o">`</span><span class="p">)</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">NO</span> <span class="n">ACTION</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">NO</span> <span class="n">ACTION</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span><span class="p">;</span>
+
+<span class="c1">--</span>
+<span class="c1">-- Dumping data for table `PromoRule`</span>
+<span class="c1">--</span>
+
+<span class="k">LOCK</span> <span class="n">TABLES</span> <span class="o">`</span><span class="n">PromoRule</span><span class="o">`</span> <span class="k">WRITE</span><span class="p">;</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">`</span><span class="n">PromoRule</span><span class="o">`</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;RULE001&#39;</span><span class="p">,</span><span class="s1">&#39;PCT01&#39;</span><span class="p">,</span><span class="s1">&#39;{{amount}} &gt; 10000 &amp;&amp; {{amount}} &lt; 50000&#39;</span><span class="p">),(</span><span class="s1">&#39;RULE002&#39;</span><span class="p">,</span><span class="s1">&#39;PCT01&#39;</span><span class="p">,</span><span class="s1">&#39;{{cardPeriod}} &gt; 200&#39;</span><span class="p">);</span>
+<span class="n">UNLOCK</span> <span class="n">TABLES</span><span class="p">;</span>
+</pre></div>
+</td></tr></table>
+
 <p>The above Siddhi app will start an HTTP service in 8088 port. Therefore, you can send a request to that service using the following CURL command.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
@@ -1922,7 +2106,46 @@
 <h4 id="prerequisite">Prerequisite<a class="headerlink" href="#prerequisite" title="Permanent link">&para;</a></h4>
 <p><a href="https://docs.docker.com/install/">Install Docker</a> into your machine.</p>
 <h4 id="siddhi-docker-configurations">Siddhi Docker Configurations<a class="headerlink" href="#siddhi-docker-configurations" title="Permanent link">&para;</a></h4>
-<p>In the tooling editor itself, you can export your Siddhi app into a runnable docker artifact. You can go to <code>Export-&gt;For Docker</code> and it will give to a zip file that contained the following files.</p>
+<p>In the tooling editor itself, you can export your Siddhi app into a runnable docker artifact. You can go to <code>Export-&gt;For Docker</code> and it will give to a zip file.</p>
+<div class="admonition note">
+<p class="admonition-title">Database URL for Docker</p>
+<p>When you changing the <code>deployment.yaml</code> configuration of the data source in the Docker export process, you have to specify this URL in the configuration as below.</p>
+</div>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>   <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">COMBO_SUPERMART_DB</span>
+     <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">The datasource used for lending process of the Combo supermarket</span>
+     <span class="nt">jndiConfig</span><span class="p">:</span>
+       <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jdbc/ComboSuperMart</span>
+     <span class="nt">definition</span><span class="p">:</span>
+       <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">RDBMS</span>
+       <span class="nt">configuration</span><span class="p">:</span>
+         <span class="nt">jdbcUrl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jdbc:mysql://mysqldb:3306/ComboSuperMart</span>
+         <span class="nt">username</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi_user</span>
+         <span class="nt">password</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhiio</span>
+         <span class="nt">driverClassName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">com.mysql.jdbc.Driver</span>
+         <span class="nt">maxPoolSize</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
+         <span class="nt">idleTimeout</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">60000</span>
+         <span class="nt">connectionTestQuery</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SELECT 1</span>
+         <span class="nt">validationTimeout</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">30000</span>
+         <span class="nt">isAutoCommit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+</pre></div>
+</td></tr></table>
+
+<p>The extracted zip file will be looks like follows.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
 3
@@ -1937,7 +2160,7 @@
 </pre></div>
 </td></tr></table>
 
-<p>You also need to set up a MySQL docker container and connect it into the Siddhi docker runtime. You can do it very easily from writing a docker composer file like below.</p>
+<p>You also need to set up a MySQL docker container and connect it into the Siddhi docker runtime. You can do it very easily from writing a docker composer file like below. Now you need to have a Docker compose file like below to set up all the prerequisites. This compose file contains volume mounts to change configurations of the MySQL container.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
@@ -1975,8 +2198,8 @@
           <span class="nt">dockerfile</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./Dockerfile</span>
         <span class="nt">ports</span><span class="p">:</span>
             <span class="p p-Indicator">-</span> <span class="s">&quot;8088:8088&quot;</span>
-        <span class="l l-Scalar l-Scalar-Plain">links:Now you need to have a Docker compose file like below to set up all the prerequisites. This compose file contains volume mounts to change configurations of the MySQL container.</span>
-            <span class="l l-Scalar l-Scalar-Plain">- mysqldb</span>
+        <span class="nt">links</span><span class="p">:</span>
+            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">mysqldb</span>
         <span class="nt">networks</span><span class="p">:</span>
             <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">default</span>
         <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">on-failure</span>
@@ -1996,12 +2219,29 @@
 </pre></div>
 </td></tr></table>
 
-<p>First, you have to build the docker composer.</p>
+<p>Save this file as <code>docker-compose.yaml</code> to the root directory of the extracted zip file. And the extracted zip file directory now looks like below:</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>├── Dockerfile
+├── configurations.yaml
+├── docker-compose.yaml
+├── jars
+│   └── mysql-connector.jar
+└── siddhi-files
+    └── ComboSuperMartPromoProcess.siddhi
+</pre></div>
+</td></tr></table>
+
+<p>Now, you have to build the docker composer.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ docker-compose build
 </pre></div>
 </td></tr></table>
 
-<p>Now you have to start the MySQL container.</p>
+<p>Now you have to start the MySQL container. And then set up your MySQL database as described <a href="#testing">above</a>.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ docker-compose up -d mysqldb
 </pre></div>
 </td></tr></table>
