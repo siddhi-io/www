@@ -4,8 +4,8 @@
 Siddhi provides tooling that supports following features to develop and test stream processing applications: 
 
 * **Text Query Editor** with syntax highlighting and advanced auto completion support.
-* **Event Simulator and Debugger** to test Siddhi Applications.
 * **Graphical Query Editor** with drag and drop query building support.
+* **Event Simulator** to test Siddhi Applications.
 
 <div>
     <p style="width: 49%;float:left;text-align: center;">
