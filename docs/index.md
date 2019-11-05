@@ -35,7 +35,6 @@ Event processing logic can be written using Streaming SQL queries via Siddhi gra
 <div class="cDistributionsContainer">
 <h3>Distributions</h3>
 
-
 <div class="cDistributions">
 <ui>
 <li><a class="cDistribution cKubernetes" href="en/_latest_version_/download/#siddhi-kubernetes">Kubernetes</a></li>
