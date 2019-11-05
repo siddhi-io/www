@@ -18,10 +18,17 @@ Siddhi provides tooling that supports following features to develop and test str
     </p>
 </div>
 
+### Introduction to Siddhi Editor 
 
-## How to configure the Tooling
+<iframe width="675" height="375" src="https://www.youtube.com/embed/yJBFCxOwInU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-### Configure Tooling in Local Machine
+### Siddhi App Export Tool for Kubernetes 
+
+<iframe width="675" height="375" src="https://www.youtube.com/embed/e7xo2pO0DXg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Configuring the Tooling
+
+### Tooling in Local Machine
 1. Install [Oracle Java SE Development Kit (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/index.html) version 1.8.
 2. [Set the JAVA_HOME](https://docs.oracle.com/cd/E19182-01/820-7851/inst_cli_jdk_javahome_t/) environment
    variable.
@@ -34,7 +41,7 @@ Siddhi provides tooling that supports following features to develop and test str
     For Linux/Mac: ./tooling.sh
     ```
 
-### Configure Tooling in Docker 
+### Tooling in Docker 
 There is a docker image for Siddhi tooling with all the dependencies that required for the Siddhi development. If you are familiar with Docker then you could use it.
 You find the Siddhi tooling docker images in the [docker hub](https://hub.docker.com/r/siddhiio/siddhi-tooling)
 
@@ -83,7 +90,3 @@ docker run -it -p 9390:9390 \
   -v <absolute path>/bundles:/home/siddhi_user/siddhi-tooling/bundles \
   siddhiio/siddhi-tooling:5.1.0 -Dconfig=/artifacts/EmailConfig.yaml
 ``` 
-
-### Siddhi App Export Tool for Docker/Kubernetes 
-
-<iframe width="675" height="375" src="https://www.youtube.com/embed/e7xo2pO0DXg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
