@@ -197,6 +197,7 @@
            </div>
            {%- block scripts -%}
            <script src="{{ 'assets/javascripts/application.d5a09f94.js' | url }}"></script>
+           <script src="{{ 'assets/javascripts/jquery/1.12.4/jquery.min.js' | url }}"></script>
            {%- if lang.t("search.language") != "en" -%} {%- set languages = lang.t("search.language").split(",") -%}
            {%- if languages | length and languages[0] != "" -%} {%- set path = "assets/javascripts/lunr/" -%}
            <script src="{{ (path ~ 'lunr.stemmer.support.js') | url }}"></script>
