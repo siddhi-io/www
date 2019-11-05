@@ -39,7 +39,7 @@
    <head><meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       <meta http-equiv="x-ua-compatible" content="ie=edge"><meta name="description" content="Cloud Native Stream Processor"><link rel="canonical" href="http://siddhi.io/"><meta name="author" content="WSO2"><meta name="lang:clipboard.copy" content="Copy to clipboard"><meta name="lang:clipboard.copied" content="Copied to clipboard"><meta name="lang:search.language" content="en"><meta name="lang:search.pipeline.stopwords" content="True"><meta name="lang:search.pipeline.trimmer" content="True"><meta name="lang:search.result.none" content="No matching documents"><meta name="lang:search.result.one" content="1 matching document"><meta name="lang:search.result.other" content="# matching documents"><meta name="lang:search.tokenizer" content="[\s\-]+"><link rel="shortcut icon" href="images/logos/favicon.ico">
-      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.3.1"><title>Siddhi</title>
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.3.1"><title>Siddhi</title><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
       <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -658,6 +658,8 @@
  * under the License.
 -->
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
 <div class="row cIntroRow">
 <div class="container">
 <div class="col-md-6 col-sm-6">
@@ -672,7 +674,6 @@ Event processing logic can be written using Streaming SQL queries via Siddhi gra
 <!-- <a href="#" class="cDownloadButton">Download</a> -->
 <div class="cDistributionsContainer">
 <h3>Distributions</h3>
-
 
 <div class="cDistributions">
 <ui>
@@ -694,12 +695,12 @@ Event processing logic can be written using Streaming SQL queries via Siddhi gra
 <div class="cWdgetContainer" id="exTab1">
 <div class="cTerminal">
 <div class="tab-content clearfix">
-<div class="tab-pane" id="1a">
+<div class="tab-pane active" id="1a">
 <div class="terminalOutput">
-<img src="images/editor/editor.gif"/>
+<img data-enlargable style="cursor: zoom-in"  src="images/editor/siddhi-editor.gif" />
 </div>
 </div>
-<div class="tab-pane active" id="2a">
+<div class="tab-pane" id="2a">
 <div class="terminalOutput">
 <asciinema-player src="images/siddhi-510-on-k8s.cast" autoplay="true" loop="true" speed="3" preload="true" cols="62" rows="16"></asciinema-player>
 <script src="assets/js/asciinema-player.js"></script>
@@ -709,9 +710,9 @@ Event processing logic can be written using Streaming SQL queries via Siddhi gra
 </div>
 <div class="cControls">
 <ul  class="cDemoControls">
-    <li><a  href="#1a" data-toggle="tab">Siddhi Editor</a>
+    <li class="active"><a  href="#1a" data-toggle="tab">Siddhi Editor</a>
     </li>
-    <li class="active"><a href="#2a" data-toggle="tab">Siddhi on Kubernetes</a>
+    <li><a href="#2a" data-toggle="tab">Siddhi on Kubernetes</a>
     </li>
 </ul>
 </div>
