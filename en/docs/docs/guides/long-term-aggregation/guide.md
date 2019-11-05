@@ -217,7 +217,7 @@ Hence, make sure to set the environmental variables with the proper values in th
 
 * MYSQL_URL: MySQL url used to connect to the database. (eg: 'jdbc:mysql://localhost:3306/testdb?useSSL=false')
 
-* MYSQL_USERNAME: USername of the MySQL database used to persist aggregated data.
+* MYSQL_USERNAME: Username of the MySQL database used to persist aggregated data.
 
 * MYSQL_PASSWORD: Password of the MySQL database used to persist aggregated data.
 
@@ -239,10 +239,10 @@ When you run the Siddhi app in the editor, you will see below logs getting print
 
 #### Run Mock Data Generator
 
-In the provided Siddhi app, there is an HTTP source configured to receive sales data. For simplicity, you will be mocking this data through a generator . Please download the mock server [jar](https://github.com/niveathika/siddhi-mock-data-generator/releases/download/v1.0.0/siddhi-mock-data-generator-1.0.0.jar) and run that mock service by executing the following command.
+In the provided Siddhi app, there is an HTTP source configured to receive sales data. For simplicity, you will be mocking this data through a generator . Please download the mock server [jar](https://github.com/niveathika/siddhi-mock-data-generator/releases/download/v2.0.0/siddhi-mock-data-generator-2.0.0.jar) and run that mock service by executing the following command.
 
 ```console
-java -jar siddhi-mock-data-generator-1.0.0.jar
+java -jar siddhi-mock-data-generator-2.0.0.jar
 ```
 
 #### Invoking the Siddhi App
@@ -305,10 +305,10 @@ Environmental variables related to Email and MySQL needs to be exported.
     Windows : bin\runner.bat -Dapps=<siddhi-files-directory>
     ```
 
-5. If pointing to different DB, run the mock data generator to add data for past 5 days sales. Download the [mock data generator](https://github.com/niveathika/siddhi-mock-data-generator/releases/download/v1.0.0/siddhi-mock-data-generator-1.0.0.jar). Execute the below command to run the mock data generator.
+5. If pointing to different DB, run the mock data generator to add data for past 5 days sales. Download the [mock data generator](https://github.com/niveathika/siddhi-mock-data-generator/releases/download/v2.0.0/siddhi-mock-data-generator-2.0.0.jar). Execute the below command to run the mock data generator.
 
     ```console
-    java -jar siddhi-mock-data-generator-1.0.0.jar
+    java -jar siddhi-mock-data-generator-2.0.0.jar
     ```
 
 6. Invoke the dailyDealsAlert service with the following cURL request. You can set `emailToBeSent` as false to not send an email but only to observe the logs.
@@ -403,10 +403,10 @@ Siddhi docker artifacts can be exported from the Editor UI as follows,
     !!! info
         Here port 8080 is bound with localhost:8080 to run the mock-data generator
 
-4. You can use the sample mock data generator to add data for past 5 days sales. Download the [mock data generator](https://github.com/niveathika/siddhi-mock-data-generator/releases/download/v1.0.0/siddhi-mock-data-generator-1.0.0.jar). Execute the below command to run the mock data generator.
+4. You can use the sample mock data generator to add data for past 5 days sales. Download the [mock data generator](https://github.com/niveathika/siddhi-mock-data-generator/releases/download/v2.0.0/siddhi-mock-data-generator-2.0.0.jar). Execute the below command to run the mock data generator.
 
     ```console
-    java -jar siddhi-mock-data-generator-1.0.0.jar
+    java -jar siddhi-mock-data-generator-2.0.0.jar
     ```
 
 5. Invoke the dailyDealsAlert service with the following cURL request. You can set `emailToBeSent` as false to not send an email but only to observe the logs.
