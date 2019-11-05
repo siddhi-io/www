@@ -19,6 +19,7 @@ template: templates/mkt-webpage.html
  * specific language governing permissions and limitations
  * under the License.
 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <div class="row cIntroRow">
 <div class="container">
 <div class="col-md-6 col-sm-6">
@@ -55,12 +56,12 @@ Event processing logic can be written using Streaming SQL queries via Siddhi gra
 <div class="cWdgetContainer" id="exTab1">
 <div class="cTerminal">
 <div class="tab-content clearfix">
-<div class="tab-pane" id="1a">
+<div class="tab-pane active" id="1a">
 <div class="terminalOutput">
-<img src="images/editor/editor.gif"/>
+<img data-enlargable style="cursor: zoom-in"  src="images/editor/siddhi-editor.gif" />
 </div>
 </div>
-<div class="tab-pane active" id="2a">
+<div class="tab-pane" id="2a">
 <div class="terminalOutput">
 <asciinema-player src="images/siddhi-510-on-k8s.cast" autoplay="true" loop="true" speed="3" preload="true" cols="62" rows="16"></asciinema-player>
 <script src="assets/js/asciinema-player.js"></script>
@@ -70,9 +71,9 @@ Event processing logic can be written using Streaming SQL queries via Siddhi gra
 </div>
 <div class="cControls">
 <ul  class="cDemoControls">
-    <li><a  href="#1a" data-toggle="tab">Siddhi Editor</a>
+    <li class="active"><a  href="#1a" data-toggle="tab">Siddhi Editor</a>
 	</li>
-	<li class="active"><a href="#2a" data-toggle="tab">Siddhi on Kubernetes</a>
+	<li><a href="#2a" data-toggle="tab">Siddhi on Kubernetes</a>
 	</li>
 </ul>
 </div>
