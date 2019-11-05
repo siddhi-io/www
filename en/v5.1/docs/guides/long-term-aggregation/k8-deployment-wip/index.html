@@ -1149,7 +1149,7 @@
 <ol>
 <li>
 <p>It is advisable to create a namespace in Kubernetes to follow below steps.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">kubectl create ns siddhi-aggregation-guide</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">kubectl create ns agg-guide</span>
 </pre></div>
 </td></tr></table>
 
@@ -1159,16 +1159,16 @@
 <ul>
 <li>
 <p>First, install the MySQL helm chart as shown below,</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">helm install --name mysql-server --namespace=siddhi-aggregation-guide --set mysqlRootPassword=root,mysqlUser=root,mysqlDatabase=testdb stable/mysql</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">helm install --name mysql-server --namespace=agg-guide --set mysqlRootPassword=root,mysqlUser=root,mysqlDatabase=testdb stable/mysql</span>
 </pre></div>
 </td></tr></table>
 
-<p>Here, you can define the root password to connect to the MYSQL database and also define the database name. BTW, make sure to do <code>helm init --tiller-namespace=siddhi-aggregation-guide</code> if it is not done yet.</p>
-<p>Verify pods are running with <code>kubectl get pods --namespace=siddhi-aggregation-guide</code></p>
+<p>Here, you can define the root password to connect to the MYSQL database and also define the database name. BTW, make sure to do <code>helm init --tiller-namespace=agg-guide</code> if it is not done yet.</p>
+<p>Verify pods are running with <code>kubectl get pods --namespace=agg-guide</code></p>
 </li>
 <li>
 <p>Then, you can set a port forwarding to the MySQL service which allows you to connect from the Host.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">    kubectl port-forward svc/mysql-server 13300:3306 --namespace=siddhi-aggregation-guide</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">    kubectl port-forward svc/mysql-server 13300:3306 --namespace=agg-guide</span>
 </pre></div>
 </td></tr></table>
 
@@ -1185,8 +1185,8 @@
 <li>
 <p>To install the Siddhi Kubernetes operator run the following commands.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/00-prereqs.yaml  --namespace=siddhi-aggregation-guide</span>
-<span class="go">kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/01-siddhi-operator.yaml --namespace=siddhi-aggregation-guide</span>
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/00-prereqs.yaml  --namespace=agg-guide</span>
+<span class="go">kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/01-siddhi-operator.yaml --namespace=agg-guide</span>
 </pre></div>
 </td></tr></table>
 
@@ -1197,6 +1197,53 @@
 <p><a href="../images/k8s-svc.png"><img alt="kubernetes_siddhi-svc" src="../images/k8s-svc.png" title="K8S Siddhi Services" /></a></p>
 </li>
 </ul>
+</li>
+<li>
+<p>Enable <a href="https://kubernetes.github.io/ingress-nginx/deploy/">ingress</a></p>
+</li>
+<li>
+<p>[Mandatory Commands for all clusters]</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>```console
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/mandatory.yaml
+```
+</pre></div>
+</td></tr></table>
+
+</li>
+<li>
+<p>Docker for Mac/Docker for Windows</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>```console
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud-generic.yaml
+```
+</pre></div>
+</td></tr></table>
+
+</li>
+<li>
+<p>Minikube</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>```console
+minikube addons enable ingress
+```
+</pre></div>
+</td></tr></table>
+
+</li>
+<li>
+<p>GKE</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>```console
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud-generic.yaml
+```
+</pre></div>
+</td></tr></table>
+
 </li>
 <li>
 <p>Siddhi applications can be deployed on Kubernetes using the Siddhi operator.</p>
@@ -1233,19 +1280,33 @@
 </li>
 <li>
 <p>Now,  let’s create the above resource in the Kubernetes  cluster with below command.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">kubectl --namespace=siddhi-aggregation-guide apply -f &lt;absolute-path&gt;/siddhi-kubernetes/siddhi-process.yaml</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">kubectl --namespace=agg-guide apply -f &lt;absolute-path&gt;/siddhi-kubernetes/siddhi-process.yaml</span>
 </pre></div>
 </td></tr></table>
 
 <p>Once, siddhi apps are successfully deployed. You can verify its health with below Kubernetes commands</p>
-<p><a href="images/k8s-pods-with-siddhi.png"><img alt="kubernetes_pods_with_siddhi" src="images/k8s-pods-with-siddhi.png" title="Kubernetes Pods" /></a></p>
+<p><a href="../images/k8s-pods-with-siddhi.png"><img alt="kubernetes_pods_with_siddhi" src="../images/k8s-pods-with-siddhi.png" title="Kubernetes Pods" /></a></p>
 </li>
 <li>
-<p>You can use the sample mock data generator to add data for past 5 days sales. Download the <a href="https://github.com/niveathika/siddhi-mock-data-generator/releases/download/v1.0.0/siddhi-mock-data-generator-1.0.0.jar">mock data generator</a>. Execute the below command to run the mock data generator.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">java -jar siddhi-mock-data-generator-1.0.0.jar</span>
+<p>Configure Kubernetes cluster IP as “siddhi” hostname in your /etc/hosts file.</p>
+</li>
+<li>Minikube: add minikube IP to the “/etc/hosts” file as host “siddhi”, Run “minikube ip” command in terminal to get the minikube IP.</li>
+<li>Docker for Mac: use 0.0.0.0 to the /etc/hosts file as host “siddhi”.</li>
+<li>Docker for Windows: use IP that resolves to host.docker.internal in the /etc/hosts file as host “siddhi”.</li>
+<li>
+<p>GKE: Obtain the external IP (EXTERNAL-IP) of the Ingress resources by listing down the Kubernetes Ingresses.</p>
+</li>
+<li>
+<p>You can use the sample mock data generator to add data for past 5 days sales. Download the <a href="https://github.com/niveathika/siddhi-mock-data-generator/releases/download/v2.0.0/siddhi-mock-data-generator-2.0.0.jar">mock data generator</a>. Execute the below command to run the mock data generator.</p>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">java -jar siddhi-mock-data-generator-2.0.0.jar siddhi/siddhi-aggregation-guide-0/8080</span>
 </pre></div>
 </td></tr></table>
 
+<div class="admonition note">
+<p class="admonition-title">Hostname of the HTTP Source</p>
+</div>
+<p>Here the hostname will include deployment name along with the port with syntax, <code>&lt;IP&gt;/&lt;DEPLOYMENT_NAME&gt;/&lt;PORT&gt;</code>.
+The above sample is for artifacts generated with process name, <code>siddhi-aggregation-guide</code> in Step 6 of the Export Dialog.</p>
 </li>
 <li>
 <p>Invoke the dailyDealsAlert service with the following cURL request. You can set <code>emailToBeSent</code> as false to not send an email but only to observe the logs.</p>
@@ -1256,7 +1317,7 @@
 5
 6
 7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">curl -X POST \</span>
-<span class="go">http://localhost:8080/dailyDealsAlert \</span>
+<span class="go">http://siddhi/siddhi-aggregation-guide-1/8080/dailyDealsAlert \</span>
 <span class="go">-k \</span>
 <span class="go">-H &#39;Content-Type: application/json&#39; \</span>
 <span class="go">-d &#39;{</span>
@@ -1265,10 +1326,15 @@
 </pre></div>
 </td></tr></table>
 
+<div class="admonition note">
+<p class="admonition-title">Hostname of the HTTP Source</p>
+</div>
+<p>Here the hostname will include deployment name along with the port with syntax, <code>&lt;IP&gt;/&lt;DEPLOYMENT_NAME&gt;/&lt;PORT&gt;</code>.
+The above sample is for artifacts generated with process name, <code>siddhi-aggregation-guide</code> in Step 6 of the Export Dialog.</p>
 </li>
 <li>
 <p>You can see the output log in the console. Here, you will be able to see the alert log printed as shown below.</p>
-<p><a href="images/k8s-console-output.png"><img alt="kubernetes_siddhi_console_output" src="images/k8s-console-output.png" title="Kubernetes Console Output" /></a></p>
+<p><a href="../images/k8s-console-output.png"><img alt="kubernetes_siddhi_console_output" src="../images/k8s-console-output.png" title="Kubernetes Console Output" /></a></p>
 <div class="admonition info">
 <p class="admonition-title">Refer <a href="https://siddhi.io/en/v5.1/docs/siddhi-as-a-kubernetes-microservice/">here</a> to get more details about running Siddhi on Kubernetes.</p>
 </div>
