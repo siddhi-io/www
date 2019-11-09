@@ -352,26 +352,26 @@ There are specification changes in Siddhi Process Custom Resource Definition. Yo
         volumeMode: Filesystem
     ```
 
-1. Enable the version controlling to the SiddhiProcesses.(https://github.com/siddhi-io/siddhi-operator/pull/57, https://github.com/siddhi-io/siddhi-operator/pull/66)
+1. Enable the version controlling to the SiddhiProcesses. [(#57)](https://github.com/siddhi-io/siddhi-operator/pull/57), [(#66)](https://github.com/siddhi-io/siddhi-operator/pull/66)
 1. NGINX ingress 0.22.0+ support.
-1. Adding readiness and liveness probes to the Siddhi runner. (https://github.com/siddhi-io/siddhi-operator/pull/46)
-1. Change previous static Siddhi parser to a dynamic one which embedded with the Siddhi runner. (https://github.com/siddhi-io/siddhi-operator/pull/71)
+1. Adding readiness and liveness probes to the Siddhi runner. [(#46)](https://github.com/siddhi-io/siddhi-operator/pull/46)
+1. Change previous static Siddhi parser to a dynamic one which embedded with the Siddhi runner. [(#71)](https://github.com/siddhi-io/siddhi-operator/pull/71)
 
 ### Bug Fixes
 
-1. Failover Deployment Support - Added Features https://github.com/siddhi-io/siddhi-operator/issues/33
-1. Operator crashes the when NATS unavailable in the cluster (https://github.com/siddhi-io/siddhi-operator/issues/50)
-1. Versioning in siddhi application level ( https://github.com/siddhi-io/siddhi-operator/issues/42)
-1. Getting segmentation fault error when creating PVC automatically (https://github.com/siddhi-io/siddhi-operator/issues/86)
-1. Stateful Siddhi Application fails deployment if persistence volume is unavailable (https://github.com/siddhi-io/siddhi-operator/issues/92)
+1. Failover Deployment support related features [(#33)](https://github.com/siddhi-io/siddhi-operator/issues/33)
+1. Operator crashes the when NATS unavailable in the cluster [(#50)](https://github.com/siddhi-io/siddhi-operator/issues/50)
+1. Versioning in siddhi application level [(#42)](https://github.com/siddhi-io/siddhi-operator/issues/42)
+1. Getting segmentation fault error when creating PVC automatically [(#86)](https://github.com/siddhi-io/siddhi-operator/issues/86)
+1. Stateful Siddhi Application fails deployment if persistence volume is unavailable [(#92)](https://github.com/siddhi-io/siddhi-operator/issues/92)
 
 ### Siddhi Operator 0.2.1-RC1 (Pre Release)
 
 ### Bug Fixes
 
-1. Enable users to view deployed partial Siddhi apps directly using `SiddhiProcess` (Fix https://github.com/siddhi-io/siddhi-operator/issues/101)
-1. Enable users to view the `READY` status when pods become available (Fix https://github.com/siddhi-io/siddhi-operator/issues/80)
-1. Add initial pending state and intermediate updating state to the `SiddhiProcess` custom resource object (Fix https://github.com/siddhi-io/siddhi-operator/issues/90)
+1. Enable users to view deployed partial Siddhi apps directly using `SiddhiProcess` [(#101)](https://github.com/siddhi-io/siddhi-operator/issues/101)
+1. Enable users to view the `READY` status when pods become available [(#80)](https://github.com/siddhi-io/siddhi-operator/issues/80)
+1. Add initial pending state and intermediate updating state to the `SiddhiProcess` custom resource object [(#90)](https://github.com/siddhi-io/siddhi-operator/issues/90)
 
 !!! info "Please find more details about the release [here](https://github.com/siddhi-io/siddhi-operator/releases/tag/v0.2.1-rc1)"
 
