@@ -81,8 +81,55 @@ Please find the complete changes [here](https://github.com/siddhi-io/distributio
 
 !!! info "Please find the details of the corresponding docker release [here](https://github.com/siddhi-io/docker-siddhi/releases/tag/v5.1.0)"
 
+### Siddhi Distribution 5.1.1-RC1 (Pre Release)
+
+#### Features & Improvements
+* Provide snapshot persistence support for Amazon S3 buckets. [(#657)](https://github.com/siddhi-io/distribution/pull/657)
+* Support partial app creation for in-memory bridged apps. [(#649)](https://github.com/siddhi-io/distribution/pull/649)
+
+#### Bug Fixes
+* Add proper names to zip files exported through Docker/K8S export wizard. [(#613)](https://github.com/siddhi-io/distribution/pull/613)
+* Use file separator instead of `/` in Docker and K8s export files. [(#614)](https://github.com/siddhi-io/distribution/pull/614)
+* Fix retry mechanism deploying a successful app again and again. [(#615)](https://github.com/siddhi-io/distribution/pull/615)
+* Fix parsing Siddhi apps with zero Siddhi query elements. [(#643)](https://github.com/siddhi-io/distribution/pull/643)
+* Avoid removing sink/sources while converting in-mem transports. [(#650)](https://github.com/siddhi-io/distribution/pull/650)
+* Remove editor file system based hot deployment. [(#651)](https://github.com/siddhi-io/distribution/pull/651)
+* Add triple quotes for highlighting rules. [(#664)](https://github.com/siddhi-io/distribution/pull/664)
+* Exception occurs in the Siddhi-Editor while sending events through event simulator. [(#668)](https://github.com/siddhi-io/distribution/pull/668)
+) Fix simulator listing siddhi apps with template variables as FAULTY. [(#678)](https://github.com/siddhi-io/distribution/pull/678)
+* Use user-given topic for inMemory bridges during parsing. [(#675)](https://github.com/siddhi-io/distribution/pull/675)
+* Refresh explorer & simulator after file import. [(#681)](https://github.com/siddhi-io/distribution/pull/681)
+* Autofocus fails in search bar of the `Import Sample` option in editor. [(#682)](https://github.com/siddhi-io/distribution/pull/682)
+* Suppress log if the feed simulation is deployed with no relevant siddhi app in the workspace. [(#684)](https://github.com/siddhi-io/distribution/pull/684)
+
+#### Highlighted Change
+This release onwards, debug feature is removed from Siddhi editor runtime. [(#669)](https://github.com/siddhi-io/distribution/pull/669)
+
+#### Complete Changes 
+Please find the complete changes [here](https://github.com/siddhi-io/distribution/compare/v5.1.0...v5.1.1-RC1) 
+
+!!! info "Please find more details about the release [here](https://github.com/siddhi-io/distribution/releases/tag/v5.1.0-RC1)"
+
+!!! info "Please find the details of the corresponding docker release [here](https://github.com/siddhi-io/docker-siddhi/releases/tag/v5.1.0-rc1)"
+
 
 ## Siddhi Core Libraries Releases
+
+### Siddhi Core 5.1.8
+
+#### Features & Improvements
+* Support mapping transport properties to any data type. [(#1560)](https://github.com/siddhi-io/siddhi/pull/1560)
+
+#### Bug Fixes
+* NPE being thrown intermittently while removing bundles in shutdown process. [(#1541)](https://github.com/siddhi-io/siddhi/pull/1541)
+* Avoid triggers to start before other elements. [(#1543)](https://github.com/siddhi-io/siddhi/pull/1543)
+* SiddhiQL.g4 grammar file not building with antlr. [(#1550)](https://github.com/siddhi-io/siddhi/pull/1550)
+* Event chunk breaks for scatter-gather data processing with joins. [(#1559)](https://github.com/siddhi-io/siddhi/pull/1559)
+
+#### Complete Changes 
+Please find the complete changes [here](https://github.com/siddhi-io/siddhi/compare/v5.1.7...v5.1.8)
+
+!!! info "Please find more details about the release [here](https://github.com/siddhi-io/siddhi/releases/tag/v5.1.8)"
 
 ### Siddhi Core 5.1.7
 
@@ -111,7 +158,6 @@ Please find the complete changes [here](https://github.com/siddhi-io/siddhi/comp
 Please find the complete changes [here](https://github.com/siddhi-io/siddhi/compare/v5.1.5...v5.1.6)
 
 !!! info "Please find more details about the release [here](https://github.com/siddhi-io/siddhi/releases/tag/v5.1.6)"
-
 
 ### Siddhi Core 5.1.5
 
@@ -236,7 +282,6 @@ There are specification changes in Siddhi Process Custom Resource Definition. Yo
 
 #### SiddhiProcess Spec Changes from 0.1.1
 
-
 1. Aggregate previous `apps` and `query` specs to a single spec called `apps`.
 
     ```yaml
@@ -312,8 +357,6 @@ There are specification changes in Siddhi Process Custom Resource Definition. Yo
 1. Adding readiness and liveness probes to the Siddhi runner. (https://github.com/siddhi-io/siddhi-operator/pull/46)
 1. Change previous static Siddhi parser to a dynamic one which embedded with the Siddhi runner. (https://github.com/siddhi-io/siddhi-operator/pull/71)
 
-
-
 ### Bug Fixes
 
 1. Failover Deployment Support - Added Features https://github.com/siddhi-io/siddhi-operator/issues/33
@@ -322,4 +365,13 @@ There are specification changes in Siddhi Process Custom Resource Definition. Yo
 1. Getting segmentation fault error when creating PVC automatically (https://github.com/siddhi-io/siddhi-operator/issues/86)
 1. Stateful Siddhi Application fails deployment if persistence volume is unavailable (https://github.com/siddhi-io/siddhi-operator/issues/92)
 
- 
+### Siddhi Operator 0.2.1-RC1 (Pre Release)
+
+### Bug Fixes
+
+1. Enable users to view deployed partial Siddhi apps directly using `SiddhiProcess` (Fix https://github.com/siddhi-io/siddhi-operator/issues/101)
+1. Enable users to view the `READY` status when pods become available (Fix https://github.com/siddhi-io/siddhi-operator/issues/80)
+1. Add initial pending state and intermediate updating state to the `SiddhiProcess` custom resource object (Fix https://github.com/siddhi-io/siddhi-operator/issues/90)
+
+!!! info "Please find more details about the release [here](https://github.com/siddhi-io/siddhi-operator/releases/tag/v0.2.1-rc1)"
+
