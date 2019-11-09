@@ -50,14 +50,14 @@ Refer the user guide to use [Siddhi as a Docker Microservice](../docs/siddhi-as-
 
 ## Siddhi Kubernetes 
 
-### **5.1.0**
+### **0.2.0**
 
 Based on Siddhi distribution `5.1.0` and Siddhi Core `5.1.7`.
 
 * [Siddhi CRD](https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/00-prereqs.yaml)
 * [Siddhi Operator](https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/01-siddhi-operator.yaml)
 
-### **5.1.1-RC1 (Pre Release)**
+### **0.2.1-RC1 (Pre Release)**
 
 Based on Siddhi distribution `5.1.1-RC1` and Siddhi Core `5.1.8`.
 
