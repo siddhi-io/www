@@ -165,7 +165,7 @@ select weight, sum(weight) as totalWeight
 insert into OutputStream;
 ```
 
-This query will calculate the sum of weights from the start of the Siddhi application. For more complex use cases refer [Siddhi Query Guild](../query-guide/))  
+This query will calculate the sum of weights from the start of the Siddhi application. For more complex use cases refer [Siddhi Query Guide](../query-guide/))  
 
 Final Siddhi application in the editor will look like following.
 ![](../../images/quickstart/hello-query.png?raw=true "Hello World in Stream Processor Studio")
