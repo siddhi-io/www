@@ -190,6 +190,51 @@ statePersistence:
     location: siddhi-app-persistence
 ```
 
+### Persistence on AWS-S3
+
+To configure AWS-S3 based periodic data persistence, add <code>statePersistence</code> section with the following
+ properties on the Siddhi configuration yaml, and pass that during startup.
+
+| Parameter | Purpose | Required Value |
+| ------------- |-------------|-------------|
+| enabled | This enables data persistence. | true |
+| intervalInMin | The time interval in minutes that defines the interval in which state of Siddhi applications should be persisted | 1 |
+| revisionsToKeep | The number of revisions to keep in the system. Here when a new persistence takes place, the older revisions are removed. | 3 |
+| persistenceStore | The persistence store | io.siddhi.distribution.core.persistence.S3PersistenceStore |
+| config > credentialProvideClass | CredentialProviderClass name. | software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider |
+| config > accessKey | Access key of the user (only if `credentialProvideClass` property is not provided. | *****access-key***** |
+| config > secretKey | Secret key of the user (only if `credentialProvideClass` property is not provided. | *****secret-key***** |
+| config > bucketName | Name of the bucket where revision files should be persisted.  | siddhi-app-persistence |
+| config > region | Name of the region where bucket belongs to. | us-west-2 |
+
+The following are some samples configuration for aws-s3 based state persistence.</br>
+
+* Sample with credential provider class
+```yaml
+statePersistence:
+  enabled: true
+  intervalInMin: 1
+  revisionsToKeep: 2
+  persistenceStore: io.siddhi.distribution.core.persistence.S3PersistenceStore
+  config:
+    credentialProvideClass: software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider
+    region: us-west-2
+    bucketName: siddhi-app-persistence
+```
+* Sample with secret-key and access-key
+```yaml
+statePersistence:
+  enabled: true
+  intervalInMin: 1
+  revisionsToKeep: 2
+  persistenceStore: io.siddhi.distribution.core.persistence.S3PersistenceStore
+  config:
+    accessKey: access-key
+    secretKey: secret-key
+    region: us-west-2
+    bucketName: siddhi-app-persistence
+```
+
 ## Configuring Siddhi Elements
 
 !!! info "Applicable only for Local, Docker, and Kubernetes modes."
