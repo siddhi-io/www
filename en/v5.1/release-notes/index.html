@@ -926,7 +926,8 @@
     Siddhi Operator 0.2.1
   </a>
   
-</li>
+    <nav class="md-nav">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#bug-fixes_10" title="Bug Fixes" class="md-nav__link">
@@ -935,12 +936,18 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+        
           <li class="md-nav__item">
   <a href="#siddhi-operator-020" title="Siddhi Operator 0.2.0" class="md-nav__link">
     Siddhi Operator 0.2.0
   </a>
   
-</li>
+    <nav class="md-nav">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#compatibility-support" title="Compatibility &amp; Support" class="md-nav__link">
@@ -954,25 +961,17 @@
     Features &amp; Improvements
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#siddhiprocess-spec-changes-from-011" title="SiddhiProcess Spec Changes from 0.1.1" class="md-nav__link">
-    SiddhiProcess Spec Changes from 0.1.1
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
   <a href="#bug-fixes_11" title="Bug Fixes" class="md-nav__link">
     Bug Fixes
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -2089,7 +2088,8 @@
     Siddhi Operator 0.2.1
   </a>
   
-</li>
+    <nav class="md-nav">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#bug-fixes_10" title="Bug Fixes" class="md-nav__link">
@@ -2098,12 +2098,18 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+        
           <li class="md-nav__item">
   <a href="#siddhi-operator-020" title="Siddhi Operator 0.2.0" class="md-nav__link">
     Siddhi Operator 0.2.0
   </a>
   
-</li>
+    <nav class="md-nav">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#compatibility-support" title="Compatibility &amp; Support" class="md-nav__link">
@@ -2117,25 +2123,17 @@
     Features &amp; Improvements
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#siddhiprocess-spec-changes-from-011" title="SiddhiProcess Spec Changes from 0.1.1" class="md-nav__link">
-    SiddhiProcess Spec Changes from 0.1.1
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
   <a href="#bug-fixes_11" title="Bug Fixes" class="md-nav__link">
     Bug Fixes
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -2447,7 +2445,7 @@
 </div>
 <h2 id="siddhi-k8s-operator-releases">Siddhi K8s Operator Releases<a class="headerlink" href="#siddhi-k8s-operator-releases" title="Permanent link">&para;</a></h2>
 <h3 id="siddhi-operator-021">Siddhi Operator 0.2.1<a class="headerlink" href="#siddhi-operator-021" title="Permanent link">&para;</a></h3>
-<h3 id="bug-fixes_10">Bug Fixes<a class="headerlink" href="#bug-fixes_10" title="Permanent link">&para;</a></h3>
+<h4 id="bug-fixes_10">Bug Fixes<a class="headerlink" href="#bug-fixes_10" title="Permanent link">&para;</a></h4>
 <ol>
 <li>Enable users to view deployed partial Siddhi apps directly using <code>SiddhiProcess</code> <a href="https://github.com/siddhi-io/siddhi-operator/issues/101">(#101)</a></li>
 <li>Enable users to view the <code>READY</code> status when pods become available <a href="https://github.com/siddhi-io/siddhi-operator/issues/80">(#80)</a></li>
@@ -2458,10 +2456,10 @@
 </div>
 <h3 id="siddhi-operator-020">Siddhi Operator 0.2.0<a class="headerlink" href="#siddhi-operator-020" title="Permanent link">&para;</a></h3>
 <p>Siddhi team is excited to announce the Siddhi Operator Release 0.2.0. Please find the major improvements and features introduced in this release.</p>
-<h3 id="compatibility-support">Compatibility &amp; Support<a class="headerlink" href="#compatibility-support" title="Permanent link">&para;</a></h3>
+<h4 id="compatibility-support">Compatibility &amp; Support<a class="headerlink" href="#compatibility-support" title="Permanent link">&para;</a></h4>
 <p>There are specification changes in Siddhi Process Custom Resource Definition. You have to use siddhi.io/v1alpha2 custom resources with this release.</p>
-<h3 id="features-improvements_10">Features &amp; Improvements<a class="headerlink" href="#features-improvements_10" title="Permanent link">&para;</a></h3>
-<h4 id="siddhiprocess-spec-changes-from-011">SiddhiProcess Spec Changes from 0.1.1<a class="headerlink" href="#siddhiprocess-spec-changes-from-011" title="Permanent link">&para;</a></h4>
+<h4 id="features-improvements_10">Features &amp; Improvements<a class="headerlink" href="#features-improvements_10" title="Permanent link">&para;</a></h4>
+<p><strong>SiddhiProcess Spec Changes from 0.1.1</strong></p>
 <ol>
 <li>
 <p>Aggregate previous <code>apps</code> and <code>query</code> specs to a single spec called <code>apps</code>.</p>
@@ -2596,7 +2594,7 @@
 <li>Adding readiness and liveness probes to the Siddhi runner. <a href="https://github.com/siddhi-io/siddhi-operator/pull/46">(#46)</a></li>
 <li>Change previous static Siddhi parser to a dynamic one which embedded with the Siddhi runner. <a href="https://github.com/siddhi-io/siddhi-operator/pull/71">(#71)</a></li>
 </ol>
-<h3 id="bug-fixes_11">Bug Fixes<a class="headerlink" href="#bug-fixes_11" title="Permanent link">&para;</a></h3>
+<h4 id="bug-fixes_11">Bug Fixes<a class="headerlink" href="#bug-fixes_11" title="Permanent link">&para;</a></h4>
 <ol>
 <li>Failover Deployment support related features <a href="https://github.com/siddhi-io/siddhi-operator/issues/33">(#33)</a></li>
 <li>Operator crashes the when NATS unavailable in the cluster <a href="https://github.com/siddhi-io/siddhi-operator/issues/50">(#50)</a></li>
