@@ -15,6 +15,10 @@ build(){
       version="next"  
     fi
 
+    if [ "$1" == "v5.1" ]; then
+          go run tools/siddhiByExample/tools/generate.go  en/siddhi-examples en/docs/docs/examples
+    fi
+
 #obtain particular lang folder
 #create folder structure
 #build a particular branch
