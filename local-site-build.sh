@@ -54,6 +54,9 @@ build_landing(){
    echo clean dist
    rm -rf ../dist/*
    echo build triggered manually
+
+   echo install go package to build Siddhi samples
+   go get github.com/russross/blackfriday
    
    #obtain branch names in a git repo     
    for BRANCH in `git branch -a | grep remotes/origin/*` ;
