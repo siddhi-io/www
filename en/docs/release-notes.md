@@ -272,7 +272,7 @@ Please find the complete changes [here](https://github.com/siddhi-io/siddhi/comp
 
 ### Siddhi Operator 0.2.1
 
-### Bug Fixes
+#### Bug Fixes
 
 1. Enable users to view deployed partial Siddhi apps directly using `SiddhiProcess` [(#101)](https://github.com/siddhi-io/siddhi-operator/issues/101)
 1. Enable users to view the `READY` status when pods become available [(#80)](https://github.com/siddhi-io/siddhi-operator/issues/80)
@@ -284,13 +284,13 @@ Please find the complete changes [here](https://github.com/siddhi-io/siddhi/comp
 
 Siddhi team is excited to announce the Siddhi Operator Release 0.2.0. Please find the major improvements and features introduced in this release.
 
-### Compatibility & Support
+#### Compatibility & Support
 
 There are specification changes in Siddhi Process Custom Resource Definition. You have to use siddhi.io/v1alpha2 custom resources with this release.
 
-### Features & Improvements
+#### Features & Improvements
 
-#### SiddhiProcess Spec Changes from 0.1.1
+**SiddhiProcess Spec Changes from 0.1.1**
 
 1. Aggregate previous `apps` and `query` specs to a single spec called `apps`.
 
@@ -367,7 +367,7 @@ There are specification changes in Siddhi Process Custom Resource Definition. Yo
 1. Adding readiness and liveness probes to the Siddhi runner. [(#46)](https://github.com/siddhi-io/siddhi-operator/pull/46)
 1. Change previous static Siddhi parser to a dynamic one which embedded with the Siddhi runner. [(#71)](https://github.com/siddhi-io/siddhi-operator/pull/71)
 
-### Bug Fixes
+#### Bug Fixes
 
 1. Failover Deployment support related features [(#33)](https://github.com/siddhi-io/siddhi-operator/issues/33)
 1. Operator crashes the when NATS unavailable in the cluster [(#50)](https://github.com/siddhi-io/siddhi-operator/issues/50)
