@@ -1,0 +1,4 @@
+// This application demonstrates how to simulate random events via Feed
+// Simulation and calculate running aggregates such as avg, min, max, etc.
+// The aggregation is executed on events within a time window.
+// A sliding time window of 10 seconds is used in this sample.

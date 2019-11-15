@@ -1,0 +1,65 @@
+<!--copy to clipboard lib-->
+<script src="https://ballerina.io/js/clipboard.js-2.0.0/clipboard.min.js"></script>
+
+<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script>
+   var base_url = "";
+</script>
+<script src="../../../assets/js/example.js"></script>
+<link rel=stylesheet href="../../../assets/css/example.css">
+<span class="info" dir="{{.GithubLink}}"><span>
+
+<h1>{{.Name}}</h1>
+
+<div class="cLeftTD">
+<p>{{.Descs}}</p>
+</div>
+
+<div class="cBBETable-container cCodeLeft">
+<div class="cLeftTD">
+ <a class="copy"><img src="../../../images/copy.png" width="20px"/></a>
+</div>
+<div class="FullCode">
+                {{.FullCode}}
+            </div>
+
+<div>
+<table class="cTopBorder-table">
+    <tr>
+        <td class="cCodeTD"></td>
+        <td class="cDescTD"></td>
+    </tr>
+</table>
+
+<table class="cBE-body">
+    {{range  $i, $element := .Segs}}
+    {{range $element}}
+    <tr class="cTR{{if and (not .DocEmpty)}} hover-enable{{end}}">
+
+        <td class="code{{if .CodeEmpty}} empty{{end}}{{if .CodeLeading}} leading{{end}}">
+            {{.CodeRendered}}
+        </td>
+        <td class="docs">
+            {{if and (not .DocEmpty)}}
+            <div class="cCodeDesription">
+                <div>
+                    {{.DocsRendered}}
+                </div>
+            </div>
+            {{end}}
+        </td>
+    </tr>
+    {{end}}
+    {{end}}
+</table>
+<table class="cBottomBorder-table">
+    <tr>
+        <td class="cCodeTD"></td>
+        <td class="cDescTD"></td>
+    </tr>
+</table>
+</div>
+
+{{.InputOutput}}
