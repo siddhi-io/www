@@ -975,6 +975,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#persistence-on-aws-s3" title="Persistence on AWS-S3" class="md-nav__link">
+    Persistence on AWS-S3
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1388,6 +1395,13 @@
           <li class="md-nav__item">
   <a href="#persistence-on-file-system" title="Persistence on File System" class="md-nav__link">
     Persistence on File System
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#persistence-on-aws-s3" title="Persistence on AWS-S3" class="md-nav__link">
+    Persistence on AWS-S3
   </a>
   
 </li>
@@ -1946,6 +1960,110 @@
     <span class="nt">location</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi-app-persistence</span>
 </pre></div>
 </td></tr></table></p>
+<h3 id="persistence-on-aws-s3">Persistence on AWS-S3<a class="headerlink" href="#persistence-on-aws-s3" title="Permanent link">&para;</a></h3>
+<p>To configure AWS-S3 based periodic data persistence, add <code>statePersistence</code> section with the following
+ properties on the Siddhi configuration yaml, and pass that during startup.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Purpose</th>
+<th>Required Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>enabled</td>
+<td>This enables data persistence.</td>
+<td>true</td>
+</tr>
+<tr>
+<td>intervalInMin</td>
+<td>The time interval in minutes that defines the interval in which state of Siddhi applications should be persisted</td>
+<td>1</td>
+</tr>
+<tr>
+<td>revisionsToKeep</td>
+<td>The number of revisions to keep in the system. Here when a new persistence takes place, the older revisions are removed.</td>
+<td>3</td>
+</tr>
+<tr>
+<td>persistenceStore</td>
+<td>The persistence store</td>
+<td>io.siddhi.distribution.core.persistence.S3PersistenceStore</td>
+</tr>
+<tr>
+<td>config &gt; credentialProvideClass</td>
+<td>CredentialProviderClass name.</td>
+<td>software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider</td>
+</tr>
+<tr>
+<td>config &gt; accessKey</td>
+<td>Access key of the user (only if <code>credentialProvideClass</code> property is not provided.</td>
+<td>*****access-key*****</td>
+</tr>
+<tr>
+<td>config &gt; secretKey</td>
+<td>Secret key of the user (only if <code>credentialProvideClass</code> property is not provided.</td>
+<td>*****secret-key*****</td>
+</tr>
+<tr>
+<td>config &gt; bucketName</td>
+<td>Name of the bucket where revision files should be persisted.</td>
+<td>siddhi-app-persistence</td>
+</tr>
+<tr>
+<td>config &gt; region</td>
+<td>Name of the region where bucket belongs to.</td>
+<td>us-west-2</td>
+</tr>
+</tbody>
+</table>
+<p>The following are some samples configuration for aws-s3 based state persistence.</br></p>
+<ul>
+<li>Sample with credential provider class
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">statePersistence</span><span class="p">:</span>
+  <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="nt">intervalInMin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+  <span class="nt">revisionsToKeep</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+  <span class="nt">persistenceStore</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">io.siddhi.distribution.core.persistence.S3PersistenceStore</span>
+  <span class="nt">config</span><span class="p">:</span>
+    <span class="nt">credentialProvideClass</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider</span>
+    <span class="nt">region</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">us-west-2</span>
+    <span class="nt">bucketName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi-app-persistence</span>
+</pre></div>
+</td></tr></table></li>
+<li>Sample with secret-key and access-key
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">statePersistence</span><span class="p">:</span>
+  <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="nt">intervalInMin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
+  <span class="nt">revisionsToKeep</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
+  <span class="nt">persistenceStore</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">io.siddhi.distribution.core.persistence.S3PersistenceStore</span>
+  <span class="nt">config</span><span class="p">:</span>
+    <span class="nt">accessKey</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">access-key</span>
+    <span class="nt">secretKey</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">secret-key</span>
+    <span class="nt">region</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">us-west-2</span>
+    <span class="nt">bucketName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi-app-persistence</span>
+</pre></div>
+</td></tr></table></li>
+</ul>
 <h2 id="configuring-siddhi-elements">Configuring Siddhi Elements<a class="headerlink" href="#configuring-siddhi-elements" title="Permanent link">&para;</a></h2>
 <div class="admonition info">
 <p class="admonition-title">Applicable only for Local, Docker, and Kubernetes modes.</p>
