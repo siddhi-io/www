@@ -1,0 +1,11 @@
+[{
+    "title": "Hello World",
+    "column": 0,
+    "category": "Language concepts",
+    "samples": [
+        {
+            "name": "Simple Aggregation",
+            "url": "simple-aggregation"
+        }
+    ]
+}]
