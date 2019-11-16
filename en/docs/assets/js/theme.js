@@ -193,7 +193,7 @@ var config = { attributes: true, childList: true, subtree: true };
 
 var callback = function(mutationsList, observer) {
     for(var mutation of mutationsList) {
-        if (mutation.type == 'attributes') {
+        if (mutation.type === 'attributes') {
             mutation.target.parentNode.setAttribute(mutation.attributeName,
                 mutation.target.getAttribute(mutation.attributeName));
             scrollerPosition(mutation);
@@ -202,7 +202,9 @@ var callback = function(mutationsList, observer) {
 };
 var observer = new MutationObserver(callback);
 
-listElems[0].classList.add('active');
+if (listElems.length > 0) {
+    listElems[0].classList.add('active');
+}
 
 for (var i = 0; i < observeeList.length; i++) {
     var el = observeeList[i];
