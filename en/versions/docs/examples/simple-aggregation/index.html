@@ -689,7 +689,7 @@
     <tr class="cTR hover-enable">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=ballerina>define stream TradesStream(trader string, quantity int);
+            <div class="highlight"><pre><code class=siddhi>define stream TradesStream(trader string, quantity int);
 </code></pre></div>
 
         </td>
@@ -708,7 +708,7 @@
     <tr class="cTR hover-enable">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=ballerina>@sink(type=&#39;log&#39;)
+            <div class="highlight"><pre><code class=siddhi>@sink(type=&#39;log&#39;)
 define stream SummarizedTradingInformation(trader string, noOfTrades long,
                 totalTradingQuantity long,
                 minTradingQuantity int, maxTradingQuantity int,
@@ -731,7 +731,7 @@ define stream SummarizedTradingInformation(trader string, noOfTrades long,
     <tr class="cTR hover-enable">
 
         <td class="code">
-            <div class="highlight"><pre><code class=ballerina>@info(name=&#39;query1&#39;)
+            <div class="highlight"><pre><code class=siddhi>@info(name=&#39;query1&#39;)
 from TradesStream#window.time(10 sec)
 select trader, count() as noOfTrades, sum(quantity) as totalTradingQuantity,
             min(quantity) as minTradingQuantity,
