@@ -13,6 +13,8 @@ Steps to Run Siddhi Local Microservice is as follows.
   Linux/Mac : `./bin/runner.sh -Dapps=<siddhi-file> -Dconfig=<config-yaml-file>`<br/>
   Windows : `bin\runner.bat -Dapps=<siddhi-file> -Dconfig=<config-yaml-file>`
 
+<iframe width="675" height="375" src="https://www.youtube.com/embed/1LftJCMpm50" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 !!! Tip "Running Multiple SiddhiApps in one runner."
     To run multiple SiddhiApps in one runtime, have all SiddhiApps in a directory and pass its location through `-Dapps` parameter as follows,<br/>
     `-Dapps=<siddhi-apps-directory>`

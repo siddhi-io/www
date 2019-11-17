@@ -26,7 +26,7 @@ Siddhi provides tooling that supports following features to develop and test str
 
 <iframe width="675" height="375" src="https://www.youtube.com/embed/e7xo2pO0DXg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-## Configuring the Tooling
+## Tooling Configuration 
 
 ### Tooling in Local Machine
 1. Install [Oracle Java SE Development Kit (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/index.html) version 1.8.
