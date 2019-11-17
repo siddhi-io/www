@@ -630,6 +630,7 @@ html .md-typeset .superfences-tabs > label:hover {
 
 .siddhi .hljs-keyword {
     color: #3b78e7;
+    font-weight: normal;
 }
 
 .siddhi .hljs-annotation {
