@@ -39,25 +39,27 @@ class SiddhiLexer(RegexLexer):
             (r'//(.*?)\n', Comment.Single),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
             (r'(import|package)\b', Keyword.Namespace),
-            (r'(define|stream|table|aggregation|trigger|window|select|insert|into|function|plan|partition|delete|update|return|overwrite)\b', Keyword.Declaration),
+            (r'(function|service|resource|struct|connector|action|annotation|worker|const)\b', Keyword.Declaration),
             (words((
-                'group', 'by', 'having', 'events', 'output', 'expired', 'current', 'snapshot', 'for', 'raw', 'of',
-                'as', 'at', 'or', 'and', 'in', 'on', 'is', 'not', 'within', 'with', 'begin', 'end', 'null', 'every',
-                'last', 'all', 'first', 'join', 'inner', 'outer', 'right', 'left', 'full', 'unidirectional'), suffix=r'\b'),
+                'break', 'var', 'default', 'case', 'while', 'go',
+                'else', 'goto', 'switch', 'fallthrough', 'if', 'range',
+                'continue', 'for', 'return', 'as', 'fork', 'join', 'timeout'), suffix=r'\b'),
              Keyword),
-            (r'(true|false|years|year|months|month|weeks|week|days|day|hours|hour|minutes|minute|min|seconds|second|sec|milliseconds|millisecond|millisec)\b', Keyword.Constant),
-
+            (r'(true|false|null|nil)\b', Keyword.Constant),
+            # It seems the builtin types aren't actually keywords, but
+            # can be used as functions. So we need two declarations.
             (words(('println','parse'), suffix=r'\b(\()'),
              bygroups(Name.Builtin, Punctuation)),
-
+            
             # function names
             #(r'.*\:(.*)\(', bygroups(Name.Builtin, Punctuation)),
-
+            
             #annotations
             #(r'(@.*)\b(\{)', Punctuation),
                       
             (words((
-                'int','float', 'long', 'string', 'bool', 'double', 'object'), suffix=r'\b'),
+                'int','float', 'blob', 'string', 'boolean', 'map', 
+                'message', 'xml', 'json', 'any', 'datatable'), suffix=r'\b'),
              Keyword.Type),
             # imaginary_lit
             (r'\d+i', Number),
@@ -85,8 +87,8 @@ class SiddhiLexer(RegexLexer):
             # -- interpreted_string_lit
             (r'"(\\\\|\\"|[^"])*"', String),
             # Tokens
-            (r'(<=|>=|'
-             r'|->|==|!=|\.\.\.|[+\-*/%&])', Operator),
+            (r'(<<=|>>=|<<|>>|<=|>=|&\^=|&\^|\+=|-=|\*=|/=|%=|&=|\|=|&&|\|\|'
+             r'|<-|->|\+\+|--|==|!=|:=|\.\.\.|[+\-*/%&])', Operator),
             (r'[|^<>=!()\[\]{}.,;:]', Punctuation),
             # identifier
             (r'[^\W\d]\w*', Name.Other),
