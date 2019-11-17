@@ -1,0 +1,165 @@
+/*
+ * Copyright (c) 2019, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+ *
+ * WSO2 Inc. licenses this file to you under the Apache License,
+ * Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied. See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+li.cTableTitle {
+    font-weight: 600;
+}
+
+dl, li, ol, ul {
+    list-style: none;
+}
+
+.col-lg-6.cBallerina-io-Home-Middle-col {
+    width: 100%;
+    padding: 0px 15px;
+}
+
+.cBallerina-io-Home-Left-col {
+    display: none;
+}
+
+.cBallerina-io-breadcrumbs {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.section, .rst-content, .wy-nav-content {
+    width: 100% !important;
+    display: content !important;
+}
+
+.wy-nav-content {
+    max-width: 100%;
+}
+
+.cLanguageFeaturesContainer {
+    padding: 30px 20px;
+}
+
+.cLanguageFeaturesContainer ul {
+    padding: 0;
+    margin: 0;
+
+}
+
+.rst-content .section ul li, .rst-content .toctree-wrapper ul li, .wy-plain-list-disc li, article ul li {
+    list-style: none;
+}
+
+.row.cBallerina-io-Gray-row {
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.cBBEtop {
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.rst-content .section ul li, .rst-content .toctree-wrapper ul li, .wy-plain-list-disc li, article ul li {
+    margin-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 0;
+}
+
+.rst-content .section ol li, .rst-content ol.arabic li, .wy-plain-list-decimal li, article ol li, .rst-content .section ul li, .rst-content .toctree-wrapper ul li, .wy-plain-list-disc li, article ul li {
+    font-size: 14px;
+}
+
+.cBBEtop img {
+    width: 200px;
+}
+
+@media (min-width: 1200px) {
+    .col-lg-3 {
+        width: 25%;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-md-3 {
+        width: 25%;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-md-12 {
+        width: 100%;
+    }
+}
+
+.col-md-12 {
+    margin: 0;
+}
+
+@media (min-width: 1200px) {
+    .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9 {
+        float: left;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9 {
+        float: left;
+    }
+}
+
+.cLanguageFeatures li {
+    list-style: none;
+    padding: 5px 0;
+    border-bottom: 1px solid #cecfd0;
+    width: 100%;
+    font-size: 14px;
+    padding-left: 10px;
+    color: #57595d;
+    line-height: 22px;
+    font-weight: 300;
+}
+
+.cLanguageFeatures li.cTableTitle {
+    padding-left: 0;
+    font-weight: 600 !important;
+}
+
+.cLanguageFeatures li {
+    list-style: none;
+    padding: 5px 0;
+    border-bottom: 1px solid #cecfd0;
+    width: 100%;
+    font-size: 14px;
+    padding-left: 10px;
+    color: #57595d;
+    line-height: 22px;
+    font-weight: 300;
+}
+
+[data-md-color-primary=teal] .cLanguageFeatures ul li a {
+    color: #57595d
+}
+
+/*:hover {*/
+    /*color: #009688*/
+/*}*/
+
+.md-typeset hr {
+    margin: .7em 0;
+}
+
+.md-typeset h3 {
+    margin: 0.8rem 0 .8rem;
+}

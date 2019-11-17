@@ -31,7 +31,7 @@
         <meta name="description" content="Cloud Native Stream Processor">
       
       
-        <link rel="canonical" href="http://siddhi.io/en/v5.0/docs/">
+        <link rel="canonical" href="http://siddhi.io/en/v5.1/docs/examples/">
       
       
         <meta name="author" content="WSO2">
@@ -55,18 +55,18 @@
       
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
-      <link rel="shortcut icon" href="../images/logos/favicon.ico">
+      <link rel="shortcut icon" href="../../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.0">
     
     
       
-        <title>Introduction - Siddhi</title>
+        <title>Siddhi</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/application.0284f74d.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.0284f74d.css">
       
-        <link rel="stylesheet" href="../assets/stylesheets/application-palette.01803549.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.01803549.css">
       
       
         
@@ -75,7 +75,7 @@
       
     
     
-      <script src="../assets/javascripts/modernizr.74668098.js"></script>
+      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
     
     
       
@@ -84,12 +84,12 @@
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
     
-    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
     
     
-      <link rel="stylesheet" href="../assets/lib/highlightjs/default.min.css">
+      <link rel="stylesheet" href="../../assets/lib/highlightjs/default.min.css">
     
-      <link rel="stylesheet" href="../assets/css/theme.css">
+      <link rel="stylesheet" href="../../assets/css/theme.css">
     
     
       
@@ -138,10 +138,6 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#siddhi-50-user-guide" tabindex="1" class="md-skip">
-        Skip to content
-      </a>
-    
     
       <!--
  * Copyright (c) 2019, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
@@ -166,10 +162,10 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="http://siddhi.io/en/v5.0/" title="Siddhi"
+        <a href="http://siddhi.io/en/v5.1/" title="Siddhi"
            class="md-header-nav__button md-logo">
           
-            <img src="../images/logos/siddhi-logo.svg" width="24" height="24">
+            <img src="../../images/siddhi-logo.svg" width="24" height="24">
           
         </a>
       </div>
@@ -183,14 +179,14 @@
               Siddhi
             </span>
             <span class="md-header-nav__topic">
-              Introduction
+              Home
             </span>
           
         </div>
         <div class="md-flex__ellipsis md-header__version-select">
             <div class="mb-tabs__dropdown version-select">
                 <a class="md-tabs__link md-tabs__dropdown-link" href="#!" data-target="version-select-dropdown">
-                  v5.0</a>
+                  v5.1</a>
                 <ul id="version-select-dropdown" class="mb-tabs__dropdown-content" tabindex="0">
                     <!-- Versions will added here dynamically -->
                     <li class="md-tabs__item mb-tabs__dropdown">
@@ -262,9 +258,7 @@
       
         
 
-  
-
-<nav class="md-tabs md-tabs--active" data-md-component="tabs">
+<nav class="md-tabs" data-md-component="tabs">
   <div class="md-tabs__inner md-grid">
     <ul class="md-tabs__list">
         <li class="md-tabs__item home_icon">
@@ -278,7 +272,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../download/" title="Download" class="md-tabs__link">
+        <a href="../../download/" title="Download" class="md-tabs__link">
           Download
         </a>
       
@@ -291,7 +285,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="quick-start/" title="Quick Start" class="md-tabs__link">
+        <a href="../quick-start/" title="Quick Start" class="md-tabs__link">
           Quick Start
         </a>
       
@@ -304,7 +298,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="./" title="Documentation" class="md-tabs__link md-tabs__link--active">
+        <a href="../" title="Documentation" class="md-tabs__link">
           Documentation
         </a>
       
@@ -330,7 +324,7 @@
   
     <li class="md-tabs__item">
       
-        <a href="../development/" title="Development" class="md-tabs__link">
+        <a href="../../development/" title="Development" class="md-tabs__link">
           Development
         </a>
       
@@ -354,7 +348,7 @@
     </ul>
     <div class="quick_links">
         
-        <a href="https://github.com/siddhi-io/www/edit/v5.0/en/docs/docs/index.md" target="blank" id="editIcon" title="Edit this page"
+        <a href="https://github.com/siddhi-io/www/edit/v5.1/en/docs/docs/examples/index.md" target="blank" id="editIcon" title="Edit this page"
            title="Edit this page" class="md-icon md-content__icon nav_link edit_link"></a>
         
     </div>
@@ -370,10 +364,10 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
     <label class="md-nav__title md-nav__title--site" for="__drawer">
-      <a href="http://siddhi.io/en/v5.0/" title="Siddhi"
+      <a href="http://siddhi.io/en/v5.1/" title="Siddhi"
          class="md-nav__button md-logo">
         
-          <img src="../images/logos/siddhi-logo.svg" width="48" height="48">
+          <img src="../../images/siddhi-logo.svg" width="48" height="48">
         
       </a>
       Siddhi
@@ -426,7 +420,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../download/" title="Download" class="md-nav__link">
+    <a href="../../download/" title="Download" class="md-nav__link">
       Download
     </a>
   </li>
@@ -438,7 +432,7 @@
 
 
   <li class="md-nav__item">
-    <a href="extensions/" title="Extensions" class="md-nav__link">
+    <a href="../extensions/" title="Extensions" class="md-nav__link">
       Extensions
     </a>
   </li>
@@ -450,7 +444,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../release-notes/" title="Release Notes" class="md-nav__link">
+    <a href="../../release-notes/" title="Release Notes" class="md-nav__link">
       Release Notes
     </a>
   </li>
@@ -486,7 +480,7 @@
 
 
   <li class="md-nav__item">
-    <a href="quick-start/" title="Quick Start" class="md-nav__link">
+    <a href="../quick-start/" title="Quick Start" class="md-nav__link">
       Quick Start
     </a>
   </li>
@@ -501,12 +495,10 @@
         
         
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
     
     <label class="md-nav__link" for="nav-3">
       Documentation
@@ -522,70 +514,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Introduction
-      </label>
-    
-    <a href="./" title="Introduction" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../" title="Introduction" class="md-nav__link">
       Introduction
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">On this page</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#writing-siddhi-applications" title="Writing Siddhi Applications" class="md-nav__link">
-    Writing Siddhi Applications
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#executing-siddhi-applications" title="Executing Siddhi Applications" class="md-nav__link">
-    Executing Siddhi Applications
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#siddhi-configurations" title="Siddhi Configurations" class="md-nav__link">
-    Siddhi Configurations
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#system-requirements" title="System Requirements" class="md-nav__link">
-    System Requirements
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -595,7 +528,7 @@
 
 
   <li class="md-nav__item">
-    <a href="features/" title="Features" class="md-nav__link">
+    <a href="../features/" title="Features" class="md-nav__link">
       Features
     </a>
   </li>
@@ -607,32 +540,8 @@
 
 
   <li class="md-nav__item">
-    <a href="quick-start/" title="Quick Start" class="md-nav__link">
+    <a href="../quick-start/" title="Quick Start" class="md-nav__link">
       Quick Start
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="tooling/" title="Tooling" class="md-nav__link">
-      Tooling
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="query-guide/" title="Query Guide" class="md-nav__link">
-      Query Guide
     </a>
   </li>
 
@@ -644,14 +553,14 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-6" type="checkbox" id="nav-3-6">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4" type="checkbox" id="nav-3-4">
     
-    <label class="md-nav__link" for="nav-3-6">
-      Siddhi APIs
+    <label class="md-nav__link" for="nav-3-4">
+      Use case Guides
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
-      <label class="md-nav__title" for="nav-3-6">
-        Siddhi APIs
+      <label class="md-nav__title" for="nav-3-4">
+        Use case Guides
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
         
@@ -662,8 +571,8 @@
 
 
   <li class="md-nav__item">
-    <a href="api/latest/" title="latest" class="md-nav__link">
-      latest
+    <a href="../guides/overview/" title="Overview" class="md-nav__link">
+      Overview
     </a>
   </li>
 
@@ -674,8 +583,80 @@
 
 
   <li class="md-nav__item">
-    <a href="api/5.0.0/" title="5.0.0" class="md-nav__link">
-      5.0.0
+    <a href="../guides/alerts-for-thresholds/guide/" title="Alerts Based on Thresholds" class="md-nav__link">
+      Alerts Based on Thresholds
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../guides/fault-tolerance/guide/" title="Fault Tolerance & Error Handling" class="md-nav__link">
+      Fault Tolerance & Error Handling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../guides/patterns-and-trends/guide/" title="Patterns & Trends Over Time" class="md-nav__link">
+      Patterns & Trends Over Time
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../guides/database-static-rule-processing/guide/" title="Static Rule Processing using Database Rules" class="md-nav__link">
+      Static Rule Processing using Database Rules
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../guides/integrate-various-enterprise-systems/guide/" title="Integrate Various Enterprise Systems" class="md-nav__link">
+      Integrate Various Enterprise Systems
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../guides/realtime-movie-recommendation/guide/" title="Realtime predictions with pre-trained ML models" class="md-nav__link">
+      Realtime predictions with pre-trained ML models
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../guides/long-term-aggregation/guide/" title="Long-running time based Aggregations" class="md-nav__link">
+      Long-running time based Aggregations
     </a>
   </li>
 
@@ -691,7 +672,175 @@
 
 
   <li class="md-nav__item">
-    <a href="extensions/" title="Extensions" class="md-nav__link">
+    <a href="../tooling/" title="Tooling" class="md-nav__link">
+      Tooling
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../query-guide/" title="Query Guide" class="md-nav__link">
+      Query Guide
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-7" type="checkbox" id="nav-3-7">
+    
+    <label class="md-nav__link" for="nav-3-7">
+      Siddhi APIs
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-7">
+        Siddhi APIs
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../api/latest/" title="latest" class="md-nav__link">
+      latest
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../api/5.1.0/" title="5.1.0" class="md-nav__link">
+      5.1.0
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-8" type="checkbox" id="nav-3-8">
+    
+    <label class="md-nav__link" for="nav-3-8">
+      REST API Guides
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="2">
+      <label class="md-nav__title" for="nav-3-8">
+        REST API Guides
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rest-guides/siddhi-app-api/" title="Siddhi App APIs" class="md-nav__link">
+      Siddhi App APIs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rest-guides/on-demand-query-api/" title="On-Demand Query APIs" class="md-nav__link">
+      On-Demand Query APIs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rest-guides/health-check-api/" title="Health Check APIs" class="md-nav__link">
+      Health Check APIs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rest-guides/store-api/" title="Store APIs (Deprecated)" class="md-nav__link">
+      Store APIs (Deprecated)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rest-guides/default-ports/" title="Default Ports" class="md-nav__link">
+      Default Ports
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../rest-guides/http-status-code/" title="HTTP Status Codes" class="md-nav__link">
+      HTTP Status Codes
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../extensions/" title="Extensions" class="md-nav__link">
       Extensions
     </a>
   </li>
@@ -703,8 +852,8 @@
 
 
   <li class="md-nav__item">
-    <a href="siddhi-as-a-java-library/" title="Siddhi Java library" class="md-nav__link">
-      Siddhi Java library
+    <a href="../siddhi-as-a-java-library/" title="Siddhi Java Library" class="md-nav__link">
+      Siddhi Java Library
     </a>
   </li>
 
@@ -715,7 +864,7 @@
 
 
   <li class="md-nav__item">
-    <a href="siddhi-as-a-local-microservice/" title="Siddhi Local Microservice" class="md-nav__link">
+    <a href="../siddhi-as-a-local-microservice/" title="Siddhi Local Microservice" class="md-nav__link">
       Siddhi Local Microservice
     </a>
   </li>
@@ -727,7 +876,7 @@
 
 
   <li class="md-nav__item">
-    <a href="siddhi-as-a-docker-microservice/" title="Siddhi Docker Microservice" class="md-nav__link">
+    <a href="../siddhi-as-a-docker-microservice/" title="Siddhi Docker Microservice" class="md-nav__link">
       Siddhi Docker Microservice
     </a>
   </li>
@@ -739,7 +888,7 @@
 
 
   <li class="md-nav__item">
-    <a href="siddhi-as-a-kubernetes-microservice/" title="Siddhi Kubernetes Microservice" class="md-nav__link">
+    <a href="../siddhi-as-a-kubernetes-microservice/" title="Siddhi Kubernetes Microservice" class="md-nav__link">
       Siddhi Kubernetes Microservice
     </a>
   </li>
@@ -751,7 +900,19 @@
 
 
   <li class="md-nav__item">
-    <a href="config-guide/" title="Configuration Guide" class="md-nav__link">
+    <a href="../siddhi-as-a-python-library/" title="Siddhi Python Library" class="md-nav__link">
+      Siddhi Python Library
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../config-guide/" title="Configuration Guide" class="md-nav__link">
       Configuration Guide
     </a>
   </li>
@@ -823,7 +984,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../development/" title="Introduction" class="md-nav__link">
+    <a href="../../development/" title="Introduction" class="md-nav__link">
       Introduction
     </a>
   </li>
@@ -835,7 +996,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../development/source/" title="Source" class="md-nav__link">
+    <a href="../../development/source/" title="Source" class="md-nav__link">
       Source
     </a>
   </li>
@@ -847,7 +1008,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../development/build/" title="Build" class="md-nav__link">
+    <a href="../../development/build/" title="Build" class="md-nav__link">
       Build
     </a>
   </li>
@@ -859,8 +1020,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../development/architecture/" title="Architecture" class="md-nav__link">
+    <a href="../../development/architecture/" title="Architecture" class="md-nav__link">
       Architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../development/roadmap/" title="Roadmap" class="md-nav__link">
+      Roadmap
     </a>
   </li>
 
@@ -913,97 +1086,100 @@
               </div>
             
             
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">On this page</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#writing-siddhi-applications" title="Writing Siddhi Applications" class="md-nav__link">
-    Writing Siddhi Applications
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#executing-siddhi-applications" title="Executing Siddhi Applications" class="md-nav__link">
-    Executing Siddhi Applications
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#siddhi-configurations" title="Siddhi Configurations" class="md-nav__link">
-    Siddhi Configurations
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#system-requirements" title="System Requirements" class="md-nav__link">
-    System Requirements
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-                  </div>
-                </div>
-              </div>
-            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
   
                 
-                  <a href="https://github.com/siddhi-io/www/edit/v5.0/en/docs/docs/index.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/siddhi-io/www/edit/v5.1/en/docs/docs/examples/index.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="siddhi-50-user-guide">Siddhi 5.0 User Guide<a class="headerlink" href="#siddhi-50-user-guide" title="Permanent link">&para;</a></h1>
-<p>This section provides information on using and running Siddhi.</p>
-<p>Checkout the <a href="features">Siddhi features</a> to get and idea on what it can do in brief. </p>
-<h2 id="writing-siddhi-applications">Writing Siddhi Applications<a class="headerlink" href="#writing-siddhi-applications" title="Permanent link">&para;</a></h2>
-<p>Writing steam processing logic in Siddhi is all about building Siddhi Applications. A Siddhi Application is a script with <code>.siddhi</code> file extension having self-contained stream processing logic. The stream processing constructs, such as streams and queries, defined within a Siddhi App is not visible even to the other Siddhi Apps running in the same JVM.</p>
-<p>It is recommended to have different business usecase in separate Siddhi Applications, where it allow users to selectively deploy the applications based on business needs.
-It is also recommended to move the repeated steam processing logics that exist in multiple Siddhi Applications, such as message retrieval and preprocessing, to a common Siddhi Application, whereby reducing code duplication and improving maintainability.
-In this case, to pass the events from one Siddhi App to another, users can configure common topic using <a href="api/latest/#inmemory-sink">In-Memory Sink</a> and <a href="api/latest/#inmemory-source">In-Memory Source</a> in order to communicate between them.</p>
-<p>To write Siddhi Applications using Siddhi Streaming SQL refer <a href="query-guide">Siddhi Query Guide</a> for details.</p>
-<p>For specific API information on Siddhi functions and features refer <a href="api/latest">Siddhi API Guide</a>.</p>
-<p>Find out about the supported Siddhi extensions and their versions <a href="extensions">here</a>.</p>
-<h2 id="executing-siddhi-applications">Executing Siddhi Applications<a class="headerlink" href="#executing-siddhi-applications" title="Permanent link">&para;</a></h2>
-<p>Siddhi can run in multiple environments as follows.</p>
-<ul>
-<li><a href="siddhi-as-a-java-library/">As a Java Library</a></li>
-<li><a href="siddhi-as-a-local-microservice/">As a Local Microservice</a></li>
-<li><a href="siddhi-as-a-docker-microservice/">As a Docker Microservice</a></li>
-<li><a href="siddhi-as-a-kubernetes-microservice/">As a Kubernetes Microservice</a></li>
-<li>As a Python Library <em>(WIP)</em></li>
-</ul>
-<h2 id="siddhi-configurations">Siddhi Configurations<a class="headerlink" href="#siddhi-configurations" title="Permanent link">&para;</a></h2>
-<p>Refer the <a href="config-guide">Siddhi Config Guide</a> for information on advance Siddhi execution configurations.</p>
-<h2 id="system-requirements">System Requirements<a class="headerlink" href="#system-requirements" title="Permanent link">&para;</a></h2>
-<p>For all Siddhi execution modes following are the general system requirements.</p>
-<ol>
-<li><strong>Memory</strong>   - 128 MB (minimum), 500 MB (recommended), higher memory might be needed based on in-memory data stored for processing</li>
-<li><strong>Cores</strong>    - 2 cores (recommended), use lower number of cores after testing Siddhi Apps for performance</li>
-<li><strong>JDK</strong>      - 8 or 11</li>
-<li>To build Siddhi from the Source distribution, it is necessary that you have JDK version 8 or 11 and Maven 3.0.4 or later</li>
-</ol>
+                <!--copy to clipboard lib-->
+
+<script src="../../../assets/js/clipboard-2.0.0.min.js"></script>
+
+<script src="../../../assets/js/jquery-3.3.1.min.js"></script>
+
+<script src="../../../assets/js/bootstrap-3.3.7.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script>
+   var base_url = "";
+</script>
+
+<p><link rel=stylesheet href="../../../assets/css/example.css">
+<link rel=stylesheet href="../../../assets/css/example-home.css">
+<h1>Siddhi By Example</h1></p>
+<p>
+Siddhi by Example enables you to have complete coverage over the Siddhi query language and some of it's key extenstions, while emphasizing incremental learning. This is a series of commented example programs.
+</p>
+
+<div id="example"></div>
+
+<script>
+    $.getJSON("all-bbes.json", function (all_stuff) {
+        console.log("all stuff : ", all_stuff);
+
+        var i = 0;
+        var div_content;
+
+        $.getJSON("built-bbes.json", function (important_stuff) {
+            console.log("important stuff : ", important_stuff);
+
+            $.each(all_stuff, function (key, value) {
+
+                var category, categoryName;
+
+                if (!(value['category'])) {
+                    category = 'other';
+                    categoryName = 'Other';
+                } else {
+                    category = (value['category'].toLowerCase()).replace(/./g, '_');
+                    categoryName = (value['category']);
+                }
+
+                console.log("for each:", category, categoryName);
+
+                var categoryElem = $('[data-category=' + category + ']');
+
+                if (categoryElem.length <= 0) {
+                    var newCategoryElem = '<div class="clearfix" data-category="' + category + '">' +
+                        '<div class="col-md-12"><h3>' + categoryName + '</h3><hr></div>' +
+                        '<div class="col-xs-12 col-sm-16 col-md-3 col-lg-3 cLanguageFeatures featureSet0"></div>' +
+                        '<div class="col-xs-12 col-sm-16 col-md-3 col-lg-3 cLanguageFeatures featureSet1"></div>' +
+                        '<div class="col-xs-12 col-sm-16 col-md-3 col-lg-3 cLanguageFeatures featureSet2"></div>' +
+                        '<div class="col-xs-12 col-sm-16 col-md-3 col-lg-3 cLanguageFeatures featureSet3"></div>' +
+                        '</div>';
+                }
+
+                $("#example").append(newCategoryElem);
+
+
+                div_content = "";
+
+                div_content += '<ul>';
+                div_content += '<li class="cTableTitle">' + value['title'] + '</li>';
+
+                $.each(value['samples'], function (exkey, example) {
+                    var link = example['url'];
+
+                    //Filtering out the failed BBEs
+                    var is_exist = $.inArray(link, important_stuff);
+                    if (is_exist == -1) {
+                        return true;
+                    } else {
+                        div_content += '<li><a href="/learn/by-example/' + link + '.html">' + example['name'] + '</a></li>';
+                    }
+                });
+
+                div_content += '</ul>';
+                $('[data-category=' + category + '] .featureSet' + value['column']).append(div_content);
+                i++;
+            });
+
+        });
+    });
+</script>
                 
                   
                 
@@ -1023,41 +1199,6 @@ In this case, to pass the events from one Siddhi App to another, users can confi
         
 <footer class="md-footer">
   
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid">
-        
-          <a href="quick-start/" title="Quick Start" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
-            </div>
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Quick Start
-              </span>
-            </div>
-          </a>
-        
-        
-          <a href="features/" title="Features" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Features
-              </span>
-            </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
-  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
@@ -1071,7 +1212,7 @@ In this case, to pass the events from one Siddhi App to another, users can confi
       
       
   <div class="md-footer-social">
-    <link rel="stylesheet" href="../assets/fonts/font-awesome.css">
+    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
     
       <a href="/community/#community-collaboration" class="md-footer-social__link fa fa-slack"></a>
     
@@ -1094,17 +1235,17 @@ In this case, to pass the events from one Siddhi App to another, users can confi
       
     </div>
     
-      <script src="../assets/javascripts/application.245445c6.js"></script>
+      <script src="../../assets/javascripts/application.245445c6.js"></script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
       
-        <script src="../assets/lib/highlightjs/highlight.min.js"></script>
+        <script src="../../assets/lib/highlightjs/highlight.min.js"></script>
       
-        <script src="../assets/js/theme.js"></script>
+        <script src="../../assets/js/theme.js"></script>
       
-        <script src="../assets/lib/backtotop/js/util.js"></script>
+        <script src="../../assets/lib/backtotop/js/util.js"></script>
       
-        <script src="../assets/lib/backtotop/js/main.js"></script>
+        <script src="../../assets/lib/backtotop/js/main.js"></script>
       
     
   </body>
