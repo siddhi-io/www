@@ -24,16 +24,16 @@ dl, li, ol, ul {
     list-style: none;
 }
 
-.col-lg-6.cBallerina-io-Home-Middle-col {
+.col-lg-6.cSiddhi-io-Home-Middle-col {
     width: 100%;
     padding: 0px 15px;
 }
 
-.cBallerina-io-Home-Left-col {
+.cSiddhi-io-Home-Left-col {
     display: none;
 }
 
-.cBallerina-io-breadcrumbs {
+.cSiddhi-io-breadcrumbs {
     padding-left: 0;
     padding-right: 0;
 }
@@ -61,7 +61,7 @@ dl, li, ol, ul {
     list-style: none;
 }
 
-.row.cBallerina-io-Gray-row {
+.row.cSiddhi-io-Gray-row {
     padding-top: 60px;
     padding-bottom: 60px;
 }

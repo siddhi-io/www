@@ -94,7 +94,7 @@ pre code {
     padding: 10px;
 }
 
-.row.cBallerina-io-Gray-row {
+.row.cSiddhi-io-Gray-row {
     padding-top: 50px;
 }
 
@@ -286,7 +286,7 @@ table.cBottomBorder-table .cCodeTD {
     width: 65.1%;
 }
 
-.cBallerina-BBE-top-Container {
+.cSiddhi-BBE-top-Container {
     padding-bottom: 20px;
 }
 
@@ -378,7 +378,7 @@ a.next {
     text-align: right;
 }
 
-.cBallerina-BBE-top-Conrols-Container {
+.cSiddhi-BBE-top-Conrols-Container {
     padding-left: 177px;
 }
 
@@ -416,7 +416,7 @@ a.next {
     font-size: 14px;
 }
 
-.cBallerina-io-Gray-row {
+.cSiddhi-io-Gray-row {
     padding-bottom: 90px;
 }
 
@@ -673,37 +673,37 @@ td.cDescTD {
     display: none;
 }
 
-.ballerina .hljs {
+.siddhi .hljs {
     color: #6A6868;
 }
 
-.ballerina .hljs-comment {
+.siddhi .hljs-comment {
     color: #afafaf;
 }
 
-.ballerina .hljs-keyword {
+.siddhi .hljs-keyword {
     color: #026669;
     font-weight: normal;
 }
 
-.ballerina .hljs-string,
-.ballerina .hljs-label,
-.ballerina .hljs-tag .hljs-value,
-.ballerina .hljs-phpdoc,
-.ballerina .hljs-dartdoc,
-.ballerina .tex .hljs-formula {
+.siddhi .hljs-string,
+.siddhi .hljs-label,
+.siddhi .hljs-tag .hljs-value,
+.siddhi .hljs-phpdoc,
+.siddhi .hljs-dartdoc,
+.siddhi .tex .hljs-formula {
     color: #494949;
 }
 
-.ballerina .hljs-type {
+.siddhi .hljs-type {
     color: #20b6b0;
 }
 
-.ballerina .hljs-number {
+.siddhi .hljs-number {
     color: #008080;
 }
 
-.ballerina .hljs-annotation {
+.siddhi .hljs-annotation {
     color: #494949;
 }
 
