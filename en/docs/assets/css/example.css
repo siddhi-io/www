@@ -673,3 +673,40 @@ td.cDescTD {
     display: none;
 }
 
+.ballerina .hljs {
+    color: #6A6868;
+}
+
+.ballerina .hljs-comment {
+    color: #afafaf;
+}
+
+.ballerina .hljs-keyword {
+    color: #026669;
+    font-weight: normal;
+}
+
+.ballerina .hljs-string,
+.ballerina .hljs-label,
+.ballerina .hljs-tag .hljs-value,
+.ballerina .hljs-phpdoc,
+.ballerina .hljs-dartdoc,
+.ballerina .tex .hljs-formula {
+    color: #494949;
+}
+
+.ballerina .hljs-type {
+    color: #20b6b0;
+}
+
+.ballerina .hljs-number {
+    color: #008080;
+}
+
+.ballerina .hljs-annotation {
+    color: #494949;
+}
+
+.codehilite .c1, .codehilite .ch, .codehilite .cs, .md-typeset .highlight .c1, .md-typeset .highlight .ch, .md-typeset .highlight .cs {
+    color: inherit;
+}
