@@ -7,8 +7,8 @@
 <script>
    var base_url = "";
 </script>
-<link rel=stylesheet href="../../../assets/css/example.css">
-<link rel=stylesheet href="../../../assets/css/example-home.css">
+<link rel=stylesheet href="../../assets/css/example.css">
+<link rel=stylesheet href="../../assets/css/example-home.css">
 <h1>Siddhi By Example</h1>
 
 <p>
