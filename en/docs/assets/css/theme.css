@@ -627,3 +627,11 @@ html .md-typeset .superfences-tabs > label:hover {
 .md-sidebar__scrollwrap {
     max-height: 90%;
 }
+
+.siddhi .hljs-keyword {
+    color: #3b78e7;
+}
+
+.siddhi .hljs-annotation {
+    color: #7b8757;
+}

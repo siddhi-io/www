@@ -673,40 +673,6 @@ td.cDescTD {
     display: none;
 }
 
-.siddhi .hljs {
-    color: #6A6868;
-}
-
-.siddhi .hljs-comment {
-    color: #afafaf;
-}
-
-.siddhi .hljs-keyword {
-    color: #026669;
-    font-weight: normal;
-}
-
-.siddhi .hljs-string,
-.siddhi .hljs-label,
-.siddhi .hljs-tag .hljs-value,
-.siddhi .hljs-phpdoc,
-.siddhi .hljs-dartdoc,
-.siddhi .tex .hljs-formula {
-    color: #494949;
-}
-
-.siddhi .hljs-type {
-    color: #20b6b0;
-}
-
-.siddhi .hljs-number {
-    color: #008080;
-}
-
-.siddhi .hljs-annotation {
-    color: #494949;
-}
-
 .codehilite .c1, .codehilite .ch, .codehilite .cs, .md-typeset .highlight .c1, .md-typeset .highlight .ch, .md-typeset .highlight .cs {
     color: inherit;
 }

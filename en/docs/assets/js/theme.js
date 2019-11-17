@@ -76,6 +76,47 @@ var request = new XMLHttpRequest();
 request.open('GET', docSetUrl +
              'versions/assets/versions.json', true);
 
+
+/*
+ * register siddhi highlightjs
+ */
+if (typeof hljs === 'object') {
+    hljs.registerLanguage("siddhi", function (e) {
+        var t = e.C("--", "$")
+            n = {
+            cN: "number",
+            b: "\\b(0[bB]([01]+[01_]+[01]+|[01]+)|0[xX]([a-fA-F0-9]+[a-fA-F0-9_]+[a-fA-F0-9]+|[a-fA-F0-9]+)|(([\\d]+[\\d_]+[\\d]+|[\\d]+)(\\.([\\d]+[\\d_]+[\\d]+|[\\d]+))?|\\.([\\d]+[\\d_]+[\\d]+|[\\d]+))([eE][-+]?\\d+)?)[lLfF]?",
+            relevance: 0
+        };
+        return {
+            cI: !0,
+            k: {
+                keyword: "stream define function trigger table plan from partition window select group by having " +
+                "overwrite delete update return events into output expired current snapshot for raw of as at or and " +
+                "in on is not within with begin end null every last all first join inner outer right left full " +
+                "unidirectional insert ",
+                literal: "true false years year months month weeks week days day hours hour minutes minute min seconds" +
+                "second sec milliseconds millisecond millisec",
+                built_in: "bool int float string long double object"
+            },
+            i: /[<>{}*]/,
+            c: [
+                {cN: "string", b: "'", e: "'", c: [e.BE, {b: "''"}]},
+                {cN: "string", b: '"', e: '"', c: [e.BE, {b: '""'}]},
+                {cN: "string", b: '"""', e: '"""', c: [e.BE, {b: '""""""'}]},
+                {cN: "string", b: "`", e: "`", c: [e.BE]},
+                e.CBCM, t, n,
+                {cN: "annotation", b: "@[A-Za-z]+"}
+            ]
+        }
+    });
+}
+/*
+ * Initialize highlightjs
+ */
+hljs.initHighlightingOnLoad();
+
+
 request.onload = function() {
   if (request.status >= 200 && request.status < 400) {
 
@@ -174,11 +215,6 @@ request.onerror = function() {
 };
 
 request.send();
-
-/* 
- * Initialize highlightjs 
- */
-hljs.initHighlightingOnLoad();
 
 var siddhiLogo = document.querySelector(".md-header-nav__button.md-logo");
 siddhiLogo.setAttribute("href","/");
