@@ -21,7 +21,7 @@
  * Following script is adding line numbers to the siddhi code blocks in the gneerated documentation
  */
 function initCodeLineNumbers() {
-    $('pre > code.ballerina, pre > code.language-ballerina').each(function() {
+    $('pre > code.siddhi, pre > code.language-siddhi').each(function() {
 
         if ($(this).parent().find('.line-numbers-wrap').length === 0) {
             //cont the number of rows
@@ -38,7 +38,7 @@ function initCodeLineNumbers() {
             var preHeight = numberOfLines * 18 + 20;
 
             $(this).parent()
-                .addClass('ballerina-pre-wrapper')
+                .addClass('siddhi-pre-wrapper')
                 .prepend($(lines));
         }
 
@@ -47,7 +47,7 @@ function initCodeLineNumbers() {
 
 if (typeof hljs === 'object') {
     hljs.configure({languages: []});
-    hljs.registerLanguage('ballerina', function () {
+    hljs.registerLanguage('siddhi', function () {
         return {
             "k": "stream define function trigger table plan from partition window select group by having insert" +
             "overwrite delete update return events into output expired current snapshot for raw of as at or and" +
@@ -56,12 +56,12 @@ if (typeof hljs === 'object') {
             "second sec milliseconds millisecond millisec false true",
             "i": {},
             "c": [{
-                "cN": "ballerinadoc",
+                "cN": "siddhidoc",
                 "b": "/\\*\\*",
                 "e": "\\*/",
                 "r": 0,
                 "c": [{
-                    "cN": "ballerinadoctag",
+                    "cN": "siddhidoctag",
                     "b": "(^|\\s)@[A-Za-z]+"
                 }]
             }, {
