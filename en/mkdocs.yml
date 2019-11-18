@@ -128,6 +128,7 @@ nav:
     - Query Guide: docs/query-guide.md
     - Siddhi APIs:
       - latest: docs/api/latest.md
+      - 5.1.1: docs/api/5.1.1.md
       - 5.1.0: docs/api/5.1.0.md
     - REST API Guides:
         - Siddhi App APIs: docs/rest-guides/siddhi-app-api.md
