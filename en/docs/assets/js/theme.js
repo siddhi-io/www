@@ -91,13 +91,13 @@ if (typeof hljs === 'object') {
         return {
             cI: !0,
             k: {
-                keyword: "stream define function trigger table plan from partition window select group by having " +
-                "overwrite delete update return events into output expired current snapshot for raw of as at or and " +
-                "in on is not within with begin end null every last all first join inner outer right left full " +
-                "unidirectional insert ",
-                literal: "true false years year months month weeks week days day hours hour minutes minute min seconds" +
-                "second sec milliseconds millisecond millisec",
-                built_in: "bool int float string long double object"
+                keyword: "stream define function trigger table app from partition window select group by order " +
+                "limit offset asc desc having insert delete update set return events into output expired current " +
+                "snapshot for raw of as at or and in on is not within with begin end every last all first " +
+                "join inner outer right left full unidirectional aggregation aggregate per",
+                literal: "true false null years year months month weeks week days day hours hour minutes minute min " +
+                "seconds second sec milliseconds millisecond millisec",
+                built_in: "string int long float double bool object"
             },
             i: /[<>{}*]/,
             c: [
