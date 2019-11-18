@@ -82,7 +82,7 @@ request.open('GET', docSetUrl +
  */
 if (typeof hljs === 'object') {
     hljs.registerLanguage("siddhi", function (e) {
-        var t = e.C("--", "$")
+        var t = e.C("--", "$"),
             n = {
             cN: "number",
             b: "\\b(0[bB]([01]+[01_]+[01]+|[01]+)|0[xX]([a-fA-F0-9]+[a-fA-F0-9_]+[a-fA-F0-9]+|[a-fA-F0-9]+)|(([\\d]+[\\d_]+[\\d]+|[\\d]+)(\\.([\\d]+[\\d_]+[\\d]+|[\\d]+))?|\\.([\\d]+[\\d_]+[\\d]+|[\\d]+))([eE][-+]?\\d+)?)[lLfF]?",
