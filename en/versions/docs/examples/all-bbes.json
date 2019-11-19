@@ -8,4 +8,15 @@
             "url": "simple-aggregation"
         }
     ]
+}, 
+{
+    "title": "Event Cleansing",
+    "column": 1,
+    "category": "Language concepts",
+    "samples": [
+        {
+            "name": "If-Then-Else",
+            "url": "if-then-else"
+        }
+    ]
 }]
