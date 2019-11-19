@@ -16,36 +16,6 @@
  * under the License.
  */
 
-
-/*
- * Following script is adding line numbers to the siddhi code blocks in the gneerated documentation
- */
-function initCodeLineNumbers() {
-    $('pre > code.siddhi, pre > code.language-siddhi').each(function() {
-
-        if ($(this).parent().find('.line-numbers-wrap').length === 0) {
-            //cont the number of rows
-            //Remove the new line from the end of the text
-            var numberOfLines = $(this).text().replace(/\n$/, "").split(/\r\n|\r|\n/).length;
-            var lines = '<div class="line-numbers-wrap">';
-
-            //Iterate all the lines and create div elements with line number
-            for (var i = 1; i <= numberOfLines; i++) {
-                lines = lines + '<div class="line-number">' + i + '</div>';
-            }
-            lines = lines + '</div>';
-            //calculate <pre> height and set it to the container
-            var preHeight = numberOfLines * 18 + 20;
-
-            $(this).parent()
-                .addClass('siddhi-pre-wrapper')
-                .prepend($(lines));
-        }
-
-    });
-}
-
-
 function setTooltip(btn, message) {
     $(btn).attr('data-original-title', message)
         .tooltip('show');
@@ -58,9 +28,6 @@ function hideTooltip(btn) {
 }
 
 $(document).ready(function () {
-
-    initCodeLineNumbers();
-
 
     document.querySelector("div.md-content > article > a.md-icon.md-content__icon").href = document.querySelector("span.info").getAttribute("dir")
 

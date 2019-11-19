@@ -1626,11 +1626,9 @@
 <p>Follow below steps to start the Siddhi tooling runtime,
 * Extract the downloaded zip and navigate to <TOOLING_HOME>/bin. (TOOLING_HOME refers to the extracted folder)
 * Issue the following command in the command prompt (Windows) / terminal (Linux/Mac)</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>For Windows: tooling.bat
-For Linux/Mac: ./tooling.sh
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="linenums">For Windows: tooling.bat
+For Linux/Mac: ./tooling.sh</code></pre>
+
 
 </li>
 <li>
@@ -1644,216 +1642,110 @@ For Linux/Mac: ./tooling.sh
 </li>
 </ol>
 <p>Siddhi App 1 : Responsible for Aggregating Data</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="n">App</span><span class="p">:</span><span class="n">name</span><span class="p">(</span><span class="ss">&quot;SalesSummarization&quot;</span><span class="p">)</span>
+<pre class="codehilite"><code class="language-siddhi linenums">@App:name("SalesSummarization")
+@App:description('X online shopping mall - Summarization for sales by category, product and seller')
 
-<span class="o">@</span><span class="n">App</span><span class="p">:</span><span class="n">description</span><span class="p">(</span><span class="s1">&#39;X online shopping mall - Summarization for sales by category, product and seller&#39;</span><span class="p">)</span>
+@Source(type = 'http', receiver.url = 'http://0.0.0.0:8080/sales', basic.auth.enabled = 'false',
+    @map(type = 'json'))
+define stream SalesStream(timestamp long, categoryName string, productName string, sellerName string, quantity int);
 
-<span class="o">@</span><span class="k">Source</span><span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;http&#39;</span><span class="p">,</span> <span class="n">receiver</span><span class="p">.</span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://0.0.0.0:8080/sales&#39;</span><span class="p">,</span> <span class="n">basic</span><span class="p">.</span><span class="n">auth</span><span class="p">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="s1">&#39;false&#39;</span><span class="p">,</span>
-    <span class="o">@</span><span class="k">map</span><span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;json&#39;</span><span class="p">))</span>
-<span class="n">define</span> <span class="n">stream</span> <span class="n">SalesStream</span><span class="p">(</span><span class="k">timestamp</span> <span class="n">long</span><span class="p">,</span> <span class="n">categoryName</span> <span class="n">string</span><span class="p">,</span> <span class="n">productName</span> <span class="n">string</span><span class="p">,</span> <span class="n">sellerName</span> <span class="n">string</span><span class="p">,</span> <span class="n">quantity</span> <span class="nb">int</span><span class="p">);</span>
-
-<span class="c1">--Long term Summarization</span>
-<span class="o">@</span><span class="n">store</span><span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;rdbms&#39;</span> <span class="p">,</span> 
-    <span class="n">jdbc</span><span class="p">.</span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;${MYSQL_URL}&#39;</span><span class="p">,</span> 
-    <span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;${MYSQL_USERNAME}&#39;</span><span class="p">,</span> 
-    <span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;${MYSQL_PASSWORD}&#39;</span><span class="p">,</span> 
-    <span class="n">jdbc</span><span class="p">.</span><span class="n">driver</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;com.mysql.jdbc.Driver&#39;</span><span class="p">,</span> 
-    <span class="n">pool</span><span class="p">.</span><span class="n">properties</span> <span class="o">=</span> <span class="ss">&quot;maximumPoolSize:1&quot;</span><span class="p">)</span> 
-<span class="o">@</span><span class="n">purge</span><span class="p">(</span><span class="n">enable</span> <span class="o">=</span> <span class="s1">&#39;false&#39;</span><span class="p">)</span> 
-<span class="n">define</span> <span class="n">aggregation</span> <span class="n">SalesAggregation</span> 
-<span class="k">from</span> <span class="n">SalesStream</span> 
-<span class="k">select</span> <span class="n">categoryName</span><span class="p">,</span> <span class="n">productName</span><span class="p">,</span> <span class="n">sellerName</span><span class="p">,</span> <span class="k">sum</span><span class="p">(</span><span class="n">quantity</span><span class="p">)</span> <span class="k">as</span> <span class="n">totalSales</span> 
-    <span class="k">group</span> <span class="k">by</span> <span class="n">categoryName</span><span class="p">,</span> <span class="n">productName</span><span class="p">,</span> <span class="n">sellerName</span> 
-    <span class="k">aggregate</span> <span class="k">by</span> <span class="k">timestamp</span> <span class="k">every</span> <span class="n">sec</span><span class="p">...</span><span class="k">year</span><span class="p">;</span>
-</pre></div>
-</td></tr></table>
+--Long term Summarization
+@store(type = 'rdbms' , 
+    jdbc.url = '${MYSQL_URL}', 
+    username = '${MYSQL_USERNAME}', 
+    password = '${MYSQL_PASSWORD}', 
+    jdbc.driver.name = 'com.mysql.jdbc.Driver', 
+    pool.properties = "maximumPoolSize:1") 
+@purge(enable = 'false') 
+define aggregation SalesAggregation 
+from SalesStream 
+select categoryName, productName, sellerName, sum(quantity) as totalSales 
+    group by categoryName, productName, sellerName 
+    aggregate by timestamp every sec...year;
+</code></pre>
 
 <p>Siddhi App 2: Responsible for Sending alerts</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="n">App</span><span class="p">:</span><span class="n">name</span><span class="p">(</span><span class="ss">&quot;DailyDealsCandidatesAlert&quot;</span><span class="p">)</span>
+<pre class="codehilite"><code class="language-siddhi linenums">@App:name("DailyDealsCandidatesAlert")
+@App:description("Alerts regarding daily deals candidates - 1 product with max 5 sellers who sold the most in past 30 days")
 
-<span class="o">@</span><span class="n">App</span><span class="p">:</span><span class="n">description</span><span class="p">(</span><span class="ss">&quot;Alerts regarding daily deals candidates - 1 product with max 5 sellers who sold the most in past 30 days&quot;</span><span class="p">)</span>
+define trigger DailyTrigger at '0 00 23 ? * MON-FRI';
 
-<span class="n">define</span> <span class="k">trigger</span> <span class="n">DailyTrigger</span> <span class="k">at</span> <span class="s1">&#39;0 00 23 ? * MON-FRI&#39;</span><span class="p">;</span>
+@Source(type = 'http', receiver.url = 'http://0.0.0.0:8080/dailyDealsAlert', basic.auth.enabled = 'false',
+    @map(type = 'json'))
+define stream DailyDealsTriggerStream(emailToBeSent bool);
 
-<span class="o">@</span><span class="k">Source</span><span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;http&#39;</span><span class="p">,</span> <span class="n">receiver</span><span class="p">.</span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://0.0.0.0:8080/dailyDealsAlert&#39;</span><span class="p">,</span> <span class="n">basic</span><span class="p">.</span><span class="n">auth</span><span class="p">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="s1">&#39;false&#39;</span><span class="p">,</span>
-    <span class="o">@</span><span class="k">map</span><span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;json&#39;</span><span class="p">))</span>
-<span class="n">define</span> <span class="n">stream</span> <span class="n">DailyDealsTriggerStream</span><span class="p">(</span><span class="n">emailToBeSent</span> <span class="n">bool</span><span class="p">);</span>
+define stream SalesStream(timestamp long, categoryName string, productName string, sellerName string, quantity int);
 
-<span class="n">define</span> <span class="n">stream</span> <span class="n">SalesStream</span><span class="p">(</span><span class="k">timestamp</span> <span class="n">long</span><span class="p">,</span> <span class="n">categoryName</span> <span class="n">string</span><span class="p">,</span> <span class="n">productName</span> <span class="n">string</span><span class="p">,</span> <span class="n">sellerName</span> <span class="n">string</span><span class="p">,</span> <span class="n">quantity</span> <span class="nb">int</span><span class="p">);</span>
+@sink(type = 'email', address = "${SENDER_EMAIL_ADDRESS}", username = "${EMAIL_USERNAME}", password = "${EMAIL_PASSWORD}", 
+    subject = "{{emailSubject}}", to = "${RECEIVER_EMAIL_ADDRESS}", host = "smtp.gmail.com", port = "465", content.type = 'text/html', 
+    ssl.enable = "true", auth = "true", 
+    @map(type = 'text', 
+        @payload("""
+            Hi, &lt;br/&gt;&lt;br/&gt;
+            Please find the seller candidates for Daily Deal {{dailyDealDate}} below, &lt;br/&gt;&lt;br/&gt;
+            Product &lt;strong&gt;{{productName}}&lt;/strong&gt;-{{categoryName}} sold {{last10DaysSales}} units for the last 10 days&lt;br/&gt;&lt;br/&gt;
+            &lt;table&gt;
+            &lt;tr&gt;
+            &lt;th&gt; Seller Name &lt;/th&gt;
+            &lt;th&gt; Total Sales for the last Month &lt;/th&gt;
+            &lt;/tr&gt;
+            {{candidateInfo}}
+            &lt;/table&gt;
+            &lt;br/&gt;&lt;br/&gt;
+            Thanks, &lt;br/&gt;
+            Analytics Team""")))
+define stream EmailNotificationStream(dailyDealDate string, emailSubject string, productName string, categoryName string, last10DaysSales long, candidateInfo string);
 
-<span class="o">@</span><span class="n">sink</span><span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="n">address</span> <span class="o">=</span> <span class="ss">&quot;${SENDER_EMAIL_ADDRESS}&quot;</span><span class="p">,</span> <span class="n">username</span> <span class="o">=</span> <span class="ss">&quot;${EMAIL_USERNAME}&quot;</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="ss">&quot;${EMAIL_PASSWORD}&quot;</span><span class="p">,</span> 
-    <span class="n">subject</span> <span class="o">=</span> <span class="ss">&quot;{{emailSubject}}&quot;</span><span class="p">,</span> <span class="k">to</span> <span class="o">=</span> <span class="ss">&quot;${RECEIVER_EMAIL_ADDRESS}&quot;</span><span class="p">,</span> <span class="k">host</span> <span class="o">=</span> <span class="ss">&quot;smtp.gmail.com&quot;</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="ss">&quot;465&quot;</span><span class="p">,</span> <span class="n">content</span><span class="p">.</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;text/html&#39;</span><span class="p">,</span> 
-    <span class="n">ssl</span><span class="p">.</span><span class="n">enable</span> <span class="o">=</span> <span class="ss">&quot;true&quot;</span><span class="p">,</span> <span class="n">auth</span> <span class="o">=</span> <span class="ss">&quot;true&quot;</span><span class="p">,</span> 
-    <span class="o">@</span><span class="k">map</span><span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;text&#39;</span><span class="p">,</span> 
-        <span class="o">@</span><span class="n">payload</span><span class="p">(</span><span class="ss">&quot;&quot;&quot;</span>
-<span class="ss">            Hi, &lt;br/&gt;&lt;br/&gt;</span>
-<span class="ss">            Please find the seller candidates for Daily Deal {{dailyDealDate}} below, &lt;br/&gt;&lt;br/&gt;</span>
-<span class="ss">            Product &lt;strong&gt;{{productName}}&lt;/strong&gt;-{{categoryName}} sold {{last10DaysSales}} units for the last 10 days&lt;br/&gt;&lt;br/&gt;</span>
-<span class="ss">            &lt;table&gt;</span>
-<span class="ss">            &lt;tr&gt;</span>
-<span class="ss">            &lt;th&gt; Seller Name &lt;/th&gt;</span>
-<span class="ss">            &lt;th&gt; Total Sales for the last Month &lt;/th&gt;</span>
-<span class="ss">            &lt;/tr&gt;</span>
-<span class="ss">            {{candidateInfo}}</span>
-<span class="ss">            &lt;/table&gt;</span>
-<span class="ss">            &lt;br/&gt;&lt;br/&gt;</span>
-<span class="ss">            Thanks, &lt;br/&gt;</span>
-<span class="ss">            Analytics Team&quot;&quot;&quot;</span><span class="p">)))</span>
-<span class="n">define</span> <span class="n">stream</span> <span class="n">EmailNotificationStream</span><span class="p">(</span><span class="n">dailyDealDate</span> <span class="n">string</span><span class="p">,</span> <span class="n">emailSubject</span> <span class="n">string</span><span class="p">,</span> <span class="n">productName</span> <span class="n">string</span><span class="p">,</span> <span class="n">categoryName</span> <span class="n">string</span><span class="p">,</span> <span class="n">last10DaysSales</span> <span class="n">long</span><span class="p">,</span> <span class="n">candidateInfo</span> <span class="n">string</span><span class="p">);</span>
+@sink(type = 'log', 
+    @map(type = 'json'))
+define stream DailyDealsSellerCandidates (emailToBeSent bool, categoryName string, productName string, last10DaysSales long, sellerName string, sellersSales long);
 
-<span class="o">@</span><span class="n">sink</span><span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;log&#39;</span><span class="p">,</span> 
-    <span class="o">@</span><span class="k">map</span><span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;json&#39;</span><span class="p">))</span>
-<span class="n">define</span> <span class="n">stream</span> <span class="n">DailyDealsSellerCandidates</span> <span class="p">(</span><span class="n">emailToBeSent</span> <span class="n">bool</span><span class="p">,</span> <span class="n">categoryName</span> <span class="n">string</span><span class="p">,</span> <span class="n">productName</span> <span class="n">string</span><span class="p">,</span> <span class="n">last10DaysSales</span> <span class="n">long</span><span class="p">,</span> <span class="n">sellerName</span> <span class="n">string</span><span class="p">,</span> <span class="n">sellersSales</span> <span class="n">long</span><span class="p">);</span>
+--Long term Summarization
+@store(type = 'rdbms' , jdbc.url = '${MYSQL_URL}', username = '${MYSQL_USERNAME}', password = '${MYSQL_PASSWORD}', jdbc.driver.name = 'com.mysql.jdbc.Driver'
+    , pool.properties = "maximumPoolSize:1") 
+@purge(enable = 'false')
+define aggregation SalesAggregation 
+from SalesStream 
+select categoryName, productName, sellerName, sum(quantity) as totalSales 
+    group by categoryName, productName, sellerName 
+    aggregate by timestamp every sec...year;
 
-<span class="c1">--Long term Summarization</span>
-<span class="o">@</span><span class="n">store</span><span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;rdbms&#39;</span> <span class="p">,</span> <span class="n">jdbc</span><span class="p">.</span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;${MYSQL_URL}&#39;</span><span class="p">,</span> <span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;${MYSQL_USERNAME}&#39;</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;${MYSQL_PASSWORD}&#39;</span><span class="p">,</span> <span class="n">jdbc</span><span class="p">.</span><span class="n">driver</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;com.mysql.jdbc.Driver&#39;</span>
-    <span class="p">,</span> <span class="n">pool</span><span class="p">.</span><span class="n">properties</span> <span class="o">=</span> <span class="ss">&quot;maximumPoolSize:1&quot;</span><span class="p">)</span> 
-<span class="o">@</span><span class="n">purge</span><span class="p">(</span><span class="n">enable</span> <span class="o">=</span> <span class="s1">&#39;false&#39;</span><span class="p">)</span>
-<span class="n">define</span> <span class="n">aggregation</span> <span class="n">SalesAggregation</span> 
-<span class="k">from</span> <span class="n">SalesStream</span> 
-<span class="k">select</span> <span class="n">categoryName</span><span class="p">,</span> <span class="n">productName</span><span class="p">,</span> <span class="n">sellerName</span><span class="p">,</span> <span class="k">sum</span><span class="p">(</span><span class="n">quantity</span><span class="p">)</span> <span class="k">as</span> <span class="n">totalSales</span> 
-    <span class="k">group</span> <span class="k">by</span> <span class="n">categoryName</span><span class="p">,</span> <span class="n">productName</span><span class="p">,</span> <span class="n">sellerName</span> 
-    <span class="k">aggregate</span> <span class="k">by</span> <span class="k">timestamp</span> <span class="k">every</span> <span class="n">sec</span><span class="p">...</span><span class="k">year</span><span class="p">;</span>
+@info(name = 'calculateStartEndTimeForHTTPTrigger') 
+from DailyDealsTriggerStream 
+select emailToBeSent, time:timestampInMilliseconds(time:dateSub(time:currentDate(), 9, 'DAY', 'yyyy-MM-dd'), 'yyyy-MM-dd') as startTime, time:timestampInMilliseconds() as endTime 
+insert into JoinStream;
 
-<span class="o">@</span><span class="n">info</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;calculateStartEndTimeForHTTPTrigger&#39;</span><span class="p">)</span> 
-<span class="k">from</span> <span class="n">DailyDealsTriggerStream</span> 
-<span class="k">select</span> <span class="n">emailToBeSent</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span><span class="n">timestampInMilliseconds</span><span class="p">(</span><span class="n">time</span><span class="p">:</span><span class="n">dateSub</span><span class="p">(</span><span class="n">time</span><span class="p">:</span><span class="n">currentDate</span><span class="p">(),</span> <span class="mi">9</span><span class="p">,</span> <span class="s1">&#39;DAY&#39;</span><span class="p">,</span> <span class="s1">&#39;yyyy-MM-dd&#39;</span><span class="p">),</span> <span class="s1">&#39;yyyy-MM-dd&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">startTime</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span><span class="n">timestampInMilliseconds</span><span class="p">()</span> <span class="k">as</span> <span class="n">endTime</span> 
-<span class="k">insert</span> <span class="k">into</span> <span class="n">JoinStream</span><span class="p">;</span>
+@info(name = 'calculateStartEndTimeForDailyTrigger') 
+from DailyTrigger 
+select true as emailToBeSent, time:timestampInMilliseconds(time:dateSub(time:currentDate(), 9, 'DAY', 'yyyy-MM-dd'), 'yyyy-MM-dd') as startTime, triggered_time as endTime 
+insert into JoinStream;
 
-<span class="o">@</span><span class="n">info</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;calculateStartEndTimeForDailyTrigger&#39;</span><span class="p">)</span> 
-<span class="k">from</span> <span class="n">DailyTrigger</span> 
-<span class="k">select</span> <span class="k">true</span> <span class="k">as</span> <span class="n">emailToBeSent</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span><span class="n">timestampInMilliseconds</span><span class="p">(</span><span class="n">time</span><span class="p">:</span><span class="n">dateSub</span><span class="p">(</span><span class="n">time</span><span class="p">:</span><span class="n">currentDate</span><span class="p">(),</span> <span class="mi">9</span><span class="p">,</span> <span class="s1">&#39;DAY&#39;</span><span class="p">,</span> <span class="s1">&#39;yyyy-MM-dd&#39;</span><span class="p">),</span> <span class="s1">&#39;yyyy-MM-dd&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">startTime</span><span class="p">,</span> <span class="n">triggered_time</span> <span class="k">as</span> <span class="n">endTime</span> 
-<span class="k">insert</span> <span class="k">into</span> <span class="n">JoinStream</span><span class="p">;</span>
+@info(name = 'findLowSalesProduct') 
+from JoinStream join SalesAggregation
+within startTime, endTime 
+per 'seconds' 
+select endTime, emailToBeSent, categoryName, productName, sum(totalSales) as totalPastSales 
+    group by categoryName, productName 
+    having totalPastSales &lt; 100
+    order by totalPastSales desc 
+    limit 1 
+insert into PastSalesStream;
 
-<span class="o">@</span><span class="n">info</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;findLowSalesProduct&#39;</span><span class="p">)</span> 
-<span class="k">from</span> <span class="n">JoinStream</span> <span class="k">join</span> <span class="n">SalesAggregation</span>
-<span class="n">within</span> <span class="n">startTime</span><span class="p">,</span> <span class="n">endTime</span> 
-<span class="n">per</span> <span class="s1">&#39;seconds&#39;</span> 
-<span class="k">select</span> <span class="n">endTime</span><span class="p">,</span> <span class="n">emailToBeSent</span><span class="p">,</span> <span class="n">categoryName</span><span class="p">,</span> <span class="n">productName</span><span class="p">,</span> <span class="k">sum</span><span class="p">(</span><span class="n">totalSales</span><span class="p">)</span> <span class="k">as</span> <span class="n">totalPastSales</span> 
-    <span class="k">group</span> <span class="k">by</span> <span class="n">categoryName</span><span class="p">,</span> <span class="n">productName</span> 
-    <span class="k">having</span> <span class="n">totalPastSales</span> <span class="o">&lt;</span> <span class="mi">100</span>
-    <span class="k">order</span> <span class="k">by</span> <span class="n">totalPastSales</span> <span class="k">desc</span> 
-    <span class="k">limit</span> <span class="mi">1</span> 
-<span class="k">insert</span> <span class="k">into</span> <span class="n">PastSalesStream</span><span class="p">;</span>
+@info(name = 'findSellersWhoSoldHighestQuantity') 
+from PastSalesStream as PS join SalesAggregation as SA
+    on PS.categoryName == SA.categoryName and PS.productName == SA.productName
+within time:timestampInMilliseconds(time:dateSub(time:currentDate(), 29, 'DAY', 'yyyy-MM-dd'), 'yyyy-MM-dd'), endTime 
+per 'seconds'
+select emailToBeSent, PS.categoryName, PS.productName, totalPastSales as last10DaysSales, sellerName, sum(totalSales) as sellersSales 
+    group by categoryName, productName, sellerName 
+    order by sellersSales desc 
+    limit 5
+insert into DailyDealsSellerCandidates;
 
-<span class="o">@</span><span class="n">info</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;findSellersWhoSoldHighestQuantity&#39;</span><span class="p">)</span> 
-<span class="k">from</span> <span class="n">PastSalesStream</span> <span class="k">as</span> <span class="n">PS</span> <span class="k">join</span> <span class="n">SalesAggregation</span> <span class="k">as</span> <span class="n">SA</span>
-    <span class="k">on</span> <span class="n">PS</span><span class="p">.</span><span class="n">categoryName</span> <span class="o">==</span> <span class="n">SA</span><span class="p">.</span><span class="n">categoryName</span> <span class="k">and</span> <span class="n">PS</span><span class="p">.</span><span class="n">productName</span> <span class="o">==</span> <span class="n">SA</span><span class="p">.</span><span class="n">productName</span>
-<span class="n">within</span> <span class="n">time</span><span class="p">:</span><span class="n">timestampInMilliseconds</span><span class="p">(</span><span class="n">time</span><span class="p">:</span><span class="n">dateSub</span><span class="p">(</span><span class="n">time</span><span class="p">:</span><span class="n">currentDate</span><span class="p">(),</span> <span class="mi">29</span><span class="p">,</span> <span class="s1">&#39;DAY&#39;</span><span class="p">,</span> <span class="s1">&#39;yyyy-MM-dd&#39;</span><span class="p">),</span> <span class="s1">&#39;yyyy-MM-dd&#39;</span><span class="p">),</span> <span class="n">endTime</span> 
-<span class="n">per</span> <span class="s1">&#39;seconds&#39;</span>
-<span class="k">select</span> <span class="n">emailToBeSent</span><span class="p">,</span> <span class="n">PS</span><span class="p">.</span><span class="n">categoryName</span><span class="p">,</span> <span class="n">PS</span><span class="p">.</span><span class="n">productName</span><span class="p">,</span> <span class="n">totalPastSales</span> <span class="k">as</span> <span class="n">last10DaysSales</span><span class="p">,</span> <span class="n">sellerName</span><span class="p">,</span> <span class="k">sum</span><span class="p">(</span><span class="n">totalSales</span><span class="p">)</span> <span class="k">as</span> <span class="n">sellersSales</span> 
-    <span class="k">group</span> <span class="k">by</span> <span class="n">categoryName</span><span class="p">,</span> <span class="n">productName</span><span class="p">,</span> <span class="n">sellerName</span> 
-    <span class="k">order</span> <span class="k">by</span> <span class="n">sellersSales</span> <span class="k">desc</span> 
-    <span class="k">limit</span> <span class="mi">5</span>
-<span class="k">insert</span> <span class="k">into</span> <span class="n">DailyDealsSellerCandidates</span><span class="p">;</span>
-
-<span class="o">@</span><span class="n">info</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;emailFormatting&#39;</span><span class="p">)</span> 
-<span class="k">from</span> <span class="n">DailyDealsSellerCandidates</span><span class="p">[</span><span class="n">emailToBeSent</span> <span class="o">==</span> <span class="k">true</span><span class="p">]</span><span class="o">#</span><span class="n">window</span><span class="p">.</span><span class="n">batch</span><span class="p">()</span> 
-<span class="k">select</span> <span class="n">time</span><span class="p">:</span><span class="n">dateAdd</span><span class="p">(</span><span class="n">time</span><span class="p">:</span><span class="n">currentDate</span><span class="p">(),</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;DAY&#39;</span><span class="p">,</span> <span class="s1">&#39;yyyy-MM-dd&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">dailyDealDate</span><span class="p">,</span> <span class="n">str</span><span class="p">:</span><span class="n">concat</span><span class="p">(</span><span class="ss">&quot;Daily Deals Seller Candidate for &quot;</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span><span class="n">dateAdd</span><span class="p">(</span><span class="n">time</span><span class="p">:</span><span class="n">currentDate</span><span class="p">(),</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;DAY&#39;</span><span class="p">,</span> <span class="s1">&#39;yyyy-MM-dd&#39;</span><span class="p">))</span> <span class="k">as</span> <span class="n">emailSubject</span><span class="p">,</span> <span class="n">productName</span><span class="p">,</span> <span class="n">categoryName</span><span class="p">,</span> <span class="n">last10DaysSales</span><span class="p">,</span> <span class="n">str</span><span class="p">:</span><span class="n">groupConcat</span><span class="p">(</span><span class="n">str</span><span class="p">:</span><span class="n">fillTemplate</span><span class="p">(</span><span class="ss">&quot;&lt;tr&gt;&lt;td&gt;{{1}}&lt;/td&gt;&lt;td&gt;{{2}}&lt;/td&gt;&lt;/tr&gt;&quot;</span><span class="p">,</span> <span class="n">sellerName</span><span class="p">,</span> <span class="n">sellersSales</span><span class="p">),</span> <span class="ss">&quot;&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">candidateInfo</span>
-<span class="k">insert</span> <span class="k">into</span> <span class="n">EmailNotificationStream</span><span class="p">;</span>
-</pre></div>
-</td></tr></table>
+@info(name = 'emailFormatting') 
+from DailyDealsSellerCandidates[emailToBeSent == true]#window.batch() 
+select time:dateAdd(time:currentDate(), 1, 'DAY', 'yyyy-MM-dd') as dailyDealDate, str:concat("Daily Deals Seller Candidate for ", time:dateAdd(time:currentDate(), 1, 'DAY', 'yyyy-MM-dd')) as emailSubject, productName, categoryName, last10DaysSales, str:groupConcat(str:fillTemplate("&lt;tr&gt;&lt;td&gt;{{1}}&lt;/td&gt;&lt;td&gt;{{2}}&lt;/td&gt;&lt;/tr&gt;", sellerName, sellersSales), "") as candidateInfo
+insert into EmailNotificationStream;</code></pre>
 
 <p>Source view of the Siddhi apps.</p>
 <p>Siddhi App 1</p>
@@ -1907,45 +1799,27 @@ For Linux/Mac: ./tooling.sh
 </ul>
 <h4 id="run-mock-data-generator">Run Mock Data Generator<a class="headerlink" href="#run-mock-data-generator" title="Permanent link">&para;</a></h4>
 <p>In the provided Siddhi app, there is an HTTP source configured to receive sales data. For simplicity, you will be mocking this data through a generator . Please download the mock server <a href="https://github.com/niveathika/siddhi-mock-data-generator/releases/download/v2.0.0/siddhi-mock-data-generator-2.0.0.jar">jar</a> and run that mock service by executing the following command.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">java -jar siddhi-mock-data-generator-2.0.0.jar</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-console linenums">java -jar siddhi-mock-data-generator-2.0.0.jar</code></pre>
 
 <h4 id="invoking-the-siddhi-app">Invoking the Siddhi App<a class="headerlink" href="#invoking-the-siddhi-app" title="Permanent link">&para;</a></h4>
 <p>As per the Siddhi app that you wrote in the 'Implementation' section, each day at 11pm an email will be generated with the candidates for the Daily Deal tomorrow.</p>
 <p>Furthermore, this can be generated by sending a POST request to <code>http://localhost:8080/dailyDealsAlert</code>.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">curl -X POST \</span>
-<span class="go">  http://localhost:8080/dailyDealsAlert \</span>
-<span class="go">  -k \</span>
-<span class="go">  -H &#39;Content-Type: application/json&#39; \</span>
-<span class="go">  -d &#39;{</span>
-<span class="go">    &quot;emailToBeSent&quot;: true</span>
-<span class="go">}&#39;</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-console linenums">curl -X POST \
+  http://localhost:8080/dailyDealsAlert \
+  -k \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "emailToBeSent": true
+}'</code></pre>
 
 <p>If you invoke the above cURL request email alert will be triggered. You can also observe the logs along with the details sent in the email.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">DailyDealsCandidatesAlert : DailyDealsSellerCandidates : [</span>
-<span class="go">{&quot;event&quot;:{&quot;emailToBeSent&quot;:true,&quot;categoryName&quot;:&quot;Accessories&quot;,&quot;productName&quot;:&quot;Earring&quot;,&quot;last10DaysSales&quot;:80,&quot;sellerName&quot;:&quot;Malfoy&quot;,&quot;sellersSales&quot;:20}},</span>
-<span class="go">{&quot;event&quot;:{&quot;emailToBeSent&quot;:true,&quot;categoryName&quot;:&quot;Accessories&quot;,&quot;productName&quot;:&quot;Earring&quot;,&quot;last10DaysSales&quot;:80,&quot;sellerName&quot;:&quot;George&quot;,&quot;sellersSales&quot;:20}},</span>
-<span class="go">{&quot;event&quot;:{&quot;emailToBeSent&quot;:true,&quot;categoryName&quot;:&quot;Accessories&quot;,&quot;productName&quot;:&quot;Earring&quot;,&quot;last10DaysSales&quot;:80,&quot;sellerName&quot;:&quot;Harry&quot;,&quot;sellersSales&quot;:20}},</span>
-<span class="go">{&quot;event&quot;:{&quot;emailToBeSent&quot;:true,&quot;categoryName&quot;:&quot;Accessories&quot;,&quot;productName&quot;:&quot;Earring&quot;,&quot;last10DaysSales&quot;:80,&quot;sellerName&quot;:&quot;Molly&quot;,&quot;sellersSales&quot;:10}},</span>
-<span class="go">{&quot;event&quot;:{&quot;emailToBeSent&quot;:true,&quot;categoryName&quot;:&quot;Accessories&quot;,&quot;productName&quot;:&quot;Earring&quot;,&quot;last10DaysSales&quot;:80,&quot;sellerName&quot;:&quot;Fred&quot;,&quot;sellersSales&quot;:10}}</span>
-<span class="go">]</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-json linenums">DailyDealsCandidatesAlert : DailyDealsSellerCandidates : [
+{"event":{"emailToBeSent":true,"categoryName":"Accessories","productName":"Earring","last10DaysSales":80,"sellerName":"Malfoy","sellersSales":20}},
+{"event":{"emailToBeSent":true,"categoryName":"Accessories","productName":"Earring","last10DaysSales":80,"sellerName":"George","sellersSales":20}},
+{"event":{"emailToBeSent":true,"categoryName":"Accessories","productName":"Earring","last10DaysSales":80,"sellerName":"Harry","sellersSales":20}},
+{"event":{"emailToBeSent":true,"categoryName":"Accessories","productName":"Earring","last10DaysSales":80,"sellerName":"Molly","sellersSales":10}},
+{"event":{"emailToBeSent":true,"categoryName":"Accessories","productName":"Earring","last10DaysSales":80,"sellerName":"Fred","sellersSales":10}}
+]</code></pre>
 
 <p>Note: The configurations provided in the email sink along with the environment properties will work for Gmail, but if you use other mail servers, please make sure to change the config values accordingly.</p>
 <p><a href="../images/simulation-email-output.png"><img alt="simulation_email_output" src="../images/simulation-email-output.png" title="Generated email for th simulation" /></a></p>
@@ -1964,37 +1838,24 @@ For Linux/Mac: ./tooling.sh
 <li>Configure the necessary environmental variables. Refer <a href="#Testing">Testing</a></li>
 <li>
 <p>Start Siddhi app with the runner config by executing the following commands from the distribution directory.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">Linux/Mac : ./bin/runner.sh -Dapps=&lt;siddhi-files-directory&gt;</span>
-<span class="go">Windows : bin\runner.bat -Dapps=&lt;siddhi-files-directory&gt;</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-console linenums">Linux/Mac : ./bin/runner.sh -Dapps=&lt;siddhi-files-directory&gt;
+Windows : bin\runner.bat -Dapps=&lt;siddhi-files-directory&gt;</code></pre>
 
 </li>
 <li>
 <p>If pointing to different DB, run the mock data generator to add data for past 5 days sales. Download the <a href="https://github.com/niveathika/siddhi-mock-data-generator/releases/download/v2.0.0/siddhi-mock-data-generator-2.0.0.jar">mock data generator</a>. Execute the below command to run the mock data generator.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">java -jar siddhi-mock-data-generator-2.0.0.jar</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-console linenums">java -jar siddhi-mock-data-generator-2.0.0.jar</code></pre>
 
 </li>
 <li>
 <p>Invoke the dailyDealsAlert service with the following cURL request. You can set <code>emailToBeSent</code> as false to not send an email but only to observe the logs.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">curl -X POST \</span>
-<span class="go">http://localhost:8080/dailyDealsAlert \</span>
-<span class="go">-k \</span>
-<span class="go">-H &#39;Content-Type: application/json&#39; \</span>
-<span class="go">-d &#39;{</span>
-<span class="go">    &quot;emailToBeSent&quot;: true</span>
-<span class="go">}&#39;</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-console linenums">curl -X POST \
+http://localhost:8080/dailyDealsAlert \
+-k \
+-H 'Content-Type: application/json' \
+-d '{
+    "emailToBeSent": true
+}'</code></pre>
 
 </li>
 <li>
@@ -2011,9 +1872,7 @@ For Linux/Mac: ./tooling.sh
 <ol>
 <li>
 <p>First, you can create a docker network for the deployment as shown below</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">docker network create siddhi-tier --driver bridge</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-console linenums">docker network create siddhi-tier --driver bridge</code></pre>
 
 </li>
 <li>
@@ -2022,9 +1881,7 @@ For Linux/Mac: ./tooling.sh
 </li>
 <li>
 <p>Start the MySQL docker images with below command,</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">docker run -d --name mysql-server --network siddhi-tier  -e MYSQL_DATABASE=testdb -e MYSQL_ROOT_PASSWORD=root mysql:5.7.27</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-console linenums">docker run -d --name mysql-server --network siddhi-tier  -e MYSQL_DATABASE=testdb -e MYSQL_ROOT_PASSWORD=root mysql:5.7.27</code></pre>
 
 <div class="admonition info">
 <p class="admonition-title">Info</p>
@@ -2044,11 +1901,9 @@ The above command will start mysql server with credentials <code>root:root</code
 <p>Follow below steps to start the Siddhi tooling runtime.
 * Extract the downloaded zip and navigate to <TOOLING_HOME>/bin. (TOOLING_HOME refers to the extracted folder)
 * Issue the following command in the command prompt (Windows) / terminal (Linux/Mac)</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>For Windows: tooling.bat
-For Linux/Mac: ./tooling.sh
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="linenums">For Windows: tooling.bat
+For Linux/Mac: ./tooling.sh</code></pre>
+
 
 </li>
 <li>
@@ -2086,9 +1941,7 @@ For Linux/Mac: ./tooling.sh
 </li>
 <li>
 <p>Then, you can run the Siddhi docker image that you created with necessary external dependencies to work with MySQL.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">docker run --network siddhi-tier -p 8080:8080 -it  &lt;docker-image-name&gt;  </span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-console linenums">docker run --network siddhi-tier -p 8080:8080 -it  &lt;docker-image-name&gt;  </code></pre>
 
 <div class="admonition info">
 <p class="admonition-title">Info</p>
@@ -2097,28 +1950,18 @@ For Linux/Mac: ./tooling.sh
 </li>
 <li>
 <p>You can use the sample mock data generator to add data for past 5 days sales. Download the <a href="https://github.com/niveathika/siddhi-mock-data-generator/releases/download/v2.0.0/siddhi-mock-data-generator-2.0.0.jar">mock data generator</a>. Execute the below command to run the mock data generator.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">java -jar siddhi-mock-data-generator-2.0.0.jar</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-console linenums">java -jar siddhi-mock-data-generator-2.0.0.jar</code></pre>
 
 </li>
 <li>
 <p>Invoke the dailyDealsAlert service with the following cURL request. You can set <code>emailToBeSent</code> as false to not send an email but only to observe the logs.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">curl -X POST \</span>
-<span class="go">http://localhost:8080/dailyDealsAlert \</span>
-<span class="go">-k \</span>
-<span class="go">-H &#39;Content-Type: application/json&#39; \</span>
-<span class="go">-d &#39;{</span>
-<span class="go">    &quot;emailToBeSent&quot;: true</span>
-<span class="go">}&#39;</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-console linenums">curl -X POST \
+http://localhost:8080/dailyDealsAlert \
+-k \
+-H 'Content-Type: application/json' \
+-d '{
+    "emailToBeSent": true
+}'</code></pre>
 
 </li>
 <li>
@@ -2132,9 +1975,7 @@ For Linux/Mac: ./tooling.sh
 <ol>
 <li>
 <p>It is advisable to create a namespace in Kubernetes to follow below steps.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">kubectl create ns agg-guide</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-console linenums">kubectl create ns agg-guide</code></pre>
 
 </li>
 <li>
@@ -2142,18 +1983,14 @@ For Linux/Mac: ./tooling.sh
 <ul>
 <li>
 <p>First, install the MySQL helm chart as shown below,</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">helm install --name mysql-server --namespace=agg-guide --set mysqlRootPassword=root,mysqlUser=root,mysqlDatabase=testdb stable/mysql</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-console linenums">helm install --name mysql-server --namespace=agg-guide --set mysqlRootPassword=root,mysqlUser=root,mysqlDatabase=testdb stable/mysql</code></pre>
 
 <p>Here, you can define the root password to connect to the MYSQL database and also define the database name. BTW, make sure to do <code>helm init --tiller-namespace=agg-guide</code> if it is not done yet.</p>
 <p>Verify pods are running with <code>kubectl get pods --namespace=agg-guide</code></p>
 </li>
 <li>
 <p>Then, you can set a port forwarding to the MySQL service which allows you to connect from the Host.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">kubectl port-forward svc/mysql-server 13300:3306 --namespace=agg-guide</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-console linenums">kubectl port-forward svc/mysql-server 13300:3306 --namespace=agg-guide</code></pre>
 
 </li>
 <li>
@@ -2167,11 +2004,8 @@ For Linux/Mac: ./tooling.sh
 <ul>
 <li>
 <p>To install the Siddhi Kubernetes operator run the following commands.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.1/00-prereqs.yaml  --namespace=agg-guide</span>
-<span class="go">kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.1/01-siddhi-operator.yaml --namespace=agg-guide</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-console linenums">kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.1/00-prereqs.yaml  --namespace=agg-guide
+kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.1/01-siddhi-operator.yaml --namespace=agg-guide</code></pre>
 
 </li>
 <li>
@@ -2186,30 +2020,22 @@ For Linux/Mac: ./tooling.sh
 <ul>
 <li>
 <p>Mandatory Commands for all clusters</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/mandatory.yaml</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-console linenums">kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/mandatory.yaml</code></pre>
 
 </li>
 <li>
 <p>Docker for Mac/Docker for Windows</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud-generic.yaml</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-console linenums">kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud-generic.yaml</code></pre>
 
 </li>
 <li>
 <p>Minikube</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">minikube addons enable ingress</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-console linenums">minikube addons enable ingress</code></pre>
 
 </li>
 <li>
 <p>GKE</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud-generic.yaml</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-console linenums">kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud-generic.yaml</code></pre>
 
 </li>
 </ul>
@@ -2257,18 +2083,14 @@ For Linux/Mac: ./tooling.sh
 </li>
 <li>
 <p>Now,  let’s create the above resource in the Kubernetes  cluster with below command.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">kubectl --namespace=agg-guide apply -f &lt;absolute-path&gt;/siddhi-kubernetes/siddhi-process.yaml</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-console linenums">kubectl --namespace=agg-guide apply -f &lt;absolute-path&gt;/siddhi-kubernetes/siddhi-process.yaml</code></pre>
 
 <p>Once, siddhi apps are successfully deployed. You can verify its health with below Kubernetes commands</p>
 <p><a href="../images/k8s-pods-with-siddhi.png"><img alt="kubernetes_pods_with_siddhi" src="../images/k8s-pods-with-siddhi.png" title="Kubernetes Pods" /></a></p>
 </li>
 <li>
 <p>You can use the sample mock data generator to add data for past 5 days sales. Download the <a href="https://github.com/niveathika/siddhi-mock-data-generator/releases/download/v2.0.0/siddhi-mock-data-generator-2.0.0.jar">mock data generator</a>. Execute the below command to run the mock data generator.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">java -jar siddhi-mock-data-generator-2.0.0.jar siddhi/siddhi-aggregation-guide-0/8080</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-console linenums">java -jar siddhi-mock-data-generator-2.0.0.jar siddhi/siddhi-aggregation-guide-0/8080</code></pre>
 
 <div class="admonition note">
 <p class="admonition-title">Hostname of the HTTP Source<p>Here the hostname will include deployment name along with the port with syntax, <code>&lt;IP&gt;/&lt;DEPLOYMENT_NAME&gt;/&lt;PORT&gt;</code>.
@@ -2278,21 +2100,13 @@ The above sample is for artifacts generated with process name, <code>siddhi-aggr
 </li>
 <li>
 <p>Invoke the dailyDealsAlert service with the following cURL request. You can set <code>emailToBeSent</code> as false to not send an email but only to observe the logs.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="go">curl -X POST \</span>
-<span class="go">http://siddhi/siddhi-aggregation-guide-1/8080/dailyDealsAlert \</span>
-<span class="go">-k \</span>
-<span class="go">-H &#39;Content-Type: application/json&#39; \</span>
-<span class="go">-d &#39;{</span>
-<span class="go">    &quot;emailToBeSent&quot;: true</span>
-<span class="go">}&#39;</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-console linenums">curl -X POST \
+http://siddhi/siddhi-aggregation-guide-1/8080/dailyDealsAlert \
+-k \
+-H 'Content-Type: application/json' \
+-d '{
+    "emailToBeSent": true
+}'</code></pre>
 
 <div class="admonition note">
 <p class="admonition-title">Hostname of the HTTP Source<p>Here the hostname will include deployment name along with the port with syntax, <code>&lt;IP&gt;/&lt;DEPLOYMENT_NAME&gt;/&lt;PORT&gt;</code>.
@@ -2403,6 +2217,8 @@ The above sample is for artifacts generated with process name, <code>siddhi-aggr
       <script>app.initialize({version:"1.0.4",url:{base:"../../../.."}})</script>
       
         <script src="../../../../assets/lib/highlightjs/highlight.min.js"></script>
+      
+        <script src="../../../../assets/js/jquery-3.3.1.min.js"></script>
       
         <script src="../../../../assets/js/theme.js"></script>
       

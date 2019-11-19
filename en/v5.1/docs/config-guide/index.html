@@ -1656,41 +1656,23 @@
 <ul>
 <li>
 <p>MySQL<br />
-  <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">dataSources</span><span class="p">:</span>
-  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SIDDHI_TEST_DB</span>
-    <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">The datasource used for test database</span>
-    <span class="nt">jndiConfig</span><span class="p">:</span>
-      <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jdbc/SIDDHI_TEST_DB</span>
-    <span class="nt">definition</span><span class="p">:</span>
-      <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">RDBMS</span>
-      <span class="nt">configuration</span><span class="p">:</span>
-        <span class="nt">jdbcUrl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jdbc:mysql://hostname:port/testdb</span>
-        <span class="nt">username</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
-        <span class="nt">password</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
-        <span class="nt">driverClassName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">com.mysql.jdbc.Driver</span>
-        <span class="nt">maxPoolSize</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
-        <span class="nt">idleTimeout</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">60000</span>
-        <span class="nt">connectionTestQuery</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SELECT 1</span>
-        <span class="nt">validationTimeout</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">30000</span>
-        <span class="nt">isAutoCommit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
-</pre></div>
-</td></tr></table></p>
+  <pre class="codehilite"><code class="language-yaml linenums">dataSources:
+  - name: SIDDHI_TEST_DB
+    description: The datasource used for test database
+    jndiConfig:
+      name: jdbc/SIDDHI_TEST_DB
+    definition:
+      type: RDBMS
+      configuration:
+        jdbcUrl: jdbc:mysql://hostname:port/testdb
+        username: root
+        password: root
+        driverClassName: com.mysql.jdbc.Driver
+        maxPoolSize: 10
+        idleTimeout: 60000
+        connectionTestQuery: SELECT 1
+        validationTimeout: 30000
+        isAutoCommit: false</code></pre></p>
 </li>
 <li>
 <p>Oracle<br />
@@ -1698,156 +1680,84 @@
     <pre>
   jdbc:oracle:thin:@[HOST][:PORT]:SID
   </pre>
-  <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">dataSources</span><span class="p">:</span>
-<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SIDDHI_TEST_DB</span>
-  <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">The datasource used for test database</span>
-  <span class="nt">jndiConfig</span><span class="p">:</span>
-    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jdbc/SIDDHI_TEST_DB</span>
-  <span class="nt">definition</span><span class="p">:</span>
-    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">RDBMS</span>
-    <span class="nt">configuration</span><span class="p">:</span>
-      <span class="nt">jdbcUrl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jdbc:oracle:thin:@hostname:port:SID</span>
-      <span class="nt">username</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">testdb</span>
-      <span class="nt">password</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
-      <span class="nt">driverClassName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">oracle.jdbc.driver.OracleDriver</span>
-      <span class="nt">maxPoolSize</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
-      <span class="nt">idleTimeout</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">60000</span>
-      <span class="nt">connectionTestQuery</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SELECT 1</span>
-      <span class="nt">validationTimeout</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">30000</span>
-      <span class="nt">isAutoCommit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
-</pre></div>
-</td></tr></table>
+  <pre class="codehilite"><code class="language-yaml linenums">dataSources:
+- name: SIDDHI_TEST_DB
+  description: The datasource used for test database
+  jndiConfig:
+    name: jdbc/SIDDHI_TEST_DB
+  definition:
+    type: RDBMS
+    configuration:
+      jdbcUrl: jdbc:oracle:thin:@hostname:port:SID
+      username: testdb
+      password: root
+      driverClassName: oracle.jdbc.driver.OracleDriver
+      maxPoolSize: 10
+      idleTimeout: 60000
+      connectionTestQuery: SELECT 1
+      validationTimeout: 30000
+      isAutoCommit: false</code></pre>
   If you have an Oracle service name, use this (newer) format:
   <pre>
   jdbc:oracle:thin:@//[HOST][:PORT]/SERVICE
   </pre>
-  <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">dataSources</span><span class="p">:</span>
-<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SIDDHI_TEST_DB</span>
-  <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">The datasource used for test database</span>
-  <span class="nt">jndiConfig</span><span class="p">:</span>
-    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jdbc/SIDDHI_TEST_DB</span>
-  <span class="nt">definition</span><span class="p">:</span>
-    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">RDBMS</span>
-    <span class="nt">configuration</span><span class="p">:</span>
-      <span class="nt">jdbcUrl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jdbc:oracle:thin:@hostname:port/SERVICE</span>
-      <span class="nt">username</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">testdb</span>
-      <span class="nt">password</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
-      <span class="nt">driverClassName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">oracle.jdbc.driver.OracleDriver</span>
-      <span class="nt">maxPoolSize</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">50</span>
-      <span class="nt">idleTimeout</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">60000</span>
-      <span class="nt">connectionTestQuery</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SELECT 1</span>
-      <span class="nt">validationTimeout</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">30000</span>
-      <span class="nt">isAutoCommit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
-</pre></div>
-</td></tr></table></p>
+  <pre class="codehilite"><code class="language-yaml linenums">dataSources:
+- name: SIDDHI_TEST_DB
+  description: The datasource used for test database
+  jndiConfig:
+    name: jdbc/SIDDHI_TEST_DB
+  definition:
+    type: RDBMS
+    configuration:
+      jdbcUrl: jdbc:oracle:thin:@hostname:port/SERVICE
+      username: testdb
+      password: root
+      driverClassName: oracle.jdbc.driver.OracleDriver
+      maxPoolSize: 50
+      idleTimeout: 60000
+      connectionTestQuery: SELECT 1
+      validationTimeout: 30000
+      isAutoCommit: false</code></pre></p>
 </li>
 <li>
 <p>PostgreSQL
-  <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">dataSources</span><span class="p">:</span>
-<span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SIDDHI_TEST_DB</span>
-  <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">The datasource used for test database</span>
-  <span class="nt">jndiConfig</span><span class="p">:</span>
-    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jdbc/SIDDHI_TEST_DB</span>
-  <span class="nt">definition</span><span class="p">:</span>
-    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">RDBMS</span>
-  <span class="nt">configuration</span><span class="p">:</span>
-    <span class="nt">jdbcUrl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jdbc:postgresql://hostname:port/testdb</span>
-    <span class="nt">username</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
-    <span class="nt">password</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
-    <span class="nt">driverClassName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">org.postgresql.Driver</span>
-    <span class="nt">maxPoolSize</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
-    <span class="nt">idleTimeout</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">60000</span>
-    <span class="nt">connectionTestQuery</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SELECT 1</span>
-    <span class="nt">validationTimeout</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">30000</span>
-    <span class="nt">isAutoCommit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
-</pre></div>
-</td></tr></table></p>
+  <pre class="codehilite"><code class="language-yaml linenums">dataSources:
+- name: SIDDHI_TEST_DB
+  description: The datasource used for test database
+  jndiConfig:
+    name: jdbc/SIDDHI_TEST_DB
+  definition:
+    type: RDBMS
+  configuration:
+    jdbcUrl: jdbc:postgresql://hostname:port/testdb
+    username: root
+    password: root
+    driverClassName: org.postgresql.Driver
+    maxPoolSize: 10
+    idleTimeout: 60000
+    connectionTestQuery: SELECT 1
+    validationTimeout: 30000
+    isAutoCommit: false</code></pre></p>
 </li>
 <li>
 <p>MSSQL
-  <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> <span class="nt">dataSources</span><span class="p">:</span>
- <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SIDDHI_TEST_DB</span>
-   <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">The datasource used for test database</span>
-   <span class="nt">jndiConfig</span><span class="p">:</span>
-     <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jdbc/SIDDHI_TEST_DB</span>
-   <span class="nt">definition</span><span class="p">:</span>
-     <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">RDBMS</span>
-     <span class="nt">configuration</span><span class="p">:</span>
-       <span class="nt">jdbcUrl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jdbc:sqlserver://hostname:port;databaseName=testdb</span>
-       <span class="nt">username</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
-       <span class="nt">password</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">root</span>
-       <span class="nt">driverClassName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">com.microsoft.sqlserver.jdbc.SQLServerDriver</span>
-       <span class="nt">maxPoolSize</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
-       <span class="nt">idleTimeout</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">60000</span>
-       <span class="nt">connectionTestQuery</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SELECT 1</span>
-       <span class="nt">validationTimeout</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">30000</span>
-       <span class="nt">isAutoCommit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
-</pre></div>
-</td></tr></table></p>
+  <pre class="codehilite"><code class="language-yaml linenums"> dataSources:
+ - name: SIDDHI_TEST_DB
+   description: The datasource used for test database
+   jndiConfig:
+     name: jdbc/SIDDHI_TEST_DB
+   definition:
+     type: RDBMS
+     configuration:
+       jdbcUrl: jdbc:sqlserver://hostname:port;databaseName=testdb
+       username: root
+       password: root
+       driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+       maxPoolSize: 10
+       idleTimeout: 60000
+       connectionTestQuery: SELECT 1
+       validationTimeout: 30000
+       isAutoCommit: false</code></pre></p>
 </li>
 </ul>
 <h2 id="configuring-periodic-state-persistence">Configuring Periodic State Persistence<a class="headerlink" href="#configuring-periodic-state-persistence" title="Permanent link">&para;</a></h2>
@@ -1901,23 +1811,15 @@
 </tbody>
 </table>
 <p>The following is a sample configuration for database based state persistence.
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7
-8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">statePersistence</span><span class="p">:</span>
-  <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-  <span class="nt">intervalInMin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
-  <span class="nt">revisionsToKeep</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
-  <span class="nt">persistenceStore</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">io.siddhi.distribution.core.persistence.DBPersistenceStore</span>
-  <span class="nt">config</span><span class="p">:</span>
-    <span class="nt">datasource</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;DATASOURCE NAME&gt;</span>   <span class="c1"># A datasource with this name should be defined in datasources namespace</span>
-    <span class="nt">table</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;TABLE NAME&gt;</span>
-</pre></div>
-</td></tr></table></p>
+<pre class="codehilite"><code class="language-yaml linenums">statePersistence:
+  enabled: true
+  intervalInMin: 1
+  revisionsToKeep: 3
+  persistenceStore: io.siddhi.distribution.core.persistence.DBPersistenceStore
+  config:
+    datasource: &lt;DATASOURCE NAME&gt;   # A datasource with this name should be defined in datasources namespace
+    table: &lt;TABLE NAME&gt;
+</code></pre></p>
 <h3 id="persistence-on-file-system">Persistence on File System<a class="headerlink" href="#persistence-on-file-system" title="Permanent link">&para;</a></h3>
 <p>To configure file system based periodic data persistence, add <code>statePersistence</code> section with the following properties on the Siddhi configuration yaml, and pass that during startup.</p>
 <table>
@@ -1957,21 +1859,13 @@
 </tbody>
 </table>
 <p>The following is a sample configuration for file system based state persistence.
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">statePersistence</span><span class="p">:</span>
-  <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-  <span class="nt">intervalInMin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
-  <span class="nt">revisionsToKeep</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
-  <span class="nt">persistenceStore</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">io.siddhi.distribution.core.persistence.FileSystemPersistenceStore</span>
-  <span class="nt">config</span><span class="p">:</span>
-    <span class="nt">location</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi-app-persistence</span>
-</pre></div>
-</td></tr></table></p>
+<pre class="codehilite"><code class="language-yaml linenums">statePersistence:
+  enabled: true
+  intervalInMin: 1
+  revisionsToKeep: 2
+  persistenceStore: io.siddhi.distribution.core.persistence.FileSystemPersistenceStore
+  config:
+    location: siddhi-app-persistence</code></pre></p>
 <h3 id="persistence-on-aws-s3">Persistence on AWS-S3<a class="headerlink" href="#persistence-on-aws-s3" title="Permanent link">&para;</a></h3>
 <p>To configure AWS-S3 based periodic data persistence, add <code>statePersistence</code> section with the following
  properties on the Siddhi configuration yaml, and pass that during startup.</p>
@@ -2034,47 +1928,26 @@
 <p>The following are some samples configuration for aws-s3 based state persistence.</br></p>
 <ul>
 <li>Sample with credential provider class
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7
-8
-9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">statePersistence</span><span class="p">:</span>
-  <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-  <span class="nt">intervalInMin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
-  <span class="nt">revisionsToKeep</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
-  <span class="nt">persistenceStore</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">io.siddhi.distribution.core.persistence.S3PersistenceStore</span>
-  <span class="nt">config</span><span class="p">:</span>
-    <span class="nt">credentialProvideClass</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider</span>
-    <span class="nt">region</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">us-west-2</span>
-    <span class="nt">bucketName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi-app-persistence</span>
-</pre></div>
-</td></tr></table></li>
+<pre class="codehilite"><code class="language-yaml linenums">statePersistence:
+  enabled: true
+  intervalInMin: 1
+  revisionsToKeep: 2
+  persistenceStore: io.siddhi.distribution.core.persistence.S3PersistenceStore
+  config:
+    credentialProvideClass: software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider
+    region: us-west-2
+    bucketName: siddhi-app-persistence</code></pre></li>
 <li>Sample with secret-key and access-key
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">statePersistence</span><span class="p">:</span>
-  <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-  <span class="nt">intervalInMin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
-  <span class="nt">revisionsToKeep</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
-  <span class="nt">persistenceStore</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">io.siddhi.distribution.core.persistence.S3PersistenceStore</span>
-  <span class="nt">config</span><span class="p">:</span>
-    <span class="nt">accessKey</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">access-key</span>
-    <span class="nt">secretKey</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">secret-key</span>
-    <span class="nt">region</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">us-west-2</span>
-    <span class="nt">bucketName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi-app-persistence</span>
-</pre></div>
-</td></tr></table></li>
+<pre class="codehilite"><code class="language-yaml linenums">statePersistence:
+  enabled: true
+  intervalInMin: 1
+  revisionsToKeep: 2
+  persistenceStore: io.siddhi.distribution.core.persistence.S3PersistenceStore
+  config:
+    accessKey: access-key
+    secretKey: secret-key
+    region: us-west-2
+    bucketName: siddhi-app-persistence</code></pre></li>
 </ul>
 <h2 id="configuring-siddhi-elements">Configuring Siddhi Elements<a class="headerlink" href="#configuring-siddhi-elements" title="Permanent link">&para;</a></h2>
 <div class="admonition info">
@@ -2085,119 +1958,66 @@
 <h3 id="configuring-sources-sinks-and-stores-references">Configuring Sources, Sinks and Stores References<a class="headerlink" href="#configuring-sources-sinks-and-stores-references" title="Permanent link">&para;</a></h3>
 <p>Multiple sources, sinks, and stores could be defined in Siddhi Configuration yaml as <code>ref</code>, and referred by several Siddhi Applications as described below.</p>
 <p>The following is the syntax for the configuration.
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7
-8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">refs</span><span class="p">:</span>
-  <span class="p p-Indicator">-</span>
-    <span class="nt">ref</span><span class="p">:</span>
-      <span class="nt">name</span><span class="p">:</span> <span class="s">&#39;&lt;name&gt;&#39;</span>
-      <span class="nt">type</span><span class="p">:</span> <span class="s">&#39;&lt;type&gt;&#39;</span>
-      <span class="nt">properties</span><span class="p">:</span>
-        <span class="nt">&lt;property1&gt;</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;value1&gt;</span>
-        <span class="nt">&lt;property2&gt;</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;value2&gt;</span>
-</pre></div>
-</td></tr></table></p>
+<pre class="codehilite"><code class="language-yaml linenums">refs:
+  -
+    ref:
+      name: '&lt;name&gt;'
+      type: '&lt;type&gt;'
+      properties:
+        &lt;property1&gt;: &lt;value1&gt;
+        &lt;property2&gt;: &lt;value2&gt;</code></pre></p>
 <p>For each separate refs you want to configure, add a sub-section named <code>ref</code> under the <code>refs</code> subsection.</p>
 <p>The ref configured in Siddhi Configuration yaml can be referred from a Siddhi Application <a href="../query-guide/#source">Source</a> as follows.
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="nf">Source</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;&lt;name&gt;&#39;</span><span class="p">,</span>
-        <span class="o">@</span><span class="nf">map</span><span class="p">(</span><span class="n">type</span><span class="o">=</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="o">@</span><span class="nf">attributes</span><span class="p">(</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;$.name&#39;</span><span class="p">,</span> <span class="n">amount</span><span class="o">=</span><span class="s1">&#39;$.quantity&#39;</span><span class="p">)))</span>
-<span class="n">define</span> <span class="n">stream</span> <span class="nf">SweetProductionStream</span> <span class="p">(</span><span class="n">name</span> <span class="n">string</span><span class="p">,</span> <span class="n">amount</span> <span class="kt">double</span><span class="p">);</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-mysql linenums">@Source(ref='&lt;name&gt;',
+        @map(type='json', @attributes( name='$.name', amount='$.quantity')))
+define stream SweetProductionStream (name string, amount double);</code></pre>
 Similarly <a href="../query-guide/#sink">Sinks</a> and <a href="../query-guide/#store">Store Tables</a> can also be configured and referred from Siddhi Apps.</p>
 <p><strong>Example</strong>: Configuring http source using <code>ref</code></p>
 <p>Following configuration defines the <code>url</code> and details about <code>basic.auth</code>, in the Siddhi Configuration yaml.
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7
-8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">refs</span><span class="p">:</span>
-  <span class="p p-Indicator">-</span>
-    <span class="nt">ref</span><span class="p">:</span>
-      <span class="nt">name</span><span class="p">:</span> <span class="s">&#39;http-passthrough&#39;</span>
-      <span class="nt">type</span><span class="p">:</span> <span class="s">&#39;http&#39;</span>
-      <span class="nt">properties</span><span class="p">:</span>
-        <span class="nt">receiver.url</span><span class="p">:</span> <span class="s">&#39;http://0.0.0.0:8008/sweet-production&#39;</span>
-        <span class="nt">basic.auth.enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
-</pre></div>
-</td></tr></table></p>
+<pre class="codehilite"><code class="language-yaml linenums">refs:
+  -
+    ref:
+      name: 'http-passthrough'
+      type: 'http'
+      properties:
+        receiver.url: 'http://0.0.0.0:8008/sweet-production'
+        basic.auth.enabled: false</code></pre></p>
 <p>This can be referred in the Siddhi Applications as follows.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="nf">Source</span><span class="p">(</span><span class="n">ref</span><span class="o">=</span><span class="s1">&#39;http-passthrough&#39;</span><span class="p">,</span>
-        <span class="o">@</span><span class="nf">map</span><span class="p">(</span><span class="n">type</span><span class="o">=</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="o">@</span><span class="nf">attributes</span><span class="p">(</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;$.name&#39;</span><span class="p">,</span> <span class="n">amount</span><span class="o">=</span><span class="s1">&#39;$.quantity&#39;</span><span class="p">)))</span>
-<span class="n">define</span> <span class="n">stream</span> <span class="nf">SweetProductionStream</span> <span class="p">(</span><span class="n">name</span> <span class="n">string</span><span class="p">,</span> <span class="n">amount</span> <span class="kt">double</span><span class="p">);</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-mysql linenums">@Source(ref='http-passthrough',
+        @map(type='json', @attributes( name='$.name', amount='$.quantity')))
+define stream SweetProductionStream (name string, amount double);</code></pre>
 
 <h3 id="configuring-extensions-system-parameters">Configuring Extensions System Parameters<a class="headerlink" href="#configuring-extensions-system-parameters" title="Permanent link">&para;</a></h3>
 <p>Siddhi extensions cater use-case specific logic that is not available by default in Siddhi. Some of these extensions have system parameter configurations to define/modify their behavior. These extensions usually have default values for the parameters, but when needed, they can be overridden by configuring the parameters in Siddhi Configuration yaml and passing it at startup.</p>
 <p>The following is the syntax for the configuration.
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">extensions</span><span class="p">:</span>
-  <span class="p p-Indicator">-</span>
-    <span class="nt">extension</span><span class="p">:</span>
-      <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;extension name&gt;</span>
-      <span class="nt">namespace</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;extension namespace&gt;</span>
-      <span class="nt">properties</span><span class="p">:</span>
-        <span class="nt">&lt;key&gt;</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;value&gt;</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-yaml linenums">extensions:
+  -
+    extension:
+      name: &lt;extension name&gt;
+      namespace: &lt;extension namespace&gt;
+      properties:
+        &lt;key&gt;: &lt;value&gt;</code></pre>
 For each separate extension you want to configure, add a sub-section named <code>extension</code> under the <code>extensions</code> subsection.</p>
 <p>Following are some examples on overriding default system properties via Siddhi Configuration yaml</p>
 <p><strong>Example 1</strong>: Defining service host and port for the TCP source
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">extensions</span><span class="p">:</span>
-  <span class="p p-Indicator">-</span> <span class="nt">extension</span><span class="p">:</span>
-      <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tcp</span>
-      <span class="nt">namespace</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">source</span>
-      <span class="nt">properties</span><span class="p">:</span>
-        <span class="nt">host</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.0.0.0</span>
-        <span class="nt">port</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5511</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-yaml linenums">extensions:
+  - extension:
+      name: tcp
+      namespace: source
+      properties:
+        host: 0.0.0.0
+        port: 5511</code></pre>
 <strong>Example 2</strong>: Overwriting the default RDBMS extension configuration
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">extensions</span><span class="p">:</span>
-  <span class="p p-Indicator">-</span> <span class="nt">extension</span><span class="p">:</span>
-      <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">rdbms</span>
-      <span class="nt">namespace</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">store</span>
-      <span class="nt">properties</span><span class="p">:</span>
-        <span class="nt">mysql.batchEnable</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-        <span class="nt">mysql.batchSize</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1000</span>
-        <span class="nt">mysql.indexCreateQuery</span><span class="p">:</span> <span class="s">&quot;CREATE</span><span class="nv"> </span><span class="s">INDEX</span><span class="nv"> </span><span class="s">{{TABLE_NAME}}_INDEX</span><span class="nv"> </span><span class="s">ON</span><span class="nv"> </span><span class="s">{{TABLE_NAME}}</span><span class="nv"> </span><span class="s">({{INDEX_COLUMNS}})&quot;</span>
-        <span class="nt">mysql.recordDeleteQuery</span><span class="p">:</span> <span class="s">&quot;DELETE</span><span class="nv"> </span><span class="s">FROM</span><span class="nv"> </span><span class="s">{{TABLE_NAME}}</span><span class="nv"> </span><span class="s">{{CONDITION}}&quot;</span>
-        <span class="nt">mysql.recordExistsQuery</span><span class="p">:</span> <span class="s">&quot;SELECT</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">FROM</span><span class="nv"> </span><span class="s">{{TABLE_NAME}}</span><span class="nv"> </span><span class="s">{{CONDITION}}</span><span class="nv"> </span><span class="s">LIMIT</span><span class="nv"> </span><span class="s">1&quot;</span>
-</pre></div>
-</td></tr></table></p>
+<pre class="codehilite"><code class="language-yaml linenums">extensions:
+  - extension:
+      name: rdbms
+      namespace: store
+      properties:
+        mysql.batchEnable: true
+        mysql.batchSize: 1000
+        mysql.indexCreateQuery: "CREATE INDEX {{TABLE_NAME}}_INDEX ON {{TABLE_NAME}} ({{INDEX_COLUMNS}})"
+        mysql.recordDeleteQuery: "DELETE FROM {{TABLE_NAME}} {{CONDITION}}"
+        mysql.recordExistsQuery: "SELECT 1 FROM {{TABLE_NAME}} {{CONDITION}} LIMIT 1"</code></pre></p>
 <h3 id="configuring-siddhi-properties">Configuring Siddhi Properties<a class="headerlink" href="#configuring-siddhi-properties" title="Permanent link">&para;</a></h3>
 <p>Siddhi supports setting following properties to be specify distribution based behaviours, for instance all <a href="../query-guide/#named-aggregation">Named Aggregation</a> in the distribution can be changed to <a href="../query-guide/#distributed-aggregation">Distributed Named Aggregation</a> with the following siddhi properties.</p>
 <table>
@@ -2228,13 +2048,9 @@ For each separate extension you want to configure, add a sub-section named <code
 </tbody>
 </table>
 <p>Following is the example of setting Distributed Named Aggregation
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">properties</span><span class="p">:</span>
-  <span class="nt">partitionById </span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-  <span class="nt">shardId </span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">shard1</span>
-</pre></div>
-</td></tr></table></p>
+<pre class="codehilite"><code class="language-yaml linenums">properties:
+  partitionById : true
+  shardId : shard1</code></pre></p>
 <h2 id="configuring-authentication">Configuring Authentication<a class="headerlink" href="#configuring-authentication" title="Permanent link">&para;</a></h2>
 <div class="admonition info">
 <p class="admonition-title">Applicable only for Local, Docker, and Kubernetes modes.</p>
@@ -2242,41 +2058,23 @@ For each separate extension you want to configure, add a sub-section named <code
 </div>
 <p>Siddhi is configured with user name <code>admin</code>, and password <code>admin</code>. This can be updated by adding related user management configuration as <code>authentication</code> to the Siddhi Configuration yaml, and pass it at startup.</p>
 <p>A sample <code>authentication</code> is as follows.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1"># Authentication configuration</span>
-<span class="nt">authentication</span><span class="p">:</span>
-  <span class="nt">type</span><span class="p">:</span> <span class="s">&#39;local&#39;</span>        <span class="c1"># Type of the IdP client used</span>
-  <span class="nt">userManager</span><span class="p">:</span>
-    <span class="nt">adminRole</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">admin</span>   <span class="c1"># Admin role which is granted all permissions</span>
-    <span class="nt">userStore</span><span class="p">:</span>         <span class="c1"># User store</span>
-      <span class="nt">users</span><span class="p">:</span>
-       <span class="p p-Indicator">-</span>
-         <span class="nt">user</span><span class="p">:</span>
-           <span class="nt">username</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">admin</span>
-           <span class="nt">password</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">YWRtaW4=</span>
-           <span class="nt">roles</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
-      <span class="nt">roles</span><span class="p">:</span>
-       <span class="p p-Indicator">-</span>
-         <span class="nt">role</span><span class="p">:</span>
-           <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
-           <span class="nt">displayName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">admin</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-yaml linenums"># Authentication configuration
+authentication:
+  type: 'local'        # Type of the IdP client used
+  userManager:
+    adminRole: admin   # Admin role which is granted all permissions
+    userStore:         # User store
+      users:
+       -
+         user:
+           username: admin
+           password: YWRtaW4=
+           roles: 1
+      roles:
+       -
+         role:
+           id: 1
+           displayName: admin</code></pre>
 
 <h2 id="adding-extensions-and-third-party-dependencies">Adding Extensions and Third Party Dependencies<a class="headerlink" href="#adding-extensions-and-third-party-dependencies" title="Permanent link">&para;</a></h2>
 <div class="admonition info">
@@ -2287,19 +2085,12 @@ For each separate extension you want to configure, add a sub-section named <code
 <h3 id="adding-to-siddhi-java-program">Adding to Siddhi Java Program<a class="headerlink" href="#adding-to-siddhi-java-program" title="Permanent link">&para;</a></h3>
 <p>When running Siddhi as a Java library, the extension jars and/or third-party dependencies needed for Siddhi can be simply added to Siddhi class-path. When Maven is used as the build tool add them to the <code>pom.xml</code> file along with the other mandatory jars needed by Siddhi as given is <a href="../siddhi-as-a-java-library/">Using Siddhi as a library</a> guide.</p>
 <p>A sample on adding <code>siddhi-io-http</code> extension to the Maven <code>pom.xml</code> is as follows.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c">&lt;!--HTTP extension--&gt;</span>
-<span class="nt">&lt;dependency&gt;</span>
-  <span class="nt">&lt;groupId&gt;</span>org.wso2.extension.siddhi.io.http<span class="nt">&lt;/groupId&gt;</span>
-  <span class="nt">&lt;artifactId&gt;</span>siddhi-io-http<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>${siddhi.io.http.version}<span class="nt">&lt;/version&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span>   
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-xml linenums">&lt;!--HTTP extension--&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.wso2.extension.siddhi.io.http&lt;/groupId&gt;
+  &lt;artifactId&gt;siddhi-io-http&lt;/artifactId&gt;
+  &lt;version&gt;${siddhi.io.http.version}&lt;/version&gt;
+&lt;/dependency&gt;   </code></pre>
 
 <p>Refer <a href="../siddhi-as-a-java-library/">guide</a> for more details on using Siddhi as a Java Library.</p>
 <h3 id="adding-to-siddhi-local-microservice">Adding to Siddhi Local Microservice<a class="headerlink" href="#adding-to-siddhi-local-microservice" title="Permanent link">&para;</a></h3>
@@ -2317,49 +2108,27 @@ These Jars will be converted as OSGI bundles and copied to Siddhi Runner distrib
 <p>The most used Siddhi extensions are packed by default with the Siddhi Docker Microservice distribution.</p>
 <p>To add or update Siddhi extensions and/or third-party dependencies, a new docker image has to be built from either <a href="https://hub.docker.com/r/siddhiio/siddhi-runner-base-ubuntu">siddhi-runner-base-ubuntu</a> or <a href="https://hub.docker.com/r/siddhiio/siddhi-runner-base-alpine">siddhi-runner-base-alpine</a> images. These images contain Linux OS, JDK and the Siddhi distribution.</p>
 <p>Sample docker file using <code>siddhi-runner-base-alpine</code> is as follows.
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c"># use siddhi-runner-base</span>
-<span class="k">FROM</span><span class="s"> siddhiio/siddhi-runner-base-alpine:5.1.0-alpha</span>
-<span class="k">MAINTAINER</span><span class="s"> Siddhi IO Docker Maintainers &quot;siddhi-dev@googlegroups.com&quot;</span>
+<pre class="codehilite"><code class="language-docker linenums"># use siddhi-runner-base
+FROM siddhiio/siddhi-runner-base-alpine:5.1.0-alpha
+MAINTAINER Siddhi IO Docker Maintainers "siddhi-dev@googlegroups.com"
 
-<span class="k">ARG</span> <span class="nv">HOST_BUNDLES_DIR</span><span class="o">=</span>./files/bundles
-<span class="k">ARG</span> <span class="nv">HOST_JARS_DIR</span><span class="o">=</span>./files/jars
-<span class="k">ARG</span> <span class="nv">JARS</span><span class="o">=</span><span class="si">${</span><span class="nv">RUNTIME_SERVER_HOME</span><span class="si">}</span>/jars
-<span class="k">ARG</span> <span class="nv">BUNDLES</span><span class="o">=</span><span class="si">${</span><span class="nv">RUNTIME_SERVER_HOME</span><span class="si">}</span>/bundles
+ARG HOST_BUNDLES_DIR=./files/bundles
+ARG HOST_JARS_DIR=./files/jars
+ARG JARS=${RUNTIME_SERVER_HOME}/jars
+ARG BUNDLES=${RUNTIME_SERVER_HOME}/bundles
 
-<span class="c"># copy bundles &amp; jars to the siddhi-runner distribution</span>
-<span class="k">COPY</span> --chown<span class="o">=</span>siddhi_user:siddhi_io <span class="si">${</span><span class="nv">HOST_BUNDLES_DIR</span><span class="si">}</span>/ <span class="si">${</span><span class="nv">BUNDLES</span><span class="si">}</span>
-<span class="k">COPY</span> --chown<span class="o">=</span>siddhi_user:siddhi_io <span class="si">${</span><span class="nv">HOST_JARS_DIR</span><span class="si">}</span>/ <span class="si">${</span><span class="nv">JARS</span><span class="si">}</span>
+# copy bundles &amp; jars to the siddhi-runner distribution
+COPY --chown=siddhi_user:siddhi_io ${HOST_BUNDLES_DIR}/ ${BUNDLES}
+COPY --chown=siddhi_user:siddhi_io ${HOST_JARS_DIR}/ ${JARS}
 
-<span class="c"># expose ports</span>
-<span class="k">EXPOSE</span><span class="s"> 9090 9443 9712 9612 7711 7611 7070 7443</span>
+# expose ports
+EXPOSE 9090 9443 9712 9612 7711 7611 7070 7443
 
-<span class="k">RUN</span> bash <span class="si">${</span><span class="nv">RUNTIME_SERVER_HOME</span><span class="si">}</span>/bin/install-jars.sh
+RUN bash ${RUNTIME_SERVER_HOME}/bin/install-jars.sh
 
-<span class="k">STOPSIGNAL</span><span class="s"> SIGINT</span>
+STOPSIGNAL SIGINT
 
-<span class="k">ENTRYPOINT</span> <span class="p">[</span><span class="s2">&quot;/home/siddhi_user/siddhi-runner/bin/runner.sh&quot;</span><span class="p">,</span>  <span class="s2">&quot;--&quot;</span><span class="p">]</span>
-</pre></div>
-</td></tr></table></p>
+ENTRYPOINT ["/home/siddhi_user/siddhi-runner/bin/runner.sh",  "--"]</code></pre></p>
 <p>Find the necessary artifacts to build the docker from <a href="https://github.com/siddhi-io/docker-siddhi/tree/master/docker-files/siddhi-runner">docker-siddhi</a> repository.</p>
 <p><code>&lt;DOCKERFILE_HOME&amp;gt/siddhi-runner/files</code> contains two directories (bundles and jars directories) where you can copy the Jars and Bundles you need to bundle into the docker image.</p>
 <ol>
@@ -2381,171 +2150,94 @@ These Jars will be converted as OSGI bundles and copied to Siddhi Runner distrib
 <div class="admonition note">
 <p class="admonition-title">Configuring Metrics reporting level.</p>
 <p>To modify the statistics reporting, relevant metric names can be added under the <code>metrics.levels</code> subsection in the Siddhi Configurations yaml, along with the metrics level (i.e., OFF, INFO, DEBUG, TRACE, or ALL) as given below.
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">metrics</span><span class="p">:</span>
-  <span class="c1"># Metrics Levels are organized from most specific to least:</span>
-  <span class="c1"># OFF (most specific, no metrics)</span>
-  <span class="c1"># INFO</span>
-  <span class="c1"># DEBUG</span>
-  <span class="c1"># TRACE (least specific, a lot of data)</span>
-  <span class="c1"># ALL (least specific, all data)</span>
-  <span class="nt">levels</span><span class="p">:</span>
-    <span class="c1"># The root level configured for Metrics</span>
-    <span class="nt">rootLevel</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">INFO</span>
-    <span class="c1"># Metric Levels</span>
-    <span class="nt">levels</span><span class="p">:</span>
-      <span class="nt">jvm.buffers</span><span class="p">:</span> <span class="s">&#39;OFF&#39;</span>
-      <span class="nt">jvm.class-loading</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">INFO</span>
-      <span class="nt">jvm.gc</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">DEBUG</span>
-      <span class="nt">jvm.memory</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">INFO</span>
-</pre></div>
-</td></tr></table></p>
+<pre class="codehilite"><code class="language-yaml linenums">metrics:
+  # Metrics Levels are organized from most specific to least:
+  # OFF (most specific, no metrics)
+  # INFO
+  # DEBUG
+  # TRACE (least specific, a lot of data)
+  # ALL (least specific, all data)
+  levels:
+    # The root level configured for Metrics
+    rootLevel: INFO
+    # Metric Levels
+    levels:
+      jvm.buffers: 'OFF'
+      jvm.class-loading: INFO
+      jvm.gc: DEBUG
+      jvm.memory: INFO</code></pre></p>
 </div>
 <p>The available metrics reporting options are as follows.</p>
 <h3 id="reporting-via-jmx-mbeans">Reporting via JMX Mbeans<a class="headerlink" href="#reporting-via-jmx-mbeans" title="Permanent link">&para;</a></h3>
 <p>JMX Mbeans is the default statistics reporting option of Siddhi. To enable stats with the default configuration add the metric-related properties under <code>metrics</code> section in the Siddhi Configurations yaml file, and pass that during startup.</p>
 <p>A sample configuration is as follows.
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">metrics</span><span class="p">:</span>
-  <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-yaml linenums">metrics:
+  enabled: true</code></pre>
 This will report JMX Mbeans in the name of <code>org.wso2.carbon.metrics</code>. However, in this default configuration the JVM metrics will not be measured.</p>
 <p>A detail JMX configuration along with the metrics reporting level is as follows.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">metrics</span><span class="p">:</span>
-  <span class="c1"># Enable Metrics</span>
-  <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-  <span class="nt">jmx</span><span class="p">:</span>
-    <span class="c1"># Register MBean when initializing Metrics</span>
-    <span class="nt">registerMBean</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-    <span class="c1"># MBean Name</span>
-    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">org.wso2.carbon:type=Metrics</span>
-  <span class="c1"># Metrics Levels are organized from most specific to least:</span>
-  <span class="c1"># OFF (most specific, no metrics)</span>
-  <span class="c1"># INFO</span>
-  <span class="c1"># DEBUG</span>
-  <span class="c1"># TRACE (least specific, a lot of data)</span>
-  <span class="c1"># ALL (least specific, all data)</span>
-  <span class="nt">levels</span><span class="p">:</span>
-    <span class="c1"># The root level configured for Metrics</span>
-    <span class="nt">rootLevel</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">INFO</span>
-    <span class="c1"># Metric Levels</span>
-    <span class="nt">levels</span><span class="p">:</span>
-      <span class="nt">jvm.buffers</span><span class="p">:</span> <span class="s">&#39;OFF&#39;</span>
-      <span class="nt">jvm.class-loading</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">INFO</span>
-      <span class="nt">jvm.gc</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">DEBUG</span>
-      <span class="nt">jvm.memory</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">INFO</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-yaml linenums">metrics:
+  # Enable Metrics
+  enabled: true
+  jmx:
+    # Register MBean when initializing Metrics
+    registerMBean: true
+    # MBean Name
+    name: org.wso2.carbon:type=Metrics
+  # Metrics Levels are organized from most specific to least:
+  # OFF (most specific, no metrics)
+  # INFO
+  # DEBUG
+  # TRACE (least specific, a lot of data)
+  # ALL (least specific, all data)
+  levels:
+    # The root level configured for Metrics
+    rootLevel: INFO
+    # Metric Levels
+    levels:
+      jvm.buffers: 'OFF'
+      jvm.class-loading: INFO
+      jvm.gc: DEBUG
+      jvm.memory: INFO</code></pre>
 
 <h3 id="reporting-via-console">Reporting via Console<a class="headerlink" href="#reporting-via-console" title="Permanent link">&para;</a></h3>
 <p>To enable statistics by periodically printing the metrics on console add the following configuration to the the Siddhi Configurations yaml file, and pass that during startup.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1"># This is the main configuration for metrics</span>
-<span class="nt">metrics</span><span class="p">:</span>
-  <span class="c1"># Enable Metrics</span>
-  <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
-  <span class="nt">reporting</span><span class="p">:</span>
-    <span class="nt">console</span><span class="p">:</span>
-      <span class="p p-Indicator">-</span> <span class="c1"># The name for the Console Reporter</span>
-        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Console</span>
-        <span class="c1"># Enable Console Reporter</span>
-        <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
-        <span class="c1"># Polling Period in seconds.</span>
-        <span class="c1"># This is the period for polling metrics from the metric registry and printing in the console</span>
-        <span class="nt">pollingPeriod</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-yaml linenums"># This is the main configuration for metrics
+metrics:
+  # Enable Metrics
+  enabled: false
+  reporting:
+    console:
+      - # The name for the Console Reporter
+        name: Console
+        # Enable Console Reporter
+        enabled: false
+        # Polling Period in seconds.
+        # This is the period for polling metrics from the metric registry and printing in the console
+        pollingPeriod: 5</code></pre>
 
 <h3 id="reporting-via-database">Reporting via Database<a class="headerlink" href="#reporting-via-database" title="Permanent link">&para;</a></h3>
 <p>To enable JDBC reporting and to periodically clean up the outdated statistics from the database, first a datasource should be created with the relevant database configurations and then the related metrics properties as given below should be added to in the Siddhi Configurations yaml file, and pass that during startup.</p>
 <p>The below sample is referring to the datasource with JNDI name <code>jdbc/SiddhiMetricsDB</code>, hence the datasource configuration in yaml should have <code>jndiConfig.name</code> as <code>jdbc/SiddhiMetricsDB</code>. For detailed instructions on configuring a datasource, refer <a href="#configuring-databases">Configuring Databases</a>.</p>
 <p>. The scripts to create these tables are provided in the <code>&lt;SIDDHI_RUNNER_HOME&gt;/wso2/runner/dbscripts</code> directory.</p>
 <p>Sample configuration of reporting via database.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">metrics</span><span class="p">:</span>
-  <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-  <span class="nt">jdbc</span><span class="p">:</span>
-  <span class="c1"># Data Source Configurations for JDBC Reporters</span>
-    <span class="nt">dataSource</span><span class="p">:</span>
-      <span class="p p-Indicator">-</span> <span class="nl">&amp;JDBC01</span>
-        <span class="nt">dataSourceName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">java:comp/env/jdbc/SiddhiMetricsDB</span>
-        <span class="nt">scheduledCleanup</span><span class="p">:</span>
-          <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
-          <span class="nt">daysToKeep</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">7</span>
-          <span class="nt">scheduledCleanupPeriod</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">86400</span>
-  <span class="nt">reporting</span><span class="p">:</span>
-    <span class="nt">jdbc</span><span class="p">:</span>
-      <span class="p p-Indicator">-</span> <span class="c1"># The name for the JDBC Reporter</span>
-        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">JDBC</span>
-        <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-        <span class="nt">dataSource</span><span class="p">:</span> <span class="nv">*JDBC01</span>
-        <span class="nt">pollingPeriod</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">60</span>      
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-yaml linenums">metrics:
+  enabled: true
+  jdbc:
+  # Data Source Configurations for JDBC Reporters
+    dataSource:
+      - &amp;JDBC01
+        dataSourceName: java:comp/env/jdbc/SiddhiMetricsDB
+        scheduledCleanup:
+          enabled: false
+          daysToKeep: 7
+          scheduledCleanupPeriod: 86400
+  reporting:
+    jdbc:
+      - # The name for the JDBC Reporter
+        name: JDBC
+        enabled: true
+        dataSource: *JDBC01
+        pollingPeriod: 60      </code></pre>
 
 <div class="admonition note">
 <p class="admonition-title">Metrics history and reporting interval</p>
@@ -2585,39 +2277,25 @@ This will report JMX Mbeans in the name of <code>org.wso2.carbon.metrics</code>.
 </table>
 <h2 id="converting-jars-to-osgi-bundles">Converting Jars to OSGi Bundles<a class="headerlink" href="#converting-jars-to-osgi-bundles" title="Permanent link">&para;</a></h2>
 <p>To convert jar files to OSGi bundles, first download and save the non-OSGi jar it in a preferred directory in your machine. Then from the CLI, navigate to the <code>&lt;SIDDHI_RUNNER_HOME&gt;/bin</code> directory, and issue the following command.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>./jartobundle.sh &lt;path to non OSGi jar&gt; ../lib
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="linenums">./jartobundle.sh &lt;path to non OSGi jar&gt; ../lib</code></pre>
 
 <p>This converts the Jar to OSGi bundles and place it in <code>&lt;SIDDHI_RUNNER_HOME&gt;/lib</code> directory.</p>
 <h2 id="encrypt-sensitive-deployment-configurations">Encrypt sensitive deployment configurations<a class="headerlink" href="#encrypt-sensitive-deployment-configurations" title="Permanent link">&para;</a></h2>
 <p>Cipher tool is used to encrypt sensitive data in deployment configurations. This tool works in conjunction with Secure Vault to replace sensitive data that is in plain text with an alias. The actual value is then encrypted and securely stored in the SecureVault. At runtime, the actual value is retrieved from the alias and used. For more information, see <a href="https://github.com/wso2/carbon-secvault/blob/master/README.md">Secure Vault</a>.</p>
 <p>Below is the default configurations for Secure Vault
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1"># Secure Vault Configuration</span>
-<span class="nt">securevault</span><span class="p">:</span>
-  <span class="nt">secretRepository</span><span class="p">:</span>
-    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">org.wso2.carbon.secvault.repository.DefaultSecretRepository</span>
-    <span class="nt">parameters</span><span class="p">:</span>
-      <span class="nt">privateKeyAlias</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">wso2carbon</span>
-      <span class="nt">keystoreLocation</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${SIDDHI_RUNNER_HOME}/resources/security/securevault.jks</span>
-      <span class="nt">secretPropertiesFile</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${SIDDHI_RUNNER_HOME}/conf/runner/secrets.properties</span>
-  <span class="nt">masterKeyReader</span><span class="p">:</span>
-    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">org.wso2.carbon.secvault.reader.DefaultMasterKeyReader</span>
-    <span class="nt">parameters</span><span class="p">:</span>
-      <span class="nt">masterKeyReaderFile</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${SIDDHI_RUNNER_HOME}/conf/runner/master-keys.yaml</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-yaml linenums"># Secure Vault Configuration
+securevault:
+  secretRepository:
+    type: org.wso2.carbon.secvault.repository.DefaultSecretRepository
+    parameters:
+      privateKeyAlias: wso2carbon
+      keystoreLocation: ${SIDDHI_RUNNER_HOME}/resources/security/securevault.jks
+      secretPropertiesFile: ${SIDDHI_RUNNER_HOME}/conf/runner/secrets.properties
+  masterKeyReader:
+    type: org.wso2.carbon.secvault.reader.DefaultMasterKeyReader
+    parameters:
+      masterKeyReaderFile: ${SIDDHI_RUNNER_HOME}/conf/runner/master-keys.yaml
+</code></pre>
 Information about the parameters configured under the <code>securevault</code> subsection in the Siddhi Configuration yaml is as follows.</p>
 <table>
 <thead>
@@ -2663,85 +2341,49 @@ Information about the parameters configured under the <code>securevault</code> s
 <h2 id="configuring-server-properties">Configuring server properties<a class="headerlink" href="#configuring-server-properties" title="Permanent link">&para;</a></h2>
 <p>Siddhi runner and tooling distribution is based on WSO2 Carbon 5 Kernel platform. The properties for the server can be configure under <code>wso2.carbon</code> namespace.</p>
 <p>Sample configurations is as follows,
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">wso2.carbon</span><span class="p">:</span>
-  <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi-runner</span>
-  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Siddhi Runner Distribution</span>
-</pre></div>
-</td></tr></table></p>
+<pre class="codehilite"><code class="language-yaml linenums">wso2.carbon:
+  id: siddhi-runner
+  name: Siddhi Runner Distribution</code></pre></p>
 <h3 id="configure-port-offset">Configure port offset<a class="headerlink" href="#configure-port-offset" title="Permanent link">&para;</a></h3>
 <p>Port offset defines the number by which all ports defined in the runtime such as the HTTP/S ports will be offset. For example, if the default HTTP port is 9090 and the <code>ports &gt;&gt; offset</code> is 1, the effective HTTP port will be 9091. This configuration allows to change ports in a uniform manner across the transports.</p>
 <p>Below is the sample configurations for offsets,</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">wso2.carbon</span><span class="p">:</span>
-  <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi-runner</span>
-  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Siddhi Runner Distribution</span>
-  <span class="nt">ports</span><span class="p">:</span>
-    <span class="nt">offset</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-yaml linenums">wso2.carbon:
+  id: siddhi-runner
+  name: Siddhi Runner Distribution
+  ports:
+    offset: 1</code></pre>
 
 <h3 id="disabling-host-name-verification">Disabling host name verification<a class="headerlink" href="#disabling-host-name-verification" title="Permanent link">&para;</a></h3>
 <p>Hostname verification can be disabled in Admin APIs in analytics server side, with <code>hostnameVerificationEnabled</code></p>
 <p>Below is the sample configuration,</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">wso2.carbon</span><span class="p">:</span>
-  <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi-runner</span>
-  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Siddhi Runner Distribution</span>
-  <span class="nt">hostnameVerificationEnabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-yaml linenums">wso2.carbon:
+  id: siddhi-runner
+  name: Siddhi Runner Distribution
+  hostnameVerificationEnabled: false</code></pre>
 
 <h2 id="configuring-admin-rest-apis">Configuring Admin REST APIs<a class="headerlink" href="#configuring-admin-rest-apis" title="Permanent link">&para;</a></h2>
 <p>Admin API can be configured under the namespace <code>transports &gt;&gt; http</code>. </p>
 <p>Sample Config and the parameters are as follows,
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">transports</span><span class="p">:</span>
-  <span class="nt">http</span><span class="p">:</span>
-    <span class="nt">listenerConfigurations</span><span class="p">:</span>
-      <span class="p p-Indicator">-</span> 
-        <span class="nt">id</span><span class="p">:</span> <span class="s">&quot;default&quot;</span>
-        <span class="nt">host</span><span class="p">:</span> <span class="s">&quot;0.0.0.0&quot;</span>
-        <span class="nt">port</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">9090</span>
-      <span class="p p-Indicator">-</span> 
-        <span class="nt">id</span><span class="p">:</span> <span class="s">&quot;msf4j-https&quot;</span>
-        <span class="nt">host</span><span class="p">:</span> <span class="s">&quot;0.0.0.0&quot;</span>
-        <span class="nt">port</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">9443</span>
-        <span class="nt">scheme</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https</span>
-        <span class="nt">sslConfig</span><span class="p">:</span>
-          <span class="nt">keyStore</span><span class="p">:</span> <span class="s">&quot;${carbon.home}/resources/security/wso2carbon.jks&quot;</span>
-          <span class="nt">keyStorePassword</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">wso2carbon</span>
-    <span class="nt">transportProperties</span><span class="p">:</span>
-      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;server.bootstrap.socket.timeout&quot;</span>
-        <span class="nt">value</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">60</span>
-      <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;latency.metrics.enabled&quot;</span>
-        <span class="nt">value</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
-</pre></div>
-</td></tr></table></p>
+<pre class="codehilite"><code class="language-yaml linenums">transports:
+  http:
+    listenerConfigurations:
+      - 
+        id: "default"
+        host: "0.0.0.0"
+        port: 9090
+      - 
+        id: "msf4j-https"
+        host: "0.0.0.0"
+        port: 9443
+        scheme: https
+        sslConfig:
+          keyStore: "${carbon.home}/resources/security/wso2carbon.jks"
+          keyStorePassword: wso2carbon
+    transportProperties:
+      - name: "server.bootstrap.socket.timeout"
+        value: 60
+      - name: "latency.metrics.enabled"
+        value: false</code></pre></p>
 <table>
 <thead>
 <tr>
@@ -2865,97 +2507,52 @@ Information about the parameters configured under the <code>securevault</code> s
 <h2 id="configuring-databridge-transport">Configuring Databridge Transport<a class="headerlink" href="#configuring-databridge-transport" title="Permanent link">&para;</a></h2>
 <p>Siddhi uses Databridge transport to send and receive events over Thrift/Binary protocols, This can be used through <code>siddhi-io-wso2event</code> extension.</p>
 <p>Sample Configuration is as follows,
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">transports</span><span class="p">:</span>      
-  <span class="nt">databridge</span><span class="p">:</span>
-  <span class="c1"># Configuration used for the databridge communication</span>
-    <span class="nt">listenerConfigurations</span><span class="p">:</span>
-      <span class="nt">workerThreads</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
-      <span class="l l-Scalar l-Scalar-Plain">.</span>
-      <span class="l l-Scalar l-Scalar-Plain">.</span>
-      <span class="l l-Scalar l-Scalar-Plain">.</span>
-    <span class="nt">senderConfigurations</span><span class="p">:</span>
-    <span class="c1"># Configuration of the Data Agents - to publish events through databridge</span>
-      <span class="nt">agents</span><span class="p">:</span>
-          <span class="nt">agentConfiguration</span><span class="p">:</span>
-            <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Thrift</span>
-            <span class="nt">dataEndpointClass</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">org.wso2.carbon.databridge.agent.endpoint.thrift.ThriftDataEndpoint</span>
-            <span class="l l-Scalar l-Scalar-Plain">.</span>
-            <span class="l l-Scalar l-Scalar-Plain">.</span>
-            <span class="l l-Scalar l-Scalar-Plain">.</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-yaml linenums">transports:      
+  databridge:
+  # Configuration used for the databridge communication
+    listenerConfigurations:
+      workerThreads: 10
+      .
+      .
+      .
+    senderConfigurations:
+    # Configuration of the Data Agents - to publish events through databridge
+      agents:
+          agentConfiguration:
+            name: Thrift
+            dataEndpointClass: org.wso2.carbon.databridge.agent.endpoint.thrift.ThriftDataEndpoint
+            .
+            .
+            .</code></pre>
 Here, <code>transports &gt;&gt; databridge</code> includes listenerConfigurations, to configure databridge receiver in WSO2Event Source, and senderConfigurations, to configure agents used to publish events over databridge in WSO2Event Sink</p>
 <h3 id="configuring-databridge-listener">Configuring databridge listener<a class="headerlink" href="#configuring-databridge-listener" title="Permanent link">&para;</a></h3>
 <p>Sample configuration for databridge listener and properties are as follows,</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">transports</span><span class="p">:</span>
-  <span class="nt">databridge</span><span class="p">:</span>
-    <span class="nt">listenerConfigurations</span><span class="p">:</span>
-      <span class="nt">workerThreads</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
-      <span class="nt">maxEventBufferCapacity</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
-      <span class="nt">eventBufferSize</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2000</span>
-      <span class="nt">keyStoreLocation</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">${sys:carbon.home}/resources/security/wso2carbon.jks</span>
-      <span class="nt">keyStorePassword</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">wso2carbon</span>
-      <span class="nt">clientTimeoutMin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">30</span>
-      <span class="c1"># Data receiver configurations</span>
-      <span class="nt">dataReceivers</span><span class="p">:</span>
-        <span class="p p-Indicator">-</span>
-          <span class="nt">dataReceiver</span><span class="p">:</span>
-            <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Thrift</span>
-            <span class="nt">properties</span><span class="p">:</span>
-              <span class="nt">tcpPort</span><span class="p">:</span> <span class="s">&#39;7611&#39;</span>
-              <span class="nt">sslPort</span><span class="p">:</span> <span class="s">&#39;7711&#39;</span>
-        <span class="p p-Indicator">-</span> 
-          <span class="nt">dataReceiver</span><span class="p">:</span>
-            <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Binary</span>
-            <span class="nt">properties</span><span class="p">:</span>
-              <span class="nt">tcpPort</span><span class="p">:</span> <span class="s">&#39;9611&#39;</span>
-              <span class="nt">sslPort</span><span class="p">:</span> <span class="s">&#39;9711&#39;</span>
-              <span class="nt">tcpReceiverThreadPoolSize</span><span class="p">:</span> <span class="s">&#39;100&#39;</span>
-              <span class="nt">sslReceiverThreadPoolSize</span><span class="p">:</span> <span class="s">&#39;100&#39;</span>
-              <span class="nt">hostName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.0.0.0</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-yaml linenums">transports:
+  databridge:
+    listenerConfigurations:
+      workerThreads: 10
+      maxEventBufferCapacity: 10
+      eventBufferSize: 2000
+      keyStoreLocation: ${sys:carbon.home}/resources/security/wso2carbon.jks
+      keyStorePassword: wso2carbon
+      clientTimeoutMin: 30
+      # Data receiver configurations
+      dataReceivers:
+        -
+          dataReceiver:
+            type: Thrift
+            properties:
+              tcpPort: '7611'
+              sslPort: '7711'
+        - 
+          dataReceiver:
+            type: Binary
+            properties:
+              tcpPort: '9611'
+              sslPort: '9711'
+              tcpReceiverThreadPoolSize: '100'
+              sslReceiverThreadPoolSize: '100'
+              hostName: 0.0.0.0</code></pre>
 
 <table>
 <thead>
@@ -3073,111 +2670,58 @@ Here, <code>transports &gt;&gt; databridge</code> includes listenerConfiguration
 </div>
 <p>By default both Thrift and Binary agents will be started.</p>
 <p>Sample configuration for databridge agent(publisher) and properties are as follows,
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">transports</span><span class="p">:</span>
-  <span class="nt">databridge</span><span class="p">:</span>
-    <span class="nt">senderConfigurations</span><span class="p">:</span>
-      <span class="nt">agents</span><span class="p">:</span>
-        <span class="p p-Indicator">-</span>
-          <span class="nt">agentConfiguration</span><span class="p">:</span>
-            <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Thrift</span>
-            <span class="nt">dataEndpointClass</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">org.wso2.carbon.databridge.agent.endpoint.thrift.ThriftDataEndpoint</span>
-            <span class="nt">publishingStrategy</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">async</span>
-            <span class="nt">trustStorePath</span><span class="p">:</span> <span class="s">&#39;${sys:carbon.home}/resources/security/client-truststore.jks&#39;</span>
-            <span class="nt">trustStorePassword</span><span class="p">:</span> <span class="s">&#39;wso2carbon&#39;</span>
-            <span class="nt">queueSize</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">32768</span>
-            <span class="nt">batchSize</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">200</span>
-            <span class="nt">corePoolSize</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
-            <span class="nt">socketTimeoutMS</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">30000</span>
-            <span class="nt">maxPoolSize</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
-            <span class="nt">keepAliveTimeInPool</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">20</span>
-            <span class="nt">reconnectionInterval</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">30</span>
-            <span class="nt">maxTransportPoolSize</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">250</span>
-            <span class="nt">maxIdleConnections</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">250</span>
-            <span class="nt">evictionTimePeriod</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5500</span>
-            <span class="nt">minIdleTimeInPool</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5000</span>
-            <span class="nt">secureMaxTransportPoolSize</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">250</span>
-            <span class="nt">secureMaxIdleConnections</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">250</span>
-            <span class="nt">secureEvictionTimePeriod</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5500</span>
-            <span class="nt">secureMinIdleTimeInPool</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5000</span>
-            <span class="nt">sslEnabledProtocols</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">TLSv1.1,TLSv1.2</span>
-            <span class="nt">ciphers</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_DHE_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,TLS_DHE_RSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_128_GCM_SHA256</span>
-        <span class="p p-Indicator">-</span>
-          <span class="nt">agentConfiguration</span><span class="p">:</span>
-            <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Binary</span>
-            <span class="nt">dataEndpointClass</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">org.wso2.carbon.databridge.agent.endpoint.binary.BinaryDataEndpoint</span>
-            <span class="nt">publishingStrategy</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">async</span>
-            <span class="nt">trustStorePath</span><span class="p">:</span> <span class="s">&#39;${sys:carbon.home}/resources/security/client-truststore.jks&#39;</span>
-            <span class="nt">trustStorePassword</span><span class="p">:</span> <span class="s">&#39;wso2carbon&#39;</span>
-            <span class="nt">queueSize</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">32768</span>
-            <span class="nt">batchSize</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">200</span>
-            <span class="nt">corePoolSize</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
-            <span class="nt">socketTimeoutMS</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">30000</span>
-            <span class="nt">maxPoolSize</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
-            <span class="nt">keepAliveTimeInPool</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">20</span>
-            <span class="nt">reconnectionInterval</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">30</span>
-            <span class="nt">maxTransportPoolSize</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">250</span>
-            <span class="nt">maxIdleConnections</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">250</span>
-            <span class="nt">evictionTimePeriod</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5500</span>
-            <span class="nt">minIdleTimeInPool</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5000</span>
-            <span class="nt">secureMaxTransportPoolSize</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">250</span>
-            <span class="nt">secureMaxIdleConnections</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">250</span>
-            <span class="nt">secureEvictionTimePeriod</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5500</span>
-            <span class="nt">secureMinIdleTimeInPool</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5000</span>
-            <span class="nt">sslEnabledProtocols</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">TLSv1.1,TLSv1.2</span>
-            <span class="nt">ciphers</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_DHE_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,TLS_DHE_RSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_128_GCM_SHA256</span>
-</pre></div>
-</td></tr></table></p>
+<pre class="codehilite"><code class="language-yaml linenums">transports:
+  databridge:
+    senderConfigurations:
+      agents:
+        -
+          agentConfiguration:
+            name: Thrift
+            dataEndpointClass: org.wso2.carbon.databridge.agent.endpoint.thrift.ThriftDataEndpoint
+            publishingStrategy: async
+            trustStorePath: '${sys:carbon.home}/resources/security/client-truststore.jks'
+            trustStorePassword: 'wso2carbon'
+            queueSize: 32768
+            batchSize: 200
+            corePoolSize: 1
+            socketTimeoutMS: 30000
+            maxPoolSize: 1
+            keepAliveTimeInPool: 20
+            reconnectionInterval: 30
+            maxTransportPoolSize: 250
+            maxIdleConnections: 250
+            evictionTimePeriod: 5500
+            minIdleTimeInPool: 5000
+            secureMaxTransportPoolSize: 250
+            secureMaxIdleConnections: 250
+            secureEvictionTimePeriod: 5500
+            secureMinIdleTimeInPool: 5000
+            sslEnabledProtocols: TLSv1.1,TLSv1.2
+            ciphers: TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_DHE_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,TLS_DHE_RSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_128_GCM_SHA256
+        -
+          agentConfiguration:
+            name: Binary
+            dataEndpointClass: org.wso2.carbon.databridge.agent.endpoint.binary.BinaryDataEndpoint
+            publishingStrategy: async
+            trustStorePath: '${sys:carbon.home}/resources/security/client-truststore.jks'
+            trustStorePassword: 'wso2carbon'
+            queueSize: 32768
+            batchSize: 200
+            corePoolSize: 1
+            socketTimeoutMS: 30000
+            maxPoolSize: 1
+            keepAliveTimeInPool: 20
+            reconnectionInterval: 30
+            maxTransportPoolSize: 250
+            maxIdleConnections: 250
+            evictionTimePeriod: 5500
+            minIdleTimeInPool: 5000
+            secureMaxTransportPoolSize: 250
+            secureMaxIdleConnections: 250
+            secureEvictionTimePeriod: 5500
+            secureMinIdleTimeInPool: 5000
+            sslEnabledProtocols: TLSv1.1,TLSv1.2
+            ciphers: TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_DHE_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,TLS_DHE_RSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_128_GCM_SHA256</code></pre></p>
 <table>
 <thead>
 <tr>
@@ -3394,6 +2938,8 @@ Here, <code>transports &gt;&gt; databridge</code> includes listenerConfiguration
       <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
       
         <script src="../../assets/lib/highlightjs/highlight.min.js"></script>
+      
+        <script src="../../assets/js/jquery-3.3.1.min.js"></script>
       
         <script src="../../assets/js/theme.js"></script>
       

@@ -1546,39 +1546,22 @@
 <li>First, you can download the Siddhi tooling pack as a zip file from <a href="https://siddhi.io/en/v5.1/download/">here</a> and extract it.</li>
 <li>
 <p>After creating the above database we need to have a mechanism to connect this database to Siddhi runtime. To do that you have to update the Siddhi tooling configuration file. Siddhi tooling configuration file is <code>&lt;TOOLING_HOME&gt;/conf/tooling/deployment.yaml</code>. You have to add the following YAML block under the dataSources entry in the deployment.yaml. The following YAML block contained all the details that need to connect to the database. For example, database username, password, and URL, etc.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">COMBO_SUPERMART_DB</span>
-  <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">The datasource used for lending process of the Combo supermarket</span>
-  <span class="nt">jndiConfig</span><span class="p">:</span>
-    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jdbc/ComboSuperMart</span>
-  <span class="nt">definition</span><span class="p">:</span>
-    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">RDBMS</span>
-    <span class="nt">configuration</span><span class="p">:</span>
-      <span class="nt">jdbcUrl</span><span class="p">:</span> <span class="s">&#39;jdbc:mysql://127.0.0.1:3306/ComboSuperMart&#39;</span>
-      <span class="nt">username</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi_user</span>
-      <span class="nt">password</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhiio</span>
-      <span class="nt">driverClassName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">com.mysql.jdbc.Driver</span>
-      <span class="nt">maxPoolSize</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
-      <span class="nt">idleTimeout</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">60000</span>
-      <span class="nt">connectionTestQuery</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SELECT 1</span>
-      <span class="nt">validationTimeout</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">30000</span>
-      <span class="nt">isAutoCommit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-yaml linenums">- name: COMBO_SUPERMART_DB
+  description: The datasource used for lending process of the Combo supermarket
+  jndiConfig:
+    name: jdbc/ComboSuperMart
+  definition:
+    type: RDBMS
+    configuration:
+      jdbcUrl: 'jdbc:mysql://127.0.0.1:3306/ComboSuperMart'
+      username: siddhi_user
+      password: siddhiio
+      driverClassName: com.mysql.jdbc.Driver
+      maxPoolSize: 10
+      idleTimeout: 60000
+      connectionTestQuery: SELECT 1
+      validationTimeout: 30000
+      isAutoCommit: false</code></pre>
 
 </li>
 <li>
@@ -1595,191 +1578,98 @@
 <p class="admonition-title">Siddhi Query Guide</p>
 <p>The execution steps and the logic of the Siddhi query described as comments in the following Siddhi app. Therefore here we are not going to explain in detail here. For more details about Siddhi queries please refer <a href="https://siddhi.io/en/v5.1/docs/query-guide/">Siddhi query guide</a>.</p>
 </div>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86
-87
-88
-89
-90
-91
-92</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="n">App</span><span class="p">:</span><span class="n">name</span><span class="p">(</span><span class="ss">&quot;ComboSuperMartPromoProcess&quot;</span><span class="p">)</span>
-<span class="o">@</span><span class="n">App</span><span class="p">:</span><span class="n">description</span><span class="p">(</span><span class="ss">&quot;The promotion selection process of Combo super mart.&quot;</span><span class="p">)</span>
+<pre class="codehilite"><code class="language-siddhi linenums">@App:name("ComboSuperMartPromoProcess")
+@App:description("The promotion selection process of Combo super mart.")
 
 
-<span class="cm">/*</span>
-<span class="cm">Purpose:</span>
-<span class="cm">    The combo supermart has multiple promotion cards that given to their loyal users. For a particular season combo supermart plan to give discounts for each card. These discounts will change according to the card type and several rules. So, the combo supermart needed an automatic system to retrieve the discounts for a given card. To do that we implement this Siddhi app which interacts with a MySQL database and executes their functionalities. All card details and rules were stored in a MySQL database. All the rules for a particular card were in the templated format. Therefore all rules executed dynamically and give the final result.</span>
+/*
+Purpose:
+    The combo supermart has multiple promotion cards that given to their loyal users. For a particular season combo supermart plan to give discounts for each card. These discounts will change according to the card type and several rules. So, the combo supermart needed an automatic system to retrieve the discounts for a given card. To do that we implement this Siddhi app which interacts with a MySQL database and executes their functionalities. All card details and rules were stored in a MySQL database. All the rules for a particular card were in the templated format. Therefore all rules executed dynamically and give the final result.
 
-<span class="cm">Input:</span>
-<span class="cm">        HTTP POST with JSON payload {</span>
-<span class="cm">        &quot;event&quot;: {</span>
-<span class="cm">            &quot;promoCardId&quot;: &quot;PC001&quot;,</span>
-<span class="cm">            &quot;amount&quot;: 20000</span>
-<span class="cm">          }</span>
-<span class="cm">        }</span>
+Input:
+        HTTP POST with JSON payload {
+        "event": {
+            "promoCardId": "PC001",
+            "amount": 20000
+          }
+        }
 
-<span class="cm">Output:</span>
-<span class="cm">    {</span>
-<span class="cm">    &quot;event&quot;: {</span>
-<span class="cm">        &quot;messageId&quot;: &quot;1817d06b-22ae-438e-990d-42fedcb50607&quot;,</span>
-<span class="cm">        &quot;discountAmount&quot;: 15.0,</span>
-<span class="cm">        &quot;discountApplied&quot;: true</span>
-<span class="cm">    }</span>
-<span class="cm">}</span>
+Output:
+    {
+    "event": {
+        "messageId": "1817d06b-22ae-438e-990d-42fedcb50607",
+        "discountAmount": 15.0,
+        "discountApplied": true
+    }
+}
 
-<span class="cm">*/</span>
-<span class="c1">-- HTTP source</span>
-<span class="o">@</span><span class="k">source</span><span class="p">(</span>
-    <span class="k">type</span><span class="o">=</span><span class="s1">&#39;http-service&#39;</span><span class="p">,</span>
-    <span class="k">source</span><span class="p">.</span><span class="n">id</span><span class="o">=</span><span class="s1">&#39;adder&#39;</span><span class="p">,</span>
-    <span class="n">receiver</span><span class="p">.</span><span class="n">url</span><span class="o">=</span><span class="s1">&#39;http://0.0.0.0:8088/comboSuperMart/promo&#39;</span><span class="p">,</span>
-    <span class="n">basic</span><span class="p">.</span><span class="n">auth</span><span class="p">.</span><span class="n">enabled</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
-    <span class="o">@</span><span class="k">map</span><span class="p">(</span><span class="k">type</span><span class="o">=</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="o">@</span><span class="n">attributes</span><span class="p">(</span><span class="n">messageId</span><span class="o">=</span><span class="s1">&#39;trp:messageId&#39;</span><span class="p">,</span> <span class="n">promoCardId</span><span class="o">=</span><span class="s1">&#39;$.event.promoCardId&#39;</span><span class="p">,</span> <span class="n">amount</span><span class="o">=</span><span class="s1">&#39;$.event.amount&#39;</span><span class="p">))</span>
-<span class="p">)</span>
-<span class="n">define</span> <span class="n">stream</span> <span class="n">InputTransactionStream</span><span class="p">(</span><span class="n">messageId</span> <span class="n">string</span><span class="p">,</span> <span class="n">promoCardId</span> <span class="n">string</span><span class="p">,</span> <span class="n">amount</span> <span class="n">long</span><span class="p">);</span>
+*/
+-- HTTP source
+@source(
+    type='http-service',
+    source.id='adder',
+    receiver.url='http://0.0.0.0:8088/comboSuperMart/promo',
+    basic.auth.enabled='',
+    @map(type='json', @attributes(messageId='trp:messageId', promoCardId='$.event.promoCardId', amount='$.event.amount'))
+)
+define stream InputTransactionStream(messageId string, promoCardId string, amount long);
 
-<span class="c1">-- RDBMS data stores</span>
-<span class="o">@</span><span class="n">Store</span><span class="p">(</span><span class="k">type</span><span class="o">=</span><span class="ss">&quot;rdbms&quot;</span><span class="p">,</span> <span class="n">datasource</span><span class="o">=</span><span class="ss">&quot;COMBO_SUPERMART_DB&quot;</span><span class="p">)</span>
-<span class="n">define</span> <span class="k">table</span> <span class="n">Customer</span><span class="p">(</span><span class="n">customerId</span> <span class="n">string</span><span class="p">,</span> <span class="n">promoCardId</span> <span class="n">string</span><span class="p">);</span>
-<span class="o">@</span><span class="n">Store</span><span class="p">(</span><span class="k">type</span><span class="o">=</span><span class="ss">&quot;rdbms&quot;</span><span class="p">,</span> <span class="n">datasource</span><span class="o">=</span><span class="ss">&quot;COMBO_SUPERMART_DB&quot;</span><span class="p">)</span>
-<span class="n">define</span> <span class="k">table</span> <span class="n">PromoCard</span><span class="p">(</span><span class="n">promoCardId</span> <span class="n">string</span><span class="p">,</span> <span class="n">promoCardTypeId</span> <span class="n">string</span><span class="p">,</span> <span class="n">promoCardIssueDate</span> <span class="n">string</span><span class="p">);</span>
-<span class="o">@</span><span class="n">Store</span><span class="p">(</span><span class="k">type</span><span class="o">=</span><span class="ss">&quot;rdbms&quot;</span><span class="p">,</span> <span class="n">datasource</span><span class="o">=</span><span class="ss">&quot;COMBO_SUPERMART_DB&quot;</span><span class="p">)</span>
-<span class="n">define</span> <span class="k">table</span> <span class="n">PromoRule</span><span class="p">(</span><span class="n">promoRuleId</span> <span class="n">string</span><span class="p">,</span> <span class="n">promoCardTypeId</span> <span class="n">string</span><span class="p">,</span> <span class="n">promoRule</span> <span class="n">string</span><span class="p">);</span>
-<span class="o">@</span><span class="n">Store</span><span class="p">(</span><span class="k">type</span><span class="o">=</span><span class="ss">&quot;rdbms&quot;</span><span class="p">,</span> <span class="n">datasource</span><span class="o">=</span><span class="ss">&quot;COMBO_SUPERMART_DB&quot;</span><span class="p">)</span>
-<span class="n">define</span> <span class="k">table</span> <span class="n">PromoCardType</span><span class="p">(</span><span class="n">promoCardTypeId</span> <span class="n">string</span><span class="p">,</span> <span class="n">promoCardTypeDiscount</span> <span class="n">double</span><span class="p">);</span>
+-- RDBMS data stores
+@Store(type="rdbms", datasource="COMBO_SUPERMART_DB")
+define table Customer(customerId string, promoCardId string);
+@Store(type="rdbms", datasource="COMBO_SUPERMART_DB")
+define table PromoCard(promoCardId string, promoCardTypeId string, promoCardIssueDate string);
+@Store(type="rdbms", datasource="COMBO_SUPERMART_DB")
+define table PromoRule(promoRuleId string, promoCardTypeId string, promoRule string);
+@Store(type="rdbms", datasource="COMBO_SUPERMART_DB")
+define table PromoCardType(promoCardTypeId string, promoCardTypeDiscount double);
 
-<span class="c1">-- Output stream</span>
-<span class="o">@</span><span class="n">sink</span><span class="p">(</span><span class="k">type</span><span class="o">=</span><span class="s1">&#39;http-service-response&#39;</span><span class="p">,</span> <span class="k">source</span><span class="p">.</span><span class="n">id</span><span class="o">=</span><span class="s1">&#39;adder&#39;</span><span class="p">,</span>
-      <span class="n">message</span><span class="p">.</span><span class="n">id</span><span class="o">=</span><span class="s1">&#39;{{messageId}}&#39;</span><span class="p">,</span> <span class="o">@</span><span class="k">map</span><span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;json&#39;</span><span class="p">))</span>
-<span class="n">define</span> <span class="n">stream</span> <span class="n">ResultStream</span> <span class="p">(</span><span class="n">messageId</span> <span class="n">string</span><span class="p">,</span> <span class="n">discountAmount</span> <span class="n">double</span><span class="p">,</span> <span class="n">discountApplied</span> <span class="n">bool</span><span class="p">);</span>
+-- Output stream
+@sink(type='http-service-response', source.id='adder',
+      message.id='{{messageId}}', @map(type = 'json'))
+define stream ResultStream (messageId string, discountAmount double, discountApplied bool);
 
-<span class="c1">-- Find and execute rules</span>
-<span class="o">@</span><span class="n">info</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;get-promocard-type&#39;</span><span class="p">)</span>
-<span class="k">from</span> <span class="n">InputTransactionStream</span><span class="o">#</span><span class="n">window</span><span class="p">.</span><span class="k">length</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">join</span> <span class="n">PromoCard</span> <span class="k">on</span> <span class="n">InputTransactionStream</span><span class="p">.</span><span class="n">promoCardId</span><span class="o">==</span><span class="n">PromoCard</span><span class="p">.</span><span class="n">promoCardId</span>
-<span class="k">select</span> <span class="n">InputTransactionStream</span><span class="p">.</span><span class="n">messageId</span><span class="p">,</span> <span class="n">InputTransactionStream</span><span class="p">.</span><span class="n">promoCardId</span><span class="p">,</span> <span class="n">PromoCard</span><span class="p">.</span><span class="n">promoCardTypeId</span><span class="p">,</span> <span class="n">PromoCard</span><span class="p">.</span><span class="n">promoCardIssueDate</span><span class="p">,</span> <span class="n">InputTransactionStream</span><span class="p">.</span><span class="n">amount</span>
-<span class="k">insert</span> <span class="k">into</span> <span class="n">GetPromoCardTypeStream</span><span class="p">;</span>
+-- Find and execute rules
+@info(name='get-promocard-type')
+from InputTransactionStream#window.length(1) join PromoCard on InputTransactionStream.promoCardId==PromoCard.promoCardId
+select InputTransactionStream.messageId, InputTransactionStream.promoCardId, PromoCard.promoCardTypeId, PromoCard.promoCardIssueDate, InputTransactionStream.amount
+insert into GetPromoCardTypeStream;
 
-<span class="o">@</span><span class="n">info</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;get-promocard-type-details&#39;</span><span class="p">)</span>
-<span class="k">from</span> <span class="n">GetPromoCardTypeStream</span><span class="o">#</span><span class="n">window</span><span class="p">.</span><span class="k">length</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">join</span> <span class="n">PromoCardType</span> <span class="k">on</span> <span class="n">GetPromoCardTypeStream</span><span class="p">.</span><span class="n">promoCardTypeId</span><span class="o">==</span><span class="n">PromoCardType</span><span class="p">.</span><span class="n">promoCardTypeId</span>
-<span class="k">select</span> <span class="n">GetPromoCardTypeStream</span><span class="p">.</span><span class="n">messageId</span><span class="p">,</span> <span class="n">GetPromoCardTypeStream</span><span class="p">.</span><span class="n">promoCardId</span><span class="p">,</span> <span class="n">GetPromoCardTypeStream</span><span class="p">.</span><span class="n">promoCardTypeId</span><span class="p">,</span> <span class="n">GetPromoCardTypeStream</span><span class="p">.</span><span class="n">amount</span><span class="p">,</span> <span class="n">PromoCardType</span><span class="p">.</span><span class="n">promoCardTypeDiscount</span><span class="p">,</span> <span class="n">GetPromoCardTypeStream</span><span class="p">.</span><span class="n">promoCardIssueDate</span>
-<span class="k">insert</span> <span class="k">into</span> <span class="n">GetPromoCardTypeDetailsStream</span><span class="p">;</span>
+@info(name='get-promocard-type-details')
+from GetPromoCardTypeStream#window.length(1) join PromoCardType on GetPromoCardTypeStream.promoCardTypeId==PromoCardType.promoCardTypeId
+select GetPromoCardTypeStream.messageId, GetPromoCardTypeStream.promoCardId, GetPromoCardTypeStream.promoCardTypeId, GetPromoCardTypeStream.amount, PromoCardType.promoCardTypeDiscount, GetPromoCardTypeStream.promoCardIssueDate
+insert into GetPromoCardTypeDetailsStream;
 
-<span class="o">@</span><span class="n">info</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;get-promocard-rules&#39;</span><span class="p">)</span>
-<span class="k">from</span> <span class="n">GetPromoCardTypeDetailsStream</span><span class="o">#</span><span class="n">window</span><span class="p">.</span><span class="k">length</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">right</span> <span class="k">outer</span> <span class="k">join</span> <span class="n">PromoRule</span> <span class="k">on</span> <span class="n">GetPromoCardTypeDetailsStream</span><span class="p">.</span><span class="n">promoCardTypeId</span><span class="o">==</span><span class="n">PromoRule</span><span class="p">.</span><span class="n">promoCardTypeId</span>
-<span class="k">select</span> <span class="n">GetPromoCardTypeDetailsStream</span><span class="p">.</span><span class="n">messageId</span><span class="p">,</span> <span class="n">GetPromoCardTypeDetailsStream</span><span class="p">.</span><span class="n">promoCardId</span><span class="p">,</span> <span class="n">GetPromoCardTypeDetailsStream</span><span class="p">.</span><span class="n">promoCardTypeId</span><span class="p">,</span> <span class="n">GetPromoCardTypeDetailsStream</span><span class="p">.</span><span class="n">amount</span><span class="p">,</span> <span class="n">GetPromoCardTypeDetailsStream</span><span class="p">.</span><span class="n">promoCardTypeDiscount</span><span class="p">,</span> <span class="n">PromoRule</span><span class="p">.</span><span class="n">promoRuleId</span><span class="p">,</span> <span class="n">PromoRule</span><span class="p">.</span><span class="n">promoRule</span><span class="p">,</span> <span class="n">GetPromoCardTypeDetailsStream</span><span class="p">.</span><span class="n">promoCardIssueDate</span>
-<span class="k">insert</span> <span class="k">into</span> <span class="n">RuleStream</span><span class="p">;</span>
+@info(name='get-promocard-rules')
+from GetPromoCardTypeDetailsStream#window.length(1) right outer join PromoRule on GetPromoCardTypeDetailsStream.promoCardTypeId==PromoRule.promoCardTypeId
+select GetPromoCardTypeDetailsStream.messageId, GetPromoCardTypeDetailsStream.promoCardId, GetPromoCardTypeDetailsStream.promoCardTypeId, GetPromoCardTypeDetailsStream.amount, GetPromoCardTypeDetailsStream.promoCardTypeDiscount, PromoRule.promoRuleId, PromoRule.promoRule, GetPromoCardTypeDetailsStream.promoCardIssueDate
+insert into RuleStream;
 
-<span class="o">@</span><span class="n">info</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;execute-promocard-rules&#39;</span><span class="p">)</span>
-<span class="k">from</span> <span class="n">RuleStream</span><span class="o">#</span><span class="n">window</span><span class="p">.</span><span class="k">length</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="k">select</span> <span class="n">RuleStream</span><span class="p">.</span><span class="n">messageId</span><span class="p">,</span> <span class="n">RuleStream</span><span class="p">.</span><span class="n">promoCardTypeDiscount</span><span class="p">,</span> <span class="n">js</span><span class="p">:</span><span class="n">eval</span><span class="p">(</span><span class="n">str</span><span class="p">:</span><span class="n">fillTemplate</span><span class="p">(</span><span class="n">RuleStream</span><span class="p">.</span><span class="n">promoRule</span><span class="p">,</span> <span class="k">map</span><span class="p">:</span><span class="k">create</span><span class="p">(</span><span class="ss">&quot;amount&quot;</span><span class="p">,</span> <span class="n">RuleStream</span><span class="p">.</span><span class="n">amount</span><span class="p">,</span> <span class="ss">&quot;cardPeriod&quot;</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span><span class="n">dateDiff</span><span class="p">(</span><span class="n">time</span><span class="p">:</span><span class="n">currentDate</span><span class="p">(),</span> <span class="n">RuleStream</span><span class="p">.</span><span class="n">promoCardIssueDate</span><span class="p">,</span> <span class="s1">&#39;yyyy-MM-dd&#39;</span><span class="p">,</span> <span class="s1">&#39;yyyy-MM-dd&#39;</span><span class="p">))),</span> <span class="s1">&#39;bool&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="k">result</span>
-<span class="k">insert</span> <span class="k">into</span> <span class="n">RuleReslutsStream</span><span class="p">;</span>
+@info(name='execute-promocard-rules')
+from RuleStream#window.length(1)
+select RuleStream.messageId, RuleStream.promoCardTypeDiscount, js:eval(str:fillTemplate(RuleStream.promoRule, map:create("amount", RuleStream.amount, "cardPeriod", time:dateDiff(time:currentDate(), RuleStream.promoCardIssueDate, 'yyyy-MM-dd', 'yyyy-MM-dd'))), 'bool') as result
+insert into RuleReslutsStream;
 
-<span class="c1">-- Output results</span>
-<span class="o">@</span><span class="n">info</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;filter-true-rules&#39;</span><span class="p">)</span>
-<span class="k">from</span> <span class="n">RuleReslutsStream</span><span class="p">[</span><span class="k">result</span> <span class="o">==</span> <span class="k">true</span><span class="p">]</span><span class="o">#</span><span class="n">window</span><span class="p">.</span><span class="n">batch</span><span class="p">()</span>
-<span class="k">select</span> <span class="n">RuleReslutsStream</span><span class="p">.</span><span class="n">messageId</span><span class="p">,</span> <span class="n">RuleReslutsStream</span><span class="p">.</span><span class="n">promoCardTypeDiscount</span><span class="p">,</span> <span class="k">count</span><span class="p">(</span><span class="k">result</span><span class="p">)</span> <span class="k">as</span> <span class="k">result</span>
-<span class="k">insert</span> <span class="k">into</span> <span class="n">TrueResultStream</span><span class="p">;</span>
+-- Output results
+@info(name='filter-true-rules')
+from RuleReslutsStream[result == true]#window.batch()
+select RuleReslutsStream.messageId, RuleReslutsStream.promoCardTypeDiscount, count(result) as result
+insert into TrueResultStream;
 
-<span class="o">@</span><span class="n">info</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;get-all-results&#39;</span><span class="p">)</span>
-<span class="k">from</span> <span class="n">RuleReslutsStream</span><span class="o">#</span><span class="n">window</span><span class="p">.</span><span class="n">batch</span><span class="p">()</span>
-<span class="k">select</span> <span class="n">RuleReslutsStream</span><span class="p">.</span><span class="n">messageId</span><span class="p">,</span> <span class="n">RuleReslutsStream</span><span class="p">.</span><span class="n">promoCardTypeDiscount</span><span class="p">,</span> <span class="k">count</span><span class="p">(</span><span class="k">result</span><span class="p">)</span> <span class="k">as</span> <span class="k">result</span>
-<span class="k">insert</span> <span class="k">into</span> <span class="n">AllResultStream</span><span class="p">;</span>
+@info(name='get-all-results')
+from RuleReslutsStream#window.batch()
+select RuleReslutsStream.messageId, RuleReslutsStream.promoCardTypeDiscount, count(result) as result
+insert into AllResultStream;
 
-<span class="o">@</span><span class="n">info</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;discout-reply-stream&#39;</span><span class="p">)</span>
-<span class="k">from</span> <span class="n">AllResultStream</span><span class="o">#</span><span class="n">window</span><span class="p">.</span><span class="k">length</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="n">unidirectional</span> <span class="k">join</span>  <span class="n">TrueResultStream</span><span class="o">#</span><span class="n">window</span><span class="p">.</span><span class="k">length</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">on</span> <span class="n">TrueResultStream</span><span class="p">.</span><span class="k">result</span><span class="o">==</span><span class="n">AllResultStream</span><span class="p">.</span><span class="k">result</span>
-<span class="k">select</span> <span class="n">AllResultStream</span><span class="p">.</span><span class="n">messageId</span><span class="p">,</span> <span class="n">AllResultStream</span><span class="p">.</span><span class="n">promoCardTypeDiscount</span> <span class="k">as</span> <span class="n">discountAmount</span><span class="p">,</span> <span class="k">true</span> <span class="k">as</span> <span class="n">discountApplied</span>
-<span class="k">insert</span> <span class="k">into</span> <span class="n">ResultStream</span><span class="p">;</span>
+@info(name='discout-reply-stream')
+from AllResultStream#window.length(1) unidirectional join  TrueResultStream#window.length(1) on TrueResultStream.result==AllResultStream.result
+select AllResultStream.messageId, AllResultStream.promoCardTypeDiscount as discountAmount, true as discountApplied
+insert into ResultStream;
 
-<span class="o">@</span><span class="n">info</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;filter-true-rules-and-reply&#39;</span><span class="p">)</span>
-<span class="k">from</span> <span class="n">RuleReslutsStream</span><span class="p">[</span><span class="k">result</span> <span class="o">==</span> <span class="k">false</span><span class="p">]</span><span class="o">#</span><span class="n">window</span><span class="p">.</span><span class="n">batch</span><span class="p">()</span>
-<span class="k">select</span> <span class="n">RuleReslutsStream</span><span class="p">.</span><span class="n">messageId</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">00</span> <span class="k">as</span> <span class="n">discountAmount</span><span class="p">,</span> <span class="k">false</span> <span class="k">as</span> <span class="n">discountApplied</span>
-<span class="k">insert</span> <span class="k">into</span> <span class="n">ResultStream</span><span class="p">;</span>
-</pre></div>
-</td></tr></table>
+@info(name='filter-true-rules-and-reply')
+from RuleReslutsStream[result == false]#window.batch()
+select RuleReslutsStream.messageId, 0.00 as discountAmount, false as discountApplied
+insert into ResultStream;</code></pre>
 
 <p>The following flow diagram depicts the design view of the above Siddhi app.</p>
 <p><img alt="Execution Process" src="../images/process-flow-diagram.png" title="Execution Process" /></p>
@@ -1795,230 +1685,120 @@
 <h3 id="promo-card-type-table">Promo Card Type Table<a class="headerlink" href="#promo-card-type-table" title="Permanent link">&para;</a></h3>
 <p><img alt="Promo Card Type Table" src="../images/promocard-type-table.png" title="Promo Card Type Table" /></p>
 <p>To connect to the database Siddhi app will use a user called <code>siddhi_user</code> identified by password <code>siddhiio</code>. To access the database you have to give correct permissions to the user. For testing purposes, you can grant all privileges to this user using the following command.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">&gt;</span> <span class="k">GRANT</span> <span class="k">ALL</span> <span class="k">PRIVILEGES</span> <span class="k">ON</span> <span class="n">ComboSuperMart</span><span class="p">.</span><span class="o">*</span> <span class="k">TO</span> <span class="s1">&#39;siddhi_user&#39;</span><span class="o">@</span><span class="s1">&#39;siddhiio&#39;</span><span class="p">;</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sql linenums">&gt; GRANT ALL PRIVILEGES ON ComboSuperMart.* TO 'siddhi_user'@'siddhiio';</code></pre>
 
 <p>To create those tables, you can use the following SQL script.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86
-87
-88</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="k">CREATE</span> <span class="k">DATABASE</span>  <span class="k">IF</span> <span class="k">NOT</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">ComboSuperMart</span><span class="o">`</span> <span class="cm">/*!40100 DEFAULT CHARACTER SET utf8 */</span><span class="p">;</span>
-<span class="n">USE</span> <span class="o">`</span><span class="n">ComboSuperMart</span><span class="o">`</span><span class="p">;</span>
+<pre class="codehilite"><code class="language-sql linenums">CREATE DATABASE  IF NOT EXISTS `ComboSuperMart` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `ComboSuperMart`;
 
-<span class="c1">--</span>
-<span class="c1">-- Table structure for table `PromoCardType`</span>
-<span class="c1">--</span>
+--
+-- Table structure for table `PromoCardType`
+--
 
-<span class="k">DROP</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">PromoCardType</span><span class="o">`</span><span class="p">;</span>
-<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">PromoCardType</span><span class="o">`</span> <span class="p">(</span>
-  <span class="o">`</span><span class="n">promoCardTypeId</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-  <span class="o">`</span><span class="n">promoCardType</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-  <span class="o">`</span><span class="n">promoCardTypeDiscount</span><span class="o">`</span> <span class="nb">decimal</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
-  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">promoCardTypeId</span><span class="o">`</span><span class="p">)</span>
-<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span><span class="p">;</span>
+DROP TABLE IF EXISTS `PromoCardType`;
+CREATE TABLE `PromoCardType` (
+  `promoCardTypeId` varchar(45) NOT NULL,
+  `promoCardType` varchar(45) NOT NULL,
+  `promoCardTypeDiscount` decimal(5,2) DEFAULT NULL,
+  PRIMARY KEY (`promoCardTypeId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-<span class="c1">--</span>
-<span class="c1">-- Dumping data for table `PromoCardType`</span>
-<span class="c1">--</span>
+--
+-- Dumping data for table `PromoCardType`
+--
 
-<span class="k">LOCK</span> <span class="n">TABLES</span> <span class="o">`</span><span class="n">PromoCardType</span><span class="o">`</span> <span class="k">WRITE</span><span class="p">;</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">`</span><span class="n">PromoCardType</span><span class="o">`</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;PCT01&#39;</span><span class="p">,</span><span class="s1">&#39;PLATINUM&#39;</span><span class="p">,</span><span class="mi">15</span><span class="p">.</span><span class="mi">00</span><span class="p">),(</span><span class="s1">&#39;PCT02&#39;</span><span class="p">,</span><span class="s1">&#39;GOLD&#39;</span><span class="p">,</span><span class="mi">10</span><span class="p">.</span><span class="mi">00</span><span class="p">),(</span><span class="s1">&#39;PCT03&#39;</span><span class="p">,</span><span class="s1">&#39;SILVER&#39;</span><span class="p">,</span><span class="mi">5</span><span class="p">.</span><span class="mi">00</span><span class="p">);</span>
-<span class="n">UNLOCK</span> <span class="n">TABLES</span><span class="p">;</span>
+LOCK TABLES `PromoCardType` WRITE;
+INSERT INTO `PromoCardType` VALUES ('PCT01','PLATINUM',15.00),('PCT02','GOLD',10.00),('PCT03','SILVER',5.00);
+UNLOCK TABLES;
 
-<span class="c1">--</span>
-<span class="c1">-- Table structure for table `PromoCard`</span>
-<span class="c1">--</span>
+--
+-- Table structure for table `PromoCard`
+--
 
-<span class="k">DROP</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">PromoCard</span><span class="o">`</span><span class="p">;</span>
-<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">PromoCard</span><span class="o">`</span> <span class="p">(</span>
-  <span class="o">`</span><span class="n">promoCardId</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-  <span class="o">`</span><span class="n">promoCardIssueDate</span><span class="o">`</span> <span class="nb">date</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-  <span class="o">`</span><span class="n">promoCardTypeId</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">promoCardId</span><span class="o">`</span><span class="p">),</span>
-  <span class="k">KEY</span> <span class="o">`</span><span class="n">promoCardTypeIdKF_idx</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">promoCardTypeId</span><span class="o">`</span><span class="p">),</span>
-  <span class="k">CONSTRAINT</span> <span class="o">`</span><span class="n">promoCardIdTypeFK</span><span class="o">`</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">promoCardTypeId</span><span class="o">`</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="o">`</span><span class="n">PromoCardType</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">promoCardTypeId</span><span class="o">`</span><span class="p">)</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">NO</span> <span class="n">ACTION</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">NO</span> <span class="n">ACTION</span>
-<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span><span class="p">;</span>
+DROP TABLE IF EXISTS `PromoCard`;
+CREATE TABLE `PromoCard` (
+  `promoCardId` varchar(40) NOT NULL,
+  `promoCardIssueDate` date NOT NULL,
+  `promoCardTypeId` varchar(45) NOT NULL,
+  PRIMARY KEY (`promoCardId`),
+  KEY `promoCardTypeIdKF_idx` (`promoCardTypeId`),
+  CONSTRAINT `promoCardIdTypeFK` FOREIGN KEY (`promoCardTypeId`) REFERENCES `PromoCardType` (`promoCardTypeId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-<span class="c1">--</span>
-<span class="c1">-- Dumping data for table `PromoCard`</span>
-<span class="c1">--</span>
+--
+-- Dumping data for table `PromoCard`
+--
 
-<span class="k">LOCK</span> <span class="n">TABLES</span> <span class="o">`</span><span class="n">PromoCard</span><span class="o">`</span> <span class="k">WRITE</span><span class="p">;</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">`</span><span class="n">PromoCard</span><span class="o">`</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;PC001&#39;</span><span class="p">,</span><span class="s1">&#39;2018-04-03&#39;</span><span class="p">,</span><span class="s1">&#39;PCT01&#39;</span><span class="p">),(</span><span class="s1">&#39;PC002&#39;</span><span class="p">,</span><span class="s1">&#39;2017-04-30&#39;</span><span class="p">,</span><span class="s1">&#39;PCT02&#39;</span><span class="p">),(</span><span class="s1">&#39;PC003&#39;</span><span class="p">,</span><span class="s1">&#39;2017-08-09&#39;</span><span class="p">,</span><span class="s1">&#39;PCT03&#39;</span><span class="p">),(</span><span class="s1">&#39;PC004&#39;</span><span class="p">,</span><span class="s1">&#39;2018-03-06&#39;</span><span class="p">,</span><span class="s1">&#39;PCT01&#39;</span><span class="p">);</span>
-<span class="n">UNLOCK</span> <span class="n">TABLES</span><span class="p">;</span>
+LOCK TABLES `PromoCard` WRITE;
+INSERT INTO `PromoCard` VALUES ('PC001','2018-04-03','PCT01'),('PC002','2017-04-30','PCT02'),('PC003','2017-08-09','PCT03'),('PC004','2018-03-06','PCT01');
+UNLOCK TABLES;
 
-<span class="c1">--</span>
-<span class="c1">-- Table structure for table `Customer`</span>
-<span class="c1">--</span>
+--
+-- Table structure for table `Customer`
+--
 
-<span class="k">DROP</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">Customer</span><span class="o">`</span><span class="p">;</span>
-<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">Customer</span><span class="o">`</span> <span class="p">(</span>
-  <span class="o">`</span><span class="n">customerId</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-  <span class="o">`</span><span class="n">cutomerName</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-  <span class="o">`</span><span class="n">promoCardId</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">customerId</span><span class="o">`</span><span class="p">),</span>
-  <span class="k">KEY</span> <span class="o">`</span><span class="n">promoCardIdFK_idx</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">promoCardId</span><span class="o">`</span><span class="p">),</span>
-  <span class="k">CONSTRAINT</span> <span class="o">`</span><span class="n">promoCardIdFK</span><span class="o">`</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">promoCardId</span><span class="o">`</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="o">`</span><span class="n">PromoCard</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">promoCardId</span><span class="o">`</span><span class="p">)</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">CASCADE</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">CASCADE</span>
-<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span><span class="p">;</span>
+DROP TABLE IF EXISTS `Customer`;
+CREATE TABLE `Customer` (
+  `customerId` varchar(45) NOT NULL,
+  `cutomerName` varchar(60) NOT NULL,
+  `promoCardId` varchar(40) NOT NULL,
+  PRIMARY KEY (`customerId`),
+  KEY `promoCardIdFK_idx` (`promoCardId`),
+  CONSTRAINT `promoCardIdFK` FOREIGN KEY (`promoCardId`) REFERENCES `PromoCard` (`promoCardId`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-<span class="c1">--</span>
-<span class="c1">-- Dumping data for table `Customer`</span>
-<span class="c1">--</span>
+--
+-- Dumping data for table `Customer`
+--
 
-<span class="k">LOCK</span> <span class="n">TABLES</span> <span class="o">`</span><span class="n">Customer</span><span class="o">`</span> <span class="k">WRITE</span><span class="p">;</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">`</span><span class="n">Customer</span><span class="o">`</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;C001&#39;</span><span class="p">,</span><span class="s1">&#39;John Doy&#39;</span><span class="p">,</span><span class="s1">&#39;PC001&#39;</span><span class="p">),(</span><span class="s1">&#39;C002&#39;</span><span class="p">,</span><span class="s1">&#39;Micheal Dawson&#39;</span><span class="p">,</span><span class="s1">&#39;PC002&#39;</span><span class="p">),(</span><span class="s1">&#39;C003&#39;</span><span class="p">,</span><span class="s1">&#39;Neil Clain&#39;</span><span class="p">,</span><span class="s1">&#39;PC003&#39;</span><span class="p">),(</span><span class="s1">&#39;C004&#39;</span><span class="p">,</span><span class="s1">&#39;Anne Cath&#39;</span><span class="p">,</span><span class="s1">&#39;PC004&#39;</span><span class="p">);</span>
-<span class="n">UNLOCK</span> <span class="n">TABLES</span><span class="p">;</span>
+LOCK TABLES `Customer` WRITE;
+INSERT INTO `Customer` VALUES ('C001','John Doy','PC001'),('C002','Micheal Dawson','PC002'),('C003','Neil Clain','PC003'),('C004','Anne Cath','PC004');
+UNLOCK TABLES;
 
-<span class="c1">--</span>
-<span class="c1">-- Table structure for table `PromoRule`</span>
-<span class="c1">--</span>
+--
+-- Table structure for table `PromoRule`
+--
 
-<span class="k">DROP</span> <span class="k">TABLE</span> <span class="k">IF</span> <span class="k">EXISTS</span> <span class="o">`</span><span class="n">PromoRule</span><span class="o">`</span><span class="p">;</span>
-<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">PromoRule</span><span class="o">`</span> <span class="p">(</span>
-  <span class="o">`</span><span class="n">promoRuleId</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">40</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-  <span class="o">`</span><span class="n">promoCardTypeId</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">45</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-  <span class="o">`</span><span class="n">promoRule</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
-  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">promoRuleId</span><span class="o">`</span><span class="p">),</span>
-  <span class="k">KEY</span> <span class="o">`</span><span class="n">cardId_idx</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">promoCardTypeId</span><span class="o">`</span><span class="p">),</span>
-  <span class="k">CONSTRAINT</span> <span class="o">`</span><span class="n">promoCardTypeIdFK</span><span class="o">`</span> <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">promoCardTypeId</span><span class="o">`</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="o">`</span><span class="n">PromoCardType</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">promoCardTypeId</span><span class="o">`</span><span class="p">)</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">NO</span> <span class="n">ACTION</span> <span class="k">ON</span> <span class="k">UPDATE</span> <span class="k">NO</span> <span class="n">ACTION</span>
-<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span><span class="p">;</span>
+DROP TABLE IF EXISTS `PromoRule`;
+CREATE TABLE `PromoRule` (
+  `promoRuleId` varchar(40) NOT NULL,
+  `promoCardTypeId` varchar(45) NOT NULL,
+  `promoRule` varchar(200) NOT NULL,
+  PRIMARY KEY (`promoRuleId`),
+  KEY `cardId_idx` (`promoCardTypeId`),
+  CONSTRAINT `promoCardTypeIdFK` FOREIGN KEY (`promoCardTypeId`) REFERENCES `PromoCardType` (`promoCardTypeId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-<span class="c1">--</span>
-<span class="c1">-- Dumping data for table `PromoRule`</span>
-<span class="c1">--</span>
+--
+-- Dumping data for table `PromoRule`
+--
 
-<span class="k">LOCK</span> <span class="n">TABLES</span> <span class="o">`</span><span class="n">PromoRule</span><span class="o">`</span> <span class="k">WRITE</span><span class="p">;</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">`</span><span class="n">PromoRule</span><span class="o">`</span> <span class="k">VALUES</span> <span class="p">(</span><span class="s1">&#39;RULE001&#39;</span><span class="p">,</span><span class="s1">&#39;PCT01&#39;</span><span class="p">,</span><span class="s1">&#39;{{amount}} &gt; 10000 &amp;&amp; {{amount}} &lt; 50000&#39;</span><span class="p">),(</span><span class="s1">&#39;RULE002&#39;</span><span class="p">,</span><span class="s1">&#39;PCT01&#39;</span><span class="p">,</span><span class="s1">&#39;{{cardPeriod}} &gt; 200&#39;</span><span class="p">);</span>
-<span class="n">UNLOCK</span> <span class="n">TABLES</span><span class="p">;</span>
-</pre></div>
-</td></tr></table>
+LOCK TABLES `PromoRule` WRITE;
+INSERT INTO `PromoRule` VALUES ('RULE001','PCT01','{{amount}} &gt; 10000 &amp;&amp; {{amount}} &lt; 50000'),('RULE002','PCT01','{{cardPeriod}} &gt; 200');
+UNLOCK TABLES;
+</code></pre>
 
 <p>The above Siddhi app will start an HTTP service in 8088 port. Therefore, you can send a request to that service using the following CURL command.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>curl -X POST <span class="se">\</span>
-  http://0.0.0.0:8088/comboSuperMart/promo <span class="se">\</span>
-  -H <span class="s1">&#39;Accept: */*&#39;</span> <span class="se">\</span>
-  -H <span class="s1">&#39;Content-Type: application/json&#39;</span> <span class="se">\</span>
-  -H <span class="s1">&#39;Host: 0.0.0.0:8088&#39;</span> <span class="se">\</span>
-  -d <span class="s1">&#39;{</span>
-<span class="s1">  &quot;event&quot;: {</span>
-<span class="s1">    &quot;promoCardId&quot;: &quot;PC001&quot;,</span>
-<span class="s1">    &quot;amount&quot;: 10000</span>
-<span class="s1">  }</span>
-<span class="s1">}&#39;</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">curl -X POST \
+  http://0.0.0.0:8088/comboSuperMart/promo \
+  -H 'Accept: */*' \
+  -H 'Content-Type: application/json' \
+  -H 'Host: 0.0.0.0:8088' \
+  -d '{
+  "event": {
+    "promoCardId": "PC001",
+    "amount": 10000
+  }
+}'</code></pre>
 
 <p>This request will response back the following JSON.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;messageId&quot;</span><span class="p">:</span> <span class="s2">&quot;8f38faea-9dbd-4387-b807-b9f170db20dd&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;discountAmount&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
-        <span class="nt">&quot;discountApplied&quot;</span><span class="p">:</span> <span class="kc">false</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-json linenums">{
+    "event": {
+        "messageId": "8f38faea-9dbd-4387-b807-b9f170db20dd",
+        "discountAmount": 0.0,
+        "discountApplied": false
+    }
+}</code></pre>
 
 <h2 id="deployment">Deployment<a class="headerlink" href="#deployment" title="Permanent link">&para;</a></h2>
 <h3 id="deploy-on-vm-bare-metal">Deploy on VM/ Bare Metal<a class="headerlink" href="#deploy-on-vm-bare-metal" title="Permanent link">&para;</a></h3>
@@ -2027,39 +1807,22 @@
 <li>Download the <a href="https://siddhi.io/en/v5.1/download/">Siddhi runner distribution pack from here</a> and unzip it.</li>
 <li>
 <p>Add following YAML block to the <code>&lt;RUNNER_HOME&gt;/conf/runner/deployment.yaml</code>.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">COMBO_SUPERMART_DB</span>
-  <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">The datasource used for lending process of the Combo supermarket</span>
-  <span class="nt">jndiConfig</span><span class="p">:</span>
-    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jdbc/ComboSuperMart</span>
-  <span class="nt">definition</span><span class="p">:</span>
-    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">RDBMS</span>
-    <span class="nt">configuration</span><span class="p">:</span>
-      <span class="nt">jdbcUrl</span><span class="p">:</span> <span class="s">&#39;jdbc:mysql://127.0.0.1:3306/ComboSuperMart&#39;</span>
-      <span class="nt">username</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi_user</span>
-      <span class="nt">password</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhiio</span>
-      <span class="nt">driverClassName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">com.mysql.jdbc.Driver</span>
-      <span class="nt">maxPoolSize</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
-      <span class="nt">idleTimeout</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">60000</span>
-      <span class="nt">connectionTestQuery</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SELECT 1</span>
-      <span class="nt">validationTimeout</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">30000</span>
-      <span class="nt">isAutoCommit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-yaml linenums">- name: COMBO_SUPERMART_DB
+  description: The datasource used for lending process of the Combo supermarket
+  jndiConfig:
+    name: jdbc/ComboSuperMart
+  definition:
+    type: RDBMS
+    configuration:
+      jdbcUrl: 'jdbc:mysql://127.0.0.1:3306/ComboSuperMart'
+      username: siddhi_user
+      password: siddhiio
+      driverClassName: com.mysql.jdbc.Driver
+      maxPoolSize: 10
+      idleTimeout: 60000
+      connectionTestQuery: SELECT 1
+      validationTimeout: 30000
+      isAutoCommit: false</code></pre>
 
 </li>
 <li>
@@ -2073,46 +1836,26 @@
 </li>
 </ol>
 <p>Execute the following CURL command.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>curl -X POST <span class="se">\</span>
-  http://0.0.0.0:8088/comboSuperMart/promo <span class="se">\</span>
-  -H <span class="s1">&#39;Accept: */*&#39;</span> <span class="se">\</span>
-  -H <span class="s1">&#39;Content-Type: application/json&#39;</span> <span class="se">\</span>
-  -H <span class="s1">&#39;Host: 0.0.0.0:8088&#39;</span> <span class="se">\</span>
-  -d <span class="s1">&#39;{</span>
-<span class="s1">  &quot;event&quot;: {</span>
-<span class="s1">    &quot;promoCardId&quot;: &quot;PC001&quot;,</span>
-<span class="s1">    &quot;amount&quot;: 10000</span>
-<span class="s1">  }</span>
-<span class="s1">}&#39;</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">curl -X POST \
+  http://0.0.0.0:8088/comboSuperMart/promo \
+  -H 'Accept: */*' \
+  -H 'Content-Type: application/json' \
+  -H 'Host: 0.0.0.0:8088' \
+  -d '{
+  "event": {
+    "promoCardId": "PC001",
+    "amount": 10000
+  }
+}'</code></pre>
 
 <p>It will results the following JSON.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;messageId&quot;</span><span class="p">:</span> <span class="s2">&quot;8f38faea-9dbd-4387-b807-b9f170db20dd&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;discountAmount&quot;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
-        <span class="nt">&quot;discountApplied&quot;</span><span class="p">:</span> <span class="kc">false</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-json linenums">{
+    "event": {
+        "messageId": "8f38faea-9dbd-4387-b807-b9f170db20dd",
+        "discountAmount": 0.0,
+        "discountApplied": false
+    }
+}</code></pre>
 
 <h3 id="deploy-on-docker">Deploy on Docker<a class="headerlink" href="#deploy-on-docker" title="Permanent link">&para;</a></h3>
 <h4 id="prerequisite">Prerequisite<a class="headerlink" href="#prerequisite" title="Permanent link">&para;</a></h4>
@@ -2123,140 +1866,75 @@
 <p class="admonition-title">Database URL for Docker</p>
 <p>When you changing the <code>deployment.yaml</code> configuration of the data source in the Docker export process, you have to specify this URL in the configuration as below.</p>
 </div>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>   <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">COMBO_SUPERMART_DB</span>
-     <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">The datasource used for lending process of the Combo supermarket</span>
-     <span class="nt">jndiConfig</span><span class="p">:</span>
-       <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jdbc/ComboSuperMart</span>
-     <span class="nt">definition</span><span class="p">:</span>
-       <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">RDBMS</span>
-       <span class="nt">configuration</span><span class="p">:</span>
-         <span class="nt">jdbcUrl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jdbc:mysql://mysqldb:3306/ComboSuperMart</span>
-         <span class="nt">username</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi_user</span>
-         <span class="nt">password</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhiio</span>
-         <span class="nt">driverClassName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">com.mysql.jdbc.Driver</span>
-         <span class="nt">maxPoolSize</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
-         <span class="nt">idleTimeout</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">60000</span>
-         <span class="nt">connectionTestQuery</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SELECT 1</span>
-         <span class="nt">validationTimeout</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">30000</span>
-         <span class="nt">isAutoCommit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-yaml linenums">   - name: COMBO_SUPERMART_DB
+     description: The datasource used for lending process of the Combo supermarket
+     jndiConfig:
+       name: jdbc/ComboSuperMart
+     definition:
+       type: RDBMS
+       configuration:
+         jdbcUrl: jdbc:mysql://mysqldb:3306/ComboSuperMart
+         username: siddhi_user
+         password: siddhiio
+         driverClassName: com.mysql.jdbc.Driver
+         maxPoolSize: 10
+         idleTimeout: 60000
+         connectionTestQuery: SELECT 1
+         validationTimeout: 30000
+         isAutoCommit: false</code></pre>
 
 <p>The extracted zip file will be looks like follows.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>├── Dockerfile
+<pre class="codehilite"><code class="language-sh linenums">├── Dockerfile
 ├── configurations.yaml
 ├── jars
 │   └── mysql-connector.jar
 └── siddhi-files
-    └── ComboSuperMartPromoProcess.siddhi
-</pre></div>
-</td></tr></table>
+    └── ComboSuperMartPromoProcess.siddhi</code></pre>
 
 <p>You also need to set up a MySQL docker container and connect it into the Siddhi docker runtime. You can do it very easily from writing a docker composer file like below. Now you need to have a Docker compose file like below to set up all the prerequisites. This compose file contains volume mounts to change configurations of the MySQL container.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">&quot;3&quot;</span>
-<span class="nt">services</span><span class="p">:</span>
-    <span class="nt">backend</span><span class="p">:</span>
-        <span class="nt">container_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">combosupermart-promo</span>
-        <span class="nt">user</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">802:802</span>
-        <span class="nt">build</span><span class="p">:</span>
-          <span class="nt">context</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">.</span>
-          <span class="nt">dockerfile</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./Dockerfile</span>
-        <span class="nt">ports</span><span class="p">:</span>
-            <span class="p p-Indicator">-</span> <span class="s">&quot;8088:8088&quot;</span>
-        <span class="nt">links</span><span class="p">:</span>
-            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">mysqldb</span>
-        <span class="nt">networks</span><span class="p">:</span>
-            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">default</span>
-        <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">on-failure</span>
+<pre class="codehilite"><code class="language-yaml linenums">version: "3"
+services:
+    backend:
+        container_name: combosupermart-promo
+        user: 802:802
+        build:
+          context: .
+          dockerfile: ./Dockerfile
+        ports:
+            - "8088:8088"
+        links:
+            - mysqldb
+        networks:
+            - default
+        restart: on-failure
 
-    <span class="nt">mysqldb</span><span class="p">:</span>
-        <span class="nt">image</span><span class="p">:</span> <span class="s">&#39;mysql:5.7&#39;</span>
-        <span class="nt">container_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">combosupermart-db</span>
-        <span class="nt">environment</span><span class="p">:</span>
-            <span class="nt">MYSQL_USER</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi_user</span>
-            <span class="nt">MYSQL_PASSWORD</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhiio</span>
-            <span class="nt">MYSQL_ROOT_PASSWORD</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhiio</span>
-        <span class="nt">ports</span><span class="p">:</span>
-            <span class="p p-Indicator">-</span> <span class="s">&quot;3304:3306&quot;</span>
-        <span class="nt">networks</span><span class="p">:</span>
-            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">default</span>
-        <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">on-failure</span>
-</pre></div>
-</td></tr></table>
+    mysqldb:
+        image: 'mysql:5.7'
+        container_name: combosupermart-db
+        environment:
+            MYSQL_USER: siddhi_user
+            MYSQL_PASSWORD: siddhiio
+            MYSQL_ROOT_PASSWORD: siddhiio
+        ports:
+            - "3304:3306"
+        networks:
+            - default
+        restart: on-failure</code></pre>
 
 <p>Save this file as <code>docker-compose.yaml</code> to the root directory of the extracted zip file. And the extracted zip file directory now looks like below:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>├── Dockerfile
+<pre class="codehilite"><code class="language-sh linenums">├── Dockerfile
 ├── configurations.yaml
 ├── docker-compose.yaml
 ├── jars
 │   └── mysql-connector.jar
 └── siddhi-files
-    └── ComboSuperMartPromoProcess.siddhi
-</pre></div>
-</td></tr></table>
+    └── ComboSuperMartPromoProcess.siddhi</code></pre>
 
 <p>Now, you have to build the docker composer.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ docker-compose build
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">$ docker-compose build</code></pre>
 
 <p>Now you have to start the MySQL container. And then set up your MySQL database as described <a href="#testing">above</a>.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ docker-compose up -d mysqldb
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">$ docker-compose up -d mysqldb</code></pre>
 
 <p>Now you can connect to the MySQL server using the following configurations.</p>
 <ol>
@@ -2268,51 +1946,29 @@
 <li>Custom user password: siddhiio</li>
 </ol>
 <p>Then you can create the database schema in that MySQL container. After that, you can start the Siddhi runtime using the following command.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ docker-compose up -d backend
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">$ docker-compose up -d backend</code></pre>
 
 <p>To check the deployments up and running, send the following CURL request.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>curl -X POST <span class="se">\</span>
-  http://0.0.0.0:8088/comboSuperMart/promo <span class="se">\</span>
-  -H <span class="s1">&#39;Accept: */*&#39;</span> <span class="se">\</span>
-  -H <span class="s1">&#39;Content-Type: application/json&#39;</span> <span class="se">\</span>
-  -H <span class="s1">&#39;Host: 0.0.0.0:8088&#39;</span> <span class="se">\</span>
-  -d <span class="s1">&#39;{</span>
-<span class="s1">  &quot;event&quot;: {</span>
-<span class="s1">    &quot;promoCardId&quot;: &quot;PC001&quot;,</span>
-<span class="s1">    &quot;amount&quot;: 20000</span>
-<span class="s1">  }</span>
-<span class="s1">}&#39;</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">curl -X POST \
+  http://0.0.0.0:8088/comboSuperMart/promo \
+  -H 'Accept: */*' \
+  -H 'Content-Type: application/json' \
+  -H 'Host: 0.0.0.0:8088' \
+  -d '{
+  "event": {
+    "promoCardId": "PC001",
+    "amount": 20000
+  }
+}'</code></pre>
 
 <p>It will results the following JSON.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;messageId&quot;</span><span class="p">:</span> <span class="s2">&quot;285703c1-866a-4a88-8e1f-e75543e18373&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;discountAmount&quot;</span><span class="p">:</span> <span class="mf">15.0</span><span class="p">,</span>
-        <span class="nt">&quot;discountApplied&quot;</span><span class="p">:</span> <span class="kc">true</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-json linenums">{
+    "event": {
+        "messageId": "285703c1-866a-4a88-8e1f-e75543e18373",
+        "discountAmount": 15.0,
+        "discountApplied": true
+    }
+}</code></pre>
 
 <h3 id="deploy-on-kubernetes">Deploy on Kubernetes<a class="headerlink" href="#deploy-on-kubernetes" title="Permanent link">&para;</a></h3>
 <h4 id="prerequisites_1">Prerequisites<a class="headerlink" href="#prerequisites_1" title="Permanent link">&para;</a></h4>
@@ -2327,430 +1983,223 @@
 </ol>
 <h4 id="siddhi-kubernetes-configurations">Siddhi Kubernetes Configurations<a class="headerlink" href="#siddhi-kubernetes-configurations" title="Permanent link">&para;</a></h4>
 <p>In the tooling editor itself, you can export your Siddhi app into a runnable Kubernetes artifact. You can go to <code>Export-&gt;For Kubernetes</code> and it will give to a zip file that contained the following files.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>├── Dockerfile
+<pre class="codehilite"><code class="language-sh linenums">├── Dockerfile
 ├── configurations.yaml
 ├── jars
 │   └── mysql-connector.jar
 ├── siddhi-files
 │   └── ComboSuperMartPromoProcess.siddhi.siddhi
-└── siddhi-process.yaml
-</pre></div>
-</td></tr></table>
+└── siddhi-process.yaml</code></pre>
 
 <p>First, you need to install the Siddhi Kubernetes operator using following commands. For more details about the Siddhi operator refer to <a href="https://siddhi.io/en/v5.1/docs/siddhi-as-a-kubernetes-microservice/#install-siddhi-operator">this documentation</a>.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/00-prereqs.yaml
-$ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/01-siddhi-operator.yaml
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">$ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/00-prereqs.yaml
+$ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/01-siddhi-operator.yaml</code></pre>
 
 <p>Now you have to set up MySQL in your Kubernetes cluster. To do that use the following helm command.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ helm install --name mysql-db --set <span class="nv">mysqlRootPassword</span><span class="o">=</span>siddhiio,mysqlUser<span class="o">=</span>siddhi_user,mysqlPassword<span class="o">=</span>siddhiio,mysqlDatabase<span class="o">=</span>ComboSuperMart stable/mysql
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">$ helm install --name mysql-db --set mysqlRootPassword=siddhiio,mysqlUser=siddhi_user,mysqlPassword=siddhiio,mysqlDatabase=ComboSuperMart stable/mysql</code></pre>
 
 <p>Then, you can set a port forwarding to the MySQL service which allows you to connect from the Host</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ kubectl port-forward svc/mysql-db <span class="m">3307</span>:3306
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">$ kubectl port-forward svc/mysql-db 3307:3306</code></pre>
 
 <p>Now you can access the MySQL cluster externally. Accessing MySQL cluster externally you can create ComboSuperMart database and the database schema. Using jdbc:mysql://mysql-db:3306/ComboSuperMart URL you can access the database.</p>
 <div class="admonition note">
 <p class="admonition-title">Database URL for Kubernetes</p>
 <p>When you changing the <code>deployment.yaml</code> configuration of the data source in the Kubernetes export process, you have to specify this URL in the configuration as below.</p>
 </div>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>   <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">COMBO_SUPERMART_DB</span>
-     <span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">The datasource used for lending process of the Combo supermarket</span>
-     <span class="nt">jndiConfig</span><span class="p">:</span>
-       <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jdbc/ComboSuperMart</span>
-     <span class="nt">definition</span><span class="p">:</span>
-       <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">RDBMS</span>
-       <span class="nt">configuration</span><span class="p">:</span>
-         <span class="nt">jdbcUrl</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jdbc:mysql://mysql-db:3306/ComboSuperMart</span>
-         <span class="nt">username</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi_user</span>
-         <span class="nt">password</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhiio</span>
-         <span class="nt">driverClassName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">com.mysql.jdbc.Driver</span>
-         <span class="nt">maxPoolSize</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">10</span>
-         <span class="nt">idleTimeout</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">60000</span>
-         <span class="nt">connectionTestQuery</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SELECT 1</span>
-         <span class="nt">validationTimeout</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">30000</span>
-         <span class="nt">isAutoCommit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-yaml linenums">   - name: COMBO_SUPERMART_DB
+     description: The datasource used for lending process of the Combo supermarket
+     jndiConfig:
+       name: jdbc/ComboSuperMart
+     definition:
+       type: RDBMS
+       configuration:
+         jdbcUrl: jdbc:mysql://mysql-db:3306/ComboSuperMart
+         username: siddhi_user
+         password: siddhiio
+         driverClassName: com.mysql.jdbc.Driver
+         maxPoolSize: 10
+         idleTimeout: 60000
+         connectionTestQuery: SELECT 1
+         validationTimeout: 30000
+         isAutoCommit: false</code></pre>
 
 <p>Siddhi operator will automatically set up the external access to any HTTP service in a Siddhi app. To set up that external access Siddhi operator by default uses ingress NGINX. Set up the NGINX controller in your Kubernetes cluster as described in <a href="https://kubernetes.github.io/ingress-nginx/deploy/">this document</a>.</p>
 <p>Now you need to create your own docker image with including all the custom libraries and configuration changes that you have made. Use following command to build and push the docker image with the tag <code>&lt;DOCKER_HUB_USER_NAME&gt;/siddhi-runner-alpine:latest</code>.</p>
-<p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ docker build -t &lt;DOCKER_HUB_USER_NAME&gt;/siddhi-runner-alpine:latest .
-$ docker push &lt;DOCKER_HUB_USER_NAME&gt;/siddhi-runner-alpine:latest
-</pre></div>
-</td></tr></table>
+<p><pre class="codehilite"><code class="language-sh linenums">$ docker build -t &lt;DOCKER_HUB_USER_NAME&gt;/siddhi-runner-alpine:latest .
+$ docker push &lt;DOCKER_HUB_USER_NAME&gt;/siddhi-runner-alpine:latest</code></pre>
 After the Kubernetes export now you already have this <code>siddhi-process.yaml</code> file.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>  1
-  2
-  3
-  4
-  5
-  6
-  7
-  8
-  9
- 10
- 11
- 12
- 13
- 14
- 15
- 16
- 17
- 18
- 19
- 20
- 21
- 22
- 23
- 24
- 25
- 26
- 27
- 28
- 29
- 30
- 31
- 32
- 33
- 34
- 35
- 36
- 37
- 38
- 39
- 40
- 41
- 42
- 43
- 44
- 45
- 46
- 47
- 48
- 49
- 50
- 51
- 52
- 53
- 54
- 55
- 56
- 57
- 58
- 59
- 60
- 61
- 62
- 63
- 64
- 65
- 66
- 67
- 68
- 69
- 70
- 71
- 72
- 73
- 74
- 75
- 76
- 77
- 78
- 79
- 80
- 81
- 82
- 83
- 84
- 85
- 86
- 87
- 88
- 89
- 90
- 91
- 92
- 93
- 94
- 95
- 96
- 97
- 98
- 99
-100
-101
-102
-103
-104
-105
-106
-107
-108
-109
-110
-111
-112
-113
-114
-115
-116
-117
-118
-119
-120
-121
-122
-123
-124
-125
-126
-127
-128
-129
-130
-131
-132
-133
-134
-135
-136
-137
-138
-139
-140
-141
-142
-143
-144
-145
-146
-147
-148
-149
-150
-151
-152
-153
-154
-155
-156
-157
-158
-159
-160
-161
-162
-163
-164
-165
-166
-167
-168
-169</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi.io/v1alpha2</span>
-<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SiddhiProcess</span>
-<span class="nt">metadata</span><span class="p">:</span>
-  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">combo-super-mart</span>
+<pre class="codehilite"><code class="language-yaml linenums">apiVersion: siddhi.io/v1alpha2
+kind: SiddhiProcess
+metadata:
+  name: combo-super-mart
 
-<span class="nt">spec</span><span class="p">:</span>
-  <span class="nt">apps</span><span class="p">:</span>
-  <span class="p p-Indicator">-</span> <span class="nt">script</span><span class="p">:</span> <span class="p p-Indicator">|</span>
-      <span class="no">@App:name(&quot;ComboSuperMartPromoProcess&quot;)</span>
-      <span class="no">@App:description(&quot;The promotion selection process of Combo super mart.&quot;)</span>
+spec:
+  apps:
+  - script: |
+      @App:name("ComboSuperMartPromoProcess")
+      @App:description("The promotion selection process of Combo super mart.")
 
 
-      <span class="no">/*</span>
-      <span class="no">Purpose:</span>
-          <span class="no">The combo supermart has multiple promotion card that given to their loyal users. For a particular season combo supermart plan to give discounts for each card. These discounts will change according to the card type and several rules. So, combo supermart needed an automatic system to retrieve the discounts for a given card. To do that we implement this Siddhi app which interacts with a MySQL database and executes their functionalities. All card details and rules were stored in a MySQL database. All the rules for a particular card were in the templated format. Therefore all rules executed dynamically and give the final result.</span>
+      /*
+      Purpose:
+          The combo supermart has multiple promotion card that given to their loyal users. For a particular season combo supermart plan to give discounts for each card. These discounts will change according to the card type and several rules. So, combo supermart needed an automatic system to retrieve the discounts for a given card. To do that we implement this Siddhi app which interacts with a MySQL database and executes their functionalities. All card details and rules were stored in a MySQL database. All the rules for a particular card were in the templated format. Therefore all rules executed dynamically and give the final result.
 
-      <span class="no">Input:</span>
-              <span class="no">HTTP POST with JSON payload {</span>
-              <span class="no">&quot;event&quot;: {</span>
-                  <span class="no">&quot;promoCardId&quot;: &quot;PC001&quot;,</span>
-                  <span class="no">&quot;amount&quot;: 20000</span>
-                <span class="no">}</span>
-              <span class="no">}</span>
+      Input:
+              HTTP POST with JSON payload {
+              "event": {
+                  "promoCardId": "PC001",
+                  "amount": 20000
+                }
+              }
 
-      <span class="no">Output:</span>
-          <span class="no">{</span>
-          <span class="no">&quot;event&quot;: {</span>
-              <span class="no">&quot;messageId&quot;: &quot;1817d06b-22ae-438e-990d-42fedcb50607&quot;,</span>
-              <span class="no">&quot;discountAmount&quot;: 15.0,</span>
-              <span class="no">&quot;discountApplied&quot;: true</span>
-          <span class="no">}</span>
-      <span class="no">}</span>
+      Output:
+          {
+          "event": {
+              "messageId": "1817d06b-22ae-438e-990d-42fedcb50607",
+              "discountAmount": 15.0,
+              "discountApplied": true
+          }
+      }
 
-      <span class="no">*/</span>
-      <span class="no">-- HTTP source</span>
-      <span class="no">@source(</span>
-          <span class="no">type=&#39;http-service&#39;,</span>
-          <span class="no">source.id=&#39;adder&#39;,</span>
-          <span class="no">receiver.url=&#39;http://0.0.0.0:8088/comboSuperMart/promo&#39;,</span>
-          <span class="no">basic.auth.enabled=&#39;&#39;,</span>
-          <span class="no">@map(type=&#39;json&#39;, @attributes(messageId=&#39;trp:messageId&#39;, promoCardId=&#39;$.event.promoCardId&#39;, amount=&#39;$.event.amount&#39;))</span>
-      <span class="no">)</span>
-      <span class="no">define stream InputTransactionStream(messageId string, promoCardId string, amount long);</span>
+      */
+      -- HTTP source
+      @source(
+          type='http-service',
+          source.id='adder',
+          receiver.url='http://0.0.0.0:8088/comboSuperMart/promo',
+          basic.auth.enabled='',
+          @map(type='json', @attributes(messageId='trp:messageId', promoCardId='$.event.promoCardId', amount='$.event.amount'))
+      )
+      define stream InputTransactionStream(messageId string, promoCardId string, amount long);
 
-      <span class="no">-- RDBMS data stores</span>
-      <span class="no">@Store(type=&quot;rdbms&quot;, datasource=&quot;COMBO_SUPERMART_DB&quot;)</span>
-      <span class="no">define table Customer(customerId string, promoCardId string);</span>
-      <span class="no">@Store(type=&quot;rdbms&quot;, datasource=&quot;COMBO_SUPERMART_DB&quot;)</span>
-      <span class="no">define table PromoCard(promoCardId string, promoCardTypeId string, promoCardIssueDate string);</span>
-      <span class="no">@Store(type=&quot;rdbms&quot;, datasource=&quot;COMBO_SUPERMART_DB&quot;)</span>
-      <span class="no">define table PromoRule(promoRuleId string, promoCardTypeId string, promoRule string);</span>
-      <span class="no">@Store(type=&quot;rdbms&quot;, datasource=&quot;COMBO_SUPERMART_DB&quot;)</span>
-      <span class="no">define table PromoCardType(promoCardTypeId string, promoCardTypeDiscount double);</span>
+      -- RDBMS data stores
+      @Store(type="rdbms", datasource="COMBO_SUPERMART_DB")
+      define table Customer(customerId string, promoCardId string);
+      @Store(type="rdbms", datasource="COMBO_SUPERMART_DB")
+      define table PromoCard(promoCardId string, promoCardTypeId string, promoCardIssueDate string);
+      @Store(type="rdbms", datasource="COMBO_SUPERMART_DB")
+      define table PromoRule(promoRuleId string, promoCardTypeId string, promoRule string);
+      @Store(type="rdbms", datasource="COMBO_SUPERMART_DB")
+      define table PromoCardType(promoCardTypeId string, promoCardTypeDiscount double);
 
-      <span class="no">-- Output stream</span>
-      <span class="no">@sink(type=&#39;http-service-response&#39;, source.id=&#39;adder&#39;,</span>
-            <span class="no">message.id=&#39;{{messageId}}&#39;, @map(type = &#39;json&#39;))</span>
-      <span class="no">define stream ResultStream (messageId string, discountAmount double, discountApplied bool);</span>
+      -- Output stream
+      @sink(type='http-service-response', source.id='adder',
+            message.id='{{messageId}}', @map(type = 'json'))
+      define stream ResultStream (messageId string, discountAmount double, discountApplied bool);
 
-      <span class="no">-- Find and execute rules</span>
-      <span class="no">@info(name=&#39;get-promocard-type&#39;)</span>
-      <span class="no">from InputTransactionStream#window.length(1) join PromoCard on InputTransactionStream.promoCardId==PromoCard.promoCardId</span>
-      <span class="no">select InputTransactionStream.messageId, InputTransactionStream.promoCardId, PromoCard.promoCardTypeId, PromoCard.promoCardIssueDate, InputTransactionStream.amount</span>
-      <span class="no">insert into GetPromoCardTypeStream;</span>
+      -- Find and execute rules
+      @info(name='get-promocard-type')
+      from InputTransactionStream#window.length(1) join PromoCard on InputTransactionStream.promoCardId==PromoCard.promoCardId
+      select InputTransactionStream.messageId, InputTransactionStream.promoCardId, PromoCard.promoCardTypeId, PromoCard.promoCardIssueDate, InputTransactionStream.amount
+      insert into GetPromoCardTypeStream;
 
-      <span class="no">@info(name=&#39;get-promocard-type-details&#39;)</span>
-      <span class="no">from GetPromoCardTypeStream#window.length(1) join PromoCardType on GetPromoCardTypeStream.promoCardTypeId==PromoCardType.promoCardTypeId</span>
-      <span class="no">select GetPromoCardTypeStream.messageId, GetPromoCardTypeStream.promoCardId, GetPromoCardTypeStream.promoCardTypeId, GetPromoCardTypeStream.amount, PromoCardType.promoCardTypeDiscount, GetPromoCardTypeStream.promoCardIssueDate</span>
-      <span class="no">insert into GetPromoCardTypeDetailsStream;</span>
+      @info(name='get-promocard-type-details')
+      from GetPromoCardTypeStream#window.length(1) join PromoCardType on GetPromoCardTypeStream.promoCardTypeId==PromoCardType.promoCardTypeId
+      select GetPromoCardTypeStream.messageId, GetPromoCardTypeStream.promoCardId, GetPromoCardTypeStream.promoCardTypeId, GetPromoCardTypeStream.amount, PromoCardType.promoCardTypeDiscount, GetPromoCardTypeStream.promoCardIssueDate
+      insert into GetPromoCardTypeDetailsStream;
 
-      <span class="no">@info(name=&#39;get-promocard-rules&#39;)</span>
-      <span class="no">from GetPromoCardTypeDetailsStream#window.length(1) right outer join PromoRule on GetPromoCardTypeDetailsStream.promoCardTypeId==PromoRule.promoCardTypeId</span>
-      <span class="no">select GetPromoCardTypeDetailsStream.messageId, GetPromoCardTypeDetailsStream.promoCardId, GetPromoCardTypeDetailsStream.promoCardTypeId, GetPromoCardTypeDetailsStream.amount, GetPromoCardTypeDetailsStream.promoCardTypeDiscount, PromoRule.promoRuleId, PromoRule.promoRule, GetPromoCardTypeDetailsStream.promoCardIssueDate</span>
-      <span class="no">insert into RuleStream;</span>
+      @info(name='get-promocard-rules')
+      from GetPromoCardTypeDetailsStream#window.length(1) right outer join PromoRule on GetPromoCardTypeDetailsStream.promoCardTypeId==PromoRule.promoCardTypeId
+      select GetPromoCardTypeDetailsStream.messageId, GetPromoCardTypeDetailsStream.promoCardId, GetPromoCardTypeDetailsStream.promoCardTypeId, GetPromoCardTypeDetailsStream.amount, GetPromoCardTypeDetailsStream.promoCardTypeDiscount, PromoRule.promoRuleId, PromoRule.promoRule, GetPromoCardTypeDetailsStream.promoCardIssueDate
+      insert into RuleStream;
 
-      <span class="no">@info(name=&#39;execute-promocard-rules&#39;)</span>
-      <span class="no">from RuleStream#window.length(1)</span>
-      <span class="no">select RuleStream.messageId, RuleStream.promoCardTypeDiscount, js:eval(str:fillTemplate(RuleStream.promoRule, map:create(&quot;amount&quot;, RuleStream.amount, &quot;cardPeriod&quot;, time:dateDiff(time:currentDate(), RuleStream.promoCardIssueDate, &#39;yyyy-MM-dd&#39;, &#39;yyyy-MM-dd&#39;))), &#39;bool&#39;) as result</span>
-      <span class="no">insert into RuleReslutsStream;</span>
+      @info(name='execute-promocard-rules')
+      from RuleStream#window.length(1)
+      select RuleStream.messageId, RuleStream.promoCardTypeDiscount, js:eval(str:fillTemplate(RuleStream.promoRule, map:create("amount", RuleStream.amount, "cardPeriod", time:dateDiff(time:currentDate(), RuleStream.promoCardIssueDate, 'yyyy-MM-dd', 'yyyy-MM-dd'))), 'bool') as result
+      insert into RuleReslutsStream;
 
-      <span class="no">-- Output results</span>
-      <span class="no">@info(name=&#39;filter-true-rules&#39;)</span>
-      <span class="no">from RuleReslutsStream[result == true]#window.batch()</span>
-      <span class="no">select RuleReslutsStream.messageId, RuleReslutsStream.promoCardTypeDiscount, count(result) as result</span>
-      <span class="no">insert into TrueResultStream;</span>
+      -- Output results
+      @info(name='filter-true-rules')
+      from RuleReslutsStream[result == true]#window.batch()
+      select RuleReslutsStream.messageId, RuleReslutsStream.promoCardTypeDiscount, count(result) as result
+      insert into TrueResultStream;
 
-      <span class="no">@info(name=&#39;get-all-results&#39;)</span>
-      <span class="no">from RuleReslutsStream#window.batch()</span>
-      <span class="no">select RuleReslutsStream.messageId, RuleReslutsStream.promoCardTypeDiscount, count(result) as result</span>
-      <span class="no">insert into AllResultStream;</span>
+      @info(name='get-all-results')
+      from RuleReslutsStream#window.batch()
+      select RuleReslutsStream.messageId, RuleReslutsStream.promoCardTypeDiscount, count(result) as result
+      insert into AllResultStream;
 
-      <span class="no">@info(name=&#39;discout-reply-stream&#39;)</span>
-      <span class="no">from AllResultStream#window.length(1) unidirectional join  TrueResultStream#window.length(1) on TrueResultStream.result==AllResultStream.result</span>
-      <span class="no">select AllResultStream.messageId, AllResultStream.promoCardTypeDiscount as discountAmount, true as discountApplied</span>
-      <span class="no">insert into ResultStream;</span>
+      @info(name='discout-reply-stream')
+      from AllResultStream#window.length(1) unidirectional join  TrueResultStream#window.length(1) on TrueResultStream.result==AllResultStream.result
+      select AllResultStream.messageId, AllResultStream.promoCardTypeDiscount as discountAmount, true as discountApplied
+      insert into ResultStream;
 
-      <span class="no">@info(name=&#39;filter-true-rules-and-reply&#39;)</span>
-      <span class="no">from RuleReslutsStream[result == false]#window.batch()</span>
-      <span class="no">select RuleReslutsStream.messageId, 0.00 as discountAmount, false as discountApplied</span>
-      <span class="no">insert into ResultStream;</span>
-  <span class="nt">runner</span><span class="p">:</span> <span class="p p-Indicator">|</span>
-    <span class="no">wso2.carbon:</span>
-      <span class="no">id: siddhi-runner</span>
-      <span class="no">name: Siddhi Runner Distribution</span>
-      <span class="no">ports:</span>
-        <span class="no">offset: 0</span>
-    <span class="no">transports:</span>
-      <span class="no">http:</span>
-        <span class="no">listenerConfigurations:</span>
-        <span class="no">- id: default</span>
-          <span class="no">host: 0.0.0.0</span>
-          <span class="no">port: 9090</span>
-        <span class="no">- id: msf4j-https</span>
-          <span class="no">host: 0.0.0.0</span>
-          <span class="no">port: 9443</span>
-          <span class="no">scheme: https</span>
-          <span class="no">keyStoreFile: ${carbon.home}/resources/security/wso2carbon.jks</span>
-          <span class="no">keyStorePassword: wso2carbon</span>
-          <span class="no">certPass: wso2carbon</span>
-        <span class="no">transportProperties:</span>
-        <span class="no">- name: server.bootstrap.socket.timeout</span>
-          <span class="no">value: 60</span>
-        <span class="no">- name: client.bootstrap.socket.timeout</span>
-          <span class="no">value: 60</span>
-        <span class="no">- name: latency.metrics.enabled</span>
-          <span class="no">value: true</span>
-    <span class="no">dataSources:</span>
-    <span class="no">- name: WSO2_CARBON_DB</span>
-      <span class="no">description: The datasource used for registry and user manager</span>
-      <span class="no">definition:</span>
-        <span class="no">type: RDBMS</span>
-        <span class="no">configuration:</span>
-          <span class="no">jdbcUrl: jdbc:h2:${sys:carbon.home}/wso2/${sys:wso2.runtime}/database/WSO2_CARBON_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000</span>
-          <span class="no">username: wso2carbon</span>
-          <span class="no">password: wso2carbon</span>
-          <span class="no">driverClassName: org.h2.Driver</span>
-          <span class="no">maxPoolSize: 10</span>
-          <span class="no">idleTimeout: 60000</span>
-          <span class="no">connectionTestQuery: SELECT 1</span>
-          <span class="no">validationTimeout: 30000</span>
-          <span class="no">isAutoCommit: false</span>
-    <span class="no">- name: COMBO_SUPERMART_DB</span>
-      <span class="no">description: The datasource used for lending process of the Combo supermarket</span>
-      <span class="no">jndiConfig:</span>
-        <span class="no">name: jdbc/ComboSuperMart</span>
-      <span class="no">definition:</span>
-        <span class="no">type: RDBMS</span>
-        <span class="no">configuration:</span>
-          <span class="no">jdbcUrl: jdbc:mysql://mysql-db:3306/ComboSuperMart</span>
-          <span class="no">username: siddhi_user</span>
-          <span class="no">password: siddhiio</span>
-          <span class="no">driverClassName: com.mysql.jdbc.Driver</span>
-          <span class="no">maxPoolSize: 10</span>
-          <span class="no">idleTimeout: 60000</span>
-          <span class="no">connectionTestQuery: SELECT 1</span>
-          <span class="no">validationTimeout: 30000</span>
-          <span class="no">isAutoCommit: false</span>
+      @info(name='filter-true-rules-and-reply')
+      from RuleReslutsStream[result == false]#window.batch()
+      select RuleReslutsStream.messageId, 0.00 as discountAmount, false as discountApplied
+      insert into ResultStream;
+  runner: |
+    wso2.carbon:
+      id: siddhi-runner
+      name: Siddhi Runner Distribution
+      ports:
+        offset: 0
+    transports:
+      http:
+        listenerConfigurations:
+        - id: default
+          host: 0.0.0.0
+          port: 9090
+        - id: msf4j-https
+          host: 0.0.0.0
+          port: 9443
+          scheme: https
+          keyStoreFile: ${carbon.home}/resources/security/wso2carbon.jks
+          keyStorePassword: wso2carbon
+          certPass: wso2carbon
+        transportProperties:
+        - name: server.bootstrap.socket.timeout
+          value: 60
+        - name: client.bootstrap.socket.timeout
+          value: 60
+        - name: latency.metrics.enabled
+          value: true
+    dataSources:
+    - name: WSO2_CARBON_DB
+      description: The datasource used for registry and user manager
+      definition:
+        type: RDBMS
+        configuration:
+          jdbcUrl: jdbc:h2:${sys:carbon.home}/wso2/${sys:wso2.runtime}/database/WSO2_CARBON_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000
+          username: wso2carbon
+          password: wso2carbon
+          driverClassName: org.h2.Driver
+          maxPoolSize: 10
+          idleTimeout: 60000
+          connectionTestQuery: SELECT 1
+          validationTimeout: 30000
+          isAutoCommit: false
+    - name: COMBO_SUPERMART_DB
+      description: The datasource used for lending process of the Combo supermarket
+      jndiConfig:
+        name: jdbc/ComboSuperMart
+      definition:
+        type: RDBMS
+        configuration:
+          jdbcUrl: jdbc:mysql://mysql-db:3306/ComboSuperMart
+          username: siddhi_user
+          password: siddhiio
+          driverClassName: com.mysql.jdbc.Driver
+          maxPoolSize: 10
+          idleTimeout: 60000
+          connectionTestQuery: SELECT 1
+          validationTimeout: 30000
+          isAutoCommit: false
 
-  <span class="nt">persistentVolumeClaim</span><span class="p">:</span> 
-    <span class="nt">accessModes</span><span class="p">:</span> 
-      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span>
-    <span class="nt">resources</span><span class="p">:</span> 
-      <span class="nt">requests</span><span class="p">:</span> 
-        <span class="nt">storage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1Gi</span>
-    <span class="nt">storageClassName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">standard</span>
-    <span class="nt">volumeMode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Filesystem</span>
+  persistentVolumeClaim: 
+    accessModes: 
+      - ReadWriteOnce
+    resources: 
+      requests: 
+        storage: 1Gi
+    storageClassName: standard
+    volumeMode: Filesystem
 
-  <span class="nt">container</span><span class="p">:</span>
-    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;DOCKER_HUB_USER_NAME&gt;/siddhi-runner-alpine:latest</span>
-</pre></div>
-</td></tr></table>
+  container:
+    image: &lt;DOCKER_HUB_USER_NAME&gt;/siddhi-runner-alpine:latest</code></pre>
 
 <p>Now you can install the SiddhiProcess using following <code>kubectl</code> command. Before you install the <code>SiddhiProcess</code> you have to add the docker image tag in the <code>siddhi-process.yaml</code> file. You have to add the docker image name(<code>&lt;DOCKER_HUB_USER_NAME&gt;/siddhi-runner-alpine:latest</code>) in the YAML entry <code>spec.container.image</code>.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ kubectl apply -f siddhi-process.yaml
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">$ kubectl apply -f siddhi-process.yaml</code></pre>
 
 <p>The ingress created by Siddhi operator will use the hostname as siddhi. Therefore you have to update your <code>/etc/host</code> file with siddhi hostname along with the external IP of ingress.</p>
 <div class="admonition note">
@@ -2758,48 +2207,27 @@ After the Kubernetes export now you already have this <code>siddhi-process.yaml<
 <p>For minikube the ingress external IP is minikube IP and in docker, for Mac, the external IP is 0.0.0.0. For more details about Siddhi, ingress setup refer to <a href="https://siddhi.io/en/v5.1/docs/siddhi-as-a-kubernetes-microservice/">this documentation</a>.</p>
 </div>
 <p>Now you can send HTTP requests to deployed the Siddhi app in the Kubernetes cluster using following CURL command.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>curl -X POST <span class="se">\</span>
-  http://siddhi/combo-super-mart-0/8088/comboSuperMart/promo <span class="se">\</span>
-  -H <span class="s1">&#39;Accept: */*&#39;</span> <span class="se">\</span>
-  -H <span class="s1">&#39;Accept-Encoding: gzip, deflate&#39;</span> <span class="se">\</span>
-  -H <span class="s1">&#39;Content-Type: application/json&#39;</span> <span class="se">\</span>
-  -H <span class="s1">&#39;Host: siddhi&#39;</span> <span class="se">\</span>
-  -d <span class="s1">&#39;{</span>
-<span class="s1">  &quot;event&quot;: {</span>
-<span class="s1">    &quot;promoCardId&quot;: &quot;PC001&quot;,</span>
-<span class="s1">    &quot;amount&quot;: 20000</span>
-<span class="s1">  }</span>
-<span class="s1">}&#39;</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">curl -X POST \
+  http://siddhi/combo-super-mart-0/8088/comboSuperMart/promo \
+  -H 'Accept: */*' \
+  -H 'Accept-Encoding: gzip, deflate' \
+  -H 'Content-Type: application/json' \
+  -H 'Host: siddhi' \
+  -d '{
+  "event": {
+    "promoCardId": "PC001",
+    "amount": 20000
+  }
+}'</code></pre>
 
 <p>It will results the following JSON.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;event&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;messageId&quot;</span><span class="p">:</span> <span class="s2">&quot;285703c1-866a-4a88-8e1f-e75543e18374&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;discountAmount&quot;</span><span class="p">:</span> <span class="mf">15.0</span><span class="p">,</span>
-        <span class="nt">&quot;discountApplied&quot;</span><span class="p">:</span> <span class="kc">true</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-json linenums">{
+    "event": {
+        "messageId": "285703c1-866a-4a88-8e1f-e75543e18374",
+        "discountAmount": 15.0,
+        "discountApplied": true
+    }
+}</code></pre>
                 
                   
                 
@@ -2895,6 +2323,8 @@ After the Kubernetes export now you already have this <code>siddhi-process.yaml<
       <script>app.initialize({version:"1.0.4",url:{base:"../../../.."}})</script>
       
         <script src="../../../../assets/lib/highlightjs/highlight.min.js"></script>
+      
+        <script src="../../../../assets/js/jquery-3.3.1.min.js"></script>
       
         <script src="../../../../assets/js/theme.js"></script>
       

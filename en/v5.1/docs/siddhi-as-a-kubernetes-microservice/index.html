@@ -1425,22 +1425,14 @@ For more details please refer this Kubernetes official <a href="https://kubernet
 </div>
 <h2 id="install-siddhi-operator">Install Siddhi Operator<a class="headerlink" href="#install-siddhi-operator" title="Permanent link">&para;</a></h2>
 <p>To install the Siddhi Kubernetes operator run the following commands.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/00-prereqs.yaml
-kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/01-siddhi-operator.yaml
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/00-prereqs.yaml
+kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/01-siddhi-operator.yaml</code></pre>
 
 <p>You can verify the installation by making sure the following deployments are running in your Kubernetes cluster.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ kubectl get deployment
+<pre class="codehilite"><code class="language-sh linenums">$ kubectl get deployment
 
 NAME              DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
-siddhi-operator   <span class="m">1</span>         <span class="m">1</span>         <span class="m">1</span>            <span class="m">1</span>           1m
-</pre></div>
-</td></tr></table>
+siddhi-operator   1         1         1            1           1m</code></pre>
 
 <div class="admonition note">
 <p class="admonition-title">Using a custom-built Siddhi runner image</p>
@@ -1452,83 +1444,44 @@ If you are pulling the custom-built image from a private Docker registry/reposit
 <p>Siddhi applications can be deployed on Kubernetes using the Siddhi operator.</p>
 <p>Here we will be creating a very simple Siddhi stream processing application that receives power consumption from several devices in a house. If the power consumption of dryer exceeds the consumption limit of 6000W then that Siddhi app sends an alert from printing a log.</p>
 <p>This can be created using a SiddhiProcess YAML file as given below.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi.io/v1alpha2</span>
-<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SiddhiProcess</span>
-<span class="nt">metadata</span><span class="p">:</span>
-  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">power-surge-app</span>
-<span class="nt">spec</span><span class="p">:</span>
-  <span class="nt">apps</span><span class="p">:</span>
-    <span class="p p-Indicator">-</span> <span class="nt">script</span><span class="p">:</span> <span class="p p-Indicator">|</span>
-        <span class="no">@App:name(&quot;PowerSurgeDetection&quot;)</span>
-        <span class="no">@App:description(&quot;App consume events from HTTP as a JSON message of { &#39;deviceType&#39;: &#39;dryer&#39;, &#39;power&#39;: 6000 } format and inserts the events into DevicePowerStream, and alerts the user if the power level is greater than or equal to 600 by printing a message in the log.&quot;)</span>
+<pre class="codehilite"><code class="language-yaml linenums">apiVersion: siddhi.io/v1alpha2
+kind: SiddhiProcess
+metadata:
+  name: power-surge-app
+spec:
+  apps:
+    - script: |
+        @App:name("PowerSurgeDetection")
+        @App:description("App consume events from HTTP as a JSON message of { 'deviceType': 'dryer', 'power': 6000 } format and inserts the events into DevicePowerStream, and alerts the user if the power level is greater than or equal to 600 by printing a message in the log.")
 
-        <span class="no">/*</span>
-            <span class="no">Input: deviceType string and powerConsuption int(Watt)</span>
-            <span class="no">Output: Alert user from printing a log, if there is a power surge in the dryer. In other words, notify when power is greater than or equal to 600W.</span>
+        /*
+            Input: deviceType string and powerConsuption int(Watt)
+            Output: Alert user from printing a log, if there is a power surge in the dryer. In other words, notify when power is greater than or equal to 600W.
 
-        <span class="no">*/</span>
-        <span class="no">@source(</span>
-          <span class="no">type=&#39;http&#39;,</span>
-          <span class="no">receiver.url=&#39;${RECEIVER_URL}&#39;,</span>
-          <span class="no">basic.auth.enabled=&#39;false&#39;,</span>
-          <span class="no">@map(type=&#39;json&#39;)</span>
-        <span class="no">)</span>
-        <span class="no">define stream DevicePowerStream(deviceType string, power int);</span>
+        */
+        @source(
+          type='http',
+          receiver.url='${RECEIVER_URL}',
+          basic.auth.enabled='false',
+          @map(type='json')
+        )
+        define stream DevicePowerStream(deviceType string, power int);
 
-        <span class="no">@sink(type=&#39;log&#39;, prefix=&#39;LOGGER&#39;)  </span>
-        <span class="no">define stream PowerSurgeAlertStream(deviceType string, power int); </span>
+        @sink(type='log', prefix='LOGGER')  
+        define stream PowerSurgeAlertStream(deviceType string, power int); 
 
-        <span class="no">@info(name=&#39;power-filter&#39;)  </span>
-        <span class="no">from DevicePowerStream[deviceType == &#39;dryer&#39; and power &gt;= 600] </span>
-        <span class="no">select deviceType, power  </span>
-        <span class="no">insert into PowerSurgeAlertStream;</span>
+        @info(name='power-filter')  
+        from DevicePowerStream[deviceType == 'dryer' and power &gt;= 600] 
+        select deviceType, power  
+        insert into PowerSurgeAlertStream;
 
-  <span class="nt">container</span><span class="p">:</span>
-    <span class="nt">env</span><span class="p">:</span>
-      <span class="p p-Indicator">-</span>
-        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">RECEIVER_URL</span>
-        <span class="nt">value</span><span class="p">:</span> <span class="s">&quot;http://0.0.0.0:8080/checkPower&quot;</span>
+  container:
+    env:
+      -
+        name: RECEIVER_URL
+        value: "http://0.0.0.0:8080/checkPower"
 
-    <span class="nt">image</span><span class="p">:</span> <span class="s">&quot;siddhiio/siddhi-runner-ubuntu:5.1.0&quot;</span>
-</pre></div>
-</td></tr></table>
+    image: "siddhiio/siddhi-runner-ubuntu:5.1.0"</code></pre>
 
 <div class="admonition note">
 <p class="admonition-title">Always listen on 0.0.0.0 with the Siddhi Application running inside a container environment.</p>
@@ -1543,62 +1496,37 @@ If you are pulling the custom-built image from a private Docker registry/reposit
 <p>To configure databases, extensions, authentication, periodic state persistence, and statistics for Siddhi as Kubernetes Microservice refer <a href="../config-guide/">Siddhi Config Guide</a>. </p>
 </div>
 <p>To deploy the above Siddhi app in your Kubernetes cluster, copy above YAML to a file with name <code>power-surge-app.yaml</code> and execute the following command.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl create -f &lt;absolute-yaml-file-path&gt;/power-surge-app.yaml
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">kubectl create -f &lt;absolute-yaml-file-path&gt;/power-surge-app.yaml</code></pre>
 
 <div class="admonition note">
 <p class="admonition-title">TLS secret</p>
 <p>Within the SiddhiProcess, a TLS secret named <code>siddhi-tls</code> is configured. If a Kubernetes secret with the same name does not exist in the Kubernetes cluster, the NGINX will ignore it and use a self-generated certificate. Configuring a secret will be necessary for calling HTTPS endpoints, refer <a href="#deploy-and-run-siddhi-app-with-https">deploy and run Siddhi apps with HTTPS</a> section for more details.</p>
 </div>
 <p>If the <code>power-surge-app</code> is deployed successfully, it should create SiddhiProcess, deployment, service, and ingress as following.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ kubectl get SiddhiProcesses
+<pre class="codehilite"><code class="language-sh linenums">$ kubectl get SiddhiProcesses
 NAME              STATUS    READY     AGE
-power-surge-app   Running   <span class="m">1</span>/1       2m
+power-surge-app   Running   1/1       2m
 
 $ kubectl get deployment
 NAME                READY     UP-TO-DATE   AVAILABLE   AGE
-power-surge-app-0   <span class="m">1</span>/1       <span class="m">1</span>            <span class="m">1</span>           2m
-siddhi-operator     <span class="m">1</span>/1       <span class="m">1</span>            <span class="m">1</span>           2m
+power-surge-app-0   1/1       1            1           2m
+siddhi-operator     1/1       1            1           2m
 
 $ kubectl get service
-NAME                TYPE        CLUSTER-IP       EXTERNAL-IP   PORT<span class="o">(</span>S<span class="o">)</span>    AGE
-kubernetes          ClusterIP   <span class="m">10</span>.96.0.1       &lt;none&gt;        <span class="m">443</span>/TCP    2d
-power-surge-app-0   ClusterIP   <span class="m">10</span>.96.44.182    &lt;none&gt;        <span class="m">8080</span>/TCP   2m
-siddhi-operator     ClusterIP   <span class="m">10</span>.98.78.238    &lt;none&gt;        <span class="m">8383</span>/TCP   2m
+NAME                TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
+kubernetes          ClusterIP   10.96.0.1       &lt;none&gt;        443/TCP    2d
+power-surge-app-0   ClusterIP   10.96.44.182    &lt;none&gt;        8080/TCP   2m
+siddhi-operator     ClusterIP   10.98.78.238    &lt;none&gt;        8383/TCP   2m
 
 $ kubectl get ingress
 NAME      HOSTS     ADDRESS     PORTS     AGE
-siddhi    siddhi    <span class="m">10</span>.0.2.15   <span class="m">80</span>        2m
-</pre></div>
-</td></tr></table>
+siddhi    siddhi    10.0.2.15   80        2m</code></pre>
 
 <p><strong><em>Invoke Siddhi Applications</em></strong></p>
 <p>To invoke the Siddhi App, obtain the external IP of the ingress load balancer using <code>kubectl get ingress</code> command as following.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ kubectl get ingress
+<pre class="codehilite"><code class="language-sh linenums">$ kubectl get ingress
 NAME      HOSTS     ADDRESS     PORTS     AGE
-siddhi    siddhi    <span class="m">10</span>.0.2.15   <span class="m">80</span>        2m
-</pre></div>
-</td></tr></table>
+siddhi    siddhi    10.0.2.15   80        2m</code></pre>
 
 <p>Then, add the host <code>siddhi</code> and related external IP (<code>ADDRESS</code>) to the <code>/etc/hosts</code> file in your machine.</p>
 <div class="admonition note">
@@ -1610,246 +1538,134 @@ siddhi    siddhi    <span class="m">10</span>.0.2.15   <span class="m">80</span>
 <p>For Docker for Mac, you have to use <code>0.0.0.0</code> as the external IP.</p>
 </div>
 <p>Use the following CURL command to send events to <code>power-surge-app</code> deployed in Kubernetes.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7
-8
-9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>curl -X POST <span class="se">\</span>
-  http://siddhi/power-surge-app-0/8080/checkPower <span class="se">\</span>
-  -H <span class="s1">&#39;Accept: */*&#39;</span> <span class="se">\</span>
-  -H <span class="s1">&#39;Content-Type: application/json&#39;</span> <span class="se">\</span>
-  -H <span class="s1">&#39;Host: siddhi&#39;</span> <span class="se">\</span>
-  -d <span class="s1">&#39;{</span>
-<span class="s1">    &quot;deviceType&quot;: &quot;dryer&quot;,</span>
-<span class="s1">    &quot;power&quot;: 60000</span>
-<span class="s1">}&#39;</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">curl -X POST \
+  http://siddhi/power-surge-app-0/8080/checkPower \
+  -H 'Accept: */*' \
+  -H 'Content-Type: application/json' \
+  -H 'Host: siddhi' \
+  -d '{
+    "deviceType": "dryer",
+    "power": 60000
+}'</code></pre>
 
 <p><strong><em>View Siddhi Process Logs</em></strong></p>
 <p>Since the output of <code>power-surge-app</code> is logged, you can see the output by monitoring the associated pod's logs.</p>
 <p>To find the <code>power-surge-app</code> pod use the <code>kubectl get pods</code> command. This will list down all the deployed pods.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ kubectl get pods
+<pre class="codehilite"><code class="language-sh linenums">$ kubectl get pods
 
 NAME                                       READY     STATUS    RESTARTS   AGE
-power-surge-app-0-646c4f9dd5-rxzkq         <span class="m">1</span>/1       Running   <span class="m">0</span>          4m
-siddhi-operator-6698d8f69d-6rfb6           <span class="m">1</span>/1       Running   <span class="m">0</span>          4m
-</pre></div>
-</td></tr></table>
+power-surge-app-0-646c4f9dd5-rxzkq         1/1       Running   0          4m
+siddhi-operator-6698d8f69d-6rfb6           1/1       Running   0          4m</code></pre>
 
 <p>Here, the pod starting with the SiddhiProcess name (in this case <code>power-surge-app-</code>) is the pod we need to monitor.</p>
 <p>To view the logs, run the <code>kubectl logs &lt;pod name&gt;</code> command.
 This will show all the Siddhi process logs, along with the filtered output events as given below.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ kubectl logs power-surge-app-0-646c4f9dd5-rxzkq
+<pre class="codehilite"><code class="language-sh linenums">$ kubectl logs power-surge-app-0-646c4f9dd5-rxzkq
 
 ...
-<span class="o">[</span><span class="m">2019</span>-07-12 <span class="m">07</span>:12:48,925<span class="o">]</span>  INFO <span class="o">{</span>org.wso2.transport.http.netty.contractimpl.listener.ServerConnectorBootstrap<span class="nv">$HttpServerConnector</span><span class="o">}</span> - HTTP<span class="o">(</span>S<span class="o">)</span> Interface starting on host <span class="m">0</span>.0.0.0 and port <span class="m">9443</span>
-<span class="o">[</span><span class="m">2019</span>-07-12 <span class="m">07</span>:12:48,927<span class="o">]</span>  INFO <span class="o">{</span>org.wso2.transport.http.netty.contractimpl.listener.ServerConnectorBootstrap<span class="nv">$HttpServerConnector</span><span class="o">}</span> - HTTP<span class="o">(</span>S<span class="o">)</span> Interface starting on host <span class="m">0</span>.0.0.0 and port <span class="m">9090</span>
-<span class="o">[</span><span class="m">2019</span>-07-12 <span class="m">07</span>:12:48,941<span class="o">]</span>  INFO <span class="o">{</span>org.wso2.carbon.kernel.internal.CarbonStartupHandler<span class="o">}</span> - Siddhi Runner Distribution started in <span class="m">6</span>.853 sec
-<span class="o">[</span><span class="m">2019</span>-07-12 <span class="m">07</span>:17:22,219<span class="o">]</span>  INFO <span class="o">{</span>io.siddhi.core.stream.output.sink.LogSink<span class="o">}</span> - LOGGER : Event<span class="o">{</span><span class="nv">timestamp</span><span class="o">=</span><span class="m">1562915842182</span>, <span class="nv">data</span><span class="o">=[</span>dryer, <span class="m">60000</span><span class="o">]</span>, <span class="nv">isExpired</span><span class="o">=</span>false<span class="o">}</span>
-</pre></div>
-</td></tr></table>
+[2019-07-12 07:12:48,925]  INFO {org.wso2.transport.http.netty.contractimpl.listener.ServerConnectorBootstrap$HttpServerConnector} - HTTP(S) Interface starting on host 0.0.0.0 and port 9443
+[2019-07-12 07:12:48,927]  INFO {org.wso2.transport.http.netty.contractimpl.listener.ServerConnectorBootstrap$HttpServerConnector} - HTTP(S) Interface starting on host 0.0.0.0 and port 9090
+[2019-07-12 07:12:48,941]  INFO {org.wso2.carbon.kernel.internal.CarbonStartupHandler} - Siddhi Runner Distribution started in 6.853 sec
+[2019-07-12 07:17:22,219]  INFO {io.siddhi.core.stream.output.sink.LogSink} - LOGGER : Event{timestamp=1562915842182, data=[dryer, 60000], isExpired=false}</code></pre>
 
 <h2 id="get-siddhi-process-status">Get Siddhi process status<a class="headerlink" href="#get-siddhi-process-status" title="Permanent link">&para;</a></h2>
 <h3 id="list-siddhi-processes">List Siddhi processes<a class="headerlink" href="#list-siddhi-processes" title="Permanent link">&para;</a></h3>
 <p>List the Siddhi process using the <code>kubectl get sps</code> or <code>kubectl get SiddhiProcesses</code> commands as follows.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ kubectl get sps
+<pre class="codehilite"><code class="language-sh linenums">$ kubectl get sps
 NAME              STATUS    READY     AGE
-power-surge-app   Running   <span class="m">1</span>/1       5m
+power-surge-app   Running   1/1       5m
 
 $ kubectl get SiddhiProcesses
 NAME              STATUS    READY     AGE
-power-surge-app   Running   <span class="m">1</span>/1       5m
-</pre></div>
-</td></tr></table>
+power-surge-app   Running   1/1       5m</code></pre>
 
 <h3 id="view-siddhi-process-configs">View Siddhi process configs<a class="headerlink" href="#view-siddhi-process-configs" title="Permanent link">&para;</a></h3>
 <p>Describe the Siddhi process configuration details using <code>kubectl describe sp</code> command as follows.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ kubectl describe sp power-surge-app
+<pre class="codehilite"><code class="language-sh linenums">$ kubectl describe sp power-surge-app
 
 Name:         power-surge-app
 Namespace:    default
 Labels:       &lt;none&gt;
-Annotations:  kubectl.kubernetes.io/last-applied-configuration<span class="o">={</span><span class="s2">&quot;apiVersion&quot;</span>:<span class="s2">&quot;siddhi.io/v1alpha2&quot;</span>,<span class="s2">&quot;kind&quot;</span>:<span class="s2">&quot;SiddhiProcess&quot;</span>,<span class="s2">&quot;metadata&quot;</span>:<span class="o">{</span><span class="s2">&quot;annotations&quot;</span>:<span class="o">{}</span>,<span class="s2">&quot;name&quot;</span>:<span class="s2">&quot;power-surge-app&quot;</span>,<span class="s2">&quot;namespace&quot;</span>:<span class="s2">&quot;default&quot;</span><span class="o">}</span>,<span class="s2">&quot;spec&quot;</span>:<span class="o">{</span><span class="s2">&quot;apps&quot;</span>:<span class="o">[</span>...
+Annotations:  kubectl.kubernetes.io/last-applied-configuration={"apiVersion":"siddhi.io/v1alpha2","kind":"SiddhiProcess","metadata":{"annotations":{},"name":"power-surge-app","namespace":"default"},"spec":{"apps":[...
 API Version:  siddhi.io/v1alpha2
 Kind:         SiddhiProcess
 Metadata:
-  Creation Timestamp:  <span class="m">2019</span>-07-12T07:12:35Z
-  Generation:          <span class="m">1</span>
-  Resource Version:    <span class="m">148205</span>
+  Creation Timestamp:  2019-07-12T07:12:35Z
+  Generation:          1
+  Resource Version:    148205
   Self Link:           /apis/siddhi.io/v1alpha2/namespaces/default/siddhiprocesses/power-surge-app
   UID:                 6c6d90a4-a474-11e9-a05b-080027f4eb25
 Spec:
   Apps:
-    Script:  @App:name<span class="o">(</span><span class="s2">&quot;PowerSurgeDetection&quot;</span><span class="o">)</span>
-@App:description<span class="o">(</span><span class="s2">&quot;App consume events from HTTP as a JSON message of { &#39;deviceType&#39;: &#39;dryer&#39;, &#39;power&#39;: 6000 } format and inserts the events into DevicePowerStream, and alerts the user if the power level is greater than or equal to 600 by printing a message in the log.&quot;</span><span class="o">)</span>
+    Script:  @App:name("PowerSurgeDetection")
+@App:description("App consume events from HTTP as a JSON message of { 'deviceType': 'dryer', 'power': 6000 } format and inserts the events into DevicePowerStream, and alerts the user if the power level is greater than or equal to 600 by printing a message in the log.")
 
 /*
-    Input: deviceType string and powerConsuption int<span class="o">(</span>Watt<span class="o">)</span>
-    Output: Alert user from printing a log, <span class="k">if</span> there is a power surge in the dryer. In other words, notify when power is greater than or equal to 600W.
+    Input: deviceType string and powerConsuption int(Watt)
+    Output: Alert user from printing a log, if there is a power surge in the dryer. In other words, notify when power is greater than or equal to 600W.
 
 */
-@source<span class="o">(</span>
-  <span class="nv">type</span><span class="o">=</span><span class="s1">&#39;http&#39;</span>,
-  receiver.url<span class="o">=</span><span class="s1">&#39;${RECEIVER_URL}&#39;</span>,
-  basic.auth.enabled<span class="o">=</span><span class="s1">&#39;false&#39;</span>,
-  @map<span class="o">(</span><span class="nv">type</span><span class="o">=</span><span class="s1">&#39;json&#39;</span><span class="o">)</span>
-<span class="o">)</span>
-define stream DevicePowerStream<span class="o">(</span>deviceType string, power int<span class="o">)</span><span class="p">;</span>
+@source(
+  type='http',
+  receiver.url='${RECEIVER_URL}',
+  basic.auth.enabled='false',
+  @map(type='json')
+)
+define stream DevicePowerStream(deviceType string, power int);
 
-@sink<span class="o">(</span><span class="nv">type</span><span class="o">=</span><span class="s1">&#39;log&#39;</span>, <span class="nv">prefix</span><span class="o">=</span><span class="s1">&#39;LOGGER&#39;</span><span class="o">)</span>  
-define stream PowerSurgeAlertStream<span class="o">(</span>deviceType string, power int<span class="o">)</span><span class="p">;</span> 
+@sink(type='log', prefix='LOGGER')  
+define stream PowerSurgeAlertStream(deviceType string, power int); 
 
-@info<span class="o">(</span><span class="nv">name</span><span class="o">=</span><span class="s1">&#39;power-filter&#39;</span><span class="o">)</span>  
-from DevicePowerStream<span class="o">[</span><span class="nv">deviceType</span> <span class="o">==</span> <span class="s1">&#39;dryer&#39;</span> and power &gt;<span class="o">=</span> <span class="m">600</span><span class="o">]</span> 
-<span class="k">select</span> deviceType, power  
-insert into PowerSurgeAlertStream<span class="p">;</span>
+@info(name='power-filter')  
+from DevicePowerStream[deviceType == 'dryer' and power &gt;= 600] 
+select deviceType, power  
+insert into PowerSurgeAlertStream;
 
   Container:
     Env:
       Name:   RECEIVER_URL
       Value:  http://0.0.0.0:8080/checkPower
       Name:   BASIC_AUTH_ENABLED
-      Value:  <span class="nb">false</span>
+      Value:  false
     Image:    siddhiio/siddhi-runner-ubuntu:5.1.0
 Status:
   Nodes:   &lt;nil&gt;
-  Ready:   <span class="m">1</span>/1
+  Ready:   1/1
   Status:  Running
 Events:
   Type    Reason             Age   From                      Message
   ----    ------             ----  ----                      -------
   Normal  DeploymentCreated  11m   siddhiprocess-controller  power-surge-app-0 deployment created successfully
-  Normal  ServiceCreated     11m   siddhiprocess-controller  power-surge-app-0 service created successfully
-</pre></div>
-</td></tr></table>
+  Normal  ServiceCreated     11m   siddhiprocess-controller  power-surge-app-0 service created successfully</code></pre>
 
 <h3 id="view-siddhi-process-logs">View Siddhi process logs<a class="headerlink" href="#view-siddhi-process-logs" title="Permanent link">&para;</a></h3>
 <p>To view the Siddhi process logs, first get the Siddhi process pods using the <code>kubectl get pods</code> command as follows.  </p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ kubectl get pods
+<pre class="codehilite"><code class="language-sh linenums">$ kubectl get pods
 
 NAME                                       READY     STATUS    RESTARTS   AGE
-power-surge-app-0-646c4f9dd5-rxzkq         <span class="m">1</span>/1       Running   <span class="m">0</span>          4m
-siddhi-operator-6698d8f69d-6rfb6           <span class="m">1</span>/1       Running   <span class="m">0</span>          4m
-</pre></div>
-</td></tr></table>
+power-surge-app-0-646c4f9dd5-rxzkq         1/1       Running   0          4m
+siddhi-operator-6698d8f69d-6rfb6           1/1       Running   0          4m</code></pre>
 
 <p>Then to retrieve the Siddhi process logs, run <code>kubectl logs &lt;pod name&gt;</code> command. Here <code>&lt;pod name&gt;</code> should be replaced with the name of the pod that starts with the relevant SiddhiProcess's name. 
 A sample output logs are of this command is as follows.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ kubectl logs power-surge-app-0-646c4f9dd5-rxzkq
+<pre class="codehilite"><code class="language-sh linenums">$ kubectl logs power-surge-app-0-646c4f9dd5-rxzkq
 
 ...
-<span class="o">[</span><span class="m">2019</span>-07-12 <span class="m">07</span>:12:48,925<span class="o">]</span>  INFO <span class="o">{</span>org.wso2.transport.http.netty.contractimpl.listener.ServerConnectorBootstrap<span class="nv">$HttpServerConnector</span><span class="o">}</span> - HTTP<span class="o">(</span>S<span class="o">)</span> Interface starting on host <span class="m">0</span>.0.0.0 and port <span class="m">9443</span>
-<span class="o">[</span><span class="m">2019</span>-07-12 <span class="m">07</span>:12:48,927<span class="o">]</span>  INFO <span class="o">{</span>org.wso2.transport.http.netty.contractimpl.listener.ServerConnectorBootstrap<span class="nv">$HttpServerConnector</span><span class="o">}</span> - HTTP<span class="o">(</span>S<span class="o">)</span> Interface starting on host <span class="m">0</span>.0.0.0 and port <span class="m">9090</span>
-<span class="o">[</span><span class="m">2019</span>-07-12 <span class="m">07</span>:12:48,941<span class="o">]</span>  INFO <span class="o">{</span>org.wso2.carbon.kernel.internal.CarbonStartupHandler<span class="o">}</span> - Siddhi Runner Distribution started in <span class="m">6</span>.853 sec
-<span class="o">[</span><span class="m">2019</span>-07-12 <span class="m">07</span>:17:22,219<span class="o">]</span>  INFO <span class="o">{</span>io.siddhi.core.stream.output.sink.LogSink<span class="o">}</span> - LOGGER : Event<span class="o">{</span><span class="nv">timestamp</span><span class="o">=</span><span class="m">1562915842182</span>, <span class="nv">data</span><span class="o">=[</span>dryer, <span class="m">60000</span><span class="o">]</span>, <span class="nv">isExpired</span><span class="o">=</span>false<span class="o">}</span>
-</pre></div>
-</td></tr></table>
+[2019-07-12 07:12:48,925]  INFO {org.wso2.transport.http.netty.contractimpl.listener.ServerConnectorBootstrap$HttpServerConnector} - HTTP(S) Interface starting on host 0.0.0.0 and port 9443
+[2019-07-12 07:12:48,927]  INFO {org.wso2.transport.http.netty.contractimpl.listener.ServerConnectorBootstrap$HttpServerConnector} - HTTP(S) Interface starting on host 0.0.0.0 and port 9090
+[2019-07-12 07:12:48,941]  INFO {org.wso2.carbon.kernel.internal.CarbonStartupHandler} - Siddhi Runner Distribution started in 6.853 sec
+[2019-07-12 07:17:22,219]  INFO {io.siddhi.core.stream.output.sink.LogSink} - LOGGER : Event{timestamp=1562915842182, data=[dryer, 60000], isExpired=false}</code></pre>
 
 <h2 id="change-the-default-configurations-of-siddhi-runner">Change the Default Configurations of Siddhi Runner<a class="headerlink" href="#change-the-default-configurations-of-siddhi-runner" title="Permanent link">&para;</a></h2>
 <p>Siddhi runner use <code>&lt;SIDDHI_RUNNER_HOME&gt;/conf/runner/deployment.yaml</code> file as the default configuration file. In the <code>deployment.yaml</code> the file you can configure data sources that you planned to use, add refs, and enable state persistence, etc. To change the configurations of the <code>deployment.yaml</code>, you can add <code>runner</code> YAML spec like below to your SiddhiProcess YAML file. For example, the following config change will enable file system state persistence.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7
-8</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>  <span class="nt">runner</span><span class="p">:</span> <span class="p p-Indicator">|</span>
-    <span class="no">state.persistence:</span>
-      <span class="no">enabled: true</span>
-      <span class="no">intervalInMin: 1</span>
-      <span class="no">revisionsToKeep: 2</span>
-      <span class="no">persistenceStore: io.siddhi.distribution.core.persistence.FileSystemPersistenceStore</span>
-      <span class="no">config:</span>
-        <span class="no">location: siddhi-app-persistence</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-yaml linenums">  runner: |
+    state.persistence:
+      enabled: true
+      intervalInMin: 1
+      revisionsToKeep: 2
+      persistenceStore: io.siddhi.distribution.core.persistence.FileSystemPersistenceStore
+      config:
+        location: siddhi-app-persistence</code></pre>
 
 <h2 id="using-a-custom-built-siddhi-runner-image">Using a custom-built Siddhi runner image<a class="headerlink" href="#using-a-custom-built-siddhi-runner-image" title="Permanent link">&para;</a></h2>
 <p>You can change the custom built <code>siddhi-runner</code> image in two ways.</p>
@@ -1858,74 +1674,34 @@ A sample output logs are of this command is as follows.</p>
 <li>Change the image only for a particular SiddhiProcess deployment.</li>
 </ol>
 <p>To change the <code>siddhi-runner</code> image for all the SiddhiProcess deployments you can use the <code>siddhi-operator-config</code> config map. You can update <code>siddhiImage</code> to change the image and if you are using a private docker registry/repository, then you can create a Kubernetes secret that contains credentials to the registry and specify that secret name <code>siddhiImageSecret</code> spec. Refer the documentation on creating custom Siddhi runner images bundling additional JARs <a href="../config-guide/#adding-to-siddhi-docker-microservice">here</a>. For more details on using docker images from private registries/repositories refer <a href="https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/">this documentation</a>.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
-<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ConfigMap</span>
-<span class="nt">metadata</span><span class="p">:</span>
-  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi-operator-config</span>
-<span class="nt">data</span><span class="p">:</span>
-  <span class="nt">siddhiHome</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/home/siddhi_user/siddhi-runner/</span>
-  <span class="nt">siddhiProfile</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">runner</span>
-  <span class="nt">siddhiImage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;YOUR-CUSTOM-IMAGE&gt;</span>
-  <span class="nt">autoIngressCreation</span><span class="p">:</span> <span class="s">&quot;true&quot;</span>
-  <span class="nt">siddhiImageSecret</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;SECRET&gt;</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-yaml linenums">apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: siddhi-operator-config
+data:
+  siddhiHome: /home/siddhi_user/siddhi-runner/
+  siddhiProfile: runner
+  siddhiImage: &lt;YOUR-CUSTOM-IMAGE&gt;
+  autoIngressCreation: "true"
+  siddhiImageSecret: &lt;SECRET&gt;</code></pre>
 
 <p>If you need to use a custom-built <code>siddhi-runner</code> image for a specific <code>SiddhiProcess</code> deployment, you have to configure <code>container.image</code> spec in the <code>SiddhiProcess</code>. If you are pulling the custom-built image from a private Docker registry/repository, specify the corresponding Kubernetes secret as <code>imagePullSecret</code> argument in the <code>SiddhiProcess</code> YAML file.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>  <span class="nt">container</span><span class="p">:</span> 
-    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;YOUR-CUSTOM-IMAGE&gt;</span>
-  <span class="nt">imagePullSecret</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;SECRET&gt;</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-yaml linenums">  container: 
+    image: &lt;YOUR-CUSTOM-IMAGE&gt;
+  imagePullSecret: &lt;SECRET&gt;
+</code></pre>
 
 <h2 id="deploy-and-run-siddhi-app-using-config-maps">Deploy and run Siddhi App using config maps<a class="headerlink" href="#deploy-and-run-siddhi-app-using-config-maps" title="Permanent link">&para;</a></h2>
 <p>Siddhi operator allows you to deploy Siddhi app configurations via config maps instead of just adding them inline. Through this, you can also run multiple Siddhi Apps in a single SiddhiProcess.</p>
 <p>This can be done by passing the config maps containing Siddhi app files to the SiddhiProcess's apps configuration as follows.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">apps</span><span class="p">:</span>
-  <span class="p p-Indicator">-</span> <span class="nt">configMap</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">power-surge-cm1</span>
-  <span class="p p-Indicator">-</span> <span class="nt">configMap</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">power-surge-cm2</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-yaml linenums">apps:
+  - configMap: power-surge-cm1
+  - configMap: power-surge-cm2</code></pre>
 
 <p><strong>Sample on deploying and running Siddhi Apps via config maps</strong></p>
 <p>Here we will be creating a very simple Siddhi stream processing application that receives power consumption from several devices in a house. If the power consumption of dryer exceeds the consumption limit of 6000W then that Siddhi app sends an alert from printing a log.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>@App:name(&quot;PowerSurgeDetection&quot;)
-@App:description(&quot;App consume events from HTTP as a JSON message of { &#39;deviceType&#39;: &#39;dryer&#39;, &#39;power&#39;: 6000 } format and inserts the events into DevicePowerStream, and alerts the user if the power level is greater than or equal to 600 by printing a message in the log.&quot;)
+<pre class="codehilite"><code class="language-programming linenums">@App:name("PowerSurgeDetection")
+@App:description("App consume events from HTTP as a JSON message of { 'deviceType': 'dryer', 'power': 6000 } format and inserts the events into DevicePowerStream, and alerts the user if the power level is greater than or equal to 600 by printing a message in the log.")
 
 /*
     Input: deviceType string and powerConsuption int(Watt)
@@ -1933,22 +1709,20 @@ A sample output logs are of this command is as follows.</p>
 
 */
 @source(
-  type=&#39;http&#39;,
-  receiver.url=&#39;${RECEIVER_URL}&#39;,
-  basic.auth.enabled=&#39;false&#39;,
-  @map(type=&#39;json&#39;)
+  type='http',
+  receiver.url='${RECEIVER_URL}',
+  basic.auth.enabled='false',
+  @map(type='json')
 )
 define stream DevicePowerStream(deviceType string, power int);
 
-@sink(type=&#39;log&#39;, prefix=&#39;LOGGER&#39;)  
+@sink(type='log', prefix='LOGGER')  
 define stream PowerSurgeAlertStream(deviceType string, power int); 
 
-@info(name=&#39;power-filter&#39;)  
-from DevicePowerStream[deviceType == &#39;dryer&#39; and power &gt;= 600] 
+@info(name='power-filter')  
+from DevicePowerStream[deviceType == 'dryer' and power &gt;= 600] 
 select deviceType, power  
-insert into PowerSurgeAlertStream;
-</pre></div>
-</td></tr></table>
+insert into PowerSurgeAlertStream;</code></pre>
 
 <div class="admonition tip">
 <p class="admonition-title">Siddhi Tooling</p>
@@ -1956,45 +1730,27 @@ insert into PowerSurgeAlertStream;
 </div>
 <p>Save the above Siddhi App file as <code>PowerSurgeDetection.siddhi</code>, and use this file to create a Kubernetes config map with the name <code>power-surge-cm</code>.
 This can be achieved by running the following command.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl create configmap power-surge-cm --from-file<span class="o">=</span>&lt;absolute-file-path&gt;/PowerSurgeDetection.siddhi
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">kubectl create configmap power-surge-cm --from-file=&lt;absolute-file-path&gt;/PowerSurgeDetection.siddhi</code></pre>
 
 <p>The created config map can be added to SiddhiProcess YAML under the <code>apps</code> entry as follows.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi.io/v1alpha2</span>
-<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SiddhiProcess</span>
-<span class="nt">metadata</span><span class="p">:</span>
-  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">power-surge-app</span>
-<span class="nt">spec</span><span class="p">:</span> 
-  <span class="nt">apps</span><span class="p">:</span> 
-    <span class="p p-Indicator">-</span> <span class="nt">configMap</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">power-surge-cm</span>
-  <span class="nt">container</span><span class="p">:</span> 
-    <span class="nt">env</span><span class="p">:</span> 
-      <span class="p p-Indicator">-</span> 
-        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">RECEIVER_URL</span>
-        <span class="nt">value</span><span class="p">:</span> <span class="s">&quot;http://0.0.0.0:8080/checkPower&quot;</span>
+<pre class="codehilite"><code class="language-yaml linenums">apiVersion: siddhi.io/v1alpha2
+kind: SiddhiProcess
+metadata:
+  name: power-surge-app
+spec: 
+  apps: 
+    - configMap: power-surge-cm
+  container: 
+    env: 
+      - 
+        name: RECEIVER_URL
+        value: "http://0.0.0.0:8080/checkPower"
 
-    <span class="nt">image</span><span class="p">:</span> <span class="s">&quot;siddhiio/siddhi-runner-ubuntu:5.1.0&quot;</span>
-</pre></div>
-</td></tr></table>
+    image: "siddhiio/siddhi-runner-ubuntu:5.1.0"
+</code></pre>
 
 <p>Save the YAML file as <code>power-surge-app.yaml</code>, and use the following command to deploy the SiddhiProcess.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl create -f &lt;absolute-yaml-file-path&gt;/power-surge-app.yaml
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="linenums">kubectl create -f &lt;absolute-yaml-file-path&gt;/power-surge-app.yaml</code></pre>
 
 <div class="admonition note">
 <p class="admonition-title">Using a config, created from a directory containing multiple Siddhi files</p>
@@ -2003,13 +1759,9 @@ Use <code>kubectl create configmap siddhi-apps --from-file=&lt;DIRECTORY_PATH&gt
 </div>
 <p><strong><em>Invoke Siddhi Applications</em></strong></p>
 <p>To invoke the Siddhi App, first obtain the external IP of the ingress load balancer using <code>kubectl get ingress</code> command as follows.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ kubectl get ingress
+<pre class="codehilite"><code class="language-sh linenums">$ kubectl get ingress
 NAME      HOSTS     ADDRESS     PORTS     AGE
-siddhi    siddhi    <span class="m">10</span>.0.2.15   <span class="m">80</span>        2m
-</pre></div>
-</td></tr></table>
+siddhi    siddhi    10.0.2.15   80        2m</code></pre>
 
 <p>Then, add the host <code>siddhi</code> and related external IP (<code>ADDRESS</code>) to the <code>/etc/hosts</code> file in your machine.</p>
 <div class="admonition note">
@@ -2017,169 +1769,93 @@ siddhi    siddhi    <span class="m">10</span>.0.2.15   <span class="m">80</span>
 <p>For Minikube, you have to use Minikube IP as the external IP. Hence, run <code>minikube ip</code> command to get the IP of the Minikube cluster.</p>
 </div>
 <p>Use the following CURL command to send events to <code>power-surge-app</code> deployed in Kubernetes.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>curl -X POST <span class="se">\</span>
-  http://siddhi/power-surge-app-0/8080/checkPower <span class="se">\</span>
-  -H <span class="s1">&#39;Accept: */*&#39;</span> <span class="se">\</span>
-  -H <span class="s1">&#39;Content-Type: application/json&#39;</span> <span class="se">\</span>
-  -H <span class="s1">&#39;Host: siddhi&#39;</span> <span class="se">\</span>
-  -H <span class="s1">&#39;cache-control: no-cache&#39;</span> <span class="se">\</span>
-  -d <span class="s1">&#39;{</span>
-<span class="s1">    &quot;deviceType&quot;: &quot;dryer&quot;,</span>
-<span class="s1">    &quot;power&quot;: 60000</span>
-<span class="s1">}&#39;</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">curl -X POST \
+  http://siddhi/power-surge-app-0/8080/checkPower \
+  -H 'Accept: */*' \
+  -H 'Content-Type: application/json' \
+  -H 'Host: siddhi' \
+  -H 'cache-control: no-cache' \
+  -d '{
+    "deviceType": "dryer",
+    "power": 60000
+}'</code></pre>
 
 <p><strong><em>View Siddhi Process Logs</em></strong></p>
 <p>Since the output of <code>power-surge-app</code> is logged, you can see the output by monitoring the associated pod's logs.</p>
 <p>To find the <code>power-surge-app</code> pod use the <code>kubectl get pods</code> command. This will list down all the deployed pods.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ kubectl get pods
+<pre class="codehilite"><code class="language-sh linenums">$ kubectl get pods
 
 NAME                                       READY     STATUS    RESTARTS   AGE
-power-surge-app-0-646c4f9dd5-tns7l         <span class="m">1</span>/1       Running   <span class="m">0</span>          2m
-siddhi-operator-6698d8f69d-6rfb6           <span class="m">1</span>/1       Running   <span class="m">0</span>          8m
-</pre></div>
-</td></tr></table>
+power-surge-app-0-646c4f9dd5-tns7l         1/1       Running   0          2m
+siddhi-operator-6698d8f69d-6rfb6           1/1       Running   0          8m</code></pre>
 
 <p>Here, the pod starting with the SiddhiProcess name (in this case <code>power-surge-app-</code>) is the pod we need to monitor.</p>
 <p>To view the logs, run the <code>kubectl logs &lt;pod name&gt;</code> command.
 This will show all the Siddhi process logs, along with the filtered output events as given below.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ kubectl logs power-surge-app-0-646c4f9dd5-tns7l
+<pre class="codehilite"><code class="language-sh linenums">$ kubectl logs power-surge-app-0-646c4f9dd5-tns7l
 
 ...
-<span class="o">[</span><span class="m">2019</span>-07-12 <span class="m">07</span>:50:32,861<span class="o">]</span>  INFO <span class="o">{</span>org.wso2.carbon.kernel.internal.CarbonStartupHandler<span class="o">}</span> - Siddhi Runner Distribution started in <span class="m">8</span>.048 sec
-<span class="o">[</span><span class="m">2019</span>-07-12 <span class="m">07</span>:50:32,864<span class="o">]</span>  INFO <span class="o">{</span>org.wso2.transport.http.netty.contractimpl.listener.ServerConnectorBootstrap<span class="nv">$HttpServerConnector</span><span class="o">}</span> - HTTP<span class="o">(</span>S<span class="o">)</span> Interface starting on host <span class="m">0</span>.0.0.0 and port <span class="m">9443</span>
-<span class="o">[</span><span class="m">2019</span>-07-12 <span class="m">07</span>:50:32,866<span class="o">]</span>  INFO <span class="o">{</span>org.wso2.transport.http.netty.contractimpl.listener.ServerConnectorBootstrap<span class="nv">$HttpServerConnector</span><span class="o">}</span> - HTTP<span class="o">(</span>S<span class="o">)</span> Interface starting on host <span class="m">0</span>.0.0.0 and port <span class="m">9090</span>
-<span class="o">[</span><span class="m">2019</span>-07-12 <span class="m">07</span>:51:42,488<span class="o">]</span>  INFO <span class="o">{</span>io.siddhi.core.stream.output.sink.LogSink<span class="o">}</span> - LOGGER : Event<span class="o">{</span><span class="nv">timestamp</span><span class="o">=</span><span class="m">1562917902484</span>, <span class="nv">data</span><span class="o">=[</span>dryer, <span class="m">60000</span><span class="o">]</span>, <span class="nv">isExpired</span><span class="o">=</span>false<span class="o">}</span>
-</pre></div>
-</td></tr></table>
+[2019-07-12 07:50:32,861]  INFO {org.wso2.carbon.kernel.internal.CarbonStartupHandler} - Siddhi Runner Distribution started in 8.048 sec
+[2019-07-12 07:50:32,864]  INFO {org.wso2.transport.http.netty.contractimpl.listener.ServerConnectorBootstrap$HttpServerConnector} - HTTP(S) Interface starting on host 0.0.0.0 and port 9443
+[2019-07-12 07:50:32,866]  INFO {org.wso2.transport.http.netty.contractimpl.listener.ServerConnectorBootstrap$HttpServerConnector} - HTTP(S) Interface starting on host 0.0.0.0 and port 9090
+[2019-07-12 07:51:42,488]  INFO {io.siddhi.core.stream.output.sink.LogSink} - LOGGER : Event{timestamp=1562917902484, data=[dryer, 60000], isExpired=false}</code></pre>
 
 <h2 id="deploy-siddhi-apps-without-ingress-creation">Deploy Siddhi Apps without Ingress creation<a class="headerlink" href="#deploy-siddhi-apps-without-ingress-creation" title="Permanent link">&para;</a></h2>
 <p>By default, Siddhi operator creates an NGINX ingress and exposes your HTTP/HTTPS through that ingress. If you need to disable automatic ingress creation, you have to change the <code>autoIngressCreation</code> value in the Siddhi <code>siddhi-operator-config</code> config map to <code>false</code> or <code>null</code> as below.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1"># This config map used to parse configurations to the Siddhi operator.</span>
-<span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
-<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ConfigMap</span>
-<span class="nt">metadata</span><span class="p">:</span>
-  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi-operator-config</span>
-<span class="nt">data</span><span class="p">:</span>
-  <span class="nt">siddhiHome</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/home/siddhi_user/siddhi-runner/</span>
-  <span class="nt">siddhiProfile</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">runner</span>
-  <span class="nt">siddhiImage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhiio/siddhi-runner-alpine:5.1.0</span>
-  <span class="nt">autoIngressCreation</span><span class="p">:</span> <span class="s">&quot;false&quot;</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-yaml linenums"># This config map used to parse configurations to the Siddhi operator.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: siddhi-operator-config
+data:
+  siddhiHome: /home/siddhi_user/siddhi-runner/
+  siddhiProfile: runner
+  siddhiImage: siddhiio/siddhi-runner-alpine:5.1.0
+  autoIngressCreation: "false"</code></pre>
 
 <h2 id="deploy-and-run-siddhi-app-with-https">Deploy and run Siddhi App with HTTPS<a class="headerlink" href="#deploy-and-run-siddhi-app-with-https" title="Permanent link">&para;</a></h2>
 <p>Configuring TLS will allow Siddhi ingress NGINX to expose HTTPS endpoints of your Siddhi Apps. To do so, create a Kubernetes secret(<code>siddhi-tls</code>) and add that to the TLS configuration in <code>siddhi-operator-config</code> config map as given below.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">ingressTLS</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi-tls</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-yaml linenums">ingressTLS: siddhi-tls</code></pre>
 
 <p><strong>Sample on deploying and running Siddhi App with HTTPS</strong></p>
 <p>First, you need to create a certificate using the following commands. For more details about the certificate creation refers <a href="https://github.com/kubernetes/ingress-nginx/blob/master/docs/user-guide/tls.md#tls-secrets">this</a>.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>openssl req -x509 -nodes -days <span class="m">365</span> -newkey rsa:2048 -keyout siddhi.key -out siddhi.crt -subj <span class="s2">&quot;/CN=siddhi/O=siddhi&quot;</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout siddhi.key -out siddhi.crt -subj "/CN=siddhi/O=siddhi"</code></pre>
 
 <p>After that, create a kubernetes secret called <code>siddhi-tls</code>, which we intended to add to the TLS configurations using the following command.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl create secret tls siddhi-tls --key siddhi.key --cert siddhi.crt
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">kubectl create secret tls siddhi-tls --key siddhi.key --cert siddhi.crt</code></pre>
 
 <p>The created secret then need to be added to the <code>siddhi-operator-config</code> config map as follow.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
-<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ConfigMap</span>
-<span class="nt">metadata</span><span class="p">:</span>
-  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi-operator-config</span>
-<span class="nt">data</span><span class="p">:</span>
-  <span class="nt">siddhiHome</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/home/siddhi_user/siddhi-runner/</span>
-  <span class="nt">siddhiProfile</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">runner</span>
-  <span class="nt">siddhiImage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhiio/siddhi-runner-ubuntu:5.1.0</span>
-  <span class="nt">autoIngressCreation</span><span class="p">:</span> <span class="s">&quot;true&quot;</span>
-  <span class="nt">ingressTLS</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi-tls</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-yaml linenums">apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: siddhi-operator-config
+data:
+  siddhiHome: /home/siddhi_user/siddhi-runner/
+  siddhiProfile: runner
+  siddhiImage: siddhiio/siddhi-runner-ubuntu:5.1.0
+  autoIngressCreation: "true"
+  ingressTLS: siddhi-tls</code></pre>
 
 <p>When this is done Siddhi operator will now enable TLS support via the NGINX ingress, and you will be able to access all the HTTPS endpoints.</p>
 <p><strong><em>Invoke Siddhi Applications</em></strong></p>
 <p>You can use now send the events to following HTTPS endpoint.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>https://siddhi/power-surge-app-0/8080/checkPower
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">https://siddhi/power-surge-app-0/8080/checkPower</code></pre>
 
 <p>Further, you can use the following CURL command to send a request to the deployed Siddhi applications via HTTPS.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>curl --cacert siddhi.crt -X POST <span class="se">\</span>
-  https://siddhi/power-surge-app-0/8080/checkPower <span class="se">\</span>
-  -H <span class="s1">&#39;Accept: */*&#39;</span> <span class="se">\</span>
-  -H <span class="s1">&#39;Content-Type: application/json&#39;</span> <span class="se">\</span>
-  -H <span class="s1">&#39;Host: siddhi&#39;</span> <span class="se">\</span>
-  -H <span class="s1">&#39;cache-control: no-cache&#39;</span> <span class="se">\</span>
-  -d <span class="s1">&#39;{</span>
-<span class="s1">    &quot;deviceType&quot;: &quot;dryer&quot;,</span>
-<span class="s1">    &quot;power&quot;: 60000</span>
-<span class="s1">}&#39;</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">curl --cacert siddhi.crt -X POST \
+  https://siddhi/power-surge-app-0/8080/checkPower \
+  -H 'Accept: */*' \
+  -H 'Content-Type: application/json' \
+  -H 'Host: siddhi' \
+  -H 'cache-control: no-cache' \
+  -d '{
+    "deviceType": "dryer",
+    "power": 60000
+}'</code></pre>
 
 <p><strong><em>View Siddhi Process Logs</em></strong></p>
 <p>The output logs show the event that you sent using the previous CURL command.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ kubectl get pods
+<pre class="codehilite"><code class="linenums">$ kubectl get pods
 
 NAME                                       READY     STATUS    RESTARTS   AGE
 power-surge-app-0-646c4f9dd5-kk5md         1/1       Running   0          2m
@@ -2189,252 +1865,135 @@ $ kubectl logs monitor-app-667c97c898-rrtfs
 [2019-07-12 09:06:15,173]  INFO {org.wso2.transport.http.netty.contractimpl.listener.ServerConnectorBootstrap$HttpServerConnector} - HTTP(S) Interface starting on host 0.0.0.0 and port 9443
 [2019-07-12 09:06:15,184]  INFO {org.wso2.transport.http.netty.contractimpl.listener.ServerConnectorBootstrap$HttpServerConnector} - HTTP(S) Interface starting on host 0.0.0.0 and port 9090
 [2019-07-12 09:06:15,187]  INFO {org.wso2.carbon.kernel.internal.CarbonStartupHandler} - Siddhi Runner Distribution started in 10.819 sec
-[2019-07-12 09:07:50,098]  INFO {io.siddhi.core.stream.output.sink.LogSink} - LOGGER : Event{timestamp=1562922470093, data=[dryer, 60000], isExpired=false}
-</pre></div>
-</td></tr></table>
+[2019-07-12 09:07:50,098]  INFO {io.siddhi.core.stream.output.sink.LogSink} - LOGGER : Event{timestamp=1562922470093, data=[dryer, 60000], isExpired=false}</code></pre>
 
 <h2 id="externally-publish-data-to-nats-from-siddhi">Externally publish data to NATS from Siddhi<a class="headerlink" href="#externally-publish-data-to-nats-from-siddhi" title="Permanent link">&para;</a></h2>
 <p>The default ingress creation of the Siddhi operator allows accessing HTTP/HTTPS endpoints externally. By default, it will not support TCP endpoints. Sometimes you may have some TCP endpoints to configure like NATS and Kafka sources and access those endpoints externally.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="k">source</span><span class="p">(</span><span class="k">type</span><span class="o">=</span><span class="s1">&#39;nats&#39;</span><span class="p">,</span> <span class="o">@</span><span class="k">map</span><span class="p">(</span><span class="k">type</span><span class="o">=</span><span class="s1">&#39;text&#39;</span><span class="p">),</span> <span class="n">destination</span><span class="o">=</span><span class="s1">&#39;SP_NATS_INPUT_TEST&#39;</span><span class="p">,</span> <span class="n">bootstrap</span><span class="p">.</span><span class="n">servers</span><span class="o">=</span><span class="s1">&#39;nats://localhost:4222&#39;</span><span class="p">,</span><span class="n">client</span><span class="p">.</span><span class="n">id</span><span class="o">=</span><span class="s1">&#39;nats_client&#39;</span><span class="p">,</span><span class="n">server</span><span class="p">.</span><span class="n">id</span><span class="o">=</span><span class="s1">&#39;test-cluster&#39;</span><span class="p">,</span><span class="n">queue</span><span class="p">.</span><span class="k">group</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;group_nats&#39;</span><span class="p">,</span><span class="n">durable</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;nats-durable&#39;</span><span class="p">,</span><span class="n">subscription</span><span class="p">.</span><span class="n">sequence</span> <span class="o">=</span> <span class="s1">&#39;100&#39;</span><span class="p">)</span>
-<span class="n">define</span> <span class="n">stream</span> <span class="n">inputStream</span> <span class="p">(</span><span class="n">name</span> <span class="n">string</span><span class="p">,</span> <span class="n">age</span> <span class="nb">int</span><span class="p">,</span> <span class="n">country</span> <span class="n">string</span><span class="p">);</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-siddhi linenums">@source(type='nats', @map(type='text'), destination='SP_NATS_INPUT_TEST', bootstrap.servers='nats://localhost:4222',client.id='nats_client',server.id='test-cluster',queue.group.name = 'group_nats',durable.name = 'nats-durable',subscription.sequence = '100')
+define stream inputStream (name string, age int, country string);</code></pre>
 
 <p>To access these TCP connections externally you can do it as in the following example.</p>
 <p>First, you have to disable <a href="#deploy-siddhi-apps-without-ingress-creation">automatic ingress creation in the Siddhi operator</a>. Then you have to manually create ingress and enable the TCP configurations. To enable TCP configurations in NGINX ingress <a href="https://kubernetes.github.io/ingress-nginx/user-guide/exposing-tcp-udp-services/">please refer to this documentation</a>. </p>
 <p>To create NATS cluster you will need a NATS spec like below.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nats.io/v1alpha2</span>
-<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">NatsCluster</span>
-<span class="nt">metadata</span><span class="p">:</span>
-  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nats-siddhi</span>
-<span class="nt">spec</span><span class="p">:</span>
-  <span class="nt">size</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-yaml linenums">apiVersion: nats.io/v1alpha2
+kind: NatsCluster
+metadata:
+  name: nats-siddhi
+spec:
+  size: 1</code></pre>
 
 <p>Save this yaml as <code>nats-cluster.yaml</code> and deploy it using <code>kubeclt</code>.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ kubeclt apply -f nats-cluster.yaml
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">$ kubeclt apply -f nats-cluster.yaml</code></pre>
 
 <p>Likewise, create a nats streaming cluster as below.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">streaming.nats.io/v1alpha1</span>
-<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">NatsStreamingCluster</span>
-<span class="nt">metadata</span><span class="p">:</span>
-  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">stan-siddhi</span>
-<span class="nt">spec</span><span class="p">:</span>
-  <span class="nt">size</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
-  <span class="nt">natsSvc</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nats-siddhi</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-yaml linenums">apiVersion: streaming.nats.io/v1alpha1
+kind: NatsStreamingCluster
+metadata:
+  name: stan-siddhi
+spec:
+  size: 1
+  natsSvc: nats-siddhi</code></pre>
 
 <p>Save this yaml as <code>stan-cluster.yaml</code> and deploy it using <code>kubeclt</code>.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ kubeclt apply -f stan-cluster.yaml
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">$ kubeclt apply -f stan-cluster.yaml</code></pre>
 
 <p>Now you can deploy the following Siddhi app that contained a NATS source.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi.io/v1alpha2</span>
-<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SiddhiProcess</span>
-<span class="nt">metadata</span><span class="p">:</span> 
-  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">power-consume-app</span>
-<span class="nt">spec</span><span class="p">:</span> 
-  <span class="nt">apps</span><span class="p">:</span> 
-    <span class="p p-Indicator">-</span> <span class="nt">script</span><span class="p">:</span> <span class="p p-Indicator">|</span>
-        <span class="no">@App:name(&quot;PowerConsumptionSurgeDetection&quot;)</span>
-        <span class="no">@App:description(&quot;App consumes events from NATS as a text message of { &#39;deviceType&#39;: &#39;dryer&#39;, &#39;power&#39;: 6000 } format and inserts the events into DevicePowerStream, and alerts the user if the power consumption in 1 minute is greater than or equal to 10000W by printing a message in the log for every 30 seconds.&quot;)</span>
+<pre class="codehilite"><code class="language-yaml linenums">apiVersion: siddhi.io/v1alpha2
+kind: SiddhiProcess
+metadata: 
+  name: power-consume-app
+spec: 
+  apps: 
+    - script: |
+        @App:name("PowerConsumptionSurgeDetection")
+        @App:description("App consumes events from NATS as a text message of { 'deviceType': 'dryer', 'power': 6000 } format and inserts the events into DevicePowerStream, and alerts the user if the power consumption in 1 minute is greater than or equal to 10000W by printing a message in the log for every 30 seconds.")
 
-        <span class="no">/*</span>
-            <span class="no">Input: deviceType string and powerConsuption int(Joules)</span>
-            <span class="no">Output: Alert user from printing a log, if there is a power surge in the dryer within 1 minute period. </span>
-                    <span class="no">Notify the user in every 30 seconds when total power consumption is greater than or equal to 10000W in 1 minute time period.</span>
-        <span class="no">*/</span>
+        /*
+            Input: deviceType string and powerConsuption int(Joules)
+            Output: Alert user from printing a log, if there is a power surge in the dryer within 1 minute period. 
+                    Notify the user in every 30 seconds when total power consumption is greater than or equal to 10000W in 1 minute time period.
+        */
 
-        <span class="no">@source(</span>
-          <span class="no">type=&#39;nats&#39;,</span>
-          <span class="no">cluster.id=&#39;siddhi-stan&#39;,</span>
-          <span class="no">destination = &#39;PowerStream&#39;, </span>
-          <span class="no">bootstrap.servers=&#39;nats://siddhi-nats:4222&#39;,</span>
-          <span class="no">@map(type=&#39;text&#39;)</span>
-        <span class="no">)</span>
-        <span class="no">define stream DevicePowerStream(deviceType string, power int);</span>
+        @source(
+          type='nats',
+          cluster.id='siddhi-stan',
+          destination = 'PowerStream', 
+          bootstrap.servers='nats://siddhi-nats:4222',
+          @map(type='text')
+        )
+        define stream DevicePowerStream(deviceType string, power int);
 
-        <span class="no">@sink(type=&#39;log&#39;, prefix=&#39;LOGGER&#39;)</span>
-        <span class="no">define stream PowerSurgeAlertStream(deviceType string, powerConsumed long);</span>
+        @sink(type='log', prefix='LOGGER')
+        define stream PowerSurgeAlertStream(deviceType string, powerConsumed long);
 
-        <span class="no">@info(name=&#39;surge-detector&#39;)</span>
-        <span class="no">from DevicePowerStream#window.time(1 min)</span>
-        <span class="no">select deviceType, sum(power) as powerConsumed</span>
-        <span class="no">group by deviceType</span>
-        <span class="no">having powerConsumed &gt; 10000</span>
-        <span class="no">output every 30 sec</span>
-        <span class="no">insert into PowerSurgeAlertStream;</span>
+        @info(name='surge-detector')
+        from DevicePowerStream#window.time(1 min)
+        select deviceType, sum(power) as powerConsumed
+        group by deviceType
+        having powerConsumed &gt; 10000
+        output every 30 sec
+        insert into PowerSurgeAlertStream;
 
-  <span class="nt">container</span><span class="p">:</span> 
-    <span class="nt">image</span><span class="p">:</span> <span class="s">&quot;siddhiio/siddhi-runner-ubuntu:5.1.0&quot;</span>
+  container: 
+    image: "siddhiio/siddhi-runner-ubuntu:5.1.0"
 
-  <span class="nt">persistentVolumeClaim</span><span class="p">:</span> 
-    <span class="nt">accessModes</span><span class="p">:</span> 
-      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span>
-    <span class="nt">resources</span><span class="p">:</span> 
-      <span class="nt">requests</span><span class="p">:</span> 
-        <span class="nt">storage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1Gi</span>
-    <span class="nt">storageClassName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">standard</span>
-    <span class="nt">volumeMode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Filesystem</span>
+  persistentVolumeClaim: 
+    accessModes: 
+      - ReadWriteOnce
+    resources: 
+      requests: 
+        storage: 1Gi
+    storageClassName: standard
+    volumeMode: Filesystem
 
-  <span class="nt">runner</span><span class="p">:</span> <span class="p p-Indicator">|</span>
-    <span class="no">state.persistence:</span>
-      <span class="no">enabled: true</span>
-      <span class="no">intervalInMin: 1</span>
-      <span class="no">revisionsToKeep: 2</span>
-      <span class="no">persistenceStore: io.siddhi.distribution.core.persistence.FileSystemPersistenceStore</span>
-      <span class="no">config:</span>
-        <span class="no">location: siddhi-app-persistence</span>
-</pre></div>
-</td></tr></table>
+  runner: |
+    state.persistence:
+      enabled: true
+      intervalInMin: 1
+      revisionsToKeep: 2
+      persistenceStore: io.siddhi.distribution.core.persistence.FileSystemPersistenceStore
+      config:
+        location: siddhi-app-persistence</code></pre>
 
 <p>Save this yaml as <code>power-consume-app.yaml</code> and deploy it using <code>kubeclt</code>.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ kubeclt apply -f power-consume-app.yaml
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">$ kubeclt apply -f power-consume-app.yaml</code></pre>
 
 <p>This commands will create Kubernetes artifacts like below.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ kubectl get svc
-NAME                  TYPE           CLUSTER-IP       EXTERNAL-IP   PORT<span class="o">(</span>S<span class="o">)</span>                      AGE
-kubernetes            ClusterIP      <span class="m">10</span>.96.0.1        &lt;none&gt;        <span class="m">443</span>/TCP                      12d
-power-consume-app-0   ClusterIP      <span class="m">10</span>.99.148.217    &lt;none&gt;        <span class="m">4222</span>/TCP                     5m
-siddhi-nats           ClusterIP      <span class="m">10</span>.105.250.215   &lt;none&gt;        <span class="m">4222</span>/TCP                     5m
-siddhi-nats-mgmt      ClusterIP      None             &lt;none&gt;        <span class="m">6222</span>/TCP,8222/TCP,7777/TCP   5m
-siddhi-operator       ClusterIP      <span class="m">10</span>.102.251.237   &lt;none&gt;        <span class="m">8383</span>/TCP                     5m
+<pre class="codehilite"><code class="language-sh linenums">$ kubectl get svc
+NAME                  TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)                      AGE
+kubernetes            ClusterIP      10.96.0.1        &lt;none&gt;        443/TCP                      12d
+power-consume-app-0   ClusterIP      10.99.148.217    &lt;none&gt;        4222/TCP                     5m
+siddhi-nats           ClusterIP      10.105.250.215   &lt;none&gt;        4222/TCP                     5m
+siddhi-nats-mgmt      ClusterIP      None             &lt;none&gt;        6222/TCP,8222/TCP,7777/TCP   5m
+siddhi-operator       ClusterIP      10.102.251.237   &lt;none&gt;        8383/TCP                     5m
 
 $ kubectl get pods
 NAME                                       READY     STATUS    RESTARTS   AGE
-nats-operator-b8f4977fc-8gnjd              <span class="m">1</span>/1       Running   <span class="m">0</span>          5m
-nats-streaming-operator-64b565bcc7-r9rpw   <span class="m">1</span>/1       Running   <span class="m">0</span>          5m
-power-consume-app-0-84f6774bd8-jl95w       <span class="m">1</span>/1       Running   <span class="m">0</span>          5m
-siddhi-nats-1                              <span class="m">1</span>/1       Running   <span class="m">0</span>          5m
-siddhi-operator-6c6c5d8fcc-hvl7j           <span class="m">1</span>/1       Running   <span class="m">0</span>          5m
-siddhi-stan-1                              <span class="m">1</span>/1       Running   <span class="m">0</span>          5m
-</pre></div>
-</td></tr></table>
+nats-operator-b8f4977fc-8gnjd              1/1       Running   0          5m
+nats-streaming-operator-64b565bcc7-r9rpw   1/1       Running   0          5m
+power-consume-app-0-84f6774bd8-jl95w       1/1       Running   0          5m
+siddhi-nats-1                              1/1       Running   0          5m
+siddhi-operator-6c6c5d8fcc-hvl7j           1/1       Running   0          5m
+siddhi-stan-1                              1/1       Running   0          5m</code></pre>
 
 <p>Now you have to create an ingress for the <code>siddhi-nats</code> service.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">networking.k8s.io/v1beta1</span>
-<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Ingress</span>
-<span class="nt">metadata</span><span class="p">:</span>
-  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi-nats</span>
-  <span class="nt">annotations</span><span class="p">:</span>
-    <span class="nt">nginx.ingress.kubernetes.io/rewrite-target</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/</span>
-<span class="nt">spec</span><span class="p">:</span>
-  <span class="nt">rules</span><span class="p">:</span>
-  <span class="p p-Indicator">-</span> <span class="nt">http</span><span class="p">:</span>
-      <span class="nt">paths</span><span class="p">:</span>
-      <span class="p p-Indicator">-</span> <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/nats</span>
-        <span class="nt">backend</span><span class="p">:</span>
-          <span class="nt">serviceName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi-nats</span>
-          <span class="nt">servicePort</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">4222</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-yaml linenums">apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: siddhi-nats
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /nats
+        backend:
+          serviceName: siddhi-nats
+          servicePort: 4222</code></pre>
 
 <p>Save this yaml as <code>siddhi-nats.yaml</code> and deploy it using <code>kubeclt</code>.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ kubeclt apply -f siddhi-nats.yaml
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">$ kubeclt apply -f siddhi-nats.yaml</code></pre>
 
 <p>Now you can send messages directly to the NATS streaming server that running on your Kubernetes cluster. You have to send those messages to <code>nats://&lt;KUBERNETES_CLUSTER_IP&gt;:4222</code> URI. To send messages to this NATS streaming cluster you can use a Siddhi app that has NATS sink or samples provided by NATS.</p>
 <div class="admonition note">
@@ -2480,183 +2039,98 @@ siddhi-stan-1                              <span class="m">1</span>/1       Runn
 <ol>
 <li>
 <p>User can create NATS cluster and NATS streaming cluster as described in <a href="https://github.com/nats-io/nats-streaming-operator/tree/v0.2.2#deploying-a-nats-streaming-cluster">this documentation</a>. Specify cluster details in the YAML file like following.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">messagingSystem</span><span class="p">:</span>
-  <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nats</span>
-  <span class="nt">config</span><span class="p">:</span> 
-    <span class="nt">bootstrapServers</span><span class="p">:</span>
-      <span class="p p-Indicator">-</span> <span class="s">&quot;nats://example-nats:4222&quot;</span>
-    <span class="nt">clusterId</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">example-stan</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-yaml linenums">messagingSystem:
+  type: nats
+  config: 
+    bootstrapServers:
+      - "nats://example-nats:4222"
+    clusterId: example-stan</code></pre>
 
 </li>
 <li>
 <p>If the user only specifies messaging system as NATS like below then Siddhi operator will automatically create NATS cluster(<code>siddhi-nats</code>) and NATS streaming cluster(<code>siddhi-stan</code>), and connect two partial apps.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">messagingSystem</span><span class="p">:</span>
-  <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nats</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-yaml linenums">messagingSystem:
+  type: nats</code></pre>
 
 </li>
 </ol>
 <p>Before installing a Siddhi app you have to check that all prerequisites(Siddhi-operator, nats-operator, and nats-streaming-operator) up and running perfectly like below.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ kubectl get deployments
+<pre class="codehilite"><code class="language-sh linenums">$ kubectl get deployments
 
 NAME                      READY     UP-TO-DATE   AVAILABLE   AGE
-nats-operator             <span class="m">1</span>/1       <span class="m">1</span>            <span class="m">1</span>           5m
-nats-streaming-operator   <span class="m">1</span>/1       <span class="m">1</span>            <span class="m">1</span>           5m
-siddhi-operator           <span class="m">1</span>/1       <span class="m">1</span>            <span class="m">1</span>           5m
-</pre></div>
-</td></tr></table>
+nats-operator             1/1       1            1           5m
+nats-streaming-operator   1/1       1            1           5m
+siddhi-operator           1/1       1            1           5m</code></pre>
 
 <p>Now you need to specify a YAML file like below to create stateful Siddhi app deployment.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi.io/v1alpha2</span>
-<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SiddhiProcess</span>
-<span class="nt">metadata</span><span class="p">:</span> 
-  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">power-consume-app</span>
-<span class="nt">spec</span><span class="p">:</span> 
-  <span class="nt">apps</span><span class="p">:</span> 
-    <span class="p p-Indicator">-</span> <span class="nt">script</span><span class="p">:</span> <span class="p p-Indicator">|</span>
-        <span class="no">@App:name(&quot;PowerConsumptionSurgeDetection&quot;)</span>
-        <span class="no">@App:description(&quot;App consumes events from HTTP as a JSON message of { &#39;deviceType&#39;: &#39;dryer&#39;, &#39;power&#39;: 6000 } format and inserts the events into DevicePowerStream, and alerts the user if the power consumption in 1 minute is greater than or equal to 10000W by printing a message in the log for every 30 seconds.&quot;)</span>
+<pre class="codehilite"><code class="language-yaml linenums">apiVersion: siddhi.io/v1alpha2
+kind: SiddhiProcess
+metadata: 
+  name: power-consume-app
+spec: 
+  apps: 
+    - script: |
+        @App:name("PowerConsumptionSurgeDetection")
+        @App:description("App consumes events from HTTP as a JSON message of { 'deviceType': 'dryer', 'power': 6000 } format and inserts the events into DevicePowerStream, and alerts the user if the power consumption in 1 minute is greater than or equal to 10000W by printing a message in the log for every 30 seconds.")
 
-        <span class="no">/*</span>
-            <span class="no">Input: deviceType string and powerConsuption int(Joules)</span>
-            <span class="no">Output: Alert user from printing a log, if there is a power surge in the dryer within 1 minute period. </span>
-                    <span class="no">Notify the user in every 30 seconds when total power consumption is greater than or equal to 10000W in 1 minute time period.</span>
-        <span class="no">*/</span>
+        /*
+            Input: deviceType string and powerConsuption int(Joules)
+            Output: Alert user from printing a log, if there is a power surge in the dryer within 1 minute period. 
+                    Notify the user in every 30 seconds when total power consumption is greater than or equal to 10000W in 1 minute time period.
+        */
 
-        <span class="no">@source(</span>
-          <span class="no">type=&#39;http&#39;,</span>
-          <span class="no">receiver.url=&#39;${RECEIVER_URL}&#39;,</span>
-          <span class="no">basic.auth.enabled=&#39;false&#39;,</span>
-          <span class="no">@map(type=&#39;json&#39;)</span>
-        <span class="no">)</span>
-        <span class="no">define stream DevicePowerStream(deviceType string, power int);</span>
+        @source(
+          type='http',
+          receiver.url='${RECEIVER_URL}',
+          basic.auth.enabled='false',
+          @map(type='json')
+        )
+        define stream DevicePowerStream(deviceType string, power int);
 
-        <span class="no">@sink(type=&#39;log&#39;, prefix=&#39;LOGGER&#39;) </span>
-        <span class="no">define stream PowerSurgeAlertStream(deviceType string, powerConsumed long); </span>
+        @sink(type='log', prefix='LOGGER') 
+        define stream PowerSurgeAlertStream(deviceType string, powerConsumed long); 
 
-        <span class="no">@info(name=&#39;power-consumption-window&#39;)  </span>
-        <span class="no">from DevicePowerStream#window.time(1 min) </span>
-        <span class="no">select deviceType, sum(power) as powerConsumed</span>
-        <span class="no">group by deviceType</span>
-        <span class="no">having powerConsumed &gt; 10000</span>
-        <span class="no">output every 30 sec</span>
-        <span class="no">insert into PowerSurgeAlertStream;</span>
+        @info(name='power-consumption-window')  
+        from DevicePowerStream#window.time(1 min) 
+        select deviceType, sum(power) as powerConsumed
+        group by deviceType
+        having powerConsumed &gt; 10000
+        output every 30 sec
+        insert into PowerSurgeAlertStream;
 
-  <span class="nt">container</span><span class="p">:</span> 
-    <span class="nt">env</span><span class="p">:</span> 
-      <span class="p p-Indicator">-</span> 
-        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">RECEIVER_URL</span>
-        <span class="nt">value</span><span class="p">:</span> <span class="s">&quot;http://0.0.0.0:8080/checkPower&quot;</span>
-      <span class="p p-Indicator">-</span> 
-        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">BASIC_AUTH_ENABLED</span>
-        <span class="nt">value</span><span class="p">:</span> <span class="s">&quot;false&quot;</span>
-    <span class="nt">image</span><span class="p">:</span> <span class="s">&quot;siddhiio/siddhi-runner-ubuntu:5.1.0&quot;</span>
+  container: 
+    env: 
+      - 
+        name: RECEIVER_URL
+        value: "http://0.0.0.0:8080/checkPower"
+      - 
+        name: BASIC_AUTH_ENABLED
+        value: "false"
+    image: "siddhiio/siddhi-runner-ubuntu:5.1.0"
 
-  <span class="nt">messagingSystem</span><span class="p">:</span>
-    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nats</span>
+  messagingSystem:
+    type: nats
 
-  <span class="nt">persistentVolumeClaim</span><span class="p">:</span> 
-    <span class="nt">accessModes</span><span class="p">:</span> 
-      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span>
-    <span class="nt">resources</span><span class="p">:</span> 
-      <span class="nt">requests</span><span class="p">:</span> 
-        <span class="nt">storage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1Gi</span>
-    <span class="nt">storageClassName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">standard</span>
-    <span class="nt">volumeMode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Filesystem</span>
+  persistentVolumeClaim: 
+    accessModes: 
+      - ReadWriteOnce
+    resources: 
+      requests: 
+        storage: 1Gi
+    storageClassName: standard
+    volumeMode: Filesystem
 
-  <span class="nt">runner</span><span class="p">:</span> <span class="p p-Indicator">|</span>
-    <span class="no">state.persistence:</span>
-      <span class="no">enabled: true</span>
-      <span class="no">intervalInMin: 1</span>
-      <span class="no">revisionsToKeep: 2</span>
-      <span class="no">persistenceStore: io.siddhi.distribution.core.persistence.FileSystemPersistenceStore</span>
-      <span class="no">config:</span>
-        <span class="no">location: siddhi-app-persistence</span>
-</pre></div>
-</td></tr></table>
+  runner: |
+    state.persistence:
+      enabled: true
+      intervalInMin: 1
+      revisionsToKeep: 2
+      persistenceStore: io.siddhi.distribution.core.persistence.FileSystemPersistenceStore
+      config:
+        location: siddhi-app-persistence</code></pre>
 
 <p>Save this YAML as <code>power-consume-app.yaml</code> as use <code>kubectl</code> to deploy the app.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f power-consume-app.yaml
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">kubectl apply -f power-consume-app.yaml</code></pre>
 
 <p>This <code>kubectl</code> execution in the Siddhi operator will do the following tasks.</p>
 <ol>
@@ -2666,59 +2140,29 @@ siddhi-operator           <span class="m">1</span>/1       <span class="m">1</sp
 <li>Create an ingress rule that maps to passthrough service.</li>
 </ol>
 <p>After a successful deployment, your kubernetes cluster should have these artifacts.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ kubectl get SiddhiProcesses
+<pre class="codehilite"><code class="language-sh linenums">$ kubectl get SiddhiProcesses
 NAME                STATUS    READY     AGE
-power-consume-app   Running   <span class="m">2</span>/2       5m
+power-consume-app   Running   2/2       5m
 
 $ kubectl get deployments
 NAME                      READY     UP-TO-DATE   AVAILABLE   AGE
-nats-operator             <span class="m">1</span>/1       <span class="m">1</span>            <span class="m">1</span>           10m
-nats-streaming-operator   <span class="m">1</span>/1       <span class="m">1</span>            <span class="m">1</span>           10m
-power-consume-app-0       <span class="m">1</span>/1       <span class="m">1</span>            <span class="m">1</span>           5m
-power-consume-app-1       <span class="m">1</span>/1       <span class="m">1</span>            <span class="m">1</span>           5m
-siddhi-operator           <span class="m">1</span>/1       <span class="m">1</span>            <span class="m">1</span>           10m
+nats-operator             1/1       1            1           10m
+nats-streaming-operator   1/1       1            1           10m
+power-consume-app-0       1/1       1            1           5m
+power-consume-app-1       1/1       1            1           5m
+siddhi-operator           1/1       1            1           10m
 
 $ kubectl get service
-NAME                  TYPE        CLUSTER-IP       EXTERNAL-IP   PORT<span class="o">(</span>S<span class="o">)</span>                      AGE
-kubernetes            ClusterIP   <span class="m">10</span>.96.0.1        &lt;none&gt;        <span class="m">443</span>/TCP                      2d7h
-power-consume-app-0   ClusterIP   <span class="m">10</span>.105.67.227    &lt;none&gt;        <span class="m">8080</span>/TCP                     5m
-siddhi-nats           ClusterIP   <span class="m">10</span>.100.205.21    &lt;none&gt;        <span class="m">4222</span>/TCP                     10m
-siddhi-nats-mgmt      ClusterIP   None             &lt;none&gt;        <span class="m">6222</span>/TCP,8222/TCP,7777/TCP   10m
-siddhi-operator       ClusterIP   <span class="m">10</span>.103.229.109   &lt;none&gt;        <span class="m">8383</span>/TCP                     10m
+NAME                  TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                      AGE
+kubernetes            ClusterIP   10.96.0.1        &lt;none&gt;        443/TCP                      2d7h
+power-consume-app-0   ClusterIP   10.105.67.227    &lt;none&gt;        8080/TCP                     5m
+siddhi-nats           ClusterIP   10.100.205.21    &lt;none&gt;        4222/TCP                     10m
+siddhi-nats-mgmt      ClusterIP   None             &lt;none&gt;        6222/TCP,8222/TCP,7777/TCP   10m
+siddhi-operator       ClusterIP   10.103.229.109   &lt;none&gt;        8383/TCP                     10m
 
 $ kubectl get ingress
 NAME      HOSTS     ADDRESS     PORTS     AGE
-siddhi    siddhi    <span class="m">10</span>.0.2.15   <span class="m">80</span>        10m
+siddhi    siddhi    10.0.2.15   80        10m
 
 $ kubectl get pv
 NAME        CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS    CLAIM                             STORAGECLASS   REASON    AGE
@@ -2726,70 +2170,39 @@ siddhi-pv   1Gi        RWO            Recycle          Bound     default/power-c
 
 $ kubectl get pvc
 NAME                      STATUS    VOLUME      CAPACITY   ACCESS MODES   STORAGECLASS   AGE
-power-consume-app-1-pvc   Bound     siddhi-pv   1Gi        RWO            standard       5m
-</pre></div>
-</td></tr></table>
+power-consume-app-1-pvc   Bound     siddhi-pv   1Gi        RWO            standard       5m</code></pre>
 
 <p>Here <code>power-consume-app-0</code> is the passthrough deployment and <code>power-consume-app-1</code> is the process deployment.</p>
 <p>Now you can send an HTTP request to the passthrough app.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7
-8
-9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>curl -X POST <span class="se">\</span>
-  http://siddhi/power-consume-app-0/8080/checkPower <span class="se">\</span>
-  -H <span class="s1">&#39;Accept: */*&#39;</span> <span class="se">\</span>
-  -H <span class="s1">&#39;Content-Type: application/json&#39;</span> <span class="se">\</span>
-  -H <span class="s1">&#39;Host: siddhi&#39;</span> <span class="se">\</span>
-  -d <span class="s1">&#39;{</span>
-<span class="s1">    &quot;deviceType&quot;: &quot;dryer&quot;,</span>
-<span class="s1">    &quot;power&quot;: 60000</span>
-<span class="s1">}&#39;</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">curl -X POST \
+  http://siddhi/power-consume-app-0/8080/checkPower \
+  -H 'Accept: */*' \
+  -H 'Content-Type: application/json' \
+  -H 'Host: siddhi' \
+  -d '{
+    "deviceType": "dryer",
+    "power": 60000
+}'</code></pre>
 
 <p>The process app logs will show that event.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ kubectl get pods
+<pre class="codehilite"><code class="language-sh linenums">$ kubectl get pods
 NAME                                       READY     STATUS    RESTARTS   AGE
-nats-operator-dd7f4945f-x4vf8              <span class="m">1</span>/1       Running   <span class="m">0</span>          10m
-nats-streaming-operator-6fbb6695ff-9rmlx   <span class="m">1</span>/1       Running   <span class="m">0</span>          10m
-power-consume-app-0-7486b87979-6tccx       <span class="m">1</span>/1       Running   <span class="m">0</span>          5m
-power-consume-app-1-588996fcfb-prncj       <span class="m">1</span>/1       Running   <span class="m">0</span>          5m
-siddhi-nats-1                              <span class="m">1</span>/1       Running   <span class="m">0</span>          5m
-siddhi-operator-6698d8f69d-w2kvj           <span class="m">1</span>/1       Running   <span class="m">0</span>          10m
-siddhi-stan-1                              <span class="m">1</span>/1       Running   <span class="m">1</span>          5m
+nats-operator-dd7f4945f-x4vf8              1/1       Running   0          10m
+nats-streaming-operator-6fbb6695ff-9rmlx   1/1       Running   0          10m
+power-consume-app-0-7486b87979-6tccx       1/1       Running   0          5m
+power-consume-app-1-588996fcfb-prncj       1/1       Running   0          5m
+siddhi-nats-1                              1/1       Running   0          5m
+siddhi-operator-6698d8f69d-w2kvj           1/1       Running   0          10m
+siddhi-stan-1                              1/1       Running   1          5m
 
 $ kubectl logs power-consume-app-1-588996fcfb-prncj
-JAVA_HOME environment variable is <span class="nb">set</span> to /opt/java/openjdk
-CARBON_HOME environment variable is <span class="nb">set</span> to /home/siddhi_user/siddhi-runner
-RUNTIME_HOME environment variable is <span class="nb">set</span> to /home/siddhi_user/siddhi-runner/wso2/runner
+JAVA_HOME environment variable is set to /opt/java/openjdk
+CARBON_HOME environment variable is set to /home/siddhi_user/siddhi-runner
+RUNTIME_HOME environment variable is set to /home/siddhi_user/siddhi-runner/wso2/runner
 Picked up JAVA_TOOL_OPTIONS: -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap
-<span class="o">[</span><span class="m">2019</span>-07-12 <span class="m">14</span>:09:16,648<span class="o">]</span>  INFO <span class="o">{</span>org.wso2.carbon.launcher.extensions.OSGiLibBundleDeployerUtils updateOSGiLib<span class="o">}</span> - Successfully updated the OSGi bundle information of Carbon Runtime: runner  
+[2019-07-12 14:09:16,648]  INFO {org.wso2.carbon.launcher.extensions.OSGiLibBundleDeployerUtils updateOSGiLib} - Successfully updated the OSGi bundle information of Carbon Runtime: runner  
 ...
-<span class="o">[</span><span class="m">2019</span>-07-12 <span class="m">14</span>:12:04,969<span class="o">]</span>  INFO <span class="o">{</span>io.siddhi.core.stream.output.sink.LogSink<span class="o">}</span> - LOGGER : Event<span class="o">{</span><span class="nv">timestamp</span><span class="o">=</span><span class="m">1562940716559</span>, <span class="nv">data</span><span class="o">=[</span>dryer, <span class="m">60000</span><span class="o">]</span>, <span class="nv">isExpired</span><span class="o">=</span>false<span class="o">}</span>
-</pre></div>
-</td></tr></table>
+[2019-07-12 14:12:04,969]  INFO {io.siddhi.core.stream.output.sink.LogSink} - LOGGER : Event{timestamp=1562940716559, data=[dryer, 60000], isExpired=false}</code></pre>
                 
                   
                 
@@ -2885,6 +2298,8 @@ Picked up JAVA_TOOL_OPTIONS: -XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemo
       <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
       
         <script src="../../assets/lib/highlightjs/highlight.min.js"></script>
+      
+        <script src="../../assets/js/jquery-3.3.1.min.js"></script>
       
         <script src="../../assets/js/theme.js"></script>
       

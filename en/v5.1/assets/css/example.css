@@ -57,7 +57,7 @@ pre code {
 
 .cBE-body tr:not(.cOutputTr)>td.code code {
     background-color: transparent;
-    padding: 6px;
+    padding: 0 ;
     width: 100%;
     line-height: 20px;
 }
@@ -74,6 +74,9 @@ pre code {
 
 .cBE-body tr.cTR.hover-enable pre {
     background-color: transparent;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0 .6rem;
 }
 
 .cBE-body tr.cTR.hover-enable:hover td.code {
@@ -249,7 +252,7 @@ tr:hover .cCodeLeft .cCodeDesription {
 }
 
 tr .cCodeDesription p {
-    margin-bottom: 0;
+     margin: 0;
     font-size: 15px;
 }
 
@@ -272,6 +275,7 @@ table.cTopBorder-table .cCodeTD {
     border-right: 5px solid  #eeeeee;
     background: url(../../images/code-bg.gif) #f5f6f6 repeat-y 0 0;
     width: 65.1%;
+    height: 15px;
 }
 
 table.cBottomBorder-table {
@@ -284,6 +288,7 @@ table.cBottomBorder-table .cCodeTD {
     border-right: 5px solid  #eeeeee;
     background: url(../../images/code-bg.gif) #f5f6f6 repeat-y 0 0;
     width: 65.1%;
+    height: 15px;
 }
 
 .cSiddhi-BBE-top-Container {
@@ -396,12 +401,6 @@ a.next {
     vertical-align: top;
 }
 
-.bbe-code-line-numbers .line-number {
-    padding-bottom: 8px;
-    padding-top: 12px;
-    line-height: 20px;
-}
-
 .cButtonInfoContainer {
     width: 46%;
     display: inline-block;
@@ -493,30 +492,9 @@ td.cDescTD {
     }
 }
 
-.bbe-code-line-numbers {
-    margin-top: 7px; !important;
-}
-
-.line-numbers-wrap {
-    background: #d4d6d7;
-    width: 30px;
-    text-align: right;
-    padding: 6px;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-.line-number {
-    font-size: 11px;
-    height: 18px;
-    line-height: 18px;
+.bbe-code-line-numbers .line-number {
+    font-size: 0.6rem;
+    line-height: 1rem;
     width: 100%;
     color: #514e4f;
     display: block;
@@ -524,12 +502,14 @@ td.cDescTD {
 
 .bbe-code-line-numbers {
     position: absolute;
-    z-index: 1;
-    margin-top: 6px;
+    font-size: 0.6rem;
+    line-height: .990rem;
+    background: #d4d6d7;
     width: 30px;
     text-align: center;
-    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
-    font-size: 13px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;

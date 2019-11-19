@@ -1208,179 +1208,93 @@
 <p>Following are the mandatory dependencies that need to be added to the Maven <code>pom.xml</code> file (or to the program classpath).</p>
 </li>
 </ul>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>   <span class="nt">&lt;dependency&gt;</span>
-     <span class="nt">&lt;groupId&gt;</span>io.siddhi<span class="nt">&lt;/groupId&gt;</span>
-     <span class="nt">&lt;artifactId&gt;</span>siddhi-core<span class="nt">&lt;/artifactId&gt;</span>
-     <span class="nt">&lt;version&gt;</span>5.x.x<span class="nt">&lt;/version&gt;</span>
-   <span class="nt">&lt;/dependency&gt;</span>
-   <span class="nt">&lt;dependency&gt;</span>
-     <span class="nt">&lt;groupId&gt;</span>io.siddhi<span class="nt">&lt;/groupId&gt;</span>
-     <span class="nt">&lt;artifactId&gt;</span>siddhi-query-api<span class="nt">&lt;/artifactId&gt;</span>
-     <span class="nt">&lt;version&gt;</span>5.x.x<span class="nt">&lt;/version&gt;</span>
-   <span class="nt">&lt;/dependency&gt;</span>
-   <span class="nt">&lt;dependency&gt;</span>
-     <span class="nt">&lt;groupId&gt;</span>io.siddhi<span class="nt">&lt;/groupId&gt;</span>
-     <span class="nt">&lt;artifactId&gt;</span>siddhi-query-compiler<span class="nt">&lt;/artifactId&gt;</span>
-     <span class="nt">&lt;version&gt;</span>5.x.x<span class="nt">&lt;/version&gt;</span>
-   <span class="nt">&lt;/dependency&gt;</span>
-   <span class="nt">&lt;dependency&gt;</span>
-     <span class="nt">&lt;groupId&gt;</span>io.siddhi<span class="nt">&lt;/groupId&gt;</span>
-     <span class="nt">&lt;artifactId&gt;</span>siddhi-annotations<span class="nt">&lt;/artifactId&gt;</span>
-     <span class="nt">&lt;version&gt;</span>5.x.x<span class="nt">&lt;/version&gt;</span>
-   <span class="nt">&lt;/dependency&gt;</span>   
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-xml linenums">   &lt;dependency&gt;
+     &lt;groupId&gt;io.siddhi&lt;/groupId&gt;
+     &lt;artifactId&gt;siddhi-core&lt;/artifactId&gt;
+     &lt;version&gt;5.x.x&lt;/version&gt;
+   &lt;/dependency&gt;
+   &lt;dependency&gt;
+     &lt;groupId&gt;io.siddhi&lt;/groupId&gt;
+     &lt;artifactId&gt;siddhi-query-api&lt;/artifactId&gt;
+     &lt;version&gt;5.x.x&lt;/version&gt;
+   &lt;/dependency&gt;
+   &lt;dependency&gt;
+     &lt;groupId&gt;io.siddhi&lt;/groupId&gt;
+     &lt;artifactId&gt;siddhi-query-compiler&lt;/artifactId&gt;
+     &lt;version&gt;5.x.x&lt;/version&gt;
+   &lt;/dependency&gt;
+   &lt;dependency&gt;
+     &lt;groupId&gt;io.siddhi&lt;/groupId&gt;
+     &lt;artifactId&gt;siddhi-annotations&lt;/artifactId&gt;
+     &lt;version&gt;5.x.x&lt;/version&gt;
+   &lt;/dependency&gt;   </code></pre>
 
 <h2 id="sample">Sample<a class="headerlink" href="#sample" title="Permanent link">&para;</a></h2>
 <p>Sample Java class using Siddhi is as follows.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="kn">package</span> <span class="nn">io.siddhi.sample</span><span class="o">;</span>
+<pre class="codehilite"><code class="language-java linenums">package io.siddhi.sample;
 
-<span class="kn">import</span> <span class="nn">io.siddhi.core.SiddhiAppRuntime</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">io.siddhi.core.SiddhiManager</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">io.siddhi.core.event.Event</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">io.siddhi.core.stream.input.InputHandler</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">io.siddhi.core.stream.output.StreamCallback</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">io.siddhi.core.util.EventPrinter</span><span class="o">;</span>
+import io.siddhi.core.SiddhiAppRuntime;
+import io.siddhi.core.SiddhiManager;
+import io.siddhi.core.event.Event;
+import io.siddhi.core.stream.input.InputHandler;
+import io.siddhi.core.stream.output.StreamCallback;
+import io.siddhi.core.util.EventPrinter;
 
-<span class="cm">/**</span>
-<span class="cm"> * The sample demonstrate how to use Siddhi within another Java program.</span>
-<span class="cm"> * This sample contains a simple filter query.</span>
-<span class="cm"> */</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleFilterSample</span> <span class="o">{</span>
+/**
+ * The sample demonstrate how to use Siddhi within another Java program.
+ * This sample contains a simple filter query.
+ */
+public class SimpleFilterSample {
 
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">InterruptedException</span> <span class="o">{</span>
+    public static void main(String[] args) throws InterruptedException {
 
-        <span class="c1">// Create Siddhi Manager</span>
-        <span class="n">SiddhiManager</span> <span class="n">siddhiManager</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SiddhiManager</span><span class="o">();</span>
+        // Create Siddhi Manager
+        SiddhiManager siddhiManager = new SiddhiManager();
 
-        <span class="c1">//Siddhi Application</span>
-        <span class="n">String</span> <span class="n">siddhiApp</span> <span class="o">=</span> <span class="s">&quot;&quot;</span> <span class="o">+</span>
-                <span class="s">&quot;define stream StockStream (symbol string, price float, volume long); &quot;</span> <span class="o">+</span>
-                <span class="s">&quot;&quot;</span> <span class="o">+</span>
-                <span class="s">&quot;@info(name = &#39;query1&#39;) &quot;</span> <span class="o">+</span>
-                <span class="s">&quot;from StockStream[volume &lt; 150] &quot;</span> <span class="o">+</span>
-                <span class="s">&quot;select symbol, price &quot;</span> <span class="o">+</span>
-                <span class="s">&quot;insert into OutputStream;&quot;</span><span class="o">;</span>
+        //Siddhi Application
+        String siddhiApp = "" +
+                "define stream StockStream (symbol string, price float, volume long); " +
+                "" +
+                "@info(name = 'query1') " +
+                "from StockStream[volume &lt; 150] " +
+                "select symbol, price " +
+                "insert into OutputStream;";
 
-        <span class="c1">//Generate runtime</span>
-        <span class="n">SiddhiAppRuntime</span> <span class="n">siddhiAppRuntime</span> <span class="o">=</span> <span class="n">siddhiManager</span><span class="o">.</span><span class="na">createSiddhiAppRuntime</span><span class="o">(</span><span class="n">siddhiApp</span><span class="o">);</span>
+        //Generate runtime
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(siddhiApp);
 
-        <span class="c1">//Adding callback to retrieve output events from stream</span>
-        <span class="n">siddhiAppRuntime</span><span class="o">.</span><span class="na">addCallback</span><span class="o">(</span><span class="s">&quot;OutputStream&quot;</span><span class="o">,</span> <span class="k">new</span> <span class="n">StreamCallback</span><span class="o">()</span> <span class="o">{</span>
-            <span class="nd">@Override</span>
-            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">receive</span><span class="o">(</span><span class="n">Event</span><span class="o">[]</span> <span class="n">events</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">EventPrinter</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">events</span><span class="o">);</span>
-                <span class="c1">//To convert and print event as a map</span>
-                <span class="c1">//EventPrinter.print(toMap(events));</span>
-            <span class="o">}</span>
-        <span class="o">});</span>
+        //Adding callback to retrieve output events from stream
+        siddhiAppRuntime.addCallback("OutputStream", new StreamCallback() {
+            @Override
+            public void receive(Event[] events) {
+                EventPrinter.print(events);
+                //To convert and print event as a map
+                //EventPrinter.print(toMap(events));
+            }
+        });
 
-        <span class="c1">//Get InputHandler to push events into Siddhi</span>
-        <span class="n">InputHandler</span> <span class="n">inputHandler</span> <span class="o">=</span> <span class="n">siddhiAppRuntime</span><span class="o">.</span><span class="na">getInputHandler</span><span class="o">(</span><span class="s">&quot;StockStream&quot;</span><span class="o">);</span>
+        //Get InputHandler to push events into Siddhi
+        InputHandler inputHandler = siddhiAppRuntime.getInputHandler("StockStream");
 
-        <span class="c1">//Start processing</span>
-        <span class="n">siddhiAppRuntime</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+        //Start processing
+        siddhiAppRuntime.start();
 
-        <span class="c1">//Sending events to Siddhi</span>
-        <span class="n">inputHandler</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span><span class="s">&quot;IBM&quot;</span><span class="o">,</span> <span class="mi">700</span><span class="n">f</span><span class="o">,</span> <span class="mi">100L</span><span class="o">});</span>
-        <span class="n">inputHandler</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span><span class="s">&quot;WSO2&quot;</span><span class="o">,</span> <span class="mf">60.5f</span><span class="o">,</span> <span class="mi">200L</span><span class="o">});</span>
-        <span class="n">inputHandler</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span><span class="s">&quot;GOOG&quot;</span><span class="o">,</span> <span class="mi">50</span><span class="n">f</span><span class="o">,</span> <span class="mi">30L</span><span class="o">});</span>
-        <span class="n">inputHandler</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span><span class="s">&quot;IBM&quot;</span><span class="o">,</span> <span class="mf">76.6f</span><span class="o">,</span> <span class="mi">400L</span><span class="o">});</span>
-        <span class="n">inputHandler</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="k">new</span> <span class="n">Object</span><span class="o">[]{</span><span class="s">&quot;WSO2&quot;</span><span class="o">,</span> <span class="mf">45.6f</span><span class="o">,</span> <span class="mi">50L</span><span class="o">});</span>
-        <span class="n">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">500</span><span class="o">);</span>
+        //Sending events to Siddhi
+        inputHandler.send(new Object[]{"IBM", 700f, 100L});
+        inputHandler.send(new Object[]{"WSO2", 60.5f, 200L});
+        inputHandler.send(new Object[]{"GOOG", 50f, 30L});
+        inputHandler.send(new Object[]{"IBM", 76.6f, 400L});
+        inputHandler.send(new Object[]{"WSO2", 45.6f, 50L});
+        Thread.sleep(500);
 
-        <span class="c1">//Shutdown runtime</span>
-        <span class="n">siddhiAppRuntime</span><span class="o">.</span><span class="na">shutdown</span><span class="o">();</span>
+        //Shutdown runtime
+        siddhiAppRuntime.shutdown();
 
-        <span class="c1">//Shutdown Siddhi Manager</span>
-        <span class="n">siddhiManager</span><span class="o">.</span><span class="na">shutdown</span><span class="o">();</span>
+        //Shutdown Siddhi Manager
+        siddhiManager.shutdown();
 
-    <span class="o">}</span>
-<span class="o">}</span>
-</pre></div>
-</td></tr></table>
+    }
+}</code></pre>
 
 <h2 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h2>
 <p>Siddhi running as a embedded Java library can be configured with environment specific properties using <code>Extension System Parameters</code>, <code>References</code>, and <code>Siddhi Properties</code> using either <code>InMemoryConfigManager</code> or <code>YAMLConfigManager</code>. Please refer the <a href="https://medium.com/siddhi-io/introducing-siddhi-yaml-config-manager-5499625a99e">blog</a> for details.</p>
@@ -1479,6 +1393,8 @@
       <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
       
         <script src="../../assets/lib/highlightjs/highlight.min.js"></script>
+      
+        <script src="../../assets/js/jquery-3.3.1.min.js"></script>
       
         <script src="../../assets/js/theme.js"></script>
       

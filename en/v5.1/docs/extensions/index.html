@@ -1694,17 +1694,11 @@
 <li><a href="../query-guide/#stream-processor">Stream Processor</a> extension, by extending <code>io.siddhi.core.query.processor.stream.StreamProcessor</code>.</li>
 </ul>
 <p>The CLI command to generate the Maven project for the extension is as follows.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>mvn archetype:generate
+<pre class="codehilite"><code class="linenums">mvn archetype:generate
     -DarchetypeGroupId=io.siddhi.extension.archetype
     -DarchetypeArtifactId=siddhi-archetype-execution
     -DgroupId=io.siddhi.extension.execution
-    -Dversion=1.0.0-SNAPSHOT
-</pre></div>
-</td></tr></table>
+    -Dversion=1.0.0-SNAPSHOT</code></pre>
 
 <p>When the command is executed, the following properties will be prompted. At last, confirm that all the property values are correct by typing <code>Y</code> for yes, and <code>N</code> if they are not.  </p>
 <table>
@@ -1780,17 +1774,11 @@
 <li><a href="../query-guide/#sink">Sink</a> extension, by extending  <code>io.siddhi.core.stream.output.sink.Sink</code>.</li>
 </ul>
 <p>The CLI command to generate the Maven project for the extension is as follows.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>mvn archetype:generate
+<pre class="codehilite"><code class="linenums">mvn archetype:generate
     -DarchetypeGroupId=io.siddhi.extension.archetype
     -DarchetypeArtifactId=siddhi-archetype-io
     -DgroupId=io.siddhi.extension.io
-    -Dversion=1.0.0-SNAPSHOT
-</pre></div>
-</td></tr></table>
+    -Dversion=1.0.0-SNAPSHOT</code></pre>
 
 <p>When the command is executed, the following properties will be prompted. At last, confirm that all the property values are correct by typing <code>Y</code> for yes, and <code>N</code> if they are not.  </p>
 <table>
@@ -1842,17 +1830,11 @@
 <li><a href="../query-guide/#sink-mapper">Sink Mapper</a> extension, by extending <code>io.siddhi.core.stream.output.sink.SinkMapper</code>.</li>
 </ul>
 <p>The CLI command to generate the Maven project for the extension is as follows.  </p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>mvn archetype:generate
+<pre class="codehilite"><code class="linenums">mvn archetype:generate
     -DarchetypeGroupId=io.siddhi.extension.archetype
     -DarchetypeArtifactId=siddhi-archetype-map
     -DgroupId=io.siddhi.extension.map
-    -Dversion=1.0.0-SNAPSHOT
-</pre></div>
-</td></tr></table>
+    -Dversion=1.0.0-SNAPSHOT</code></pre>
 
 <p>When the command is executed, the following properties will be prompted. At last, confirm that all the property values are correct by typing <code>Y</code> for yes, and <code>N</code> if they are not.  </p>
 <table>
@@ -1900,17 +1882,11 @@
 <p><strong>Writing Store Executions</strong></p>
 <p>Maven archetype to generate <a href="../query-guide/#store">store</a> extension, by extending either <code>io.siddhi.core.table.record.AbstractRecordTable</code> or <code>io.siddhi.core.table.record.AbstractQueryableRecordTable</code>. Here, the former allows Siddhi queries to perform conditional filters on the store while the latter allows performing both the conditional filters and select aggregations directly on the store.  </p>
 <p>The CLI command to generate the Maven project for the extension is as follows.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>mvn archetype:generate
+<pre class="codehilite"><code class="linenums">mvn archetype:generate
    -DarchetypeGroupId=io.siddhi.extension.archetype
    -DarchetypeArtifactId=siddhi-archetype-store
    -DgroupId=io.siddhi.extension.store
-   -Dversion=1.0.0-SNAPSHOT
-</pre></div>
-</td></tr></table>
+   -Dversion=1.0.0-SNAPSHOT</code></pre>
 
 <p>When the command is executed, the following properties will be prompted. At last, confirm that all the property values are correct by typing <code>Y</code> for yes, and <code>N</code> if they are not.  </p>
 <table>
@@ -1952,17 +1928,11 @@
 <p><strong>Writing Script Executions</strong></p>
 <p>Maven archetype to generate <a href="../query-guide/#script">script</a> extension, by extending either <code>io.siddhi.core.function.Script</code>.</p>
 <p>The CLI command to generate the Maven project for the extension is as follows.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>mvn archetype:generate
+<pre class="codehilite"><code class="linenums">mvn archetype:generate
     -DarchetypeGroupId=io.siddhi.extension.archetype
     -DarchetypeArtifactId=siddhi-archetype-script
     -DgroupId=io.siddhi.extension.script
-    -Dversion=1.0.0-SNAPSHOT
-</pre></div>
-</td></tr></table>
+    -Dversion=1.0.0-SNAPSHOT</code></pre>
 
 <p>When the command is executed, the following properties will be prompted. At last, confirm that all the property values are correct by typing <code>Y</code> for yes, and <code>N</code> if they are not.  </p>
 <table>
@@ -2096,6 +2066,8 @@
       <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
       
         <script src="../../assets/lib/highlightjs/highlight.min.js"></script>
+      
+        <script src="../../assets/js/jquery-3.3.1.min.js"></script>
       
         <script src="../../assets/js/theme.js"></script>
       

@@ -2475,90 +2475,49 @@
 <ol>
 <li>
 <p>Aggregate previous <code>apps</code> and <code>query</code> specs to a single spec called <code>apps</code>.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">apps</span><span class="p">:</span>
-<span class="p p-Indicator">-</span>
-    <span class="nt">configMap</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">app</span>
-<span class="p p-Indicator">-</span>
-    <span class="nt">script</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
-        <span class="no">@App:name(&quot;MonitorApp&quot;)</span>
-        <span class="no">@App:description(&quot;Description of the plan&quot;)  </span>
-        <span class="no">@sink(type=&#39;log&#39;, prefix=&#39;LOGGER&#39;)</span>
-        <span class="no">@source(</span>
-            <span class="no">type=&#39;http&#39;,</span>
-            <span class="no">receiver.url=&#39;http://0.0.0.0:8080/example&#39;,</span>
-            <span class="no">basic.auth.enabled=&#39;false&#39;,</span>
-            <span class="no">@map(type=&#39;json&#39;)</span>
-        <span class="no">)</span>
-        <span class="no">define stream DevicePowerStream (type string, deviceID string, power int);</span>
-        <span class="no">@sink(type=&#39;log&#39;, prefix=&#39;LOGGER&#39;)</span>
-        <span class="no">define stream MonitorDevicesPowerStream(sumPower long);</span>
-        <span class="no">@info(name=&#39;monitored-filter&#39;)</span>
-        <span class="no">from DevicePowerStream#window.time(100 min)</span>
-        <span class="no">select sum(power) as sumPower</span>
-        <span class="no">insert all events into MonitorDevicesPowerStream;</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-yaml linenums">apps:
+-
+    configMap: app
+-
+    script: |-
+        @App:name("MonitorApp")
+        @App:description("Description of the plan")  
+        @sink(type='log', prefix='LOGGER')
+        @source(
+            type='http',
+            receiver.url='http://0.0.0.0:8080/example',
+            basic.auth.enabled='false',
+            @map(type='json')
+        )
+        define stream DevicePowerStream (type string, deviceID string, power int);
+        @sink(type='log', prefix='LOGGER')
+        define stream MonitorDevicesPowerStream(sumPower long);
+        @info(name='monitored-filter')
+        from DevicePowerStream#window.time(100 min)
+        select sum(power) as sumPower
+        insert all events into MonitorDevicesPowerStream;</code></pre>
 
 </li>
 <li>
 <p>Replace previous <code>pod</code> spec with the container spec.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">container</span><span class="p">:</span>
-    <span class="nt">env</span><span class="p">:</span>
-        <span class="p p-Indicator">-</span>
-        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">RECEIVER_URL</span>
-        <span class="nt">value</span><span class="p">:</span> <span class="s">&quot;http://0.0.0.0:8080/example&quot;</span>
-        <span class="p p-Indicator">-</span>
-        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">BASIC_AUTH_ENABLED</span>
-        <span class="nt">value</span><span class="p">:</span> <span class="s">&quot;false&quot;</span>
-        <span class="p p-Indicator">-</span>
-        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">NATS_URL</span>
-        <span class="nt">value</span><span class="p">:</span> <span class="s">&quot;nats://siddhi-nats:4222&quot;</span>
-        <span class="p p-Indicator">-</span>
-        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">NATS_DEST</span>
-        <span class="nt">value</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi</span>
-        <span class="p p-Indicator">-</span>
-        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">NATS_CLUSTER_ID</span>
-        <span class="nt">value</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi-stan</span>
-    <span class="nt">image</span><span class="p">:</span> <span class="s">&quot;siddhiio/siddhi-runner-ubuntu:latest&quot;</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-yaml linenums">container:
+    env:
+        -
+        name: RECEIVER_URL
+        value: "http://0.0.0.0:8080/example"
+        -
+        name: BASIC_AUTH_ENABLED
+        value: "false"
+        -
+        name: NATS_URL
+        value: "nats://siddhi-nats:4222"
+        -
+        name: NATS_DEST
+        value: siddhi
+        -
+        name: NATS_CLUSTER_ID
+        value: siddhi-stan
+    image: "siddhiio/siddhi-runner-ubuntu:latest"</code></pre>
 
 </li>
 <li>
@@ -2567,37 +2526,21 @@
 <li>Remove previous <code>tls</code> spec. Now you can configure ingress TLS secret using the <code>siddhi-operator-config</code> config map.</li>
 <li>
 <p>Change YAML naming convention to the Camel case.
-    <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>  <span class="nt">messagingSystem</span><span class="p">:</span>
-    <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nats</span>
-    <span class="nt">config</span><span class="p">:</span> 
-      <span class="nt">bootstrapServers</span><span class="p">:</span> 
-        <span class="p p-Indicator">-</span> <span class="s">&quot;nats://nats-siddhi:4222&quot;</span>
-      <span class="nt">streamingClusterId</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">stan-siddhi</span>
+    <pre class="codehilite"><code class="language-yaml linenums">  messagingSystem:
+    type: nats
+    config: 
+      bootstrapServers: 
+        - "nats://nats-siddhi:4222"
+      streamingClusterId: stan-siddhi
 
-  <span class="nt">persistentVolumeClaim</span><span class="p">:</span> 
-    <span class="nt">accessModes</span><span class="p">:</span> 
-      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span>
-    <span class="nt">resources</span><span class="p">:</span> 
-      <span class="nt">requests</span><span class="p">:</span> 
-        <span class="nt">storage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1Gi</span>
-    <span class="nt">storageClassName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">standard</span>
-    <span class="nt">volumeMode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Filesystem</span>
-</pre></div>
-</td></tr></table></p>
+  persistentVolumeClaim: 
+    accessModes: 
+      - ReadWriteOnce
+    resources: 
+      requests: 
+        storage: 1Gi
+    storageClassName: standard
+    volumeMode: Filesystem</code></pre></p>
 </li>
 <li>
 <p>Enable the version controlling to the SiddhiProcesses. <a href="https://github.com/siddhi-io/siddhi-operator/pull/57">(#57)</a>, <a href="https://github.com/siddhi-io/siddhi-operator/pull/66">(#66)</a></p>
@@ -2712,6 +2655,8 @@
       <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
       
         <script src="../assets/lib/highlightjs/highlight.min.js"></script>
+      
+        <script src="../assets/js/jquery-3.3.1.min.js"></script>
       
         <script src="../assets/js/theme.js"></script>
       

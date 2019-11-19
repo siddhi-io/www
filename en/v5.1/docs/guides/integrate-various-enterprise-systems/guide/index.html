@@ -1658,15 +1658,10 @@
 <p>The implementation of the ParisTMA system represented in the following architecture diagram. The overall architecture can be expressed as the following subsystems.</p>
 <h3 id="vehicle-locator-subsystem">Vehicle Locator Subsystem<a class="headerlink" href="#vehicle-locator-subsystem" title="Permanent link">&para;</a></h3>
 <p>The vehicle locator subsystem is responsible for receiving the location of each subscriber and update subscriber database collection with their current location. The process of this subsystem showed in step 01-03 in the architecture diagram. The location of a vehicle, input to the NATS cluster as a JSON object like below.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="p">{</span>
-    <span class="nt">&quot;vehicleId&quot;</span><span class="p">:</span> <span class="s2">&quot;v001&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;currentArea&quot;</span><span class="p">:</span> <span class="s2">&quot;a002&quot;</span>
-<span class="p">}</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-json linenums">{
+    "vehicleId": "v001",
+    "currentArea": "a002"
+}</code></pre>
 
 <p>The Siddhi app called ParisTMAVehicleLocator will listen to those messages that come to the NATS cluster and periodically update the Mongo database with those current locations. This Mongo database contained all the information relevant to subscribers along with their current location.</p>
 <h3 id="notifier-subsystem">Notifier Subsystem<a class="headerlink" href="#notifier-subsystem" title="Permanent link">&para;</a></h3>
@@ -1704,11 +1699,8 @@
 <ol>
 <li>Start the <a href="https://siddhi.io/en/v5.0/docs/tooling/">Siddhi tooling</a> runtime and go to the editor UI in http://localhost:9390/editor</li>
 <li>Use the following steps to start the Siddhi tooling runtime. Extract the downloaded zip and navigate to /bin. (TOOLING_HOME refers to the extracted folder). Use the following command in the command prompt (Windows) / terminal (Linux/Mac).
-    <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>For Windows: tooling.bat
-For Linux/Mac: ./tooling.sh
-</pre></div>
-</td></tr></table></li>
+    <pre class="codehilite"><code class="language-sh linenums">For Windows: tooling.bat
+For Linux/Mac: ./tooling.sh</code></pre></li>
 <li>Select File -&gt; New option, then you could either use the source view or design view to write/build the Siddhi Application. You can find the Siddhi Application bellow, that implements the requirements mentioned above.</li>
 </ol>
 <p>Let’s write (develop) the Siddhi Application, as given below.</p>
@@ -1718,311 +1710,165 @@ For Linux/Mac: ./tooling.sh
 <p>The execution steps and the logic of the Siddhi query described as comments in the following Siddhi app. Therefore here we are not going to explain in detail here. For more details about Siddhi queries please refer <a href="https://siddhi.io/en/v5.1/docs/query-guide/">Siddhi query guide</a>.</p>
 </div>
 <h3 id="vehicle-locator">Vehicle Locator<a class="headerlink" href="#vehicle-locator" title="Permanent link">&para;</a></h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="n">App</span><span class="p">:</span><span class="n">name</span><span class="p">(</span><span class="ss">&quot;ParisTMAVehicleLocator&quot;</span><span class="p">)</span>
-<span class="o">@</span><span class="n">App</span><span class="p">:</span><span class="n">description</span><span class="p">(</span><span class="ss">&quot;Listen to the events send by NATS about vehicle locations and periodically update the Mongo database.&quot;</span><span class="p">)</span>
+<pre class="codehilite"><code class="language-siddhi linenums">@App:name("ParisTMAVehicleLocator")
+@App:description("Listen to the events send by NATS about vehicle locations and periodically update the Mongo database.")
 
-<span class="cm">/*</span>
-<span class="cm">Purpose:</span>
-<span class="cm">    The ParisTMA has subscribers that subscribe to get the service. All the subscriber details are saved in the Mongo database. In that database ParisTMA stores the current location of subscriber vehicles. The events related to current locations come as TCP requests through NATS. This app listens to those events and eventually update the database with the current location of each subscriber.</span>
+/*
+Purpose:
+    The ParisTMA has subscribers that subscribe to get the service. All the subscriber details are saved in the Mongo database. In that database ParisTMA stores the current location of subscriber vehicles. The events related to current locations come as TCP requests through NATS. This app listens to those events and eventually update the database with the current location of each subscriber.
 
-<span class="cm">Input:</span>
-<span class="cm">        NATS event with JSON payload: </span>
-<span class="cm">        {</span>
-<span class="cm">            &quot;vehicleId&quot;: &quot;v001&quot;,</span>
-<span class="cm">            &quot;currentArea&quot;: &quot;a002&quot;</span>
-<span class="cm">        }</span>
+Input:
+        NATS event with JSON payload: 
+        {
+            "vehicleId": "v001",
+            "currentArea": "a002"
+        }
 
-<span class="cm">Output:</span>
-<span class="cm">    Update the collection(subscriber) documents of MongoDB(parisTma).</span>
+Output:
+    Update the collection(subscriber) documents of MongoDB(parisTma).
 
-<span class="cm">*/</span>
+*/
 
-<span class="c1">-- NATS source that listens to the events</span>
-<span class="o">@</span><span class="k">source</span><span class="p">(</span>
-    <span class="k">type</span><span class="o">=</span><span class="s1">&#39;nats&#39;</span><span class="p">,</span> 
-    <span class="k">cluster</span><span class="p">.</span><span class="n">id</span><span class="o">=</span><span class="s1">&#39;${STAN_CLUSTER_ID}&#39;</span><span class="p">,</span> 
-    <span class="n">destination</span><span class="o">=</span><span class="s1">&#39;VehicleInputTunnel&#39;</span><span class="p">,</span> 
-    <span class="n">bootstrap</span><span class="p">.</span><span class="n">servers</span><span class="o">=</span><span class="s1">&#39;${STAN_SERVER_URL}&#39;</span><span class="p">,</span> 
-    <span class="o">@</span><span class="k">map</span><span class="p">(</span><span class="k">type</span><span class="o">=</span><span class="s1">&#39;json&#39;</span><span class="p">)</span>
-<span class="p">)</span>
-<span class="n">define</span> <span class="n">stream</span> <span class="n">CurrentVehicleAreaInputStream</span><span class="p">(</span><span class="n">vehicleId</span> <span class="n">string</span><span class="p">,</span> <span class="n">currentArea</span> <span class="n">string</span><span class="p">);</span>
+-- NATS source that listens to the events
+@source(
+    type='nats', 
+    cluster.id='${STAN_CLUSTER_ID}', 
+    destination='VehicleInputTunnel', 
+    bootstrap.servers='${STAN_SERVER_URL}', 
+    @map(type='json')
+)
+define stream CurrentVehicleAreaInputStream(vehicleId string, currentArea string);
 
-<span class="c1">-- MongoDB store</span>
-<span class="o">@</span><span class="n">store</span><span class="p">(</span><span class="k">type</span><span class="o">=</span><span class="s1">&#39;mongodb&#39;</span><span class="p">,</span> <span class="n">mongodb</span><span class="p">.</span><span class="n">uri</span><span class="o">=</span><span class="s1">&#39;${MONGODB_URI}&#39;</span><span class="p">)</span>
-<span class="n">define</span> <span class="k">table</span> <span class="n">subscriber</span><span class="p">(</span><span class="n">vehicleId</span> <span class="n">string</span><span class="p">,</span> <span class="n">currentArea</span> <span class="n">string</span><span class="p">);</span>
+-- MongoDB store
+@store(type='mongodb', mongodb.uri='${MONGODB_URI}')
+define table subscriber(vehicleId string, currentArea string);
 
-<span class="c1">-- Retrieves events from NATS source and update in MongoDB</span>
-<span class="o">@</span><span class="n">info</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;update-or-insert-subscriber-location&#39;</span><span class="p">)</span> 
-<span class="k">from</span> <span class="n">CurrentVehicleAreaInputStream</span>
-<span class="k">update</span> <span class="k">or</span> <span class="k">insert</span> <span class="k">into</span> <span class="n">subscriber</span> 
-<span class="k">on</span> <span class="n">subscriber</span><span class="p">.</span><span class="n">vehicleId</span><span class="o">==</span><span class="n">vehicleId</span><span class="p">;</span>
-</pre></div>
-</td></tr></table>
+-- Retrieves events from NATS source and update in MongoDB
+@info(name='update-or-insert-subscriber-location') 
+from CurrentVehicleAreaInputStream
+update or insert into subscriber 
+on subscriber.vehicleId==vehicleId;</code></pre>
 
 <h3 id="notifier">Notifier<a class="headerlink" href="#notifier" title="Permanent link">&para;</a></h3>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="n">App</span><span class="p">:</span><span class="n">name</span><span class="p">(</span><span class="ss">&quot;ParisTMANotifier&quot;</span><span class="p">)</span>
-<span class="o">@</span><span class="n">App</span><span class="p">:</span><span class="n">description</span><span class="p">(</span><span class="ss">&quot;Listen to the CDC events about the weather updates and send notifications to the subscribed users.&quot;</span><span class="p">)</span>
+<pre class="codehilite"><code class="language-siddhi linenums">@App:name("ParisTMANotifier")
+@App:description("Listen to the CDC events about the weather updates and send notifications to the subscribed users.")
 
-<span class="cm">/*</span>
-<span class="cm">Purpose:</span>
-<span class="cm">    The ParisTMA has subscribers that subscribe to get the service. All the subscriber details are saved in the Mongo database. In that database ParisTMA stores the current location of subscriber vehicles. There is a separate system handle by the Paris weather forecast organization. They periodically update the MySQL database called &#39;paristma&#39; with recent weather incidents. This app listens to those insertions using CDC and sends notifications to the subscribers who are in that particular area that incident happens.</span>
+/*
+Purpose:
+    The ParisTMA has subscribers that subscribe to get the service. All the subscriber details are saved in the Mongo database. In that database ParisTMA stores the current location of subscriber vehicles. There is a separate system handle by the Paris weather forecast organization. They periodically update the MySQL database called 'paristma' with recent weather incidents. This app listens to those insertions using CDC and sends notifications to the subscribers who are in that particular area that incident happens.
 
-<span class="cm">Input:</span>
-<span class="cm">    CDC insertions.</span>
+Input:
+    CDC insertions.
 
-<span class="cm">Output:</span>
-<span class="cm">    Email to users that notifying about the incident. </span>
-<span class="cm">    Note: Even you can change this email notification to an SMS notification calling an SMS provider.</span>
-<span class="cm">*/</span>
+Output:
+    Email to users that notifying about the incident. 
+    Note: Even you can change this email notification to an SMS notification calling an SMS provider.
+*/
 
-<span class="c1">-- CDC source that listens to insertions of the Incident table</span>
-<span class="o">@</span><span class="k">source</span><span class="p">(</span>
-    <span class="k">type</span><span class="o">=</span><span class="s1">&#39;cdc&#39;</span><span class="p">,</span>
-    <span class="n">url</span><span class="o">=</span><span class="s1">&#39;${MYSQL_URL}&#39;</span><span class="p">,</span>
-    <span class="n">username</span><span class="o">=</span><span class="s1">&#39;siddhi_user&#39;</span><span class="p">,</span>
-    <span class="n">password</span><span class="o">=</span><span class="s1">&#39;siddhiio&#39;</span><span class="p">,</span>
-    <span class="k">table</span><span class="p">.</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Incident&#39;</span><span class="p">,</span>
-    <span class="k">operation</span><span class="o">=</span><span class="s1">&#39;insert&#39;</span><span class="p">,</span>
-    <span class="o">@</span><span class="k">map</span><span class="p">(</span>
-        <span class="k">type</span><span class="o">=</span><span class="s1">&#39;keyvalue&#39;</span>
-    <span class="p">)</span>
-<span class="p">)</span>
-<span class="n">define</span> <span class="n">stream</span> <span class="n">IncidentInputStream</span><span class="p">(</span><span class="n">incidentId</span> <span class="nb">int</span><span class="p">,</span> <span class="n">incidentName</span> <span class="n">string</span><span class="p">,</span> <span class="n">incidentType</span> <span class="n">string</span><span class="p">,</span> <span class="n">incidentDetails</span> <span class="n">string</span><span class="p">,</span> <span class="n">incidentArea</span> <span class="n">string</span><span class="p">);</span>
+-- CDC source that listens to insertions of the Incident table
+@source(
+    type='cdc',
+    url='${MYSQL_URL}',
+    username='siddhi_user',
+    password='siddhiio',
+    table.name='Incident',
+    operation='insert',
+    @map(
+        type='keyvalue'
+    )
+)
+define stream IncidentInputStream(incidentId int, incidentName string, incidentType string, incidentDetails string, incidentArea string);
 
-<span class="c1">-- MongoDB store of subscribers</span>
-<span class="o">@</span><span class="n">store</span><span class="p">(</span><span class="k">type</span><span class="o">=</span><span class="s1">&#39;mongodb&#39;</span><span class="p">,</span> <span class="n">mongodb</span><span class="p">.</span><span class="n">uri</span><span class="o">=</span><span class="s1">&#39;${MONGODB_URI}&#39;</span><span class="p">)</span>
-<span class="n">define</span> <span class="k">table</span> <span class="n">subscriber</span><span class="p">(</span><span class="n">vehicleId</span> <span class="n">string</span><span class="p">,</span> <span class="n">currentArea</span> <span class="n">string</span><span class="p">,</span> <span class="n">subscriberName</span> <span class="n">string</span><span class="p">,</span> <span class="n">subscriberEmail</span> <span class="n">string</span><span class="p">);</span>
+-- MongoDB store of subscribers
+@store(type='mongodb', mongodb.uri='${MONGODB_URI}')
+define table subscriber(vehicleId string, currentArea string, subscriberName string, subscriberEmail string);
 
-<span class="c1">-- Email sink to send notifications</span>
-<span class="o">@</span><span class="n">sink</span><span class="p">(</span><span class="k">type</span><span class="o">=</span><span class="s1">&#39;email&#39;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="ss">&quot;${PARIS_TMA_EMAIL}&quot;</span><span class="p">,</span> <span class="n">address</span><span class="o">=</span><span class="ss">&quot;${PARIS_TMA_EMAIL}&quot;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="ss">&quot;${PARIS_TMA_EMAIL_PASSWORD}&quot;</span><span class="p">,</span> 
-      <span class="n">subject</span><span class="o">=</span><span class="ss">&quot;Weather Notification in {{incidentArea}}&quot;</span><span class="p">,</span> <span class="k">to</span><span class="o">=</span><span class="ss">&quot;{{subscriberEmail}}&quot;</span><span class="p">,</span> <span class="k">host</span><span class="o">=</span><span class="ss">&quot;smtp.gmail.com&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="ss">&quot;465&quot;</span><span class="p">,</span> 
-      <span class="n">ssl</span><span class="p">.</span><span class="n">enable</span><span class="o">=</span><span class="ss">&quot;true&quot;</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="ss">&quot;true&quot;</span><span class="p">,</span> 
-      <span class="o">@</span><span class="k">map</span><span class="p">(</span><span class="k">type</span><span class="o">=</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> 
-           <span class="o">@</span><span class="n">payload</span><span class="p">(</span><span class="ss">&quot;&quot;&quot;</span>
-<span class="ss">            Hi {{subscriberName}}</span>
+-- Email sink to send notifications
+@sink(type='email', username="${PARIS_TMA_EMAIL}", address="${PARIS_TMA_EMAIL}", password="${PARIS_TMA_EMAIL_PASSWORD}", 
+      subject="Weather Notification in {{incidentArea}}", to="{{subscriberEmail}}", host="smtp.gmail.com", port="465", 
+      ssl.enable="true", auth="true", 
+      @map(type='text', 
+           @payload("""
+            Hi {{subscriberName}}
 
-<span class="ss">            Recent reports state that there is {{incidentName}} in your area {{incidentArea}}. It is in {{incidentType}} state right now. </span>
+            Recent reports state that there is {{incidentName}} in your area {{incidentArea}}. It is in {{incidentType}} state right now. 
 
-<span class="ss">            The report state that {{incidentDetails}}.</span>
+            The report state that {{incidentDetails}}.
 
-<span class="ss">            Thanks, </span>
-<span class="ss">            Paris Transport Management Authority&quot;&quot;&quot;</span><span class="p">)))</span>
-<span class="n">define</span> <span class="n">stream</span> <span class="n">UserNotificationStream</span> <span class="p">(</span><span class="n">subscriberName</span> <span class="n">string</span><span class="p">,</span> <span class="n">subscriberEmail</span> <span class="n">string</span><span class="p">,</span> <span class="n">incidentName</span> <span class="n">string</span><span class="p">,</span> <span class="n">incidentType</span> <span class="n">string</span><span class="p">,</span> <span class="n">incidentDetails</span> <span class="n">string</span><span class="p">,</span> <span class="n">incidentArea</span> <span class="n">string</span><span class="p">);</span>
+            Thanks, 
+            Paris Transport Management Authority""")))
+define stream UserNotificationStream (subscriberName string, subscriberEmail string, incidentName string, incidentType string, incidentDetails string, incidentArea string);
 
-<span class="c1">-- Listen to the insertions in IncidentInputStream and join it with subscriber collection in MongoDB to get user information. Send notifications using that user information.</span>
-<span class="o">@</span><span class="n">info</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;listen-and-notify&#39;</span><span class="p">)</span> 
-<span class="k">from</span> <span class="n">IncidentInputStream</span><span class="o">#</span><span class="n">window</span><span class="p">.</span><span class="k">length</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">join</span> <span class="n">subscriber</span>
-<span class="k">on</span> <span class="n">IncidentInputStream</span><span class="p">.</span><span class="n">incidentArea</span><span class="o">==</span><span class="n">subscriber</span><span class="p">.</span><span class="n">currentArea</span>
-<span class="k">select</span> 
-    <span class="n">subscriber</span><span class="p">.</span><span class="n">subscriberName</span><span class="p">,</span> 
-    <span class="n">subscriber</span><span class="p">.</span><span class="n">subscriberEmail</span><span class="p">,</span> 
-    <span class="n">IncidentInputStream</span><span class="p">.</span><span class="n">incidentName</span><span class="p">,</span> 
-    <span class="n">IncidentInputStream</span><span class="p">.</span><span class="n">incidentType</span><span class="p">,</span> 
-    <span class="n">IncidentInputStream</span><span class="p">.</span><span class="n">incidentDetails</span><span class="p">,</span> 
-    <span class="n">IncidentInputStream</span><span class="p">.</span><span class="n">incidentArea</span>
-<span class="k">insert</span> <span class="k">into</span> <span class="n">UserNotificationStream</span><span class="p">;</span>
-</pre></div>
-</td></tr></table>
+-- Listen to the insertions in IncidentInputStream and join it with subscriber collection in MongoDB to get user information. Send notifications using that user information.
+@info(name='listen-and-notify') 
+from IncidentInputStream#window.length(1) join subscriber
+on IncidentInputStream.incidentArea==subscriber.currentArea
+select 
+    subscriber.subscriberName, 
+    subscriber.subscriberEmail, 
+    IncidentInputStream.incidentName, 
+    IncidentInputStream.incidentType, 
+    IncidentInputStream.incidentDetails, 
+    IncidentInputStream.incidentArea
+insert into UserNotificationStream;</code></pre>
 
 <h2 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h2>
 <h3 id="setup-mongodb">Setup MongoDB<a class="headerlink" href="#setup-mongodb" title="Permanent link">&para;</a></h3>
 <p>Refer <a href="https://docs.mongodb.com/manual/installation/">this link</a> to install MongoDB in your local machine. The ParisTMA system uses a Mongo database called <code>parisTma</code> and that parisTma collection contained a collection called the <code>subscriber</code>. In order to connect to the Mongo database, the Siddhi runtime will use a user called <code>siddhi_user</code> that identified by password <code>siddhiio</code>. You can create those MongoDB databases, collections, users and insert data using the following MongoDB commands.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>&gt; use parisTma
-&gt; db.createCollection<span class="o">(</span><span class="s2">&quot;subscriber&quot;</span><span class="o">)</span>
-&gt; db.createUser<span class="o">(</span>
-   <span class="o">{</span>    user: <span class="s2">&quot;siddhi_user&quot;</span>,
-      pwd: <span class="s2">&quot;siddhiio&quot;</span>,
-      roles:<span class="o">[{</span>role: <span class="s2">&quot;userAdmin&quot;</span> , db:<span class="s2">&quot;parisTma&quot;</span><span class="o">}]</span>
-   <span class="o">}</span>
-<span class="o">)</span>
+<pre class="codehilite"><code class="language-sh linenums">
+&gt; use parisTma
+&gt; db.createCollection("subscriber")
+&gt; db.createUser(
+   {    user: "siddhi_user",
+      pwd: "siddhiio",
+      roles:[{role: "userAdmin" , db:"parisTma"}]
+   }
+)
 
-&gt; db.subscriber.insert<span class="o">({</span>
-   vehicleId: <span class="s1">&#39;v001&#39;</span>,
-   currentArea: <span class="s1">&#39;a001&#39;</span>,
-   subscriberName: <span class="s1">&#39;John Dus&#39;</span>,
-   subscriberEmail: <span class="s1">&#39;b.wathsala.bw@gmail.com&#39;</span>
-<span class="o">})</span>
+&gt; db.subscriber.insert({
+   vehicleId: 'v001',
+   currentArea: 'a001',
+   subscriberName: 'John Dus',
+   subscriberEmail: 'b.wathsala.bw@gmail.com'
+})
 
-&gt; db.subscriber.insert<span class="o">({</span>
-   vehicleId: <span class="s1">&#39;v002&#39;</span>,
-   currentArea: <span class="s1">&#39;a002&#39;</span>,
-   subscriberName: <span class="s1">&#39;Natalie Jonson&#39;</span>,
-   subscriberEmail: <span class="s1">&#39;b.wathsala.bw@gmail.com&#39;</span>
-<span class="o">})</span>
+&gt; db.subscriber.insert({
+   vehicleId: 'v002',
+   currentArea: 'a002',
+   subscriberName: 'Natalie Jonson',
+   subscriberEmail: 'b.wathsala.bw@gmail.com'
+})
 
-&gt; db.subscriber.insert<span class="o">({</span>
-   vehicleId: <span class="s1">&#39;v003&#39;</span>,
-   currentArea: <span class="s1">&#39;a003&#39;</span>,
-   subscriberName: <span class="s1">&#39;Mark Norman&#39;</span>,
-   subscriberEmail: <span class="s1">&#39;buddhik@wso2.com&#39;</span>
-<span class="o">})</span>
-</pre></div>
-</td></tr></table>
+&gt; db.subscriber.insert({
+   vehicleId: 'v003',
+   currentArea: 'a003',
+   subscriberName: 'Mark Norman',
+   subscriberEmail: 'buddhik@wso2.com'
+})</code></pre>
 
 <h3 id="setup-mysql">Setup MySQL<a class="headerlink" href="#setup-mysql" title="Permanent link">&para;</a></h3>
 <p>After that, you have to create a MySQL database called <code>paristma</code>. It contained a table called <code>Incident</code> to store all the weather incidents happened recently. To access the MySQL database you also need to create a user called <code>siddhi_user</code> that identified by password <code>siddhiio</code>. The incident table will look like the following.</p>
 <p><img alt="MySQL Incident Table" src="../images/mysql-incident-table.png" title="MySQL Incident Table" /></p>
 <p>To connect to the MySQL database Siddhi tooling runtime needs the MySQL client library. You can download the <a href="https://dev.mysql.com/downloads/connector/j/5.1.html">MySQL JAR from here</a> and then add the JAR to the <code>${TOOLING_HOME}/jars</code> directory.</p>
 <p>This example uses the Siddhi CDC in the default(listening) mode. The listening mode needs to change the configurations as described <a href="https://github.com/siddhi-io/siddhi-io-cdc">here</a>. For example, you have to add the following configurations to the <code>my.cnf</code> file.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">[</span>mysqld<span class="o">]</span>
-server-id         <span class="o">=</span> <span class="m">223344</span>
-<span class="nv">log_bin</span>           <span class="o">=</span> mysql-bin
-<span class="nv">binlog_format</span>     <span class="o">=</span> row
-<span class="nv">binlog_row_image</span>  <span class="o">=</span> full
-<span class="nv">expire_logs_days</span>  <span class="o">=</span> <span class="m">10</span>
-<span class="nv">gtid_mode</span>                 <span class="o">=</span> on
-<span class="nv">enforce_gtid_consistency</span>  <span class="o">=</span> on
-<span class="nv">binlog_rows_query_log_events</span> <span class="o">=</span> on
-log-error<span class="o">=</span>/var/log/mysql/mysql.err
-log-bin <span class="o">=</span> /var/log/mysql/mysql-replication.log
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">[mysqld]
+server-id         = 223344
+log_bin           = mysql-bin
+binlog_format     = row
+binlog_row_image  = full
+expire_logs_days  = 10
+gtid_mode                 = on
+enforce_gtid_consistency  = on
+binlog_rows_query_log_events = on
+log-error=/var/log/mysql/mysql.err
+log-bin = /var/log/mysql/mysql-replication.log</code></pre>
 
 <h3 id="setup-nats-streaming-cluster">Setup NATS Streaming Cluster<a class="headerlink" href="#setup-nats-streaming-cluster" title="Permanent link">&para;</a></h3>
 <p>Now you need to <a href="https://nats-io.github.io/docs/nats_streaming/gettingstarted/install.html">install a NATS streaming server</a>. For example, to install the NATS streaming cluster in MacOS use the following commands.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ brew install nats-streaming-server
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">$ brew install nats-streaming-server</code></pre>
 
 <p>After the installation runs the NATS streaming cluster as below.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ nats-streaming-server
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">$ nats-streaming-server</code></pre>
 
 <p>The Siddhi app runtime will need the following JARs to connect to the NATS streaming server. Download those JARs using the following links and add those JARs to <code>${TOOLING_HOME}/jars</code> directory.</p>
 <ul>
@@ -2050,11 +1896,8 @@ log-bin <span class="o">=</span> /var/log/mysql/mysql-replication.log
 <li>Send notifications</li>
 </ol>
 <p>To test the vehicle location updates you have to send a request to the NATS streaming server. You can send the request using various NATS clients. In this use case, you can use NATS streaming Go language client to easily send requests. To do that you need to have to install Golang in your machine. Or else you can use other clients like (<a href="https://github.com/nats-io/stan.java">Java</a>, <a href="https://github.com/nats-io/stan.js">JS</a>, <a href="https://github.com/nats-io/stan.py">Python</a>, or <a href="https://github.com/nats-io/stan.rb">Ruby</a> etc). You can use following Golang commands to send a request to the NATS streaming cluster.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ go get github.com/nats-io/stan.go/
-$ go run <span class="nv">$GOPATH</span>/src/github.com/nats-io/stan.go/examples/stan-pub/main.go -s localhost:4222 -c test-cluster VehicleInputTunnel <span class="s2">&quot;{\&quot;vehicleId\&quot;: \&quot;v001\&quot;, \&quot;currentArea\&quot;:\&quot;a003\&quot;}&quot;</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">$ go get github.com/nats-io/stan.go/
+$ go run $GOPATH/src/github.com/nats-io/stan.go/examples/stan-pub/main.go -s localhost:4222 -c test-cluster VehicleInputTunnel "{\"vehicleId\": \"v001\", \"currentArea\":\"a003\"}"</code></pre>
 
 <p>To run the notification Siddhi app you just need to insert data entry to the Incident table. When you do that it the Siddhi app will simply send an email to the subscribers like below.</p>
 <p><img alt="Email" src="../images/email.png" title="Email" /></p>
@@ -2080,11 +1923,8 @@ $ go run <span class="nv">$GOPATH</span>/src/github.com/nats-io/stan.go/examples
 </li>
 <li>Copy your Siddhi file into <code>&lt;RUNNER_HOME&gt;/wso2/runner/deployment/siddhi-files</code></li>
 <li>Start the following binary file to run the Siddhi runner server.
-    <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>For Linux/Mac: &lt;RUNNER_HOME&gt;/bin/runner.sh
-For Windows: &lt;RUNNER_HOME&gt;/bin/runner.bat
-</pre></div>
-</td></tr></table></li>
+    <pre class="codehilite"><code class="language-sh linenums">For Linux/Mac: &lt;RUNNER_HOME&gt;/bin/runner.sh
+For Windows: &lt;RUNNER_HOME&gt;/bin/runner.bat</code></pre></li>
 <li>Now you can try out the sample as described in this <a href="#tryout">tryout section</a>.</li>
 </ol>
 <h3 id="deploy-on-docker">Deploy on Docker<a class="headerlink" href="#deploy-on-docker" title="Permanent link">&para;</a></h3>
@@ -2092,17 +1932,7 @@ For Windows: &lt;RUNNER_HOME&gt;/bin/runner.bat
 <p><a href="https://docs.docker.com/install/">Install Docker</a> in your machine.</p>
 <h4 id="siddhi-docker-configurations">Siddhi Docker Configurations<a class="headerlink" href="#siddhi-docker-configurations" title="Permanent link">&para;</a></h4>
 <p>In the tooling editor itself, you can export your Siddhi app into a runnable docker artifact. You can go to <code>Export-&gt;For Docker</code> and it will give to a zip file that contained the following files.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>├── Dockerfile
+<pre class="codehilite"><code class="language-sh linenums">├── Dockerfile
 ├── bundles
 │   └── protobuf-java-3.6.1.jar
 ├── configurations.yaml
@@ -2112,9 +1942,7 @@ For Windows: &lt;RUNNER_HOME&gt;/bin/runner.bat
 │   └── mysql-connector-java-5.1.45-bin.jar
 └── siddhi-files
     ├── ParisTMANotifier.siddhi
-    └── ParisTMAVehicleLocator.siddhi
-</pre></div>
-</td></tr></table>
+    └── ParisTMAVehicleLocator.siddhi</code></pre>
 
 <p>When you export the apps as a Docker, it will ask for the templated values to be filled. You have to use the following values for those templated values.</p>
 <ol>
@@ -2126,157 +1954,83 @@ For Windows: &lt;RUNNER_HOME&gt;/bin/runner.bat
 <li>PARIS_TMA_EMAIL_PASSWORD=<code>&lt;TEST_EMAIL_PASSWORD&gt;</code></li>
 </ol>
 <p>In order to change the configurations of MySQL Docker container you have create <code>my.cnf</code> file in your current directory and add the following content to that file. Also create directory called <code>mysql</code>.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">[</span>mysqld<span class="o">]</span>
-server-id         <span class="o">=</span> <span class="m">223344</span>
-<span class="nv">log_bin</span>           <span class="o">=</span> mysql-bin
-<span class="nv">binlog_format</span>     <span class="o">=</span> row
-<span class="nv">binlog_row_image</span>  <span class="o">=</span> full
-<span class="nv">expire_logs_days</span>  <span class="o">=</span> <span class="m">10</span>
-<span class="nv">gtid_mode</span>                 <span class="o">=</span> on
-<span class="nv">enforce_gtid_consistency</span>  <span class="o">=</span> on
-<span class="nv">binlog_rows_query_log_events</span> <span class="o">=</span> on
-log-error<span class="o">=</span>/var/log/mysql/mysql.err
-log-bin <span class="o">=</span> /var/log/mysql/mysql-replication.log
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">[mysqld]
+server-id         = 223344
+log_bin           = mysql-bin
+binlog_format     = row
+binlog_row_image  = full
+expire_logs_days  = 10
+gtid_mode                 = on
+enforce_gtid_consistency  = on
+binlog_rows_query_log_events = on
+log-error=/var/log/mysql/mysql.err
+log-bin = /var/log/mysql/mysql-replication.log</code></pre>
 
 <p>Now you need to have a Docker compose file like below to set up all the prerequisites. This compose file contains volume mounts to change configurations of the MySQL container.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">&quot;3&quot;</span>
-<span class="nt">services</span><span class="p">:</span>
-    <span class="nt">backend</span><span class="p">:</span>
-        <span class="nt">container_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">paristma-notifier</span>
-        <span class="nt">user</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">802:802</span>
-        <span class="nt">build</span><span class="p">:</span>
-          <span class="nt">context</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">.</span>
-          <span class="nt">dockerfile</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">./Dockerfile</span>
-        <span class="nt">links</span><span class="p">:</span>
-            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">mysqldb</span>
-            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">mongodb</span>
-            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">nats</span>
-        <span class="nt">networks</span><span class="p">:</span>
-            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">default</span>
-        <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">on-failure</span>
+<pre class="codehilite"><code class="language-yaml linenums">version: "3"
+services:
+    backend:
+        container_name: paristma-notifier
+        user: 802:802
+        build:
+          context: .
+          dockerfile: ./Dockerfile
+        links:
+            - mysqldb
+            - mongodb
+            - nats
+        networks:
+            - default
+        restart: on-failure
 
-    <span class="nt">mysqldb</span><span class="p">:</span>
-        <span class="nt">image</span><span class="p">:</span> <span class="s">&#39;mysql:5.7&#39;</span>
-        <span class="nt">container_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">paristma-mysqldb</span>
-        <span class="nt">environment</span><span class="p">:</span>
-            <span class="nt">MYSQL_USER</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi_user</span>
-            <span class="nt">MYSQL_PASSWORD</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhiio</span>
-            <span class="nt">MYSQL_ROOT_PASSWORD</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhiio</span>
-        <span class="nt">ports</span><span class="p">:</span>
-            <span class="p p-Indicator">-</span> <span class="s">&quot;3304:3306&quot;</span>
-        <span class="nt">networks</span><span class="p">:</span>
-            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">default</span>
-        <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">on-failure</span>
-        <span class="nt">volumes</span><span class="p">:</span>
-            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">./my.cnf:/etc/my.cnf</span>
-            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">./mysql:/var/log/mysql</span>
-        <span class="nt">command</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">--sql_mode=&quot;&quot;</span>
+    mysqldb:
+        image: 'mysql:5.7'
+        container_name: paristma-mysqldb
+        environment:
+            MYSQL_USER: siddhi_user
+            MYSQL_PASSWORD: siddhiio
+            MYSQL_ROOT_PASSWORD: siddhiio
+        ports:
+            - "3304:3306"
+        networks:
+            - default
+        restart: on-failure
+        volumes:
+            - ./my.cnf:/etc/my.cnf
+            - ./mysql:/var/log/mysql
+        command: --sql_mode=""
 
-    <span class="nt">mongodb</span><span class="p">:</span>
-        <span class="nt">image</span><span class="p">:</span> <span class="s">&#39;mongo:4.0.4&#39;</span>
-        <span class="nt">container_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">paristma-mongodb</span>
-        <span class="nt">ports</span><span class="p">:</span>
-            <span class="p p-Indicator">-</span> <span class="s">&quot;27017-27019:27017-27019&quot;</span>
-        <span class="nt">networks</span><span class="p">:</span>
-            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">default</span>
-        <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">on-failure</span>
+    mongodb:
+        image: 'mongo:4.0.4'
+        container_name: paristma-mongodb
+        ports:
+            - "27017-27019:27017-27019"
+        networks:
+            - default
+        restart: on-failure
 
-    <span class="nt">nats</span><span class="p">:</span>
-        <span class="nt">image</span><span class="p">:</span> <span class="s">&#39;nats-streaming:0.16.2-linux&#39;</span>
-        <span class="nt">container_name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">paristma-nats</span>
-        <span class="nt">ports</span><span class="p">:</span>
-            <span class="p p-Indicator">-</span> <span class="s">&quot;4223:4223&quot;</span>
-            <span class="p p-Indicator">-</span> <span class="s">&quot;8223:8223&quot;</span>
-        <span class="nt">networks</span><span class="p">:</span>
-            <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">default</span>
-        <span class="nt">restart</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">on-failure</span>
-</pre></div>
-</td></tr></table>
+    nats:
+        image: 'nats-streaming:0.16.2-linux'
+        container_name: paristma-nats
+        ports:
+            - "4223:4223"
+            - "8223:8223"
+        networks:
+            - default
+        restart: on-failure</code></pre>
 
 <p>Now you can start each containers.</p>
 <ol>
 <li>First, you need to build the Docker composer.
-    <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>docker-compose build
-</pre></div>
-</td></tr></table></li>
+    <pre class="codehilite"><code class="language-sh linenums">docker-compose build</code></pre></li>
 <li>Starts the MySQL container using the following command and set up the MySQL database as <a href="#setup-mysql">described above</a>.
-    <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>docker-compose up -d mysqldb
-</pre></div>
-</td></tr></table></li>
+    <pre class="codehilite"><code class="language-sh linenums">docker-compose up -d mysqldb</code></pre></li>
 <li>Then, starts the MongoDB container using the following command and set up the MongoDB database as <a href="#setup-mongodb">described above</a>.
-    <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>docker-compose up -d mongodb
-</pre></div>
-</td></tr></table></li>
+    <pre class="codehilite"><code class="language-sh linenums">docker-compose up -d mongodb</code></pre></li>
 <li>After that, starts the NATS container using the following command.
-    <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>docker-compose up -d nats
-</pre></div>
-</td></tr></table></li>
+    <pre class="codehilite"><code class="language-sh linenums">docker-compose up -d nats</code></pre></li>
 <li>Finally, start the Siddhi backend runtime.
-    <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>docker-compose up -d backend
-</pre></div>
-</td></tr></table>
+    <pre class="codehilite"><code class="language-sh linenums">docker-compose up -d backend</code></pre>
 When you insert data entry to the Incident table, the Siddhi app will simply send an email to the subscribers like below.</li>
 </ol>
 <p><img alt="Email" src="../images/email.png" title="Email" /></p>
@@ -2293,18 +2047,7 @@ When you insert data entry to the Incident table, the Siddhi app will simply sen
 </ol>
 <h4 id="siddhi-kubernetes-configurations">Siddhi Kubernetes Configurations<a class="headerlink" href="#siddhi-kubernetes-configurations" title="Permanent link">&para;</a></h4>
 <p>In the tooling editor itself, you can export your Siddhi app into a runnable Kubernetes artifact. You can go to <code>Export-&gt;For Kubernetes</code> and it will give to a zip file that contained the following files.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>├── Dockerfile
+<pre class="codehilite"><code class="language-sh linenums">├── Dockerfile
 ├── bundles
 │   └── protobuf-java-3.6.1.jar
 ├── configurations.yaml
@@ -2315,9 +2058,7 @@ When you insert data entry to the Incident table, the Siddhi app will simply sen
 ├── siddhi-files
 │   ├── ParisTMANotifier.siddhi
 │   └── ParisTMAVehicleLocator.siddhi
-└── siddhi-process.yaml
-</pre></div>
-</td></tr></table>
+└── siddhi-process.yaml</code></pre>
 
 <p>When you export the apps as a Kubernetes, it will ask for the templated values to be filled. You have to use the following values for those templated values.</p>
 <ol>
@@ -2330,530 +2071,276 @@ When you insert data entry to the Incident table, the Siddhi app will simply sen
 </ol>
 <h4 id="setup-mongodb_1">Setup MongoDB<a class="headerlink" href="#setup-mongodb_1" title="Permanent link">&para;</a></h4>
 <p>Let’s install MongoDB in your Kubernetes cluster using Helm.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ helm install stable/mongodb
-$ helm install --name paristma --set volumePermissions.enabled<span class="o">=</span>true,mongodbRootPassword<span class="o">=</span>siddhiio,mongodbUsername<span class="o">=</span>siddhi_user,mongodbPassword<span class="o">=</span>siddhiio,mongodbDatabase<span class="o">=</span>parisTma stable/mongodb 
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">$ helm install stable/mongodb
+$ helm install --name paristma --set volumePermissions.enabled=true,mongodbRootPassword=siddhiio,mongodbUsername=siddhi_user,mongodbPassword=siddhiio,mongodbDatabase=parisTma stable/mongodb </code></pre>
 
 <p>Now you can access the MongoDB externally using following commands and set up the Mongo database as <a href="#setup-mongodb">described previously</a>.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ <span class="nb">export</span> <span class="nv">MONGODB_ROOT_PASSWORD</span><span class="o">=</span><span class="k">$(</span>kubectl get secret --namespace default paristma-mongodb -o <span class="nv">jsonpath</span><span class="o">=</span><span class="s2">&quot;{.data.mongodb-root-password}&quot;</span> <span class="p">|</span> base64 --decode<span class="k">)</span>
+<pre class="codehilite"><code class="language-sh linenums">$ export MONGODB_ROOT_PASSWORD=$(kubectl get secret --namespace default paristma-mongodb -o jsonpath="{.data.mongodb-root-password}" | base64 --decode)
 
-$ kubectl run --namespace default paristma-mongodb-client --rm --tty -i --restart<span class="o">=</span><span class="s1">&#39;Never&#39;</span> --image bitnami/mongodb --command -- mongo admin --host paristma-mongodb --authenticationDatabase admin -u root -p <span class="nv">$MONGODB_ROOT_PASSWORD</span>
-</pre></div>
-</td></tr></table>
+$ kubectl run --namespace default paristma-mongodb-client --rm --tty -i --restart='Never' --image bitnami/mongodb --command -- mongo admin --host paristma-mongodb --authenticationDatabase admin -u root -p $MONGODB_ROOT_PASSWORD</code></pre>
 
 <h4 id="setup-mysql_1">Setup MySQL<a class="headerlink" href="#setup-mysql_1" title="Permanent link">&para;</a></h4>
 <p>In order to change the MySQL configurations for the Siddhi CDC extension, you need to create a file called <code>values.yaml</code> with including the following configurations.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>mysqlRootPassword: siddhiio
+<pre class="codehilite"><code class="language-sh linenums">
+mysqlRootPassword: siddhiio
 mysqlUser: siddhi_user
 mysqlPassword: siddhiio
 mysqlDatabase: paristma
 configurationFiles:
-    my.cnf: <span class="p">|</span>-
-        <span class="o">[</span>mysqld<span class="o">]</span>
-        server-id         <span class="o">=</span> <span class="m">223344</span>
-        <span class="nv">log_bin</span>           <span class="o">=</span> mysql-bin
-        <span class="nv">binlog_format</span>     <span class="o">=</span> row
-        <span class="nv">binlog_row_image</span>  <span class="o">=</span> full
-        <span class="nv">expire_logs_days</span>  <span class="o">=</span> <span class="m">10</span>
-        <span class="nv">gtid_mode</span>                 <span class="o">=</span> on
-        <span class="nv">enforce_gtid_consistency</span>  <span class="o">=</span> on
-        <span class="nv">binlog_rows_query_log_events</span> <span class="o">=</span> on
-        log-error<span class="o">=</span>/var/log/mysql/mysql.err
-        log-bin <span class="o">=</span> /var/log/mysql/mysql-replication.log
-</pre></div>
-</td></tr></table>
+    my.cnf: |-
+        [mysqld]
+        server-id         = 223344
+        log_bin           = mysql-bin
+        binlog_format     = row
+        binlog_row_image  = full
+        expire_logs_days  = 10
+        gtid_mode                 = on
+        enforce_gtid_consistency  = on
+        binlog_rows_query_log_events = on
+        log-error=/var/log/mysql/mysql.err
+        log-bin = /var/log/mysql/mysql-replication.log</code></pre>
 
 <p>Now you can install MySQL in you Kubernetes cluster using Helm.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ helm install --name mysqldb -f values.yaml stable/mysql
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">$ helm install --name mysqldb -f values.yaml stable/mysql</code></pre>
 
 <p>Use Kubernetes port forwading to access MySQL externally using 3307 port and create nessasary tables in the MySQL database as <a href="#setup-mysql">described previously</a>.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ kubectl port-forward svc/mysql-db <span class="m">3307</span>:3306
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">$ kubectl port-forward svc/mysql-db 3307:3306</code></pre>
 
 <h4 id="setup-nats-streaming">Setup NATS Streaming<a class="headerlink" href="#setup-nats-streaming" title="Permanent link">&para;</a></h4>
 <p>Use the following kubectl commands to set up the NATS streaming cluster.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ kubectl apply -f https://github.com/nats-io/nats-operator/releases/download/v0.5.0/00-prereqs.yaml
+<pre class="codehilite"><code class="language-sh linenums">$ kubectl apply -f https://github.com/nats-io/nats-operator/releases/download/v0.5.0/00-prereqs.yaml
 $ kubectl apply -f https://github.com/nats-io/nats-operator/releases/download/v0.5.0/10-deployment.yaml
 $ kubectl apply -f https://github.com/nats-io/nats-streaming-operator/releases/download/v0.2.2/default-rbac.yaml
 $ kubectl apply -f https://github.com/nats-io/nats-streaming-operator/releases/download/v0.2.2/deployment.yaml
 
-$ <span class="nb">echo</span> <span class="s1">&#39;</span>
-<span class="s1">---</span>
-<span class="s1">apiVersion: &quot;nats.io/v1alpha2&quot;</span>
-<span class="s1">kind: &quot;NatsCluster&quot;</span>
-<span class="s1">metadata:</span>
-<span class="s1">  name: &quot;siddhi-nats&quot;</span>
-<span class="s1">spec:</span>
-<span class="s1">  size: 1</span>
-<span class="s1">&#39;</span> <span class="p">|</span> kubectl apply -f -
+$ echo '
+---
+apiVersion: "nats.io/v1alpha2"
+kind: "NatsCluster"
+metadata:
+  name: "siddhi-nats"
+spec:
+  size: 1
+' | kubectl apply -f -
 
-$ <span class="nb">echo</span> <span class="s1">&#39;</span>
-<span class="s1">---</span>
-<span class="s1">apiVersion: &quot;streaming.nats.io/v1alpha1&quot;</span>
-<span class="s1">kind: &quot;NatsStreamingCluster&quot;</span>
-<span class="s1">metadata:</span>
-<span class="s1">  name: &quot;siddhi-stan&quot;</span>
-<span class="s1">spec:</span>
-<span class="s1">  size: 1</span>
-<span class="s1">  natsSvc: &quot;siddhi-nats&quot;</span>
-<span class="s1">&#39;</span> <span class="p">|</span> kubectl apply -f -
-</pre></div>
-</td></tr></table>
+$ echo '
+---
+apiVersion: "streaming.nats.io/v1alpha1"
+kind: "NatsStreamingCluster"
+metadata:
+  name: "siddhi-stan"
+spec:
+  size: 1
+  natsSvc: "siddhi-nats"
+' | kubectl apply -f -</code></pre>
 
 <p>For more details about the NATS streaming server, refer to this <a href="https://github.com/nats-io/nats-streaming-operator/tree/v0.2.2">documentation</a>.</p>
 <h4 id="setup-siddhi-operator">Setup Siddhi Operator<a class="headerlink" href="#setup-siddhi-operator" title="Permanent link">&para;</a></h4>
 <p>Use the following kubectl commands to install the Siddhi operator in your Kubernetes cluster.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/00-prereqs.yaml
-$ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/01-siddhi-operator.yaml
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">$ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/00-prereqs.yaml
+$ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/01-siddhi-operator.yaml</code></pre>
 
 <p>Now you need to create your own docker image with including all the custom libraries and configuration changes that you have made. Use following command to build and push the docker image with the tag <code>&lt;DOCKER_HUB_USER_NAME&gt;/siddhi-runner-alpine:latest</code>.</p>
-<p><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ docker build -t &lt;DOCKER_HUB_USER_NAME&gt;/siddhi-runner-alpine:latest .
-$ docker push &lt;DOCKER_HUB_USER_NAME&gt;/siddhi-runner-alpine:latest
-</pre></div>
-</td></tr></table>
+<p><pre class="codehilite"><code class="language-sh linenums">$ docker build -t &lt;DOCKER_HUB_USER_NAME&gt;/siddhi-runner-alpine:latest .
+$ docker push &lt;DOCKER_HUB_USER_NAME&gt;/siddhi-runner-alpine:latest</code></pre>
 After the Kubernetes export now you already have this <code>siddhi-process.yaml</code> file.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>  1
-  2
-  3
-  4
-  5
-  6
-  7
-  8
-  9
- 10
- 11
- 12
- 13
- 14
- 15
- 16
- 17
- 18
- 19
- 20
- 21
- 22
- 23
- 24
- 25
- 26
- 27
- 28
- 29
- 30
- 31
- 32
- 33
- 34
- 35
- 36
- 37
- 38
- 39
- 40
- 41
- 42
- 43
- 44
- 45
- 46
- 47
- 48
- 49
- 50
- 51
- 52
- 53
- 54
- 55
- 56
- 57
- 58
- 59
- 60
- 61
- 62
- 63
- 64
- 65
- 66
- 67
- 68
- 69
- 70
- 71
- 72
- 73
- 74
- 75
- 76
- 77
- 78
- 79
- 80
- 81
- 82
- 83
- 84
- 85
- 86
- 87
- 88
- 89
- 90
- 91
- 92
- 93
- 94
- 95
- 96
- 97
- 98
- 99
-100
-101
-102
-103
-104
-105
-106
-107
-108
-109
-110
-111
-112
-113
-114
-115
-116
-117
-118
-119
-120
-121
-122
-123
-124
-125
-126
-127
-128
-129
-130
-131
-132
-133
-134
-135
-136
-137
-138
-139
-140
-141
-142
-143
-144
-145
-146
-147
-148
-149
-150
-151
-152
-153
-154
-155
-156
-157
-158
-159
-160
-161
-162
-163
-164</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi.io/v1alpha2</span>
-<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SiddhiProcess</span>
-<span class="nt">metadata</span><span class="p">:</span>
-  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">paris-tma</span>
+<pre class="codehilite"><code class="language-yaml linenums">
+apiVersion: siddhi.io/v1alpha2
+kind: SiddhiProcess
+metadata:
+  name: paris-tma
 
-<span class="nt">spec</span><span class="p">:</span>
-  <span class="nt">apps</span><span class="p">:</span>
-  <span class="p p-Indicator">-</span> <span class="nt">script</span><span class="p">:</span> <span class="p p-Indicator">|</span>
-      <span class="no">@App:name(&quot;ParisTMANotifier&quot;)</span>
-      <span class="no">@App:description(&quot;Listen to the CDC events about the weather updates and send notifications to the subscribed users.&quot;)</span>
+spec:
+  apps:
+  - script: |
+      @App:name("ParisTMANotifier")
+      @App:description("Listen to the CDC events about the weather updates and send notifications to the subscribed users.")
 
-      <span class="no">/*</span>
-      <span class="no">Purpose:</span>
-          <span class="no">The ParisTMA has subscribers that subscribe to get the service. All the subscriber details are saved in the Mongo database. In that database ParisTMA stores the current location of subscriber vehicles. There is a separate system handle by the Paris weather forecast organization. They periodically update the MySQL database called &#39;paristma&#39; with recent weather incidents. This app listens to those insertions using CDC and sends notifications to the subscribers who are in that particular area that incident happens.</span>
+      /*
+      Purpose:
+          The ParisTMA has subscribers that subscribe to get the service. All the subscriber details are saved in the Mongo database. In that database ParisTMA stores the current location of subscriber vehicles. There is a separate system handle by the Paris weather forecast organization. They periodically update the MySQL database called 'paristma' with recent weather incidents. This app listens to those insertions using CDC and sends notifications to the subscribers who are in that particular area that incident happens.
 
-      <span class="no">Input:</span>
-          <span class="no">CDC insertions.</span>
+      Input:
+          CDC insertions.
 
-      <span class="no">Output:</span>
-          <span class="no">Email to users that notifying about the incident.</span>
-          <span class="no">Note: Even you can change this email notification to an SMS notification calling an SMS provider.</span>
-      <span class="no">*/</span>
+      Output:
+          Email to users that notifying about the incident.
+          Note: Even you can change this email notification to an SMS notification calling an SMS provider.
+      */
 
-      <span class="no">-- CDC source that listens to insertions of the Incident table</span>
-      <span class="no">@source(</span>
-          <span class="no">type=&#39;cdc&#39;,</span>
-          <span class="no">url=&#39;${MYSQL_URL}&#39;,</span>
-          <span class="no">username=&#39;siddhi_user&#39;,</span>
-          <span class="no">password=&#39;siddhiio&#39;,</span>
-          <span class="no">table.name=&#39;Incident&#39;,</span>
-          <span class="no">operation=&#39;insert&#39;,</span>
-          <span class="no">@map(</span>
-              <span class="no">type=&#39;keyvalue&#39;</span>
-          <span class="no">)</span>
-      <span class="no">)</span>
-      <span class="no">define stream IncidentInputStream(incidentId int, incidentName string, incidentType string, incidentDetails string, incidentArea string);</span>
+      -- CDC source that listens to insertions of the Incident table
+      @source(
+          type='cdc',
+          url='${MYSQL_URL}',
+          username='siddhi_user',
+          password='siddhiio',
+          table.name='Incident',
+          operation='insert',
+          @map(
+              type='keyvalue'
+          )
+      )
+      define stream IncidentInputStream(incidentId int, incidentName string, incidentType string, incidentDetails string, incidentArea string);
 
-      <span class="no">-- MongoDB store of subscribers</span>
-      <span class="no">@store(type=&#39;mongodb&#39;, mongodb.uri=&#39;${MONGODB_URI}&#39;)</span>
-      <span class="no">define table subscriber(vehicleId string, currentArea string, subscriberName string, subscriberEmail string);</span>
+      -- MongoDB store of subscribers
+      @store(type='mongodb', mongodb.uri='${MONGODB_URI}')
+      define table subscriber(vehicleId string, currentArea string, subscriberName string, subscriberEmail string);
 
-      <span class="no">-- Email sink to send notifications</span>
-      <span class="no">@sink(type=&#39;email&#39;, username=&quot;${PARIS_TMA_EMAIL}&quot;, address=&quot;${PARIS_TMA_EMAIL}&quot;, password=&quot;${PARIS_TMA_EMAIL_PASSWORD}&quot;,</span>
-            <span class="no">subject=&quot;Weather Notification in {{incidentArea}}&quot;, to=&quot;{{subscriberEmail}}&quot;, host=&quot;smtp.gmail.com&quot;, port=&quot;465&quot;,</span>
-            <span class="no">ssl.enable=&quot;true&quot;, auth=&quot;true&quot;,</span>
-            <span class="no">@map(type=&#39;text&#39;,</span>
-                 <span class="no">@payload(&quot;&quot;&quot;</span>
-                  <span class="no">Hi {{subscriberName}}</span>
+      -- Email sink to send notifications
+      @sink(type='email', username="${PARIS_TMA_EMAIL}", address="${PARIS_TMA_EMAIL}", password="${PARIS_TMA_EMAIL_PASSWORD}",
+            subject="Weather Notification in {{incidentArea}}", to="{{subscriberEmail}}", host="smtp.gmail.com", port="465",
+            ssl.enable="true", auth="true",
+            @map(type='text',
+                 @payload("""
+                  Hi {{subscriberName}}
 
-                  <span class="no">Recent reports state that there is {{incidentName}} in your area {{incidentArea}}. It is in {{incidentType}} state right now.</span>
+                  Recent reports state that there is {{incidentName}} in your area {{incidentArea}}. It is in {{incidentType}} state right now.
 
-                  <span class="no">The report state that {{incidentDetails}}.</span>
+                  The report state that {{incidentDetails}}.
 
-                  <span class="no">Thanks,</span>
-                  <span class="no">Paris Transport Management Authority&quot;&quot;&quot;)))</span>
-      <span class="no">define stream UserNotificationStream (subscriberName string, subscriberEmail string, incidentName string, incidentType string, incidentDetails string, incidentArea string);</span>
+                  Thanks,
+                  Paris Transport Management Authority""")))
+      define stream UserNotificationStream (subscriberName string, subscriberEmail string, incidentName string, incidentType string, incidentDetails string, incidentArea string);
 
-      <span class="no">-- Listen to the insertions in IncidentInputStream and join it with subscriber collection in MongoDB to get user information. Send notifications using that user information.</span>
-      <span class="no">@info(name=&#39;listen-and-notify&#39;)</span>
-      <span class="no">from IncidentInputStream#window.length(1) join subscriber</span>
-      <span class="no">on IncidentInputStream.incidentArea==subscriber.currentArea</span>
-      <span class="no">select</span>
-          <span class="no">subscriber.subscriberName,</span>
-          <span class="no">subscriber.subscriberEmail,</span>
-          <span class="no">IncidentInputStream.incidentName,</span>
-          <span class="no">IncidentInputStream.incidentType,</span>
-          <span class="no">IncidentInputStream.incidentDetails,</span>
-          <span class="no">IncidentInputStream.incidentArea</span>
-      <span class="no">insert into UserNotificationStream;</span>
-  <span class="p p-Indicator">-</span> <span class="nt">script</span><span class="p">:</span> <span class="p p-Indicator">|-</span>
-      <span class="no">@App:name(&quot;ParisTMAVehicleLocator&quot;)</span>
-      <span class="no">@App:description(&quot;Listen to the events send by NATS about vehicle locations and periodically update the Mongo database.&quot;)</span>
+      -- Listen to the insertions in IncidentInputStream and join it with subscriber collection in MongoDB to get user information. Send notifications using that user information.
+      @info(name='listen-and-notify')
+      from IncidentInputStream#window.length(1) join subscriber
+      on IncidentInputStream.incidentArea==subscriber.currentArea
+      select
+          subscriber.subscriberName,
+          subscriber.subscriberEmail,
+          IncidentInputStream.incidentName,
+          IncidentInputStream.incidentType,
+          IncidentInputStream.incidentDetails,
+          IncidentInputStream.incidentArea
+      insert into UserNotificationStream;
+  - script: |-
+      @App:name("ParisTMAVehicleLocator")
+      @App:description("Listen to the events send by NATS about vehicle locations and periodically update the Mongo database.")
 
-      <span class="no">/*</span>
-      <span class="no">Purpose:</span>
-          <span class="no">The ParisTMA has subscribers that subscribe to get the service. All the subscriber details are saved in the Mongo database. In that database ParisTMA stores the current location of subscriber vehicles. The events related to current locations come as TCP requests through NATS. This app listens to those events and eventually update the database with the current location of each subscriber.</span>
+      /*
+      Purpose:
+          The ParisTMA has subscribers that subscribe to get the service. All the subscriber details are saved in the Mongo database. In that database ParisTMA stores the current location of subscriber vehicles. The events related to current locations come as TCP requests through NATS. This app listens to those events and eventually update the database with the current location of each subscriber.
 
-      <span class="no">Input:</span>
-              <span class="no">NATS event with JSON payload:</span>
-              <span class="no">{</span>
-                  <span class="no">&quot;vehicleId&quot;: &quot;v001&quot;,</span>
-                  <span class="no">&quot;currentArea&quot;: &quot;a002&quot;</span>
-              <span class="no">}</span>
+      Input:
+              NATS event with JSON payload:
+              {
+                  "vehicleId": "v001",
+                  "currentArea": "a002"
+              }
 
-      <span class="no">Output:</span>
-          <span class="no">Update the collection(subscriber) documents of MongoDB(parisTma).</span>
+      Output:
+          Update the collection(subscriber) documents of MongoDB(parisTma).
 
-      <span class="no">*/</span>
+      */
 
-      <span class="no">-- NATS source that listens to the events</span>
-      <span class="no">@source(</span>
-          <span class="no">type=&#39;nats&#39;,</span>
-          <span class="no">cluster.id=&#39;${STAN_CLUSTER_ID}&#39;,</span>
-          <span class="no">destination=&#39;VehicleInputTunnel&#39;,</span>
-          <span class="no">bootstrap.servers=&#39;${STAN_SERVER_URL}&#39;,</span>
-          <span class="no">@map(type=&#39;json&#39;)</span>
-      <span class="no">)</span>
-      <span class="no">define stream CurrentVehicleAreaInputStream(vehicleId string, currentArea string);</span>
+      -- NATS source that listens to the events
+      @source(
+          type='nats',
+          cluster.id='${STAN_CLUSTER_ID}',
+          destination='VehicleInputTunnel',
+          bootstrap.servers='${STAN_SERVER_URL}',
+          @map(type='json')
+      )
+      define stream CurrentVehicleAreaInputStream(vehicleId string, currentArea string);
 
-      <span class="no">-- MongoDB store</span>
-      <span class="no">@store(type=&#39;mongodb&#39;, mongodb.uri=&#39;${MONGODB_URI}&#39;)</span>
-      <span class="no">define table subscriber(vehicleId string, currentArea string);</span>
+      -- MongoDB store
+      @store(type='mongodb', mongodb.uri='${MONGODB_URI}')
+      define table subscriber(vehicleId string, currentArea string);
 
-      <span class="no">-- Retrieves events from NATS source and update in MongoDB</span>
-      <span class="no">@info(name=&#39;update-or-insert-subscriber-location&#39;)</span>
-      <span class="no">from CurrentVehicleAreaInputStream</span>
-      <span class="no">update or insert into subscriber</span>
-      <span class="no">on subscriber.vehicleId==vehicleId;</span>
-  <span class="nt">container</span><span class="p">:</span>
-    <span class="nt">env</span><span class="p">:</span>
-    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">MYSQL_URL</span>
-      <span class="nt">value</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">jdbc:mysql://mysqldb:3306/paristma</span>
-    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">MONGODB_URI</span>
-      <span class="nt">value</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mongodb://siddhi_user:siddhiio@paristma-mongodb:27017/parisTma</span>
-    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">PARIS_TMA_EMAIL</span>
-      <span class="nt">value</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;TEST_EMAIL&gt;</span>
-    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">PARIS_TMA_EMAIL_PASSWORD</span>
-      <span class="nt">value</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;TEST_EMAIL_PASSWORD&gt;</span>
-    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">STAN_CLUSTER_ID</span>
-      <span class="nt">value</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi-stan</span>
-    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">STAN_SERVER_URL</span>
-      <span class="nt">value</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nats://siddhi-nats:4222</span>
-    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;DOCKER_HUB_USER_NAME&gt;/siddhi-runner-alpine:latest</span>
-  <span class="nt">runner</span><span class="p">:</span> <span class="p p-Indicator">|</span>
-    <span class="no">wso2.carbon:</span>
-      <span class="no">id: siddhi-runner</span>
-      <span class="no">name: Siddhi Runner Distribution</span>
-      <span class="no">ports:</span>
-        <span class="no">offset: 0</span>
-    <span class="no">transports:</span>
-      <span class="no">http:</span>
-        <span class="no">listenerConfigurations:</span>
-        <span class="no">- id: default</span>
-          <span class="no">host: 0.0.0.0</span>
-          <span class="no">port: 9090</span>
-        <span class="no">- id: msf4j-https</span>
-          <span class="no">host: 0.0.0.0</span>
-          <span class="no">port: 9443</span>
-          <span class="no">scheme: https</span>
-          <span class="no">keyStoreFile: ${carbon.home}/resources/security/wso2carbon.jks</span>
-          <span class="no">keyStorePassword: wso2carbon</span>
-          <span class="no">certPass: wso2carbon</span>
-        <span class="no">transportProperties:</span>
-        <span class="no">- name: server.bootstrap.socket.timeout</span>
-          <span class="no">value: 60</span>
-        <span class="no">- name: client.bootstrap.socket.timeout</span>
-          <span class="no">value: 60</span>
-        <span class="no">- name: latency.metrics.enabled</span>
-          <span class="no">value: true</span>
-    <span class="no">dataSources:</span>
-    <span class="no">- name: WSO2_CARBON_DB</span>
-      <span class="no">description: The datasource used for registry and user manager</span>
-      <span class="no">definition:</span>
-        <span class="no">type: RDBMS</span>
-        <span class="no">configuration:</span>
-          <span class="no">jdbcUrl: jdbc:h2:${sys:carbon.home}/wso2/${sys:wso2.runtime}/database/WSO2_CARBON_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000</span>
-          <span class="no">username: wso2carbon</span>
-          <span class="no">password: wso2carbon</span>
-          <span class="no">driverClassName: org.h2.Driver</span>
-          <span class="no">maxPoolSize: 10</span>
-          <span class="no">idleTimeout: 60000</span>
-          <span class="no">connectionTestQuery: SELECT 1</span>
-          <span class="no">validationTimeout: 30000</span>
-          <span class="no">isAutoCommit: false</span>
-</pre></div>
-</td></tr></table>
+      -- Retrieves events from NATS source and update in MongoDB
+      @info(name='update-or-insert-subscriber-location')
+      from CurrentVehicleAreaInputStream
+      update or insert into subscriber
+      on subscriber.vehicleId==vehicleId;
+  container:
+    env:
+    - name: MYSQL_URL
+      value: jdbc:mysql://mysqldb:3306/paristma
+    - name: MONGODB_URI
+      value: mongodb://siddhi_user:siddhiio@paristma-mongodb:27017/parisTma
+    - name: PARIS_TMA_EMAIL
+      value: &lt;TEST_EMAIL&gt;
+    - name: PARIS_TMA_EMAIL_PASSWORD
+      value: &lt;TEST_EMAIL_PASSWORD&gt;
+    - name: STAN_CLUSTER_ID
+      value: siddhi-stan
+    - name: STAN_SERVER_URL
+      value: nats://siddhi-nats:4222
+    image: &lt;DOCKER_HUB_USER_NAME&gt;/siddhi-runner-alpine:latest
+  runner: |
+    wso2.carbon:
+      id: siddhi-runner
+      name: Siddhi Runner Distribution
+      ports:
+        offset: 0
+    transports:
+      http:
+        listenerConfigurations:
+        - id: default
+          host: 0.0.0.0
+          port: 9090
+        - id: msf4j-https
+          host: 0.0.0.0
+          port: 9443
+          scheme: https
+          keyStoreFile: ${carbon.home}/resources/security/wso2carbon.jks
+          keyStorePassword: wso2carbon
+          certPass: wso2carbon
+        transportProperties:
+        - name: server.bootstrap.socket.timeout
+          value: 60
+        - name: client.bootstrap.socket.timeout
+          value: 60
+        - name: latency.metrics.enabled
+          value: true
+    dataSources:
+    - name: WSO2_CARBON_DB
+      description: The datasource used for registry and user manager
+      definition:
+        type: RDBMS
+        configuration:
+          jdbcUrl: jdbc:h2:${sys:carbon.home}/wso2/${sys:wso2.runtime}/database/WSO2_CARBON_DB;DB_CLOSE_ON_EXIT=FALSE;LOCK_TIMEOUT=60000
+          username: wso2carbon
+          password: wso2carbon
+          driverClassName: org.h2.Driver
+          maxPoolSize: 10
+          idleTimeout: 60000
+          connectionTestQuery: SELECT 1
+          validationTimeout: 30000
+          isAutoCommit: false</code></pre>
 
 <p>Now you can install the SiddhiProcess using following <code>kubectl</code> command. Before you install the <code>SiddhiProcess</code> you have to add the docker image tag in the <code>siddhi-process.yaml</code> file. You have to add the docker image name(<DOCKER_HUB_USER_NAME>/siddhi-runner-alpine:latest) in the YAML entry <code>spec.container.image</code>.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ kubectl apply -f siddhi-process.yaml
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-sh linenums">$ kubectl apply -f siddhi-process.yaml</code></pre>
 
 <p>If all the Kubernetes artifacts deployed correctly, it will show the status like below.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>$ kubectl get deploy
+<pre class="codehilite"><code class="language-sh linenums">$ kubectl get deploy
 
 NAME                      READY     UP-TO-DATE   AVAILABLE   AGE
-bold-boxer-mongodb        <span class="m">1</span>/1       <span class="m">1</span>            <span class="m">1</span>           2h
-mysqldb                   <span class="m">1</span>/1       <span class="m">1</span>            <span class="m">1</span>           2h
-nats-operator             <span class="m">1</span>/1       <span class="m">1</span>            <span class="m">1</span>           2h
-nats-streaming-operator   <span class="m">1</span>/1       <span class="m">1</span>            <span class="m">1</span>           2h
-paris-tma-0               <span class="m">1</span>/1       <span class="m">1</span>            <span class="m">1</span>           2h
-paris-tma-1               <span class="m">1</span>/1       <span class="m">1</span>            <span class="m">1</span>           2h
-paristma-mongodb          <span class="m">1</span>/1       <span class="m">1</span>            <span class="m">1</span>           2h
-siddhi-operator           <span class="m">1</span>/1       <span class="m">1</span>            <span class="m">1</span>           2h
-tiller-deploy             <span class="m">1</span>/1       <span class="m">1</span>            <span class="m">1</span>           2h
+bold-boxer-mongodb        1/1       1            1           2h
+mysqldb                   1/1       1            1           2h
+nats-operator             1/1       1            1           2h
+nats-streaming-operator   1/1       1            1           2h
+paris-tma-0               1/1       1            1           2h
+paris-tma-1               1/1       1            1           2h
+paristma-mongodb          1/1       1            1           2h
+siddhi-operator           1/1       1            1           2h
+tiller-deploy             1/1       1            1           2h
 
 $ kubectl get svc
 
-NAME                 TYPE        CLUSTER-IP       EXTERNAL-IP   PORT<span class="o">(</span>S<span class="o">)</span>                      AGE
-bold-boxer-mongodb   ClusterIP   <span class="m">10</span>.100.153.173   &lt;none&gt;        <span class="m">27017</span>/TCP                    2h
-kubernetes           ClusterIP   <span class="m">10</span>.96.0.1        &lt;none&gt;        <span class="m">443</span>/TCP                      21d
-mysqldb              ClusterIP   <span class="m">10</span>.106.112.140   &lt;none&gt;        <span class="m">3306</span>/TCP                     2h
-paristma-mongodb     ClusterIP   <span class="m">10</span>.102.211.214   &lt;none&gt;        <span class="m">27017</span>/TCP                    2h
-siddhi-nats          ClusterIP   <span class="m">10</span>.110.123.222   &lt;none&gt;        <span class="m">4222</span>/TCP                     2h
-siddhi-nats-mgmt     ClusterIP   None             &lt;none&gt;        <span class="m">6222</span>/TCP,8222/TCP,7777/TCP   2h
-siddhi-operator      ClusterIP   <span class="m">10</span>.102.157.184   &lt;none&gt;        <span class="m">8383</span>/TCP                     2h
-tiller-deploy        ClusterIP   <span class="m">10</span>.103.160.179   &lt;none&gt;        <span class="m">44134</span>/TCP                    2h
+NAME                 TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                      AGE
+bold-boxer-mongodb   ClusterIP   10.100.153.173   &lt;none&gt;        27017/TCP                    2h
+kubernetes           ClusterIP   10.96.0.1        &lt;none&gt;        443/TCP                      21d
+mysqldb              ClusterIP   10.106.112.140   &lt;none&gt;        3306/TCP                     2h
+paristma-mongodb     ClusterIP   10.102.211.214   &lt;none&gt;        27017/TCP                    2h
+siddhi-nats          ClusterIP   10.110.123.222   &lt;none&gt;        4222/TCP                     2h
+siddhi-nats-mgmt     ClusterIP   None             &lt;none&gt;        6222/TCP,8222/TCP,7777/TCP   2h
+siddhi-operator      ClusterIP   10.102.157.184   &lt;none&gt;        8383/TCP                     2h
+tiller-deploy        ClusterIP   10.103.160.179   &lt;none&gt;        44134/TCP                    2h
 $ kubectl get siddhi
 NAME        STATUS    READY     AGE
-paris-tma   Running   <span class="m">2</span>/2       2h
-</pre></div>
-</td></tr></table>
+paris-tma   Running   2/2       2h</code></pre>
 
 <p>When you insert data entry to the Incident table, the Siddhi app will simply send an email to the subscribers like below.</p>
 <p><img alt="Email" src="../images/email.png" title="Email" /></p>
@@ -2952,6 +2439,8 @@ paris-tma   Running   <span class="m">2</span>/2       2h
       <script>app.initialize({version:"1.0.4",url:{base:"../../../.."}})</script>
       
         <script src="../../../../assets/lib/highlightjs/highlight.min.js"></script>
+      
+        <script src="../../../../assets/js/jquery-3.3.1.min.js"></script>
       
         <script src="../../../../assets/js/theme.js"></script>
       

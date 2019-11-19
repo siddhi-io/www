@@ -1575,11 +1575,8 @@
 <p>Follow below steps to start the Siddhi tooling runtime.
 * Extract the downloaded zip and navigate to <TOOLING_HOME>/bin. (TOOLING_HOME refers to the extracted folder) 
 * Issue the following command in the command prompt (Windows) / terminal (Linux/Mac)
-    <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>For Windows: tooling.bat
-For Linux/Mac: ./tooling.sh
-</pre></div>
-</td></tr></table></p>
+    <pre class="codehilite"><code class="language-bash linenums">For Windows: tooling.bat
+For Linux/Mac: ./tooling.sh</code></pre></p>
 </li>
 <li>
 <p>Select File -&gt; New option, then you could either use the source view or design view to write/build the Siddhi Application. You can find the Siddhi Application bellow, that implements the requirements mentioned above.</p>
@@ -1591,207 +1588,106 @@ For Linux/Mac: ./tooling.sh
 <p>Once the Siddhi app is created, you can use the Event Simulator option in the editor to simulate events to streams and perform developer testing.</p>
 </li>
 </ol>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>  1
-  2
-  3
-  4
-  5
-  6
-  7
-  8
-  9
- 10
- 11
- 12
- 13
- 14
- 15
- 16
- 17
- 18
- 19
- 20
- 21
- 22
- 23
- 24
- 25
- 26
- 27
- 28
- 29
- 30
- 31
- 32
- 33
- 34
- 35
- 36
- 37
- 38
- 39
- 40
- 41
- 42
- 43
- 44
- 45
- 46
- 47
- 48
- 49
- 50
- 51
- 52
- 53
- 54
- 55
- 56
- 57
- 58
- 59
- 60
- 61
- 62
- 63
- 64
- 65
- 66
- 67
- 68
- 69
- 70
- 71
- 72
- 73
- 74
- 75
- 76
- 77
- 78
- 79
- 80
- 81
- 82
- 83
- 84
- 85
- 86
- 87
- 88
- 89
- 90
- 91
- 92
- 93
- 94
- 95
- 96
- 97
- 98
- 99
-100</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="n">App</span><span class="p">:</span><span class="n">name</span><span class="p">(</span><span class="ss">&quot;Glucose-Reading-PreProcessing-App&quot;</span><span class="p">)</span>
-<span class="o">@</span><span class="n">App</span><span class="p">:</span><span class="n">description</span><span class="p">(</span><span class="s1">&#39;Process Glucose Readings received from patients&#39;</span><span class="p">)</span>
+<pre class="codehilite"><code class="language-siddhi linenums">@App:name("Glucose-Reading-PreProcessing-App")
+@App:description('Process Glucose Readings received from patients')
 
-<span class="c1">-- Kakfka source which consumes Glucose reading events</span>
-<span class="o">@</span><span class="k">source</span><span class="p">(</span><span class="k">type</span><span class="o">=</span><span class="s1">&#39;kafka&#39;</span><span class="p">,</span>
-      <span class="n">topic</span><span class="p">.</span><span class="n">list</span><span class="o">=</span><span class="s1">&#39;glucose-readings&#39;</span><span class="p">,</span>
-      <span class="n">partition</span><span class="p">.</span><span class="k">no</span><span class="p">.</span><span class="n">list</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="p">,</span>
-      <span class="n">threading</span><span class="p">.</span><span class="k">option</span><span class="o">=</span><span class="s1">&#39;single.thread&#39;</span><span class="p">,</span>
-      <span class="k">group</span><span class="p">.</span><span class="n">id</span><span class="o">=</span><span class="ss">&quot;group&quot;</span><span class="p">,</span>
-      <span class="k">is</span><span class="p">.</span><span class="nb">binary</span><span class="p">.</span><span class="n">message</span><span class="o">=</span><span class="s1">&#39;true&#39;</span><span class="p">,</span>
-      <span class="n">bootstrap</span><span class="p">.</span><span class="n">servers</span><span class="o">=</span><span class="s1">&#39;${KAFKA_BOOTSTRAP_SERVER_URL}&#39;</span><span class="p">,</span>
-      <span class="o">@</span><span class="k">map</span><span class="p">(</span><span class="k">type</span><span class="o">=</span><span class="s1">&#39;avro&#39;</span><span class="p">,</span><span class="k">schema</span><span class="p">.</span><span class="n">def</span><span class="o">=</span><span class="ss">&quot;&quot;&quot;</span>
-<span class="ss">            {</span>
-<span class="ss">                &quot;</span><span class="k">type</span><span class="ss">&quot;: &quot;</span><span class="n">record</span><span class="ss">&quot;,</span>
-<span class="ss">                &quot;</span><span class="n">name</span><span class="ss">&quot;: &quot;</span><span class="n">glucose_reading</span><span class="ss">&quot;,</span>
-<span class="ss">                &quot;</span><span class="n">namespace</span><span class="ss">&quot;: &quot;</span><span class="n">glucose</span><span class="ss">&quot;,</span>
-<span class="ss">                &quot;</span><span class="n">fields</span><span class="ss">&quot;: [{</span>
-<span class="ss">                    &quot;</span><span class="n">name</span><span class="ss">&quot;: &quot;</span><span class="n">locationRoom</span><span class="ss">&quot;,</span>
-<span class="ss">                    &quot;</span><span class="k">type</span><span class="ss">&quot;: &quot;</span><span class="n">string</span><span class="ss">&quot;</span>
-<span class="ss">                }, {</span>
-<span class="ss">                    &quot;</span><span class="n">name</span><span class="ss">&quot;: &quot;</span><span class="n">locationBed</span><span class="ss">&quot;,</span>
-<span class="ss">                    &quot;</span><span class="k">type</span><span class="ss">&quot;: &quot;</span><span class="n">string</span><span class="ss">&quot;</span>
-<span class="ss">                }, {</span>
-<span class="ss">                    &quot;</span><span class="n">name</span><span class="ss">&quot;: &quot;</span><span class="k">timeStamp</span><span class="ss">&quot;,</span>
-<span class="ss">                    &quot;</span><span class="k">type</span><span class="ss">&quot;: &quot;</span><span class="n">string</span><span class="ss">&quot;</span>
-<span class="ss">                }, {</span>
-<span class="ss">                    &quot;</span><span class="n">name</span><span class="ss">&quot;: &quot;</span><span class="n">sensorID</span><span class="ss">&quot;,</span>
-<span class="ss">                    &quot;</span><span class="k">type</span><span class="ss">&quot;: &quot;</span><span class="n">long</span><span class="ss">&quot;</span>
-<span class="ss">                }, {</span>
-<span class="ss">                    &quot;</span><span class="n">name</span><span class="ss">&quot;: &quot;</span><span class="n">patientGroup</span><span class="ss">&quot;,</span>
-<span class="ss">                    &quot;</span><span class="k">type</span><span class="ss">&quot;: &quot;</span><span class="n">string</span><span class="ss">&quot;</span>
-<span class="ss">                }, {</span>
-<span class="ss">                    &quot;</span><span class="n">name</span><span class="ss">&quot;: &quot;</span><span class="n">patientFirstName</span><span class="ss">&quot;,</span>
-<span class="ss">                    &quot;</span><span class="k">type</span><span class="ss">&quot;: &quot;</span><span class="n">string</span><span class="ss">&quot;</span>
-<span class="ss">                }, {</span>
-<span class="ss">                    &quot;</span><span class="n">name</span><span class="ss">&quot;: &quot;</span><span class="n">patientLastName</span><span class="ss">&quot;,</span>
-<span class="ss">                    &quot;</span><span class="k">type</span><span class="ss">&quot;: &quot;</span><span class="n">string</span><span class="ss">&quot;</span>
-<span class="ss">                }, {</span>
-<span class="ss">                    &quot;</span><span class="n">name</span><span class="ss">&quot;: &quot;</span><span class="n">sensorValue</span><span class="ss">&quot;,</span>
-<span class="ss">                    &quot;</span><span class="k">type</span><span class="ss">&quot;: &quot;</span><span class="n">double</span><span class="ss">&quot;  </span>
-<span class="ss">                }, {</span>
-<span class="ss">                    &quot;</span><span class="n">name</span><span class="ss">&quot;: &quot;</span><span class="n">unitOfMeasure</span><span class="ss">&quot;,</span>
-<span class="ss">                    &quot;</span><span class="k">type</span><span class="ss">&quot;: &quot;</span><span class="n">string</span><span class="ss">&quot; </span>
-<span class="ss">                }]</span>
-<span class="ss">            }&quot;&quot;&quot;</span><span class="p">))</span>
-<span class="n">define</span> <span class="n">stream</span> <span class="n">GlucoseReadingStream</span> <span class="p">(</span><span class="n">locationRoom</span> <span class="n">string</span><span class="p">,</span> <span class="n">locationBed</span> <span class="n">string</span><span class="p">,</span> <span class="k">timeStamp</span> <span class="n">string</span><span class="p">,</span> <span class="n">sensorID</span> <span class="n">long</span><span class="p">,</span> <span class="n">patientGroup</span> <span class="n">string</span><span class="p">,</span> 
-<span class="n">patientFirstName</span> <span class="n">string</span><span class="p">,</span> <span class="n">patientLastName</span> <span class="n">string</span><span class="p">,</span> <span class="n">sensorValue</span> <span class="n">double</span><span class="p">,</span> <span class="n">unitOfMeasure</span> <span class="n">string</span><span class="p">);</span>
+-- Kakfka source which consumes Glucose reading events
+@source(type='kafka',
+      topic.list='glucose-readings',
+      partition.no.list='0',
+      threading.option='single.thread',
+      group.id="group",
+      is.binary.message='true',
+      bootstrap.servers='${KAFKA_BOOTSTRAP_SERVER_URL}',
+      @map(type='avro',schema.def="""
+            {
+                "type": "record",
+                "name": "glucose_reading",
+                "namespace": "glucose",
+                "fields": [{
+                    "name": "locationRoom",
+                    "type": "string"
+                }, {
+                    "name": "locationBed",
+                    "type": "string"
+                }, {
+                    "name": "timeStamp",
+                    "type": "string"
+                }, {
+                    "name": "sensorID",
+                    "type": "long"
+                }, {
+                    "name": "patientGroup",
+                    "type": "string"
+                }, {
+                    "name": "patientFirstName",
+                    "type": "string"
+                }, {
+                    "name": "patientLastName",
+                    "type": "string"
+                }, {
+                    "name": "sensorValue",
+                    "type": "double"  
+                }, {
+                    "name": "unitOfMeasure",
+                    "type": "string" 
+                }]
+            }"""))
+define stream GlucoseReadingStream (locationRoom string, locationBed string, timeStamp string, sensorID long, patientGroup string, 
+patientFirstName string, patientLastName string, sensorValue double, unitOfMeasure string);
 
-<span class="c1">-- HTTP sink which publishes abnormal Glucose reading related events. </span>
-<span class="c1">-- If there is any errors occurred when publishing events to HTTP endpoint then respective events are sent to error stream</span>
-<span class="o">@</span><span class="n">OnError</span><span class="p">(</span><span class="n">action</span><span class="o">=</span><span class="s1">&#39;STREAM&#39;</span><span class="p">)</span>
-<span class="o">@</span><span class="n">sink</span><span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;http&#39;</span><span class="p">,</span> <span class="n">blocking</span><span class="p">.</span><span class="n">io</span><span class="o">=</span><span class="s1">&#39;true&#39;</span><span class="p">,</span> <span class="n">publisher</span><span class="p">.</span><span class="n">url</span> <span class="o">=</span> <span class="ss">&quot;http://localhost:8080/logger&quot;</span><span class="p">,</span> <span class="k">method</span> <span class="o">=</span> <span class="ss">&quot;POST&quot;</span><span class="p">,</span> 
-    <span class="o">@</span><span class="k">map</span><span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;json&#39;</span><span class="p">))</span>
-<span class="n">define</span> <span class="n">stream</span> <span class="n">AbnormalGlucoseReadingStream</span> <span class="p">(</span><span class="n">timeStampInLong</span> <span class="n">long</span><span class="p">,</span> <span class="n">locationRoom</span> <span class="n">string</span><span class="p">,</span> <span class="n">locationBed</span> <span class="n">string</span><span class="p">,</span> <span class="n">sensorID</span> <span class="n">long</span><span class="p">,</span> <span class="n">patientGroup</span> <span class="n">string</span><span class="p">,</span> 
-<span class="n">patientFullName</span> <span class="n">string</span><span class="p">,</span> <span class="n">sensorReadingValue</span> <span class="n">double</span><span class="p">,</span> <span class="n">unitOfMeasure</span> <span class="n">string</span><span class="p">,</span> <span class="n">abnormalReadingCount</span> <span class="n">long</span><span class="p">);</span>
+-- HTTP sink which publishes abnormal Glucose reading related events. 
+-- If there is any errors occurred when publishing events to HTTP endpoint then respective events are sent to error stream
+@OnError(action='STREAM')
+@sink(type = 'http', blocking.io='true', publisher.url = "http://localhost:8080/logger", method = "POST", 
+    @map(type = 'json'))
+define stream AbnormalGlucoseReadingStream (timeStampInLong long, locationRoom string, locationBed string, sensorID long, patientGroup string, 
+patientFullName string, sensorReadingValue double, unitOfMeasure string, abnormalReadingCount long);
 
-<span class="c1">-- RDBMS event table which stores the failed events when publishing to HTTP endpoint</span>
-<span class="o">@</span><span class="n">Store</span><span class="p">(</span><span class="k">type</span><span class="o">=</span><span class="ss">&quot;rdbms&quot;</span><span class="p">,</span> <span class="n">jdbc</span><span class="p">.</span><span class="n">url</span><span class="o">=</span><span class="ss">&quot;${MYSQL_DB_URL}&quot;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="ss">&quot;${MYSQL_USERNAME}&quot;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="ss">&quot;${MYSQL_PASSWORD}&quot;</span> <span class="p">,</span> <span class="n">jdbc</span><span class="p">.</span><span class="n">driver</span><span class="p">.</span><span class="n">name</span><span class="o">=</span><span class="ss">&quot;com.mysql.jdbc.Driver&quot;</span><span class="p">)</span>
-<span class="o">@</span><span class="n">PrimaryKey</span><span class="p">(</span><span class="ss">&quot;locationRoom&quot;</span><span class="p">,</span> <span class="ss">&quot;locationBed&quot;</span><span class="p">,</span> <span class="ss">&quot;sensorID&quot;</span><span class="p">,</span> <span class="ss">&quot;failedEventTime&quot;</span><span class="p">)</span>
-<span class="n">define</span> <span class="k">table</span> <span class="n">FailedAbnormalReadingTable</span> <span class="p">(</span><span class="n">failedEventTime</span> <span class="n">string</span><span class="p">,</span> <span class="n">originTime</span> <span class="n">long</span><span class="p">,</span> <span class="n">locationRoom</span> <span class="n">string</span><span class="p">,</span> <span class="n">locationBed</span> <span class="n">string</span><span class="p">,</span> <span class="n">sensorID</span> <span class="n">long</span><span class="p">,</span>
-<span class="n">patientFullName</span> <span class="n">string</span><span class="p">,</span> <span class="n">sensorReadingValue</span> <span class="n">double</span><span class="p">,</span> <span class="n">rootCause</span> <span class="n">string</span><span class="p">);</span>
+-- RDBMS event table which stores the failed events when publishing to HTTP endpoint
+@Store(type="rdbms", jdbc.url="${MYSQL_DB_URL}", username="${MYSQL_USERNAME}", password="${MYSQL_PASSWORD}" , jdbc.driver.name="com.mysql.jdbc.Driver")
+@PrimaryKey("locationRoom", "locationBed", "sensorID", "failedEventTime")
+define table FailedAbnormalReadingTable (failedEventTime string, originTime long, locationRoom string, locationBed string, sensorID long,
+patientFullName string, sensorReadingValue double, rootCause string);
 
-<span class="c1">-- Javascript function which converts the Glucose sensor reading to mg/dl</span>
-<span class="n">define</span> <span class="k">function</span> <span class="n">sensorReadingInMGDL</span><span class="p">[</span><span class="n">JavaScript</span><span class="p">]</span> <span class="k">return</span> <span class="n">double</span> <span class="err">{</span>
-    <span class="n">var</span> <span class="n">sensorReading</span> <span class="o">=</span> <span class="k">data</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-    <span class="n">var</span> <span class="n">metricUnit</span> <span class="o">=</span> <span class="k">data</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+-- Javascript function which converts the Glucose sensor reading to mg/dl
+define function sensorReadingInMGDL[JavaScript] return double {
+    var sensorReading = data[0];
+    var metricUnit = data[1];
 
-    <span class="k">if</span><span class="p">(</span><span class="n">metricUnit</span> <span class="o">===</span> <span class="s1">&#39;MGDL&#39;</span><span class="p">)</span> <span class="err">{</span>
-        <span class="k">return</span> <span class="n">metricUnit</span><span class="p">;</span>
-    <span class="err">}</span>
+    if(metricUnit === 'MGDL') {
+        return metricUnit;
+    }
 
-    <span class="k">return</span> <span class="n">sensorReading</span> <span class="o">*</span> <span class="mi">18</span><span class="p">;</span>
-<span class="err">}</span><span class="p">;</span>
+    return sensorReading * 18;
+};
 
-<span class="o">@</span><span class="n">info</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Glucose-preprocessing&#39;</span><span class="p">)</span> 
-<span class="k">from</span> <span class="n">GlucoseReadingStream</span>
-<span class="k">select</span> <span class="n">math</span><span class="p">:</span><span class="n">parseLong</span><span class="p">(</span><span class="k">timeStamp</span><span class="p">)</span> <span class="k">as</span> <span class="n">timeStampInLong</span><span class="p">,</span> <span class="n">locationRoom</span><span class="p">,</span> <span class="n">locationBed</span><span class="p">,</span> <span class="n">sensorID</span><span class="p">,</span> <span class="n">patientGroup</span><span class="p">,</span> 
-        <span class="n">str</span><span class="p">:</span><span class="n">concat</span><span class="p">(</span><span class="n">patientFirstName</span><span class="p">,</span> <span class="ss">&quot; &quot;</span><span class="p">,</span> <span class="n">patientLastName</span><span class="p">)</span> <span class="k">as</span> <span class="n">patientFullName</span><span class="p">,</span> 
-        <span class="n">sensorReadingInMGDL</span><span class="p">(</span><span class="n">sensorValue</span><span class="p">,</span> <span class="n">unitOfMeasure</span><span class="p">)</span>  <span class="k">as</span> <span class="n">sensorReadingValue</span><span class="p">,</span> <span class="s1">&#39;MGDL&#39;</span> <span class="k">as</span> <span class="n">unitOfMeasure</span>
-<span class="k">insert</span> <span class="k">into</span> <span class="n">PreProcessedGlucoseReadingStream</span><span class="p">;</span>
+@info(name='Glucose-preprocessing') 
+from GlucoseReadingStream
+select math:parseLong(timeStamp) as timeStampInLong, locationRoom, locationBed, sensorID, patientGroup, 
+        str:concat(patientFirstName, " ", patientLastName) as patientFullName, 
+        sensorReadingInMGDL(sensorValue, unitOfMeasure)  as sensorReadingValue, 'MGDL' as unitOfMeasure
+insert into PreProcessedGlucoseReadingStream;
 
-<span class="o">@</span><span class="n">info</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Abnormal-Glucose-reading-identifier&#39;</span><span class="p">)</span> 
-<span class="k">from</span> <span class="n">PreProcessedGlucoseReadingStream</span><span class="p">[</span><span class="n">sensorReadingValue</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">]</span><span class="o">#</span><span class="n">window</span><span class="p">.</span><span class="n">time</span><span class="p">(</span><span class="mi">15</span> <span class="k">min</span><span class="p">)</span>
-<span class="k">select</span> <span class="n">timeStampInLong</span><span class="p">,</span> <span class="n">locationRoom</span><span class="p">,</span> <span class="n">locationBed</span><span class="p">,</span> <span class="n">sensorID</span><span class="p">,</span> <span class="n">patientGroup</span><span class="p">,</span> <span class="n">patientFullName</span><span class="p">,</span> 
-<span class="n">sensorReadingValue</span><span class="p">,</span> <span class="n">unitOfMeasure</span><span class="p">,</span> <span class="k">count</span><span class="p">()</span> <span class="k">as</span> <span class="n">abnormalReadingCount</span>
-<span class="k">group</span> <span class="k">by</span> <span class="n">locationRoom</span><span class="p">,</span> <span class="n">locationBed</span><span class="p">,</span> <span class="n">sensorID</span>
-<span class="k">having</span> <span class="n">abnormalReadingCount</span> <span class="o">&gt;</span> <span class="mi">3</span>
-<span class="k">output</span> <span class="k">first</span> <span class="k">every</span> <span class="mi">15</span> <span class="k">min</span>
-<span class="k">insert</span> <span class="k">into</span> <span class="n">AbnormalGlucoseReadingStream</span><span class="p">;</span>
+@info(name='Abnormal-Glucose-reading-identifier') 
+from PreProcessedGlucoseReadingStream[sensorReadingValue &gt; 100]#window.time(15 min)
+select timeStampInLong, locationRoom, locationBed, sensorID, patientGroup, patientFullName, 
+sensorReadingValue, unitOfMeasure, count() as abnormalReadingCount
+group by locationRoom, locationBed, sensorID
+having abnormalReadingCount &gt; 3
+output first every 15 min
+insert into AbnormalGlucoseReadingStream;
 
-<span class="o">@</span><span class="n">info</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Error-handler&#39;</span><span class="p">)</span>
-<span class="k">from</span> <span class="o">!</span><span class="n">AbnormalGlucoseReadingStream</span><span class="o">#</span><span class="n">log</span><span class="p">(</span><span class="ss">&quot;Error Occurred!&quot;</span><span class="p">)</span>
-<span class="k">select</span> <span class="n">time</span><span class="p">:</span><span class="n">currentTimestamp</span><span class="p">()</span> <span class="k">as</span> <span class="n">failedEventTime</span><span class="p">,</span> <span class="n">timeStampInLong</span> <span class="k">as</span> <span class="n">originTime</span><span class="p">,</span> <span class="n">locationRoom</span><span class="p">,</span> <span class="n">locationBed</span><span class="p">,</span> 
-<span class="n">sensorID</span><span class="p">,</span> <span class="n">patientFullName</span><span class="p">,</span> <span class="n">sensorReadingValue</span><span class="p">,</span> <span class="k">convert</span><span class="p">(</span><span class="n">_error</span><span class="p">,</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">rootCause</span>
-<span class="k">insert</span> <span class="k">into</span> <span class="n">FailedAbnormalReadingStream</span><span class="p">;</span>
+@info(name = 'Error-handler')
+from !AbnormalGlucoseReadingStream#log("Error Occurred!")
+select time:currentTimestamp() as failedEventTime, timeStampInLong as originTime, locationRoom, locationBed, 
+sensorID, patientFullName, sensorReadingValue, convert(_error, 'string') as rootCause
+insert into FailedAbnormalReadingStream;
 
-<span class="o">@</span><span class="n">info</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Dump-to-event-store&#39;</span><span class="p">)</span> 
-<span class="k">from</span> <span class="n">FailedAbnormalReadingStream</span>
-<span class="k">select</span> <span class="o">*</span>
-<span class="k">insert</span> <span class="k">into</span> <span class="n">FailedAbnormalReadingTable</span><span class="p">;</span>
-</pre></div>
-</td></tr></table>
+@info(name='Dump-to-event-store') 
+from FailedAbnormalReadingStream
+select *
+insert into FailedAbnormalReadingTable;</code></pre>
 
 <p>Source view of the Siddhi app.
 <img alt="source_view" src="../images/source-view.jpg" title="Source view of the Siddhi App" /></p>
@@ -1810,13 +1706,9 @@ For Linux/Mac: ./tooling.sh
 1. Download the Kafka <a href="https://kafka.apache.org/downloads">distribution</a>
 2. Unzip the above distribution and go to the ‘bin’ directory
 3. Start the zookeeper by executing below command,
-    <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>zookeeper-server-start.sh config/zookeeper.properties
-</pre></div>
-</td></tr></table>
+    <pre class="codehilite"><code class="language-bash linenums">zookeeper-server-start.sh config/zookeeper.properties</code></pre>
 4. Start the Kafka broker by executing below command,
-    <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kafka-server-start.sh config/server.properties
-</pre></div>
-</td></tr></table></p>
+    <pre class="codehilite"><code class="language-bash linenums">kafka-server-start.sh config/server.properties</code></pre></p>
 <p>Refer the Kafka documentation for more details, https://kafka.apache.org/quickstart </p>
 <p>Then, you have to add necessary client jars (from <KAFKA_HOME>/libs directory) to Siddhi distribution as given below.</p>
 <ul>
@@ -1860,26 +1752,16 @@ For Linux/Mac: ./tooling.sh
 <p>In the snapshot persistence, Kafka offset value is also get persisted then when the specific snapshot is restored then Siddhi can request events from Kafka with the restored offset then Kafka can send those events of that specific offset.</p>
 <p><img alt="snapshots_with_kafka" src="../images/kafka-snapshot-handling.png" title="Snapshots with Kafka" /></p>
 <p>You can configure the snapshot state persistence with the below configuration. Save below configuration as YAML file (for example snapshot.yaml)</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">state.persistence</span><span class="p">:</span>
-  <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-  <span class="nt">intervalInMin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
-  <span class="nt">revisionsToKeep</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
-  <span class="nt">persistenceStore</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">io.siddhi.distribution.core.persistence.FileSystemPersistenceStore</span>
-  <span class="nt">config</span><span class="p">:</span>
-    <span class="nt">location</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi-app-persistence</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-yaml linenums">state.persistence:
+  enabled: true
+  intervalInMin: 1
+  revisionsToKeep: 2
+  persistenceStore: io.siddhi.distribution.core.persistence.FileSystemPersistenceStore
+  config:
+    location: siddhi-app-persistence</code></pre>
 
 <p>Then start the Siddhi runtime with below command.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>./tooling.sh -Dconfig=&lt;File-Path&gt;/snapshot.yaml
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-bash linenums">./tooling.sh -Dconfig=&lt;File-Path&gt;/snapshot.yaml</code></pre>
 
 <h3 id="invoking-the-siddhi-app">Invoking the Siddhi App<a class="headerlink" href="#invoking-the-siddhi-app" title="Permanent link">&para;</a></h3>
 <p>Now, you can publish events to Kafka message broker using a Kafka publisher. In this case, you can use the sample Kafka publisher implementation given in <a href="https://github.com/mohanvive/siddhi-sample-clients">here</a></p>
@@ -1928,25 +1810,17 @@ Please refer <a href="https://siddhi.io/en/v5.1/docs/config-guide/#adding-to-sid
 </li>
 <li>
 <p>Start Siddhi app with the runner config by executing the following commands from the distribution directory.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>Linux/Mac : ./bin/runner.sh -Dapps=&lt;siddhi-file-path&gt; -Dconfig=&lt;config-yaml-path&gt;
+<pre class="codehilite"><code class="language-bash linenums">Linux/Mac : ./bin/runner.sh -Dapps=&lt;siddhi-file-path&gt; -Dconfig=&lt;config-yaml-path&gt;
 Windows : bin\runner.bat -Dapps=&lt;siddhi-file-path&gt; -Dconfig=&lt;config-yaml-path&gt;
 
    Eg: If exported siddhi app in Siddhi home directory,
-       ./bin/runner.sh -Dapps=Glucose-Reading-PreProcessing-App.siddhi -Dconfig=snapshot.yaml
-</pre></div>
-</td></tr></table>
+       ./bin/runner.sh -Dapps=Glucose-Reading-PreProcessing-App.siddhi -Dconfig=snapshot.yaml</code></pre>
 
 <p>Note: <code>snapshot.yaml</code> file contains the configuration to enable state snapshot persistence</p>
 </li>
 <li>
 <p>Once server is started, download the sample Kafka Avro event generator from <a href="https://github.com/mohanvive/siddhi-sample-clients/releases/download/v1.0.0/kafka-avro-producer-1.0.0-jar-with-dependencies.jar">here</a> and execute below command.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>java -jar kafka-avro-producer-1.0.0-jar-with-dependencies.jar
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-bash linenums">java -jar kafka-avro-producer-1.0.0-jar-with-dependencies.jar</code></pre>
 
 <p>Above event publishes send 4 Avro events to generate an abnormal behavior as defined in the Siddhi application. You can change the kafka endpoint and topic by passing them as java arguments. If not, sample client consider “localhost:9092” as the kafka bootstrap server endpoint and “glucose-readings” as the topic.</p>
 <div class="admonition info">
@@ -1964,9 +1838,7 @@ Windows : bin\runner.bat -Dapps=&lt;siddhi-file-path&gt; -Dconfig=&lt;config-yam
 <ol>
 <li>
 <p>First, you can create a docker network for the deployment as shown below
-    <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>docker network create siddhi-tier --driver bridge
-</pre></div>
-</td></tr></table></p>
+    <pre class="codehilite"><code class="language-bash linenums">docker network create siddhi-tier --driver bridge</code></pre></p>
 </li>
 <li>
 <p>Then, you can get the MySQL docker image from <a href="https://hub.docker.com/_/mysql">here</a> and run it with below command. We are going to use mysql version 5.7.27.</p>
@@ -1974,9 +1846,7 @@ Windows : bin\runner.bat -Dapps=&lt;siddhi-file-path&gt; -Dconfig=&lt;config-yam
 </li>
 <li>
 <p>Start the MySQL docker images with below command,</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>docker run --name mysql-server --network siddhi-tier -e MYSQL_ROOT_PASSWORD=root e1e1680ac726
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-bash linenums">docker run --name mysql-server --network siddhi-tier -e MYSQL_ROOT_PASSWORD=root e1e1680ac726</code></pre>
 
 <div class="admonition info">
 <p class="admonition-title"><code>e1e1680ac726</code> is the MySQL docker image id in this case</p>
@@ -1992,16 +1862,12 @@ Windows : bin\runner.bat -Dapps=&lt;siddhi-file-path&gt; -Dconfig=&lt;config-yam
 </li>
 <li>
 <p>Launch the Zookeeper server instance with below provided command,</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>docker run -d --name zookeeper-server --network siddhi-tier -e ALLOW_ANONYMOUS_LOGIN=yes bitnami/zookeeper:latest
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-bash linenums">docker run -d --name zookeeper-server --network siddhi-tier -e ALLOW_ANONYMOUS_LOGIN=yes bitnami/zookeeper:latest</code></pre>
 
 </li>
 <li>
 <p>Launch the Kafka server instance with below provide command,</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>docker run -d --name kafka-server --network siddhi-tier -e ALLOW_PLAINTEXT_LISTENER=yes -e KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper-server:2181 bitnami/kafka:latest
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-bash linenums">docker run -d --name kafka-server --network siddhi-tier -e ALLOW_PLAINTEXT_LISTENER=yes -e KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper-server:2181 bitnami/kafka:latest</code></pre>
 
 </li>
 <li>
@@ -2012,27 +1878,8 @@ Windows : bin\runner.bat -Dapps=&lt;siddhi-file-path&gt; -Dconfig=&lt;config-yam
 <ol>
 <li>
 <p>Since, there are some external client jars (Kafka &amp; MySQL) are required for the Siddhi runner. You have to create the docker image accordingly. Below is the sample Docker file created</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>FROM siddhiio/siddhi-runner-base-alpine:5.1.0-alpha
-MAINTAINER Siddhi IO Docker Maintainers &quot;siddhi-dev@googlegroups.com&quot;
+<pre class="codehilite"><code class="language-docker linenums">FROM siddhiio/siddhi-runner-base-alpine:5.1.0-alpha
+MAINTAINER Siddhi IO Docker Maintainers "siddhi-dev@googlegroups.com"
 
 ARG HOST_BUNDLES_DIR=./files/bundles
 ARG HOST_JARS_DIR=./files/jars
@@ -2050,9 +1897,7 @@ RUN bash ${RUNTIME_SERVER_HOME}/bin/install-jars.sh
 
 STOPSIGNAL SIGINT
 
-ENTRYPOINT [&quot;/home/siddhi_user/siddhi-runner/bin/runner.sh&quot;,  &quot;--&quot;]
-</pre></div>
-</td></tr></table>
+ENTRYPOINT ["/home/siddhi_user/siddhi-runner/bin/runner.sh",  "--"]</code></pre>
 
 <p>Here, you have to create two folders called <code>bundles</code> and <code>jars</code> to add necessary external client dependencies to the docker image.</p>
 <p><img alt="directory_tree_structure" src="../images/tree-structure.png" title="Directory Tree Structure" /> </p>
@@ -2060,34 +1905,22 @@ ENTRYPOINT [&quot;/home/siddhi_user/siddhi-runner/bin/runner.sh&quot;,  &quot;--
 </li>
 <li>
 <p>Once, Dockerfile is created you can create the docker image with below command.
-    <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>docker build -t siddhi_for_kafka .
-</pre></div>
-</td></tr></table></p>
+    <pre class="codehilite"><code class="language-bash linenums">docker build -t siddhi_for_kafka .</code></pre></p>
 </li>
 <li>
 <p>Create a folder locally (eg: /home/siddhi-artifacts) and copy the Siddhi app in to it. Also, create a YAML file (snapshot.yaml) with below configuration to enable state snapshot persistence in the created folder.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">state.persistence</span><span class="p">:</span>
-  <span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-  <span class="nt">intervalInMin</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1</span>
-  <span class="nt">revisionsToKeep</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2</span>
-  <span class="nt">persistenceStore</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">io.siddhi.distribution.core.persistence.FileSystemPersistenceStore</span>
-  <span class="nt">config</span><span class="p">:</span>
-    <span class="nt">location</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/siddhi-app-persistence</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-yaml linenums">state.persistence:
+  enabled: true
+  intervalInMin: 1
+  revisionsToKeep: 2
+  persistenceStore: io.siddhi.distribution.core.persistence.FileSystemPersistenceStore
+  config:
+    location: /siddhi-app-persistence</code></pre>
 
 </li>
 <li>
 <p>Then, you can run the Siddhi docker image that you created with necessary external dependencies to work with Kafka and MySQL. </p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>docker run --network siddhi-tier -it  -v /Users/mohan/scratch/siddhi-artifacts:/artifacts -v /Users/mohan/scratch/local-mount:/siddhi-app-persistence -e MYSQL_DB_URL=jdbc:mysql://mysql-server:3306/HCD -e MYSQL_USERNAME=root -e MYSQL_PASSWORD=root -e KAFKA_BOOTSTRAP_SERVER_URL=kafka-server:9092 siddhi_for_kafka:latest -Dapps=/artifacts/Glucose-Reading-PreProcessing-App.siddhi -Dconfig=/artifacts/snapshot.yaml
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-bash linenums">docker run --network siddhi-tier -it  -v /Users/mohan/scratch/siddhi-artifacts:/artifacts -v /Users/mohan/scratch/local-mount:/siddhi-app-persistence -e MYSQL_DB_URL=jdbc:mysql://mysql-server:3306/HCD -e MYSQL_USERNAME=root -e MYSQL_PASSWORD=root -e KAFKA_BOOTSTRAP_SERVER_URL=kafka-server:9092 siddhi_for_kafka:latest -Dapps=/artifacts/Glucose-Reading-PreProcessing-App.siddhi -Dconfig=/artifacts/snapshot.yaml</code></pre>
 
 <p>Note: In the above provided Siddhi app, there are some environmental variables (MYSQL_DB_URL, MYSQL_USERNAME and  MYSQL_PASSWORD)  are used. These values are required to be set to tryout the scenario end to end. MYSQL related environmental variables are required to store the events which are failed to publish to the HTTP endpoint. Environmental variable KAFKA_BOOTSTRAP_SERVER_URL is the Kafka endpoint url where Siddhi listens and consume events from.</p>
 </li>
@@ -2095,9 +1928,7 @@ ENTRYPOINT [&quot;/home/siddhi_user/siddhi-runner/bin/runner.sh&quot;,  &quot;--
 <p>You can use the sample <a href="https://hub.docker.com/r/mohanvive/kafka-event-publisher">Kafka publisher client</a>  available in docker hub to simulate required events. Use the below command to use the sample docker Kafka publisher client.</p>
 </li>
 </ol>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>docker run --network siddhi-tier -it mohanvive/kafka-event-publisher:latest
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-bash linenums">docker run --network siddhi-tier -it mohanvive/kafka-event-publisher:latest</code></pre>
 
 <ol>
 <li>
@@ -2110,25 +1941,19 @@ ENTRYPOINT [&quot;/home/siddhi_user/siddhi-runner/bin/runner.sh&quot;,  &quot;--
 <ol>
 <li>
 <p>It is advisable to create a namespace in Kubernetes to follow below steps.
-    <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl create ns siddhi-kafka-test
-</pre></div>
-</td></tr></table></p>
+    <pre class="codehilite"><code class="language-bash linenums">kubectl create ns siddhi-kafka-test</code></pre></p>
 </li>
 <li>
 <p>There are some prerequisites that you should meet to tryout below SiddhiProcess. Such as configure MySQL database and Kafka messaging system in Kubernetes. First, configure the MySQL server within the above created namespace. You can use the official <a href="https://github.com/helm/charts/tree/master/stable/mysql">helm chart</a> provided for MySQL.</p>
 <ul>
 <li>
 <p>First, install the MySQL helm chart as shown below,
-    <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>helm install --name mysql-db --namespace=siddhi-kafka-test --set mysqlRootPassword=root,mysqlDatabase=HCD stable/mysql
-</pre></div>
-</td></tr></table></p>
+    <pre class="codehilite"><code class="language-bash linenums">helm install --name mysql-db --namespace=siddhi-kafka-test --set mysqlRootPassword=root,mysqlDatabase=HCD stable/mysql</code></pre></p>
 <p>Here, you can define the root password to connect to the MYSQL database and also define the database name. BTW, make sure to do <code>helm init</code> if it is not done yet.</p>
 </li>
 <li>
 <p>Then, you can set a port forwarding to the MySQL service which allows you to connect from the Host.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl port-forward svc/mysql-db 13306:3306 --namespace=siddhi-kafka-test
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-bash linenums">kubectl port-forward svc/mysql-db 13306:3306 --namespace=siddhi-kafka-test</code></pre>
 
 </li>
 <li>
@@ -2142,9 +1967,7 @@ ENTRYPOINT [&quot;/home/siddhi_user/siddhi-runner/bin/runner.sh&quot;,  &quot;--
 <ul>
 <li>
 <p>First, install Kafka helm chart as shown below.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>helm install --name my-kafka incubator/kafka --namespace=siddhi-kafka-test
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-bash linenums">helm install --name my-kafka incubator/kafka --namespace=siddhi-kafka-test</code></pre>
 
 <p><img alt="k8s_kafka_install" src="../images/k8s-kafka-install.png" title="HELM Chart for Kafka" /> </p>
 </li>
@@ -2158,11 +1981,8 @@ ENTRYPOINT [&quot;/home/siddhi_user/siddhi-runner/bin/runner.sh&quot;,  &quot;--
 <ul>
 <li>
 <p>To install the Siddhi Kubernetes operator run the following commands.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-alpha/00-prereqs.yaml  --namespace=siddhi-kafka-test
-kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-alpha/01-siddhi-operator.yaml --namespace=siddhi-kafka-test
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-bash linenums">kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-alpha/00-prereqs.yaml  --namespace=siddhi-kafka-test
+kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-alpha/01-siddhi-operator.yaml --namespace=siddhi-kafka-test</code></pre>
 
 </li>
 <li>
@@ -2177,291 +1997,149 @@ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/
 <ul>
 <li>
 <p>To deploy the above created Siddhi app, we have to create custom resource object yaml file (with the kind as SiddhiProcess) as given below</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>  1
-  2
-  3
-  4
-  5
-  6
-  7
-  8
-  9
- 10
- 11
- 12
- 13
- 14
- 15
- 16
- 17
- 18
- 19
- 20
- 21
- 22
- 23
- 24
- 25
- 26
- 27
- 28
- 29
- 30
- 31
- 32
- 33
- 34
- 35
- 36
- 37
- 38
- 39
- 40
- 41
- 42
- 43
- 44
- 45
- 46
- 47
- 48
- 49
- 50
- 51
- 52
- 53
- 54
- 55
- 56
- 57
- 58
- 59
- 60
- 61
- 62
- 63
- 64
- 65
- 66
- 67
- 68
- 69
- 70
- 71
- 72
- 73
- 74
- 75
- 76
- 77
- 78
- 79
- 80
- 81
- 82
- 83
- 84
- 85
- 86
- 87
- 88
- 89
- 90
- 91
- 92
- 93
- 94
- 95
- 96
- 97
- 98
- 99
-100
-101
-102
-103
-104
-105
-106
-107
-108
-109
-110
-111
-112
-113
-114
-115
-116
-117
-118
-119
-120
-121
-122
-123
-124
-125
-126
-127
-128
-129
-130
-131
-132
-133
-134
-135
-136
-137
-138
-139
-140
-141
-142</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi.io/v1alpha2</span>
-<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SiddhiProcess</span>
-<span class="nt">metadata</span><span class="p">:</span>
-  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">glucose-reading-preprocessing-app</span>
-<span class="nt">spec</span><span class="p">:</span>
-  <span class="nt">apps</span><span class="p">:</span>
-   <span class="p p-Indicator">-</span> <span class="nt">script</span><span class="p">:</span> <span class="p p-Indicator">|</span>
-        <span class="no">@App:name(&quot;Glucose-Reading-PreProcessing-App&quot;)</span>
-        <span class="no">@App:description(&#39;Process Glucose Readings received from patients&#39;)</span>
+<pre class="codehilite"><code class="language-yaml linenums">apiVersion: siddhi.io/v1alpha2
+kind: SiddhiProcess
+metadata:
+  name: glucose-reading-preprocessing-app
+spec:
+  apps:
+   - script: |
+        @App:name("Glucose-Reading-PreProcessing-App")
+        @App:description('Process Glucose Readings received from patients')
 
-        <span class="no">-- Kakfka source which consumes Glucose reading events</span>
-        <span class="no">@source(type=&#39;kafka&#39;,</span>
-              <span class="no">topic.list=&#39;glucose-readings&#39;,</span>
-              <span class="no">partition.no.list=&#39;0&#39;,</span>
-              <span class="no">threading.option=&#39;single.thread&#39;,</span>
-              <span class="no">group.id=&quot;group&quot;,</span>
-              <span class="no">is.binary.message=&#39;true&#39;,</span>
-              <span class="no">bootstrap.servers=&#39;${KAFKA_BOOTSTRAP_SERVER_URL}&#39;,</span>
-              <span class="no">@map(type=&#39;avro&#39;,schema.def=&quot;&quot;&quot;</span>
-                    <span class="no">{</span>
-                        <span class="no">&quot;type&quot;: &quot;record&quot;,</span>
-                        <span class="no">&quot;name&quot;: &quot;glucose_reading&quot;,</span>
-                        <span class="no">&quot;namespace&quot;: &quot;glucose&quot;,</span>
-                        <span class="no">&quot;fields&quot;: [{</span>
-                            <span class="no">&quot;name&quot;: &quot;locationRoom&quot;,</span>
-                            <span class="no">&quot;type&quot;: &quot;string&quot;</span>
-                        <span class="no">}, {</span>
-                            <span class="no">&quot;name&quot;: &quot;locationBed&quot;,</span>
-                            <span class="no">&quot;type&quot;: &quot;string&quot;</span>
-                        <span class="no">}, {</span>
-                            <span class="no">&quot;name&quot;: &quot;timeStamp&quot;,</span>
-                            <span class="no">&quot;type&quot;: &quot;string&quot;</span>
-                        <span class="no">}, {</span>
-                            <span class="no">&quot;name&quot;: &quot;sensorID&quot;,</span>
-                            <span class="no">&quot;type&quot;: &quot;long&quot;</span>
-                        <span class="no">}, {</span>
-                            <span class="no">&quot;name&quot;: &quot;patientGroup&quot;,</span>
-                            <span class="no">&quot;type&quot;: &quot;string&quot;</span>
-                        <span class="no">}, {</span>
-                            <span class="no">&quot;name&quot;: &quot;patientFirstName&quot;,</span>
-                            <span class="no">&quot;type&quot;: &quot;string&quot;</span>
-                        <span class="no">}, {</span>
-                            <span class="no">&quot;name&quot;: &quot;patientLastName&quot;,</span>
-                            <span class="no">&quot;type&quot;: &quot;string&quot;</span>
-                        <span class="no">}, {</span>
-                            <span class="no">&quot;name&quot;: &quot;sensorValue&quot;,</span>
-                            <span class="no">&quot;type&quot;: &quot;double&quot;  </span>
-                        <span class="no">}, {</span>
-                            <span class="no">&quot;name&quot;: &quot;unitOfMeasure&quot;,</span>
-                            <span class="no">&quot;type&quot;: &quot;string&quot; </span>
-                        <span class="no">}]</span>
-                    <span class="no">}&quot;&quot;&quot;))</span>
-        <span class="no">define stream GlucoseReadingStream (locationRoom string, locationBed string, timeStamp string, sensorID long, patientGroup string, </span>
-        <span class="no">patientFirstName string, patientLastName string, sensorValue double, unitOfMeasure string);</span>
+        -- Kakfka source which consumes Glucose reading events
+        @source(type='kafka',
+              topic.list='glucose-readings',
+              partition.no.list='0',
+              threading.option='single.thread',
+              group.id="group",
+              is.binary.message='true',
+              bootstrap.servers='${KAFKA_BOOTSTRAP_SERVER_URL}',
+              @map(type='avro',schema.def="""
+                    {
+                        "type": "record",
+                        "name": "glucose_reading",
+                        "namespace": "glucose",
+                        "fields": [{
+                            "name": "locationRoom",
+                            "type": "string"
+                        }, {
+                            "name": "locationBed",
+                            "type": "string"
+                        }, {
+                            "name": "timeStamp",
+                            "type": "string"
+                        }, {
+                            "name": "sensorID",
+                            "type": "long"
+                        }, {
+                            "name": "patientGroup",
+                            "type": "string"
+                        }, {
+                            "name": "patientFirstName",
+                            "type": "string"
+                        }, {
+                            "name": "patientLastName",
+                            "type": "string"
+                        }, {
+                            "name": "sensorValue",
+                            "type": "double"  
+                        }, {
+                            "name": "unitOfMeasure",
+                            "type": "string" 
+                        }]
+                    }"""))
+        define stream GlucoseReadingStream (locationRoom string, locationBed string, timeStamp string, sensorID long, patientGroup string, 
+        patientFirstName string, patientLastName string, sensorValue double, unitOfMeasure string);
 
-        <span class="no">-- HTTP sink which publishes abnormal Glucose reading related events. </span>
-        <span class="no">-- If there is any errors occurred when publishing events to HTTP endpoint then respective events are sent to error stream</span>
-        <span class="no">@OnError(action=&#39;STREAM&#39;)</span>
-        <span class="no">@sink(type = &#39;http&#39;, blocking.io=&#39;true&#39;, publisher.url = &quot;http://localhost:8080/logger&quot;, method = &quot;POST&quot;, </span>
-            <span class="no">@map(type = &#39;json&#39;))</span>
-        <span class="no">define stream AbnormalGlucoseReadingStream (timeStampInLong long, locationRoom string, locationBed string, sensorID long, patientGroup string, </span>
-        <span class="no">patientFullName string, sensorReadingValue double, unitOfMeasure string, abnormalReadingCount long);</span>
+        -- HTTP sink which publishes abnormal Glucose reading related events. 
+        -- If there is any errors occurred when publishing events to HTTP endpoint then respective events are sent to error stream
+        @OnError(action='STREAM')
+        @sink(type = 'http', blocking.io='true', publisher.url = "http://localhost:8080/logger", method = "POST", 
+            @map(type = 'json'))
+        define stream AbnormalGlucoseReadingStream (timeStampInLong long, locationRoom string, locationBed string, sensorID long, patientGroup string, 
+        patientFullName string, sensorReadingValue double, unitOfMeasure string, abnormalReadingCount long);
 
-        <span class="no">-- RDBMS event table which stores the failed events when publishing to HTTP endpoint</span>
-        <span class="no">@Store(type=&quot;rdbms&quot;, jdbc.url=&quot;${MYSQL_DB_URL}&quot;, username=&quot;${MYSQL_USERNAME}&quot;, password=&quot;${MYSQL_PASSWORD}&quot; , jdbc.driver.name=&quot;com.mysql.jdbc.Driver&quot;)</span>
-        <span class="no">@PrimaryKey(&quot;locationRoom&quot;, &quot;locationBed&quot;, &quot;sensorID&quot;, &quot;failedEventTime&quot;)</span>
-        <span class="no">define table FailedAbnormalReadingTable (failedEventTime string, originTime long, locationRoom string, locationBed string, sensorID long,</span>
-        <span class="no">patientFullName string, sensorReadingValue double, rootCause string);</span>
+        -- RDBMS event table which stores the failed events when publishing to HTTP endpoint
+        @Store(type="rdbms", jdbc.url="${MYSQL_DB_URL}", username="${MYSQL_USERNAME}", password="${MYSQL_PASSWORD}" , jdbc.driver.name="com.mysql.jdbc.Driver")
+        @PrimaryKey("locationRoom", "locationBed", "sensorID", "failedEventTime")
+        define table FailedAbnormalReadingTable (failedEventTime string, originTime long, locationRoom string, locationBed string, sensorID long,
+        patientFullName string, sensorReadingValue double, rootCause string);
 
-        <span class="no">-- Javascript function which converts the Glucose sensor reading to mg/dl</span>
-        <span class="no">define function sensorReadingInMGDL[JavaScript] return double {</span>
-            <span class="no">var sensorReading = data[0];</span>
-            <span class="no">var metricUnit = data[1];</span>
+        -- Javascript function which converts the Glucose sensor reading to mg/dl
+        define function sensorReadingInMGDL[JavaScript] return double {
+            var sensorReading = data[0];
+            var metricUnit = data[1];
 
-            <span class="no">if(metricUnit === &#39;MGDL&#39;) {</span>
-                <span class="no">return metricUnit;</span>
-            <span class="no">}</span>
+            if(metricUnit === 'MGDL') {
+                return metricUnit;
+            }
 
-            <span class="no">return sensorReading * 18;</span>
-        <span class="no">};</span>
+            return sensorReading * 18;
+        };
 
-        <span class="no">@info(name=&#39;Glucose-preprocessing&#39;) </span>
-        <span class="no">from GlucoseReadingStream</span>
-        <span class="no">select math:parseLong(timeStamp) as timeStampInLong, locationRoom, locationBed, sensorID, patientGroup, </span>
-                <span class="no">str:concat(patientFirstName, &quot; &quot;, patientLastName) as patientFullName, </span>
-                <span class="no">sensorReadingInMGDL(sensorValue, unitOfMeasure)  as sensorReadingValue, &#39;MGDL&#39; as unitOfMeasure</span>
-        <span class="no">insert into PreProcessedGlucoseReadingStream;</span>
+        @info(name='Glucose-preprocessing') 
+        from GlucoseReadingStream
+        select math:parseLong(timeStamp) as timeStampInLong, locationRoom, locationBed, sensorID, patientGroup, 
+                str:concat(patientFirstName, " ", patientLastName) as patientFullName, 
+                sensorReadingInMGDL(sensorValue, unitOfMeasure)  as sensorReadingValue, 'MGDL' as unitOfMeasure
+        insert into PreProcessedGlucoseReadingStream;
 
-        <span class="no">@info(name=&#39;Abnormal-Glucose-reading-identifier&#39;) </span>
-        <span class="no">from PreProcessedGlucoseReadingStream[sensorReadingValue &gt; 100]#window.time(15 min)</span>
-        <span class="no">select timeStampInLong, locationRoom, locationBed, sensorID, patientGroup, patientFullName, </span>
-        <span class="no">sensorReadingValue, unitOfMeasure, count() as abnormalReadingCount</span>
-        <span class="no">group by locationRoom, locationBed, sensorID</span>
-        <span class="no">having abnormalReadingCount &gt; 3</span>
-        <span class="no">output first every 15 min</span>
-        <span class="no">insert into AbnormalGlucoseReadingStream;</span>
+        @info(name='Abnormal-Glucose-reading-identifier') 
+        from PreProcessedGlucoseReadingStream[sensorReadingValue &gt; 100]#window.time(15 min)
+        select timeStampInLong, locationRoom, locationBed, sensorID, patientGroup, patientFullName, 
+        sensorReadingValue, unitOfMeasure, count() as abnormalReadingCount
+        group by locationRoom, locationBed, sensorID
+        having abnormalReadingCount &gt; 3
+        output first every 15 min
+        insert into AbnormalGlucoseReadingStream;
 
-        <span class="no">@info(name = &#39;Error-handler&#39;)</span>
-        <span class="no">from !AbnormalGlucoseReadingStream#log(&quot;Error Occurred!&quot;)</span>
-        <span class="no">select time:currentTimestamp() as failedEventTime, timeStampInLong as originTime, locationRoom, locationBed, </span>
-        <span class="no">sensorID, patientFullName, sensorReadingValue, convert(_error, &#39;string&#39;) as rootCause</span>
-        <span class="no">insert into FailedAbnormalReadingStream;</span>
+        @info(name = 'Error-handler')
+        from !AbnormalGlucoseReadingStream#log("Error Occurred!")
+        select time:currentTimestamp() as failedEventTime, timeStampInLong as originTime, locationRoom, locationBed, 
+        sensorID, patientFullName, sensorReadingValue, convert(_error, 'string') as rootCause
+        insert into FailedAbnormalReadingStream;
 
-        <span class="no">@info(name=&#39;Dump-to-event-store&#39;) </span>
-        <span class="no">from FailedAbnormalReadingStream</span>
-        <span class="no">select *</span>
-        <span class="no">insert into FailedAbnormalReadingTable;</span>
+        @info(name='Dump-to-event-store') 
+        from FailedAbnormalReadingStream
+        select *
+        insert into FailedAbnormalReadingTable;
 
-  <span class="nt">persistentVolumeClaim</span><span class="p">:</span> 
-    <span class="nt">accessModes</span><span class="p">:</span> 
-      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">ReadWriteOnce</span>
-    <span class="nt">resources</span><span class="p">:</span> 
-      <span class="nt">requests</span><span class="p">:</span> 
-        <span class="nt">storage</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1Gi</span>
-    <span class="nt">storageClassName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">hostpath</span>
-    <span class="nt">volumeMode</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Filesystem</span>
+  persistentVolumeClaim: 
+    accessModes: 
+      - ReadWriteOnce
+    resources: 
+      requests: 
+        storage: 1Gi
+    storageClassName: hostpath
+    volumeMode: Filesystem
 
-  <span class="nt">runner</span><span class="p">:</span> <span class="p p-Indicator">|</span>
-    <span class="no">state.persistence:</span>
-      <span class="no">enabled: true</span>
-      <span class="no">intervalInMin: 1</span>
-      <span class="no">revisionsToKeep: 2</span>
-      <span class="no">persistenceStore: io.siddhi.distribution.core.persistence.FileSystemPersistenceStore</span>
-      <span class="no">config:</span>
-        <span class="no">location: /siddhi-app-persistence</span>
+  runner: |
+    state.persistence:
+      enabled: true
+      intervalInMin: 1
+      revisionsToKeep: 2
+      persistenceStore: io.siddhi.distribution.core.persistence.FileSystemPersistenceStore
+      config:
+        location: /siddhi-app-persistence
 
-  <span class="nt">container</span><span class="p">:</span>
-    <span class="nt">env</span><span class="p">:</span>
-      <span class="p p-Indicator">-</span>
-        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">MYSQL_DB_URL</span>
-        <span class="nt">value</span><span class="p">:</span> <span class="s">&quot;jdbc:mysql://mysql-db:3306/HCD&quot;</span>
-      <span class="p p-Indicator">-</span>
-        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">MYSQL_USERNAME</span>
-        <span class="nt">value</span><span class="p">:</span> <span class="s">&quot;root&quot;</span>
-      <span class="p p-Indicator">-</span> 
-        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">MYSQL_PASSWORD</span>
-        <span class="nt">value</span><span class="p">:</span> <span class="s">&quot;root&quot;</span>
-      <span class="p p-Indicator">-</span>
-        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">KAFKA_BOOTSTRAP_SERVER_URL</span>
-        <span class="nt">value</span><span class="p">:</span> <span class="s">&quot;my-kafka-headless:9092&quot;</span>
+  container:
+    env:
+      -
+        name: MYSQL_DB_URL
+        value: "jdbc:mysql://mysql-db:3306/HCD"
+      -
+        name: MYSQL_USERNAME
+        value: "root"
+      - 
+        name: MYSQL_PASSWORD
+        value: "root"
+      -
+        name: KAFKA_BOOTSTRAP_SERVER_URL
+        value: "my-kafka-headless:9092"
 
-    <span class="nt">image</span><span class="p">:</span> <span class="s">&quot;mohanvive/siddhi_for_kafka:latest&quot;</span>
-</pre></div>
-</td></tr></table>
+    image: "mohanvive/siddhi_for_kafka:latest"
+</code></pre>
 
 <p>Note: In the above provided Siddhi app, there are some environmental variables (MYSQL_DB_URL, MYSQL_USERNAME and  MYSQL_PASSWORD)  are used. These values are required to be set to tryout the scenario end to end. MYSQL related environmental variables are required to store the events which are failed to publish to the HTTP endpoint. Environmental variable KAFKA_BOOTSTRAP_SERVER_URL is the Kafka endpoint url where Siddhi listens and consume events from. Hence, make sure to add proper values for the environmental variables in the above yaml file (check the <code>env</code> section of the yaml file).</p>
 <p>Here, you can use the docker image that created in the <a href="#deploy-on-docker">Deploy on Docker</a> section since you need a docker images with required extensions and client jars to test it in Kubernetes.</p>
@@ -2469,9 +2147,7 @@ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/
 </li>
 <li>
 <p>Now,  let’s create the above resource in the Kubernetes  cluster with below command.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl --namespace=siddhi-kafka-test create -f &lt;absolute-yaml-file-path&gt;/glucose-reading-preprocessing-app.yaml
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-bash linenums">kubectl --namespace=siddhi-kafka-test create -f &lt;absolute-yaml-file-path&gt;/glucose-reading-preprocessing-app.yaml</code></pre>
 
 <p>Once, siddhi app is successfully deployed. You can verify its health with below Kubernetes commands</p>
 <p><img alt="kubernetes_pods_with_kafka" src="../images/k8s-pods-with-siddhi.png" title="Kubernetes Pods" /></p>
@@ -2481,61 +2157,39 @@ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/
 <ul>
 <li>
 <p>Create a pod with below definition. </p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v1</span>
-  <span class="l l-Scalar l-Scalar-Plain">kind</span><span class="p p-Indicator">:</span> <span class="l l-Scalar l-Scalar-Plain">Pod</span>
-  <span class="l l-Scalar l-Scalar-Plain">metadata</span><span class="p p-Indicator">:</span>
-    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">testclient</span>
-    <span class="nt">namespace</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi-kafka-test</span>
-<span class=" -Error">  </span><span class="nt">spec</span><span class="p">:</span>
-    <span class="nt">containers</span><span class="p">:</span>
-    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">kafka</span>
-      <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mohanvive/test-client</span>
-      <span class="nt">command</span><span class="p">:</span>
-        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">sh</span>
-        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">-c</span>
-        <span class="p p-Indicator">-</span> <span class="s">&quot;exec</span><span class="nv"> </span><span class="s">tail</span><span class="nv"> </span><span class="s">-f</span><span class="nv"> </span><span class="s">/dev/null&quot;</span>
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-yaml linenums">apiVersion: v1
+  kind: Pod
+  metadata:
+    name: testclient
+    namespace: siddhi-kafka-test
+  spec:
+    containers:
+    - name: kafka
+      image: mohanvive/test-client
+      command:
+        - sh
+        - -c
+        - "exec tail -f /dev/null"</code></pre>
 
 </li>
 <li>
 <p>Create a YAML file called test-client.yaml, add above pod definition in it and run below command.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f test-client.yaml
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-bash linenums">kubectl apply -f test-client.yaml</code></pre>
 
 </li>
 <li>
 <p>Then, go into the above created pod using below command.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl exec -it testclient sh --namespace=siddhi-kafka-test
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-bash linenums">kubectl exec -it testclient sh --namespace=siddhi-kafka-test</code></pre>
 
 </li>
 <li>
 <p>Download the sample Kafka client which could publish events related to above use case.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>wget https://github.com/mohanvive/siddhi-sample-clients/releases/download/v1.0.0/kafka-avro-producer-1.0.0-jar-with-dependencies.jar
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-bash linenums">wget https://github.com/mohanvive/siddhi-sample-clients/releases/download/v1.0.0/kafka-avro-producer-1.0.0-jar-with-dependencies.jar</code></pre>
 
 </li>
 <li>
 <p>Then execute below command to push events to Kafka messaging system.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>java -jar kafka-avro-producer-1.0.0-jar-with-dependencies.jar my-kafka-headless:9092
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-bash linenums">java -jar kafka-avro-producer-1.0.0-jar-with-dependencies.jar my-kafka-headless:9092</code></pre>
 
 </li>
 <li>
@@ -2646,6 +2300,8 @@ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/
       <script>app.initialize({version:"1.0.4",url:{base:"../../../.."}})</script>
       
         <script src="../../../../assets/lib/highlightjs/highlight.min.js"></script>
+      
+        <script src="../../../../assets/js/jquery-3.3.1.min.js"></script>
       
         <script src="../../../../assets/js/theme.js"></script>
       

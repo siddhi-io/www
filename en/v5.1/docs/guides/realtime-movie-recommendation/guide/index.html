@@ -1531,11 +1531,8 @@ Refer <a href="https://siddhi.io/en/v5.1/docs/config-guide/#adding-extensions-an
 <p>Follow below steps to start the Siddhi tooling runtime.
 * Extract the downloaded zip and navigate to <TOOLING_HOME>/bin. (TOOLING_HOME refers to the extracted folder) 
 * Issue the following command in the command prompt (Windows) / terminal (Linux/Mac)
-    <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>For Windows: tooling.bat
-For Linux/Mac: ./tooling.sh
-</pre></div>
-</td></tr></table></p>
+    <pre class="codehilite"><code class="language-bash linenums">For Windows: tooling.bat
+For Linux/Mac: ./tooling.sh</code></pre></p>
 </li>
 <li>
 <p>Select File -&gt; New option, then you could either use the source view or design view to write/build the Siddhi Application. You can find the Siddhi Application bellow, that implements the requirements mentioned above.</p>
@@ -1544,81 +1541,45 @@ For Linux/Mac: ./tooling.sh
 <p>Let’s write (develop) the Siddhi Application, as given below.</p>
 </li>
 </ol>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="o">@</span><span class="n">App</span><span class="p">:</span><span class="n">name</span><span class="p">(</span><span class="s1">&#39;Realtime-Movie-Recommendation-App&#39;</span><span class="p">)</span>
-<span class="o">@</span><span class="n">App</span><span class="p">:</span><span class="n">description</span><span class="p">(</span><span class="s1">&#39;Performs realtime movie recommendations&#39;</span><span class="p">)</span>
+<pre class="codehilite"><code class="language-siddhi linenums">@App:name('Realtime-Movie-Recommendation-App')
+@App:description('Performs realtime movie recommendations')
 
-<span class="o">@</span><span class="k">Source</span><span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;http&#39;</span><span class="p">,</span> <span class="n">receiver</span><span class="p">.</span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://0.0.0.0:8006/feedbackInputStream&#39;</span><span class="p">,</span>
- <span class="n">basic</span><span class="p">.</span><span class="n">auth</span><span class="p">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="s1">&#39;false&#39;</span><span class="p">,</span> <span class="o">@</span><span class="k">map</span><span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;json&#39;</span><span class="p">))</span>
-<span class="n">define</span> <span class="n">stream</span> <span class="n">FeedbackInputStream</span> <span class="p">(</span><span class="n">userId</span> <span class="n">string</span><span class="p">,</span> <span class="n">movieId</span> <span class="n">string</span><span class="p">,</span> <span class="n">reviewComment</span> <span class="n">string</span><span class="p">);</span>
+@Source(type = 'http', receiver.url = 'http://0.0.0.0:8006/feedbackInputStream',
+ basic.auth.enabled = 'false', @map(type = 'json'))
+define stream FeedbackInputStream (userId string, movieId string, reviewComment string);
 
-<span class="o">@</span><span class="k">Source</span><span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;http&#39;</span><span class="p">,</span>
-        <span class="n">receiver</span><span class="p">.</span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://0.0.0.0:8006/recomendationRequestStream&#39;</span><span class="p">,</span>
-        <span class="n">basic</span><span class="p">.</span><span class="n">auth</span><span class="p">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="s1">&#39;false&#39;</span><span class="p">,</span> <span class="o">@</span><span class="k">map</span><span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;json&#39;</span><span class="p">))</span>
-<span class="n">define</span> <span class="n">stream</span> <span class="n">RecomendationRequestStream</span><span class="p">(</span><span class="n">userId</span> <span class="n">string</span><span class="p">,</span> <span class="n">movieId</span> <span class="n">string</span><span class="p">);</span>
+@Source(type = 'http',
+        receiver.url = 'http://0.0.0.0:8006/recomendationRequestStream',
+        basic.auth.enabled = 'false', @map(type = 'json'))
+define stream RecomendationRequestStream(userId string, movieId string);
 
-<span class="c1">-- HTTP sink to publish movie recommendations. For testing purposes, there is a mock logger service provided </span>
-<span class="o">@</span><span class="n">sink</span><span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;http&#39;</span><span class="p">,</span> <span class="n">publisher</span><span class="p">.</span><span class="n">url</span> <span class="o">=</span> <span class="ss">&quot;http://${LOGGER_SERVICE_HOST}:8080/logger&quot;</span><span class="p">,</span> <span class="k">method</span> <span class="o">=</span> <span class="ss">&quot;POST&quot;</span><span class="p">,</span> <span class="o">@</span><span class="k">map</span><span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;json&#39;</span><span class="p">))</span>
-<span class="o">@</span><span class="n">sink</span><span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;http&#39;</span><span class="p">,</span> <span class="n">publisher</span><span class="p">.</span><span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://0.0.0.0:8008/movieRecommendations&#39;</span><span class="p">,</span> 
-<span class="o">@</span><span class="k">map</span><span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;json&#39;</span><span class="p">))</span>
-<span class="o">@</span><span class="n">sink</span><span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;log&#39;</span><span class="p">,</span> <span class="o">@</span><span class="k">map</span><span class="p">(</span><span class="k">type</span> <span class="o">=</span> <span class="s1">&#39;text&#39;</span><span class="p">))</span>
-<span class="n">define</span> <span class="n">stream</span> <span class="n">RecommendedMovieStream</span> <span class="p">(</span><span class="n">userId</span> <span class="n">string</span><span class="p">,</span> <span class="n">movieList</span> <span class="n">string</span><span class="p">);</span>
+-- HTTP sink to publish movie recommendations. For testing purposes, there is a mock logger service provided 
+@sink(type = 'http', publisher.url = "http://${LOGGER_SERVICE_HOST}:8080/logger", method = "POST", @map(type = 'json'))
+@sink(type = 'http', publisher.url = 'http://0.0.0.0:8008/movieRecommendations', 
+@map(type = 'json'))
+@sink(type = 'log', @map(type = 'text'))
+define stream RecommendedMovieStream (userId string, movieList string);
 
-<span class="c1">-- Perform sentiment analysis on the review comment</span>
-<span class="c1">--probabilities0 and probabilities1 stands for positive and negative probabilities respectlively.</span>
-<span class="o">@</span><span class="n">info</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;query1&#39;</span><span class="p">)</span> 
-<span class="k">From</span> <span class="n">FeedbackInputStream</span><span class="o">#</span><span class="n">tensorFlow</span><span class="p">:</span><span class="n">predict</span><span class="p">(</span><span class="s1">&#39;${SENTIMENT_ANALYSIS_TF_SAVED_MODEL_PATH}&#39;</span><span class="p">,</span> <span class="s1">&#39;input_string_text&#39;</span><span class="p">,</span> <span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;probabilities&#39;</span><span class="p">,</span> <span class="n">str</span><span class="p">:</span><span class="n">concat</span><span class="p">(</span><span class="ss">&quot;{&#39;input_text&#39;:&#39;&quot;</span><span class="p">,</span> <span class="n">reviewComment</span><span class="p">,</span> <span class="ss">&quot;&#39;}&quot;</span><span class="p">))</span> 
-<span class="k">select</span> <span class="n">userId</span><span class="p">,</span> <span class="n">movieId</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">probabilities0</span><span class="p">,</span> <span class="n">probabilities1</span>
-<span class="k">insert</span> <span class="k">into</span> <span class="n">SentimentPredictionStream</span><span class="p">;</span>
+-- Perform sentiment analysis on the review comment
+--probabilities0 and probabilities1 stands for positive and negative probabilities respectlively.
+@info(name = 'query1') 
+From FeedbackInputStream#tensorFlow:predict('${SENTIMENT_ANALYSIS_TF_SAVED_MODEL_PATH}', 'input_string_text', 'label', 'probabilities', str:concat("{'input_text':'", reviewComment, "'}")) 
+select userId, movieId, label, probabilities0, probabilities1
+insert into SentimentPredictionStream;
 
-<span class="c1">-- Filter positive review comment</span>
-<span class="o">@</span><span class="n">info</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;query2&#39;</span><span class="p">)</span> 
-<span class="k">from</span> <span class="n">SentimentPredictionStream</span><span class="p">[</span><span class="n">label</span> <span class="o">==</span> <span class="ss">&quot;positive&quot;</span><span class="p">]</span>
-<span class="k">select</span> <span class="n">userId</span><span class="p">,</span> <span class="n">movieId</span>
-<span class="k">insert</span> <span class="k">into</span> <span class="n">RecomendationRequestStream</span><span class="p">;</span>
+-- Filter positive review comment
+@info(name = 'query2') 
+from SentimentPredictionStream[label == "positive"]
+select userId, movieId
+insert into RecomendationRequestStream;
 
-<span class="c1">-- Recommends a movie list for the provided userId and movieId</span>
-<span class="o">@</span><span class="n">info</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;query3&#39;</span><span class="p">)</span> 
-<span class="k">From</span> <span class="n">RecomendationRequestStream</span><span class="o">#</span><span class="n">pmml</span><span class="p">:</span><span class="n">predict</span><span class="p">(</span><span class="s1">&#39;${MOVIE_RECOMMENDATION_PMML_MODEL_PATH}&#39;</span><span class="p">,</span> <span class="n">userId</span><span class="p">,</span> <span class="n">movieId</span><span class="p">)</span> 
-<span class="k">select</span> <span class="n">userId</span><span class="p">,</span> <span class="n">movieList</span>
-<span class="k">insert</span> <span class="k">into</span> <span class="n">RecommendedMovieStream</span><span class="p">;</span>
-</pre></div>
-</td></tr></table>
+-- Recommends a movie list for the provided userId and movieId
+@info(name = 'query3') 
+From RecomendationRequestStream#pmml:predict('${MOVIE_RECOMMENDATION_PMML_MODEL_PATH}', userId, movieId) 
+select userId, movieList
+insert into RecommendedMovieStream;
+
+</code></pre>
 
 <p>Source view of the Siddhi app.
 <img alt="source_view" src="../images/source-view.png" title="Source view of the Siddhi App" /></p>
@@ -1642,25 +1603,17 @@ For Linux/Mac: ./tooling.sh
 </ul>
 <h3 id="run-mock-logger-service">Run Mock Logger service<a class="headerlink" href="#run-mock-logger-service" title="Permanent link">&para;</a></h3>
 <p>In the provided Siddhi app, there is a HTTP sink configured to push output events to an HTTP endpoint. To verify that, please download the mock server <a href="https://github.com/pcnfernando/MovieRecommendationSystem/blob/master/util/logservice-1.0.0.jar">jar</a> and run that mock service by executing below command.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>java -jar logservice-1.0.0.jar
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-bash linenums">java -jar logservice-1.0.0.jar</code></pre>
 
 <h3 id="invoking-the-siddhi-app">Invoking the Siddhi App<a class="headerlink" href="#invoking-the-siddhi-app" title="Permanent link">&para;</a></h3>
 <p>As mentioned in the previous steps, there is a service running in Siddhi side which is listening for events related to movie review comments. As per the Siddhi query that we wrote in the ‘Implementation’ section, respective service can be accessed via 'http://0.0.0.0:8006/feedbackInputStream'.</p>
 <p>As per the app, if the review comment is positive, movies similar to the reviewed movie will be returned as recommendations.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>curl -v -X POST -d \
-&#39;{&quot;event&quot;: {&quot;userId&quot;: &quot;user105&quot;, &quot;movieId&quot;: &quot;avatar&quot;, &quot;reviewComment&quot;: &quot;Best movie experience of the last 30 years..&quot;}}&#39; \
-&quot;http://localhost:8006/feedbackInputStream&quot; -H &quot;Content-Type:application/json&quot;
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-bash linenums">curl -v -X POST -d \
+'{"event": {"userId": "user105", "movieId": "avatar", "reviewComment": "Best movie experience of the last 30 years.."}}' \
+"http://localhost:8006/feedbackInputStream" -H "Content-Type:application/json"</code></pre>
 
 <p>If you invoke, above cURL request then Siddhi would identify it as a positive feedback and recommends similar movies. In this guide, for simplicity we are just logging the movie recommendations as below. </p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>INFO {io.siddhi.core.stream.output.sink.LogSink} - Realtime-Movie-Recommendation-App : RecommendedMovieStream : Event{timestamp=1568785937271, data=[user105, {After Earth, Star Trek Into Darkness, Oblivion, The Croods}], isExpired=false}
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-bash linenums">INFO {io.siddhi.core.stream.output.sink.LogSink} - Realtime-Movie-Recommendation-App : RecommendedMovieStream : Event{timestamp=1568785937271, data=[user105, {After Earth, Star Trek Into Darkness, Oblivion, The Croods}], isExpired=false}</code></pre>
 
 <h2 id="deployment">Deployment<a class="headerlink" href="#deployment" title="Permanent link">&para;</a></h2>
 <p>Once you are done with the development, export the Siddhi app that you have developed with File -&gt; Export File option.</p>
@@ -1678,37 +1631,26 @@ For Linux/Mac: ./tooling.sh
 <li>Copy the downloaded <a href="https://maven.wso2.org/nexus/service/local/repositories/releases/content/io/siddhi/extension/gpl/execution/pmml/siddhi-gpl-execution-pmml/5.0.1/siddhi-gpl-execution-pmml-5.0.1.jar">siddhi-gpl-execution-pmml</a> and <a href="https://mvnrepository.com/artifact/io.siddhi.extension.execution.tensorflow/siddhi-execution-tensorflow/2.0.2">siddhi-execution-tensorflow</a> to SIDDHI_RUNNER_HOME/bundles directory.</li>
 <li>
 <p>Start Siddhi app with the runner config by executing the following commands from the distribution directory.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4
-5
-6</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>Linux/Mac : ./bin/runner.sh -Dapps=&lt;siddhi-file-path&gt; -DSENTIMENT_ANALYSIS_TF_SAVED_MODEL_PATH=&lt;sentiment-analysis-tf-model-path&gt; -DMOVIE_RECOMMENDATION_PMML_MODEL_PATH=&lt;movie-recommendation-pmml-model-path&gt;
+<pre class="codehilite"><code class="language-bash linenums">Linux/Mac : ./bin/runner.sh -Dapps=&lt;siddhi-file-path&gt; -DSENTIMENT_ANALYSIS_TF_SAVED_MODEL_PATH=&lt;sentiment-analysis-tf-model-path&gt; -DMOVIE_RECOMMENDATION_PMML_MODEL_PATH=&lt;movie-recommendation-pmml-model-path&gt;
 
 Windows : bin\runner.bat -Dapps=&lt;siddhi-file-path&gt; -DSENTIMENT_ANALYSIS_TF_SAVED_MODEL_PATH=&lt;sentiment-analysis-tf-model-path&gt; -DMOVIE_RECOMMENDATION_PMML_MODEL_PATH=&lt;movie-recommendation-pmml-model-path&gt;
 
 Eg: If exported siddhi app in Siddhi home directory,
-      ./bin/runner.sh -Dapps=Realtime-Movie-Recommendation-App.siddhi
-</pre></div>
-</td></tr></table>
+      ./bin/runner.sh -Dapps=Realtime-Movie-Recommendation-App.siddhi</code></pre>
 
 </li>
 <li>
 <p>Download the mock <a href="https://github.com/pcnfernando/MovieRecommendationSystem/blob/master/util/logservice-1.0.0.jar">logging service</a> which is used to demonstrate the capability of Siddhi HTTP sink. Execute the below command to run the mock server.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>java -jar logservice-1.0.0.jar
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="linenums">java -jar logservice-1.0.0.jar</code></pre>
+
 
 </li>
 <li>
 <p>Invoke the service with below cURL request.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>curl -v -X POST -d \
-&#39;{&quot;event&quot;: {&quot;userId&quot;: &quot;user105&quot;, &quot;movieId&quot;: &quot;avatar&quot;, &quot;reviewComment&quot;: &quot;Best movie experience of the last 30 years..&quot;}}&#39; \
-&quot;http://localhost:8006/feedbackInputStream&quot; -H &quot;Content-Type:application/json&quot;
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="linenums">curl -v -X POST -d \
+'{&quot;event&quot;: {&quot;userId&quot;: &quot;user105&quot;, &quot;movieId&quot;: &quot;avatar&quot;, &quot;reviewComment&quot;: &quot;Best movie experience of the last 30 years..&quot;}}' \
+&quot;http://localhost:8006/feedbackInputStream&quot; -H &quot;Content-Type:application/json&quot;</code></pre>
+
 
 </li>
 <li>
@@ -1733,36 +1675,28 @@ Eg: If exported siddhi app in Siddhi home directory,
 </li>
 <li>
 <p>Pull the latest Siddhi Runner image from [Siddhiio Docker Hub] (https://hub.docker.com/u/siddhiio).</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>docker pull siddhiio/siddhi-runner-alpine:5.1.0-beta
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-bash linenums">docker pull siddhiio/siddhi-runner-alpine:5.1.0-beta</code></pre>
 
 </li>
 <li>
 <p>Start SiddhiApp by executing the following docker command.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>docker run -it -p 8006:8006 -v /home/siddhi-apps:/apps -v /home/tf_model:/tf_model -v /home/pmml_model:/pmml_model -e SENTIMENT_ANALYSIS_TF_SAVED_MODEL_PATH=/tf_model -e MOVIE_RECOMMENDATION_PMML_MODEL_PATH=/pmml_model/movie-recommendation.pmml siddhiio/siddhi-runner-alpine:5.1.0-beta -Dapps=/apps/Realtime-Movie-Recommendation-App.siddhi
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-bash linenums">docker run -it -p 8006:8006 -v /home/siddhi-apps:/apps -v /home/tf_model:/tf_model -v /home/pmml_model:/pmml_model -e SENTIMENT_ANALYSIS_TF_SAVED_MODEL_PATH=/tf_model -e MOVIE_RECOMMENDATION_PMML_MODEL_PATH=/pmml_model/movie-recommendation.pmml siddhiio/siddhi-runner-alpine:5.1.0-beta -Dapps=/apps/Realtime-Movie-Recommendation-App.siddhi
+</code></pre>
 
 <p>NOTE: In the above provided Siddhi app, there are some environmental variables (SENTIMENT_ANALYSIS_TF_SAVED_MODEL_PATH and MOVIE_RECOMMENDATION_PMML_MODEL_PATH)  which are mandatory to be set for Siddhi application to execute. Again, there is a mock service configured to receive the recommended movies (instructions given below), and its host is configured via LOGGER_SERVICE_HOST environment property. 
 Hence, make sure to add proper values for the environmental variables in the above command.</p>
 </li>
 <li>
 <p>Download the mock <a href="https://github.com/pcnfernando/MovieRecommendationSystem/blob/master/util/logservice-1.0.0.jar">logging service</a>  which is used to demonstrate the capability of SIddhi HTTP sink. Execute below command to run the mock server.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    java -jar logservice-1.0.0.jar
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-bash linenums">    java -jar logservice-1.0.0.jar</code></pre>
 
 </li>
 <li>
 <p>Send a POST request with the movie feedback to the endpoint.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    curl -v -X POST -d \
-    &#39;{&quot;event&quot;: {&quot;userId&quot;: &quot;user105&quot;, &quot;movieId&quot;: &quot;avatar&quot;, &quot;reviewComment&quot;: &quot;Best movie experience of the last 30 years..&quot;}}&#39; \
-    &quot;http://localhost:8006/feedbackInputStream&quot; -H &quot;Content-Type:application/json&quot;
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-bash linenums">    curl -v -X POST -d \
+    '{"event": {"userId": "user105", "movieId": "avatar", "reviewComment": "Best movie experience of the last 30 years.."}}' \
+    "http://localhost:8006/feedbackInputStream" -H "Content-Type:application/json"
+</code></pre>
 
 </li>
 <li>
@@ -1782,11 +1716,8 @@ Hence, make sure to add proper values for the environmental variables in the abo
 <ul>
 <li>
 <p>To install the Siddhi Kubernetes operator run the following commands.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-alpha/00-prereqs.yaml
-kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-alpha/01-siddhi-operator.yaml
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-bash linenums">kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-alpha/00-prereqs.yaml
+kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-alpha/01-siddhi-operator.yaml</code></pre>
 
 </li>
 <li>
@@ -1798,9 +1729,7 @@ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/
 <li>
 <p>Download the mock <a href="https://github.com/pcnfernando/MovieRecommendationSystem/blob/master/util/logservice-1.0.0.jar">logging service</a> 
 which is used to demonstrate the capability of Siddhi HTTP sink. Execute the below command to run the mock server.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>    java -jar logservice-1.0.0.jar
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-bash linenums">    java -jar logservice-1.0.0.jar</code></pre>
 
 </li>
 <li>
@@ -1811,61 +1740,34 @@ which is used to demonstrate the capability of Siddhi HTTP sink. Execute the bel
 </li>
 <li>
 <p>We need a custom docker image bundling the pretrained models to the container.
-  <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="c1"># use siddhi-runner-base</span>
-<span class="l l-Scalar l-Scalar-Plain">FROM siddhiio/siddhi-runner-base-alpine:5.1.0-beta</span>
-<span class="l l-Scalar l-Scalar-Plain">MAINTAINER Siddhi IO Docker Maintainers &quot;siddhi-dev@googlegroups.com&quot;</span>
+  <pre class="codehilite"><code class="language-yaml linenums"># use siddhi-runner-base
+FROM siddhiio/siddhi-runner-base-alpine:5.1.0-beta
+MAINTAINER Siddhi IO Docker Maintainers "siddhi-dev@googlegroups.com"
 
-<span class="l l-Scalar l-Scalar-Plain">ARG HOST_BUNDLES_DIR=./bundles</span>
-<span class="l l-Scalar l-Scalar-Plain">ARG HOST_JARS_DIR=./jars</span>
-<span class="l l-Scalar l-Scalar-Plain">ARG HOST_APPS_DIR=./siddhi-files</span>
-<span class="l l-Scalar l-Scalar-Plain">ARG TRAINED_MODEL_DIR=./models</span>
-<span class="l l-Scalar l-Scalar-Plain">ARG JARS=${RUNTIME_SERVER_HOME}/jars</span>
-<span class="l l-Scalar l-Scalar-Plain">ARG BUNDLES=${RUNTIME_SERVER_HOME}/bundles</span>
-<span class="l l-Scalar l-Scalar-Plain">ARG APPS=${RUNTIME_SERVER_HOME}/deployment/siddhi-files</span>
-<span class="l l-Scalar l-Scalar-Plain">ARG CONFIG_FILE=./configurations.yaml</span>
-<span class="l l-Scalar l-Scalar-Plain">ARG CONFIG_FILE_PATH=${HOME}/configurations.yaml</span>
+ARG HOST_BUNDLES_DIR=./bundles
+ARG HOST_JARS_DIR=./jars
+ARG HOST_APPS_DIR=./siddhi-files
+ARG TRAINED_MODEL_DIR=./models
+ARG JARS=${RUNTIME_SERVER_HOME}/jars
+ARG BUNDLES=${RUNTIME_SERVER_HOME}/bundles
+ARG APPS=${RUNTIME_SERVER_HOME}/deployment/siddhi-files
+ARG CONFIG_FILE=./configurations.yaml
+ARG CONFIG_FILE_PATH=${HOME}/configurations.yaml
 
-<span class="l l-Scalar l-Scalar-Plain"># copy bundles &amp; jars to the siddhi-runner distribution</span>
-<span class="l l-Scalar l-Scalar-Plain">COPY --chown=siddhi_user:siddhi_io ${HOST_APPS_DIR}/ ${APPS}</span>
+# copy bundles &amp; jars to the siddhi-runner distribution
+COPY --chown=siddhi_user:siddhi_io ${HOST_APPS_DIR}/ ${APPS}
 
-<span class="l l-Scalar l-Scalar-Plain">COPY --chown=siddhi_user:siddhi_io ${HOST_BUNDLES_DIR}/ ${BUNDLES}</span>
-<span class="l l-Scalar l-Scalar-Plain">COPY --chown=siddhi_user:siddhi_io ${CONFIG_FILE}/ ${USER_HOME}</span>
-<span class="l l-Scalar l-Scalar-Plain">COPY --chown=siddhi_user:siddhi_io ${TRAINED_MODEL_DIR}/ ${USER_HOME}</span>
+COPY --chown=siddhi_user:siddhi_io ${HOST_BUNDLES_DIR}/ ${BUNDLES}
+COPY --chown=siddhi_user:siddhi_io ${CONFIG_FILE}/ ${USER_HOME}
+COPY --chown=siddhi_user:siddhi_io ${TRAINED_MODEL_DIR}/ ${USER_HOME}
 
-<span class="l l-Scalar l-Scalar-Plain"># expose ports</span>
-<span class="l l-Scalar l-Scalar-Plain">EXPOSE 9090 9443 9712 9612 7711 7611 7070 7443</span>
+# expose ports
+EXPOSE 9090 9443 9712 9612 7711 7611 7070 7443
 
-<span class="l l-Scalar l-Scalar-Plain">STOPSIGNAL SIGINT</span>
+STOPSIGNAL SIGINT
 
-<span class="l l-Scalar l-Scalar-Plain">ENTRYPOINT [&quot;/home/siddhi_user/siddhi-runner/bin/runner.sh&quot;]</span>
-</pre></div>
-</td></tr></table></p>
+ENTRYPOINT ["/home/siddhi_user/siddhi-runner/bin/runner.sh"]
+</code></pre></p>
 </li>
 </ul>
 <p>To create the docker image, save the above content to a docker file and execute the below command.
@@ -1873,132 +1775,72 @@ which is used to demonstrate the capability of Siddhi HTTP sink. Execute the bel
 <ul>
 <li>
 <p>To deploy the above created Siddhi app, you have to create a custom resource object YAML file (with the kind as SiddhiProcess) as following</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="nt">apiVersion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">siddhi.io/v1alpha2</span>
-<span class="nt">kind</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SiddhiProcess</span>
-<span class="nt">metadata</span><span class="p">:</span>
-  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">movie-recommendation-app</span>
-<span class="nt">spec</span><span class="p">:</span>
-  <span class="nt">apps</span><span class="p">:</span>
-   <span class="p p-Indicator">-</span> <span class="nt">script</span><span class="p">:</span> <span class="p p-Indicator">|</span>
-   <span class=" -Error"> </span><span class="err">@</span><span class="l l-Scalar l-Scalar-Plain">App:name(&#39;Realtime-Movie-Recommendation-App&#39;)</span>
-<span class="err">@</span><span class="l l-Scalar l-Scalar-Plain">App:description(&#39;Performs realtime movie recommendations&#39;)</span>
+<pre class="codehilite"><code class="language-yaml linenums">apiVersion: siddhi.io/v1alpha2
+kind: SiddhiProcess
+metadata:
+  name: movie-recommendation-app
+spec:
+  apps:
+   - script: |
+    @App:name('Realtime-Movie-Recommendation-App')
+@App:description('Performs realtime movie recommendations')
 
-<span class="err">@</span><span class="l l-Scalar l-Scalar-Plain">Source(type = &#39;http&#39;, receiver.url = &#39;http://0.0.0.0:8006/feedbackInputStream&#39;,</span>
- <span class="l l-Scalar l-Scalar-Plain">basic.auth.enabled = &#39;false&#39;, @map(type = &#39;json&#39;))</span>
-<span class="l l-Scalar l-Scalar-Plain">define stream FeedbackInputStream (userId string, movieId string, reviewComment string);</span>
+@Source(type = 'http', receiver.url = 'http://0.0.0.0:8006/feedbackInputStream',
+ basic.auth.enabled = 'false', @map(type = 'json'))
+define stream FeedbackInputStream (userId string, movieId string, reviewComment string);
 
-<span class="err">@</span><span class="l l-Scalar l-Scalar-Plain">Source(type = &#39;http&#39;,</span>
-        <span class="l l-Scalar l-Scalar-Plain">receiver.url = &#39;http://0.0.0.0:8006/recomendationRequestStream&#39;,</span>
-        <span class="l l-Scalar l-Scalar-Plain">basic.auth.enabled = &#39;false&#39;, @map(type = &#39;json&#39;))</span>
-<span class="l l-Scalar l-Scalar-Plain">define stream RecomendationRequestStream(userId string, movieId string);</span>
+@Source(type = 'http',
+        receiver.url = 'http://0.0.0.0:8006/recomendationRequestStream',
+        basic.auth.enabled = 'false', @map(type = 'json'))
+define stream RecomendationRequestStream(userId string, movieId string);
 
-<span class="l l-Scalar l-Scalar-Plain">-- HTTP sink to publish movie recommendations. For testing purposes, there is a mock logger service provided</span> 
-<span class="err">@</span><span class="l l-Scalar l-Scalar-Plain">sink(type = &#39;http&#39;, publisher.url = &quot;http://${LOGGER_SERVICE_HOST}:8080/logger&quot;, method = &quot;POST&quot;, @map(type = &#39;json&#39;))</span>
-<span class="err">@</span><span class="l l-Scalar l-Scalar-Plain">sink(type = &#39;log&#39;, @map(type = &#39;text&#39;))</span>
-<span class="err">@</span><span class="l l-Scalar l-Scalar-Plain">sink(type = &#39;http&#39;, publisher.url = &#39;http://0.0.0.0:8008/movieRecommendations&#39;,</span> 
-<span class="err">@</span><span class="l l-Scalar l-Scalar-Plain">map(type = &#39;json&#39;))</span>
-<span class="l l-Scalar l-Scalar-Plain">define stream RecommendedMovieStream (userId string, movieList string);</span>
+-- HTTP sink to publish movie recommendations. For testing purposes, there is a mock logger service provided 
+@sink(type = 'http', publisher.url = "http://${LOGGER_SERVICE_HOST}:8080/logger", method = "POST", @map(type = 'json'))
+@sink(type = 'log', @map(type = 'text'))
+@sink(type = 'http', publisher.url = 'http://0.0.0.0:8008/movieRecommendations', 
+@map(type = 'json'))
+define stream RecommendedMovieStream (userId string, movieList string);
 
-<span class="l l-Scalar l-Scalar-Plain">-- Perform sentiment analysis on the review comment</span>
-<span class="l l-Scalar l-Scalar-Plain">--probabilities0 and probabilities1 stands for positive and negative probabilities respectlively.</span>
-<span class="err">@</span><span class="l l-Scalar l-Scalar-Plain">info(name = &#39;query1&#39;)</span> 
-<span class="l l-Scalar l-Scalar-Plain">From FeedbackInputStream#tensorFlow:predict(&#39;${SENTIMENT_ANALYSIS_TF_SAVED_MODEL_PATH}&#39;, &#39;input_string_text&#39;, &#39;label&#39;, &#39;probabilities&#39;, str:concat(&quot;{&#39;input_text&#39;:&#39;&quot;, reviewComment, &quot;&#39;}&quot;))</span> 
-<span class="l l-Scalar l-Scalar-Plain">select userId, movieId, label, probabilities0, probabilities1</span>
-<span class="l l-Scalar l-Scalar-Plain">insert into SentimentPredictionStream;</span>
+-- Perform sentiment analysis on the review comment
+--probabilities0 and probabilities1 stands for positive and negative probabilities respectlively.
+@info(name = 'query1') 
+From FeedbackInputStream#tensorFlow:predict('${SENTIMENT_ANALYSIS_TF_SAVED_MODEL_PATH}', 'input_string_text', 'label', 'probabilities', str:concat("{'input_text':'", reviewComment, "'}")) 
+select userId, movieId, label, probabilities0, probabilities1
+insert into SentimentPredictionStream;
 
-<span class="l l-Scalar l-Scalar-Plain">-- Filter positive review comment</span>
-<span class="err">@</span><span class="l l-Scalar l-Scalar-Plain">info(name = &#39;query2&#39;)</span> 
-<span class="l l-Scalar l-Scalar-Plain">from SentimentPredictionStream[label == &quot;positive&quot;]</span>
-<span class="l l-Scalar l-Scalar-Plain">select userId, movieId</span>
-<span class="l l-Scalar l-Scalar-Plain">insert into RecomendationRequestStream;</span>
+-- Filter positive review comment
+@info(name = 'query2') 
+from SentimentPredictionStream[label == "positive"]
+select userId, movieId
+insert into RecomendationRequestStream;
 
-<span class="l l-Scalar l-Scalar-Plain">-- Recommends a movie list for the provided userId and movieId</span>
-<span class="err">@</span><span class="l l-Scalar l-Scalar-Plain">info(name = &#39;query3&#39;)</span> 
-<span class="l l-Scalar l-Scalar-Plain">From RecomendationRequestStream#pmml:predict(&#39;${MOVIE_RECOMMENDATION_PMML_MODEL_PATH}&#39;, userId, movieId)</span> 
-<span class="l l-Scalar l-Scalar-Plain">select userId, movieList</span>
-<span class="l l-Scalar l-Scalar-Plain">insert into RecommendedMovieStream;</span>
+-- Recommends a movie list for the provided userId and movieId
+@info(name = 'query3') 
+From RecomendationRequestStream#pmml:predict('${MOVIE_RECOMMENDATION_PMML_MODEL_PATH}', userId, movieId) 
+select userId, movieList
+insert into RecommendedMovieStream;
 
-  <span class="l l-Scalar l-Scalar-Plain">container</span><span class="p p-Indicator">:</span>
-    <span class="nt">env</span><span class="p">:</span>
-      <span class="p p-Indicator">-</span>
-        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">LOGGER_SERVICE_HOST</span>
-        <span class="nt">value</span><span class="p">:</span> <span class="s">&quot;10.100.1.88&quot;</span>
-      <span class="p p-Indicator">-</span>
-        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SENTIMENT_ANALYSIS_TF_SAVED_MODEL_PATH</span>
-        <span class="nt">value</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/home/siddhi_user/trained_models/tf</span>
-      <span class="p p-Indicator">-</span>
-        <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">MOVIE_RECOMMENDATION_PMML_MODEL_PATH</span>
-        <span class="nt">value</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">/home/siddhi_user/trained_models/pmml/movie-recommendation.pmml</span>
+  container:
+    env:
+      -
+        name: LOGGER_SERVICE_HOST
+        value: "10.100.1.88"
+      -
+        name: SENTIMENT_ANALYSIS_TF_SAVED_MODEL_PATH
+        value: /home/siddhi_user/trained_models/tf
+      -
+        name: MOVIE_RECOMMENDATION_PMML_MODEL_PATH
+        value: /home/siddhi_user/trained_models/pmml/movie-recommendation.pmml
 
-    <span class="nt">image</span><span class="p">:</span> <span class="s">&quot;siddhi-runner-mov-recommendation:1.0.0&quot;</span>
-</pre></div>
-</td></tr></table>
+    image: "siddhi-runner-mov-recommendation:1.0.0"
+</code></pre>
 
 <p>NOTE: In the above provided Siddhi app, there are some environmental variables (SENTIMENT_ANALYSIS_TF_SAVED_MODEL_PATH and MOVIE_RECOMMENDATION_PMML_MODEL_PATH)  which are mandatory to be set for Siddhi application to execute. Again, there is a mock service configured to to receive the recommended movies (instructions given below), and its host is configured via LOGGER_SERVICE_HOST environment property. 
 Hence, make sure to add proper values for the environmental variables in the above YAML file (check the <code>env</code> section of the YAML file).</p>
 </li>
 <li>
 <p>Now, let’s create the above resource in the Kubernetes cluster with the following command.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span> kubectl create -f &lt;absolute-yaml-file-path&gt;/Movie-Recommendation-App.yaml
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-bash linenums"> kubectl create -f &lt;absolute-yaml-file-path&gt;/Movie-Recommendation-App.yaml</code></pre>
 
 </li>
 <li>
@@ -2010,27 +1852,19 @@ Hence, make sure to add proper values for the environmental variables in the abo
 </li>
 <li>
 <p>You can find the recommendations logged in the Siddhi runner log file. To see the Siddhi runner log file, first, invoke below command to get the pods.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl get pods
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-bash linenums">kubectl get pods</code></pre>
 
 <p>Then, find the pod name of the Siddhi app deployed, and invoke below command to view the logs.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>kubectl logs -f &lt;siddhi-app-pod-name&gt;
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-bash linenums">kubectl logs -f &lt;siddhi-app-pod-name&gt;</code></pre>
 
 <p>Eg: as shown below image,</p>
 <p><img alt="kubernetes_get_pods" src="../images/kubernetes_get_pods.png" title="Kubectl get pods command output" /></p>
 </li>
 <li>
 <p>Pass the movie review along with the userId and the movieId as a CURL request.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>curl -v -X POST -d \
-&#39;{&quot;event&quot;: {&quot;userId&quot;: &quot;user105&quot;, &quot;movieId&quot;: &quot;avatar&quot;, &quot;reviewComment&quot;: &quot;Best movie experience of the last 30 years..&quot;}}&#39; \
-&quot;http://siddhi/movie-recommendation-app-0/8006/feedbackInputStream&quot; -H &quot;Content-Type:application/json&quot;
-</pre></div>
-</td></tr></table>
+<pre class="codehilite"><code class="language-bash linenums">curl -v -X POST -d \
+'{"event": {"userId": "user105", "movieId": "avatar", "reviewComment": "Best movie experience of the last 30 years.."}}' \
+"http://siddhi/movie-recommendation-app-0/8006/feedbackInputStream" -H "Content-Type:application/json"</code></pre>
 
 </li>
 <li>
@@ -2142,6 +1976,8 @@ Hence, make sure to add proper values for the environmental variables in the abo
       <script>app.initialize({version:"1.0.4",url:{base:"../../../.."}})</script>
       
         <script src="../../../../assets/lib/highlightjs/highlight.min.js"></script>
+      
+        <script src="../../../../assets/js/jquery-3.3.1.min.js"></script>
       
         <script src="../../../../assets/js/theme.js"></script>
       
