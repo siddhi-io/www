@@ -76,7 +76,6 @@ var request = new XMLHttpRequest();
 request.open('GET', docSetUrl +
              'versions/assets/versions.json', true);
 
-
 /*
  * register siddhi highlightjs
  */
@@ -84,10 +83,10 @@ if (typeof hljs === 'object') {
     hljs.registerLanguage("siddhi", function (e) {
         var t = e.C("--", "$"),
             n = {
-            cN: "number",
-            b: "\\b(0[bB]([01]+[01_]+[01]+|[01]+)|0[xX]([a-fA-F0-9]+[a-fA-F0-9_]+[a-fA-F0-9]+|[a-fA-F0-9]+)|(([\\d]+[\\d_]+[\\d]+|[\\d]+)(\\.([\\d]+[\\d_]+[\\d]+|[\\d]+))?|\\.([\\d]+[\\d_]+[\\d]+|[\\d]+))([eE][-+]?\\d+)?)[lLfF]?",
-            relevance: 0
-        };
+                cN: "number",
+                b: "\\b(0[bB]([01]+[01_]+[01]+|[01]+)|0[xX]([a-fA-F0-9]+[a-fA-F0-9_]+[a-fA-F0-9]+|[a-fA-F0-9]+)|(([\\d]+[\\d_]+[\\d]+|[\\d]+)(\\.([\\d]+[\\d_]+[\\d]+|[\\d]+))?|\\.([\\d]+[\\d_]+[\\d]+|[\\d]+))([eE][-+]?\\d+)?)[lLfF]?",
+                relevance: 0
+            };
         return {
             cI: !0,
             k: {
@@ -101,9 +100,9 @@ if (typeof hljs === 'object') {
             },
             i: /[<>{}*]/,
             c: [
+                {cN: "string", b: '"""', e: '"""', c: [e.BE, {b: '""""""'}]},
                 {cN: "string", b: "'", e: "'", c: [e.BE, {b: "''"}]},
                 {cN: "string", b: '"', e: '"', c: [e.BE, {b: '""'}]},
-                {cN: "string", b: '"""', e: '"""', c: [e.BE, {b: '""""""'}]},
                 {cN: "string", b: "`", e: "`", c: [e.BE]},
                 e.CBCM, t, n,
                 {cN: "annotation", b: "@[A-Za-z]+"}
@@ -111,14 +110,46 @@ if (typeof hljs === 'object') {
         }
     });
 }
+
 /*
- * Initialize highlightjs
+ * Following script is adding line numbers to the siddhi code blocks in the gneerated documentation
  */
-hljs.initHighlightingOnLoad();
+function initCodeLineNumbers() {
 
+    $('pre.codehilite > code').each(function () {
 
-request.onload = function() {
-  if (request.status >= 200 && request.status < 400) {
+        if ($(this).parent().find('.line-numbers-wrap').length === 0) {
+            //cont the number of rows
+            //Remove the new line from the end of the text
+            var numberOfLines = $(this).text().replace(/\n$/, "").split(/\r\n|\r|\n/).length;
+            var lines = '<div class="line-numbers-wrap">';
+
+            //Iterate all the lines and create div elements with line number
+            for (var i = 1; i <= numberOfLines; i++) {
+                lines = lines + '<div class="line-number">' + i + '</div>';
+            }
+            lines = lines + '</div>';
+            //calculate <pre> height and set it to the container
+            var preHeight = numberOfLines * 18 + 20;
+
+            $(this).parent()
+                .addClass('code-pre-wrapper')
+                .prepend($(lines));
+        }
+
+    });
+}
+
+request.onload = function () {
+
+    initCodeLineNumbers();
+
+    /*
+     * Initialize highlightjs
+     */
+    hljs.initHighlightingOnLoad();
+
+    if (request.status >= 200 && request.status < 400) {
 
       var data = JSON.parse(request.responseText);
       var dropdown =  document.getElementById('version-select-dropdown');

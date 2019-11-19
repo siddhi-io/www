@@ -628,11 +628,44 @@ html .md-typeset .superfences-tabs > label:hover {
     max-height: 90%;
 }
 
-.siddhi .hljs-keyword {
+.hljs-keyword {
     color: #3b78e7;
     font-weight: normal;
 }
 
-.siddhi .hljs-annotation {
+.hljs-attribute, .hljs-selector-tag, .hljs-meta-keyword, .hljs-doctag, .hljs-name {
+    color: #a66530;
+    font-weight: normal;
+}
+
+.hljs-annotation {
     color: #7b8757;
+}
+
+.md-typeset .codehilite code, .md-typeset .codehilite pre, .md-typeset .highlight code, .md-typeset .highlight pre {
+    margin-left: 1.775rem;
+    margin-right: .2rem;
+}
+
+.md-typeset .highlight pre code {
+    margin: 0;
+    padding: 0;
+}
+
+.line-numbers-wrap {
+    position: absolute;
+    font-size: 0.6rem;
+    line-height: .990rem;
+    background: #d4d6d7;
+    width: 1.575rem;
+    text-align: center;
+    padding: .525rem 0;
+    display: flex;
+    flex-direction: column;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
