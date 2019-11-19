@@ -47,7 +47,6 @@ extra_css:
   - assets/css/theme.css
 extra_javascript:
   - assets/lib/highlightjs/highlight.min.js
-  - assets/js/jquery-3.3.1.min.js
   - assets/js/theme.js
   - assets/lib/backtotop/js/util.js
   - assets/lib/backtotop/js/main.js
@@ -76,6 +75,10 @@ google_analytics:
 # Extensions
 markdown_extensions:
   - markdown.extensions.admonition
+  - markdown.extensions.codehilite:
+      linenums: true
+      use_pygments: true
+      guess_lang: false
   - markdown.extensions.def_list
   - markdown.extensions.attr_list
   - markdown.extensions.footnotes
@@ -94,7 +97,7 @@ markdown_extensions:
   - pymdownx.keys
   - pymdownx.mark
   - pymdownx.smartsymbols
-#  - pymdownx.superfences
+  - pymdownx.superfences
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
