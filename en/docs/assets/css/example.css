@@ -656,3 +656,7 @@ td.cDescTD {
 .codehilite .c1, .codehilite .ch, .codehilite .cs, .md-typeset .highlight .c1, .md-typeset .highlight .ch, .md-typeset .highlight .cs {
     color: inherit;
 }
+
+.md-typeset .cBE-body .highlight pre {
+    padding: 0;
+}
