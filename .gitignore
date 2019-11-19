@@ -35,3 +35,7 @@ hs_err_pid*
 site/
 
 modules/siddhi-service/dependency-reduced-pom.xml
+
+## Ignore generated files
+*pyc
+en/docs/docs/*
