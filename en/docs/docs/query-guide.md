@@ -81,7 +81,7 @@ Hight level syntax of SiddhiApp is as follows.
 Siddhi Application with name `Temperature-Analytics` defined with a stream named `TempStream` and a query
 named `5minAvgQuery`.
 
-```sql
+```siddhi
 @app:name('Temperature-Analytics')
 
 define stream TempStream (deviceID long, roomNo int, temp double);
@@ -107,7 +107,7 @@ Stream groups common types of events together with a schema. This helps in vario
 
 The syntax for defining a stream is as follows.
 
-```sql
+```siddhi
 define stream <stream name> (<attribute name> <attribute type>,
                              <attribute name> <attribute type>, ... );
 ```
@@ -126,7 +126,7 @@ To make the stream process events in multi-threading and asynchronous way use th
 [Threading and synchronization](#threading-and-synchronization) configuration section.
 
 **Example**
-```sql
+```siddhi
 define stream TempStream (deviceID long, roomNo int, temp double);
 ```
 The above creates a stream with name `TempStream` having the following attributes.
@@ -153,7 +153,7 @@ To configure a stream that consumes events via a source, add the source configur
 
 The source syntax is as follows:
 
-```sql
+```siddhi
 @source(type='<source type>', <static.key>='<value>', <static.key>='<value>',
     @map(type='<map type>', <static.key>='<value>', <static.key>='<value>',
         @attributes( <attribute1>='<attribute mapping>', <attributeN>='<attribute mapping>')
@@ -247,7 +247,7 @@ Here the `HTTP` service will be secured with basic authentication, receives even
 
 The configuration of the `HTTP` source and `JSON` source mapper to achieve the above is as follows.
 
-```sql
+```siddhi
 @source(type='http', receiver.url='http://0.0.0.0:8080/foo',
   @map(type='json'))
 define stream InputStream (name string, age int, country string);
@@ -274,7 +274,7 @@ Here the incoming `JSON`, as given below, do not adhere to the default data form
 
 The configuration of the `HTTP` source and the custom `JSON` source mapping to achieve the above is as follows.
 
-```sql
+```siddhi
 @source(type='http', receiver.url='http://0.0.0.0:8080/foo',
   @map(type='json', enclosing.element="$.portfolio",
     @attributes(symbol = "stock.company.symbol", price = "stock.price",
@@ -284,7 +284,7 @@ define stream StockStream (symbol string, price float, volume long);
 
 The same can also be configured by omitting the attribute names as below.
 
-```sql
+```siddhi
 @source(type='http', receiver.url='http://0.0.0.0:8080/foo',
   @map(type='json', enclosing.element="$.portfolio",
     @attributes("stock.company.symbol", "stock.price", "stock.volume")))
@@ -308,7 +308,7 @@ annotation with the required parameter values.
 
 The sink syntax is as follows:
 
-```sql
+```siddhi
 @sink(type='<sink type>', <static.key>='<value>', <dynamic.key>='{{<value>}}',
     @map(type='<map type>', <static.key>='<value>', <dynamic.key>='{{<value>}}',
         @payload('<payload mapping>')
@@ -377,7 +377,7 @@ The distributed sink syntax is as follows:
 
 Publishes events to defined destinations in a round robin manner.
 
-```sql
+```siddhi
 @sink(type='<sink type>', <common.static.key>='<value>', <common.dynamic.key>='{{<value>}}',
     @map(type='<map type>', <static.key>='<value>', <dynamic.key>='{{<value>}}',
         @payload('<payload mapping>')
@@ -393,7 +393,7 @@ define stream <stream name> (<attribute1> <type>, <attributeN> <type>);
 
 Publish events to the defined destinations by partitioning them based on a partitioning key.
 
-```sql
+```siddhi
 @sink(type='<sink type>', <common.static.key>='<value>', <common.dynamic.key>='{{<value>}}',
     @map(type='<map type>', <static.key>='<value>', <dynamic.key>='{{<value>}}',
         @payload('<payload mapping>')
@@ -451,7 +451,7 @@ Sink to publish `OutputStream` events by converting them to `JSON` messages with
 
 The configuration of the `HTTP` sink and `JSON` sink mapper to achieve the above is as follows.
 
-```sql
+```siddhi
 @sink(type='http', publisher.url='http://localhost:8005/endpoint',
       method='POST', headers='Accept-Date:20/02/2017',
       basic.auth.enabled='true', basic.auth.username='admin',
@@ -477,7 +477,7 @@ Sink to publish `StockStream` events by converting them to user defined `JSON` m
 
 The configuration of the `HTTP` sink and custom `JSON` sink mapping to achieve the above is as follows.
 
-```sql
+```siddhi
 @sink(type='http', publisher.url='http://localhost:8005/stocks',
       @map(type='json', validate.json='true', enclosing.element='$.Portfolio',
            @payload("""{"StockData":{ "Symbol":"{{symbol}}", "Price":{{price}} }}""")))
@@ -523,7 +523,7 @@ Sink to publish events from the `OutputStream` stream to multiple `HTTP` endpoin
 
 The configuration of the distributed `HTTP` sink and `JSON` sink mapper to achieve the above is as follows.
 
-```sql
+```siddhi
 @sink(type='http', method='POST', basic.auth.enabled='true',
       basic.auth.username='admin', basic.auth.password='admin',
       @map(type='json'),
@@ -555,7 +555,7 @@ When errors are thrown by Siddhi elements subscribed to the stream, the error ge
 
 The `@OnError` annotation and the required `action` to be specified as below.
 
-```sql
+```siddhi
 @OnError(action='on error action')
 define stream <stream name> (<attribute name> <attribute type>,
                              <attribute name> <attribute type>, ... );
@@ -573,7 +573,7 @@ Handle errors in `TempStream` by redirecting the errors to a fault stream.
 
 The configuration of `TempStream` stream and `@OnError` annotation is as follows.
 
-```sql
+```siddhi
 @OnError(action='STREAM')
 define stream TempStream (deviceID long, roomNo int, temp double);
 ```
@@ -581,7 +581,7 @@ define stream TempStream (deviceID long, roomNo int, temp double);
 Siddhi will infer and automatically defines the fault stream of `TempStream` as given below.
 
 
-```sql
+```siddhi
 define stream !TempStream (deviceID long, roomNo int, temp double, _error object);
 ```
 
@@ -589,7 +589,7 @@ The SiddhiApp extending the above the use-case by adding failure generation and 
 
 Note: Details on writing processing logics via [queries](#query) will be explained in later sections.
 
-```sql
+```siddhi
 -- Define fault stream to handle error occurred at TempStream subscribers
 @OnError(action='STREAM')
 define stream TempStream (deviceID long, roomNo int, temp double);
@@ -612,7 +612,7 @@ There can be cases where external systems becoming unavailable or coursing error
 
 The `on.error` parameter of the `@sink` annotation can be specified as below.
 
-```sql
+```siddhi
 @sink(type='<sink type>', on.error='<on error action>', <key>='<value>', ...)
 define stream <stream name> (<attribute name> <attribute type>,
                              <attribute name> <attribute type>, ... );
@@ -630,7 +630,7 @@ Introduce back pressure on the threads who bring events via `TempStream` when th
 
 The configuration of `TempStream` stream and `@sink` Kafka annotation with `on.error` property is as follows.
 
-```sql
+```siddhi
 @sink(type='kafka', on.error='WAIT', topic='{{roomNo}}',
       bootstrap.servers='localhost:9092',
       @map(type='xml'))
@@ -645,7 +645,7 @@ The configuration of `TempStream` stream with associated fault stream, `@sink` K
 
 Note: Details on writing processing logics via [queries](#query) will be explained in later sections.
 
-```sql
+```siddhi
 @OnError(action='STREAM')
 @sink(type='kafka', on.error='STREAM', topic='{{roomNo}}',
       bootstrap.servers='localhost:9092',
@@ -671,7 +671,7 @@ A query provides a way to process the events in the order they arrive and produc
 
 The high level query syntax for defining processing logics is as follows:
 
-```sql
+```siddhi
 @info(name = '<query name>')
 from <input>
 <projection>
@@ -696,7 +696,7 @@ The input [stream](#stream), [named-window](#named-window), [table](#table), and
 
 A high level syntax for consuming events from a stream, named-window, table, and/or named-aggregation is as follow;
 
-```sql
+```siddhi
 from ((<stream>|<named-window>)<handler>*) ((join (<stream>|<named-window>|<table>|<named-aggregation>)<handler>*)|((,|->)(<stream>|<named-window>)<handler>*)+)?
 <projection>
 insert into (<stream>|<named-window>|<table>)
@@ -716,7 +716,7 @@ When a query is defined to insert events into a stream that is not already defin
 
 Syntax to insert events into a stream, named-window or table from another stream is as follows;
 
-```sql
+```siddhi
 from <input>
 <projection>
 insert into (<stream>|<named-window>|<table>)
@@ -728,7 +728,7 @@ This inserts all the newly arrived events (`current events`) in to a stream, nam
 
 A query to consume events from the `TempStream` stream and output only the `roomNo` and `temp` attributes to the `RoomTempStream` stream, from which another query to consume the events and send all its attributes to `AnotherRoomTempStream` stream.
 
-```sql
+```siddhi
 define stream TempStream (deviceID long, roomNo int, temp double);
 
 from TempStream
@@ -998,7 +998,7 @@ It encapsulate pre-configured reusable execution logic allowing users to execute
 
 The syntax of function is as follows,
 
-```sql
+```siddhi
 (<namespace>:)?<function name>( (<parameter>(, <parameter>)*)? )
 ```
 
@@ -1062,7 +1062,7 @@ math:ceil(56.89)
 
 Query to convert the `roomNo` to `string` using `convert` function, find the maximum temperature reading with `maximum` function, and to add a unique `messageID` using the `UUID` function.
 
-```sql
+```siddhi
 from TempStream
 select convert(roomNo, 'string') as roomNo,
        maximum(tempReading1, tempReading2) as temp,
@@ -1082,7 +1082,7 @@ Filter helps to select the events that are relevant for processing and omit the 
 
 Filter conditions should be defined in square brackets (`[]`) next to the input stream as shown below.
 
-```sql
+```siddhi
 from <input stream>[<filter condition>]
 select <attribute name>, <attribute name>, ...
 insert into <output stream>
@@ -1093,7 +1093,7 @@ insert into <output stream>
 Query to filter `TempStream` stream events, having `roomNo` within the range of 100-210 and temperature greater than 40 degrees,
 and insert the filtered results into `HighTempStream` stream.
 
-```sql
+```siddhi
 from TempStream[(roomNo >= 100 and roomNo < 210) and temp > 40]
 select roomNo, temp
 insert into HighTempStream;
@@ -1111,7 +1111,7 @@ Stream function is useful when a function produces more than one output for the 
 
 Stream function should be defined next to the input stream or [named-windows](#named-window) along the `#` prefix as shown below.
 
-```sql
+```siddhi
 from <input stream>#(<namespace>:)?<stream function name>(<parameter>, <parameter>, ... )
 select <attribute name>, <attribute name>, ...
 insert into <output stream>
@@ -1135,7 +1135,7 @@ Several pre written stream functions can be found in the Siddhi extensions avail
 
 A query to calculate cartesian coordinates from `theta`, and `rho` attribute values optioned from the `PolarStream` stream, and to insert the results `x` and `y` via `CartesianStream` stream.
 
-```sql
+```siddhi
 define stream PolarStream (theta double, rho double);
 
 from PolarStream#pol2Cart(theta, rho)
@@ -1159,7 +1159,7 @@ Windows help to retain events based on a criterion, such that the values of thos
 
 Window should be defined next to the input stream along the `#window` prefix as shown below.
 
-```sql
+```siddhi
 from <input stream>#window.(<namespace>:)?<window name>(<parameter>, <parameter>, ... )
 select <attribute name>, <attribute name>, ...
 insert <output event type>? into <output stream>
@@ -1197,7 +1197,7 @@ Several pre written windows can be found under `siddhi-execution-*` extensions a
 
 Query to find out the maximum temperature out of the **last 10 events**, using the window of `length` 10 and `max()` aggregation function, from the `TempStream` stream and insert the results into the `MaxTempStream` stream.
 
-```sql
+```siddhi
 from TempStream#window.length(10)
 select max(temp) as maxTemp
 insert into MaxTempStream;
@@ -1215,7 +1215,7 @@ Here, the `length` window operates in a sliding manner where the following 3 eve
 
 Query to find out the maximum temperature out of the **every 10 events**, using the window of `lengthBatch` 10 and `max()` aggregation function, from the `TempStream` stream and insert the results into the `MaxTempStream` stream.
 
-```sql
+```siddhi
 from TempStream#window.lengthBatch(10)
 select max(temp) as maxTemp
 insert into MaxTempStream;
@@ -1233,7 +1233,7 @@ Here, the window operates in a batch/tumbling manner where the following 3 event
 
 Query to find out the maximum temperature out of the events arrived **during last 10 minutes**, using the window of `time` 10 minutes and `max()` aggregation function, from the `TempStream` stream and insert the results into the `MaxTempStream` stream.
 
-```sql
+```siddhi
 from TempStream#window.time(10 min)
 select max(temp) as maxTemp
 insert into MaxTempStream;
@@ -1251,7 +1251,7 @@ Here, the `time` window operates in a sliding manner with millisecond accuracy, 
 
 Query to find out the maximum temperature out of the events arriving **every 10 minutes**, using the window of `timeBatch` 10 and `max()` aggregation function, from the `TempStream` stream and insert the results into the `MaxTempStream` stream.
 
-```sql
+```siddhi
 from TempStream#window.timeBatch(10 min)
 select max(temp) as maxTemp
 insert into MaxTempStream;
@@ -1269,7 +1269,7 @@ Here, the window operates in a batch/tumbling manner where the window will proce
 
 Query to find out the unique number of `deviceID`s arrived over last **1 minute**, using the `time` window in the `unique` extension, and to insert the results into the `UniqueCountStream` stream.
 
-```sql
+```siddhi
 define stream TempStream (deviceID long, roomNo int, temp double);
 
 from TempStream#window.unique:time(deviceID, 1 sec)
@@ -1289,7 +1289,7 @@ Event type helps to identify how the events were produced and to specify when a 
 
 Event type should be defined in between `insert` and `into` keywords for insert queries as follows.
 
-```sql
+```siddhi
 from <input stream>#window.<window name>(<parameter>, <parameter>, ... )
 select <attribute name>, <attribute name>, ...
 insert <event type> into <output stream>
@@ -1297,7 +1297,7 @@ insert <event type> into <output stream>
 
 Event type should be defined next to the `for` keyword for delete queries as follows.
 
-```sql
+```siddhi
 from <input stream>#window.<window name>(<parameter>, <parameter>, ... )
 select <attribute name>, <attribute name>, ...
 delete <table> (for <event type>)?
@@ -1306,7 +1306,7 @@ delete <table> (for <event type>)?
 
 Event type should be defined next to the `for` keyword for update queries as follows.
 
-```sql
+```siddhi
 from <input stream>#window.<window name>(<parameter>, <parameter>, ... )
 select <attribute name>, <attribute name>, ...
 update <table> (for <event type>)?
@@ -1316,7 +1316,7 @@ update <table> (for <event type>)?
 
 Event type should be defined next to the `for` keyword for update or insert queries as follows.
 
-```sql
+```siddhi
 from <input stream>#window.<window name>(<parameter>, <parameter>, ... )
 select <attribute name>, <attribute name>, ...
 update or insert into <table> (for <event type>)?
@@ -1339,7 +1339,7 @@ The event types can be defined using the following keywords to manipulate query 
 
 Query to output processed events only upon event expiry from the 1 minute time window to the `DelayedTempStream` stream. This query helps to delay events by a minute.
 
-```sql
+```siddhi
 from TempStream#window.time(1 min)
 select *
 insert expired events into DelayedTempStream
@@ -1362,7 +1362,7 @@ Aggregate function can be used in query projection (as part of the `select` clau
 
 The syntax of aggregate function is as follows,
 
-```sql
+```siddhi
 from <input stream>#window.<window name>(<parameter>, <parameter>, ... )
 select (<namespace>:)?<aggregate function name>(<parameter>, <parameter>, ... ) as <attribute name>, <attribute2 name>, ...
 insert into <output stream>;
@@ -1397,7 +1397,7 @@ Several pre written aggregate functions can be found under `siddhi-execution-*` 
 
 Query to calculate average, maximum, minimum and 97th percentile values on `temp` attribute of the `TempStream` stream in a sliding manner, from the events arrived over the last 10 minutes and to produce output events with attributes `avgTemp`, `maxTemp`, `minTemp` and `percentile97` respectively to the `AggTempStream` stream.
 
-```sql
+```siddhi
 from TempStream#window.time(10 min)
 select avg(temp) as avgTemp, max(temp) as maxTemp, min(temp) as minTemp, math:percentile(temp, 97.0) as percentile97
 insert into AggTempStream;
@@ -1415,7 +1415,7 @@ Group By helps to perform aggregate functions independently for each given group
 
 The syntax for the Group By with aggregate function is as follows.
 
-```sql
+```siddhi
 from <input stream>#window.<window name>(...)
 select <aggregate function>( <parameter>, <parameter>, ...) as <attribute1 name>, <attribute2 name>, ...
 group by <attribute1 name>, <attribute2 name>, ...
@@ -1428,7 +1428,7 @@ Here the group by attributes should be defined next to the `group by` keyword se
 
 Query to calculate the average `temp` per each `roomNo` and `deviceID` combination, from the events arrived from `TempStream` stream, during the last 10 minutes time-window in a sliding manner.
 
-```sql
+```siddhi
 from TempStream#window.time(10 min)
 select roomNo, deviceID, avg(temp) as avgTemp
 group by roomNo, deviceID
@@ -1447,7 +1447,7 @@ Having helps to select the events that are relevant for the output based on the 
 
 The syntax for the Having clause is as follows.
 
-```sql
+```siddhi
 from <input stream>#window.<window name>( ... )
 select <aggregate function>( <parameter>, <parameter>, ...) as <attribute1 name>, <attribute2 name>, ...
 group by <attribute1 name>, <attribute2 name> ...
@@ -1461,7 +1461,7 @@ Here the having `<condition>` should be defined next to the `having` keyword, an
 
 Query to calculate the average `temp` per `roomNo` for the events arrived on the last 10 minutes, and send alerts for each event having `avgTemp` more than 30 degrees.
 
-```sql
+```siddhi
 from TempStream#window.time(10 min)
 select roomNo, avg(temp) as avgTemp
 group by roomNo
@@ -1481,7 +1481,7 @@ Order By helps to sort the events in the query output chunks. Order By will only
 
 The syntax for the Order By clause is as follows:
 
-```sql
+```siddhi
 from <input stream>#window.<window name>( ... )
 select <aggregate function>( <parameter>, <parameter>, ...) as <attribute1 name>, <attribute2 name>, ...
 group by <attribute1 name>, <attribute2 name> ...
@@ -1496,7 +1496,7 @@ Here, the order by attributes (`<attributeN name>`) should be defined next to th
 
 Query to calculate the average `temp`, per `roomNo` and `deviceID` combination, on every 10 minutes batches, and order the generated output events in ascending order by `avgTemp` and then in descending order of `roomNo` (if there are more events having the same `avgTemp` value) before emitting them to the `AvgTempStream` stream.
 
-```sql
+```siddhi
 from TempStream#window.timeBatch(10 min)
 select roomNo, deviceID, avg(temp) as avgTemp
 group by roomNo, deviceID
@@ -1516,7 +1516,7 @@ Limit & Offset helps to output only the selected set of events from large event 
 
 The syntax for the Limit & Offset clauses is as follows:
 
-```sql
+```siddhi
 from <input stream>#window.<window name>( ... )
 select <aggregate function>( <parameter>, <parameter>, ...) as <attribute1 name>, <attribute2 name>, ...
 group by <attribute1 name>, <attribute2 name> ...
@@ -1533,7 +1533,7 @@ Here both `limit` and `offset` are optional and both can be defined by adding a 
 
 Query to calculate the average `temp`, per `roomNo` and `deviceID` combination, for every 10 minutes batches, from the events arriving at the `TempStream` stream, and emit only two events having the highest `avgTemp` value.
 
-```sql
+```siddhi
 from TempStream#window.timeBatch(10 min)
 select roomNo, deviceID, avg(temp) as avgTemp
 group by roomNo, deviceID
@@ -1546,7 +1546,7 @@ insert into HighestAvgTempStream;
 
 Query to calculate the average `temp`, per `roomNo` and `deviceID` combination, for every 10 minutes batches, for the events arriving at the `TempStream` stream, and emits only the third, forth and fifth events when sorted in descending order based on their `avgTemp` value.
 
-```sql
+```siddhi
 from TempStream#window.timeBatch(10 min)
 select roomNo, deviceID, avg(temp) as avgTemp
 group by roomNo, deviceID
@@ -1570,7 +1570,7 @@ Stream processors help to achieve complex execution logics that cannot be achiev
 
 Stream processor should be defined next to the input stream or [named-windows](#named-window) along the `#` prefix as shown below.
 
-```sql
+```siddhi
 from <input stream>#(<namespace>:)?<stream processor name>(<parameter>, <parameter>, ... )
 select <attribute name>, <attribute name>, ...
 insert into <output stream>
@@ -1597,7 +1597,7 @@ Several pre written stream processors can be found in the Siddhi extensions avai
 
 A query to log a message `"Sample Event :"` along with the event on `"INFO"` log level for all events of `InputStream` Stream.
 
-```sql
+```siddhi
 from InputStream#log("INFO", "Sample Event :", true)
 select *
 insert into IgnoreStream;
@@ -1624,7 +1624,7 @@ When there is no window associated with the joining steam, and empty window with
 
 The syntax to join two streams is as follows:
 
-```sql
+```siddhi
 from <input stream>(<non window handler>)*(#window.<window name>(<parameter>, ... ))? (unidirectional)? (as <reference>)?
          <join type> <input stream>(<non window handler>)*(#window.<window name>(<parameter>,  ... ))? (unidirectional)? (as <reference>)?
     (on <join condition>)?
@@ -1679,7 +1679,7 @@ By default, events arriving on either stream trigger the join operation and gene
 
 A query to generate output when there is a matching event having equal `symbol` and `companyID` combination from the events arrived in the last 10 minutes on `StockStream` stream and the events arrived in the last 20 minutes on `TwitterStream` stream.
 
-```sql
+```siddhi
 define stream StockStream (symbol string, price float, volume long);
 define stream TwitterStream (companyID string, tweet string);
 
@@ -1700,7 +1700,7 @@ Possible OutputStream outputs as follows
 
 A query to generate output for all possible event combinations from the last 5 events of the `StockStream` stream and the events arrived in the last 1 minutes on `TwitterStream` stream.
 
-```sql
+```siddhi
 define stream StockStream (symbol string, price float, volume long);
 define stream TwitterStream (companyID string, tweet string);
 
@@ -1722,7 +1722,7 @@ Possible OutputStream outputs as follows,
 
 A query to generate output for all events arriving in the `StockStream` stream regardless of whether there is a matching `companyID` for `symbol` exist in the events arrived in the last 20 minutes on `TwitterStream` stream, and generate output for the events arriving in the `StockStream` stream only when there is a matchine `symbol` and `companyID` combination exist in the events arrived in the last 10 minutes on `StockStream` stream.
 
-```sql
+```siddhi
 define stream StockStream (symbol string, price float, volume long);
 define stream TwitterStream (companyID string, tweet string);
 
@@ -1743,7 +1743,7 @@ Possible OutputStream outputs as follows,
 
 A query to generate output for all events arriving in the `StockStream` stream and in the `TwitterStream` stream regardless of whether there is a matching `companyID` for `symbol` exist in the other stream window or not.
 
-```sql
+```siddhi
 define stream StockStream (symbol string, price float, volume long);
 define stream TwitterStream (companyID string, tweet string);
 
@@ -1765,7 +1765,7 @@ Possible OutputStream outputs as follows,
 
 A query to generate output only when events arrive on `StockStream` stream find a matching event having equal `symbol` and `companyID` combination against the events arrived in the last 20 minutes on `TwitterStream` stream.
 
-```sql
+```siddhi
 define stream StockStream (symbol string, price float, volume long);
 define stream TwitterStream (companyID string, tweet string);
 
@@ -1797,7 +1797,7 @@ Pattern query does not expect the matching events to occur immediately after eac
 
 The syntax for a pattern query is as follows,
 
-```sql
+```siddhi
 from (
       (every)? (<event reference>=)?<input stream>[<filter condition>](<<min count>:<max count>>)? |
       (every)? (<event reference>=)?<input stream>[<filter condition>] (and|or) (<event reference>=)?<input stream>[<filter condition>] |
@@ -1911,7 +1911,7 @@ The system returns `null` when accessing attribute values, when no matching even
 
 A query to send an alerts when temperature of a room increases by 5 degrees within 10 min.
 
-```sql
+```siddhi
 from every( e1=TempStream ) -> e2=TempStream[ e1.roomNo == roomNo and (e1.temp + 5) <= temp ]
     within 10 min
 select e1.roomNo, e1.temp as initialTemp, e2.temp as finalTemp
@@ -1924,7 +1924,7 @@ Here, the matching process begins for each event in the `TempStream` stream (as 
 
 A query to find the temperature difference between two regulator events.
 
-```sql
+```siddhi
 define stream TempStream (deviceID long, roomNo int, temp double);
 define stream RegulatorStream (deviceID long, roomNo int, tempSet double, isOn bool);
 
@@ -1940,7 +1940,7 @@ Here, one or more `TempStream` events having the same `roomNo` as of the `Regula
 
 Query to send the `stop` control action to the regulator via `RegulatorActionStream` when the key is removed from the hotel room. Here the key actions are monitored via `RoomKeyStream` stream, and the regulator state is monitored through `RegulatorStateChangeStream` stream.
 
-```sql
+```siddhi
 define stream RegulatorStateChangeStream(deviceID long, roomNo int, tempSet double, action string);
 define stream RoomKeyStream(deviceID long, roomNo int, action string);
 
@@ -1958,7 +1958,7 @@ Here, the query sends a `stop` action on `RegulatorActionStream` stream, if a `r
 
 Query to generate alerts if the regulator gets switched off before the temperature reaches 12 degrees.  
 
-```sql
+```siddhi
 define stream RegulatorStateChangeStream(deviceID long, roomNo int, tempSet double, action string);
 define stream TempStream (deviceID long, roomNo int, temp double);
 
@@ -1974,7 +1974,7 @@ Here, the query alerts the `roomNo` via `AlertStream` stream, when no temperatur
 
 Query to alert if the room temperature does not reduce to the set value within 5 minutes after switching on the regulator.  
 
-```sql
+```siddhi
 define stream RegulatorStateChangeStream(deviceID long, roomNo int, tempSet double, action string);
 define stream TempStream (deviceID long, roomNo int, temp double);
 
@@ -2014,7 +2014,7 @@ Sequence query does expect the matching events to occur immediately after each o
 
 The syntax for a sequence query is as follows:
 
-```sql
+```siddhi
 from (
       (every)? (<event reference>=)?<input stream>[<filter condition>] (+|*|?)? |
                (<event reference>=)?<input stream>[<filter condition>] (and|or) (<event reference>=)?<input stream>[<filter condition>] |
@@ -2107,7 +2107,7 @@ The system returns `null` when accessing attribute values, when no matching even
 
 Query to send alerts when temperature increases at least by one degree between two consecutive temperature events.
 
-```sql
+```siddhi
 from every e1=TempStream, e2=TempStream[temp > e1.temp + 1]
 select e1.temp as initialTemp, e2.temp as finalTemp
 insert into AlertStream;
@@ -2119,7 +2119,7 @@ Here, the matching process begins for each event in the `TempStream` stream (as 
 
 Query to identify temperature peeks by monitoring continuous increases in `temp` attribute and alerts upon the first drop.
 
-```sql
+```siddhi
 define stream TempStream(deviceID long, roomNo int, temp double);
 
 @info(name = 'query1')
@@ -2136,7 +2136,7 @@ Here, the matching process begins for each event in the `TempStream` stream (as 
 
 A query to identify a regulator activation event immediately followed by both temperature sensor and humidity sensor activation events in either order.
 
-```sql
+```siddhi
 define stream TempStream(deviceID long, isActive bool);
 define stream HumidStream(deviceID long, isActive bool);
 define stream RegulatorStream(deviceID long, isOn bool);
@@ -2159,7 +2159,7 @@ Output rate-limiting helps to reduce the load on the subsequent executions such 
 
 The syntax for output rate limiting is as follows:
 
-```sql
+```siddhi
 from <input stream> ...
 select <attribute name>, <attribute name>, ...
 output <rate limiting configuration>
@@ -2185,7 +2185,7 @@ The possible values for the `<output event selection>` and their behaviors are a
 
 Query to calculate the average `temp` per `roomNo` for the events arrived on the last 10 minutes, and send alerts **once every 15 minutes** of the events having `avgTemp` more than 30 degrees.
 
-```sql
+```siddhi
 define stream TempStream(deviceID long, roomNo int, temp double);
 
 from TempStream#window.time(10 min)
@@ -2202,7 +2202,7 @@ Here the first event having `avgTemp` > 30 is emitted immediately and the next e
 
 A query to output the initial event, and from there onwards every 5th event of `TempStream` stream.
 
-```sql
+```siddhi
 define stream TempStream(deviceID long, roomNo int, temp double);
 
 from TempStream
@@ -2214,7 +2214,7 @@ insert into FiveEventBatchStream;
 
 Query to collect last 5 `TempStream` stream events and send them together as a single batch.
 
-```sql
+```siddhi
 define stream TempStream(deviceID long, roomNo int, temp double);
 
 from TempStream
@@ -2228,7 +2228,7 @@ As no `<output event selection>` is defined, the behavior of `all` is applied in
 
 Query to emit only the last event of `TempStream` stream for every 10 minute interval.
 
-```sql
+```siddhi
 define stream TempStream(deviceID long, roomNo int, temp double);
 
 from TempStream
@@ -2240,7 +2240,7 @@ insert into FiveEventBatchStream;
 
 Query to emit the snapshot of events retained by its last 5 minutes window defined on `TempStream` stream, every second.
 
-```sql
+```siddhi
 define stream TempStream(deviceID long, roomNo int, temp double);
 
 from TempStream#window.time(5 sec)
@@ -2254,7 +2254,7 @@ Here, the query emits all the current events generated which do not have a corre
 
 Query to emit the snapshot of events retained every second, when no window is defined on `TempStream` stream.
 
-```sql
+```siddhi
 define stream TempStream(deviceID long, roomNo int, temp double);
 
 from TempStream
@@ -2278,7 +2278,7 @@ Here, events form multiple streams generating the same partition key will result
 
 The syntax for a partition is as follows:
 
-```sql
+```siddhi
 @purge(enable='true', interval='<purge interval>', idle.period='<idle period of partition instance>')
 partition with ( <key selection> of <stream name>,
                  <key selection> of <stream name>, ... )
@@ -2331,7 +2331,7 @@ Purge partition configuration| Description
 
 Query to calculate the maximum temperature of each `deviceID`, among its last 10 events.
 
-```sql
+```siddhi
 partition with ( deviceID of TempStream )
 begin
     from TempStream#window.length(10)
@@ -2347,7 +2347,7 @@ Here, each unique `deviceID` will create a partition instance which retains the 
 Query to calculate the average temperature for the last 10 minutes per each office area, where the office areas are identified based on the `roomNo` attribute ranges from the events of `TempStream` stream.
 
 
-```sql
+```siddhi
 partition with ( roomNo >= 1030 as 'serverRoom' or
                  roomNo < 1030 and roomNo >= 330 as 'officeRoom' or
                  roomNo < 330 as 'lobby' of TempStream)
@@ -2364,7 +2364,7 @@ Here, partition instances are created for each office area type such as `serverR
 
 A partition to calculate the average temperature of every 10 events for each sensor, and send the output via the `DeviceTempIncreasingStream` stream if consecutive average temperature (`avgTemp`) values increase by more than 5 degrees.
 
-```sql
+```siddhi
 partition with ( deviceID of TempStream )
 begin
     from TempStream#window.lengthBatch(10)
@@ -2383,7 +2383,7 @@ Here, the first query calculates the `avgTemp` for every 10 events for each uniq
 
 A partition to identify consecutive three login failure attempts for each session within 1 hour. Here, the number of sessions can be infinite.
 
-```sql
+```siddhi
 define stream LoginStream ( sessionID string, loginSuccessful bool);
 
 @purge(enable='true', interval='10 sec', idle.period='1 hour')
@@ -2421,7 +2421,7 @@ Tables help to work with stored events. They allow to pick and choose the events
 
 The syntax for defining a table is as follows:
 
-```sql
+```siddhi
 @primaryKey( <key>, <key>, ... )
 @index( <key>, <key>, ...)
 define table <table name> (<attribute name> <attribute type>, <attribute name> <attribute type>, ... );
@@ -2452,7 +2452,7 @@ Indexes are optional, and they can be configured using the `@index` annotation. 
 
 **Example 1 (Primary key)**
 
-```sql
+```siddhi
 define table RoomTypeTable ( roomNo int, type string );
 ```
 The above table definition defines an in-memory table named `RoomTypeTable` having the following attributes.
@@ -2462,7 +2462,7 @@ The above table definition defines an in-memory table named `RoomTypeTable` havi
 
 **Example 2 (Primary key)**
 
-```sql
+```siddhi
 @primaryKey('symbol')
 define table StockTable (symbol string, price float, volume long);
 ```
@@ -2477,7 +2477,7 @@ As this table is configured with the primary key `symbol`, there will be only on
 
 **Example 3 (Index)**
 
-```sql
+```siddhi
 @index('username')
 @index('salary')
 define table SalaryTable (username string, salary double);
@@ -2493,7 +2493,7 @@ As this table is configured with indexes for `username` and `salary`, the search
 
 **Example 3 (Primary key and index)**
 
-```sql
+```siddhi
 @primaryKey('username')
 @index('salary')
 define table SalaryTable (username string, salary double);
@@ -2522,7 +2522,7 @@ Stores allow searching retrieving and manipulating data stored in external data 
 
 The syntax for defining a store along with is associated table is as follows:
 
-```sql
+```siddhi
 @store(type='<store type>', <common.static.key>='<value>', <common.static.key>='<value>'
        @cache(size='<cache size>', cache.policy='<cache policy>', retention.period='<retention period>', purge.interval="<purge interval>"))
 @primaryKey( <key>, <key>, ... )
@@ -2579,7 +2579,7 @@ The following is a list of store types supported by Siddhi:
 
 An RDBMS Store configuration to work with MySQL database.
 
-```sql
+```siddhi
 @store(type="rdbms", jdbc.url="jdbc:mysql://localhost:3306/hotel",
        username="siddhi", password="123",
        jdbc.driver.name="com.mysql.jdbc.Driver")
@@ -2594,7 +2594,7 @@ Here, the store connects to the MySQL table `RoomTypeTable` in the database `hot
 
 An RDBMS Store configuration to work with an indexed MySQL database using a cache.
 
-```sql
+```siddhi
 @store(type="rdbms", jdbc.url="jdbc:mysql://localhost:3306/hotel",
        username="siddhi", password="123",
        jdbc.driver.name="com.mysql.jdbc.Driver"
@@ -2625,7 +2625,7 @@ Allows events (records) to be inserted into tables/stores. This is similar to in
 
 Syntax to insert events into a table from a stream is as follows;
 
-```sql
+```siddhi
 from <input stream>
 select <attribute name>, <attribute name>, ...
 insert into <table>
@@ -2637,7 +2637,7 @@ Similar to streams, the `current events`, `expired events` or the `all events` k
 
 Query to inserts all the events from the `TempStream` stream to the `TempTable` table.
 
-```sql
+```siddhi
 define stream TempStream(tempId string, temp double);
 define table TempTable(tempId string, temp double);
 
@@ -2657,7 +2657,7 @@ Allows stream or [named-window](#named-window) to retrieve events (records) from
 
 The syntax for a stream or a named-window to join with a table is as follows:
 
-```sql
+```siddhi
 from (<input stream>(<non window handler>)*(<window>)?|<named-window>) (as <reference>)?
          <join type> <table> (as <reference>)?
     (on <join condition>)?
@@ -2699,7 +2699,7 @@ Table join supports following join operations.
 
 A query to join and retrieve the room type from `RoomTypeTable` table based on equal `roomNo` attribute of `TempStream`, and to insert the results into `RoomTempStream` steam.
 
-```sql
+```siddhi
 define table RoomTypeTable (roomNo int, type string);
 define stream TempStream (deviceID long, roomNo int, temp double);
 
@@ -2717,7 +2717,7 @@ Allows a stream to delete selected events (records) form a table.
 
 Syntax to delete selected events in a table based on the events in a stream is as follows;
 
-```sql
+```siddhi
 from <input stream>
 select <attribute name>, <attribute name>, ...
 delete <table> (for <event type>)?
@@ -2736,7 +2736,7 @@ To execute delete, only for specific event types, use the `current events`, `exp
 
 A query to delete the records in the `RoomTypeTable` table that has matching values for the `roomNo` attribute against the values of `roomNumber` attribute of the events in the `DeleteStream` stream.
 
-```sql
+```siddhi
 define table RoomTypeTable (roomNo int, type string);
 define stream DeleteStream (roomNumber int);
 
@@ -2749,7 +2749,7 @@ delete RoomTypeTable
 
 A query to delete all the records in the `BlacklistTable` table when an event arrives in the `ClearStream` stream.
 
-```sql
+```siddhi
 define table BlacklistTable (ip string);
 define stream ClearStream (source string);
 
@@ -2765,7 +2765,7 @@ Allows a stream to update selected events (records) form a table.
 
 Syntax to update events on a table is as follows;
 
-```sql
+```siddhi
 from <input stream>
 select <attribute name>, <attribute name>, ...
 update <table> (for <event type>)?
@@ -2787,7 +2787,7 @@ To execute update, only for specific event types, use the `current events`, `exp
 
 A query to update the `latestHeartbeatTime` on the `ServerInfoTable` against each `serverIP` for every event on the `HeartbeatStream`.
 
-```sql
+```siddhi
 define table ServerInfoTable (serverIP string, host string, port int, latestHeartbeatTime long);
 define stream HeartbeatStream (serverIP string, timestamp long);
 
@@ -2802,7 +2802,7 @@ update ServerInfoTable
 
 A query to update the `peoplePresent` in the `RoomOccupancyTable` table for each `roomNo` based on new people `arrival` and `exit` values from events of the `UpdateStream` stream.
 
-```sql
+```siddhi
 define table RoomOccupancyTable (roomNo int, peoplePresent int);
 define stream UpdateStream (roomNumber int, arrival int, exit int);
 
@@ -2817,7 +2817,7 @@ update RoomOccupancyTable
 
 A query to update the `latestHeartbeatTime` on the `HeartbeatTable` for each event on the `HeartbeatStream`.
 
-```sql
+```siddhi
 define table HeartbeatTable (serverIP string, latestHeartbeatTime long);
 define stream HeartbeatStream (serverIP string, timestamp long);
 
@@ -2835,7 +2835,7 @@ Allows a stream to update the events (records) that already exist in the table b
 
 Syntax to update or insert events on a table is as follows;
 
-```sql
+```siddhi
 from <input stream>
 select <attribute name>, <attribute name>, ...
 update or insert into <table> (for <event type>)?
@@ -2857,7 +2857,7 @@ To execute update or insert, only for specific event types, use the `current eve
 
 A query to update `assignee` information in the `RoomAllocationTable` table for the corresponding `roomNumber` from the `RoomAllocationStream` stream when at least one matching record is present in the table, and when there are no matching records it inserts a new record to the `RoomAllocationTable` table based on the query output.
 
-```sql
+```siddhi
 define table RoomAllocationTable (roomNo int, type string, assignee string);
 define stream RoomAllocationStream (roomNumber int, type string, assignee string);
 
@@ -2874,7 +2874,7 @@ Allows the query to check whether the expected value exists in the table using a
 
 **Syntax**
 
-```sql
+```siddhi
 from <input stream>[<condition> in <table>]
 select <attribute name>, <attribute name>, ...
 insert into <output stream>
@@ -2886,7 +2886,7 @@ The `condition` element specifies the basis on which the events in the table are
 
 A query to filter only the events of server rooms from the `TempStream` stream using the `ServerRoomTable` table, and pass them for further processing via `ServerRoomTempStream` stream.
 
-```sql
+```siddhi
 define table ServerRoomTable (roomNo int);
 define stream TempStream (deviceID long, roomNo int, temp double);
 
@@ -2898,7 +2898,7 @@ insert into ServerRoomTempStream;
 
 A query to filter out the blacklisted `serverIP`s from the `RequestStream` stream using the `BlacklistTable` table, and only pass events having IPs that are not blacklisted, for further processing via `FilteredRequestStream` stream.
 
-```sql
+```siddhi
 define table BlacklistTable (serverIP string);
 define stream RequestStream (ip string, request string);
 
@@ -2926,7 +2926,7 @@ This can be used for in many analytics scenarios as this provides time-series ag
 
 The syntax for defining a named-aggregation is as follows:
 
-```sql
+```siddhi
 @store(type='<store type>', ...)
 @purge(enable="<enable purging>", interval='<purging interval>',
        @retentionPeriod(<granularity> = '<retention period>', ...))
@@ -2999,7 +2999,7 @@ The named-aggregations that are enabled to process in a distributed manner using
 
 An in-memory named-aggregation with default default purging named as `TradeAggregation` to calculate the average and sum for `price` attribute for each unique `symbol` for all time granularities from second to year using `timestamp` attribute as the event time, on the events arriving via the `TradeStream` stream.
 
-```sql
+```siddhi
 define stream TradeStream (symbol string, price double, volume long, timestamp long);
 
 define aggregation TradeAggregation
@@ -3013,7 +3013,7 @@ define aggregation TradeAggregation
 
 A custom purging enabled RDBMS store based named-aggregation with name `TradeAggregation` to calculate the min and max `price` for each unique `symbol` for time granularities hour, day, and month using Siddhi event timestamp, on the events arriving via the `TradeStream` stream.
 
-```sql
+```siddhi
 define stream TradeStream (symbol string, price double, volume long, timestamp long);
 
 @store(type="rdbms", jdbc.url="jdbc:mysql://localhost:3306/sweetFactoryDB",
@@ -3045,7 +3045,7 @@ Allows stream or named-window to retrieve aggregated results from the named-aggr
 
 The syntax for a stream or a named-window to join with a named-aggregation is as follows:
 
-```sql
+```siddhi
 from (<input stream>(<non window handler>)*(<window>)?|<named-window>) (as <reference>)?
     <join type> <named-aggregation> (as <reference>)?
   on <join condition>
@@ -3075,7 +3075,7 @@ Named-aggregation join supports inner join (`join`), `left outer join`, `right o
 
 Following aggregation definition is used for all the examples.
 
-```sql
+```siddhi
 define stream TradeStream (symbol string, price double, volume long, timestamp long);
 
 define aggregation TradeAggregation
@@ -3089,7 +3089,7 @@ define aggregation TradeAggregation
 
 A query to join and retrieve daily aggregations within the time range of `"2014-02-15 00:00:00 +05:30", "2014-03-16 00:00:00 +05:30"` from `TradeAggregation` based on equal `symbol` attribute of `StockStream`, and to insert the results into `AggregateStockStream` steam. Here, `+05:30` in time range can be omitted if the timezone is GMT.
 
-```sql
+```siddhi
 define stream StockStream (symbol string, value int);
 
 from StockStream as s join TradeAggregation as t
@@ -3104,7 +3104,7 @@ insert into AggregateStockStream;
 
 A query to join and retrieve all the hourly aggregations within the day of `2014-02-15` from `TradeAggregation` each event in `RequestStream` stream, order the results by `symbol`, and to insert the results into `AggregateStockStream` steam.
 
-```sql
+```siddhi
 define stream RequestStream (request string);
 
 from RequestStream join TradeAggregation as t
@@ -3119,7 +3119,7 @@ insert into AggregateStockStream;
 
 A query to join and retrieve aggregated results from `TradeAggregation` for respective `granularity` and `symbol` attributes between the `start` and the `end` timestamps of events arriving on `StockStream`, and to insert the results into `AggregateStockStream` steam.
 
-```sql
+```siddhi
 define stream StockStream (symbol string, granularity string, start long, end long);
 
 from StockStream as s join TradeAggregation as t
@@ -3151,7 +3151,7 @@ Named-windows help to use the same instance of a window in multiple queries, thi
 
 The syntax for defining a named-window is as follows:
 
-```sql
+```siddhi
 define window <window name> (<attribute name> <attribute type>, <attribute name> <attribute type>, ... ) <window type>(<parameter>, <parameter>, …) (output <event type>)?;
 ```
 
@@ -3167,7 +3167,7 @@ The following parameters are used configure the window definition:
 
 **Example 1**
 
-```sql
+```siddhi
 define window SensorWindow (deviceID string, value float, roomNo int) timeBatch(1 second);
 ```
 
@@ -3179,7 +3179,7 @@ The above window definition with the name `SensorWindow` defines a named-window 
 
 **Example 2**
 
-```sql
+```siddhi
 define window SensorWindow (deviceID string, value float, roomNo int) time(1 min) output expired events;
 ```
 
@@ -3201,7 +3201,7 @@ Allows events to be inserted into named-windows. This is similar to inserting ev
 
 Syntax to insert events into a named-window from a stream is as follows;
 
-```sql
+```siddhi
 from <input stream>
 select <attribute name>, <attribute name>, ...
 insert into <window>
@@ -3213,7 +3213,7 @@ Similar to streams, the `current events`, `expired events` or the `all events` k
 
 This query inserts all events from the `TempStream` stream to the `OneMinTempWindow` window.
 
-```sql
+```siddhi
 define stream TempStream(tempId string, temp double);
 define window OneMinTempWindow(tempId string, temp double) time(1 min);
 
@@ -3233,7 +3233,7 @@ Allows stream or named-window to retrieve events from another named-window.
 
 The syntax for a stream or a named-window to join with another named-window is as follows:
 
-```sql
+```siddhi
 from (<input stream>(<non window handler>)*(<window>)?|<named-window>) (as <reference>)?
   <join type> <named-window> (as <reference>)?
   on <condition>
@@ -3251,7 +3251,7 @@ Named-window join supports inner join (`join`), `left outer join`, `right outer 
 
 A query, for each event on `CheckStream`, to join and calculate the number of temperature events having greater than 40 degrees for the `temp` attribute value, within the last 2 minutes of the `TwoMinTempWindow` named-window, and to insert the results into `HighTempCountStream` steam.
 
-```sql
+```siddhi
 define window TwoMinTempWindow (roomNo int, temp double) time(2 min);
 define stream CheckStream (requestId string);
 
@@ -3269,7 +3269,7 @@ Named-windows can be used as an input to any query, similar to streams.
 
 Syntax for using named-window as an input to a simple query is as follows;
 
-```sql
+```siddhi
 from <named-window><non window handler>* ((join (<stream><handler>*|<named-window>|<table>|<named-aggregation>))|((,|->)(<stream>|<named-window>)<non window handler>*)+)?
 <projection>
 <output action>
@@ -3281,7 +3281,7 @@ Named-windows can be used as input for any query type, like [how streams are bei
 
 Queries to calculate the `max` temperature among all rooms, and `avg` temperature per each `room`, in the last 5 minutes, using `FiveMinTempWindow`, and publish the results via `MaxTempStream` stream, and `AvgTempStream` stream respectively.
 
-```sql
+```siddhi
 define window FiveMinTempWindow (roomNo int, temp double) time(5 min);
 
 from FiveMinTempWindow
@@ -3306,13 +3306,13 @@ Triggers help to periodically generate events based on a specified time interval
 
 The syntax for defining a trigger is as follows:
 
-```sql
+```siddhi
 define trigger <trigger name> at ( 'start'| every <time interval>| '<cron expression>');
 ```
 
 Triggers can be used as input to any query, similar to the streams. Because, when defined, they are represented as a stream having one attribute with name `triggered_time`, and type `long` as follows.
 
-```sql
+```siddhi
 define stream <trigger name> (triggered_time long);
 ```
 
@@ -3328,7 +3328,7 @@ The supported trigger types are as follows.
 
 A trigger to generate events every 5 minutes.
 
-```sql
+```siddhi
 define trigger FiveMinTrigger at every 5 min;
 ```
 
@@ -3336,7 +3336,7 @@ define trigger FiveMinTrigger at every 5 min;
 
 A trigger to generate events at 10.15 AM on every weekdays.
 
-```sql
+```siddhi
 define trigger WorkStartTrigger at '0 15 10 ? * MON-FRI';
 ```
 
@@ -3344,7 +3344,7 @@ define trigger WorkStartTrigger at '0 15 10 ? * MON-FRI';
 
 A trigger to generate an event at SiddhiApp startup.
 
-```sql
+```siddhi
 define trigger InitTrigger at 'start';
 ```
 
@@ -3360,7 +3360,7 @@ Scripts help to define custom functions in other programming languages such as j
 
 The syntax for defining the script is as follows.
 
-```sql
+```siddhi
 define function <function name>[<language name>] return <return type> {
     <function logic>
 };
@@ -3368,7 +3368,7 @@ define function <function name>[<language name>] return <return type> {
 
 The defined function can be used in the queries similar to inbuilt [functions](#function) as follows.
 
-```sql
+```siddhi
 <function name>( (<function parameter>(, <function parameter>)*)? )
 ```
 
@@ -3389,7 +3389,7 @@ The following parameters are used to configure the function definition:
 
 A function to concatenate three strings into one using JavaScript.
 
-```sql
+```siddhi
 define function concatFn[javascript] return string {
     var str1 = data[0];
     var str2 = data[1];
@@ -3449,7 +3449,7 @@ To retrieve data from Named-Aggregation, refer the [Named-Aggregation Select](#s
 
 Syntax to retrieve events from table or named-window is as follows;
 
-```sql
+```siddhi
 from (<table>|<named-window>)
 (on <condition>)?
 select <attribute name>, <attribute name>, ...
@@ -3465,7 +3465,7 @@ Here, the input can be either [table](#table)(/[store](#store)) or [named-window
 
 The on-demand queries used in the examples are performed on a SiddhiApp that contains a table definition similar to the following.
 
-```sql
+```siddhi
 define table RoomTypeTable (roomNo int, type string);
 ```
 
@@ -3473,7 +3473,7 @@ define table RoomTypeTable (roomNo int, type string);
 
 An on-demand query to retrieve room numbers and their types from the `RoomTypeTable` table, for all room numbers that are greater than or equal to 10.
 
-```sql
+```siddhi
 from RoomTypeTable
 on roomNo >= 10;
 select roomNo, type
@@ -3483,7 +3483,7 @@ select roomNo, type
 
 An on-demand query to calculate the total number of rooms in the `RoomTypeTable` table.
 
-```sql
+```siddhi
 from RoomTypeTable
 select count(roomNo) as totalRooms
 ```
@@ -3498,7 +3498,7 @@ To retrieve data from table (store), or named-window, refer the [Table/Named-Win
 
 Syntax to retrieve events from named-aggregation is as follows;
 
-```sql
+```siddhi
 from <aggregation>
 (on <condition>)?
 within <time range>
@@ -3516,7 +3516,7 @@ This is similar to the [Table/Named-Window Select](#tablenamed-window-select), b
 
 The on-demand queries used in the examples are performed on a SiddhiApp that contains an aggregation definition similar to the following.
 
-```sql
+```siddhi
 define stream TradeStream (symbol string, price double, volume long, timestamp long);
 
 define aggregation TradeAggregation
@@ -3530,7 +3530,7 @@ define aggregation TradeAggregation
 
 An on-demand query to retrieve daily aggregations from the `TradeAggregation` within the time range of `"2014-02-15 00:00:00 +05:30", "2014-03-16 00:00:00 +05:30"` (Here, `+05:30` can be omitted if timezone is in GMT).
 
-```sql
+```siddhi
 from TradeAggregation
   within "2014-02-15 00:00:00 +05:30", "2014-03-16 00:00:00 +05:30"
   per "days"
@@ -3541,7 +3541,7 @@ select symbol, total, avgPrice;
 
 An on-demand query to retrieve the hourly aggregations from the `TradeAggregation` for `"FB"` symbol within the day of `2014-02-15`.
 
-```sql
+```siddhi
 from TradeAggregation
   on symbol == "FB"
   within "2014-02-15 **:**:** +05:30"
@@ -3557,7 +3557,7 @@ On-demand query to insert a new record to a [table](#table)(/[store](#store)), b
 
 Syntax to insert events into a table (store) is as follows;
 
-```sql
+```siddhi
 select <attribute name>, <attribute name>, ...
 insert into <table>;
 ```
@@ -3566,14 +3566,14 @@ insert into <table>;
 
 An on-demand query to insert a new record into the table `RoomOccupancyTable` having values for its `roomNo` and `people` attributes as `10` and `2` respectively.
 
-```sql
+```siddhi
 select 10 as roomNo, 2 as people
 insert into RoomOccupancyTable
 ```
 
 Here, the respective SiddhiApp should have a `RoomOccupancyTable` table something similar to the following.
 
-```sql
+```siddhi
 define table RoomOccupancyTable (roomNo int, people int);
 ```
 
@@ -3585,7 +3585,7 @@ On-demand query to delete records from a [table](#table)(/[store](#store)), base
 
 Syntax to delete events from a table (store) is as follows;
 
-```sql
+```siddhi
 <select>?  
 delete <table>  
     (on <condition>)?
@@ -3601,20 +3601,20 @@ Here, the `on <condition>` specifies the basis on which records are selected to 
 
 On-demand queries to delete records in the `RoomTypeTable` table that have `10` as the value for their `roomNo` attribute.
 
-```sql
+```siddhi
 select 10 as roomNumber
 delete RoomTypeTable
     on RoomTypeTable.roomNo == roomNumber;
 ```
 
-```sql
+```siddhi
 delete RoomTypeTable
     on RoomTypeTable.roomNo == 10;
 ```
 
 Both the above queries result in the same. For the above queries to be performed, the respective SiddhiApp should have a `RoomTypeTable` table defined something similar to the following.
 
-```sql
+```siddhi
 define table RoomTypeTable (roomNo int, type string);
 ```
 
@@ -3626,7 +3626,7 @@ On-demand query to update selected attributes of records from a [table](#table)(
 
 Syntax to update events on a table (store) is as follows;
 
-```sql
+```siddhi
 select <attribute name>, <attribute name>, ...?
 update <table>
     (set <table>.<attribute name> = (<attribute name>|<expression>), <table>.<attribute name> = (<attribute name>|<expression>), ...)?
@@ -3644,7 +3644,7 @@ The `set` keyword can be used to update only the selected attributes from the ta
 
 The on-demand queries used in the examples are performed on a SiddhiApp that contains a table definition similar to the following.
 
-```sql
+```siddhi
 define table RoomOccupancyTable (roomNo int, people int);
 ```
 
@@ -3652,7 +3652,7 @@ define table RoomOccupancyTable (roomNo int, people int);
 
 An on-demand query to increment the number of `people` by `1` for the `roomNo` `10`, in the `RoomOccupancyTable` table.
 
-```sql
+```siddhi
 update RoomTypeTable
     set RoomTypeTable.people = RoomTypeTable.people + 1
     on RoomTypeTable.roomNo == 10;
@@ -3662,7 +3662,7 @@ update RoomTypeTable
 
 An on-demand query to increment the number of `people` by the `arrival` amount for the given `roomNumber`, in the `RoomOccupancyTable` table.
 
-```sql
+```siddhi
 select 10 as roomNumber, 1 as arrival
 update RoomTypeTable
     set RoomTypeTable.people = RoomTypeTable.people + arrival
@@ -3677,7 +3677,7 @@ On-demand query to update the events (records) that already exist in the [table]
 
 Syntax to update or insert events on a table (store) is as follows;
 
-```sql
+```siddhi
 select <attribute name>, <attribute name>, ...
 update or insert into <table>
     (set <table>.<attribute name> = (<attribute name>|<expression>), <table>.<attribute name> = (<attribute name>|<expression>), ...)?
@@ -3697,7 +3697,7 @@ The `set` clause is only used when an update is performed in the update or inser
 
 An on-demand query to update the record with `assignee` `"John"` when there is already and record for `roomNo` `10` in the `RoomAssigneeTable` table, else to insert a new record with values `10`, `"single"` and `"John"` for the attributes `roomNo`, `type`, and `assignee` respectively.
 
-```sql
+```siddhi
 select 10 as roomNo, "single" as type, "John" as assignee
 update or insert into RoomAssigneeTable
     set RoomAssigneeTable.assignee = assignee
@@ -3706,7 +3706,7 @@ update or insert into RoomAssigneeTable
 
 For the above query to be performed, the respective SiddhiApp should have a `RoomAssigneeTable` table defined something similar to the following.
 
-```sql
+```siddhi
 define table RoomAssigneeTable (roomNo int, type string, assignee string);
 ```
 
@@ -3724,7 +3724,7 @@ The `@async` annotation helps to improve the SiddhiApp performance using paralle
 
 The syntax for configuring threading in Siddhi is as follows.
 
-```sql
+```siddhi
 @async(buffer.size='<buffer size>', workers='<workers>', batch.size.max='max <batch size>')
 define stream <stream name> (<attribute name> <attribute type>, <attribute name> <attribute type>, ... );
 ```
@@ -3790,7 +3790,7 @@ The following table lists the component types and their supported of metrics typ
 
 The syntax for defining the statistics for **SiddhiApps running on Java or Python modes** is as follows.
 
-```sql
+```siddhi
 @app:statistics( reporter='<reporter>', interval='<internal>',
                  include='<included metrics for reporting>')
 ```
@@ -3805,7 +3805,7 @@ The following parameters are used to configure statistics in Java and Python mod
 
 The syntax for defining the statistics for **SiddhiApps running on Local, Docker, or Kubernetes modes** is as follows.
 
-```sql
+```siddhi
 @app:statistics(enable = '<is enable>', include = `'<included metrics for reporting>'`)
 ```
 The following parameters are used to configure statistics in Local, Docker, and Kubernetes modes.
@@ -3821,7 +3821,7 @@ Here, other statistics configurations are applied commonly to all SiddhiApps, as
 
 A SiddhiApp running on Java, to report statistics every minute, by logging its stats on the console.
 
-```sql
+```siddhi
 @App:name('TestMetrics')
 @App:Statistics(reporter = 'console')
 
@@ -3897,7 +3897,7 @@ Event playback helps to reprocess previously consumed and stored events in much 
 
 The syntax for defining event playback is as follows.
 
-```sql
+```siddhi
 @app:playback(idle.time = '<idle time before incrementing timestamp>', increment = '<incremented time interval>')
 ```
 
@@ -3914,7 +3914,7 @@ Here, both the parameters are optional, and when omitted, the current SiddhiApp 
 
 SiddhiApp to perform playback while incrementing the current SiddhiApp time by `2` seconds when no events arrive for every `100 milliseconds`.
 
-```sql
+```siddhi
 @app:playback(idle.time = '100 millisecond', increment = '2 sec')
 ```
 
@@ -3922,6 +3922,6 @@ SiddhiApp to perform playback while incrementing the current SiddhiApp time by `
 
 SiddhiApp to perform playback while not incrementing the current SiddhiApp time when no events arrive.
 
-```sql
+```siddhi
 @app:playback()
 ```

@@ -89,16 +89,16 @@ Refer [Adding Extensions and Third Party Dependencies documentation](https://sid
     Follow below steps to start the Siddhi tooling runtime.
     * Extract the downloaded zip and navigate to <TOOLING_HOME>/bin. (TOOLING_HOME refers to the extracted folder) 
     * Issue the following command in the command prompt (Windows) / terminal (Linux/Mac)
-        ````
+        ```bash
         For Windows: tooling.bat
         For Linux/Mac: ./tooling.sh
-        ````
+        ```
 
 2. Select File -> New option, then you could either use the source view or design view to write/build the Siddhi Application. You can find the Siddhi Application bellow, that implements the requirements mentioned above.
 
 3. Let’s write (develop) the Siddhi Application, as given below.
 
-````sql
+```siddhi
 @App:name('Realtime-Movie-Recommendation-App')
 @App:description('Performs realtime movie recommendations')
 
@@ -138,7 +138,7 @@ select userId, movieList
 insert into RecommendedMovieStream;
 
 
-````
+```
 
 Source view of the Siddhi app.
 ![source_view](images/source-view.png "Source view of the Siddhi App")
@@ -168,9 +168,9 @@ When you run the Siddhi app in the editor, you will see below logs getting print
 
 In the provided Siddhi app, there is a HTTP sink configured to push output events to an HTTP endpoint. To verify that, please download the mock server [jar](https://github.com/pcnfernando/MovieRecommendationSystem/blob/master/util/logservice-1.0.0.jar) and run that mock service by executing below command.
 
-````
+```bash
 java -jar logservice-1.0.0.jar
-````
+```
 
 ### Invoking the Siddhi App
 
@@ -178,17 +178,17 @@ As mentioned in the previous steps, there is a service running in Siddhi side wh
 
 As per the app, if the review comment is positive, movies similar to the reviewed movie will be returned as recommendations.
 
-````
+```bash
 curl -v -X POST -d \
 '{"event": {"userId": "user105", "movieId": "avatar", "reviewComment": "Best movie experience of the last 30 years.."}}' \
 "http://localhost:8006/feedbackInputStream" -H "Content-Type:application/json"
-````
+```
 
 If you invoke, above cURL request then Siddhi would identify it as a positive feedback and recommends similar movies. In this guide, for simplicity we are just logging the movie recommendations as below. 
 
-````
+```bash
 INFO {io.siddhi.core.stream.output.sink.LogSink} - Realtime-Movie-Recommendation-App : RecommendedMovieStream : Event{timestamp=1568785937271, data=[user105, {After Earth, Star Trek Into Darkness, Oblivion, The Croods}], isExpired=false}
-````
+```
 
 ## Deployment
 
@@ -209,14 +209,14 @@ NOTE: In the above provided Siddhi app, there are some environmental variables (
 3. Copy the downloaded [siddhi-gpl-execution-pmml](https://maven.wso2.org/nexus/service/local/repositories/releases/content/io/siddhi/extension/gpl/execution/pmml/siddhi-gpl-execution-pmml/5.0.1/siddhi-gpl-execution-pmml-5.0.1.jar) and [siddhi-execution-tensorflow](https://mvnrepository.com/artifact/io.siddhi.extension.execution.tensorflow/siddhi-execution-tensorflow/2.0.2) to SIDDHI_RUNNER_HOME/bundles directory.
 4. Start Siddhi app with the runner config by executing the following commands from the distribution directory.
         
-     ````
+     ```bash
      Linux/Mac : ./bin/runner.sh -Dapps=<siddhi-file-path> -DSENTIMENT_ANALYSIS_TF_SAVED_MODEL_PATH=<sentiment-analysis-tf-model-path> -DMOVIE_RECOMMENDATION_PMML_MODEL_PATH=<movie-recommendation-pmml-model-path>
 
      Windows : bin\runner.bat -Dapps=<siddhi-file-path> -DSENTIMENT_ANALYSIS_TF_SAVED_MODEL_PATH=<sentiment-analysis-tf-model-path> -DMOVIE_RECOMMENDATION_PMML_MODEL_PATH=<movie-recommendation-pmml-model-path>
 
 	 Eg: If exported siddhi app in Siddhi home directory,
            ./bin/runner.sh -Dapps=Realtime-Movie-Recommendation-App.siddhi
-     ````
+     ```
     
 5. Download the mock [logging service](https://github.com/pcnfernando/MovieRecommendationSystem/blob/master/util/logservice-1.0.0.jar) which is used to demonstrate the capability of Siddhi HTTP sink. Execute the below command to run the mock server.
 
@@ -246,34 +246,34 @@ NOTE: In the above provided Siddhi app, there are some environmental variables (
 
 4. Pull the latest Siddhi Runner image from [Siddhiio Docker Hub] (https://hub.docker.com/u/siddhiio).
     
-    ````
+    ```bash
     docker pull siddhiio/siddhi-runner-alpine:5.1.0-beta
-    ````
+    ```
 
 5. Start SiddhiApp by executing the following docker command.
 
-    ````
+    ```bash
     docker run -it -p 8006:8006 -v /home/siddhi-apps:/apps -v /home/tf_model:/tf_model -v /home/pmml_model:/pmml_model -e SENTIMENT_ANALYSIS_TF_SAVED_MODEL_PATH=/tf_model -e MOVIE_RECOMMENDATION_PMML_MODEL_PATH=/pmml_model/movie-recommendation.pmml siddhiio/siddhi-runner-alpine:5.1.0-beta -Dapps=/apps/Realtime-Movie-Recommendation-App.siddhi
 
-    ````
+    ```
 
     NOTE: In the above provided Siddhi app, there are some environmental variables (SENTIMENT_ANALYSIS_TF_SAVED_MODEL_PATH and MOVIE_RECOMMENDATION_PMML_MODEL_PATH)  which are mandatory to be set for Siddhi application to execute. Again, there is a mock service configured to receive the recommended movies (instructions given below), and its host is configured via LOGGER_SERVICE_HOST environment property. 
     Hence, make sure to add proper values for the environmental variables in the above command.
 
 4. Download the mock [logging service](https://github.com/pcnfernando/MovieRecommendationSystem/blob/master/util/logservice-1.0.0.jar)  which is used to demonstrate the capability of SIddhi HTTP sink. Execute below command to run the mock server.
 
-    ````
+    ```bash
 	    java -jar logservice-1.0.0.jar
-	````
+	```
 
 5. Send a POST request with the movie feedback to the endpoint.
 
-    ````
+    ```bash
         curl -v -X POST -d \
         '{"event": {"userId": "user105", "movieId": "avatar", "reviewComment": "Best movie experience of the last 30 years.."}}' \
         "http://localhost:8006/feedbackInputStream" -H "Content-Type:application/json"
 
-    ````
+    ```
         
 6. Since you have started the docker in interactive mode you can see the output in its console as below. 
 (If it is not started in the interactive mode then you can run `docker exec -it  <docker-container-id> sh` command, go into the container and check the log file in `home/siddhi_user/siddhi-runner/wso2/runner/logs/carbon.log` file)
@@ -288,10 +288,10 @@ NOTE: In the above provided Siddhi app, there are some environmental variables (
 1. Install Siddhi Operator
     - To install the Siddhi Kubernetes operator run the following commands.
         
-        ````
+        ```bash
         kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-alpha/00-prereqs.yaml
         kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-alpha/01-siddhi-operator.yaml
-        ````
+        ```
         
      - You can verify the installation by making sure the following deployments are running in your Kubernetes cluster.
      
@@ -301,15 +301,15 @@ NOTE: In the above provided Siddhi app, there are some environmental variables (
 2. Download the mock [logging service](https://github.com/pcnfernando/MovieRecommendationSystem/blob/master/util/logservice-1.0.0.jar) 
 which is used to demonstrate the capability of Siddhi HTTP sink. Execute the below command to run the mock server.
 
-    ````
+    ```bash
         java -jar logservice-1.0.0.jar
-    ````
+    ```
     
 3. Siddhi applications can be deployed on Kubernetes using the Siddhi operator.
     - Before deploying the apps you have to define an [Ingress](https://kubernetes.github.io/ingress-nginx/deploy/#provider-specific-steps), this is because there is an HTTP endpoint in the Siddhi app you have written and you will be sending events to that.
     
     - We need a custom docker image bundling the pretrained models to the container.
-      ````yaml
+      ```yaml
       # use siddhi-runner-base
       FROM siddhiio/siddhi-runner-base-alpine:5.1.0-beta
       MAINTAINER Siddhi IO Docker Maintainers "siddhi-dev@googlegroups.com"
@@ -338,14 +338,14 @@ which is used to demonstrate the capability of Siddhi HTTP sink. Execute the bel
       
       ENTRYPOINT ["/home/siddhi_user/siddhi-runner/bin/runner.sh"]
 
-      ````
+      ```
 
        To create the docker image, save the above content to a docker file and execute the below command.
 	   `docker build <absolute-docker-file-path> -t siddhi-runner-mov-recommendation:1.0.0`
 	   
     - To deploy the above created Siddhi app, you have to create a custom resource object YAML file (with the kind as SiddhiProcess) as following
     
-        ````yaml
+        ```yaml
         apiVersion: siddhi.io/v1alpha2
         kind: SiddhiProcess
         metadata:
@@ -405,16 +405,16 @@ which is used to demonstrate the capability of Siddhi HTTP sink. Execute the bel
         
             image: "siddhi-runner-mov-recommendation:1.0.0"
 
-        ````
+        ```
         
         NOTE: In the above provided Siddhi app, there are some environmental variables (SENTIMENT_ANALYSIS_TF_SAVED_MODEL_PATH and MOVIE_RECOMMENDATION_PMML_MODEL_PATH)  which are mandatory to be set for Siddhi application to execute. Again, there is a mock service configured to to receive the recommended movies (instructions given below), and its host is configured via LOGGER_SERVICE_HOST environment property. 
         Hence, make sure to add proper values for the environmental variables in the above YAML file (check the `env` section of the YAML file).
         
     - Now, let’s create the above resource in the Kubernetes cluster with the following command.
         
-        ````    	
+        ```bash    	
     	 kubectl create -f <absolute-yaml-file-path>/Movie-Recommendation-App.yaml
-    	````
+    	```
     
     - Once, Siddhi app is successfully deployed. You can verify its health using the following commands
         
@@ -424,15 +424,15 @@ which is used to demonstrate the capability of Siddhi HTTP sink. Execute the bel
     
     - You can find the recommendations logged in the Siddhi runner log file. To see the Siddhi runner log file, first, invoke below command to get the pods.
         
-        ````
+        ```bash
         kubectl get pods
-        ````
+        ```
     
         Then, find the pod name of the Siddhi app deployed, and invoke below command to view the logs.
         
-        ````
+        ```bash
         kubectl logs -f <siddhi-app-pod-name>
-        ````
+        ```
         
         Eg: as shown below image,
             
@@ -440,11 +440,11 @@ which is used to demonstrate the capability of Siddhi HTTP sink. Execute the bel
 
     - Pass the movie review along with the userId and the movieId as a CURL request.
       
-        ````
+        ```bash
         curl -v -X POST -d \
         '{"event": {"userId": "user105", "movieId": "avatar", "reviewComment": "Best movie experience of the last 30 years.."}}' \
         "http://siddhi/movie-recommendation-app-0/8006/feedbackInputStream" -H "Content-Type:application/json"
-        ````
+        ```
           
     - Then, we could see the movie recommendations as console logs (as given below).
     

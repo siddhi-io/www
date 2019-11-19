@@ -52,10 +52,10 @@ Below are the prerequisites that should be considered to implement the above use
     Follow below steps to start the Siddhi tooling runtime.
     * Extract the downloaded zip and navigate to <TOOLING_HOME>/bin. (TOOLING_HOME refers to the extracted folder) 
     * Issue the following command in the command prompt (Windows) / terminal (Linux/Mac)
-        ````
+        ```bash
         For Windows: tooling.bat
         For Linux/Mac: ./tooling.sh
-        ````
+        ```
 
 2. Select File -> New option, then you could either use the source view or design view to write/build the Siddhi Application. You can find the Siddhi Application bellow, that implements the requirements mentioned above.
 
@@ -64,7 +64,7 @@ Below are the prerequisites that should be considered to implement the above use
 4. Once the Siddhi app is created, you can use the Event Simulator option in the editor to simulate events to streams and perform developer testing.
 
 
-````sql
+```siddhi
 @App:name("Taxi-Rider-Requests-Processing-App")
 @App:description("Siddhi application that processes Taxi Rider request events")
 
@@ -136,7 +136,7 @@ begin
     select e3.systemTime, e1.pickUpZone as zone, e3.totalCancellations as lastNoOfCancellations
     insert into AttentionRequiredCancellationStream;
 end; 
-````
+```
 
 Source view of the Siddhi app.
 ![source_view](images/source-view.jpg "Source view of the Siddhi App")
@@ -186,9 +186,9 @@ To try out the above use case, you have to send a set of events in a certain ord
 
 Then you can execute below command to run the TCP client. 
 
-````
+```bash
 java -jar tcp-producer-1.0.0-jar-with-dependencies.jar 
-````
+```
 
 It will take nearly 3 minutes to publish events which required to test all the flows in the given Siddhi app.
 
@@ -226,22 +226,22 @@ Then, as given in the [Setup MySQL](#setup-mysql) section. Download the MySQL da
 
 5. Start Siddhi app with the runner config by executing the following commands from the distribution directory.
         
-     ````
+     ```bash
      Linux/Mac : ./bin/runner.sh -Dapps=<siddhi-file-path> 
      Windows : bin\runner.bat -Dapps=<siddhi-file-path> 
 
 	    Eg: If exported siddhi app in Siddhi home directory,
             ./bin/runner.sh -Dapps=Taxi-Rider-Requests-Processing-App.siddhi
-     ````
+     ```
      
      ![siddhi_runner_console](images/siddhi-runner-console.png "Siddhi Runner Console") 
       
     
 6. Once server is started, download the sample TCP event generator from [here](https://github.com/mohanvive/siddhi-sample-clients/releases/download/v1.0.0/tcp-producer-1.0.0-jar-with-dependencies.jar) and execute below command.
 
-    ````
+    ```bash
     java -jar tcp-producer-1.0.0-jar-with-dependencies.jar tcp://localhost:9892/taxiRideRequests
-    ````
+    ```
     
     Above event publishes send binary events through TCP to the TCP endpoint defined in the Siddhi application. You can change the TCP endpoint url by passing them as java arguments. If not, sample client consider `tcp://localhost:9892/taxiRideRequests` as the TCP endpoint url.
     
@@ -262,9 +262,9 @@ Then, as given in the [Setup MySQL](#setup-mysql) section. Download the MySQL da
 MySQL is an external dependency for this use case. Hence, you could use the corresponding MySQL docker artifact to test the requirement.
 
 1. First, you can create a docker network for the deployment as shown below
-    ````
+    ```bash
 	docker network create siddhi-tier --driver bridge
-	````
+	```
 
 2. Then, you can get the MySQL docker image from [here](https://hub.docker.com/_/mysql) and run it with below command. We are going to use mysql version 5.7.27.
     
@@ -272,9 +272,9 @@ MySQL is an external dependency for this use case. Hence, you could use the corr
 
 3. Start the MySQL docker images with below command,
 
-    ````
+    ```bash
 	docker run --name mysql-server --network siddhi-tier -e MYSQL_ROOT_PASSWORD=root e1e1680ac726
-	````
+	```
 
 	!!! info "`e1e1680ac726` is the MySQL docker image id in this case"
 
@@ -288,7 +288,7 @@ MySQL is an external dependency for this use case. Hence, you could use the corr
 
 1. Since, MySQL client jar is required for the Siddhi runner; you have to create the docker image accordingly. Below is the sample Docker file created
 
-    ````
+    ```docker
     FROM siddhiio/siddhi-runner-base-alpine:5.1.0-alpha
     MAINTAINER Siddhi IO Docker Maintainers "siddhi-dev@googlegroups.com"
     
@@ -308,7 +308,7 @@ MySQL is an external dependency for this use case. Hence, you could use the corr
     STOPSIGNAL SIGINT
     
     ENTRYPOINT ["/home/siddhi_user/siddhi-runner/bin/runner.sh",  "--"]
-    ````
+    ```
     
     Here, you have to create a folder called `jars` to add necessary external client dependencies to the docker image.
 
@@ -318,23 +318,23 @@ MySQL is an external dependency for this use case. Hence, you could use the corr
     
 2. Once, Dockerfile is created you can create the docker image with below command.
 
-    ````
+    ```bash
     docker build -t siddhi_mysql .
-    ````
+    ```
     
 3. Then, you can run the Siddhi docker image that you created with necessary external dependencies to work with MySQL. 
 
-    ````
+    ```bash
     docker run --network siddhi-tier -it -p 9892:9892  -v /Users/mohan/siddhi-apps/:/siddhi-apps  -e MYSQL_DB_URL=jdbc:mysql://mysql-server:3306/MyTaxi -e MYSQL_USERNAME=root -e MYSQL_PASSWORD=root -e EMAIL_USERNAME=siddhi.gke.user -e EMAIL_PASSWORD=siddhi123 -e SENDER_EMAIL_ADDRESS=siddhi.gke.user@gmail.com -e MANAGER_EMAIL_ADDRESS=mohan@wso2.com siddhi_mysql:latest -Dapps=/siddhi-apps/Taxi-Rider-Requests-Processing-App.siddhi
-    ````
+    ```
     
     Note: In the above provided Siddhi app, there are some environmental variables (MYSQL_DB_URL, MYSQL_USERNAME, and  MYSQL_PASSWORD)  are used. These values are required to be set to try out the scenario end to end. MYSQL related environmental variables are required to store the events of stream `NeedMoreRidersStream` . Environmental variables EMAIL_PASSWORD, EMAIL_USERNAME, SENDER_EMAIL_ADDRESS and MANAGER_EMAIL_ADDRESS  are used to send an email alert when there is an increasing trend of cancellation on specific area. 
     
 4. You can use the sample [TCP event publisher](https://github.com/mohanvive/siddhi-sample-clients/releases/download/v1.0.0/tcp-producer-1.0.0-jar-with-dependencies.jar )  to simulate required events. Use the below command to publish events to TCP endpoint.
 
-    ````
+    ```bash
     java -jar tcp-producer-1.0.0-jar-with-dependencies.jar tcp://localhost:9892/taxiRideRequests
-    ````
+    ```
    
 5. Then, you could see below logs get printed in the Siddhi runner console/log, events related to `NeedMoreRidersStream`  are stored in the database table and escalation email is sent to the manager when there is an increasing trend found in the cancellations. 
 
@@ -348,24 +348,24 @@ MySQL is an external dependency for this use case. Hence, you could use the corr
 ### Deploy on Kubernetes
 
 1. It is advisable to create a namespace in Kubernetes to follow below steps.
-    ````
+    ```bash
     kubectl create ns siddhi-mysql-test
-    ````
+    ```
 
 2. There is a prerequisite that you should meet to tryout below SiddhiProcess; configuring MySQL database server within the above created namespace. You can use the official [helm chart](https://github.com/helm/charts/tree/master/stable/mysql) provided for MySQL.
 
     * First, install the MySQL helm chart as shown below,
-        ````
+        ```bash
         helm install --name mysql-db --namespace=siddhi-mysql-test --set mysqlRootPassword=root,mysqlDatabase=MyTaxi stable/mysql
-        ````
+        ```
 
         Here, you can define the root password to connect to the MYSQL database and also define the database name. BTW, make sure to do `helm init` if it is not done yet.
 
     * Then, you can set a port forwarding to the MySQL service which allows you to connect from the Host.
 	    
-	    ````
+	    ```bash
 	    kubectl port-forward svc/mysql-db 13306:3306 --namespace=siddhi-mysql-test
-	    ````
+	    ```
 
     * Then, you can login to the MySQL server from your host machine as shown below.
     
@@ -375,10 +375,10 @@ MySQL is an external dependency for this use case. Hence, you could use the corr
 
     - To install the Siddhi Kubernetes operator run the following commands.
         
-        ````
+        ```bash
         kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-alpha/00-prereqs.yaml  --namespace=siddhi-mysql-test
         kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-alpha/01-siddhi-operator.yaml --namespace=siddhi-mysql-test
-        ````
+        ```
         
     - You can verify the installation by making sure the following deployments are running in your Kubernetes cluster.
      
@@ -389,7 +389,7 @@ MySQL is an external dependency for this use case. Hence, you could use the corr
 
     - To deploy the above created Siddhi app, we have to create custom resource object yaml file (with the kind as SiddhiProcess) as given below
     
-        ````yaml
+        ```yaml
         apiVersion: siddhi.io/v1alpha2
         kind: SiddhiProcess
         metadata:
@@ -503,7 +503,7 @@ MySQL is an external dependency for this use case. Hence, you could use the corr
                 value: "mohan@wso2.com"
         
             image: "mohanvive/siddhi_mysql:latest"        
-        ````
+        ```
         
         Note: In the above provided Siddhi app, there are some environmental variables (MYSQL_DB_URL, MYSQL_USERNAME, and  MYSQL_PASSWORD)  are used. These values are required to be set to try out the scenario end to end. MYSQL related environmental variables are required to store the events of stream `NeedMoreRidersStream` . Environmental variables EMAIL_PASSWORD, EMAIL_USERNAME, SENDER_EMAIL_ADDRESS and MANAGER_EMAIL_ADDRESS  are used to send an email alert when there is an increasing trend of cancellation on specific area. Hence, make sure to add proper values for the environmental variables in the above yaml file (check the ‘env’ section of the yaml file).
       
@@ -511,38 +511,38 @@ MySQL is an external dependency for this use case. Hence, you could use the corr
 
     - Now,  let’s create the above resource in the Kubernetes  cluster with below command.
       	
-        ````
+        ```bash
         kubectl --namespace=siddhi-mysql-test create -f <absolute-yaml-file-path>/taxi-rider-requests-processing-app.yaml
-        ````
+        ```
       
         Once, siddhi app is successfully deployed. You can verify its health with below Kubernetes commands
         
         ![kubernetes_pods_with_mysql](images/k8s-pods-with-siddhi.png "Kubernetes Deployment & Pods")
     
     - You can find the alert logs in the siddhi runner log file. To see the Siddhi runner log file, you can invoke below command.
-        ````
+        ```bash
         kubectl get pods
-        ````
+        ```
      
         Then, find the pod name of the siddhi app deployed. Then invoke below command,
         
-        ````
+        ```bash
         kubectl logs <siddhi-app-pod-name> -f
-        ````
+        ```
         
     - Then, you can set a port forwarding to the Siddhi TCP endpoint which allows you to connect from the Host with below command.
      
-        ````
+        ```bash
         kubectl port-forward svc/taxi-rider-requests-processing-app-0 9892:9892 --namespace=siddhi-mysql-test   
-        ````
+        ```
         
         ![tco_port_forwarding](images/tcp-port-forwarding.png "Kubernetes TCP Port Forwarding")
    
     - Then execute below command to send TCP events to Siddhi Stream Processor.
    
-        ````
+        ```bash
         java -jar tcp-producer-1.0.0-jar-with-dependencies.jar tcp://0.0.0.0:9892/taxiRideRequests
-        ````     
+        ```     
      	
     - Then, you could see below logs get printed in the Siddhi runner console/log, events related to `NeedMoreRidersStream`  are stored in the database table and escalation email is sent to the manager when there is an increasing trend found in the cancellations.  
 

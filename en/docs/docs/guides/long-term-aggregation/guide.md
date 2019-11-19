@@ -69,9 +69,8 @@ When a user checkouts out a sales cart in 'X' online shopping malls website, the
 
 Siddhi App 1 : Responsible for Aggregating Data
 
-```sql
+```siddhi
 @App:name("SalesSummarization")
-
 @App:description('X online shopping mall - Summarization for sales by category, product and seller')
 
 @Source(type = 'http', receiver.url = 'http://0.0.0.0:8080/sales', basic.auth.enabled = 'false',
@@ -96,9 +95,8 @@ select categoryName, productName, sellerName, sum(quantity) as totalSales
 
 Siddhi App 2: Responsible for Sending alerts
 
-```sql
+```siddhi
 @App:name("DailyDealsCandidatesAlert")
-
 @App:description("Alerts regarding daily deals candidates - 1 product with max 5 sellers who sold the most in past 30 days")
 
 define trigger DailyTrigger at '0 00 23 ? * MON-FRI';
@@ -263,7 +261,7 @@ curl -X POST \
 
 If you invoke the above cURL request email alert will be triggered. You can also observe the logs along with the details sent in the email.
 
-```console
+```json
 DailyDealsCandidatesAlert : DailyDealsSellerCandidates : [
 {"event":{"emailToBeSent":true,"categoryName":"Accessories","productName":"Earring","last10DaysSales":80,"sellerName":"Malfoy","sellersSales":20}},
 {"event":{"emailToBeSent":true,"categoryName":"Accessories","productName":"Earring","last10DaysSales":80,"sellerName":"George","sellersSales":20}},
@@ -433,17 +431,17 @@ MySQL is an external dependency for this use case. Hence, you could use the corr
 
 1. It is advisable to create a namespace in Kubernetes to follow below steps.
 
-    ````console
+    ```console
     kubectl create ns agg-guide
-    ````
+    ```
 
 2. There are some prerequisites that you should meet to tryout below SiddhiProcess. Such as configure MySQL database in Kubernetes. First, configure the MySQL server within the created namespace as in Step 1. You can use the official [helm chart](https://github.com/helm/charts/tree/master/stable/mysql) provided for MySQL.
 
     * First, install the MySQL helm chart as shown below,
 
-        ````console
+        ```console
         helm install --name mysql-server --namespace=agg-guide --set mysqlRootPassword=root,mysqlUser=root,mysqlDatabase=testdb stable/mysql
-        ````
+        ```
 
         Here, you can define the root password to connect to the MYSQL database and also define the database name. BTW, make sure to do `helm init --tiller-namespace=agg-guide` if it is not done yet.
 
@@ -451,9 +449,9 @@ MySQL is an external dependency for this use case. Hence, you could use the corr
 
     * Then, you can set a port forwarding to the MySQL service which allows you to connect from the Host.
 
-        ````console
+        ```console
         kubectl port-forward svc/mysql-server 13300:3306 --namespace=agg-guide
-        ````
+        ```
 
     * Then, you can login to the MySQL server from your host machine as shown below.
 
@@ -463,10 +461,10 @@ MySQL is an external dependency for this use case. Hence, you could use the corr
 
     * To install the Siddhi Kubernetes operator run the following commands.
 
-        ````console
+        ```console
         kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.1/00-prereqs.yaml  --namespace=agg-guide
         kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.1/01-siddhi-operator.yaml --namespace=agg-guide
-        ````
+        ```
 
     * You can verify the installation by making sure the following deployments are running in your Kubernetes cluster.
 
@@ -527,9 +525,9 @@ MySQL is an external dependency for this use case. Hence, you could use the corr
 
 2. Now,  let’s create the above resource in the Kubernetes  cluster with below command.
 
-    ````console
+    ```console
     kubectl --namespace=agg-guide apply -f <absolute-path>/siddhi-kubernetes/siddhi-process.yaml
-    ````
+    ```
 
     Once, siddhi apps are successfully deployed. You can verify its health with below Kubernetes commands
 

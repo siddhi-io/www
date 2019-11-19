@@ -80,8 +80,7 @@ Once the Siddhi app is created, you can use the Event Simulator option in the ed
 
 ### Vehicle Locator
 
-```sql
-
+```siddhi
 @App:name("ParisTMAVehicleLocator")
 @App:description("Listen to the events send by NATS about vehicle locations and periodically update the Mongo database.")
 
@@ -124,7 +123,7 @@ on subscriber.vehicleId==vehicleId;
 
 ### Notifier
 
-```sql
+```siddhi
 @App:name("ParisTMANotifier")
 @App:description("Listen to the CDC events about the weather updates and send notifications to the subscribed users.")
 

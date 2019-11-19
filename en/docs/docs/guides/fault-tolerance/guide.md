@@ -57,10 +57,10 @@ Below are the prerequisites that should be considered to implement the above use
     Follow below steps to start the Siddhi tooling runtime.
     * Extract the downloaded zip and navigate to <TOOLING_HOME>/bin. (TOOLING_HOME refers to the extracted folder) 
     * Issue the following command in the command prompt (Windows) / terminal (Linux/Mac)
-        ````
+        ```bash
         For Windows: tooling.bat
         For Linux/Mac: ./tooling.sh
-        ````
+        ```
 
 2. Select File -> New option, then you could either use the source view or design view to write/build the Siddhi Application. You can find the Siddhi Application bellow, that implements the requirements mentioned above.
 
@@ -69,7 +69,7 @@ Below are the prerequisites that should be considered to implement the above use
 4. Once the Siddhi app is created, you can use the Event Simulator option in the editor to simulate events to streams and perform developer testing.
 
 
-````sql
+```siddhi
 @App:name("Glucose-Reading-PreProcessing-App")
 @App:description('Process Glucose Readings received from patients')
 
@@ -170,7 +170,7 @@ insert into FailedAbnormalReadingStream;
 from FailedAbnormalReadingStream
 select *
 insert into FailedAbnormalReadingTable;
-````
+```
 
 Source view of the Siddhi app.
 ![source_view](images/source-view.jpg "Source view of the Siddhi App")
@@ -195,13 +195,13 @@ As a prerequisite, you have to start the Kafka message broker. Please follow bet
 1. Download the Kafka [distribution](https://kafka.apache.org/downloads)
 2. Unzip the above distribution and go to the ‘bin’ directory
 3. Start the zookeeper by executing below command,
-    ````
+    ```bash
     zookeeper-server-start.sh config/zookeeper.properties
-    ````
+    ```
 4. Start the Kafka broker by executing below command,
-    ````
+    ```bash
     kafka-server-start.sh config/server.properties
-    ````
+    ```
 
 Refer the Kafka documentation for more details, https://kafka.apache.org/quickstart 
 
@@ -249,7 +249,7 @@ In the snapshot persistence, Kafka offset value is also get persisted then when 
 
 You can configure the snapshot state persistence with the below configuration. Save below configuration as YAML file (for example snapshot.yaml)
 
-````yaml
+```yaml
 state.persistence:
   enabled: true
   intervalInMin: 1
@@ -257,13 +257,13 @@ state.persistence:
   persistenceStore: io.siddhi.distribution.core.persistence.FileSystemPersistenceStore
   config:
     location: siddhi-app-persistence
-````
+```
 
 Then start the Siddhi runtime with below command.
 
-````
+```bash
 ./tooling.sh -Dconfig=<File-Path>/snapshot.yaml
-````
+```
 
 ### Invoking the Siddhi App
 
@@ -295,7 +295,7 @@ Then, as given in [Setup Kafka](#setup-kafka) and [Setup MySQL](#setup-mysql) se
 
 #### Siddhi Runtime Configuration
 
-1. Make sure to set the necessary environmental variables as given above.
+1.  Make sure to set the necessary environmental variables as given above.
     Note: In the above provided Siddhi app, there are some environmental variables (MYSQL_DB_URL, MYSQL_USERNAME, and  MYSQL_PASSWORD)  are used. These values are required to be set to try out the scenario end to end. MYSQL related environmental variables are required to store the events which are failed to publish to the HTTP endpoint. Environmental variable KAFKA_BOOTSTRAP_SERVER_URL is the Kafka endpoint URL where Siddhi listens and consume events from.
     Hence, make sure to set the environmental variables with the proper values in the system (make sure to follow necessary steps based on the underneath operating system).  
     
@@ -319,21 +319,21 @@ Then, as given in [Setup Kafka](#setup-kafka) and [Setup MySQL](#setup-mysql) se
 
 5. Start Siddhi app with the runner config by executing the following commands from the distribution directory.
         
-     ````
+     ```bash
      Linux/Mac : ./bin/runner.sh -Dapps=<siddhi-file-path> -Dconfig=<config-yaml-path>
      Windows : bin\runner.bat -Dapps=<siddhi-file-path> -Dconfig=<config-yaml-path>
 
 	    Eg: If exported siddhi app in Siddhi home directory,
             ./bin/runner.sh -Dapps=Glucose-Reading-PreProcessing-App.siddhi -Dconfig=snapshot.yaml
-     ````
+     ```
      
      Note: `snapshot.yaml` file contains the configuration to enable state snapshot persistence
     
 6. Once server is started, download the sample Kafka Avro event generator from [here](https://github.com/mohanvive/siddhi-sample-clients/releases/download/v1.0.0/kafka-avro-producer-1.0.0-jar-with-dependencies.jar) and execute below command.
 
-    ````
+    ```bash
     java -jar kafka-avro-producer-1.0.0-jar-with-dependencies.jar
-    ````
+    ```
     
     Above event publishes send 4 Avro events to generate an abnormal behavior as defined in the Siddhi application. You can change the kafka endpoint and topic by passing them as java arguments. If not, sample client consider “localhost:9092” as the kafka bootstrap server endpoint and “glucose-readings” as the topic.
     
@@ -351,9 +351,9 @@ Then, as given in [Setup Kafka](#setup-kafka) and [Setup MySQL](#setup-mysql) se
 Apache Kafka and MySQL are the external dependencies for this use case. Hence, you could use the corresponding docker artifacts to test the requirement.
 
 1. First, you can create a docker network for the deployment as shown below
-    ````
+    ```bash
 	docker network create siddhi-tier --driver bridge
-	````
+	```
 
 2. Then, you can get the MySQL docker image from [here](https://hub.docker.com/_/mysql) and run it with below command. We are going to use mysql version 5.7.27.
     
@@ -361,9 +361,9 @@ Apache Kafka and MySQL are the external dependencies for this use case. Hence, y
 
 3. Start the MySQL docker images with below command,
 
-    ````
+    ```bash
 	docker run --name mysql-server --network siddhi-tier -e MYSQL_ROOT_PASSWORD=root e1e1680ac726
-	````
+	```
 
 	!!! info "`e1e1680ac726` is the MySQL docker image id in this case"
 
@@ -377,15 +377,15 @@ Apache Kafka and MySQL are the external dependencies for this use case. Hence, y
 
 6. Launch the Zookeeper server instance with below provided command,
     
-    ````
+    ```bash
     docker run -d --name zookeeper-server --network siddhi-tier -e ALLOW_ANONYMOUS_LOGIN=yes bitnami/zookeeper:latest
-    ````
+    ```
 
 7. Launch the Kafka server instance with below provide command,
 
-    ````
+    ```bash
     docker run -d --name kafka-server --network siddhi-tier -e ALLOW_PLAINTEXT_LISTENER=yes -e KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper-server:2181 bitnami/kafka:latest
-    ````
+    ```
 
 8. Now, you have configured necessary prerequisites that required to run the use case. 
 
@@ -393,7 +393,7 @@ Apache Kafka and MySQL are the external dependencies for this use case. Hence, y
 
 1. Since, there are some external client jars (Kafka & MySQL) are required for the Siddhi runner. You have to create the docker image accordingly. Below is the sample Docker file created
 
-    ````
+    ```docker
     FROM siddhiio/siddhi-runner-base-alpine:5.1.0-alpha
     MAINTAINER Siddhi IO Docker Maintainers "siddhi-dev@googlegroups.com"
     
@@ -414,7 +414,7 @@ Apache Kafka and MySQL are the external dependencies for this use case. Hence, y
     STOPSIGNAL SIGINT
     
     ENTRYPOINT ["/home/siddhi_user/siddhi-runner/bin/runner.sh",  "--"]
-    ````
+    ```
 
     Here, you have to create two folders called `bundles` and `jars` to add necessary external client dependencies to the docker image.
 
@@ -423,12 +423,12 @@ Apache Kafka and MySQL are the external dependencies for this use case. Hence, y
     You can refer the official Siddhi documentation [reference](https://siddhi.io/en/v5.1/docs/config-guide/#adding-to-siddhi-docker-microservice) for this purpose.
     
 2. Once, Dockerfile is created you can create the docker image with below command.
-    ````
+    ```bash
     docker build -t siddhi_for_kafka .
-    ````
+    ```
 3. Create a folder locally (eg: /home/siddhi-artifacts) and copy the Siddhi app in to it. Also, create a YAML file (snapshot.yaml) with below configuration to enable state snapshot persistence in the created folder.
 
-    ````yaml
+    ```yaml
     state.persistence:
       enabled: true
       intervalInMin: 1
@@ -436,21 +436,21 @@ Apache Kafka and MySQL are the external dependencies for this use case. Hence, y
       persistenceStore: io.siddhi.distribution.core.persistence.FileSystemPersistenceStore
       config:
         location: /siddhi-app-persistence
-    ````
+    ```
 
 4. Then, you can run the Siddhi docker image that you created with necessary external dependencies to work with Kafka and MySQL. 
 
-    ````
+    ```bash
     docker run --network siddhi-tier -it  -v /Users/mohan/scratch/siddhi-artifacts:/artifacts -v /Users/mohan/scratch/local-mount:/siddhi-app-persistence -e MYSQL_DB_URL=jdbc:mysql://mysql-server:3306/HCD -e MYSQL_USERNAME=root -e MYSQL_PASSWORD=root -e KAFKA_BOOTSTRAP_SERVER_URL=kafka-server:9092 siddhi_for_kafka:latest -Dapps=/artifacts/Glucose-Reading-PreProcessing-App.siddhi -Dconfig=/artifacts/snapshot.yaml
-    ````
+    ```
     
     Note: In the above provided Siddhi app, there are some environmental variables (MYSQL_DB_URL, MYSQL_USERNAME and  MYSQL_PASSWORD)  are used. These values are required to be set to tryout the scenario end to end. MYSQL related environmental variables are required to store the events which are failed to publish to the HTTP endpoint. Environmental variable KAFKA_BOOTSTRAP_SERVER_URL is the Kafka endpoint url where Siddhi listens and consume events from.
 
 5. You can use the sample [Kafka publisher client](https://hub.docker.com/r/mohanvive/kafka-event-publisher)  available in docker hub to simulate required events. Use the below command to use the sample docker Kafka publisher client.
    
-   ````
+   ```bash
    docker run --network siddhi-tier -it mohanvive/kafka-event-publisher:latest
-   ````
+   ```
    
 6. Then, you could see below log gets printed in the Siddhi runner console and failed events are stored in the database table. 
 
@@ -461,24 +461,24 @@ Apache Kafka and MySQL are the external dependencies for this use case. Hence, y
 ### Deploy on Kubernetes
 
 1. It is advisable to create a namespace in Kubernetes to follow below steps.
-    ````
+    ```bash
     kubectl create ns siddhi-kafka-test
-    ````
+    ```
 
 2. There are some prerequisites that you should meet to tryout below SiddhiProcess. Such as configure MySQL database and Kafka messaging system in Kubernetes. First, configure the MySQL server within the above created namespace. You can use the official [helm chart](https://github.com/helm/charts/tree/master/stable/mysql) provided for MySQL.
 
     * First, install the MySQL helm chart as shown below,
-        ````
+        ```bash
         helm install --name mysql-db --namespace=siddhi-kafka-test --set mysqlRootPassword=root,mysqlDatabase=HCD stable/mysql
-        ````
+        ```
 
         Here, you can define the root password to connect to the MYSQL database and also define the database name. BTW, make sure to do `helm init` if it is not done yet.
 
     * Then, you can set a port forwarding to the MySQL service which allows you to connect from the Host.
 	    
-	    ````
+	    ```bash
 	    kubectl port-forward svc/mysql-db 13306:3306 --namespace=siddhi-kafka-test
-	    ````
+	    ```
 
     * Then, you can login to the MySQL server from your host machine as shown below.
     
@@ -488,9 +488,9 @@ Apache Kafka and MySQL are the external dependencies for this use case. Hence, y
 
     * First, install Kafka helm chart as shown below.
 	
-	    ````
+	    ```bash
 	    helm install --name my-kafka incubator/kafka --namespace=siddhi-kafka-test
-	    ````
+	    ```
 	
         ![k8s_kafka_install](images/k8s-kafka-install.png "HELM Chart for Kafka") 
 
@@ -500,10 +500,10 @@ Apache Kafka and MySQL are the external dependencies for this use case. Hence, y
 
     - To install the Siddhi Kubernetes operator run the following commands.
         
-        ````
+        ```bash
         kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-alpha/00-prereqs.yaml  --namespace=siddhi-kafka-test
         kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-alpha/01-siddhi-operator.yaml --namespace=siddhi-kafka-test
-        ````
+        ```
         
     - You can verify the installation by making sure the following deployments are running in your Kubernetes cluster.
      
@@ -515,7 +515,7 @@ Apache Kafka and MySQL are the external dependencies for this use case. Hence, y
 
     - To deploy the above created Siddhi app, we have to create custom resource object yaml file (with the kind as SiddhiProcess) as given below
     
-        ````yaml
+        ```yaml
         apiVersion: siddhi.io/v1alpha2
         kind: SiddhiProcess
         metadata:
@@ -659,7 +659,7 @@ Apache Kafka and MySQL are the external dependencies for this use case. Hence, y
         
             image: "mohanvive/siddhi_for_kafka:latest"
         
-        ````
+        ```
         
         Note: In the above provided Siddhi app, there are some environmental variables (MYSQL_DB_URL, MYSQL_USERNAME and  MYSQL_PASSWORD)  are used. These values are required to be set to tryout the scenario end to end. MYSQL related environmental variables are required to store the events which are failed to publish to the HTTP endpoint. Environmental variable KAFKA_BOOTSTRAP_SERVER_URL is the Kafka endpoint url where Siddhi listens and consume events from. Hence, make sure to add proper values for the environmental variables in the above yaml file (check the `env` section of the yaml file).
             
@@ -669,9 +669,9 @@ Apache Kafka and MySQL are the external dependencies for this use case. Hence, y
 
     - Now,  let’s create the above resource in the Kubernetes  cluster with below command.
       	
-        ````
+        ```bash
         kubectl --namespace=siddhi-kafka-test create -f <absolute-yaml-file-path>/glucose-reading-preprocessing-app.yaml
-        ````
+        ```
         
         Once, siddhi app is successfully deployed. You can verify its health with below Kubernetes commands
         
@@ -681,7 +681,7 @@ Apache Kafka and MySQL are the external dependencies for this use case. Hence, y
     
         - Create a pod with below definition. 
     
-            ````yaml
+            ```yaml
             apiVersion: v1
               kind: Pod
               metadata:
@@ -695,31 +695,31 @@ Apache Kafka and MySQL are the external dependencies for this use case. Hence, y
                     - sh
                     - -c
                     - "exec tail -f /dev/null"
-            ````
+            ```
             
         - Create a YAML file called test-client.yaml, add above pod definition in it and run below command.
             
-            ````
+            ```bash
             kubectl apply -f test-client.yaml
-            ````
+            ```
             
         - Then, go into the above created pod using below command.
    
-            ````
+            ```bash
     		kubectl exec -it testclient sh --namespace=siddhi-kafka-test
-    		````
+    		```
     
         - Download the sample Kafka client which could publish events related to above use case.
    
-    	    ````
+    	    ```bash
     	    wget https://github.com/mohanvive/siddhi-sample-clients/releases/download/v1.0.0/kafka-avro-producer-1.0.0-jar-with-dependencies.jar
-    	    ````
+    	    ```
     
         - Then execute below command to push events to Kafka messaging system.
    
-    	    ````
+    	    ```bash
     	    java -jar kafka-avro-producer-1.0.0-jar-with-dependencies.jar my-kafka-headless:9092
-    	    ````
+    	    ```
     
         - Then, as defined in the SIddhi application abnormal events get logged since it tries to publish to an unavailable endpoint.
 

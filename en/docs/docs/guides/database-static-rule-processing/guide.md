@@ -82,8 +82,7 @@ Now, you have to start the Siddhi tooling editor before implementing the Siddhi 
 !!! Note "Siddhi Query Guide"
     The execution steps and the logic of the Siddhi query described as comments in the following Siddhi app. Therefore here we are not going to explain in detail here. For more details about Siddhi queries please refer [Siddhi query guide](https://siddhi.io/en/v5.1/docs/query-guide/).
 
-```sql
-
+```siddhi
 @App:name("ComboSuperMartPromoProcess")
 @App:description("The promotion selection process of Combo super mart.")
 

@@ -71,7 +71,7 @@ There is a situation that you wanted to add any external dependencies (such as M
 
 In that case, you can directories locally as per your requirement and issue a similar command as shown below,
 
-```
+```bash
 docker run -it -p 9390:9390 \ 
   -v <absolute path>/configs:/artifacts \
   -v <absolute path>/workspace:/home/siddhi_user/siddhi-tooling/wso2/tooling/deployment/workspace \
@@ -82,7 +82,7 @@ docker run -it -p 9390:9390 \
 
 For example, let's assume that your email configuration as a file that you wanted to use within the Siddhi editor. In that case, you can add the email configuration file (eg: `EmailConfig.yaml`) into the `configs` mounting directory that you have created locally and issue below command to apply the configuration in Siddhi tooling.
 
-```
+```bash
 docker run -it -p 9390:9390 \ 
   -v <absolute path>/configs:/artifacts \
   -v <absolute path>/workspace:/home/siddhi_user/siddhi-tooling/wso2/tooling/deployment/workspace \

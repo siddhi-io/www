@@ -39,7 +39,7 @@ docker run -it -v /home/me/siddhi-apps:/apps -v /home/me/siddhi-configs:/configs
 
 Following SiddhiApp collects events via HTTP and logs the number of events arrived during last 15 seconds.  
 
-```sql
+```siddhi
 @App:name('CountOverTime')
 @App:description('Receive events via HTTP, and logs the number of events received during last 15 seconds')
 
@@ -111,7 +111,7 @@ When running SiddhiApps users can optionally provide a config yaml to Siddhi run
 
 Following SiddhiApp collects events via HTTP and store them in H2 Database.
 
-```sql
+```siddhi
 @App:name("ConsumeAndStore")
 @App:description("Consume events from HTTP and write to TEST_DB")
 
@@ -228,7 +228,7 @@ Following templated SiddhiApp collects events via HTTP, filters them based on `a
 
 Here the `THRESHOLD` value, and `TO_EMAIL` are templated in the `TemplatedFilterAndEmail.siddhi` SiddhiApp.
 
-```sql
+```siddhi
 @App:name("TemplatedFilterAndEmail")
 @App:description("Consumes events from HTTP, filters them based on amount greater than a templated threshold value, and sends filtered events via email.")
 

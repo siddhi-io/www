@@ -60,10 +60,10 @@ When a subscriber made an API call to `order-mgt-v1` API it sends an event with 
     Follow below steps to start the Siddhi tooling runtime.
     * Extract the downloaded zip and navigate to <TOOLING_HOME>/bin. (TOOLING_HOME refers to the extracted folder) 
     * Issue the following command in the command prompt (Windows) / terminal (Linux/Mac)
-        ````
+        ```bash
         For Windows: tooling.bat
         For Linux/Mac: ./tooling.sh
-        ````
+        ```
 
 2. Select File -> New option, then you could either use the source view or design view to write/build the Siddhi Application. You can find the Siddhi Application bellow, that implements the requirements mentioned above.
 
@@ -72,7 +72,7 @@ When a subscriber made an API call to `order-mgt-v1` API it sends an event with 
 4. Once the Siddhi app is created, you can use the Event Simulator option in the editor to simulate events to streams and perform developer testing.
 
 
-````sql
+```siddhi
 @App:name('API-Request-Throttler')
 @App:description('Enforces throttling on API requests')
 
@@ -132,7 +132,7 @@ select user, apiName, version, tier, userEmail, count() as throttledCount
 output first every 15 min 
 insert into UserNotificationStream;
 
-````
+```
 
 Source view of the Siddhi app.
 ![source_view](images/source-view.png "Source view of the Siddhi App")
@@ -162,9 +162,9 @@ When you run the Siddhi app in the editor, you will see below logs getting print
 
 In the provided Siddhi app, there is an HTTP sink configured to push output events to an HTTP endpoint of the API Manager. For simplicity, you will be mocking this service. Please download the mock server [jar](https://github.com/mohanvive/siddhi-mock-services/releases/download/v1.0.0/logservice-1.0.0.jar) and run that mock service by executing the following command.
 
-````
+```bash
 java -jar logservice-1.0.0.jar
-````
+```
 
 ### Invoking the Siddhi App
 
@@ -172,17 +172,17 @@ As per the Siddhi app that you wrote in the 'Implementation' section, there is a
 
 As per the app, the API request will get throttled if there are more than 10 requests by the same user, to the same API (for 'silver’ tier).
 
-````
+```bash
 curl -v -X POST -d '{ "event": { "apiName": "order-mgt-v1", "version": "1.0.0", "tier":"silver","user":"mohan", "userEmail":"example@wso2.com"}}' "http://localhost:8006/apiRequest" -H "Content-Type:application/json"
-````
+```
 
 If you invoke the above cURL request for more than 10 times within a minute, then Siddhi starts throttling the request, and sends an alert to the API Manager (logservice), while logging the alert as below.
 
-````
+```bash
 INFO {io.siddhi.core.stream.output.sink.LogSink} - API-Request-Throttler :
 ThrottleOutputStream : Event{timestamp=1564056341280, data=[order-mgt-v1, 1.0.0,
 mohan, silver, true], isExpired=false}
-````
+```
 
 You can validate that the alert has reached the API Manager (logservice) from its console logs.
 
@@ -211,13 +211,13 @@ You can deploy the Siddhi app using any of the methods listed below.
     
 4. Start Siddhi app with the runner config by executing the following commands from the distribution directory.
         
-     ````
+     ```bash
      Linux/Mac : ./bin/runner.sh -Dapps=<siddhi-file-path> 
      Windows : bin\runner.bat -Dapps=<siddhi-file-path>
 
 	    Eg: If exported siddhi app in Siddhi home directory,
             ./bin/runner.sh -Dapps=API-Request-Throttler.siddhi
-     ````
+     ```
     
 5. Download the mock [logging service](https://github.com/mohanvive/siddhi-mock-services/releases/download/v1.0.0/logservice-1.0.0.jar) which is used to demonstrate the capability of Siddhi HTTP sink. Execute the below command to run the mock server.
 
@@ -241,30 +241,30 @@ You can deploy the Siddhi app using any of the methods listed below.
 
 2. Pull the latest Siddhi Runner image from [Siddhiio Docker Hub] (https://hub.docker.com/u/siddhiio).
     
-    ````
+    ```bash
     docker pull siddhiio/siddhi-runner-alpine:5.1.0-alpha
-    ````
+    ```
 
 3. Start SiddhiApp by executing the following docker command.
 
-    ````
+    ```bash
     docker run -it -p 8006:8006 -v /home/siddhi-apps:/apps -e EMAIL_PASSWORD=siddhi123 -e EMAIL_USERNAME=siddhi.gke.user -e SENDER_EMAIL_ADDRESS=siddhi.gke.user@gmail.com -e LOGGER_SERVICE_HOST=10.100.0.99 siddhiio/siddhi-runner-alpine:5.1.0-alpha -Dapps=/apps/API-Request-Throttler.siddhi
-    ````
+    ```
 
     NOTE: In the above provided Siddhi app, there are some environmental variables (EMAIL_PASSWORD, EMAIL_USERNAME, and SENDER_EMAIL_ADDRESS) which are required to be set to send email alerts based on the Siddhi queries defined. Again, there is a mock service configured to receive the throttle decisions (instructions given below), and its host is configured via LOGGER_SERVICE_HOST environment property. 
     Hence, make sure to add proper values for the environmental variables in the above command.
 
 4. Download the mock [logging service](https://github.com/mohanvive/siddhi-mock-services/releases/download/v1.0.0/logservice-1.0.0.jar) which is used to demonstrate the capability of Siddhi HTTP sink. Execute the below command to run the mock server.
 
-    ````
+    ```bash
 	    java -jar logservice-1.0.0.jar
-	````
+	```
 
 5. Invoke the apiRequest service with the following cURL request for more than 10 times within a minute time period. Please make sure to change the `userEmail` property value to an email address that you could use to test the email alerting purposes.
 
-    ````
+    ```bash
         curl -v -X POST -d '{ "event": { "apiName": "order-mgt-v1", "version": "1.0.0", "tier": "silver", "user":"mohan", "userEmail":"example@wso2.com"}}' "http://localhost:8006/apiRequest" -H "Content-Type:application/json"
-    ````
+    ```
         
 6. Since you have started the docker in interactive mode you can see the output in its console as below. 
 (If it is not started in the interactive mode then you can run `docker exec -it  <docker-container-id> sh` command, go into the container and check the log file in `home/siddhi_user/siddhi-runner/wso2/runner/logs/carbon.log` file)
@@ -282,10 +282,10 @@ You can deploy the Siddhi app using any of the methods listed below.
 1. Install Siddhi Operator
     - To install the Siddhi Kubernetes operator run the following commands.
         
-        ````
+        ```bash
         kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-alpha/00-prereqs.yaml
         kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-alpha/01-siddhi-operator.yaml
-        ````
+        ```
         
      - You can verify the installation by making sure the following deployments are running in your Kubernetes cluster.
      
@@ -295,16 +295,16 @@ You can deploy the Siddhi app using any of the methods listed below.
 2. Download the mock [logging service](https://github.com/mohanvive/siddhi-mock-services/releases/download/v1.0.0/logservice-1.0.0.jar) 
 which is used to demonstrate the capability of Siddhi HTTP sink. Execute the below command to run the mock server.
 
-    ````
+    ```bash
         java -jar logservice-1.0.0.jar
-    ````
+    ```
     
 3. Siddhi applications can be deployed on Kubernetes using the Siddhi operator.
     - Before deploying the apps you have to define an [Ingress](https://kubernetes.github.io/ingress-nginx/deploy/#provider-specific-steps), this is because there is an HTTP endpoint in the Siddhi app you have written and you will be sending events to that.
 
     - To deploy the above created Siddhi app, you have to create a custom resource object YAML file (with the kind as SiddhiProcess) as following
     
-        ````yaml
+        ```yaml
         apiVersion: siddhi.io/v1alpha2
         kind: SiddhiProcess
         metadata:
@@ -386,16 +386,16 @@ which is used to demonstrate the capability of Siddhi HTTP sink. Execute the bel
                 value: "10.100.0.99"
         
             image: "siddhiio/siddhi-runner-ubuntu:5.1.0-alpha"
-        ````
+        ```
         
         NOTE: In the above provided Siddhi app, there are some environmental variables (EMAIL_PASSWORD, EMAIL_USERNAME, and SENDER_EMAIL_ADDRESS) which are required to be set to send email alerts based on the Siddhi queries defined. Again, there is a mock service configured to receive the throttle decisions (instructions given below), and its host is configured via LOGGER_SERVICE_HOST environment property. 
         Hence, make sure to add proper values for the environmental variables in the above YAML file (check the `env` section of the YAML file).
         
     - Now, let’s create the above resource in the Kubernetes cluster with the following command.
         
-        ````    	
+        ```bash    	
     	 kubectl create -f <absolute-yaml-file-path>/API-Request-Throttler.yaml
-    	````
+    	```
     
     - Once, Siddhi app is successfully deployed. You can verify its health using the following commands
         
@@ -405,15 +405,15 @@ which is used to demonstrate the capability of Siddhi HTTP sink. Execute the bel
     
     - You can find the alert logs in the Siddhi runner log file. To see the Siddhi runner log file, first, invoke below command to get the pods.
         
-        ````
+        ```bash
         kubectl get pods
-        ````
+        ```
     
         Then, find the pod name of the Siddhi app deployed, and invoke below command to view the logs.
         
-        ````
+        ```bash
         kubectl logs <siddhi-app-pod-name> -f
-        ````
+        ```
         
         Eg: as shown below image,
             
@@ -421,9 +421,9 @@ which is used to demonstrate the capability of Siddhi HTTP sink. Execute the bel
 
     - Invoke the apiRequest service with below cURL request for more than 10 times within a minute. Please make sure to change the `userEmail` property value to an email address that you could use to test the email alerting purposes.
       
-        ````
+        ```bash
         curl -v -X POST -d '{ "event": { "apiName": "order-mgt-v1", "version": "1.0.0", "tier": "silver", "user":"mohan", "userEmail":"example@wso2.com"}}' "http://siddhi/api-throttler-app-0/8006/apiRequest" -H "Content-Type:application/json"
-        ````
+        ```
           
     - Then, you will be able to see the throttle decisions as console logs (as given below).
     
