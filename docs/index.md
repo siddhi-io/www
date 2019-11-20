@@ -25,7 +25,7 @@ template: templates/mkt-webpage.html
 <div class="col-md-6 col-sm-6">
 <h1>Siddhi</h1>
 <p>
-Fully open source, cloud native, scalable, streaming, and complex event processing system capable of building event-driven applications for real-time analytics, data integration, notification, and adaptive decision-making usecases.
+Fully open source, cloud native, scalable, <b>micro streaming</b>, and complex event processing system capable of building event-driven applications for real-time analytics, data integration, notification, and adaptive decision-making usecases.
 </p>
 <p>
 Event processing logic can be written using Streaming SQL queries via Siddhi graphical and source editor, to capture events from diverse data sources, process and analyze events, integrate with multiple services and data stores, and publish output to various endpoints in real-time. 
@@ -216,12 +216,11 @@ Event processing logic can be written using Streaming SQL queries via Siddhi gra
 </div>
 
 
-<div class="row cSection cWhite">
+<div class="row cSection cWhite userLogos">
 <div class="container">
 <div class="col-md-12 col-sm-12">
 <h2>Who Uses Siddhi</h2>
-<br/>
-<div class="userLogos">
+<div >
 <a href="http://cellery.io/" target="_blank"><img src="images/users/cellery-logo.png" /></a>
 <a href="http://www.csipiemonte.it/" target="_blank"><img src="images/users/csi-logo.png" /></a>
 <a href="https://eagle.apache.org/" target="_blank"><img src="images/users/eagle-logo.png" /></a>

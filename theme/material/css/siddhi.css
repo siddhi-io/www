@@ -768,3 +768,24 @@ a.cTryIt:hover {
 [data-md-color-primary=teal] .cUseCasesContainer a img{
     width: 10px;
 }
+
+@media (min-width: 60em) {
+    .userLogos img {
+        max-height: 120px;
+        padding: 10px;
+    }
+}
+@media (max-width: 60em) {
+    .userLogos img {
+        max-height: 80px;
+        padding: 5px;
+    }
+}
+
+.userLogos div div div {
+    text-align: center;
+}
+
+.row.cSection.cWhite.userLogos {
+    padding-bottom: 70px;
+}
