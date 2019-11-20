@@ -114,35 +114,32 @@ if (typeof hljs === 'object') {
 /*
  * Following script is adding line numbers to the siddhi code blocks in the gneerated documentation
  */
-function initCodeLineNumbers() {
 
-    $('pre.codehilite > code').each(function () {
+$('pre.codehilite > code').each(function () {
 
-        if ($(this).parent().find('.line-numbers-wrap').length === 0) {
-            //cont the number of rows
-            //Remove the new line from the end of the text
-            var numberOfLines = $(this).text().replace(/\n$/, "").split(/\r\n|\r|\n/).length;
-            var lines = '<div class="line-numbers-wrap">';
+    if ($(this).parent().find('.line-numbers-wrap').length === 0) {
+        //cont the number of rows
+        //Remove the new line from the end of the text
+        var numberOfLines = $(this).text().replace(/\n$/, "").split(/\r\n|\r|\n/).length;
+        var lines = '<div class="line-numbers-wrap">';
 
-            //Iterate all the lines and create div elements with line number
-            for (var i = 1; i <= numberOfLines; i++) {
-                lines = lines + '<div class="line-number">' + i + '</div>';
-            }
-            lines = lines + '</div>';
-            //calculate <pre> height and set it to the container
-            var preHeight = numberOfLines * 18 + 20;
-
-            $(this).parent()
-                .addClass('code-pre-wrapper')
-                .prepend($(lines));
+        //Iterate all the lines and create div elements with line number
+        for (var i = 1; i <= numberOfLines; i++) {
+            lines = lines + '<div class="line-number">' + i + '</div>';
         }
+        lines = lines + '</div>';
+        //calculate <pre> height and set it to the container
+        var preHeight = numberOfLines * 18 + 20;
 
-    });
-}
+        $(this).parent()
+            .addClass('code-pre-wrapper')
+            .prepend($(lines));
+    }
+
+});
+
 
 request.onload = function () {
-
-    initCodeLineNumbers();
 
     /*
      * Initialize highlightjs
