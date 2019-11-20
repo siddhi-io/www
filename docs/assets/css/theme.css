@@ -665,3 +665,20 @@ html .md-typeset .superfences-tabs > label:hover {
 .landing-container {
     padding-top: 1rem;
 }
+
+@media (min-width: 60em) {
+    .userLogos img {
+        max-height: 120px;
+        padding: 10px;
+    }
+}
+@media (max-width: 60em) {
+    .userLogos img {
+        max-height: 80px;
+        padding: 5px;
+    }
+}
+
+.userLogos{
+    text-align: center;
+}

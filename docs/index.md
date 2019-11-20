@@ -216,17 +216,25 @@ Event processing logic can be written using Streaming SQL queries via Siddhi gra
 </div>
 
 
-
 <div class="row cSection cWhite">
-<div class="container bannerImage">
+<div class="container">
 <div class="col-md-12 col-sm-12">
-<h2>Working with Siddhi</h2>
-<img src="images/how-siddhi-works.png"/>
-<p/>
+<h2>Who Uses Siddhi</h2>
+<br/>
+<div class="userLogos">
+<a href="http://cellery.io/" target="_blank"><img src="images/users/cellery-logo.png" /></a>
+<a href="http://www.csipiemonte.it/" target="_blank"><img src="images/users/csi-logo.png" /></a>
+<a href="https://eagle.apache.org/" target="_blank"><img src="images/users/eagle-logo.png" /></a>
+<a href="https://www.hnb.lk/" target="_blank"><img src="images/users/hnb-logo.png" /></a>
+<a href="https://www.letgo.com/" target="_blank"><img src="images/users/letgo-logo.png" /></a>
+<a href="https://punchplatform.com/" target="_blank"><img src="images/users/punchplatform-logo.png"/></a>
+<a href="https://sqooba.io/" target="_blank"><img src="images/users/sqooba-logo.png"/></a>
+<a href="https://www.youtube.com/watch?v=nncxYGD6m7E" target="_blank"><img src="images/users/uber-logo.png"/></a>
+<a href="https://wso2.com/" target="_blank"><img src="images/users/wso2-logo.png"/></a>
 </div>
 </div>
 </div>
-
+</div>
 
 <div class="row cSection cGray cLinks">
 <div class="container">
