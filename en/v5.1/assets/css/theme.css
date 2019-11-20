@@ -659,6 +659,7 @@ html .md-typeset .superfences-tabs > label:hover {
     background: #d4d6d7;
     width: 1.575rem;
     text-align: center;
+    /*padding:  0.525rem 0 .678rem 0;*/
     padding: .525rem 0;
     display: flex;
     flex-direction: column;
@@ -668,4 +669,19 @@ html .md-typeset .superfences-tabs > label:hover {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+.md-typeset pre.codehilite code, .md-typeset pre.highlight code {
+    display: block;
+    padding: .525rem .6rem;
+    overflow: overlay;
+}
+
+@media only screen and (max-width: 1220px) {
+    .md-sidebar[data-md-state=lock] {
+        top: 2.5rem;
+    }
+    .md-sidebar {
+        top: 2.5rem;
+    }
 }

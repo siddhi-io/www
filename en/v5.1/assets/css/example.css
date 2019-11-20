@@ -74,9 +74,6 @@ pre code {
 
 .cBE-body tr.cTR.hover-enable pre {
     background-color: transparent;
-    margin-left: 0;
-    margin-right: 0;
-    padding: 0 .6rem;
 }
 
 .cBE-body tr.cTR.hover-enable:hover td.code {
@@ -508,7 +505,6 @@ td.cDescTD {
     width: 30px;
     text-align: center;
     padding: 0;
-    display: flex;
     flex-direction: column;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -658,5 +654,14 @@ td.cDescTD {
 }
 
 .md-typeset .cBE-body .highlight pre {
-    padding: 0;
+    margin: 0;
+    padding: 0 .6rem;
 }
+
+@media (max-width: 990px) {
+    .bbe-code-line-numbers {
+        display: none;
+    }
+}
+
+
