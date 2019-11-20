@@ -1,9 +1,18 @@
-# Siddhi 5.1 User Guide
+# Siddhi 5.1 Documentation
 
-This section provides information on using and running Siddhi.
+This section provides overview and information on using Siddhi. 
+
+"Siddhi" is named after "Event" from the [Sinhalese](https://en.wikipedia.org/wiki/Sinhala_language) language. Siddhi 
+is a stream processing and complex event processing platform that can be used to build fully-fledged event-driven 
+applications. It can be embedded in Java and Python applications, run as a microservices on bare-metal, VM, or Docker, 
+and run natively at scale in Kubernetes. 
 
 Checkout the [Siddhi features](features) to get an idea on what it can do in brief. 
 
+## How Siddhi Works 
+
+<img alt="" src="/images/how-siddhi-works.png" title="How Siddhi Works">
+   
 ## Siddhi Application
 
 Siddhi Application is the artifact that defines the real-time event processing logic of Siddhi as a SQL like script with `.siddhi` file extension. It contains consumers(sources), producers(sinks), streams, queries, tables, functions and other necessary contracts depicting how the events should be consumed, processed and published. 
