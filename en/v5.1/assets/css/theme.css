@@ -642,9 +642,11 @@ html .md-typeset .superfences-tabs > label:hover {
     color: #7b8757;
 }
 
-.md-typeset .codehilite code, .md-typeset .codehilite pre, .md-typeset .highlight code, .md-typeset .highlight pre {
-    margin-left: 1.775rem;
-    margin-right: .2rem;
+@media (min-width: 990px) {
+    .md-typeset .codehilite code, .md-typeset .codehilite pre, .md-typeset .highlight code, .md-typeset .highlight pre {
+        margin-left: 1.775rem;
+        margin-right: .2rem;
+    }
 }
 
 .md-typeset .highlight pre code {
@@ -671,17 +673,17 @@ html .md-typeset .superfences-tabs > label:hover {
     user-select: none;
 }
 
-.md-typeset pre.codehilite code, .md-typeset pre.highlight code {
-    display: block;
-    padding: .525rem .6rem;
-    overflow: overlay;
-}
-
 @media only screen and (max-width: 1220px) {
     .md-sidebar[data-md-state=lock] {
         top: 2.5rem;
     }
     .md-sidebar {
         top: 2.5rem;
+    }
+}
+
+@media (max-width: 990px) {
+    .line-numbers-wrap {
+        display: none;
     }
 }

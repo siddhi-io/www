@@ -1332,16 +1332,16 @@
 </tbody>
 </table>
 <h3 id="curl-command-syntax">curl command syntax<a class="headerlink" href="#curl-command-syntax" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-java linenums">curl -X POST https://localhost:9443/stores/query -H "content-type: application/json" -u "admin:admin"  -d '{"appName" : "AggregationTest", "query" : "from stockAggregation select *" }' -k</code></pre>
+<pre class="codehilite"><code class="language-java">curl -X POST https://localhost:9443/stores/query -H "content-type: application/json" -u "admin:admin"  -d '{"appName" : "AggregationTest", "query" : "from stockAggregation select *" }' -k</code></pre>
 
 <h3 id="sample-curl-command-for-runner-distribution">Sample curl command for runner distribution<a class="headerlink" href="#sample-curl-command-for-runner-distribution" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-java linenums">curl -X POST https://localhost:9443/query -H "content-type: application/json" -u "admin:admin" -d '{"appName" : "ProductDetails", "query" : "from productTable select *" }' -k</code></pre>
+<pre class="codehilite"><code class="language-java">curl -X POST https://localhost:9443/query -H "content-type: application/json" -u "admin:admin" -d '{"appName" : "ProductDetails", "query" : "from productTable select *" }' -k</code></pre>
 
 <h3 id="sample-curl-command-for-tooling-distribution">Sample curl command for tooling distribution<a class="headerlink" href="#sample-curl-command-for-tooling-distribution" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-java linenums">curl -X POST https://localhost:9743/query -H "content-type: application/json" -u "admin:admin" -d '{"appName" : "ProductDetails", "query" : "from productTable select *" }' -k</code></pre>
+<pre class="codehilite"><code class="language-java">curl -X POST https://localhost:9743/query -H "content-type: application/json" -u "admin:admin" -d '{"appName" : "ProductDetails", "query" : "from productTable select *" }' -k</code></pre>
 
 <h3 id="sample-output">Sample output<a class="headerlink" href="#sample-output" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-java linenums">{
+<pre class="codehilite"><code class="language-java">{
    "records": [
        [
            "ID234",

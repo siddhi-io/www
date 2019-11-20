@@ -1313,7 +1313,7 @@
 <li>Extract the downloaded zip and navigate to <code>&lt;TOOLING_HOME&gt;/bin</code>. <br> (<code>TOOLING_HOME</code> refers to the extracted folder).</li>
 <li>
 <p>Issue the following command in the command prompt (Windows) / terminal (Linux/Mac)</p>
-<pre class="codehilite"><code class="linenums">For Windows: tooling.bat
+<pre class="codehilite"><code>For Windows: tooling.bat
 For Linux/Mac: ./tooling.sh</code></pre>
 
 </li>
@@ -1322,12 +1322,12 @@ For Linux/Mac: ./tooling.sh</code></pre>
 <p>There is a docker image for Siddhi tooling with all the dependencies that required for the Siddhi development. If you are familiar with Docker then you could use it.
 You find the Siddhi tooling docker images in the <a href="https://hub.docker.com/r/siddhiio/siddhi-tooling">docker hub</a></p>
 <p>You can issue the below command to run Siddhi docker container. Make sure, you already have a docker installation (Docker for Mac or Docker for Windows or Docker CE or any other docker engines) locally.</p>
-<pre class="codehilite"><code class="linenums">docker run -it -p 9390:9390 siddhiio/siddhi-tooling:5.1.0</code></pre>
+<pre class="codehilite"><code>docker run -it -p 9390:9390 siddhiio/siddhi-tooling:5.1.0</code></pre>
 
 <p>After successfully starting the Siddhi Editor, the terminal should look like as shown below:
 <img alt="" src="../../images/editor/docker-tooling.png?raw=true" title="Terminal after starting Siddhi Editor" /></p>
 <p>As you can see, we have exposed the port 9390 to the host machine since you have to access the Tooling web editor through that. After starting the Siddhi Editor, access the Editor GUI by visiting the following link in your browser (Google Chrome is the recommended). This takes you to the Siddhi Editor landing page.</p>
-<pre class="codehilite"><code class="linenums">http://localhost:9390/editor</code></pre>
+<pre class="codehilite"><code>http://localhost:9390/editor</code></pre>
 
 <p><strong>More info,</strong></p>
 <p>There is a situation that you wanted to add any external dependencies (such as MySQL client jars), change the configurations and etc. Then, it would be ideal to create few mounting paths for the docker tooling as give below.</p>
@@ -1338,7 +1338,7 @@ You find the Siddhi tooling docker images in the <a href="https://hub.docker.com
 <li>Mounting path to add configuration files (eg: <code>configs</code>) - To set any custom configurations or any other resources for the testing purposes.</li>
 </ul>
 <p>In that case, you can directories locally as per your requirement and issue a similar command as shown below,</p>
-<pre class="codehilite"><code class="language-bash linenums">docker run -it -p 9390:9390 \ 
+<pre class="codehilite"><code class="language-bash">docker run -it -p 9390:9390 \ 
   -v &lt;absolute path&gt;/configs:/artifacts \
   -v &lt;absolute path&gt;/workspace:/home/siddhi_user/siddhi-tooling/wso2/tooling/deployment/workspace \
   -v &lt;absolute path&gt;/jars:/home/siddhi_user/siddhi-tooling/jars \
@@ -1346,7 +1346,7 @@ You find the Siddhi tooling docker images in the <a href="https://hub.docker.com
   siddhiio/siddhi-tooling:5.1.0</code></pre>
 
 <p>For example, let's assume that your email configuration as a file that you wanted to use within the Siddhi editor. In that case, you can add the email configuration file (eg: <code>EmailConfig.yaml</code>) into the <code>configs</code> mounting directory that you have created locally and issue below command to apply the configuration in Siddhi tooling.</p>
-<pre class="codehilite"><code class="language-bash linenums">docker run -it -p 9390:9390 \ 
+<pre class="codehilite"><code class="language-bash">docker run -it -p 9390:9390 \ 
   -v &lt;absolute path&gt;/configs:/artifacts \
   -v &lt;absolute path&gt;/workspace:/home/siddhi_user/siddhi-tooling/wso2/tooling/deployment/workspace \
   -v &lt;absolute path&gt;/jars:/home/siddhi_user/siddhi-tooling/jars \

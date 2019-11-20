@@ -1546,7 +1546,7 @@
 <li>First, you can download the Siddhi tooling pack as a zip file from <a href="https://siddhi.io/en/v5.1/download/">here</a> and extract it.</li>
 <li>
 <p>After creating the above database we need to have a mechanism to connect this database to Siddhi runtime. To do that you have to update the Siddhi tooling configuration file. Siddhi tooling configuration file is <code>&lt;TOOLING_HOME&gt;/conf/tooling/deployment.yaml</code>. You have to add the following YAML block under the dataSources entry in the deployment.yaml. The following YAML block contained all the details that need to connect to the database. For example, database username, password, and URL, etc.</p>
-<pre class="codehilite"><code class="language-yaml linenums">- name: COMBO_SUPERMART_DB
+<pre class="codehilite"><code class="language-yaml">- name: COMBO_SUPERMART_DB
   description: The datasource used for lending process of the Combo supermarket
   jndiConfig:
     name: jdbc/ComboSuperMart
@@ -1578,7 +1578,7 @@
 <p class="admonition-title">Siddhi Query Guide</p>
 <p>The execution steps and the logic of the Siddhi query described as comments in the following Siddhi app. Therefore here we are not going to explain in detail here. For more details about Siddhi queries please refer <a href="https://siddhi.io/en/v5.1/docs/query-guide/">Siddhi query guide</a>.</p>
 </div>
-<pre class="codehilite"><code class="language-siddhi linenums">@App:name("ComboSuperMartPromoProcess")
+<pre class="codehilite"><code class="language-siddhi">@App:name("ComboSuperMartPromoProcess")
 @App:description("The promotion selection process of Combo super mart.")
 
 
@@ -1685,10 +1685,10 @@ insert into ResultStream;</code></pre>
 <h3 id="promo-card-type-table">Promo Card Type Table<a class="headerlink" href="#promo-card-type-table" title="Permanent link">&para;</a></h3>
 <p><img alt="Promo Card Type Table" src="../images/promocard-type-table.png" title="Promo Card Type Table" /></p>
 <p>To connect to the database Siddhi app will use a user called <code>siddhi_user</code> identified by password <code>siddhiio</code>. To access the database you have to give correct permissions to the user. For testing purposes, you can grant all privileges to this user using the following command.</p>
-<pre class="codehilite"><code class="language-sql linenums">&gt; GRANT ALL PRIVILEGES ON ComboSuperMart.* TO 'siddhi_user'@'siddhiio';</code></pre>
+<pre class="codehilite"><code class="language-sql">&gt; GRANT ALL PRIVILEGES ON ComboSuperMart.* TO 'siddhi_user'@'siddhiio';</code></pre>
 
 <p>To create those tables, you can use the following SQL script.</p>
-<pre class="codehilite"><code class="language-sql linenums">CREATE DATABASE  IF NOT EXISTS `ComboSuperMart` /*!40100 DEFAULT CHARACTER SET utf8 */;
+<pre class="codehilite"><code class="language-sql">CREATE DATABASE  IF NOT EXISTS `ComboSuperMart` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `ComboSuperMart`;
 
 --
@@ -1779,7 +1779,7 @@ UNLOCK TABLES;
 </code></pre>
 
 <p>The above Siddhi app will start an HTTP service in 8088 port. Therefore, you can send a request to that service using the following CURL command.</p>
-<pre class="codehilite"><code class="language-sh linenums">curl -X POST \
+<pre class="codehilite"><code class="language-sh">curl -X POST \
   http://0.0.0.0:8088/comboSuperMart/promo \
   -H 'Accept: */*' \
   -H 'Content-Type: application/json' \
@@ -1792,7 +1792,7 @@ UNLOCK TABLES;
 }'</code></pre>
 
 <p>This request will response back the following JSON.</p>
-<pre class="codehilite"><code class="language-json linenums">{
+<pre class="codehilite"><code class="language-json">{
     "event": {
         "messageId": "8f38faea-9dbd-4387-b807-b9f170db20dd",
         "discountAmount": 0.0,
@@ -1807,7 +1807,7 @@ UNLOCK TABLES;
 <li>Download the <a href="https://siddhi.io/en/v5.1/download/">Siddhi runner distribution pack from here</a> and unzip it.</li>
 <li>
 <p>Add following YAML block to the <code>&lt;RUNNER_HOME&gt;/conf/runner/deployment.yaml</code>.</p>
-<pre class="codehilite"><code class="language-yaml linenums">- name: COMBO_SUPERMART_DB
+<pre class="codehilite"><code class="language-yaml">- name: COMBO_SUPERMART_DB
   description: The datasource used for lending process of the Combo supermarket
   jndiConfig:
     name: jdbc/ComboSuperMart
@@ -1836,7 +1836,7 @@ UNLOCK TABLES;
 </li>
 </ol>
 <p>Execute the following CURL command.</p>
-<pre class="codehilite"><code class="language-sh linenums">curl -X POST \
+<pre class="codehilite"><code class="language-sh">curl -X POST \
   http://0.0.0.0:8088/comboSuperMart/promo \
   -H 'Accept: */*' \
   -H 'Content-Type: application/json' \
@@ -1849,7 +1849,7 @@ UNLOCK TABLES;
 }'</code></pre>
 
 <p>It will results the following JSON.</p>
-<pre class="codehilite"><code class="language-json linenums">{
+<pre class="codehilite"><code class="language-json">{
     "event": {
         "messageId": "8f38faea-9dbd-4387-b807-b9f170db20dd",
         "discountAmount": 0.0,
@@ -1866,7 +1866,7 @@ UNLOCK TABLES;
 <p class="admonition-title">Database URL for Docker</p>
 <p>When you changing the <code>deployment.yaml</code> configuration of the data source in the Docker export process, you have to specify this URL in the configuration as below.</p>
 </div>
-<pre class="codehilite"><code class="language-yaml linenums">   - name: COMBO_SUPERMART_DB
+<pre class="codehilite"><code class="language-yaml">   - name: COMBO_SUPERMART_DB
      description: The datasource used for lending process of the Combo supermarket
      jndiConfig:
        name: jdbc/ComboSuperMart
@@ -1884,7 +1884,7 @@ UNLOCK TABLES;
          isAutoCommit: false</code></pre>
 
 <p>The extracted zip file will be looks like follows.</p>
-<pre class="codehilite"><code class="language-sh linenums">├── Dockerfile
+<pre class="codehilite"><code class="language-sh">├── Dockerfile
 ├── configurations.yaml
 ├── jars
 │   └── mysql-connector.jar
@@ -1892,7 +1892,7 @@ UNLOCK TABLES;
     └── ComboSuperMartPromoProcess.siddhi</code></pre>
 
 <p>You also need to set up a MySQL docker container and connect it into the Siddhi docker runtime. You can do it very easily from writing a docker composer file like below. Now you need to have a Docker compose file like below to set up all the prerequisites. This compose file contains volume mounts to change configurations of the MySQL container.</p>
-<pre class="codehilite"><code class="language-yaml linenums">version: "3"
+<pre class="codehilite"><code class="language-yaml">version: "3"
 services:
     backend:
         container_name: combosupermart-promo
@@ -1922,7 +1922,7 @@ services:
         restart: on-failure</code></pre>
 
 <p>Save this file as <code>docker-compose.yaml</code> to the root directory of the extracted zip file. And the extracted zip file directory now looks like below:</p>
-<pre class="codehilite"><code class="language-sh linenums">├── Dockerfile
+<pre class="codehilite"><code class="language-sh">├── Dockerfile
 ├── configurations.yaml
 ├── docker-compose.yaml
 ├── jars
@@ -1931,10 +1931,10 @@ services:
     └── ComboSuperMartPromoProcess.siddhi</code></pre>
 
 <p>Now, you have to build the docker composer.</p>
-<pre class="codehilite"><code class="language-sh linenums">$ docker-compose build</code></pre>
+<pre class="codehilite"><code class="language-sh">$ docker-compose build</code></pre>
 
 <p>Now you have to start the MySQL container. And then set up your MySQL database as described <a href="#testing">above</a>.</p>
-<pre class="codehilite"><code class="language-sh linenums">$ docker-compose up -d mysqldb</code></pre>
+<pre class="codehilite"><code class="language-sh">$ docker-compose up -d mysqldb</code></pre>
 
 <p>Now you can connect to the MySQL server using the following configurations.</p>
 <ol>
@@ -1946,10 +1946,10 @@ services:
 <li>Custom user password: siddhiio</li>
 </ol>
 <p>Then you can create the database schema in that MySQL container. After that, you can start the Siddhi runtime using the following command.</p>
-<pre class="codehilite"><code class="language-sh linenums">$ docker-compose up -d backend</code></pre>
+<pre class="codehilite"><code class="language-sh">$ docker-compose up -d backend</code></pre>
 
 <p>To check the deployments up and running, send the following CURL request.</p>
-<pre class="codehilite"><code class="language-sh linenums">curl -X POST \
+<pre class="codehilite"><code class="language-sh">curl -X POST \
   http://0.0.0.0:8088/comboSuperMart/promo \
   -H 'Accept: */*' \
   -H 'Content-Type: application/json' \
@@ -1962,7 +1962,7 @@ services:
 }'</code></pre>
 
 <p>It will results the following JSON.</p>
-<pre class="codehilite"><code class="language-json linenums">{
+<pre class="codehilite"><code class="language-json">{
     "event": {
         "messageId": "285703c1-866a-4a88-8e1f-e75543e18373",
         "discountAmount": 15.0,
@@ -1983,7 +1983,7 @@ services:
 </ol>
 <h4 id="siddhi-kubernetes-configurations">Siddhi Kubernetes Configurations<a class="headerlink" href="#siddhi-kubernetes-configurations" title="Permanent link">&para;</a></h4>
 <p>In the tooling editor itself, you can export your Siddhi app into a runnable Kubernetes artifact. You can go to <code>Export-&gt;For Kubernetes</code> and it will give to a zip file that contained the following files.</p>
-<pre class="codehilite"><code class="language-sh linenums">├── Dockerfile
+<pre class="codehilite"><code class="language-sh">├── Dockerfile
 ├── configurations.yaml
 ├── jars
 │   └── mysql-connector.jar
@@ -1992,21 +1992,21 @@ services:
 └── siddhi-process.yaml</code></pre>
 
 <p>First, you need to install the Siddhi Kubernetes operator using following commands. For more details about the Siddhi operator refer to <a href="https://siddhi.io/en/v5.1/docs/siddhi-as-a-kubernetes-microservice/#install-siddhi-operator">this documentation</a>.</p>
-<pre class="codehilite"><code class="language-sh linenums">$ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/00-prereqs.yaml
+<pre class="codehilite"><code class="language-sh">$ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/00-prereqs.yaml
 $ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/01-siddhi-operator.yaml</code></pre>
 
 <p>Now you have to set up MySQL in your Kubernetes cluster. To do that use the following helm command.</p>
-<pre class="codehilite"><code class="language-sh linenums">$ helm install --name mysql-db --set mysqlRootPassword=siddhiio,mysqlUser=siddhi_user,mysqlPassword=siddhiio,mysqlDatabase=ComboSuperMart stable/mysql</code></pre>
+<pre class="codehilite"><code class="language-sh">$ helm install --name mysql-db --set mysqlRootPassword=siddhiio,mysqlUser=siddhi_user,mysqlPassword=siddhiio,mysqlDatabase=ComboSuperMart stable/mysql</code></pre>
 
 <p>Then, you can set a port forwarding to the MySQL service which allows you to connect from the Host</p>
-<pre class="codehilite"><code class="language-sh linenums">$ kubectl port-forward svc/mysql-db 3307:3306</code></pre>
+<pre class="codehilite"><code class="language-sh">$ kubectl port-forward svc/mysql-db 3307:3306</code></pre>
 
 <p>Now you can access the MySQL cluster externally. Accessing MySQL cluster externally you can create ComboSuperMart database and the database schema. Using jdbc:mysql://mysql-db:3306/ComboSuperMart URL you can access the database.</p>
 <div class="admonition note">
 <p class="admonition-title">Database URL for Kubernetes</p>
 <p>When you changing the <code>deployment.yaml</code> configuration of the data source in the Kubernetes export process, you have to specify this URL in the configuration as below.</p>
 </div>
-<pre class="codehilite"><code class="language-yaml linenums">   - name: COMBO_SUPERMART_DB
+<pre class="codehilite"><code class="language-yaml">   - name: COMBO_SUPERMART_DB
      description: The datasource used for lending process of the Combo supermarket
      jndiConfig:
        name: jdbc/ComboSuperMart
@@ -2025,10 +2025,10 @@ $ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/downloa
 
 <p>Siddhi operator will automatically set up the external access to any HTTP service in a Siddhi app. To set up that external access Siddhi operator by default uses ingress NGINX. Set up the NGINX controller in your Kubernetes cluster as described in <a href="https://kubernetes.github.io/ingress-nginx/deploy/">this document</a>.</p>
 <p>Now you need to create your own docker image with including all the custom libraries and configuration changes that you have made. Use following command to build and push the docker image with the tag <code>&lt;DOCKER_HUB_USER_NAME&gt;/siddhi-runner-alpine:latest</code>.</p>
-<p><pre class="codehilite"><code class="language-sh linenums">$ docker build -t &lt;DOCKER_HUB_USER_NAME&gt;/siddhi-runner-alpine:latest .
+<p><pre class="codehilite"><code class="language-sh">$ docker build -t &lt;DOCKER_HUB_USER_NAME&gt;/siddhi-runner-alpine:latest .
 $ docker push &lt;DOCKER_HUB_USER_NAME&gt;/siddhi-runner-alpine:latest</code></pre>
 After the Kubernetes export now you already have this <code>siddhi-process.yaml</code> file.</p>
-<pre class="codehilite"><code class="language-yaml linenums">apiVersion: siddhi.io/v1alpha2
+<pre class="codehilite"><code class="language-yaml">apiVersion: siddhi.io/v1alpha2
 kind: SiddhiProcess
 metadata:
   name: combo-super-mart
@@ -2199,7 +2199,7 @@ spec:
     image: &lt;DOCKER_HUB_USER_NAME&gt;/siddhi-runner-alpine:latest</code></pre>
 
 <p>Now you can install the SiddhiProcess using following <code>kubectl</code> command. Before you install the <code>SiddhiProcess</code> you have to add the docker image tag in the <code>siddhi-process.yaml</code> file. You have to add the docker image name(<code>&lt;DOCKER_HUB_USER_NAME&gt;/siddhi-runner-alpine:latest</code>) in the YAML entry <code>spec.container.image</code>.</p>
-<pre class="codehilite"><code class="language-sh linenums">$ kubectl apply -f siddhi-process.yaml</code></pre>
+<pre class="codehilite"><code class="language-sh">$ kubectl apply -f siddhi-process.yaml</code></pre>
 
 <p>The ingress created by Siddhi operator will use the hostname as siddhi. Therefore you have to update your <code>/etc/host</code> file with siddhi hostname along with the external IP of ingress.</p>
 <div class="admonition note">
@@ -2207,7 +2207,7 @@ spec:
 <p>For minikube the ingress external IP is minikube IP and in docker, for Mac, the external IP is 0.0.0.0. For more details about Siddhi, ingress setup refer to <a href="https://siddhi.io/en/v5.1/docs/siddhi-as-a-kubernetes-microservice/">this documentation</a>.</p>
 </div>
 <p>Now you can send HTTP requests to deployed the Siddhi app in the Kubernetes cluster using following CURL command.</p>
-<pre class="codehilite"><code class="language-sh linenums">curl -X POST \
+<pre class="codehilite"><code class="language-sh">curl -X POST \
   http://siddhi/combo-super-mart-0/8088/comboSuperMart/promo \
   -H 'Accept: */*' \
   -H 'Accept-Encoding: gzip, deflate' \
@@ -2221,7 +2221,7 @@ spec:
 }'</code></pre>
 
 <p>It will results the following JSON.</p>
-<pre class="codehilite"><code class="language-json linenums">{
+<pre class="codehilite"><code class="language-json">{
     "event": {
         "messageId": "285703c1-866a-4a88-8e1f-e75543e18374",
         "discountAmount": 15.0,

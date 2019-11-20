@@ -1658,7 +1658,7 @@
 <p>The implementation of the ParisTMA system represented in the following architecture diagram. The overall architecture can be expressed as the following subsystems.</p>
 <h3 id="vehicle-locator-subsystem">Vehicle Locator Subsystem<a class="headerlink" href="#vehicle-locator-subsystem" title="Permanent link">&para;</a></h3>
 <p>The vehicle locator subsystem is responsible for receiving the location of each subscriber and update subscriber database collection with their current location. The process of this subsystem showed in step 01-03 in the architecture diagram. The location of a vehicle, input to the NATS cluster as a JSON object like below.</p>
-<pre class="codehilite"><code class="language-json linenums">{
+<pre class="codehilite"><code class="language-json">{
     "vehicleId": "v001",
     "currentArea": "a002"
 }</code></pre>
@@ -1699,7 +1699,7 @@
 <ol>
 <li>Start the <a href="https://siddhi.io/en/v5.0/docs/tooling/">Siddhi tooling</a> runtime and go to the editor UI in http://localhost:9390/editor</li>
 <li>Use the following steps to start the Siddhi tooling runtime. Extract the downloaded zip and navigate to /bin. (TOOLING_HOME refers to the extracted folder). Use the following command in the command prompt (Windows) / terminal (Linux/Mac).
-    <pre class="codehilite"><code class="language-sh linenums">For Windows: tooling.bat
+    <pre class="codehilite"><code class="language-sh">For Windows: tooling.bat
 For Linux/Mac: ./tooling.sh</code></pre></li>
 <li>Select File -&gt; New option, then you could either use the source view or design view to write/build the Siddhi Application. You can find the Siddhi Application bellow, that implements the requirements mentioned above.</li>
 </ol>
@@ -1710,7 +1710,7 @@ For Linux/Mac: ./tooling.sh</code></pre></li>
 <p>The execution steps and the logic of the Siddhi query described as comments in the following Siddhi app. Therefore here we are not going to explain in detail here. For more details about Siddhi queries please refer <a href="https://siddhi.io/en/v5.1/docs/query-guide/">Siddhi query guide</a>.</p>
 </div>
 <h3 id="vehicle-locator">Vehicle Locator<a class="headerlink" href="#vehicle-locator" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-siddhi linenums">@App:name("ParisTMAVehicleLocator")
+<pre class="codehilite"><code class="language-siddhi">@App:name("ParisTMAVehicleLocator")
 @App:description("Listen to the events send by NATS about vehicle locations and periodically update the Mongo database.")
 
 /*
@@ -1750,7 +1750,7 @@ update or insert into subscriber
 on subscriber.vehicleId==vehicleId;</code></pre>
 
 <h3 id="notifier">Notifier<a class="headerlink" href="#notifier" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-siddhi linenums">@App:name("ParisTMANotifier")
+<pre class="codehilite"><code class="language-siddhi">@App:name("ParisTMANotifier")
 @App:description("Listen to the CDC events about the weather updates and send notifications to the subscribed users.")
 
 /*
@@ -1815,7 +1815,7 @@ insert into UserNotificationStream;</code></pre>
 <h2 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h2>
 <h3 id="setup-mongodb">Setup MongoDB<a class="headerlink" href="#setup-mongodb" title="Permanent link">&para;</a></h3>
 <p>Refer <a href="https://docs.mongodb.com/manual/installation/">this link</a> to install MongoDB in your local machine. The ParisTMA system uses a Mongo database called <code>parisTma</code> and that parisTma collection contained a collection called the <code>subscriber</code>. In order to connect to the Mongo database, the Siddhi runtime will use a user called <code>siddhi_user</code> that identified by password <code>siddhiio</code>. You can create those MongoDB databases, collections, users and insert data using the following MongoDB commands.</p>
-<pre class="codehilite"><code class="language-sh linenums">
+<pre class="codehilite"><code class="language-sh">
 &gt; use parisTma
 &gt; db.createCollection("subscriber")
 &gt; db.createUser(
@@ -1851,7 +1851,7 @@ insert into UserNotificationStream;</code></pre>
 <p><img alt="MySQL Incident Table" src="../images/mysql-incident-table.png" title="MySQL Incident Table" /></p>
 <p>To connect to the MySQL database Siddhi tooling runtime needs the MySQL client library. You can download the <a href="https://dev.mysql.com/downloads/connector/j/5.1.html">MySQL JAR from here</a> and then add the JAR to the <code>${TOOLING_HOME}/jars</code> directory.</p>
 <p>This example uses the Siddhi CDC in the default(listening) mode. The listening mode needs to change the configurations as described <a href="https://github.com/siddhi-io/siddhi-io-cdc">here</a>. For example, you have to add the following configurations to the <code>my.cnf</code> file.</p>
-<pre class="codehilite"><code class="language-sh linenums">[mysqld]
+<pre class="codehilite"><code class="language-sh">[mysqld]
 server-id         = 223344
 log_bin           = mysql-bin
 binlog_format     = row
@@ -1865,10 +1865,10 @@ log-bin = /var/log/mysql/mysql-replication.log</code></pre>
 
 <h3 id="setup-nats-streaming-cluster">Setup NATS Streaming Cluster<a class="headerlink" href="#setup-nats-streaming-cluster" title="Permanent link">&para;</a></h3>
 <p>Now you need to <a href="https://nats-io.github.io/docs/nats_streaming/gettingstarted/install.html">install a NATS streaming server</a>. For example, to install the NATS streaming cluster in MacOS use the following commands.</p>
-<pre class="codehilite"><code class="language-sh linenums">$ brew install nats-streaming-server</code></pre>
+<pre class="codehilite"><code class="language-sh">$ brew install nats-streaming-server</code></pre>
 
 <p>After the installation runs the NATS streaming cluster as below.</p>
-<pre class="codehilite"><code class="language-sh linenums">$ nats-streaming-server</code></pre>
+<pre class="codehilite"><code class="language-sh">$ nats-streaming-server</code></pre>
 
 <p>The Siddhi app runtime will need the following JARs to connect to the NATS streaming server. Download those JARs using the following links and add those JARs to <code>${TOOLING_HOME}/jars</code> directory.</p>
 <ul>
@@ -1896,7 +1896,7 @@ log-bin = /var/log/mysql/mysql-replication.log</code></pre>
 <li>Send notifications</li>
 </ol>
 <p>To test the vehicle location updates you have to send a request to the NATS streaming server. You can send the request using various NATS clients. In this use case, you can use NATS streaming Go language client to easily send requests. To do that you need to have to install Golang in your machine. Or else you can use other clients like (<a href="https://github.com/nats-io/stan.java">Java</a>, <a href="https://github.com/nats-io/stan.js">JS</a>, <a href="https://github.com/nats-io/stan.py">Python</a>, or <a href="https://github.com/nats-io/stan.rb">Ruby</a> etc). You can use following Golang commands to send a request to the NATS streaming cluster.</p>
-<pre class="codehilite"><code class="language-sh linenums">$ go get github.com/nats-io/stan.go/
+<pre class="codehilite"><code class="language-sh">$ go get github.com/nats-io/stan.go/
 $ go run $GOPATH/src/github.com/nats-io/stan.go/examples/stan-pub/main.go -s localhost:4222 -c test-cluster VehicleInputTunnel "{\"vehicleId\": \"v001\", \"currentArea\":\"a003\"}"</code></pre>
 
 <p>To run the notification Siddhi app you just need to insert data entry to the Incident table. When you do that it the Siddhi app will simply send an email to the subscribers like below.</p>
@@ -1923,7 +1923,7 @@ $ go run $GOPATH/src/github.com/nats-io/stan.go/examples/stan-pub/main.go -s loc
 </li>
 <li>Copy your Siddhi file into <code>&lt;RUNNER_HOME&gt;/wso2/runner/deployment/siddhi-files</code></li>
 <li>Start the following binary file to run the Siddhi runner server.
-    <pre class="codehilite"><code class="language-sh linenums">For Linux/Mac: &lt;RUNNER_HOME&gt;/bin/runner.sh
+    <pre class="codehilite"><code class="language-sh">For Linux/Mac: &lt;RUNNER_HOME&gt;/bin/runner.sh
 For Windows: &lt;RUNNER_HOME&gt;/bin/runner.bat</code></pre></li>
 <li>Now you can try out the sample as described in this <a href="#tryout">tryout section</a>.</li>
 </ol>
@@ -1932,7 +1932,7 @@ For Windows: &lt;RUNNER_HOME&gt;/bin/runner.bat</code></pre></li>
 <p><a href="https://docs.docker.com/install/">Install Docker</a> in your machine.</p>
 <h4 id="siddhi-docker-configurations">Siddhi Docker Configurations<a class="headerlink" href="#siddhi-docker-configurations" title="Permanent link">&para;</a></h4>
 <p>In the tooling editor itself, you can export your Siddhi app into a runnable docker artifact. You can go to <code>Export-&gt;For Docker</code> and it will give to a zip file that contained the following files.</p>
-<pre class="codehilite"><code class="language-sh linenums">├── Dockerfile
+<pre class="codehilite"><code class="language-sh">├── Dockerfile
 ├── bundles
 │   └── protobuf-java-3.6.1.jar
 ├── configurations.yaml
@@ -1954,7 +1954,7 @@ For Windows: &lt;RUNNER_HOME&gt;/bin/runner.bat</code></pre></li>
 <li>PARIS_TMA_EMAIL_PASSWORD=<code>&lt;TEST_EMAIL_PASSWORD&gt;</code></li>
 </ol>
 <p>In order to change the configurations of MySQL Docker container you have create <code>my.cnf</code> file in your current directory and add the following content to that file. Also create directory called <code>mysql</code>.</p>
-<pre class="codehilite"><code class="language-sh linenums">[mysqld]
+<pre class="codehilite"><code class="language-sh">[mysqld]
 server-id         = 223344
 log_bin           = mysql-bin
 binlog_format     = row
@@ -1967,7 +1967,7 @@ log-error=/var/log/mysql/mysql.err
 log-bin = /var/log/mysql/mysql-replication.log</code></pre>
 
 <p>Now you need to have a Docker compose file like below to set up all the prerequisites. This compose file contains volume mounts to change configurations of the MySQL container.</p>
-<pre class="codehilite"><code class="language-yaml linenums">version: "3"
+<pre class="codehilite"><code class="language-yaml">version: "3"
 services:
     backend:
         container_name: paristma-notifier
@@ -2022,15 +2022,15 @@ services:
 <p>Now you can start each containers.</p>
 <ol>
 <li>First, you need to build the Docker composer.
-    <pre class="codehilite"><code class="language-sh linenums">docker-compose build</code></pre></li>
+    <pre class="codehilite"><code class="language-sh">docker-compose build</code></pre></li>
 <li>Starts the MySQL container using the following command and set up the MySQL database as <a href="#setup-mysql">described above</a>.
-    <pre class="codehilite"><code class="language-sh linenums">docker-compose up -d mysqldb</code></pre></li>
+    <pre class="codehilite"><code class="language-sh">docker-compose up -d mysqldb</code></pre></li>
 <li>Then, starts the MongoDB container using the following command and set up the MongoDB database as <a href="#setup-mongodb">described above</a>.
-    <pre class="codehilite"><code class="language-sh linenums">docker-compose up -d mongodb</code></pre></li>
+    <pre class="codehilite"><code class="language-sh">docker-compose up -d mongodb</code></pre></li>
 <li>After that, starts the NATS container using the following command.
-    <pre class="codehilite"><code class="language-sh linenums">docker-compose up -d nats</code></pre></li>
+    <pre class="codehilite"><code class="language-sh">docker-compose up -d nats</code></pre></li>
 <li>Finally, start the Siddhi backend runtime.
-    <pre class="codehilite"><code class="language-sh linenums">docker-compose up -d backend</code></pre>
+    <pre class="codehilite"><code class="language-sh">docker-compose up -d backend</code></pre>
 When you insert data entry to the Incident table, the Siddhi app will simply send an email to the subscribers like below.</li>
 </ol>
 <p><img alt="Email" src="../images/email.png" title="Email" /></p>
@@ -2047,7 +2047,7 @@ When you insert data entry to the Incident table, the Siddhi app will simply sen
 </ol>
 <h4 id="siddhi-kubernetes-configurations">Siddhi Kubernetes Configurations<a class="headerlink" href="#siddhi-kubernetes-configurations" title="Permanent link">&para;</a></h4>
 <p>In the tooling editor itself, you can export your Siddhi app into a runnable Kubernetes artifact. You can go to <code>Export-&gt;For Kubernetes</code> and it will give to a zip file that contained the following files.</p>
-<pre class="codehilite"><code class="language-sh linenums">├── Dockerfile
+<pre class="codehilite"><code class="language-sh">├── Dockerfile
 ├── bundles
 │   └── protobuf-java-3.6.1.jar
 ├── configurations.yaml
@@ -2071,17 +2071,17 @@ When you insert data entry to the Incident table, the Siddhi app will simply sen
 </ol>
 <h4 id="setup-mongodb_1">Setup MongoDB<a class="headerlink" href="#setup-mongodb_1" title="Permanent link">&para;</a></h4>
 <p>Let’s install MongoDB in your Kubernetes cluster using Helm.</p>
-<pre class="codehilite"><code class="language-sh linenums">$ helm install stable/mongodb
+<pre class="codehilite"><code class="language-sh">$ helm install stable/mongodb
 $ helm install --name paristma --set volumePermissions.enabled=true,mongodbRootPassword=siddhiio,mongodbUsername=siddhi_user,mongodbPassword=siddhiio,mongodbDatabase=parisTma stable/mongodb </code></pre>
 
 <p>Now you can access the MongoDB externally using following commands and set up the Mongo database as <a href="#setup-mongodb">described previously</a>.</p>
-<pre class="codehilite"><code class="language-sh linenums">$ export MONGODB_ROOT_PASSWORD=$(kubectl get secret --namespace default paristma-mongodb -o jsonpath="{.data.mongodb-root-password}" | base64 --decode)
+<pre class="codehilite"><code class="language-sh">$ export MONGODB_ROOT_PASSWORD=$(kubectl get secret --namespace default paristma-mongodb -o jsonpath="{.data.mongodb-root-password}" | base64 --decode)
 
 $ kubectl run --namespace default paristma-mongodb-client --rm --tty -i --restart='Never' --image bitnami/mongodb --command -- mongo admin --host paristma-mongodb --authenticationDatabase admin -u root -p $MONGODB_ROOT_PASSWORD</code></pre>
 
 <h4 id="setup-mysql_1">Setup MySQL<a class="headerlink" href="#setup-mysql_1" title="Permanent link">&para;</a></h4>
 <p>In order to change the MySQL configurations for the Siddhi CDC extension, you need to create a file called <code>values.yaml</code> with including the following configurations.</p>
-<pre class="codehilite"><code class="language-sh linenums">
+<pre class="codehilite"><code class="language-sh">
 mysqlRootPassword: siddhiio
 mysqlUser: siddhi_user
 mysqlPassword: siddhiio
@@ -2101,14 +2101,14 @@ configurationFiles:
         log-bin = /var/log/mysql/mysql-replication.log</code></pre>
 
 <p>Now you can install MySQL in you Kubernetes cluster using Helm.</p>
-<pre class="codehilite"><code class="language-sh linenums">$ helm install --name mysqldb -f values.yaml stable/mysql</code></pre>
+<pre class="codehilite"><code class="language-sh">$ helm install --name mysqldb -f values.yaml stable/mysql</code></pre>
 
 <p>Use Kubernetes port forwading to access MySQL externally using 3307 port and create nessasary tables in the MySQL database as <a href="#setup-mysql">described previously</a>.</p>
-<pre class="codehilite"><code class="language-sh linenums">$ kubectl port-forward svc/mysql-db 3307:3306</code></pre>
+<pre class="codehilite"><code class="language-sh">$ kubectl port-forward svc/mysql-db 3307:3306</code></pre>
 
 <h4 id="setup-nats-streaming">Setup NATS Streaming<a class="headerlink" href="#setup-nats-streaming" title="Permanent link">&para;</a></h4>
 <p>Use the following kubectl commands to set up the NATS streaming cluster.</p>
-<pre class="codehilite"><code class="language-sh linenums">$ kubectl apply -f https://github.com/nats-io/nats-operator/releases/download/v0.5.0/00-prereqs.yaml
+<pre class="codehilite"><code class="language-sh">$ kubectl apply -f https://github.com/nats-io/nats-operator/releases/download/v0.5.0/00-prereqs.yaml
 $ kubectl apply -f https://github.com/nats-io/nats-operator/releases/download/v0.5.0/10-deployment.yaml
 $ kubectl apply -f https://github.com/nats-io/nats-streaming-operator/releases/download/v0.2.2/default-rbac.yaml
 $ kubectl apply -f https://github.com/nats-io/nats-streaming-operator/releases/download/v0.2.2/deployment.yaml
@@ -2137,14 +2137,14 @@ spec:
 <p>For more details about the NATS streaming server, refer to this <a href="https://github.com/nats-io/nats-streaming-operator/tree/v0.2.2">documentation</a>.</p>
 <h4 id="setup-siddhi-operator">Setup Siddhi Operator<a class="headerlink" href="#setup-siddhi-operator" title="Permanent link">&para;</a></h4>
 <p>Use the following kubectl commands to install the Siddhi operator in your Kubernetes cluster.</p>
-<pre class="codehilite"><code class="language-sh linenums">$ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/00-prereqs.yaml
+<pre class="codehilite"><code class="language-sh">$ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/00-prereqs.yaml
 $ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/01-siddhi-operator.yaml</code></pre>
 
 <p>Now you need to create your own docker image with including all the custom libraries and configuration changes that you have made. Use following command to build and push the docker image with the tag <code>&lt;DOCKER_HUB_USER_NAME&gt;/siddhi-runner-alpine:latest</code>.</p>
-<p><pre class="codehilite"><code class="language-sh linenums">$ docker build -t &lt;DOCKER_HUB_USER_NAME&gt;/siddhi-runner-alpine:latest .
+<p><pre class="codehilite"><code class="language-sh">$ docker build -t &lt;DOCKER_HUB_USER_NAME&gt;/siddhi-runner-alpine:latest .
 $ docker push &lt;DOCKER_HUB_USER_NAME&gt;/siddhi-runner-alpine:latest</code></pre>
 After the Kubernetes export now you already have this <code>siddhi-process.yaml</code> file.</p>
-<pre class="codehilite"><code class="language-yaml linenums">
+<pre class="codehilite"><code class="language-yaml">
 apiVersion: siddhi.io/v1alpha2
 kind: SiddhiProcess
 metadata:
@@ -2311,10 +2311,10 @@ spec:
           isAutoCommit: false</code></pre>
 
 <p>Now you can install the SiddhiProcess using following <code>kubectl</code> command. Before you install the <code>SiddhiProcess</code> you have to add the docker image tag in the <code>siddhi-process.yaml</code> file. You have to add the docker image name(<DOCKER_HUB_USER_NAME>/siddhi-runner-alpine:latest) in the YAML entry <code>spec.container.image</code>.</p>
-<pre class="codehilite"><code class="language-sh linenums">$ kubectl apply -f siddhi-process.yaml</code></pre>
+<pre class="codehilite"><code class="language-sh">$ kubectl apply -f siddhi-process.yaml</code></pre>
 
 <p>If all the Kubernetes artifacts deployed correctly, it will show the status like below.</p>
-<pre class="codehilite"><code class="language-sh linenums">$ kubectl get deploy
+<pre class="codehilite"><code class="language-sh">$ kubectl get deploy
 
 NAME                      READY     UP-TO-DATE   AVAILABLE   AGE
 bold-boxer-mongodb        1/1       1            1           2h

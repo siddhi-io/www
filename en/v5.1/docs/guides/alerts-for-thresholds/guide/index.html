@@ -1467,7 +1467,7 @@
 <p>Follow below steps to start the Siddhi tooling runtime.
 * Extract the downloaded zip and navigate to <TOOLING_HOME>/bin. (TOOLING_HOME refers to the extracted folder) 
 * Issue the following command in the command prompt (Windows) / terminal (Linux/Mac)
-    <pre class="codehilite"><code class="language-bash linenums">For Windows: tooling.bat
+    <pre class="codehilite"><code class="language-bash">For Windows: tooling.bat
 For Linux/Mac: ./tooling.sh</code></pre></p>
 </li>
 <li>
@@ -1480,7 +1480,7 @@ For Linux/Mac: ./tooling.sh</code></pre></p>
 <p>Once the Siddhi app is created, you can use the Event Simulator option in the editor to simulate events to streams and perform developer testing.</p>
 </li>
 </ol>
-<pre class="codehilite"><code class="language-siddhi linenums">@App:name('API-Request-Throttler')
+<pre class="codehilite"><code class="language-siddhi">@App:name('API-Request-Throttler')
 @App:description('Enforces throttling on API requests')
 
 -- HTTP endpoint which listens for api request related events
@@ -1560,15 +1560,15 @@ insert into UserNotificationStream;
 </ul>
 <h3 id="run-mock-logger-service">Run Mock Logger service<a class="headerlink" href="#run-mock-logger-service" title="Permanent link">&para;</a></h3>
 <p>In the provided Siddhi app, there is an HTTP sink configured to push output events to an HTTP endpoint of the API Manager. For simplicity, you will be mocking this service. Please download the mock server <a href="https://github.com/mohanvive/siddhi-mock-services/releases/download/v1.0.0/logservice-1.0.0.jar">jar</a> and run that mock service by executing the following command.</p>
-<pre class="codehilite"><code class="language-bash linenums">java -jar logservice-1.0.0.jar</code></pre>
+<pre class="codehilite"><code class="language-bash">java -jar logservice-1.0.0.jar</code></pre>
 
 <h3 id="invoking-the-siddhi-app">Invoking the Siddhi App<a class="headerlink" href="#invoking-the-siddhi-app" title="Permanent link">&para;</a></h3>
 <p>As per the Siddhi app that you wrote in the 'Implementation' section, there is an HTTP service running in Siddhi which is listening for events related to API requests. The respective service can be accessed via the URL  <code>http://localhost:9090/ThotttleService</code>. </p>
 <p>As per the app, the API request will get throttled if there are more than 10 requests by the same user, to the same API (for 'silver’ tier).</p>
-<pre class="codehilite"><code class="language-bash linenums">curl -v -X POST -d '{ "event": { "apiName": "order-mgt-v1", "version": "1.0.0", "tier":"silver","user":"mohan", "userEmail":"example@wso2.com"}}' "http://localhost:8006/apiRequest" -H "Content-Type:application/json"</code></pre>
+<pre class="codehilite"><code class="language-bash">curl -v -X POST -d '{ "event": { "apiName": "order-mgt-v1", "version": "1.0.0", "tier":"silver","user":"mohan", "userEmail":"example@wso2.com"}}' "http://localhost:8006/apiRequest" -H "Content-Type:application/json"</code></pre>
 
 <p>If you invoke the above cURL request for more than 10 times within a minute, then Siddhi starts throttling the request, and sends an alert to the API Manager (logservice), while logging the alert as below.</p>
-<pre class="codehilite"><code class="language-bash linenums">INFO {io.siddhi.core.stream.output.sink.LogSink} - API-Request-Throttler :
+<pre class="codehilite"><code class="language-bash">INFO {io.siddhi.core.stream.output.sink.LogSink} - API-Request-Throttler :
 ThrottleOutputStream : Event{timestamp=1564056341280, data=[order-mgt-v1, 1.0.0,
 mohan, silver, true], isExpired=false}</code></pre>
 
@@ -1591,7 +1591,7 @@ mohan, silver, true], isExpired=false}</code></pre>
 <ol>
 <li>
 <p>Start Siddhi app with the runner config by executing the following commands from the distribution directory.</p>
-<pre class="codehilite"><code class="language-bash linenums">Linux/Mac : ./bin/runner.sh -Dapps=&lt;siddhi-file-path&gt; 
+<pre class="codehilite"><code class="language-bash">Linux/Mac : ./bin/runner.sh -Dapps=&lt;siddhi-file-path&gt; 
 Windows : bin\runner.bat -Dapps=&lt;siddhi-file-path&gt;
 
    Eg: If exported siddhi app in Siddhi home directory,
@@ -1600,13 +1600,13 @@ Windows : bin\runner.bat -Dapps=&lt;siddhi-file-path&gt;
 </li>
 <li>
 <p>Download the mock <a href="https://github.com/mohanvive/siddhi-mock-services/releases/download/v1.0.0/logservice-1.0.0.jar">logging service</a> which is used to demonstrate the capability of Siddhi HTTP sink. Execute the below command to run the mock server.</p>
-<pre class="codehilite"><code class="linenums">java -jar logservice-1.0.0.jar</code></pre>
+<pre class="codehilite"><code>java -jar logservice-1.0.0.jar</code></pre>
 
 
 </li>
 <li>
 <p>Invoke the apiRequest service with the following cURL request for more than 10 times within a minute time period. Please make sure to change the <code>userEmail</code> property value to an email address that you could use to test the email alerting purposes.</p>
-<pre class="codehilite"><code class="linenums">curl -v -X POST -d '{ &quot;event&quot;: { &quot;apiName&quot;: &quot;order-mgt-v1&quot;, &quot;version&quot;: &quot;1.0.0&quot;, &quot;tier&quot;: &quot;silver&quot;, &quot;user&quot;:&quot;mohan&quot;, &quot;userEmail&quot;:&quot;example@wso2.com&quot;}}' &quot;http://localhost:8006/apiRequest&quot; -H &quot;Content-Type:application/json&quot;</code></pre>
+<pre class="codehilite"><code>curl -v -X POST -d '{ &quot;event&quot;: { &quot;apiName&quot;: &quot;order-mgt-v1&quot;, &quot;version&quot;: &quot;1.0.0&quot;, &quot;tier&quot;: &quot;silver&quot;, &quot;user&quot;:&quot;mohan&quot;, &quot;userEmail&quot;:&quot;example@wso2.com&quot;}}' &quot;http://localhost:8006/apiRequest&quot; -H &quot;Content-Type:application/json&quot;</code></pre>
 
 
 </li>
@@ -1626,24 +1626,24 @@ Windows : bin\runner.bat -Dapps=&lt;siddhi-file-path&gt;
 </li>
 <li>
 <p>Pull the latest Siddhi Runner image from [Siddhiio Docker Hub] (https://hub.docker.com/u/siddhiio).</p>
-<pre class="codehilite"><code class="language-bash linenums">docker pull siddhiio/siddhi-runner-alpine:5.1.0-alpha</code></pre>
+<pre class="codehilite"><code class="language-bash">docker pull siddhiio/siddhi-runner-alpine:5.1.0-alpha</code></pre>
 
 </li>
 <li>
 <p>Start SiddhiApp by executing the following docker command.</p>
-<pre class="codehilite"><code class="language-bash linenums">docker run -it -p 8006:8006 -v /home/siddhi-apps:/apps -e EMAIL_PASSWORD=siddhi123 -e EMAIL_USERNAME=siddhi.gke.user -e SENDER_EMAIL_ADDRESS=siddhi.gke.user@gmail.com -e LOGGER_SERVICE_HOST=10.100.0.99 siddhiio/siddhi-runner-alpine:5.1.0-alpha -Dapps=/apps/API-Request-Throttler.siddhi</code></pre>
+<pre class="codehilite"><code class="language-bash">docker run -it -p 8006:8006 -v /home/siddhi-apps:/apps -e EMAIL_PASSWORD=siddhi123 -e EMAIL_USERNAME=siddhi.gke.user -e SENDER_EMAIL_ADDRESS=siddhi.gke.user@gmail.com -e LOGGER_SERVICE_HOST=10.100.0.99 siddhiio/siddhi-runner-alpine:5.1.0-alpha -Dapps=/apps/API-Request-Throttler.siddhi</code></pre>
 
 <p>NOTE: In the above provided Siddhi app, there are some environmental variables (EMAIL_PASSWORD, EMAIL_USERNAME, and SENDER_EMAIL_ADDRESS) which are required to be set to send email alerts based on the Siddhi queries defined. Again, there is a mock service configured to receive the throttle decisions (instructions given below), and its host is configured via LOGGER_SERVICE_HOST environment property. 
 Hence, make sure to add proper values for the environmental variables in the above command.</p>
 </li>
 <li>
 <p>Download the mock <a href="https://github.com/mohanvive/siddhi-mock-services/releases/download/v1.0.0/logservice-1.0.0.jar">logging service</a> which is used to demonstrate the capability of Siddhi HTTP sink. Execute the below command to run the mock server.</p>
-<pre class="codehilite"><code class="language-bash linenums">    java -jar logservice-1.0.0.jar</code></pre>
+<pre class="codehilite"><code class="language-bash">    java -jar logservice-1.0.0.jar</code></pre>
 
 </li>
 <li>
 <p>Invoke the apiRequest service with the following cURL request for more than 10 times within a minute time period. Please make sure to change the <code>userEmail</code> property value to an email address that you could use to test the email alerting purposes.</p>
-<pre class="codehilite"><code class="language-bash linenums">    curl -v -X POST -d '{ "event": { "apiName": "order-mgt-v1", "version": "1.0.0", "tier": "silver", "user":"mohan", "userEmail":"example@wso2.com"}}' "http://localhost:8006/apiRequest" -H "Content-Type:application/json"</code></pre>
+<pre class="codehilite"><code class="language-bash">    curl -v -X POST -d '{ "event": { "apiName": "order-mgt-v1", "version": "1.0.0", "tier": "silver", "user":"mohan", "userEmail":"example@wso2.com"}}' "http://localhost:8006/apiRequest" -H "Content-Type:application/json"</code></pre>
 
 </li>
 <li>
@@ -1666,7 +1666,7 @@ Hence, make sure to add proper values for the environmental variables in the abo
 <ul>
 <li>
 <p>To install the Siddhi Kubernetes operator run the following commands.</p>
-<pre class="codehilite"><code class="language-bash linenums">kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-alpha/00-prereqs.yaml
+<pre class="codehilite"><code class="language-bash">kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-alpha/00-prereqs.yaml
 kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-alpha/01-siddhi-operator.yaml</code></pre>
 
 </li>
@@ -1679,7 +1679,7 @@ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/
 <li>
 <p>Download the mock <a href="https://github.com/mohanvive/siddhi-mock-services/releases/download/v1.0.0/logservice-1.0.0.jar">logging service</a> 
 which is used to demonstrate the capability of Siddhi HTTP sink. Execute the below command to run the mock server.</p>
-<pre class="codehilite"><code class="language-bash linenums">    java -jar logservice-1.0.0.jar</code></pre>
+<pre class="codehilite"><code class="language-bash">    java -jar logservice-1.0.0.jar</code></pre>
 
 </li>
 <li>
@@ -1690,7 +1690,7 @@ which is used to demonstrate the capability of Siddhi HTTP sink. Execute the bel
 </li>
 <li>
 <p>To deploy the above created Siddhi app, you have to create a custom resource object YAML file (with the kind as SiddhiProcess) as following</p>
-<pre class="codehilite"><code class="language-yaml linenums">apiVersion: siddhi.io/v1alpha2
+<pre class="codehilite"><code class="language-yaml">apiVersion: siddhi.io/v1alpha2
 kind: SiddhiProcess
 metadata:
   name: api-throttler-app
@@ -1777,7 +1777,7 @@ Hence, make sure to add proper values for the environmental variables in the abo
 </li>
 <li>
 <p>Now, let’s create the above resource in the Kubernetes cluster with the following command.</p>
-<pre class="codehilite"><code class="language-bash linenums"> kubectl create -f &lt;absolute-yaml-file-path&gt;/API-Request-Throttler.yaml</code></pre>
+<pre class="codehilite"><code class="language-bash"> kubectl create -f &lt;absolute-yaml-file-path&gt;/API-Request-Throttler.yaml</code></pre>
 
 </li>
 <li>
@@ -1789,17 +1789,17 @@ Hence, make sure to add proper values for the environmental variables in the abo
 </li>
 <li>
 <p>You can find the alert logs in the Siddhi runner log file. To see the Siddhi runner log file, first, invoke below command to get the pods.</p>
-<pre class="codehilite"><code class="language-bash linenums">kubectl get pods</code></pre>
+<pre class="codehilite"><code class="language-bash">kubectl get pods</code></pre>
 
 <p>Then, find the pod name of the Siddhi app deployed, and invoke below command to view the logs.</p>
-<pre class="codehilite"><code class="language-bash linenums">kubectl logs &lt;siddhi-app-pod-name&gt; -f</code></pre>
+<pre class="codehilite"><code class="language-bash">kubectl logs &lt;siddhi-app-pod-name&gt; -f</code></pre>
 
 <p>Eg: as shown below image,</p>
 <p><img alt="kubernetes_get_pods" src="../images/kubernetes-get-pods.png" title="Kubectl get pods command output" /></p>
 </li>
 <li>
 <p>Invoke the apiRequest service with below cURL request for more than 10 times within a minute. Please make sure to change the <code>userEmail</code> property value to an email address that you could use to test the email alerting purposes.</p>
-<pre class="codehilite"><code class="language-bash linenums">curl -v -X POST -d '{ "event": { "apiName": "order-mgt-v1", "version": "1.0.0", "tier": "silver", "user":"mohan", "userEmail":"example@wso2.com"}}' "http://siddhi/api-throttler-app-0/8006/apiRequest" -H "Content-Type:application/json"</code></pre>
+<pre class="codehilite"><code class="language-bash">curl -v -X POST -d '{ "event": { "apiName": "order-mgt-v1", "version": "1.0.0", "tier": "silver", "user":"mohan", "userEmail":"example@wso2.com"}}' "http://siddhi/api-throttler-app-0/8006/apiRequest" -H "Content-Type:application/json"</code></pre>
 
 </li>
 <li>

@@ -2475,7 +2475,7 @@
 <ol>
 <li>
 <p>Aggregate previous <code>apps</code> and <code>query</code> specs to a single spec called <code>apps</code>.</p>
-<pre class="codehilite"><code class="language-yaml linenums">apps:
+<pre class="codehilite"><code class="language-yaml">apps:
 -
     configMap: app
 -
@@ -2500,7 +2500,7 @@
 </li>
 <li>
 <p>Replace previous <code>pod</code> spec with the container spec.</p>
-<pre class="codehilite"><code class="language-yaml linenums">container:
+<pre class="codehilite"><code class="language-yaml">container:
     env:
         -
         name: RECEIVER_URL
@@ -2526,7 +2526,7 @@
 <li>Remove previous <code>tls</code> spec. Now you can configure ingress TLS secret using the <code>siddhi-operator-config</code> config map.</li>
 <li>
 <p>Change YAML naming convention to the Camel case.
-    <pre class="codehilite"><code class="language-yaml linenums">  messagingSystem:
+    <pre class="codehilite"><code class="language-yaml">  messagingSystem:
     type: nats
     config: 
       bootstrapServers: 

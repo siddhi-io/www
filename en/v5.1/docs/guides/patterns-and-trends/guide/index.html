@@ -1555,7 +1555,7 @@
 <p>Follow below steps to start the Siddhi tooling runtime.
 * Extract the downloaded zip and navigate to <TOOLING_HOME>/bin. (TOOLING_HOME refers to the extracted folder) 
 * Issue the following command in the command prompt (Windows) / terminal (Linux/Mac)
-    <pre class="codehilite"><code class="language-bash linenums">For Windows: tooling.bat
+    <pre class="codehilite"><code class="language-bash">For Windows: tooling.bat
 For Linux/Mac: ./tooling.sh</code></pre></p>
 </li>
 <li>
@@ -1568,7 +1568,7 @@ For Linux/Mac: ./tooling.sh</code></pre></p>
 <p>Once the Siddhi app is created, you can use the Event Simulator option in the editor to simulate events to streams and perform developer testing.</p>
 </li>
 </ol>
-<pre class="codehilite"><code class="language-siddhi linenums">@App:name("Taxi-Rider-Requests-Processing-App")
+<pre class="codehilite"><code class="language-siddhi">@App:name("Taxi-Rider-Requests-Processing-App")
 @App:description("Siddhi application that processes Taxi Rider request events")
 
 -- TCP source which accepts Taxi rider requests
@@ -1672,7 +1672,7 @@ end; </code></pre>
 <h3 id="invoking-the-siddhi-app">Invoking the Siddhi App<a class="headerlink" href="#invoking-the-siddhi-app" title="Permanent link">&para;</a></h3>
 <p>To try out the above use case, you have to send a set of events in a certain order to match with the query conditions. There is a sample TCP publisher could publish events in such an order. Hence, you could use the sample publisher given in <a href="https://github.com/mohanvive/siddhi-sample-clients/releases/download/v1.0.0/tcp-producer-1.0.0-jar-with-dependencies.jar">here</a>. </p>
 <p>Then you can execute below command to run the TCP client. </p>
-<pre class="codehilite"><code class="language-bash linenums">java -jar tcp-producer-1.0.0-jar-with-dependencies.jar </code></pre>
+<pre class="codehilite"><code class="language-bash">java -jar tcp-producer-1.0.0-jar-with-dependencies.jar </code></pre>
 
 <p>It will take nearly 3 minutes to publish events which required to test all the flows in the given Siddhi app.</p>
 <p><img alt="tcp_publisher-command" src="../images/tcp-publisher-command.png" title="Command to Execute Sample TCP Publisher" /></p>
@@ -1702,7 +1702,7 @@ Hence, make sure to set the environmental variables with the proper values in th
 </li>
 <li>
 <p>Start Siddhi app with the runner config by executing the following commands from the distribution directory.</p>
-<pre class="codehilite"><code class="language-bash linenums">Linux/Mac : ./bin/runner.sh -Dapps=&lt;siddhi-file-path&gt; 
+<pre class="codehilite"><code class="language-bash">Linux/Mac : ./bin/runner.sh -Dapps=&lt;siddhi-file-path&gt; 
 Windows : bin\runner.bat -Dapps=&lt;siddhi-file-path&gt; 
 
    Eg: If exported siddhi app in Siddhi home directory,
@@ -1712,7 +1712,7 @@ Windows : bin\runner.bat -Dapps=&lt;siddhi-file-path&gt;
 </li>
 <li>
 <p>Once server is started, download the sample TCP event generator from <a href="https://github.com/mohanvive/siddhi-sample-clients/releases/download/v1.0.0/tcp-producer-1.0.0-jar-with-dependencies.jar">here</a> and execute below command.</p>
-<pre class="codehilite"><code class="language-bash linenums">java -jar tcp-producer-1.0.0-jar-with-dependencies.jar tcp://localhost:9892/taxiRideRequests</code></pre>
+<pre class="codehilite"><code class="language-bash">java -jar tcp-producer-1.0.0-jar-with-dependencies.jar tcp://localhost:9892/taxiRideRequests</code></pre>
 
 <p>Above event publishes send binary events through TCP to the TCP endpoint defined in the Siddhi application. You can change the TCP endpoint url by passing them as java arguments. If not, sample client consider <code>tcp://localhost:9892/taxiRideRequests</code> as the TCP endpoint url.</p>
 <div class="admonition info">
@@ -1732,7 +1732,7 @@ Windows : bin\runner.bat -Dapps=&lt;siddhi-file-path&gt;
 <ol>
 <li>
 <p>First, you can create a docker network for the deployment as shown below
-    <pre class="codehilite"><code class="language-bash linenums">docker network create siddhi-tier --driver bridge</code></pre></p>
+    <pre class="codehilite"><code class="language-bash">docker network create siddhi-tier --driver bridge</code></pre></p>
 </li>
 <li>
 <p>Then, you can get the MySQL docker image from <a href="https://hub.docker.com/_/mysql">here</a> and run it with below command. We are going to use mysql version 5.7.27.</p>
@@ -1740,7 +1740,7 @@ Windows : bin\runner.bat -Dapps=&lt;siddhi-file-path&gt;
 </li>
 <li>
 <p>Start the MySQL docker images with below command,</p>
-<pre class="codehilite"><code class="language-bash linenums">docker run --name mysql-server --network siddhi-tier -e MYSQL_ROOT_PASSWORD=root e1e1680ac726</code></pre>
+<pre class="codehilite"><code class="language-bash">docker run --name mysql-server --network siddhi-tier -e MYSQL_ROOT_PASSWORD=root e1e1680ac726</code></pre>
 
 <div class="admonition info">
 <p class="admonition-title"><code>e1e1680ac726</code> is the MySQL docker image id in this case</p>
@@ -1758,7 +1758,7 @@ Windows : bin\runner.bat -Dapps=&lt;siddhi-file-path&gt;
 <ol>
 <li>
 <p>Since, MySQL client jar is required for the Siddhi runner; you have to create the docker image accordingly. Below is the sample Docker file created</p>
-<pre class="codehilite"><code class="language-docker linenums">FROM siddhiio/siddhi-runner-base-alpine:5.1.0-alpha
+<pre class="codehilite"><code class="language-docker">FROM siddhiio/siddhi-runner-base-alpine:5.1.0-alpha
 MAINTAINER Siddhi IO Docker Maintainers "siddhi-dev@googlegroups.com"
 
 ARG HOST_BUNDLES_DIR=./files/bundles
@@ -1784,18 +1784,18 @@ ENTRYPOINT ["/home/siddhi_user/siddhi-runner/bin/runner.sh",  "--"]</code></pre>
 </li>
 <li>
 <p>Once, Dockerfile is created you can create the docker image with below command.</p>
-<pre class="codehilite"><code class="language-bash linenums">docker build -t siddhi_mysql .</code></pre>
+<pre class="codehilite"><code class="language-bash">docker build -t siddhi_mysql .</code></pre>
 
 </li>
 <li>
 <p>Then, you can run the Siddhi docker image that you created with necessary external dependencies to work with MySQL. </p>
-<pre class="codehilite"><code class="language-bash linenums">docker run --network siddhi-tier -it -p 9892:9892  -v /Users/mohan/siddhi-apps/:/siddhi-apps  -e MYSQL_DB_URL=jdbc:mysql://mysql-server:3306/MyTaxi -e MYSQL_USERNAME=root -e MYSQL_PASSWORD=root -e EMAIL_USERNAME=siddhi.gke.user -e EMAIL_PASSWORD=siddhi123 -e SENDER_EMAIL_ADDRESS=siddhi.gke.user@gmail.com -e MANAGER_EMAIL_ADDRESS=mohan@wso2.com siddhi_mysql:latest -Dapps=/siddhi-apps/Taxi-Rider-Requests-Processing-App.siddhi</code></pre>
+<pre class="codehilite"><code class="language-bash">docker run --network siddhi-tier -it -p 9892:9892  -v /Users/mohan/siddhi-apps/:/siddhi-apps  -e MYSQL_DB_URL=jdbc:mysql://mysql-server:3306/MyTaxi -e MYSQL_USERNAME=root -e MYSQL_PASSWORD=root -e EMAIL_USERNAME=siddhi.gke.user -e EMAIL_PASSWORD=siddhi123 -e SENDER_EMAIL_ADDRESS=siddhi.gke.user@gmail.com -e MANAGER_EMAIL_ADDRESS=mohan@wso2.com siddhi_mysql:latest -Dapps=/siddhi-apps/Taxi-Rider-Requests-Processing-App.siddhi</code></pre>
 
 <p>Note: In the above provided Siddhi app, there are some environmental variables (MYSQL_DB_URL, MYSQL_USERNAME, and  MYSQL_PASSWORD)  are used. These values are required to be set to try out the scenario end to end. MYSQL related environmental variables are required to store the events of stream <code>NeedMoreRidersStream</code> . Environmental variables EMAIL_PASSWORD, EMAIL_USERNAME, SENDER_EMAIL_ADDRESS and MANAGER_EMAIL_ADDRESS  are used to send an email alert when there is an increasing trend of cancellation on specific area. </p>
 </li>
 <li>
 <p>You can use the sample <a href="https://github.com/mohanvive/siddhi-sample-clients/releases/download/v1.0.0/tcp-producer-1.0.0-jar-with-dependencies.jar">TCP event publisher</a>  to simulate required events. Use the below command to publish events to TCP endpoint.</p>
-<pre class="codehilite"><code class="language-bash linenums">java -jar tcp-producer-1.0.0-jar-with-dependencies.jar tcp://localhost:9892/taxiRideRequests</code></pre>
+<pre class="codehilite"><code class="language-bash">java -jar tcp-producer-1.0.0-jar-with-dependencies.jar tcp://localhost:9892/taxiRideRequests</code></pre>
 
 </li>
 <li>
@@ -1809,19 +1809,19 @@ ENTRYPOINT ["/home/siddhi_user/siddhi-runner/bin/runner.sh",  "--"]</code></pre>
 <ol>
 <li>
 <p>It is advisable to create a namespace in Kubernetes to follow below steps.
-    <pre class="codehilite"><code class="language-bash linenums">kubectl create ns siddhi-mysql-test</code></pre></p>
+    <pre class="codehilite"><code class="language-bash">kubectl create ns siddhi-mysql-test</code></pre></p>
 </li>
 <li>
 <p>There is a prerequisite that you should meet to tryout below SiddhiProcess; configuring MySQL database server within the above created namespace. You can use the official <a href="https://github.com/helm/charts/tree/master/stable/mysql">helm chart</a> provided for MySQL.</p>
 <ul>
 <li>
 <p>First, install the MySQL helm chart as shown below,
-    <pre class="codehilite"><code class="language-bash linenums">helm install --name mysql-db --namespace=siddhi-mysql-test --set mysqlRootPassword=root,mysqlDatabase=MyTaxi stable/mysql</code></pre></p>
+    <pre class="codehilite"><code class="language-bash">helm install --name mysql-db --namespace=siddhi-mysql-test --set mysqlRootPassword=root,mysqlDatabase=MyTaxi stable/mysql</code></pre></p>
 <p>Here, you can define the root password to connect to the MYSQL database and also define the database name. BTW, make sure to do <code>helm init</code> if it is not done yet.</p>
 </li>
 <li>
 <p>Then, you can set a port forwarding to the MySQL service which allows you to connect from the Host.</p>
-<pre class="codehilite"><code class="language-bash linenums">kubectl port-forward svc/mysql-db 13306:3306 --namespace=siddhi-mysql-test</code></pre>
+<pre class="codehilite"><code class="language-bash">kubectl port-forward svc/mysql-db 13306:3306 --namespace=siddhi-mysql-test</code></pre>
 
 </li>
 <li>
@@ -1835,7 +1835,7 @@ ENTRYPOINT ["/home/siddhi_user/siddhi-runner/bin/runner.sh",  "--"]</code></pre>
 <ul>
 <li>
 <p>To install the Siddhi Kubernetes operator run the following commands.</p>
-<pre class="codehilite"><code class="language-bash linenums">kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-alpha/00-prereqs.yaml  --namespace=siddhi-mysql-test
+<pre class="codehilite"><code class="language-bash">kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-alpha/00-prereqs.yaml  --namespace=siddhi-mysql-test
 kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0-alpha/01-siddhi-operator.yaml --namespace=siddhi-mysql-test</code></pre>
 
 </li>
@@ -1850,7 +1850,7 @@ kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/
 <ul>
 <li>
 <p>To deploy the above created Siddhi app, we have to create custom resource object yaml file (with the kind as SiddhiProcess) as given below</p>
-<pre class="codehilite"><code class="language-yaml linenums">apiVersion: siddhi.io/v1alpha2
+<pre class="codehilite"><code class="language-yaml">apiVersion: siddhi.io/v1alpha2
 kind: SiddhiProcess
 metadata:
   name: taxi-rider-requests-processing-app
@@ -1969,27 +1969,27 @@ spec:
 </li>
 <li>
 <p>Now,  let’s create the above resource in the Kubernetes  cluster with below command.</p>
-<pre class="codehilite"><code class="language-bash linenums">kubectl --namespace=siddhi-mysql-test create -f &lt;absolute-yaml-file-path&gt;/taxi-rider-requests-processing-app.yaml</code></pre>
+<pre class="codehilite"><code class="language-bash">kubectl --namespace=siddhi-mysql-test create -f &lt;absolute-yaml-file-path&gt;/taxi-rider-requests-processing-app.yaml</code></pre>
 
 <p>Once, siddhi app is successfully deployed. You can verify its health with below Kubernetes commands</p>
 <p><img alt="kubernetes_pods_with_mysql" src="../images/k8s-pods-with-siddhi.png" title="Kubernetes Deployment &amp; Pods" /></p>
 </li>
 <li>
 <p>You can find the alert logs in the siddhi runner log file. To see the Siddhi runner log file, you can invoke below command.
-    <pre class="codehilite"><code class="language-bash linenums">kubectl get pods</code></pre></p>
+    <pre class="codehilite"><code class="language-bash">kubectl get pods</code></pre></p>
 <p>Then, find the pod name of the siddhi app deployed. Then invoke below command,</p>
-<pre class="codehilite"><code class="language-bash linenums">kubectl logs &lt;siddhi-app-pod-name&gt; -f</code></pre>
+<pre class="codehilite"><code class="language-bash">kubectl logs &lt;siddhi-app-pod-name&gt; -f</code></pre>
 
 </li>
 <li>
 <p>Then, you can set a port forwarding to the Siddhi TCP endpoint which allows you to connect from the Host with below command.</p>
-<pre class="codehilite"><code class="language-bash linenums">kubectl port-forward svc/taxi-rider-requests-processing-app-0 9892:9892 --namespace=siddhi-mysql-test   </code></pre>
+<pre class="codehilite"><code class="language-bash">kubectl port-forward svc/taxi-rider-requests-processing-app-0 9892:9892 --namespace=siddhi-mysql-test   </code></pre>
 
 <p><img alt="tco_port_forwarding" src="../images/tcp-port-forwarding.png" title="Kubernetes TCP Port Forwarding" /></p>
 </li>
 <li>
 <p>Then execute below command to send TCP events to Siddhi Stream Processor.</p>
-<pre class="codehilite"><code class="language-bash linenums">java -jar tcp-producer-1.0.0-jar-with-dependencies.jar tcp://0.0.0.0:9892/taxiRideRequests</code></pre>
+<pre class="codehilite"><code class="language-bash">java -jar tcp-producer-1.0.0-jar-with-dependencies.jar tcp://0.0.0.0:9892/taxiRideRequests</code></pre>
 
 </li>
 <li>

@@ -1656,7 +1656,7 @@
 <ul>
 <li>
 <p>MySQL<br />
-  <pre class="codehilite"><code class="language-yaml linenums">dataSources:
+  <pre class="codehilite"><code class="language-yaml">dataSources:
   - name: SIDDHI_TEST_DB
     description: The datasource used for test database
     jndiConfig:
@@ -1680,7 +1680,7 @@
     <pre>
   jdbc:oracle:thin:@[HOST][:PORT]:SID
   </pre>
-  <pre class="codehilite"><code class="language-yaml linenums">dataSources:
+  <pre class="codehilite"><code class="language-yaml">dataSources:
 - name: SIDDHI_TEST_DB
   description: The datasource used for test database
   jndiConfig:
@@ -1701,7 +1701,7 @@
   <pre>
   jdbc:oracle:thin:@//[HOST][:PORT]/SERVICE
   </pre>
-  <pre class="codehilite"><code class="language-yaml linenums">dataSources:
+  <pre class="codehilite"><code class="language-yaml">dataSources:
 - name: SIDDHI_TEST_DB
   description: The datasource used for test database
   jndiConfig:
@@ -1721,7 +1721,7 @@
 </li>
 <li>
 <p>PostgreSQL
-  <pre class="codehilite"><code class="language-yaml linenums">dataSources:
+  <pre class="codehilite"><code class="language-yaml">dataSources:
 - name: SIDDHI_TEST_DB
   description: The datasource used for test database
   jndiConfig:
@@ -1741,7 +1741,7 @@
 </li>
 <li>
 <p>MSSQL
-  <pre class="codehilite"><code class="language-yaml linenums"> dataSources:
+  <pre class="codehilite"><code class="language-yaml"> dataSources:
  - name: SIDDHI_TEST_DB
    description: The datasource used for test database
    jndiConfig:
@@ -1811,7 +1811,7 @@
 </tbody>
 </table>
 <p>The following is a sample configuration for database based state persistence.
-<pre class="codehilite"><code class="language-yaml linenums">statePersistence:
+<pre class="codehilite"><code class="language-yaml">statePersistence:
   enabled: true
   intervalInMin: 1
   revisionsToKeep: 3
@@ -1859,7 +1859,7 @@
 </tbody>
 </table>
 <p>The following is a sample configuration for file system based state persistence.
-<pre class="codehilite"><code class="language-yaml linenums">statePersistence:
+<pre class="codehilite"><code class="language-yaml">statePersistence:
   enabled: true
   intervalInMin: 1
   revisionsToKeep: 2
@@ -1928,7 +1928,7 @@
 <p>The following are some samples configuration for aws-s3 based state persistence.</br></p>
 <ul>
 <li>Sample with credential provider class
-<pre class="codehilite"><code class="language-yaml linenums">statePersistence:
+<pre class="codehilite"><code class="language-yaml">statePersistence:
   enabled: true
   intervalInMin: 1
   revisionsToKeep: 2
@@ -1938,7 +1938,7 @@
     region: us-west-2
     bucketName: siddhi-app-persistence</code></pre></li>
 <li>Sample with secret-key and access-key
-<pre class="codehilite"><code class="language-yaml linenums">statePersistence:
+<pre class="codehilite"><code class="language-yaml">statePersistence:
   enabled: true
   intervalInMin: 1
   revisionsToKeep: 2
@@ -1958,7 +1958,7 @@
 <h3 id="configuring-sources-sinks-and-stores-references">Configuring Sources, Sinks and Stores References<a class="headerlink" href="#configuring-sources-sinks-and-stores-references" title="Permanent link">&para;</a></h3>
 <p>Multiple sources, sinks, and stores could be defined in Siddhi Configuration yaml as <code>ref</code>, and referred by several Siddhi Applications as described below.</p>
 <p>The following is the syntax for the configuration.
-<pre class="codehilite"><code class="language-yaml linenums">refs:
+<pre class="codehilite"><code class="language-yaml">refs:
   -
     ref:
       name: '&lt;name&gt;'
@@ -1968,13 +1968,13 @@
         &lt;property2&gt;: &lt;value2&gt;</code></pre></p>
 <p>For each separate refs you want to configure, add a sub-section named <code>ref</code> under the <code>refs</code> subsection.</p>
 <p>The ref configured in Siddhi Configuration yaml can be referred from a Siddhi Application <a href="../query-guide/#source">Source</a> as follows.
-<pre class="codehilite"><code class="language-mysql linenums">@Source(ref='&lt;name&gt;',
+<pre class="codehilite"><code class="language-mysql">@Source(ref='&lt;name&gt;',
         @map(type='json', @attributes( name='$.name', amount='$.quantity')))
 define stream SweetProductionStream (name string, amount double);</code></pre>
 Similarly <a href="../query-guide/#sink">Sinks</a> and <a href="../query-guide/#store">Store Tables</a> can also be configured and referred from Siddhi Apps.</p>
 <p><strong>Example</strong>: Configuring http source using <code>ref</code></p>
 <p>Following configuration defines the <code>url</code> and details about <code>basic.auth</code>, in the Siddhi Configuration yaml.
-<pre class="codehilite"><code class="language-yaml linenums">refs:
+<pre class="codehilite"><code class="language-yaml">refs:
   -
     ref:
       name: 'http-passthrough'
@@ -1983,14 +1983,14 @@ Similarly <a href="../query-guide/#sink">Sinks</a> and <a href="../query-guide/#
         receiver.url: 'http://0.0.0.0:8008/sweet-production'
         basic.auth.enabled: false</code></pre></p>
 <p>This can be referred in the Siddhi Applications as follows.</p>
-<pre class="codehilite"><code class="language-mysql linenums">@Source(ref='http-passthrough',
+<pre class="codehilite"><code class="language-mysql">@Source(ref='http-passthrough',
         @map(type='json', @attributes( name='$.name', amount='$.quantity')))
 define stream SweetProductionStream (name string, amount double);</code></pre>
 
 <h3 id="configuring-extensions-system-parameters">Configuring Extensions System Parameters<a class="headerlink" href="#configuring-extensions-system-parameters" title="Permanent link">&para;</a></h3>
 <p>Siddhi extensions cater use-case specific logic that is not available by default in Siddhi. Some of these extensions have system parameter configurations to define/modify their behavior. These extensions usually have default values for the parameters, but when needed, they can be overridden by configuring the parameters in Siddhi Configuration yaml and passing it at startup.</p>
 <p>The following is the syntax for the configuration.
-<pre class="codehilite"><code class="language-yaml linenums">extensions:
+<pre class="codehilite"><code class="language-yaml">extensions:
   -
     extension:
       name: &lt;extension name&gt;
@@ -2000,7 +2000,7 @@ define stream SweetProductionStream (name string, amount double);</code></pre>
 For each separate extension you want to configure, add a sub-section named <code>extension</code> under the <code>extensions</code> subsection.</p>
 <p>Following are some examples on overriding default system properties via Siddhi Configuration yaml</p>
 <p><strong>Example 1</strong>: Defining service host and port for the TCP source
-<pre class="codehilite"><code class="language-yaml linenums">extensions:
+<pre class="codehilite"><code class="language-yaml">extensions:
   - extension:
       name: tcp
       namespace: source
@@ -2008,7 +2008,7 @@ For each separate extension you want to configure, add a sub-section named <code
         host: 0.0.0.0
         port: 5511</code></pre>
 <strong>Example 2</strong>: Overwriting the default RDBMS extension configuration
-<pre class="codehilite"><code class="language-yaml linenums">extensions:
+<pre class="codehilite"><code class="language-yaml">extensions:
   - extension:
       name: rdbms
       namespace: store
@@ -2048,7 +2048,7 @@ For each separate extension you want to configure, add a sub-section named <code
 </tbody>
 </table>
 <p>Following is the example of setting Distributed Named Aggregation
-<pre class="codehilite"><code class="language-yaml linenums">properties:
+<pre class="codehilite"><code class="language-yaml">properties:
   partitionById : true
   shardId : shard1</code></pre></p>
 <h2 id="configuring-authentication">Configuring Authentication<a class="headerlink" href="#configuring-authentication" title="Permanent link">&para;</a></h2>
@@ -2058,7 +2058,7 @@ For each separate extension you want to configure, add a sub-section named <code
 </div>
 <p>Siddhi is configured with user name <code>admin</code>, and password <code>admin</code>. This can be updated by adding related user management configuration as <code>authentication</code> to the Siddhi Configuration yaml, and pass it at startup.</p>
 <p>A sample <code>authentication</code> is as follows.</p>
-<pre class="codehilite"><code class="language-yaml linenums"># Authentication configuration
+<pre class="codehilite"><code class="language-yaml"># Authentication configuration
 authentication:
   type: 'local'        # Type of the IdP client used
   userManager:
@@ -2085,7 +2085,7 @@ authentication:
 <h3 id="adding-to-siddhi-java-program">Adding to Siddhi Java Program<a class="headerlink" href="#adding-to-siddhi-java-program" title="Permanent link">&para;</a></h3>
 <p>When running Siddhi as a Java library, the extension jars and/or third-party dependencies needed for Siddhi can be simply added to Siddhi class-path. When Maven is used as the build tool add them to the <code>pom.xml</code> file along with the other mandatory jars needed by Siddhi as given is <a href="../siddhi-as-a-java-library/">Using Siddhi as a library</a> guide.</p>
 <p>A sample on adding <code>siddhi-io-http</code> extension to the Maven <code>pom.xml</code> is as follows.</p>
-<pre class="codehilite"><code class="language-xml linenums">&lt;!--HTTP extension--&gt;
+<pre class="codehilite"><code class="language-xml">&lt;!--HTTP extension--&gt;
 &lt;dependency&gt;
   &lt;groupId&gt;org.wso2.extension.siddhi.io.http&lt;/groupId&gt;
   &lt;artifactId&gt;siddhi-io-http&lt;/artifactId&gt;
@@ -2108,7 +2108,7 @@ These Jars will be converted as OSGI bundles and copied to Siddhi Runner distrib
 <p>The most used Siddhi extensions are packed by default with the Siddhi Docker Microservice distribution.</p>
 <p>To add or update Siddhi extensions and/or third-party dependencies, a new docker image has to be built from either <a href="https://hub.docker.com/r/siddhiio/siddhi-runner-base-ubuntu">siddhi-runner-base-ubuntu</a> or <a href="https://hub.docker.com/r/siddhiio/siddhi-runner-base-alpine">siddhi-runner-base-alpine</a> images. These images contain Linux OS, JDK and the Siddhi distribution.</p>
 <p>Sample docker file using <code>siddhi-runner-base-alpine</code> is as follows.
-<pre class="codehilite"><code class="language-docker linenums"># use siddhi-runner-base
+<pre class="codehilite"><code class="language-docker"># use siddhi-runner-base
 FROM siddhiio/siddhi-runner-base-alpine:5.1.0-alpha
 MAINTAINER Siddhi IO Docker Maintainers "siddhi-dev@googlegroups.com"
 
@@ -2150,7 +2150,7 @@ ENTRYPOINT ["/home/siddhi_user/siddhi-runner/bin/runner.sh",  "--"]</code></pre>
 <div class="admonition note">
 <p class="admonition-title">Configuring Metrics reporting level.</p>
 <p>To modify the statistics reporting, relevant metric names can be added under the <code>metrics.levels</code> subsection in the Siddhi Configurations yaml, along with the metrics level (i.e., OFF, INFO, DEBUG, TRACE, or ALL) as given below.
-<pre class="codehilite"><code class="language-yaml linenums">metrics:
+<pre class="codehilite"><code class="language-yaml">metrics:
   # Metrics Levels are organized from most specific to least:
   # OFF (most specific, no metrics)
   # INFO
@@ -2171,11 +2171,11 @@ ENTRYPOINT ["/home/siddhi_user/siddhi-runner/bin/runner.sh",  "--"]</code></pre>
 <h3 id="reporting-via-jmx-mbeans">Reporting via JMX Mbeans<a class="headerlink" href="#reporting-via-jmx-mbeans" title="Permanent link">&para;</a></h3>
 <p>JMX Mbeans is the default statistics reporting option of Siddhi. To enable stats with the default configuration add the metric-related properties under <code>metrics</code> section in the Siddhi Configurations yaml file, and pass that during startup.</p>
 <p>A sample configuration is as follows.
-<pre class="codehilite"><code class="language-yaml linenums">metrics:
+<pre class="codehilite"><code class="language-yaml">metrics:
   enabled: true</code></pre>
 This will report JMX Mbeans in the name of <code>org.wso2.carbon.metrics</code>. However, in this default configuration the JVM metrics will not be measured.</p>
 <p>A detail JMX configuration along with the metrics reporting level is as follows.</p>
-<pre class="codehilite"><code class="language-yaml linenums">metrics:
+<pre class="codehilite"><code class="language-yaml">metrics:
   # Enable Metrics
   enabled: true
   jmx:
@@ -2201,7 +2201,7 @@ This will report JMX Mbeans in the name of <code>org.wso2.carbon.metrics</code>.
 
 <h3 id="reporting-via-console">Reporting via Console<a class="headerlink" href="#reporting-via-console" title="Permanent link">&para;</a></h3>
 <p>To enable statistics by periodically printing the metrics on console add the following configuration to the the Siddhi Configurations yaml file, and pass that during startup.</p>
-<pre class="codehilite"><code class="language-yaml linenums"># This is the main configuration for metrics
+<pre class="codehilite"><code class="language-yaml"># This is the main configuration for metrics
 metrics:
   # Enable Metrics
   enabled: false
@@ -2220,7 +2220,7 @@ metrics:
 <p>The below sample is referring to the datasource with JNDI name <code>jdbc/SiddhiMetricsDB</code>, hence the datasource configuration in yaml should have <code>jndiConfig.name</code> as <code>jdbc/SiddhiMetricsDB</code>. For detailed instructions on configuring a datasource, refer <a href="#configuring-databases">Configuring Databases</a>.</p>
 <p>. The scripts to create these tables are provided in the <code>&lt;SIDDHI_RUNNER_HOME&gt;/wso2/runner/dbscripts</code> directory.</p>
 <p>Sample configuration of reporting via database.</p>
-<pre class="codehilite"><code class="language-yaml linenums">metrics:
+<pre class="codehilite"><code class="language-yaml">metrics:
   enabled: true
   jdbc:
   # Data Source Configurations for JDBC Reporters
@@ -2277,13 +2277,13 @@ metrics:
 </table>
 <h2 id="converting-jars-to-osgi-bundles">Converting Jars to OSGi Bundles<a class="headerlink" href="#converting-jars-to-osgi-bundles" title="Permanent link">&para;</a></h2>
 <p>To convert jar files to OSGi bundles, first download and save the non-OSGi jar it in a preferred directory in your machine. Then from the CLI, navigate to the <code>&lt;SIDDHI_RUNNER_HOME&gt;/bin</code> directory, and issue the following command.</p>
-<pre class="codehilite"><code class="linenums">./jartobundle.sh &lt;path to non OSGi jar&gt; ../lib</code></pre>
+<pre class="codehilite"><code>./jartobundle.sh &lt;path to non OSGi jar&gt; ../lib</code></pre>
 
 <p>This converts the Jar to OSGi bundles and place it in <code>&lt;SIDDHI_RUNNER_HOME&gt;/lib</code> directory.</p>
 <h2 id="encrypt-sensitive-deployment-configurations">Encrypt sensitive deployment configurations<a class="headerlink" href="#encrypt-sensitive-deployment-configurations" title="Permanent link">&para;</a></h2>
 <p>Cipher tool is used to encrypt sensitive data in deployment configurations. This tool works in conjunction with Secure Vault to replace sensitive data that is in plain text with an alias. The actual value is then encrypted and securely stored in the SecureVault. At runtime, the actual value is retrieved from the alias and used. For more information, see <a href="https://github.com/wso2/carbon-secvault/blob/master/README.md">Secure Vault</a>.</p>
 <p>Below is the default configurations for Secure Vault
-<pre class="codehilite"><code class="language-yaml linenums"># Secure Vault Configuration
+<pre class="codehilite"><code class="language-yaml"># Secure Vault Configuration
 securevault:
   secretRepository:
     type: org.wso2.carbon.secvault.repository.DefaultSecretRepository
@@ -2341,13 +2341,13 @@ Information about the parameters configured under the <code>securevault</code> s
 <h2 id="configuring-server-properties">Configuring server properties<a class="headerlink" href="#configuring-server-properties" title="Permanent link">&para;</a></h2>
 <p>Siddhi runner and tooling distribution is based on WSO2 Carbon 5 Kernel platform. The properties for the server can be configure under <code>wso2.carbon</code> namespace.</p>
 <p>Sample configurations is as follows,
-<pre class="codehilite"><code class="language-yaml linenums">wso2.carbon:
+<pre class="codehilite"><code class="language-yaml">wso2.carbon:
   id: siddhi-runner
   name: Siddhi Runner Distribution</code></pre></p>
 <h3 id="configure-port-offset">Configure port offset<a class="headerlink" href="#configure-port-offset" title="Permanent link">&para;</a></h3>
 <p>Port offset defines the number by which all ports defined in the runtime such as the HTTP/S ports will be offset. For example, if the default HTTP port is 9090 and the <code>ports &gt;&gt; offset</code> is 1, the effective HTTP port will be 9091. This configuration allows to change ports in a uniform manner across the transports.</p>
 <p>Below is the sample configurations for offsets,</p>
-<pre class="codehilite"><code class="language-yaml linenums">wso2.carbon:
+<pre class="codehilite"><code class="language-yaml">wso2.carbon:
   id: siddhi-runner
   name: Siddhi Runner Distribution
   ports:
@@ -2356,7 +2356,7 @@ Information about the parameters configured under the <code>securevault</code> s
 <h3 id="disabling-host-name-verification">Disabling host name verification<a class="headerlink" href="#disabling-host-name-verification" title="Permanent link">&para;</a></h3>
 <p>Hostname verification can be disabled in Admin APIs in analytics server side, with <code>hostnameVerificationEnabled</code></p>
 <p>Below is the sample configuration,</p>
-<pre class="codehilite"><code class="language-yaml linenums">wso2.carbon:
+<pre class="codehilite"><code class="language-yaml">wso2.carbon:
   id: siddhi-runner
   name: Siddhi Runner Distribution
   hostnameVerificationEnabled: false</code></pre>
@@ -2364,7 +2364,7 @@ Information about the parameters configured under the <code>securevault</code> s
 <h2 id="configuring-admin-rest-apis">Configuring Admin REST APIs<a class="headerlink" href="#configuring-admin-rest-apis" title="Permanent link">&para;</a></h2>
 <p>Admin API can be configured under the namespace <code>transports &gt;&gt; http</code>. </p>
 <p>Sample Config and the parameters are as follows,
-<pre class="codehilite"><code class="language-yaml linenums">transports:
+<pre class="codehilite"><code class="language-yaml">transports:
   http:
     listenerConfigurations:
       - 
@@ -2507,7 +2507,7 @@ Information about the parameters configured under the <code>securevault</code> s
 <h2 id="configuring-databridge-transport">Configuring Databridge Transport<a class="headerlink" href="#configuring-databridge-transport" title="Permanent link">&para;</a></h2>
 <p>Siddhi uses Databridge transport to send and receive events over Thrift/Binary protocols, This can be used through <code>siddhi-io-wso2event</code> extension.</p>
 <p>Sample Configuration is as follows,
-<pre class="codehilite"><code class="language-yaml linenums">transports:      
+<pre class="codehilite"><code class="language-yaml">transports:      
   databridge:
   # Configuration used for the databridge communication
     listenerConfigurations:
@@ -2527,7 +2527,7 @@ Information about the parameters configured under the <code>securevault</code> s
 Here, <code>transports &gt;&gt; databridge</code> includes listenerConfigurations, to configure databridge receiver in WSO2Event Source, and senderConfigurations, to configure agents used to publish events over databridge in WSO2Event Sink</p>
 <h3 id="configuring-databridge-listener">Configuring databridge listener<a class="headerlink" href="#configuring-databridge-listener" title="Permanent link">&para;</a></h3>
 <p>Sample configuration for databridge listener and properties are as follows,</p>
-<pre class="codehilite"><code class="language-yaml linenums">transports:
+<pre class="codehilite"><code class="language-yaml">transports:
   databridge:
     listenerConfigurations:
       workerThreads: 10
@@ -2670,7 +2670,7 @@ Here, <code>transports &gt;&gt; databridge</code> includes listenerConfiguration
 </div>
 <p>By default both Thrift and Binary agents will be started.</p>
 <p>Sample configuration for databridge agent(publisher) and properties are as follows,
-<pre class="codehilite"><code class="language-yaml linenums">transports:
+<pre class="codehilite"><code class="language-yaml">transports:
   databridge:
     senderConfigurations:
       agents:

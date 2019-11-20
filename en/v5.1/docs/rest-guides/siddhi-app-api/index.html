@@ -2867,10 +2867,10 @@
 </tbody>
 </table>
 <h3 id="curl-command-syntax">curl command syntax<a class="headerlink" href="#curl-command-syntax" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-java linenums">curl -X POST "https://localhost:9443/siddhi-apps" -H "accept: application/json" -H "Content-Type: text/plain" --data-binary @TestSiddhiApp.siddhi -u admin:admin -k</code></pre>
+<pre class="codehilite"><code class="language-java">curl -X POST "https://localhost:9443/siddhi-apps" -H "accept: application/json" -H "Content-Type: text/plain" --data-binary @TestSiddhiApp.siddhi -u admin:admin -k</code></pre>
 
 <h3 id="sample-curl-command">Sample curl command<a class="headerlink" href="#sample-curl-command" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-java linenums">curl -X POST "https://localhost:9443/siddhi-apps" -H "accept: application/json" -H "Content-Type: text/plain" --data-binary @TestSiddhiApp.siddhi -u admin:admin -k</code></pre>
+<pre class="codehilite"><code class="language-java">curl -X POST "https://localhost:9443/siddhi-apps" -H "accept: application/json" -H "Content-Type: text/plain" --data-binary @TestSiddhiApp.siddhi -u admin:admin -k</code></pre>
 
 <h3 id="sample-output">Sample output<a class="headerlink" href="#sample-output" title="Permanent link">&para;</a></h3>
 <p>The response for the sample curl command given above can be one of the
@@ -2882,7 +2882,7 @@ following.</p>
   generated with response code 201. This response contains a location
   header with the path of the newly created file from product root
   home.</p>
-<pre class="codehilite"><code class="language-java linenums">{
+<pre class="codehilite"><code class="language-java">{
     "type":"success",
     "message":"Siddhi App saved succesfully and will be deployed in next deployment cycle"
 }</code></pre>
@@ -2892,7 +2892,7 @@ following.</p>
 <p>If the API request is valid, but a Siddhi application with the given
   name already exists,  a response similar to the following is
   generated with response code 409.</p>
-<pre class="codehilite"><code class="language-java linenums">{
+<pre class="codehilite"><code class="language-java">{
     "type": "conflict",
     "message": "There is a Siddhi App already exists with same name"
 }</code></pre>
@@ -2902,7 +2902,7 @@ following.</p>
 <p>If the API request is invalid due to invalid content in the Siddhi
   queries you have included in the request body,  a response similar
   to the following is generated is generated with response code 400.</p>
-<pre class="codehilite"><code class="language-java linenums">{
+<pre class="codehilite"><code class="language-java">{
     "code": 800101,
     "type": "validation error",
     "message": "You have an error in your SiddhiQL at line 8:8, missing INTO at 'BarStream'"
@@ -2913,7 +2913,7 @@ following.</p>
 <p>If the API request is valid, but an exception occured during file
     processing or saving, the following response is generated with
     response code 500.</p>
-<pre class="codehilite"><code class="language-java linenums">{
+<pre class="codehilite"><code class="language-java">{
     "code": 800102,
     "type": "file processing error",
     "message": &lt;error-message&gt;
@@ -2981,10 +2981,10 @@ following.</p>
 </tbody>
 </table>
 <h3 id="curl-command-syntax_1">curl command syntax<a class="headerlink" href="#curl-command-syntax_1" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-java linenums">curl -X PUT "http://localhost:9090/siddhi-apps" -H "accept: application/json" -H "Content-Type: text/plain" --data-binary @&lt;SIDDHI_APPLICATION_NAME&gt;.siddhi -u admin:admin -k</code></pre>
+<pre class="codehilite"><code class="language-java">curl -X PUT "http://localhost:9090/siddhi-apps" -H "accept: application/json" -H "Content-Type: text/plain" --data-binary @&lt;SIDDHI_APPLICATION_NAME&gt;.siddhi -u admin:admin -k</code></pre>
 
 <h3 id="sample-curl-command_1">Sample curl command<a class="headerlink" href="#sample-curl-command_1" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-java linenums">curl -X PUT "https://localhost:9443/siddhi-apps" -H "accept: application/json" -H "Content-Type: text/plain" --data-binary @TestSiddhiApp.siddhi -u admin:admin -k</code></pre>
+<pre class="codehilite"><code class="language-java">curl -X PUT "https://localhost:9443/siddhi-apps" -H "accept: application/json" -H "Content-Type: text/plain" --data-binary @TestSiddhiApp.siddhi -u admin:admin -k</code></pre>
 
 <h3 id="sample-output_1">Sample output<a class="headerlink" href="#sample-output_1" title="Permanent link">&para;</a></h3>
 <ul>
@@ -2992,7 +2992,7 @@ following.</p>
 <p>If the API request is invalid due to invalid content in the Siddhi
     query, a response similar to the following is returned with response
     code 400.</p>
-<pre class="codehilite"><code class="language-java linenums">{
+<pre class="codehilite"><code class="language-java">{
     "code": 800101,
     "type": "validation error",
     "message": "You have an error in your SiddhiQL at line 8:8, missing INTO at 'BarStream'" 
@@ -3003,7 +3003,7 @@ following.</p>
 <p>If the API request is valid, but an exception occured when saving or
     processing files, a response similar to the following is returned
     with response code 500.</p>
-<pre class="codehilite"><code class="language-java linenums">{
+<pre class="codehilite"><code class="language-java">{
     "code": 800102,
     "type": "file processing error",
     "message": &lt;error-message&gt;
@@ -3086,10 +3086,10 @@ following.</p>
 </tbody>
 </table>
 <h3 id="curl-command-syntax_2">curl command syntax<a class="headerlink" href="#curl-command-syntax_2" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-java linenums">curl -X DELETE "http://localhost:9090/siddhi-apps/{app-name}" -H "accept: application/json" -u admin:admin -k</code></pre>
+<pre class="codehilite"><code class="language-java">curl -X DELETE "http://localhost:9090/siddhi-apps/{app-name}" -H "accept: application/json" -u admin:admin -k</code></pre>
 
 <h3 id="sample-curl-command_2">Sample curl command<a class="headerlink" href="#sample-curl-command_2" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-java linenums">curl -X DELETE "https://localhost:9443/siddhi-apps/TestSiddhiApp" -H "accept: application/json" -u admin:admin -k</code></pre>
+<pre class="codehilite"><code class="language-java">curl -X DELETE "https://localhost:9443/siddhi-apps/TestSiddhiApp" -H "accept: application/json" -u admin:admin -k</code></pre>
 
 <h3 id="sample-output_2">Sample output<a class="headerlink" href="#sample-output_2" title="Permanent link">&para;</a></h3>
 <p>The response for the sample curl command given above can be one of the
@@ -3104,7 +3104,7 @@ following:</p>
 <p>If the API request is valid, but a Siddhi application with the given
     name is not deployed, the following response is received with
     response code 404.</p>
-<pre class="codehilite"><code class="language-java linenums">{
+<pre class="codehilite"><code class="language-java">{
     "type": "not found",
     "message": "There is no Siddhi App exist with provided name : TestExecutionPlan1" 
 }</code></pre>
@@ -3114,7 +3114,7 @@ following:</p>
 <p>If the API request is valid, but an exception occured when deleting
     the given Siddhi application, the following response is received
     with response code 500.</p>
-<pre class="codehilite"><code class="language-java linenums">{
+<pre class="codehilite"><code class="language-java">{
     "code": 800102,
     "type": "file processing error",
     "message": &lt;error-message&gt;
@@ -3125,7 +3125,7 @@ following:</p>
 <p>If the API request is valid, but there are restricted characters in
     the given Siddhi application name, the following response is
     received with response code 400.</p>
-<pre class="codehilite"><code class="language-java linenums">{
+<pre class="codehilite"><code class="language-java">{
     "code": 800101,
     "type": "validation error",
     "message": "File name contains restricted path elements . : ../../siddhiApp2'" 
@@ -3194,10 +3194,10 @@ following:</p>
 </table>
 
 <h3 id="curl-command-syntax_3">curl command syntax<a class="headerlink" href="#curl-command-syntax_3" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-java linenums">curl -X GET "http://localhost:9090/siddhi-apps" -H "accept: application/json" -u admin:admin -k</code></pre>
+<pre class="codehilite"><code class="language-java">curl -X GET "http://localhost:9090/siddhi-apps" -H "accept: application/json" -u admin:admin -k</code></pre>
 
 <h3 id="sample-curl-command_3">Sample curl command<a class="headerlink" href="#sample-curl-command_3" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-java linenums">curl -X GET "https://localhost:9443/siddhi-apps?isActive=true" -H "accept: application/json" -u admin:admin -k</code></pre>
+<pre class="codehilite"><code class="language-java">curl -X GET "https://localhost:9443/siddhi-apps?isActive=true" -H "accept: application/json" -u admin:admin -k</code></pre>
 
 <h3 id="sample-output_3">Sample output<a class="headerlink" href="#sample-output_3" title="Permanent link">&para;</a></h3>
 <p>Possible responses are as follows:</p>
@@ -3206,7 +3206,7 @@ following:</p>
 <p>If the API request is valid and there are Siddhi applications
     deployed in your SP setup, a response similar to the following is
     returned with response code 200.</p>
-<pre class="codehilite"><code class="language-java linenums">["TestExecutionPlan3", "TestExecutionPlan4"]</code></pre>
+<pre class="codehilite"><code class="language-java">["TestExecutionPlan3", "TestExecutionPlan4"]</code></pre>
 
 </li>
 <li>
@@ -3218,13 +3218,13 @@ following:</p>
 <div class="admonition info">
 <p class="admonition-title">If these conditions are met, but the <code>isActive</code> parameter is set to <code>false</code> , the response contains only inactive Siddhi applications.</p>
 </div>
-<pre class="codehilite"><code class="language-java linenums">    ["TestExecutionPlan3"]</code></pre>
+<pre class="codehilite"><code class="language-java">    ["TestExecutionPlan3"]</code></pre>
 
 </li>
 <li>
 <p>If the API request is valid, but there are no Siddhi applications
     deployed in your SP setup, the following response is returned.</p>
-<pre class="codehilite"><code class="language-java linenums">        []</code></pre>
+<pre class="codehilite"><code class="language-java">        []</code></pre>
 
 </li>
 </ul>
@@ -3303,10 +3303,10 @@ following:</p>
 </tbody>
 </table>
 <h3 id="curl-command-syntax_4">curl command syntax<a class="headerlink" href="#curl-command-syntax_4" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-java linenums">curl -X GET "http://localhost:9090/siddhi-apps/{app-name}" -H "accept: application/json" -u admin:admin -k</code></pre>
+<pre class="codehilite"><code class="language-java">curl -X GET "http://localhost:9090/siddhi-apps/{app-name}" -H "accept: application/json" -u admin:admin -k</code></pre>
 
 <h3 id="sample-curl-command_4">Sample curl command<a class="headerlink" href="#sample-curl-command_4" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-java linenums">curl -X GET "https://localhost:9443/siddhi-apps/SiddhiTestApp" -H "accept: application/json" -u admin:admin -k</code></pre>
+<pre class="codehilite"><code class="language-java">curl -X GET "https://localhost:9443/siddhi-apps/SiddhiTestApp" -H "accept: application/json" -u admin:admin -k</code></pre>
 
 <h3 id="sample-output_4">Sample output<a class="headerlink" href="#sample-output_4" title="Permanent link">&para;</a></h3>
 <p>The possible outputs are as follows:</p>
@@ -3315,7 +3315,7 @@ following:</p>
 <p>If the API request is valid and a Siddhi application of the given
     name exists, a response similar to the following is returned with
     response code 200.</p>
-<pre class="codehilite"><code class="language-java linenums">{
+<pre class="codehilite"><code class="language-java">{
     "content": "\n@Plan:name('TestExecutionPlan')\ndefine stream FooStream (symbol string, price float, volume long);\n\n@source(type='inMemory', topic='symbol', @map(type='passThrough'))Define stream BarStream (symbol string, price float, volume long);\n\nfrom FooStream\nselect symbol, price, volume\ninsert into BarStream;" 
 }</code></pre>
 
@@ -3324,7 +3324,7 @@ following:</p>
 <p>If the API request is valid, but a Siddhi application of the given
     name is not deployed, a response similar to the following is
     returned with response code 404.</p>
-<pre class="codehilite"><code class="language-java linenums">{
+<pre class="codehilite"><code class="language-java">{
     "type": "not found",
     "message": "There is no Siddhi App exist with provided name : TestExecutionPlan1" 
 }</code></pre>
@@ -3409,29 +3409,29 @@ following:</p>
 </tbody>
 </table>
 <h3 id="curl-command-syntax_5">curl command syntax<a class="headerlink" href="#curl-command-syntax_5" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-java linenums">curl -X GET "http://localhost:9090/siddhi-apps/{app-file-name}/status" -H "accept: application/json" -u admin:admin -k</code></pre>
+<pre class="codehilite"><code class="language-java">curl -X GET "http://localhost:9090/siddhi-apps/{app-file-name}/status" -H "accept: application/json" -u admin:admin -k</code></pre>
 
 <h3 id="sample-curl-command_5">Sample curl command<a class="headerlink" href="#sample-curl-command_5" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-java linenums">curl -X GET "https://localhost:9443/siddhi-apps/TestSiddhiApp/status" -H "accept: application/json" -u admin:admin -k</code></pre>
+<pre class="codehilite"><code class="language-java">curl -X GET "https://localhost:9443/siddhi-apps/TestSiddhiApp/status" -H "accept: application/json" -u admin:admin -k</code></pre>
 
 <h3 id="sample-output_5">Sample output<a class="headerlink" href="#sample-output_5" title="Permanent link">&para;</a></h3>
 <ul>
 <li>
 <p>If the Siddhi application is active, the following is returned with
     response code 200.</p>
-<pre class="codehilite"><code class="language-java linenums">{"status":"active"} </code></pre>
+<pre class="codehilite"><code class="language-java">{"status":"active"} </code></pre>
 
 </li>
 <li>
 <p>If the Siddhi application is inactive, the following is returned
     with response code 200.</p>
-<pre class="codehilite"><code class="language-java linenums">{"status":"inactive"} </code></pre>
+<pre class="codehilite"><code class="language-java">{"status":"inactive"} </code></pre>
 
 </li>
 <li>
 <p>If the Siddhi application does not exist, but the REST API call is
     valid, the following is returned with the response code 404.</p>
-<pre class="codehilite"><code class="language-java linenums">{
+<pre class="codehilite"><code class="language-java">{
     "type": "not found",
     "message": "There is no Siddhi App exist with provided name : TestExecutionPlan1" 
 }</code></pre>
@@ -3513,10 +3513,10 @@ following:</p>
 </tbody>
 </table>
 <h3 id="curl-command-syntax_6">curl command syntax<a class="headerlink" href="#curl-command-syntax_6" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-java linenums">curl -X POST "http://localhost:9090/siddhi-apps/{appName}/backup" -H "accept: application/json" -u admin:admin -k</code></pre>
+<pre class="codehilite"><code class="language-java">curl -X POST "http://localhost:9090/siddhi-apps/{appName}/backup" -H "accept: application/json" -u admin:admin -k</code></pre>
 
 <h3 id="sample-curl-command_6">Sample curl command<a class="headerlink" href="#sample-curl-command_6" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-java linenums">curl -X POST "https://localhost:9443/siddhi-apps/TestSiddhiApp/backup" -H "accept: application/json" -u admin:admin -k</code></pre>
+<pre class="codehilite"><code class="language-java">curl -X POST "https://localhost:9443/siddhi-apps/TestSiddhiApp/backup" -H "accept: application/json" -u admin:admin -k</code></pre>
 
 <h3 id="sample-output_6">Sample output<a class="headerlink" href="#sample-output_6" title="Permanent link">&para;</a></h3>
 <p>The output can be one of the following:</p>
@@ -3525,14 +3525,14 @@ following:</p>
 <p>If the API request is valid and a Siddhi application exists with the
     given name, an output similar to the following (i.e., with the
     snapshot revision number) is returned with response code 201.</p>
-<pre class="codehilite"><code class="language-java linenums">{"revision": "89489242494242"} </code></pre>
+<pre class="codehilite"><code class="language-java">{"revision": "89489242494242"} </code></pre>
 
 </li>
 <li>
 <p>If the API request is valid, but no Siddhi application with the
     given name is deployed, an output similar to the following is
     returned with response code 404.</p>
-<pre class="codehilite"><code class="language-java linenums">{
+<pre class="codehilite"><code class="language-java">{
     "type": "not found",
     "message": "There is no Siddhi App exist with provided name : TestExecutionPlan1" 
 }</code></pre>
@@ -3542,7 +3542,7 @@ following:</p>
 <p>If the API request is valid, but an exception has occured when
     backing up the state at Siddhi level, an output similar to the
     following is returned with response code 500.</p>
-<pre class="codehilite"><code class="language-java linenums">{
+<pre class="codehilite"><code class="language-java">{
     "code": 800102,
     "type": "file processing error",
     "message": &lt;error-message&gt;
@@ -3629,10 +3629,10 @@ following:</p>
 </table>
 
 <h3 id="curl-command-syntax_7">curl command syntax<a class="headerlink" href="#curl-command-syntax_7" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-java linenums">curl -X POST "http://localhost:9090/siddhi-apps/{appName}/restore" -H "accept: application/json" -u admin:admin -k</code></pre>
+<pre class="codehilite"><code class="language-java">curl -X POST "http://localhost:9090/siddhi-apps/{appName}/restore" -H "accept: application/json" -u admin:admin -k</code></pre>
 
 <h3 id="sample-curl-command_7">Sample curl command<a class="headerlink" href="#sample-curl-command_7" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-java linenums">curl -X POST "https://localhost:9443/siddhi-apps/TestSiddhiApp/restore?revision=1514981290838_TestSiddhiApp" -H "accept: application/json" -u admin:admin -k</code></pre>
+<pre class="codehilite"><code class="language-java">curl -X POST "https://localhost:9443/siddhi-apps/TestSiddhiApp/restore?revision=1514981290838_TestSiddhiApp" -H "accept: application/json" -u admin:admin -k</code></pre>
 
 <h3 id="sample-output_7">Sample output<a class="headerlink" href="#sample-output_7" title="Permanent link">&para;</a></h3>
 <p>The above sample curl command can generate either one of the following
@@ -3643,7 +3643,7 @@ responses:</p>
     name exists, and no revision information is passed as a query
     parameter, the following response is returned with response
     code 200.</p>
-<pre class="codehilite"><code class="language-java linenums">{
+<pre class="codehilite"><code class="language-java">{
     "type": "success",
     "message": "State restored to last revision for Siddhi App :TestExecutionPlan" 
 }</code></pre>
@@ -3655,7 +3655,7 @@ responses:</p>
     parameter, the following response is returned with response
     code 200. In this scenario, the Siddhi snapshot is created in the
     file system.</p>
-<pre class="codehilite"><code class="language-java linenums">{
+<pre class="codehilite"><code class="language-java">{
     "type": "success",
     "message": "State restored to revision 1234563 for Siddhi App :TestExecutionPlan" 
 }</code></pre>
@@ -3665,7 +3665,7 @@ responses:</p>
 <p>If the API request is valid, but no Siddhi application is deployed
     with the given name, the following response is returned with
     response code 404.</p>
-<pre class="codehilite"><code class="language-java linenums">{
+<pre class="codehilite"><code class="language-java">{
     "type": "not found",
     "message": "There is no Siddhi App exist with provided name : TestExecutionPlan1" 
 }</code></pre>
@@ -3675,7 +3675,7 @@ responses:</p>
 <p>If the API request is valid, but an exception occured when restoring
     the state at Siddhi level, the following response is returned with
     response code 500.</p>
-<pre class="codehilite"><code class="language-java linenums">{
+<pre class="codehilite"><code class="language-java">{
     "code": 800102,
     "type": "file processing error",
     "message": &lt;error-message&gt;
@@ -3744,10 +3744,10 @@ responses:</p>
 </table>
 <h4 id="parameter-description_5">Parameter Description<a class="headerlink" href="#parameter-description_5" title="Permanent link">&para;</a></h4>
 <h3 id="curl-command-syntax_8">curl command syntax<a class="headerlink" href="#curl-command-syntax_8" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-java linenums">curl -X GET "https://localhost:9443/statistics" -H "accept: application/json" -u admin:admin -k</code></pre>
+<pre class="codehilite"><code class="language-java">curl -X GET "https://localhost:9443/statistics" -H "accept: application/json" -u admin:admin -k</code></pre>
 
 <h3 id="sample-curl-command_8">Sample curl command<a class="headerlink" href="#sample-curl-command_8" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-java linenums">curl -X GET "https://localhost:9443/statistics" -H "accept: application/json" -u admin:admin -k</code></pre>
+<pre class="codehilite"><code class="language-java">curl -X GET "https://localhost:9443/statistics" -H "accept: application/json" -u admin:admin -k</code></pre>
 
 <h3 id="sample-output_8">Sample output<a class="headerlink" href="#sample-output_8" title="Permanent link">&para;</a></h3>
 <h3 id="response_8">Response<a class="headerlink" href="#response_8" title="Permanent link">&para;</a></h3>
@@ -3811,10 +3811,10 @@ responses:</p>
 </table>
 <h4 id="parameter-description_6">Parameter Description<a class="headerlink" href="#parameter-description_6" title="Permanent link">&para;</a></h4>
 <h3 id="curl-command-syntax_9">curl command syntax<a class="headerlink" href="#curl-command-syntax_9" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-java linenums">curl -X PUT "https://localhost:9443/statistics" -H "accept: application/json" -H "Content-Type: application/json" -d "{“statsEnable”:”true”}" -u admin:admin -k</code></pre>
+<pre class="codehilite"><code class="language-java">curl -X PUT "https://localhost:9443/statistics" -H "accept: application/json" -H "Content-Type: application/json" -d "{“statsEnable”:”true”}" -u admin:admin -k</code></pre>
 
 <h3 id="sample-curl-command_9">Sample curl command<a class="headerlink" href="#sample-curl-command_9" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-java linenums">curl -X PUT "https://localhost:9443/statistics" -H "accept: application/json" -H "Content-Type: application/json" -d "{“statsEnable”:”true”}" -u admin:admin -k</code></pre>
+<pre class="codehilite"><code class="language-java">curl -X PUT "https://localhost:9443/statistics" -H "accept: application/json" -H "Content-Type: application/json" -d "{“statsEnable”:”true”}" -u admin:admin -k</code></pre>
 
 <h3 id="sample-output_9">Sample output<a class="headerlink" href="#sample-output_9" title="Permanent link">&para;</a></h3>
 <h3 id="response_9">Response<a class="headerlink" href="#response_9" title="Permanent link">&para;</a></h3>
@@ -3878,10 +3878,10 @@ responses:</p>
 </table>
 <h4 id="parameter-description_7">Parameter Description<a class="headerlink" href="#parameter-description_7" title="Permanent link">&para;</a></h4>
 <h3 id="curl-command-syntax_10">curl command syntax<a class="headerlink" href="#curl-command-syntax_10" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-java linenums">curl -X GET "https://localhost:9443/system-details" -H "accept: application/json" -u admin:admin -k</code></pre>
+<pre class="codehilite"><code class="language-java">curl -X GET "https://localhost:9443/system-details" -H "accept: application/json" -u admin:admin -k</code></pre>
 
 <h3 id="sample-curl-command_10">Sample curl command<a class="headerlink" href="#sample-curl-command_10" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-java linenums">curl -X GET "https://localhost:9443/system-details" -H "accept: application/json" -u admin:admin -k</code></pre>
+<pre class="codehilite"><code class="language-java">curl -X GET "https://localhost:9443/system-details" -H "accept: application/json" -u admin:admin -k</code></pre>
 
 <h3 id="sample-output_10">Sample output<a class="headerlink" href="#sample-output_10" title="Permanent link">&para;</a></h3>
 <h3 id="response_10">Response<a class="headerlink" href="#response_10" title="Permanent link">&para;</a></h3>
@@ -3945,10 +3945,10 @@ responses:</p>
 </table>
 <h4 id="parameter-description_8">Parameter Description<a class="headerlink" href="#parameter-description_8" title="Permanent link">&para;</a></h4>
 <h3 id="curl-command-syntax_11">curl command syntax<a class="headerlink" href="#curl-command-syntax_11" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-java linenums">curl -X GET "https://localhost:9443/siddhi-apps/statistics" -H "accept: application/json" -u admin:admin -k</code></pre>
+<pre class="codehilite"><code class="language-java">curl -X GET "https://localhost:9443/siddhi-apps/statistics" -H "accept: application/json" -u admin:admin -k</code></pre>
 
 <h3 id="sample-curl-command_11">Sample curl command<a class="headerlink" href="#sample-curl-command_11" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-java linenums">curl -X GET "https://localhost:9443/siddhi-apps/statistics" -H "accept: application/json" -u admin:admin -k</code></pre>
+<pre class="codehilite"><code class="language-java">curl -X GET "https://localhost:9443/siddhi-apps/statistics" -H "accept: application/json" -u admin:admin -k</code></pre>
 
 <h3 id="sample-output_11">Sample output<a class="headerlink" href="#sample-output_11" title="Permanent link">&para;</a></h3>
 <h3 id="response_11">Response<a class="headerlink" href="#response_11" title="Permanent link">&para;</a></h3>
@@ -4026,10 +4026,10 @@ responses:</p>
 </tbody>
 </table>
 <h3 id="curl-command-syntax_12">curl command syntax<a class="headerlink" href="#curl-command-syntax_12" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-java linenums">curl -X PUT "https://localhost:9443/siddhi-apps/{appName}/statistics" -H "accept: application/json" -H "Content-Type: application/json" -d "{“statsEnable”:”true”}" -u admin:admin -k</code></pre>
+<pre class="codehilite"><code class="language-java">curl -X PUT "https://localhost:9443/siddhi-apps/{appName}/statistics" -H "accept: application/json" -H "Content-Type: application/json" -d "{“statsEnable”:”true”}" -u admin:admin -k</code></pre>
 
 <h3 id="sample-curl-command_12">Sample curl command<a class="headerlink" href="#sample-curl-command_12" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-java linenums">curl -X PUT "https://localhost:9443/siddhi-apps/TestSiddhiApp/statistics" -H "accept: application/json" -H "Content-Type: application/json" -d "{“statsEnable”:”true”}" -u admin:admin -k</code></pre>
+<pre class="codehilite"><code class="language-java">curl -X PUT "https://localhost:9443/siddhi-apps/TestSiddhiApp/statistics" -H "accept: application/json" -H "Content-Type: application/json" -d "{“statsEnable”:”true”}" -u admin:admin -k</code></pre>
 
 <h3 id="sample-output_12">Sample output<a class="headerlink" href="#sample-output_12" title="Permanent link">&para;</a></h3>
 <h3 id="response_12">Response<a class="headerlink" href="#response_12" title="Permanent link">&para;</a></h3>
@@ -4093,10 +4093,10 @@ responses:</p>
 </table>
 <h4 id="parameter-description_10">Parameter Description<a class="headerlink" href="#parameter-description_10" title="Permanent link">&para;</a></h4>
 <h3 id="curl-command-syntax_13">curl command syntax<a class="headerlink" href="#curl-command-syntax_13" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-java linenums">curl -X PUT "https://localhost:9443/siddhi-apps/statistics" -H "accept: application/json" -H "Content-Type: application/json" -d "{“statsEnable”:”true”}" -u admin:admin -k</code></pre>
+<pre class="codehilite"><code class="language-java">curl -X PUT "https://localhost:9443/siddhi-apps/statistics" -H "accept: application/json" -H "Content-Type: application/json" -d "{“statsEnable”:”true”}" -u admin:admin -k</code></pre>
 
 <h3 id="sample-curl-command_13">Sample curl command<a class="headerlink" href="#sample-curl-command_13" title="Permanent link">&para;</a></h3>
-<pre class="codehilite"><code class="language-java linenums">curl -X PUT "https://localhost:9443/siddhi-apps/statistics" -H "accept: application/json" -H "Content-Type: application/json" -d "{“statsEnable”:”true”}" -u admin:admin -k</code></pre>
+<pre class="codehilite"><code class="language-java">curl -X PUT "https://localhost:9443/siddhi-apps/statistics" -H "accept: application/json" -H "Content-Type: application/json" -d "{“statsEnable”:”true”}" -u admin:admin -k</code></pre>
 
 <h3 id="sample-output_13">Sample output<a class="headerlink" href="#sample-output_13" title="Permanent link">&para;</a></h3>
 <h3 id="response_13">Response<a class="headerlink" href="#response_13" title="Permanent link">&para;</a></h3>

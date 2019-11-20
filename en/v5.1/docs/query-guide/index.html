@@ -2175,7 +2175,7 @@ how <strong>event flows</strong> through the elements.</p>
 <p>SiddhiApp is a collection of Siddhi Streaming SQL elements composed together as a script.
 Here each Siddhi element must be separated by a semicolon <code>;</code>.</p>
 <p>Hight level syntax of SiddhiApp is as follows.</p>
-<pre class="codehilite"><code class="linenums">&lt;siddhi app&gt;  :
+<pre class="codehilite"><code>&lt;siddhi app&gt;  :
         &lt;app annotation&gt; *
         ( &lt;stream definition&gt; | &lt;table definition&gt; | ... ) +
         ( &lt;query&gt; | &lt;partition&gt; ) +
@@ -2184,7 +2184,7 @@ Here each Siddhi element must be separated by a semicolon <code>;</code>.</p>
 <p><strong>Example</strong></p>
 <p>Siddhi Application with name <code>Temperature-Analytics</code> defined with a stream named <code>TempStream</code> and a query
 named <code>5minAvgQuery</code>.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">@app:name('Temperature-Analytics')
+<pre class="codehilite"><code class="language-siddhi">@app:name('Temperature-Analytics')
 
 define stream TempStream (deviceID long, roomNo int, temp double);
 
@@ -2201,7 +2201,7 @@ insert into OutputStream;</code></pre>
 <p>Stream groups common types of events together with a schema. This helps in various ways such as, processing all events in queries together and performing data format transformations together when they are consumed and published via sources and sinks.</p>
 <p><strong>Syntax</strong></p>
 <p>The syntax for defining a stream is as follows.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define stream &lt;stream name&gt; (&lt;attribute name&gt; &lt;attribute type&gt;,
+<pre class="codehilite"><code class="language-siddhi">define stream &lt;stream name&gt; (&lt;attribute name&gt; &lt;attribute type&gt;,
                              &lt;attribute name&gt; &lt;attribute type&gt;, ... );</code></pre>
 
 <p>The following parameters are used to configure a stream definition.</p>
@@ -2231,7 +2231,7 @@ insert into OutputStream;</code></pre>
 <p>To make the stream process events in multi-threading and asynchronous way use the <code>@async</code> annotation as shown in
 <a href="#threading-and-synchronization">Threading and synchronization</a> configuration section.</p>
 <p><strong>Example</strong>
-<pre class="codehilite"><code class="language-siddhi linenums">define stream TempStream (deviceID long, roomNo int, temp double);</code></pre>
+<pre class="codehilite"><code class="language-siddhi">define stream TempStream (deviceID long, roomNo int, temp double);</code></pre>
 The above creates a stream with name <code>TempStream</code> having the following attributes.</p>
 <ul>
 <li><code>deviceID</code> of type <code>long</code></li>
@@ -2246,7 +2246,7 @@ The above creates a stream with name <code>TempStream</code> having the followin
 <p><strong>Syntax</strong></p>
 <p>To configure a stream that consumes events via a source, add the source configuration to a stream definition by adding the <code>@source</code> annotation with the required parameter values.</p>
 <p>The source syntax is as follows:</p>
-<pre class="codehilite"><code class="language-siddhi linenums">@source(type='&lt;source type&gt;', &lt;static.key&gt;='&lt;value&gt;', &lt;static.key&gt;='&lt;value&gt;',
+<pre class="codehilite"><code class="language-siddhi">@source(type='&lt;source type&gt;', &lt;static.key&gt;='&lt;value&gt;', &lt;static.key&gt;='&lt;value&gt;',
     @map(type='&lt;map type&gt;', &lt;static.key&gt;='&lt;value&gt;', &lt;static.key&gt;='&lt;value&gt;',
         @attributes( &lt;attribute1&gt;='&lt;attribute mapping&gt;', &lt;attributeN&gt;='&lt;attribute mapping&gt;')
     )
@@ -2380,21 +2380,21 @@ By adding the <code>@attributes</code> annotation, users can selectively extract
 <p><strong>Example 1</strong></p>
 <p>Receive <code>JSON</code> messages by exposing an <code>HTTP</code> service, and direct them to <code>InputStream</code> stream for processing.
 Here the <code>HTTP</code> service will be secured with basic authentication, receives events on all network interfaces on port <code>8080</code> and context <code>/foo</code>. The service expects the <code>JSON</code> messages to be on the default data format that's supported by the <code>JSON</code> mapper as follows.</p>
-<pre class="codehilite"><code class="language-json linenums">{
+<pre class="codehilite"><code class="language-json">{
   "name":"Paul",
   "age":20,
   "country":"UK"
 }</code></pre>
 
 <p>The configuration of the <code>HTTP</code> source and <code>JSON</code> source mapper to achieve the above is as follows.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">@source(type='http', receiver.url='http://0.0.0.0:8080/foo',
+<pre class="codehilite"><code class="language-siddhi">@source(type='http', receiver.url='http://0.0.0.0:8080/foo',
   @map(type='json'))
 define stream InputStream (name string, age int, country string);</code></pre>
 
 <p><strong>Example 2</strong></p>
 <p>Receive <code>JSON</code> messages by exposing an <code>HTTP</code> service, and direct them to <code>StockStream</code> stream for processing.
 Here the incoming <code>JSON</code>, as given below, do not adhere to the default data format that's supported by the <code>JSON</code> mapper.</p>
-<pre class="codehilite"><code class="language-json linenums">{
+<pre class="codehilite"><code class="language-json">{
   "portfolio":{
     "stock":{
       "volume":100,
@@ -2407,14 +2407,14 @@ Here the incoming <code>JSON</code>, as given below, do not adhere to the defaul
 }</code></pre>
 
 <p>The configuration of the <code>HTTP</code> source and the custom <code>JSON</code> source mapping to achieve the above is as follows.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">@source(type='http', receiver.url='http://0.0.0.0:8080/foo',
+<pre class="codehilite"><code class="language-siddhi">@source(type='http', receiver.url='http://0.0.0.0:8080/foo',
   @map(type='json', enclosing.element="$.portfolio",
     @attributes(symbol = "stock.company.symbol", price = "stock.price",
                 volume = "stock.volume")))
 define stream StockStream (symbol string, price float, volume long);</code></pre>
 
 <p>The same can also be configured by omitting the attribute names as below.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">@source(type='http', receiver.url='http://0.0.0.0:8080/foo',
+<pre class="codehilite"><code class="language-siddhi">@source(type='http', receiver.url='http://0.0.0.0:8080/foo',
   @map(type='json', enclosing.element="$.portfolio",
     @attributes("stock.company.symbol", "stock.price", "stock.volume")))
 define stream StockStream (symbol string, price float, volume long);</code></pre>
@@ -2428,7 +2428,7 @@ define stream StockStream (symbol string, price float, volume long);</code></pre
 <p>To configure a stream to publish events via a sink, add the sink configuration to a stream definition by adding the <code>@sink</code>
 annotation with the required parameter values.</p>
 <p>The sink syntax is as follows:</p>
-<pre class="codehilite"><code class="language-siddhi linenums">@sink(type='&lt;sink type&gt;', &lt;static.key&gt;='&lt;value&gt;', &lt;dynamic.key&gt;='{{&lt;value&gt;}}',
+<pre class="codehilite"><code class="language-siddhi">@sink(type='&lt;sink type&gt;', &lt;static.key&gt;='&lt;value&gt;', &lt;dynamic.key&gt;='{{&lt;value&gt;}}',
     @map(type='&lt;map type&gt;', &lt;static.key&gt;='&lt;value&gt;', &lt;dynamic.key&gt;='{{&lt;value&gt;}}',
         @payload('&lt;payload mapping&gt;')
     )
@@ -2514,7 +2514,7 @@ along with the common parameters also add the <code>@distribution</code> annotat
 <p>The distributed sink syntax is as follows:</p>
 <p><strong><em>RoundRobin Distributed Sink</em></strong></p>
 <p>Publishes events to defined destinations in a round robin manner.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">@sink(type='&lt;sink type&gt;', &lt;common.static.key&gt;='&lt;value&gt;', &lt;common.dynamic.key&gt;='{{&lt;value&gt;}}',
+<pre class="codehilite"><code class="language-siddhi">@sink(type='&lt;sink type&gt;', &lt;common.static.key&gt;='&lt;value&gt;', &lt;common.dynamic.key&gt;='{{&lt;value&gt;}}',
     @map(type='&lt;map type&gt;', &lt;static.key&gt;='&lt;value&gt;', &lt;dynamic.key&gt;='{{&lt;value&gt;}}',
         @payload('&lt;payload mapping&gt;')
     )
@@ -2526,7 +2526,7 @@ define stream &lt;stream name&gt; (&lt;attribute1&gt; &lt;type&gt;, &lt;attribut
 
 <p><strong><em>Partitioned Distributed Sink</em></strong></p>
 <p>Publish events to the defined destinations by partitioning them based on a partitioning key.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">@sink(type='&lt;sink type&gt;', &lt;common.static.key&gt;='&lt;value&gt;', &lt;common.dynamic.key&gt;='{{&lt;value&gt;}}',
+<pre class="codehilite"><code class="language-siddhi">@sink(type='&lt;sink type&gt;', &lt;common.static.key&gt;='&lt;value&gt;', &lt;common.dynamic.key&gt;='{{&lt;value&gt;}}',
     @map(type='&lt;map type&gt;', &lt;static.key&gt;='&lt;value&gt;', &lt;dynamic.key&gt;='{{&lt;value&gt;}}',
         @payload('&lt;payload mapping&gt;')
     )
@@ -2602,7 +2602,7 @@ define stream &lt;stream name&gt; (&lt;attribute1&gt; &lt;type&gt;, &lt;attribut
 <p><strong>Example 1</strong></p>
 <p>Sink to publish <code>OutputStream</code> events by converting them to <code>JSON</code> messages with the default format, and by sending to an <code>HTTP</code> endpoint <code>http://localhost:8005/endpoint1</code>, using <code>POST</code> method, <code>Accept</code> header, and basic authentication having <code>admin</code> is both username and password.</p>
 <p>The configuration of the <code>HTTP</code> sink and <code>JSON</code> sink mapper to achieve the above is as follows.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">@sink(type='http', publisher.url='http://localhost:8005/endpoint',
+<pre class="codehilite"><code class="language-siddhi">@sink(type='http', publisher.url='http://localhost:8005/endpoint',
       method='POST', headers='Accept-Date:20/02/2017',
       basic.auth.enabled='true', basic.auth.username='admin',
       basic.auth.password='admin',
@@ -2610,7 +2610,7 @@ define stream &lt;stream name&gt; (&lt;attribute1&gt; &lt;type&gt;, &lt;attribut
 define stream OutputStream (name string, age int, country string);</code></pre>
 
 <p>This will publish a <code>JSON</code> message on the following format:
-<pre class="codehilite"><code class="language-json linenums">{
+<pre class="codehilite"><code class="language-json">{
   "event":{
     "name":"Paul",
     "age":20,
@@ -2620,13 +2620,13 @@ define stream OutputStream (name string, age int, country string);</code></pre>
 <p><strong>Example 2</strong></p>
 <p>Sink to publish <code>StockStream</code> events by converting them to user defined <code>JSON</code> messages, and sending them to an <code>HTTP</code> endpoint <code>http://localhost:8005/stocks</code>.</p>
 <p>The configuration of the <code>HTTP</code> sink and custom <code>JSON</code> sink mapping to achieve the above is as follows.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">@sink(type='http', publisher.url='http://localhost:8005/stocks',
+<pre class="codehilite"><code class="language-siddhi">@sink(type='http', publisher.url='http://localhost:8005/stocks',
       @map(type='json', validate.json='true', enclosing.element='$.Portfolio',
            @payload("""{"StockData":{ "Symbol":"{{symbol}}", "Price":{{price}} }}""")))
 define stream StockStream (symbol string, price float, volume long);</code></pre>
 
 <p>This will publish a single event as the <code>JSON</code> message on the following format:</p>
-<p><pre class="codehilite"><code class="language-json linenums">{
+<p><pre class="codehilite"><code class="language-json">{
   "Portfolio":{
     "StockData":{
       "Symbol":"GOOG",
@@ -2635,7 +2635,7 @@ define stream StockStream (symbol string, price float, volume long);</code></pre
   }
 }</code></pre>
 This can also publish multiple events together as a <code>JSON</code> message on the following format:</p>
-<pre class="codehilite"><code class="language-json linenums">{
+<pre class="codehilite"><code class="language-json">{
   "Portfolio":[
     {
       "StockData":{
@@ -2655,7 +2655,7 @@ This can also publish multiple events together as a <code>JSON</code> message on
 <p><strong>Example 3</strong></p>
 <p>Sink to publish events from the <code>OutputStream</code> stream to multiple <code>HTTP</code> endpoints using a partitioning strategy. Here, the events are sent to either <code>http://localhost:8005/endpoint1</code> or <code>http://localhost:8006/endpoint2</code> based on the partitioning key <code>country</code>. It uses default <code>JSON</code> mapping, <code>POST</code> method, and <code>admin</code> as both the username and the password when publishing to both the endpoints.</p>
 <p>The configuration of the distributed <code>HTTP</code> sink and <code>JSON</code> sink mapper to achieve the above is as follows.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">@sink(type='http', method='POST', basic.auth.enabled='true',
+<pre class="codehilite"><code class="language-siddhi">@sink(type='http', method='POST', basic.auth.enabled='true',
       basic.auth.username='admin', basic.auth.password='admin',
       @map(type='json'),
       @distribution(strategy='partitioned', partitionKey='country',
@@ -2664,7 +2664,7 @@ This can also publish multiple events together as a <code>JSON</code> message on
 define stream OutputStream (name string, age int, country string);</code></pre>
 
 <p>This will partition the outgoing events and publish all events with the same country attribute value to the same endpoint. The <code>JSON</code> message published will be on the following format:
-<pre class="codehilite"><code class="language-json linenums">{
+<pre class="codehilite"><code class="language-json">{
   "event":{
     "name":"Paul",
     "age":20,
@@ -2677,7 +2677,7 @@ define stream OutputStream (name string, age int, country string);</code></pre>
 <p>When errors are thrown by Siddhi elements subscribed to the stream, the error gets propagated up to the stream that delivered the event to those Siddhi elements. By default the error is logged and dropped at the stream, but this behavior can be altered by by adding <code>@OnError</code> annotation to the corresponding stream definition.
 <code>@OnError</code> annotation can help users to capture the error and the associated event, and handle them gracefully by sending them to a fault stream.</p>
 <p>The <code>@OnError</code> annotation and the required <code>action</code> to be specified as below.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">@OnError(action='on error action')
+<pre class="codehilite"><code class="language-siddhi">@OnError(action='on error action')
 define stream &lt;stream name&gt; (&lt;attribute name&gt; &lt;attribute type&gt;,
                              &lt;attribute name&gt; &lt;attribute type&gt;, ... );</code></pre>
 
@@ -2690,15 +2690,15 @@ The following actions can be specified to <code>@OnError</code> annotation to ha
 <p><strong>Example</strong></p>
 <p>Handle errors in <code>TempStream</code> by redirecting the errors to a fault stream.</p>
 <p>The configuration of <code>TempStream</code> stream and <code>@OnError</code> annotation is as follows.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">@OnError(action='STREAM')
+<pre class="codehilite"><code class="language-siddhi">@OnError(action='STREAM')
 define stream TempStream (deviceID long, roomNo int, temp double);</code></pre>
 
 <p>Siddhi will infer and automatically defines the fault stream of <code>TempStream</code> as given below.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define stream !TempStream (deviceID long, roomNo int, temp double, _error object);</code></pre>
+<pre class="codehilite"><code class="language-siddhi">define stream !TempStream (deviceID long, roomNo int, temp double, _error object);</code></pre>
 
 <p>The SiddhiApp extending the above the use-case by adding failure generation and error handling with the use of <a href="#query">queries</a> is as follows.</p>
 <p>Note: Details on writing processing logics via <a href="#query">queries</a> will be explained in later sections.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">-- Define fault stream to handle error occurred at TempStream subscribers
+<pre class="codehilite"><code class="language-siddhi">-- Define fault stream to handle error occurred at TempStream subscribers
 @OnError(action='STREAM')
 define stream TempStream (deviceID long, roomNo int, temp double);
 
@@ -2716,7 +2716,7 @@ insert into IgnoreStream2;</code></pre>
 <p><strong><em>Error Handling at Sink</em></strong></p>
 <p>There can be cases where external systems becoming unavailable or coursing errors when the events are published to them. By default sinks log and drop the events causing event losses, and this can be handled gracefully by configuring <code>on.error</code> parameter of the <code>@sink</code> annotation.</p>
 <p>The <code>on.error</code> parameter of the <code>@sink</code> annotation can be specified as below.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">@sink(type='&lt;sink type&gt;', on.error='&lt;on error action&gt;', &lt;key&gt;='&lt;value&gt;', ...)
+<pre class="codehilite"><code class="language-siddhi">@sink(type='&lt;sink type&gt;', on.error='&lt;on error action&gt;', &lt;key&gt;='&lt;value&gt;', ...)
 define stream &lt;stream name&gt; (&lt;attribute name&gt; &lt;attribute type&gt;,
                              &lt;attribute name&gt; &lt;attribute type&gt;, ... );</code></pre>
 
@@ -2729,7 +2729,7 @@ define stream &lt;stream name&gt; (&lt;attribute name&gt; &lt;attribute type&gt;
 <p><strong>Example 1</strong></p>
 <p>Introduce back pressure on the threads who bring events via <code>TempStream</code> when the system cannot connect to Kafka.</p>
 <p>The configuration of <code>TempStream</code> stream and <code>@sink</code> Kafka annotation with <code>on.error</code> property is as follows.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">@sink(type='kafka', on.error='WAIT', topic='{{roomNo}}',
+<pre class="codehilite"><code class="language-siddhi">@sink(type='kafka', on.error='WAIT', topic='{{roomNo}}',
       bootstrap.servers='localhost:9092',
       @map(type='xml'))
 define stream TempStream (deviceID long, roomNo int, temp double);</code></pre>
@@ -2738,7 +2738,7 @@ define stream TempStream (deviceID long, roomNo int, temp double);</code></pre>
 <p>Send events to the fault stream of <code>TempStream</code> when the system cannot connect to Kafka.</p>
 <p>The configuration of <code>TempStream</code> stream with associated fault stream, <code>@sink</code> Kafka annotation with <code>on.error</code> property and a <a href="#query">queries</a> to handle the error is as follows.</p>
 <p>Note: Details on writing processing logics via <a href="#query">queries</a> will be explained in later sections.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">@OnError(action='STREAM')
+<pre class="codehilite"><code class="language-siddhi">@OnError(action='STREAM')
 @sink(type='kafka', on.error='STREAM', topic='{{roomNo}}',
       bootstrap.servers='localhost:9092',
       @map(type='xml'))
@@ -2756,7 +2756,7 @@ insert into IgnoreStream;</code></pre>
 <p>A query provides a way to process the events in the order they arrive and produce output using both stateful and stateless complex event processing and stream processing operations.</p>
 <p><strong>Syntax</strong></p>
 <p>The high level query syntax for defining processing logics is as follows:</p>
-<p><pre class="codehilite"><code class="language-siddhi linenums">@info(name = '&lt;query name&gt;')
+<p><pre class="codehilite"><code class="language-siddhi">@info(name = '&lt;query name&gt;')
 from &lt;input&gt;
 &lt;projection&gt;
 &lt;output action&gt;</code></pre>
@@ -2792,7 +2792,7 @@ The following parameters are used to configure a stream definition.</p>
 <p>The input <a href="#stream">stream</a>, <a href="#named-window">named-window</a>, <a href="#table">table</a>, and/or <a href="#named-aggregations">named-aggregation</a> should be defined before they can be used in a query.</p>
 <p><strong>Syntax</strong></p>
 <p>A high level syntax for consuming events from a stream, named-window, table, and/or named-aggregation is as follow;</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from ((&lt;stream&gt;|&lt;named-window&gt;)&lt;handler&gt;*) ((join (&lt;stream&gt;|&lt;named-window&gt;|&lt;table&gt;|&lt;named-aggregation&gt;)&lt;handler&gt;*)|((,|-&gt;)(&lt;stream&gt;|&lt;named-window&gt;)&lt;handler&gt;*)+)?
+<pre class="codehilite"><code class="language-siddhi">from ((&lt;stream&gt;|&lt;named-window&gt;)&lt;handler&gt;*) ((join (&lt;stream&gt;|&lt;named-window&gt;|&lt;table&gt;|&lt;named-aggregation&gt;)&lt;handler&gt;*)|((,|-&gt;)(&lt;stream&gt;|&lt;named-window&gt;)&lt;handler&gt;*)+)?
 &lt;projection&gt;
 insert into (&lt;stream&gt;|&lt;named-window&gt;|&lt;table&gt;)</code></pre>
 
@@ -2803,14 +2803,14 @@ insert into (&lt;stream&gt;|&lt;named-window&gt;|&lt;table&gt;)</code></pre>
 <p>When a query is defined to insert events into a stream that is not already defined, Siddhi infers and automatically defines its stream definition, such that queries defined below the current query can use the stream like any other predefined streams.</p>
 <p><strong>Syntax</strong></p>
 <p>Syntax to insert events into a stream, named-window or table from another stream is as follows;</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from &lt;input&gt;
+<pre class="codehilite"><code class="language-siddhi">from &lt;input&gt;
 &lt;projection&gt;
 insert into (&lt;stream&gt;|&lt;named-window&gt;|&lt;table&gt;)</code></pre>
 
 <p>This inserts all the newly arrived events (<code>current events</code>) in to a stream, named-window, or table. There are also other types of events other than <code>current events</code> that are produced by queries, the <a href="#event-type">Event Type</a> section provides more information on, how insertion operation can be modified to support those.</p>
 <p><strong>Example</strong></p>
 <p>A query to consume events from the <code>TempStream</code> stream and output only the <code>roomNo</code> and <code>temp</code> attributes to the <code>RoomTempStream</code> stream, from which another query to consume the events and send all its attributes to <code>AnotherRoomTempStream</code> stream.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define stream TempStream (deviceID long, roomNo int, temp double);
+<pre class="codehilite"><code class="language-siddhi">define stream TempStream (deviceID long, roomNo int, temp double);
 
 from TempStream
 select roomNo, temp
@@ -3064,7 +3064,7 @@ Text with 'single' quotes,
 <p>It encapsulate pre-configured reusable execution logic allowing users to execute the logic anywhere just by calling the function. This also make writing SiddhiApps simple and easy to understand.</p>
 <p><strong>Syntax</strong></p>
 <p>The syntax of function is as follows,</p>
-<pre class="codehilite"><code class="language-siddhi linenums">(&lt;namespace&gt;:)?&lt;function name&gt;( (&lt;parameter&gt;(, &lt;parameter&gt;)*)? )</code></pre>
+<pre class="codehilite"><code class="language-siddhi">(&lt;namespace&gt;:)?&lt;function name&gt;( (&lt;parameter&gt;(, &lt;parameter&gt;)*)? )</code></pre>
 
 <p>Here, the <code>&lt;namespace&gt;</code> and <code>&lt;function name&gt;</code> together uniquely identifies the function. The <code>&lt;function name&gt;</code> is used to specify the operation provided by the function, and the <code>&lt;namespace&gt;</code> is used to identify the extension where the function exists. The inbuilt functions do not belong to a namespace, and hence <code>&lt;namespace&gt;</code> is omitted when they are defined. The <code>&lt;parameter&gt;</code>s define the input parameters that the function accepts. The input parameters can be attributes, constant values, results of other functions, results of mathematical or logical expressions, or time values. The number and type of parameters a function accepts depend on the function itself.</p>
 <div class="admonition note">
@@ -3160,16 +3160,16 @@ Text with 'single' quotes,
 <p>Several pre written functions can be found under <code>siddhi-execution-*</code> extensions available <strong><a target="_blank" href="../extensions/">here</a></strong>.</p>
 <p><strong>Example 1</strong></p>
 <p>Function with name <code>ifThenElse</code> accepting three input parameters, first parameter being a <code>bool</code> condition <code>price&gt;700</code> and the second and the third parameters being the output for if case <code>'high'</code>, and else case <code>'low'</code>.</p>
-<pre class="codehilite"><code class="linenums">ifThenElse(price&gt;700, 'high', 'low')</code></pre>
+<pre class="codehilite"><code>ifThenElse(price&gt;700, 'high', 'low')</code></pre>
 
 <p><strong>Example 2</strong></p>
 <p>math:ceil(inValue)</p>
 <p>Function with name <code>ceil</code> in <code>math</code> namespace accepting a single input parameters <code>56.89</code> and produces ceiling value <code>57</code> as output.</p>
-<pre class="codehilite"><code class="linenums">math:ceil(56.89)</code></pre>
+<pre class="codehilite"><code>math:ceil(56.89)</code></pre>
 
 <p><strong>Example 3</strong></p>
 <p>Query to convert the <code>roomNo</code> to <code>string</code> using <code>convert</code> function, find the maximum temperature reading with <code>maximum</code> function, and to add a unique <code>messageID</code> using the <code>UUID</code> function.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from TempStream
+<pre class="codehilite"><code class="language-siddhi">from TempStream
 select convert(roomNo, 'string') as roomNo,
        maximum(tempReading1, tempReading2) as temp,
        UUID() as messageID
@@ -3181,14 +3181,14 @@ insert into RoomTempStream;</code></pre>
 <p>Filter helps to select the events that are relevant for processing and omit the ones that are not.</p>
 <p><strong>Syntax</strong></p>
 <p>Filter conditions should be defined in square brackets (<code>[]</code>) next to the input stream as shown below.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from &lt;input stream&gt;[&lt;filter condition&gt;]
+<pre class="codehilite"><code class="language-siddhi">from &lt;input stream&gt;[&lt;filter condition&gt;]
 select &lt;attribute name&gt;, &lt;attribute name&gt;, ...
 insert into &lt;output stream&gt;</code></pre>
 
 <p><strong>Example</strong></p>
 <p>Query to filter <code>TempStream</code> stream events, having <code>roomNo</code> within the range of 100-210 and temperature greater than 40 degrees,
 and insert the filtered results into <code>HighTempStream</code> stream.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from TempStream[(roomNo &gt;= 100 and roomNo &lt; 210) and temp &gt; 40]
+<pre class="codehilite"><code class="language-siddhi">from TempStream[(roomNo &gt;= 100 and roomNo &lt; 210) and temp &gt; 40]
 select roomNo, temp
 insert into HighTempStream;</code></pre>
 
@@ -3198,7 +3198,7 @@ insert into HighTempStream;</code></pre>
 <p>Stream function is useful when a function produces more than one output for the given input parameters. In this case, the outputs are added to the event, using newly introduced attributes with predefined attribute names.</p>
 <p><strong>Syntax</strong></p>
 <p>Stream function should be defined next to the input stream or <a href="#named-window">named-windows</a> along the <code>#</code> prefix as shown below.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from &lt;input stream&gt;#(&lt;namespace&gt;:)?&lt;stream function name&gt;(&lt;parameter&gt;, &lt;parameter&gt;, ... )
+<pre class="codehilite"><code class="language-siddhi">from &lt;input stream&gt;#(&lt;namespace&gt;:)?&lt;stream function name&gt;(&lt;parameter&gt;, &lt;parameter&gt;, ... )
 select &lt;attribute name&gt;, &lt;attribute name&gt;, ...
 insert into &lt;output stream&gt;</code></pre>
 
@@ -3223,7 +3223,7 @@ insert into &lt;output stream&gt;</code></pre>
 <p>Several pre written stream functions can be found in the Siddhi extensions available <strong><a target="_blank" href="../extensions/">here</a></strong>.</p>
 <p><strong>Example</strong></p>
 <p>A query to calculate cartesian coordinates from <code>theta</code>, and <code>rho</code> attribute values optioned from the <code>PolarStream</code> stream, and to insert the results <code>x</code> and <code>y</code> via <code>CartesianStream</code> stream.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define stream PolarStream (theta double, rho double);
+<pre class="codehilite"><code class="language-siddhi">define stream PolarStream (theta double, rho double);
 
 from PolarStream#pol2Cart(theta, rho)
 select x, y
@@ -3237,7 +3237,7 @@ insert into CartesianStream;</code></pre>
 <p>Windows help to retain events based on a criterion, such that the values of those events can be aggregated, correlated or checked, if the event of interest is in the window.</p>
 <p><strong>Syntax</strong></p>
 <p>Window should be defined next to the input stream along the <code>#window</code> prefix as shown below.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from &lt;input stream&gt;#window.(&lt;namespace&gt;:)?&lt;window name&gt;(&lt;parameter&gt;, &lt;parameter&gt;, ... )
+<pre class="codehilite"><code class="language-siddhi">from &lt;input stream&gt;#window.(&lt;namespace&gt;:)?&lt;window name&gt;(&lt;parameter&gt;, &lt;parameter&gt;, ... )
 select &lt;attribute name&gt;, &lt;attribute name&gt;, ...
 insert &lt;output event type&gt;? into &lt;output stream&gt;</code></pre>
 
@@ -3310,7 +3310,7 @@ insert &lt;output event type&gt;? into &lt;output stream&gt;</code></pre>
 <p>Several pre written windows can be found under <code>siddhi-execution-*</code> extensions available <strong><a target="_blank" href="../extensions/">here</a></strong>.</p>
 <p><strong>Example 1</strong></p>
 <p>Query to find out the maximum temperature out of the <strong>last 10 events</strong>, using the window of <code>length</code> 10 and <code>max()</code> aggregation function, from the <code>TempStream</code> stream and insert the results into the <code>MaxTempStream</code> stream.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from TempStream#window.length(10)
+<pre class="codehilite"><code class="language-siddhi">from TempStream#window.length(10)
 select max(temp) as maxTemp
 insert into MaxTempStream;</code></pre>
 
@@ -3339,7 +3339,7 @@ insert into MaxTempStream;</code></pre>
 </table>
 <p><strong>Example 2</strong></p>
 <p>Query to find out the maximum temperature out of the <strong>every 10 events</strong>, using the window of <code>lengthBatch</code> 10 and <code>max()</code> aggregation function, from the <code>TempStream</code> stream and insert the results into the <code>MaxTempStream</code> stream.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from TempStream#window.lengthBatch(10)
+<pre class="codehilite"><code class="language-siddhi">from TempStream#window.lengthBatch(10)
 select max(temp) as maxTemp
 insert into MaxTempStream;</code></pre>
 
@@ -3368,7 +3368,7 @@ insert into MaxTempStream;</code></pre>
 </table>
 <p><strong>Example 3</strong></p>
 <p>Query to find out the maximum temperature out of the events arrived <strong>during last 10 minutes</strong>, using the window of <code>time</code> 10 minutes and <code>max()</code> aggregation function, from the <code>TempStream</code> stream and insert the results into the <code>MaxTempStream</code> stream.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from TempStream#window.time(10 min)
+<pre class="codehilite"><code class="language-siddhi">from TempStream#window.time(10 min)
 select max(temp) as maxTemp
 insert into MaxTempStream;</code></pre>
 
@@ -3397,7 +3397,7 @@ insert into MaxTempStream;</code></pre>
 </table>
 <p><strong>Example 4</strong></p>
 <p>Query to find out the maximum temperature out of the events arriving <strong>every 10 minutes</strong>, using the window of <code>timeBatch</code> 10 and <code>max()</code> aggregation function, from the <code>TempStream</code> stream and insert the results into the <code>MaxTempStream</code> stream.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from TempStream#window.timeBatch(10 min)
+<pre class="codehilite"><code class="language-siddhi">from TempStream#window.timeBatch(10 min)
 select max(temp) as maxTemp
 insert into MaxTempStream;</code></pre>
 
@@ -3426,7 +3426,7 @@ insert into MaxTempStream;</code></pre>
 </table>
 <p><strong>Example 5</strong></p>
 <p>Query to find out the unique number of <code>deviceID</code>s arrived over last <strong>1 minute</strong>, using the <code>time</code> window in the <code>unique</code> extension, and to insert the results into the <code>UniqueCountStream</code> stream.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define stream TempStream (deviceID long, roomNo int, temp double);
+<pre class="codehilite"><code class="language-siddhi">define stream TempStream (deviceID long, roomNo int, temp double);
 
 from TempStream#window.unique:time(deviceID, 1 sec)
 select count(deviceID) as deviceIDs
@@ -3438,25 +3438,25 @@ insert into UniqueCountStream ;</code></pre>
 <p>Event type helps to identify how the events were produced and to specify when a query should output such events to the output stream, such as output processed events only upon new event arrival to the query, upon event expiry from the window, or upon both cases.</p>
 <p><strong>Syntax</strong></p>
 <p>Event type should be defined in between <code>insert</code> and <code>into</code> keywords for insert queries as follows.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from &lt;input stream&gt;#window.&lt;window name&gt;(&lt;parameter&gt;, &lt;parameter&gt;, ... )
+<pre class="codehilite"><code class="language-siddhi">from &lt;input stream&gt;#window.&lt;window name&gt;(&lt;parameter&gt;, &lt;parameter&gt;, ... )
 select &lt;attribute name&gt;, &lt;attribute name&gt;, ...
 insert &lt;event type&gt; into &lt;output stream&gt;</code></pre>
 
 <p>Event type should be defined next to the <code>for</code> keyword for delete queries as follows.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from &lt;input stream&gt;#window.&lt;window name&gt;(&lt;parameter&gt;, &lt;parameter&gt;, ... )
+<pre class="codehilite"><code class="language-siddhi">from &lt;input stream&gt;#window.&lt;window name&gt;(&lt;parameter&gt;, &lt;parameter&gt;, ... )
 select &lt;attribute name&gt;, &lt;attribute name&gt;, ...
 delete &lt;table&gt; (for &lt;event type&gt;)?
     on &lt;condition&gt;</code></pre>
 
 <p>Event type should be defined next to the <code>for</code> keyword for update queries as follows.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from &lt;input stream&gt;#window.&lt;window name&gt;(&lt;parameter&gt;, &lt;parameter&gt;, ... )
+<pre class="codehilite"><code class="language-siddhi">from &lt;input stream&gt;#window.&lt;window name&gt;(&lt;parameter&gt;, &lt;parameter&gt;, ... )
 select &lt;attribute name&gt;, &lt;attribute name&gt;, ...
 update &lt;table&gt; (for &lt;event type&gt;)?
     set &lt;table&gt;.&lt;attribute name&gt; = (&lt;attribute name&gt;|&lt;expression&gt;)?, &lt;table&gt;.&lt;attribute name&gt; = (&lt;attribute name&gt;|&lt;expression&gt;)?, ...
     on &lt;condition&gt;</code></pre>
 
 <p>Event type should be defined next to the <code>for</code> keyword for update or insert queries as follows.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from &lt;input stream&gt;#window.&lt;window name&gt;(&lt;parameter&gt;, &lt;parameter&gt;, ... )
+<pre class="codehilite"><code class="language-siddhi">from &lt;input stream&gt;#window.&lt;window name&gt;(&lt;parameter&gt;, &lt;parameter&gt;, ... )
 select &lt;attribute name&gt;, &lt;attribute name&gt;, ...
 update or insert into &lt;table&gt; (for &lt;event type&gt;)?
     set &lt;table&gt;.&lt;attribute name&gt; = &lt;expression&gt;, &lt;table&gt;.&lt;attribute name&gt; = &lt;expression&gt;, ...
@@ -3491,7 +3491,7 @@ update or insert into &lt;table&gt; (for &lt;event type&gt;)?
 </div>
 <p><strong>Example</strong></p>
 <p>Query to output processed events only upon event expiry from the 1 minute time window to the <code>DelayedTempStream</code> stream. This query helps to delay events by a minute.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from TempStream#window.time(1 min)
+<pre class="codehilite"><code class="language-siddhi">from TempStream#window.time(1 min)
 select *
 insert expired events into DelayedTempStream</code></pre>
 
@@ -3506,7 +3506,7 @@ insert expired events into DelayedTempStream</code></pre>
 <p><strong>Syntax</strong></p>
 <p>Aggregate function can be used in query projection (as part of the <code>select</code> clause) alone or as a part of another expression. In all cases, the output produced should be properly mapped to the output stream attribute of the query using the <code>as</code> keyword.</p>
 <p>The syntax of aggregate function is as follows,</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from &lt;input stream&gt;#window.&lt;window name&gt;(&lt;parameter&gt;, &lt;parameter&gt;, ... )
+<pre class="codehilite"><code class="language-siddhi">from &lt;input stream&gt;#window.&lt;window name&gt;(&lt;parameter&gt;, &lt;parameter&gt;, ... )
 select (&lt;namespace&gt;:)?&lt;aggregate function name&gt;(&lt;parameter&gt;, &lt;parameter&gt;, ... ) as &lt;attribute name&gt;, &lt;attribute2 name&gt;, ...
 insert into &lt;output stream&gt;;</code></pre>
 
@@ -3575,7 +3575,7 @@ insert into &lt;output stream&gt;;</code></pre>
 <p>Several pre written aggregate functions can be found under <code>siddhi-execution-*</code> extensions available <strong><a target="_blank" href="../extensions/">here</a></strong>.</p>
 <p><strong>Example</strong></p>
 <p>Query to calculate average, maximum, minimum and 97<sup>th</sup> percentile values on <code>temp</code> attribute of the <code>TempStream</code> stream in a sliding manner, from the events arrived over the last 10 minutes and to produce output events with attributes <code>avgTemp</code>, <code>maxTemp</code>, <code>minTemp</code> and <code>percentile97</code> respectively to the <code>AggTempStream</code> stream.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from TempStream#window.time(10 min)
+<pre class="codehilite"><code class="language-siddhi">from TempStream#window.time(10 min)
 select avg(temp) as avgTemp, max(temp) as maxTemp, min(temp) as minTemp, math:percentile(temp, 97.0) as percentile97
 insert into AggTempStream;</code></pre>
 
@@ -3585,7 +3585,7 @@ insert into AggTempStream;</code></pre>
 <p>Group By helps to perform aggregate functions independently for each given group-by key combination.</p>
 <p><strong>Syntax</strong></p>
 <p>The syntax for the Group By with aggregate function is as follows.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from &lt;input stream&gt;#window.&lt;window name&gt;(...)
+<pre class="codehilite"><code class="language-siddhi">from &lt;input stream&gt;#window.&lt;window name&gt;(...)
 select &lt;aggregate function&gt;( &lt;parameter&gt;, &lt;parameter&gt;, ...) as &lt;attribute1 name&gt;, &lt;attribute2 name&gt;, ...
 group by &lt;attribute1 name&gt;, &lt;attribute2 name&gt;, ...
 insert into &lt;output stream&gt;;</code></pre>
@@ -3593,7 +3593,7 @@ insert into &lt;output stream&gt;;</code></pre>
 <p>Here the group by attributes should be defined next to the <code>group by</code> keyword separating each attribute by a comma.</p>
 <p><strong>Example</strong></p>
 <p>Query to calculate the average <code>temp</code> per each <code>roomNo</code> and <code>deviceID</code> combination, from the events arrived from <code>TempStream</code> stream, during the last 10 minutes time-window in a sliding manner.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from TempStream#window.time(10 min)
+<pre class="codehilite"><code class="language-siddhi">from TempStream#window.time(10 min)
 select roomNo, deviceID, avg(temp) as avgTemp
 group by roomNo, deviceID
 insert into AvgTempStream;</code></pre>
@@ -3604,7 +3604,7 @@ insert into AvgTempStream;</code></pre>
 <p>Having helps to select the events that are relevant for the output based on the attributes those are produced by the <code>select</code> clause and omit the ones that are not.</p>
 <p><strong>Syntax</strong></p>
 <p>The syntax for the Having clause is as follows.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from &lt;input stream&gt;#window.&lt;window name&gt;( ... )
+<pre class="codehilite"><code class="language-siddhi">from &lt;input stream&gt;#window.&lt;window name&gt;( ... )
 select &lt;aggregate function&gt;( &lt;parameter&gt;, &lt;parameter&gt;, ...) as &lt;attribute1 name&gt;, &lt;attribute2 name&gt;, ...
 group by &lt;attribute1 name&gt;, &lt;attribute2 name&gt; ...
 having &lt;condition&gt;
@@ -3613,7 +3613,7 @@ insert into &lt;output stream&gt;;</code></pre>
 <p>Here the having <code>&lt;condition&gt;</code> should be defined next to the <code>having</code> keyword, and it can be used with or without <code>group by</code> clause.</p>
 <p><strong>Example</strong></p>
 <p>Query to calculate the average <code>temp</code> per <code>roomNo</code> for the events arrived on the last 10 minutes, and send alerts for each event having <code>avgTemp</code> more than 30 degrees.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from TempStream#window.time(10 min)
+<pre class="codehilite"><code class="language-siddhi">from TempStream#window.time(10 min)
 select roomNo, avg(temp) as avgTemp
 group by roomNo
 having avgTemp &gt; 30
@@ -3625,7 +3625,7 @@ insert into AlertStream;</code></pre>
 <p>Order By helps to sort the events in the query output chunks. Order By will only be effective when query outputs a lot of events together such as in batch windows than for sliding windows where events are emitted one at a time.</p>
 <p><strong>Syntax</strong></p>
 <p>The syntax for the Order By clause is as follows:</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from &lt;input stream&gt;#window.&lt;window name&gt;( ... )
+<pre class="codehilite"><code class="language-siddhi">from &lt;input stream&gt;#window.&lt;window name&gt;( ... )
 select &lt;aggregate function&gt;( &lt;parameter&gt;, &lt;parameter&gt;, ...) as &lt;attribute1 name&gt;, &lt;attribute2 name&gt;, ...
 group by &lt;attribute1 name&gt;, &lt;attribute2 name&gt; ...
 having &lt;condition&gt;
@@ -3635,7 +3635,7 @@ insert into &lt;output stream&gt;;</code></pre>
 <p>Here, the order by attributes (<code>&lt;attributeN name&gt;</code>) should be defined next to the <code>order by</code> keyword separating each by a comma, and optionally the event ordering can be specified using <code>asc</code> (default) or <code>desc</code> keywords to respectively define ascending and descending.</p>
 <p><strong>Example</strong></p>
 <p>Query to calculate the average <code>temp</code>, per <code>roomNo</code> and <code>deviceID</code> combination, on every 10 minutes batches, and order the generated output events in ascending order by <code>avgTemp</code> and then in descending order of <code>roomNo</code> (if there are more events having the same <code>avgTemp</code> value) before emitting them to the <code>AvgTempStream</code> stream.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from TempStream#window.timeBatch(10 min)
+<pre class="codehilite"><code class="language-siddhi">from TempStream#window.timeBatch(10 min)
 select roomNo, deviceID, avg(temp) as avgTemp
 group by roomNo, deviceID
 order by avgTemp, roomNo desc
@@ -3647,7 +3647,7 @@ insert into AvgTempStream;</code></pre>
 <p>Limit &amp; Offset helps to output only the selected set of events from large event batches. This will be very useful with <code>Order By</code> clause where one can order the output and extract the topK or bottomK events, and even use it to paginate through the dataset by obtaining set of events from the middle.   </p>
 <p><strong>Syntax</strong></p>
 <p>The syntax for the Limit &amp; Offset clauses is as follows:</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from &lt;input stream&gt;#window.&lt;window name&gt;( ... )
+<pre class="codehilite"><code class="language-siddhi">from &lt;input stream&gt;#window.&lt;window name&gt;( ... )
 select &lt;aggregate function&gt;( &lt;parameter&gt;, &lt;parameter&gt;, ...) as &lt;attribute1 name&gt;, &lt;attribute2 name&gt;, ...
 group by &lt;attribute1 name&gt;, &lt;attribute2 name&gt; ...
 having &lt;condition&gt;
@@ -3659,7 +3659,7 @@ insert into &lt;output stream&gt;;</code></pre>
 <p>Here both <code>limit</code> and <code>offset</code> are optional and both can be defined by adding a positive integer next to their keywords, when <code>limit</code> is omitted the query will output all the events, and when <code>offset</code> is omitted <code>0</code> is taken as the default offset value.</p>
 <p><strong>Example 1</strong></p>
 <p>Query to calculate the average <code>temp</code>, per <code>roomNo</code> and <code>deviceID</code> combination, for every 10 minutes batches, from the events arriving at the <code>TempStream</code> stream, and emit only two events having the highest <code>avgTemp</code> value.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from TempStream#window.timeBatch(10 min)
+<pre class="codehilite"><code class="language-siddhi">from TempStream#window.timeBatch(10 min)
 select roomNo, deviceID, avg(temp) as avgTemp
 group by roomNo, deviceID
 order by avgTemp desc
@@ -3668,7 +3668,7 @@ insert into HighestAvgTempStream;</code></pre>
 
 <p><strong>Example 2</strong></p>
 <p>Query to calculate the average <code>temp</code>, per <code>roomNo</code> and <code>deviceID</code> combination, for every 10 minutes batches, for the events arriving at the <code>TempStream</code> stream, and emits only the third, forth and fifth events when sorted in descending order based on their <code>avgTemp</code> value.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from TempStream#window.timeBatch(10 min)
+<pre class="codehilite"><code class="language-siddhi">from TempStream#window.timeBatch(10 min)
 select roomNo, deviceID, avg(temp) as avgTemp
 group by roomNo, deviceID
 order by avgTemp desc
@@ -3683,7 +3683,7 @@ insert into HighestAvgTempStream;</code></pre>
 <p>Stream processors help to achieve complex execution logics that cannot be achieved by other constructs such as <a href="#function">functions</a>, <a href="#aggregate-function">aggregate functions</a>, <a href="#stream-function">stream functions</a> and  <a href="#windows">windows</a>.</p>
 <p><strong>Syntax</strong></p>
 <p>Stream processor should be defined next to the input stream or <a href="#named-window">named-windows</a> along the <code>#</code> prefix as shown below.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from &lt;input stream&gt;#(&lt;namespace&gt;:)?&lt;stream processor name&gt;(&lt;parameter&gt;, &lt;parameter&gt;, ... )
+<pre class="codehilite"><code class="language-siddhi">from &lt;input stream&gt;#(&lt;namespace&gt;:)?&lt;stream processor name&gt;(&lt;parameter&gt;, &lt;parameter&gt;, ... )
 select &lt;attribute name&gt;, &lt;attribute name&gt;, ...
 insert into &lt;output stream&gt;</code></pre>
 
@@ -3712,7 +3712,7 @@ insert into &lt;output stream&gt;</code></pre>
 </div>
 <p><strong>Example</strong></p>
 <p>A query to log a message <code>"Sample Event :"</code> along with the event on <code>"INFO"</code> log level for all events of <code>InputStream</code> Stream.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from InputStream#log("INFO", "Sample Event :", true)
+<pre class="codehilite"><code class="language-siddhi">from InputStream#log("INFO", "Sample Event :", true)
 select *
 insert into IgnoreStream;</code></pre>
 
@@ -3729,7 +3729,7 @@ insert into IgnoreStream;</code></pre>
 </div>
 <p><strong>Syntax</strong></p>
 <p>The syntax to join two streams is as follows:</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from &lt;input stream&gt;(&lt;non window handler&gt;)*(#window.&lt;window name&gt;(&lt;parameter&gt;, ... ))? (unidirectional)? (as &lt;reference&gt;)?
+<pre class="codehilite"><code class="language-siddhi">from &lt;input stream&gt;(&lt;non window handler&gt;)*(#window.&lt;window name&gt;(&lt;parameter&gt;, ... ))? (unidirectional)? (as &lt;reference&gt;)?
          &lt;join type&gt; &lt;input stream&gt;(&lt;non window handler&gt;)*(#window.&lt;window name&gt;(&lt;parameter&gt;,  ... ))? (unidirectional)? (as &lt;reference&gt;)?
     (on &lt;join condition&gt;)?
 select &lt;reference&gt;.&lt;attribute name&gt;, &lt;reference&gt;.&lt;attribute name&gt;, ...
@@ -3776,7 +3776,7 @@ insert into &lt;output stream&gt;</code></pre>
 </div>
 <p><strong>Example 1 (join)</strong></p>
 <p>A query to generate output when there is a matching event having equal <code>symbol</code> and <code>companyID</code> combination from the events arrived in the last 10 minutes on <code>StockStream</code> stream and the events arrived in the last 20 minutes on <code>TwitterStream</code> stream.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define stream StockStream (symbol string, price float, volume long);
+<pre class="codehilite"><code class="language-siddhi">define stream StockStream (symbol string, price float, volume long);
 define stream TwitterStream (companyID string, tweet string);
 
 from StockStream#window.time(10 min) as S
@@ -3786,11 +3786,11 @@ select S.symbol as symbol, T.tweet, S.price
 insert into OutputStream ;</code></pre>
 
 <p>Possible OutputStream outputs as follows
-<pre class="codehilite"><code class="linenums">("FB", "FB is great!", 23.5f)
+<pre class="codehilite"><code>("FB", "FB is great!", 23.5f)
 ("GOOG", "Its time to Google!", 54.5f)</code></pre></p>
 <p><strong>Example 2 (with no join condition)</strong></p>
 <p>A query to generate output for all possible event combinations from the last 5 events of the <code>StockStream</code> stream and the events arrived in the last 1 minutes on <code>TwitterStream</code> stream.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define stream StockStream (symbol string, price float, volume long);
+<pre class="codehilite"><code class="language-siddhi">define stream StockStream (symbol string, price float, volume long);
 define stream TwitterStream (companyID string, tweet string);
 
 from StockStream#window.length(5) as S
@@ -3799,13 +3799,13 @@ select S.symbol as symbol, T.tweet, S.price
 insert into OutputStream ;</code></pre>
 
 <p>Possible OutputStream outputs as follows,
-<pre class="codehilite"><code class="linenums">("FB", "FB is great!", 23.5f)
+<pre class="codehilite"><code>("FB", "FB is great!", 23.5f)
 ("FB", "Its time to Google!", 23.5f)
 ("GOOG", "FB is great!", 54.5f)
 ("GOOG", "Its time to Google!", 54.5f)</code></pre></p>
 <p><strong>Example 3 (left outer join)</strong></p>
 <p>A query to generate output for all events arriving in the <code>StockStream</code> stream regardless of whether there is a matching <code>companyID</code> for <code>symbol</code> exist in the events arrived in the last 20 minutes on <code>TwitterStream</code> stream, and generate output for the events arriving in the <code>StockStream</code> stream only when there is a matchine <code>symbol</code> and <code>companyID</code> combination exist in the events arrived in the last 10 minutes on <code>StockStream</code> stream.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define stream StockStream (symbol string, price float, volume long);
+<pre class="codehilite"><code class="language-siddhi">define stream StockStream (symbol string, price float, volume long);
 define stream TwitterStream (companyID string, tweet string);
 
 from StockStream#window.time(10 min) as S
@@ -3815,11 +3815,11 @@ select S.symbol as symbol, T.tweet, S.price
 insert into OutputStream ;</code></pre>
 
 <p>Possible OutputStream outputs as follows,
-<pre class="codehilite"><code class="linenums">("FB", "FB is great!", 23.5f)
+<pre class="codehilite"><code>("FB", "FB is great!", 23.5f)
 ("GOOG", null, 54.5f) //when there are no matching event in TwitterStream</code></pre></p>
 <p><strong>Example 3 (full outer join)</strong></p>
 <p>A query to generate output for all events arriving in the <code>StockStream</code> stream and in the <code>TwitterStream</code> stream regardless of whether there is a matching <code>companyID</code> for <code>symbol</code> exist in the other stream window or not.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define stream StockStream (symbol string, price float, volume long);
+<pre class="codehilite"><code class="language-siddhi">define stream StockStream (symbol string, price float, volume long);
 define stream TwitterStream (companyID string, tweet string);
 
 from StockStream#window.time(10 min) as S
@@ -3829,12 +3829,12 @@ select S.symbol as symbol, T.tweet, S.price
 insert into OutputStream ;</code></pre>
 
 <p>Possible OutputStream outputs as follows,
-<pre class="codehilite"><code class="linenums">("FB", "FB is great!", 23.5f)
+<pre class="codehilite"><code>("FB", "FB is great!", 23.5f)
 ("GOOG", null, 54.5f) //when there are no matching event in TwitterStream
 (null, "I like to tweet!", null) //when there are no matching event in StockStream</code></pre></p>
 <p><strong>Example 3 (unidirectional join)</strong></p>
 <p>A query to generate output only when events arrive on <code>StockStream</code> stream find a matching event having equal <code>symbol</code> and <code>companyID</code> combination against the events arrived in the last 20 minutes on <code>TwitterStream</code> stream.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define stream StockStream (symbol string, price float, volume long);
+<pre class="codehilite"><code class="language-siddhi">define stream StockStream (symbol string, price float, volume long);
 define stream TwitterStream (companyID string, tweet string);
 
 from StockStream#window.time(10 min) unidirectional as S
@@ -3844,7 +3844,7 @@ select S.symbol as symbol, T.tweet, S.price
 insert into OutputStream ;</code></pre>
 
 <p>Possible OutputStream outputs as follows,
-<pre class="codehilite"><code class="linenums">("FB", "FB is great!", 23.5f)
+<pre class="codehilite"><code>("FB", "FB is great!", 23.5f)
 ("GOOG", "Its time to Google!", 54.5f)</code></pre>
 Here both outputs will be initiated by events arriving on <code>StockStream</code>.</p>
 <h3 id="pattern">Pattern<a class="headerlink" href="#pattern" title="Permanent link">&para;</a></h3>
@@ -3854,7 +3854,7 @@ Here both outputs will be initiated by events arriving on <code>StockStream</cod
 <p>Pattern query does not expect the matching events to occur immediately after each other, and it can successfully correlate the events who are far apart and having other events in between.</p>
 <p><strong>Syntax</strong></p>
 <p>The syntax for a pattern query is as follows,</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from (
+<pre class="codehilite"><code class="language-siddhi">from (
       (every)? (&lt;event reference&gt;=)?&lt;input stream&gt;[&lt;filter condition&gt;](&lt;&lt;min count&gt;:&lt;max count&gt;&gt;)? |
       (every)? (&lt;event reference&gt;=)?&lt;input stream&gt;[&lt;filter condition&gt;] (and|or) (&lt;event reference&gt;=)?&lt;input stream&gt;[&lt;filter condition&gt;] |
       (every)? not input stream&gt;[&lt;filter condition&gt;] (and &lt;event reference&gt;=&lt;input stream&gt;[&lt;filter condition&gt;] | for &lt;time gap&gt;)
@@ -3964,7 +3964,7 @@ Some possible indexes and their behavior is as follows.</p>
 <p>The system returns <code>null</code> when accessing attribute values, when no matching event is assigned to the <code>event reference</code> (as in when two conditions are combined using <code>or</code>) or when the provided index is greater than the last event index in the event collection.</p>
 <p><strong>Example 1 (Every)</strong></p>
 <p>A query to send an alerts when temperature of a room increases by 5 degrees within 10 min.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from every( e1=TempStream ) -&gt; e2=TempStream[ e1.roomNo == roomNo and (e1.temp + 5) &lt;= temp ]
+<pre class="codehilite"><code class="language-siddhi">from every( e1=TempStream ) -&gt; e2=TempStream[ e1.roomNo == roomNo and (e1.temp + 5) &lt;= temp ]
     within 10 min
 select e1.roomNo, e1.temp as initialTemp, e2.temp as finalTemp
 insert into AlertStream;</code></pre>
@@ -3972,7 +3972,7 @@ insert into AlertStream;</code></pre>
 <p>Here, the matching process begins for each event in the <code>TempStream</code> stream (as <code>every</code> is used with <code>e1=TempStream</code>), and if another event arrives within 10 minutes with a value for <code>temp</code> attribute being greater than or equal to <code>e1.temp + 5</code> of the initial event <code>e1</code>, an output is generated via the <code>AlertStream</code>.</p>
 <p><strong>Example 2 (Event collection)</strong></p>
 <p>A query to find the temperature difference between two regulator events.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define stream TempStream (deviceID long, roomNo int, temp double);
+<pre class="codehilite"><code class="language-siddhi">define stream TempStream (deviceID long, roomNo int, temp double);
 define stream RegulatorStream (deviceID long, roomNo int, tempSet double, isOn bool);
 
 from every e1=RegulatorStream -&gt; e2=TempStream[e1.roomNo==roomNo]&lt;1:&gt;
@@ -3983,7 +3983,7 @@ insert into TempDiffStream;</code></pre>
 <p>Here, one or more <code>TempStream</code> events having the same <code>roomNo</code> as of the <code>RegulatorStream</code> stream event matched in <code>e1</code> is collected, and among them, the first and the last was retrieved to find the temperature difference.</p>
 <p><strong>Example 3 (Logical or condition)</strong></p>
 <p>Query to send the <code>stop</code> control action to the regulator via <code>RegulatorActionStream</code> when the key is removed from the hotel room. Here the key actions are monitored via <code>RoomKeyStream</code> stream, and the regulator state is monitored through <code>RegulatorStateChangeStream</code> stream.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define stream RegulatorStateChangeStream(deviceID long, roomNo int, tempSet double, action string);
+<pre class="codehilite"><code class="language-siddhi">define stream RegulatorStateChangeStream(deviceID long, roomNo int, tempSet double, action string);
 define stream RoomKeyStream(deviceID long, roomNo int, action string);
 
 from every e1=RegulatorStateChangeStream[ action == 'on' ]
@@ -3996,7 +3996,7 @@ insert into RegulatorActionStream;</code></pre>
 <p>Here, the query sends a <code>stop</code> action on <code>RegulatorActionStream</code> stream, if a <code>removed</code> action is triggered in the <code>RoomKeyStream</code> stream before the regulator state changing to <code>off</code> which is notified via <code>RegulatorStateChangeStream</code> stream.</p>
 <p><strong>Example 4 (Logical not condition)</strong></p>
 <p>Query to generate alerts if the regulator gets switched off before the temperature reaches 12 degrees.  </p>
-<p><pre class="codehilite"><code class="language-siddhi linenums">define stream RegulatorStateChangeStream(deviceID long, roomNo int, tempSet double, action string);
+<p><pre class="codehilite"><code class="language-siddhi">define stream RegulatorStateChangeStream(deviceID long, roomNo int, tempSet double, action string);
 define stream TempStream (deviceID long, roomNo int, temp double);
 
 from every e1=RegulatorStateChangeStream[action == 'start']
@@ -4007,7 +4007,7 @@ insert into AlertStream;</code></pre>
 Here, the query alerts the <code>roomNo</code> via <code>AlertStream</code> stream, when no temperature events having less than 12 arrived in the <code>TempStream</code> between the <code>start</code> and <code>off</code>  actions of the regulator, notified via <code>RegulatorActionStream</code> stream.</p>
 <p><strong>Example 5 (Logical not condition)</strong></p>
 <p>Query to alert if the room temperature does not reduce to the set value within 5 minutes after switching on the regulator.  </p>
-<pre class="codehilite"><code class="language-siddhi linenums">define stream RegulatorStateChangeStream(deviceID long, roomNo int, tempSet double, action string);
+<pre class="codehilite"><code class="language-siddhi">define stream RegulatorStateChangeStream(deviceID long, roomNo int, tempSet double, action string);
 define stream TempStream (deviceID long, roomNo int, temp double);
 
 from e1=RegulatorStateChangeStream[action == 'start']
@@ -4071,7 +4071,7 @@ insert into AlertStream;</code></pre>
 <p>Sequence query does expect the matching events to occur immediately after each other, and it can successfully correlate the events who do not have other events in between.</p>
 <p><strong>Syntax</strong></p>
 <p>The syntax for a sequence query is as follows:</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from (
+<pre class="codehilite"><code class="language-siddhi">from (
       (every)? (&lt;event reference&gt;=)?&lt;input stream&gt;[&lt;filter condition&gt;] (+|*|?)? |
                (&lt;event reference&gt;=)?&lt;input stream&gt;[&lt;filter condition&gt;] (and|or) (&lt;event reference&gt;=)?&lt;input stream&gt;[&lt;filter condition&gt;] |
                not input stream&gt;[&lt;filter condition&gt;] (and &lt;event reference&gt;=&lt;input stream&gt;[&lt;filter condition&gt;] | for &lt;time gap&gt;)
@@ -4160,14 +4160,14 @@ Some possible indexes and their behavior is as follows.</p>
 <p>The system returns <code>null</code> when accessing attribute values, when no matching event is assigned to the <code>event reference</code> (as in when two conditions are combined using <code>or</code>) or when the provided index is greater than the last event index in the event collection.</p>
 <p><strong>Example 1 (Every)</strong></p>
 <p>Query to send alerts when temperature increases at least by one degree between two consecutive temperature events.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from every e1=TempStream, e2=TempStream[temp &gt; e1.temp + 1]
+<pre class="codehilite"><code class="language-siddhi">from every e1=TempStream, e2=TempStream[temp &gt; e1.temp + 1]
 select e1.temp as initialTemp, e2.temp as finalTemp
 insert into AlertStream;</code></pre>
 
 <p>Here, the matching process begins for each event in the <code>TempStream</code> stream (as <code>every</code> is used with <code>e1=TempStream</code>), and if the immediate next event with a value for <code>temp</code> attribute being greater than <code>e1.temp + 1</code> of the initial event <code>e1</code>, then an output is generated via the <code>AlertStream</code>.</p>
 <p><strong>Example 2 (Every collection)</strong></p>
 <p>Query to identify temperature peeks by monitoring continuous increases in <code>temp</code> attribute and alerts upon the first drop.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define stream TempStream(deviceID long, roomNo int, temp double);
+<pre class="codehilite"><code class="language-siddhi">define stream TempStream(deviceID long, roomNo int, temp double);
 
 @info(name = 'query1')
 from every e1=TempStream,
@@ -4179,7 +4179,7 @@ insert into PeekTempStream ;</code></pre>
 <p>Here, the matching process begins for each event in the <code>TempStream</code> stream (as <code>every</code> is used with <code>e1=TempStream</code>). It checks if the <code>temp</code> attribute value of the second event is greater than or equal to the <code>temp</code> attribute value of the first event (<code>e1.temp</code>), then for all the following events, their <code>temp</code> attribute value is checked if they are greater than or equal to their previous event's <code>temp</code> attribute value (<code>e2[last].temp</code>), and when the <code>temp</code> attribute value becomes less than its previous events <code>temp</code> attribute value value an output is generated via the <code>AlertStream</code> stream.</p>
 <p><strong>Example 3 (Logical and condition)</strong></p>
 <p>A query to identify a regulator activation event immediately followed by both temperature sensor and humidity sensor activation events in either order.</p>
-<p><pre class="codehilite"><code class="language-siddhi linenums">define stream TempStream(deviceID long, isActive bool);
+<p><pre class="codehilite"><code class="language-siddhi">define stream TempStream(deviceID long, isActive bool);
 define stream HumidStream(deviceID long, isActive bool);
 define stream RegulatorStream(deviceID long, isOn bool);
 
@@ -4193,7 +4193,7 @@ Here, the matching process begins for each event in the <code>RegulatorStream</c
 <p>Output rate-limiting helps to reduce the load on the subsequent executions such as query processing, I/O operations, and notifications by reducing the output frequency of the events.</p>
 <p><strong>Syntax</strong></p>
 <p>The syntax for output rate limiting is as follows:</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from &lt;input stream&gt; ...
+<pre class="codehilite"><code class="language-siddhi">from &lt;input stream&gt; ...
 select &lt;attribute name&gt;, &lt;attribute name&gt;, ...
 output &lt;rate limiting configuration&gt;
 insert into &lt;output stream&gt;</code></pre>
@@ -4232,7 +4232,7 @@ insert into &lt;output stream&gt;</code></pre>
 * <code>all</code>: Emits all the output events together which are generated during the specified time or event interval.</p>
 <p><strong>Example 1 (Time based first event)</strong></p>
 <p>Query to calculate the average <code>temp</code> per <code>roomNo</code> for the events arrived on the last 10 minutes, and send alerts <strong>once every 15 minutes</strong> of the events having <code>avgTemp</code> more than 30 degrees.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define stream TempStream(deviceID long, roomNo int, temp double);
+<pre class="codehilite"><code class="language-siddhi">define stream TempStream(deviceID long, roomNo int, temp double);
 
 from TempStream#window.time(10 min)
 select roomNo, avg(temp) as avgTemp
@@ -4244,7 +4244,7 @@ insert into AlertStream;</code></pre>
 <p>Here the first event having <code>avgTemp</code> &gt; 30 is emitted immediately and the next event is only emitted after 15 minutes.</p>
 <p><strong>Example 2 (Event based first event)</strong></p>
 <p>A query to output the initial event, and from there onwards every 5<sup>th</sup> event of <code>TempStream</code> stream.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define stream TempStream(deviceID long, roomNo int, temp double);
+<pre class="codehilite"><code class="language-siddhi">define stream TempStream(deviceID long, roomNo int, temp double);
 
 from TempStream
 output first every 5 events
@@ -4252,7 +4252,7 @@ insert into FiveEventBatchStream;</code></pre>
 
 <p><strong>Example 3 (Event based all events)</strong></p>
 <p>Query to collect last 5 <code>TempStream</code> stream events and send them together as a single batch.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define stream TempStream(deviceID long, roomNo int, temp double);
+<pre class="codehilite"><code class="language-siddhi">define stream TempStream(deviceID long, roomNo int, temp double);
 
 from TempStream
 output every 5 events
@@ -4261,7 +4261,7 @@ insert into FiveEventBatchStream;</code></pre>
 <p>As no <code>&lt;output event selection&gt;</code> is defined, the behavior of <code>all</code> is applied in this case.</p>
 <p><strong>Example 4 (Time based last event)</strong></p>
 <p>Query to emit only the last event of <code>TempStream</code> stream for every 10 minute interval.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define stream TempStream(deviceID long, roomNo int, temp double);
+<pre class="codehilite"><code class="language-siddhi">define stream TempStream(deviceID long, roomNo int, temp double);
 
 from TempStream
 output last every 10 min
@@ -4269,7 +4269,7 @@ insert into FiveEventBatchStream;</code></pre>
 
 <p><strong>Example 5 (Snapshot based)</strong></p>
 <p>Query to emit the snapshot of events retained by its last 5 minutes window defined on <code>TempStream</code> stream, every second.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define stream TempStream(deviceID long, roomNo int, temp double);
+<pre class="codehilite"><code class="language-siddhi">define stream TempStream(deviceID long, roomNo int, temp double);
 
 from TempStream#window.time(5 sec)
 output snapshot every 1 sec
@@ -4278,7 +4278,7 @@ insert into SnapshotTempStream;</code></pre>
 <p>Here, the query emits all the current events generated which do not have a corresponding expired event at the predefined time interval.</p>
 <p><strong>Example 6 (Snapshot based)</strong></p>
 <p>Query to emit the snapshot of events retained every second, when no window is defined on <code>TempStream</code> stream.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define stream TempStream(deviceID long, roomNo int, temp double);
+<pre class="codehilite"><code class="language-siddhi">define stream TempStream(deviceID long, roomNo int, temp double);
 
 from TempStream
 output snapshot every 5 sec
@@ -4292,7 +4292,7 @@ insert into SnapshotTempStream;</code></pre>
 <p>Here, events form multiple streams generating the same partition key will result in the same instance of the partition, and executed together. When a stream is used within the partition block without configuring a partition key, all of its events will be executed in all available partition instances.</p>
 <p><strong>Syntax</strong></p>
 <p>The syntax for a partition is as follows:</p>
-<pre class="codehilite"><code class="language-siddhi linenums">@purge(enable='true', interval='&lt;purge interval&gt;', idle.period='&lt;idle period of partition instance&gt;')
+<pre class="codehilite"><code class="language-siddhi">@purge(enable='true', interval='&lt;purge interval&gt;', idle.period='&lt;idle period of partition instance&gt;')
 partition with ( &lt;key selection&gt; of &lt;stream name&gt;,
                  &lt;key selection&gt; of &lt;stream name&gt;, ... )
 begin
@@ -4365,7 +4365,7 @@ end;</code></pre>
 </table>
 <p><strong>Example 1 (Partition by value)</strong></p>
 <p>Query to calculate the maximum temperature of each <code>deviceID</code>, among its last 10 events.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">partition with ( deviceID of TempStream )
+<pre class="codehilite"><code class="language-siddhi">partition with ( deviceID of TempStream )
 begin
     from TempStream#window.length(10)
     select roomNo, deviceID, max(temp) as maxTemp
@@ -4375,7 +4375,7 @@ end;</code></pre>
 <p>Here, each unique <code>deviceID</code> will create a partition instance which retains the last 10 events arrived for its corresponding partition key and calculates the maximum values without interfering with the events of other partition instances.    </p>
 <p><strong>Example 2 (Partition by range)</strong></p>
 <p>Query to calculate the average temperature for the last 10 minutes per each office area, where the office areas are identified based on the <code>roomNo</code> attribute ranges from the events of <code>TempStream</code> stream.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">partition with ( roomNo &gt;= 1030 as 'serverRoom' or
+<pre class="codehilite"><code class="language-siddhi">partition with ( roomNo &gt;= 1030 as 'serverRoom' or
                  roomNo &lt; 1030 and roomNo &gt;= 330 as 'officeRoom' or
                  roomNo &lt; 330 as 'lobby' of TempStream)
 begin
@@ -4387,7 +4387,7 @@ end;</code></pre>
 <p>Here, partition instances are created for each office area type such as <code>serverRoom</code>, <code>officeRoom</code>, and <code>lobby</code>. Events are processed only in the partition instances which are associated with matching compare condition values that are satisfied by the event's <code>roomNo</code> attribute, and within each partition instance, the average <code>temp</code> value is calculated based on the events arrived over the last 10 minutes.   </p>
 <p><strong>Example 3 (Inner streams)</strong></p>
 <p>A partition to calculate the average temperature of every 10 events for each sensor, and send the output via the <code>DeviceTempIncreasingStream</code> stream if consecutive average temperature (<code>avgTemp</code>) values increase by more than 5 degrees.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">partition with ( deviceID of TempStream )
+<pre class="codehilite"><code class="language-siddhi">partition with ( deviceID of TempStream )
 begin
     from TempStream#window.lengthBatch(10)
     select roomNo, deviceID, avg(temp) as avgTemp
@@ -4401,7 +4401,7 @@ end;</code></pre>
 <p>Here, the first query calculates the <code>avgTemp</code> for every 10 events for each unique <code>deviceID</code> and passes the output via the inner stream <code>#AvgTempStream</code> to the second query that is also in the same partition instance. The second query then identifies a pair of consecutive events from <code>#AvgTempStream</code>, where the latter event having 5 degrees more on <code>avgTemp</code> value than its previous event.</p>
 <p><strong>Example 4 (Purge partition)</strong></p>
 <p>A partition to identify consecutive three login failure attempts for each session within 1 hour. Here, the number of sessions can be infinite.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define stream LoginStream ( sessionID string, loginSuccessful bool);
+<pre class="codehilite"><code class="language-siddhi">define stream LoginStream ( sessionID string, loginSuccessful bool);
 
 @purge(enable='true', interval='10 sec', idle.period='1 hour')
 partition with ( sessionID of LoginStream )
@@ -4428,7 +4428,7 @@ end;</code></pre>
 </div>
 <p><strong>Syntax</strong></p>
 <p>The syntax for defining a table is as follows:</p>
-<p><pre class="codehilite"><code class="language-siddhi linenums">@primaryKey( &lt;key&gt;, &lt;key&gt;, ... )
+<p><pre class="codehilite"><code class="language-siddhi">@primaryKey( &lt;key&gt;, &lt;key&gt;, ... )
 @index( &lt;key&gt;, &lt;key&gt;, ...)
 define table &lt;table name&gt; (&lt;attribute name&gt; &lt;attribute type&gt;, &lt;attribute name&gt; &lt;attribute type&gt;, ... );</code></pre>
 The following parameters are used to configure the table definition:</p>
@@ -4463,14 +4463,14 @@ The following parameters are used to configure the table definition:</p>
 <p>Indexes allow events in the tables to be searched/modified much faster, but unlike primary keys, the indexed attributes support duplicate values.</p>
 <p>Indexes are optional, and they can be configured using the <code>@index</code> annotation. Here, each <code>@index</code> annotation creates an index in the table, and the tables only support one <code>&lt;attribute name&gt;</code> for each index (The number of @Index annotations and <code>&lt;attribute name&gt;</code> inside the annotation can differ based on different store implementations).</p>
 <p><strong>Example 1 (Primary key)</strong></p>
-<p><pre class="codehilite"><code class="language-siddhi linenums">define table RoomTypeTable ( roomNo int, type string );</code></pre>
+<p><pre class="codehilite"><code class="language-siddhi">define table RoomTypeTable ( roomNo int, type string );</code></pre>
 The above table definition defines an in-memory table named <code>RoomTypeTable</code> having the following attributes.</p>
 <ul>
 <li><code>roomNo</code> of type <code>int</code></li>
 <li>Room <code>type</code> of type <code>string</code></li>
 </ul>
 <p><strong>Example 2 (Primary key)</strong></p>
-<pre class="codehilite"><code class="language-siddhi linenums">@primaryKey('symbol')
+<pre class="codehilite"><code class="language-siddhi">@primaryKey('symbol')
 define table StockTable (symbol string, price float, volume long);</code></pre>
 
 <p>The above table definition defines an in-memory table named <code>StockTable</code> having the following attributes.</p>
@@ -4481,7 +4481,7 @@ define table StockTable (symbol string, price float, volume long);</code></pre>
 </ul>
 <p>As this table is configured with the primary key <code>symbol</code>, there will be only one record/event exist in the table for a particular value of the <code>symbol</code> attribute.</p>
 <p><strong>Example 3 (Index)</strong></p>
-<pre class="codehilite"><code class="language-siddhi linenums">@index('username')
+<pre class="codehilite"><code class="language-siddhi">@index('username')
 @index('salary')
 define table SalaryTable (username string, salary double);</code></pre>
 
@@ -4492,7 +4492,7 @@ define table SalaryTable (username string, salary double);</code></pre>
 </ul>
 <p>As this table is configured with indexes for <code>username</code> and <code>salary</code>, the search operations on <code>username</code> and/or <code>salary</code> attributes will be much faster than the non-indexed case. Here, the table can contain duplicate events having the same value for username and/or salary.</p>
 <p><strong>Example 3 (Primary key and index)</strong></p>
-<pre class="codehilite"><code class="language-siddhi linenums">@primaryKey('username')
+<pre class="codehilite"><code class="language-siddhi">@primaryKey('username')
 @index('salary')
 define table SalaryTable (username string, salary double);</code></pre>
 
@@ -4510,7 +4510,7 @@ define table SalaryTable (username string, salary double);</code></pre>
 <p>Stores allow searching retrieving and manipulating data stored in external data stores through queries. This is useful for use cases when there is a need to access a common database used by various other systems, to retrieve and transfer data.  </p>
 <p><strong>Syntax</strong></p>
 <p>The syntax for defining a store along with is associated table is as follows:</p>
-<pre class="codehilite"><code class="language-siddhi linenums">@store(type='&lt;store type&gt;', &lt;common.static.key&gt;='&lt;value&gt;', &lt;common.static.key&gt;='&lt;value&gt;'
+<pre class="codehilite"><code class="language-siddhi">@store(type='&lt;store type&gt;', &lt;common.static.key&gt;='&lt;value&gt;', &lt;common.static.key&gt;='&lt;value&gt;'
        @cache(size='&lt;cache size&gt;', cache.policy='&lt;cache policy&gt;', retention.period='&lt;retention period&gt;', purge.interval="&lt;purge interval&gt;"))
 @primaryKey( &lt;key&gt;, &lt;key&gt;, ... )
 @index( &lt;key&gt;, &lt;key&gt;, ...)
@@ -4608,7 +4608,7 @@ define table &lt;table name&gt; (&lt;attribute name&gt; &lt;attribute type&gt;, 
 </table>
 <p><strong>Example 1</strong></p>
 <p>An RDBMS Store configuration to work with MySQL database.</p>
-<p><pre class="codehilite"><code class="language-siddhi linenums">@store(type="rdbms", jdbc.url="jdbc:mysql://localhost:3306/hotel",
+<p><pre class="codehilite"><code class="language-siddhi">@store(type="rdbms", jdbc.url="jdbc:mysql://localhost:3306/hotel",
        username="siddhi", password="123",
        jdbc.driver.name="com.mysql.jdbc.Driver")
 define table RoomTypeTable ( roomNo int, type string );</code></pre>
@@ -4619,7 +4619,7 @@ Here, the store connects to the MySQL table <code>RoomTypeTable</code> in the da
 </ul>
 <p><strong>Example 2</strong></p>
 <p>An RDBMS Store configuration to work with an indexed MySQL database using a cache.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">@store(type="rdbms", jdbc.url="jdbc:mysql://localhost:3306/hotel",
+<pre class="codehilite"><code class="language-siddhi">@store(type="rdbms", jdbc.url="jdbc:mysql://localhost:3306/hotel",
        username="siddhi", password="123",
        jdbc.driver.name="com.mysql.jdbc.Driver"
        @cache(size="100", retention.period="5 min", purge.interval="1 min"))
@@ -4643,14 +4643,14 @@ In such cases use the <code>update or insert into</code> operation.</p>
 </div>
 <p><strong>Syntax</strong></p>
 <p>Syntax to insert events into a table from a stream is as follows;</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from &lt;input stream&gt;
+<pre class="codehilite"><code class="language-siddhi">from &lt;input stream&gt;
 select &lt;attribute name&gt;, &lt;attribute name&gt;, ...
 insert into &lt;table&gt;</code></pre>
 
 <p>Similar to streams, the <code>current events</code>, <code>expired events</code> or the <code>all events</code> keyword can be used between <code>insert</code> and <code>into</code> keywords in order to insert only the specific event types. For more information, refer <a href="#event-type">Event Type</a> section.</p>
 <p><strong>Example</strong></p>
 <p>Query to inserts all the events from the <code>TempStream</code> stream to the <code>TempTable</code> table.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define stream TempStream(tempId string, temp double);
+<pre class="codehilite"><code class="language-siddhi">define stream TempStream(tempId string, temp double);
 define table TempTable(tempId string, temp double);
 
 from TempStream
@@ -4665,7 +4665,7 @@ insert into TempTable;</code></pre>
 </div>
 <p><strong>Syntax</strong></p>
 <p>The syntax for a stream or a named-window to join with a table is as follows:</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from (&lt;input stream&gt;(&lt;non window handler&gt;)*(&lt;window&gt;)?|&lt;named-window&gt;) (as &lt;reference&gt;)?
+<pre class="codehilite"><code class="language-siddhi">from (&lt;input stream&gt;(&lt;non window handler&gt;)*(&lt;window&gt;)?|&lt;named-window&gt;) (as &lt;reference&gt;)?
          &lt;join type&gt; &lt;table&gt; (as &lt;reference&gt;)?
     (on &lt;join condition&gt;)?
 select &lt;reference&gt;.&lt;attribute name&gt;, &lt;reference&gt;.&lt;attribute name&gt;, ...
@@ -4701,7 +4701,7 @@ insert into &lt;output stream&gt;</code></pre>
 </div>
 <p><strong>Example</strong></p>
 <p>A query to join and retrieve the room type from <code>RoomTypeTable</code> table based on equal <code>roomNo</code> attribute of <code>TempStream</code>, and to insert the results into <code>RoomTempStream</code> steam.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define table RoomTypeTable (roomNo int, type string);
+<pre class="codehilite"><code class="language-siddhi">define table RoomTypeTable (roomNo int, type string);
 define stream TempStream (deviceID long, roomNo int, temp double);
 
 from TempStream as t join RoomTypeTable as r
@@ -4713,7 +4713,7 @@ insert into RoomTempStream;</code></pre>
 <p>Allows a stream to delete selected events (records) form a table.</p>
 <p><strong>Syntax</strong></p>
 <p>Syntax to delete selected events in a table based on the events in a stream is as follows;</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from &lt;input stream&gt;
+<pre class="codehilite"><code class="language-siddhi">from &lt;input stream&gt;
 select &lt;attribute name&gt;, &lt;attribute name&gt;, ...
 delete &lt;table&gt; (for &lt;event type&gt;)?
     (on &lt;condition&gt;)?</code></pre>
@@ -4727,7 +4727,7 @@ delete &lt;table&gt; (for &lt;event type&gt;)?
 </div>
 <p><strong>Example 1</strong></p>
 <p>A query to delete the records in the <code>RoomTypeTable</code> table that has matching values for the <code>roomNo</code> attribute against the values of <code>roomNumber</code> attribute of the events in the <code>DeleteStream</code> stream.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define table RoomTypeTable (roomNo int, type string);
+<pre class="codehilite"><code class="language-siddhi">define table RoomTypeTable (roomNo int, type string);
 define stream DeleteStream (roomNumber int);
 
 from DeleteStream
@@ -4736,7 +4736,7 @@ delete RoomTypeTable
 
 <p><strong>Example 2</strong></p>
 <p>A query to delete all the records in the <code>BlacklistTable</code> table when an event arrives in the <code>ClearStream</code> stream.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define table BlacklistTable (ip string);
+<pre class="codehilite"><code class="language-siddhi">define table BlacklistTable (ip string);
 define stream ClearStream (source string);
 
 from ClearStream
@@ -4746,7 +4746,7 @@ delete BlacklistTable;</code></pre>
 <p>Allows a stream to update selected events (records) form a table.</p>
 <p><strong>Syntax</strong></p>
 <p>Syntax to update events on a table is as follows;</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from &lt;input stream&gt;
+<pre class="codehilite"><code class="language-siddhi">from &lt;input stream&gt;
 select &lt;attribute name&gt;, &lt;attribute name&gt;, ...
 update &lt;table&gt; (for &lt;event type&gt;)?
     (set &lt;table&gt;.&lt;attribute name&gt; = (&lt;attribute name&gt;|&lt;expression&gt;), &lt;table&gt;.&lt;attribute name&gt; = (&lt;attribute name&gt;|&lt;expression&gt;), ...)?
@@ -4762,7 +4762,7 @@ update &lt;table&gt; (for &lt;event type&gt;)?
 </div>
 <p><strong>Example 1</strong></p>
 <p>A query to update the <code>latestHeartbeatTime</code> on the <code>ServerInfoTable</code> against each <code>serverIP</code> for every event on the <code>HeartbeatStream</code>.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define table ServerInfoTable (serverIP string, host string, port int, latestHeartbeatTime long);
+<pre class="codehilite"><code class="language-siddhi">define table ServerInfoTable (serverIP string, host string, port int, latestHeartbeatTime long);
 define stream HeartbeatStream (serverIP string, timestamp long);
 
 from HeartbeatStream
@@ -4773,7 +4773,7 @@ update ServerInfoTable
 
 <p><strong>Example 2</strong></p>
 <p>A query to update the <code>peoplePresent</code> in the <code>RoomOccupancyTable</code> table for each <code>roomNo</code> based on new people <code>arrival</code> and <code>exit</code> values from events of the <code>UpdateStream</code> stream.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define table RoomOccupancyTable (roomNo int, peoplePresent int);
+<pre class="codehilite"><code class="language-siddhi">define table RoomOccupancyTable (roomNo int, peoplePresent int);
 define stream UpdateStream (roomNumber int, arrival int, exit int);
 
 from UpdateStream
@@ -4784,7 +4784,7 @@ update RoomOccupancyTable
 
 <p><strong>Example 3</strong></p>
 <p>A query to update the <code>latestHeartbeatTime</code> on the <code>HeartbeatTable</code> for each event on the <code>HeartbeatStream</code>.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define table HeartbeatTable (serverIP string, latestHeartbeatTime long);
+<pre class="codehilite"><code class="language-siddhi">define table HeartbeatTable (serverIP string, latestHeartbeatTime long);
 define stream HeartbeatStream (serverIP string, timestamp long);
 
 from HeartbeatStream
@@ -4796,7 +4796,7 @@ update HeartbeatTable
 <p>Allows a stream to update the events (records) that already exist in the table based on a condition, else inserts the event as a new entry to the table.</p>
 <p><strong>Syntax</strong></p>
 <p>Syntax to update or insert events on a table is as follows;</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from &lt;input stream&gt;
+<pre class="codehilite"><code class="language-siddhi">from &lt;input stream&gt;
 select &lt;attribute name&gt;, &lt;attribute name&gt;, ...
 update or insert into &lt;table&gt; (for &lt;event type&gt;)?
     (set &lt;table&gt;.&lt;attribute name&gt; = (&lt;attribute name&gt;|&lt;expression&gt;), &lt;table&gt;.&lt;attribute name&gt; = (&lt;attribute name&gt;|&lt;expression&gt;), ...)?
@@ -4812,7 +4812,7 @@ update or insert into &lt;table&gt; (for &lt;event type&gt;)?
 </div>
 <p><strong>Example</strong></p>
 <p>A query to update <code>assignee</code> information in the <code>RoomAllocationTable</code> table for the corresponding <code>roomNumber</code> from the <code>RoomAllocationStream</code> stream when at least one matching record is present in the table, and when there are no matching records it inserts a new record to the <code>RoomAllocationTable</code> table based on the query output.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define table RoomAllocationTable (roomNo int, type string, assignee string);
+<pre class="codehilite"><code class="language-siddhi">define table RoomAllocationTable (roomNo int, type string, assignee string);
 define stream RoomAllocationStream (roomNumber int, type string, assignee string);
 
 from RoomAllocationStream
@@ -4824,14 +4824,14 @@ update or insert into RoomAllocationTable
 <h3 id="in-table">In (Table)<a class="headerlink" href="#in-table" title="Permanent link">&para;</a></h3>
 <p>Allows the query to check whether the expected value exists in the table using a condition operation.</p>
 <p><strong>Syntax</strong></p>
-<pre class="codehilite"><code class="language-siddhi linenums">from &lt;input stream&gt;[&lt;condition&gt; in &lt;table&gt;]
+<pre class="codehilite"><code class="language-siddhi">from &lt;input stream&gt;[&lt;condition&gt; in &lt;table&gt;]
 select &lt;attribute name&gt;, &lt;attribute name&gt;, ...
 insert into &lt;output stream&gt;</code></pre>
 
 <p>The <code>condition</code> element specifies the basis on which the events in the table are checked for existence. <strong>When referring the table attributes in the <code>condition</code>, they must always be referred with the table name</strong> as <code>&lt;table name&gt;.&lt;attribute name&gt;</code>.</p>
 <p><strong>Example 1</strong></p>
 <p>A query to filter only the events of server rooms from the <code>TempStream</code> stream using the <code>ServerRoomTable</code> table, and pass them for further processing via <code>ServerRoomTempStream</code> stream.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define table ServerRoomTable (roomNo int);
+<pre class="codehilite"><code class="language-siddhi">define table ServerRoomTable (roomNo int);
 define stream TempStream (deviceID long, roomNo int, temp double);
 
 from TempStream[ServerRoomTable.roomNo == roomNo in ServerRoomTable]
@@ -4839,7 +4839,7 @@ insert into ServerRoomTempStream;</code></pre>
 
 <p><strong>Example 2</strong></p>
 <p>A query to filter out the blacklisted <code>serverIP</code>s from the <code>RequestStream</code> stream using the <code>BlacklistTable</code> table, and only pass events having IPs that are not blacklisted, for further processing via <code>FilteredRequestStream</code> stream.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define table BlacklistTable (serverIP string);
+<pre class="codehilite"><code class="language-siddhi">define table BlacklistTable (serverIP string);
 define stream RequestStream (ip string, request string);
 
 from RequestStream[not (BlacklistTable.serverIP == ip in BlacklistTable)]
@@ -4855,7 +4855,7 @@ insert into FilteredRequestStream;</code></pre>
 <p>This can be used for in many analytics scenarios as this provides time-series aggregates on calendar time, over long durations, even for out-of-order events, and helps to retrieve historical data for selected time range and time granularity.</p>
 <p><strong>Syntax</strong></p>
 <p>The syntax for defining a named-aggregation is as follows:</p>
-<pre class="codehilite"><code class="language-siddhi linenums">@store(type='&lt;store type&gt;', ...)
+<pre class="codehilite"><code class="language-siddhi">@store(type='&lt;store type&gt;', ...)
 @purge(enable="&lt;enable purging&gt;", interval='&lt;purging interval&gt;',
        @retentionPeriod(&lt;granularity&gt; = '&lt;retention period&gt;', ...))
 @PartitionById(enable="&lt;enable distributed aggregation&gt;")
@@ -5004,7 +5004,7 @@ Further, when these named-aggregations are configured to use the same physical d
 </div>
 <p><strong>Example 1</strong></p>
 <p>An in-memory named-aggregation with default default purging named as <code>TradeAggregation</code> to calculate the average and sum for <code>price</code> attribute for each unique <code>symbol</code> for all time granularities from second to year using <code>timestamp</code> attribute as the event time, on the events arriving via the <code>TradeStream</code> stream.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define stream TradeStream (symbol string, price double, volume long, timestamp long);
+<pre class="codehilite"><code class="language-siddhi">define stream TradeStream (symbol string, price double, volume long, timestamp long);
 
 define aggregation TradeAggregation
   from TradeStream
@@ -5014,7 +5014,7 @@ define aggregation TradeAggregation
 
 <p><strong>Example 2</strong></p>
 <p>A custom purging enabled RDBMS store based named-aggregation with name <code>TradeAggregation</code> to calculate the min and max <code>price</code> for each unique <code>symbol</code> for time granularities hour, day, and month using Siddhi event timestamp, on the events arriving via the <code>TradeStream</code> stream.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define stream TradeStream (symbol string, price double, volume long, timestamp long);
+<pre class="codehilite"><code class="language-siddhi">define stream TradeStream (symbol string, price double, volume long, timestamp long);
 
 @store(type="rdbms", jdbc.url="jdbc:mysql://localhost:3306/sweetFactoryDB",
        username="root", password="root",
@@ -5038,7 +5038,7 @@ define aggregation TradeMinMax
 </div>
 <p><strong>Syntax</strong></p>
 <p>The syntax for a stream or a named-window to join with a named-aggregation is as follows:</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from (&lt;input stream&gt;(&lt;non window handler&gt;)*(&lt;window&gt;)?|&lt;named-window&gt;) (as &lt;reference&gt;)?
+<pre class="codehilite"><code class="language-siddhi">from (&lt;input stream&gt;(&lt;non window handler&gt;)*(&lt;window&gt;)?|&lt;named-window&gt;) (as &lt;reference&gt;)?
     &lt;join type&gt; &lt;named-aggregation&gt; (as &lt;reference&gt;)?
   on &lt;join condition&gt;
   within &lt;time range&gt;
@@ -5074,7 +5074,7 @@ insert into &lt;output stream&gt;;</code></pre>
 <p>Named-aggregation join supports inner join (<code>join</code>), <code>left outer join</code>, <code>right outer join</code>, and cross join (when join condition is omitted) similar to the <a href="#join-table">table join</a>.</p>
 <p><strong>Examples</strong></p>
 <p>Following aggregation definition is used for all the examples.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define stream TradeStream (symbol string, price double, volume long, timestamp long);
+<pre class="codehilite"><code class="language-siddhi">define stream TradeStream (symbol string, price double, volume long, timestamp long);
 
 define aggregation TradeAggregation
   from TradeStream
@@ -5084,7 +5084,7 @@ define aggregation TradeAggregation
 
 <p><strong>Example 1</strong></p>
 <p>A query to join and retrieve daily aggregations within the time range of <code>"2014-02-15 00:00:00 +05:30", "2014-03-16 00:00:00 +05:30"</code> from <code>TradeAggregation</code> based on equal <code>symbol</code> attribute of <code>StockStream</code>, and to insert the results into <code>AggregateStockStream</code> steam. Here, <code>+05:30</code> in time range can be omitted if the timezone is GMT.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define stream StockStream (symbol string, value int);
+<pre class="codehilite"><code class="language-siddhi">define stream StockStream (symbol string, value int);
 
 from StockStream as s join TradeAggregation as t
   on s.symbol == t.symbol
@@ -5095,7 +5095,7 @@ insert into AggregateStockStream;</code></pre>
 
 <p><strong>Example 2</strong></p>
 <p>A query to join and retrieve all the hourly aggregations within the day of <code>2014-02-15</code> from <code>TradeAggregation</code> each event in <code>RequestStream</code> stream, order the results by <code>symbol</code>, and to insert the results into <code>AggregateStockStream</code> steam.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define stream RequestStream (request string);
+<pre class="codehilite"><code class="language-siddhi">define stream RequestStream (request string);
 
 from RequestStream join TradeAggregation as t
   within "2014-02-15 **:**:** +05:30"
@@ -5106,7 +5106,7 @@ insert into AggregateStockStream;</code></pre>
 
 <p><strong>Example 3</strong></p>
 <p>A query to join and retrieve aggregated results from <code>TradeAggregation</code> for respective <code>granularity</code> and <code>symbol</code> attributes between the <code>start</code> and the <code>end</code> timestamps of events arriving on <code>StockStream</code>, and to insert the results into <code>AggregateStockStream</code> steam.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define stream StockStream (symbol string, granularity string, start long, end long);
+<pre class="codehilite"><code class="language-siddhi">define stream StockStream (symbol string, granularity string, start long, end long);
 
 from StockStream as s join TradeAggregation as t
   on s.symbol == t.symbol
@@ -5128,7 +5128,7 @@ insert into AggregateStockStream;</code></pre>
 </div>
 <p><strong>Syntax</strong></p>
 <p>The syntax for defining a named-window is as follows:</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define window &lt;window name&gt; (&lt;attribute name&gt; &lt;attribute type&gt;, &lt;attribute name&gt; &lt;attribute type&gt;, ... ) &lt;window type&gt;(&lt;parameter&gt;, &lt;parameter&gt;, …) (output &lt;event type&gt;)?;</code></pre>
+<pre class="codehilite"><code class="language-siddhi">define window &lt;window name&gt; (&lt;attribute name&gt; &lt;attribute type&gt;, &lt;attribute name&gt; &lt;attribute type&gt;, ... ) &lt;window type&gt;(&lt;parameter&gt;, &lt;parameter&gt;, …) (output &lt;event type&gt;)?;</code></pre>
 
 <p>The following parameters are used configure the window definition:</p>
 <table>
@@ -5162,7 +5162,7 @@ insert into AggregateStockStream;</code></pre>
 </tbody>
 </table>
 <p><strong>Example 1</strong></p>
-<pre class="codehilite"><code class="language-siddhi linenums">define window SensorWindow (deviceID string, value float, roomNo int) timeBatch(1 second);</code></pre>
+<pre class="codehilite"><code class="language-siddhi">define window SensorWindow (deviceID string, value float, roomNo int) timeBatch(1 second);</code></pre>
 
 <p>The above window definition with the name <code>SensorWindow</code> defines a named-window that is configured to retain events for 1 second in <code>timeBatch</code> window, and produce output upon event arrival and expiry to the window. This named-window contains the following attributes.</p>
 <ul>
@@ -5171,7 +5171,7 @@ insert into AggregateStockStream;</code></pre>
 <li><code>roomNo</code> of type <code>int</code></li>
 </ul>
 <p><strong>Example 2</strong></p>
-<pre class="codehilite"><code class="language-siddhi linenums">define window SensorWindow (deviceID string, value float, roomNo int) time(1 min) output expired events;</code></pre>
+<pre class="codehilite"><code class="language-siddhi">define window SensorWindow (deviceID string, value float, roomNo int) time(1 min) output expired events;</code></pre>
 
 <p>The above window definition with the name <code>SensorWindow</code> defines a named-window that is configured to retain events for last 1 minute via <code>time</code> window, and produce output upon event expiry form the window. This named-window contains the following attributes.</p>
 <ul>
@@ -5185,14 +5185,14 @@ insert into AggregateStockStream;</code></pre>
 <p>Allows events to be inserted into named-windows. This is similar to inserting events into streams.</p>
 <p><strong>Syntax</strong></p>
 <p>Syntax to insert events into a named-window from a stream is as follows;</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from &lt;input stream&gt;
+<pre class="codehilite"><code class="language-siddhi">from &lt;input stream&gt;
 select &lt;attribute name&gt;, &lt;attribute name&gt;, ...
 insert into &lt;window&gt;</code></pre>
 
 <p>Similar to streams, the <code>current events</code>, <code>expired events</code> or the <code>all events</code> keyword can be used between <code>insert</code> and <code>into</code> keywords in order to insert only the specific event types. For more information, refer <a href="#event-type">Event Type</a> section.</p>
 <p><strong>Example</strong></p>
 <p>This query inserts all events from the <code>TempStream</code> stream to the <code>OneMinTempWindow</code> window.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define stream TempStream(tempId string, temp double);
+<pre class="codehilite"><code class="language-siddhi">define stream TempStream(tempId string, temp double);
 define window OneMinTempWindow(tempId string, temp double) time(1 min);
 
 from TempStream
@@ -5207,7 +5207,7 @@ insert into OneMinTempWindow;</code></pre>
 </div>
 <p><strong>Syntax</strong></p>
 <p>The syntax for a stream or a named-window to join with another named-window is as follows:</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from (&lt;input stream&gt;(&lt;non window handler&gt;)*(&lt;window&gt;)?|&lt;named-window&gt;) (as &lt;reference&gt;)?
+<pre class="codehilite"><code class="language-siddhi">from (&lt;input stream&gt;(&lt;non window handler&gt;)*(&lt;window&gt;)?|&lt;named-window&gt;) (as &lt;reference&gt;)?
   &lt;join type&gt; &lt;named-window&gt; (as &lt;reference&gt;)?
   on &lt;condition&gt;
 select &lt;reference&gt;.&lt;attribute name&gt;, &lt;reference&gt;.&lt;attribute name&gt;, ...
@@ -5218,7 +5218,7 @@ insert into &lt;output stream&gt;</code></pre>
 <p>Named-window join supports inner join (<code>join</code>), <code>left outer join</code>, <code>right outer join</code>, <code>full outer join</code>, and cross join (when join condition is omitted) similar to the <a href="#join-stream">stream join</a>.</p>
 <p><strong>Example</strong></p>
 <p>A query, for each event on <code>CheckStream</code>, to join and calculate the number of temperature events having greater than 40 degrees for the <code>temp</code> attribute value, within the last 2 minutes of the <code>TwoMinTempWindow</code> named-window, and to insert the results into <code>HighTempCountStream</code> steam.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define window TwoMinTempWindow (roomNo int, temp double) time(2 min);
+<pre class="codehilite"><code class="language-siddhi">define window TwoMinTempWindow (roomNo int, temp double) time(2 min);
 define stream CheckStream (requestId string);
 
 from CheckStream as c join TwoMinTempWindow as t
@@ -5230,14 +5230,14 @@ insert into HighTempCountStream;</code></pre>
 <p>Named-windows can be used as an input to any query, similar to streams.  </p>
 <p><strong>Syntax</strong></p>
 <p>Syntax for using named-window as an input to a simple query is as follows;</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from &lt;named-window&gt;&lt;non window handler&gt;* ((join (&lt;stream&gt;&lt;handler&gt;*|&lt;named-window&gt;|&lt;table&gt;|&lt;named-aggregation&gt;))|((,|-&gt;)(&lt;stream&gt;|&lt;named-window&gt;)&lt;non window handler&gt;*)+)?
+<pre class="codehilite"><code class="language-siddhi">from &lt;named-window&gt;&lt;non window handler&gt;* ((join (&lt;stream&gt;&lt;handler&gt;*|&lt;named-window&gt;|&lt;table&gt;|&lt;named-aggregation&gt;))|((,|-&gt;)(&lt;stream&gt;|&lt;named-window&gt;)&lt;non window handler&gt;*)+)?
 &lt;projection&gt;
 &lt;output action&gt;</code></pre>
 
 <p>Named-windows can be used as input for any query type, like <a href="#from">how streams are being used</a>. They can be associated with optional non window handlers (such as filters, stream functions, and stream processors) in queries other than when they are used in join query.</p>
 <p><strong>Example</strong></p>
 <p>Queries to calculate the <code>max</code> temperature among all rooms, and <code>avg</code> temperature per each <code>room</code>, in the last 5 minutes, using <code>FiveMinTempWindow</code>, and publish the results via <code>MaxTempStream</code> stream, and <code>AvgTempStream</code> stream respectively.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define window FiveMinTempWindow (roomNo int, temp double) time(5 min);
+<pre class="codehilite"><code class="language-siddhi">define window FiveMinTempWindow (roomNo int, temp double) time(5 min);
 
 from FiveMinTempWindow
 select max(temp) as maxValue
@@ -5254,10 +5254,10 @@ insert into AvgTempStream;</code></pre>
 <p>Triggers help to periodically generate events based on a specified time interval or cron expression, to perform periodic execution of queries. They can also be produced at SiddhiApp startup to perform initialization operations.</p>
 <p><strong>Syntax</strong></p>
 <p>The syntax for defining a trigger is as follows:</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define trigger &lt;trigger name&gt; at ( 'start'| every &lt;time interval&gt;| '&lt;cron expression&gt;');</code></pre>
+<pre class="codehilite"><code class="language-siddhi">define trigger &lt;trigger name&gt; at ( 'start'| every &lt;time interval&gt;| '&lt;cron expression&gt;');</code></pre>
 
 <p>Triggers can be used as input to any query, similar to the streams. Because, when defined, they are represented as a stream having one attribute with name <code>triggered_time</code>, and type <code>long</code> as follows.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define stream &lt;trigger name&gt; (triggered_time long);</code></pre>
+<pre class="codehilite"><code class="language-siddhi">define stream &lt;trigger name&gt; (triggered_time long);</code></pre>
 
 <p>The supported trigger types are as follows.</p>
 <table>
@@ -5284,15 +5284,15 @@ insert into AvgTempStream;</code></pre>
 </table>
 <p><strong>Example 1</strong></p>
 <p>A trigger to generate events every 5 minutes.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define trigger FiveMinTrigger at every 5 min;</code></pre>
+<pre class="codehilite"><code class="language-siddhi">define trigger FiveMinTrigger at every 5 min;</code></pre>
 
 <p><strong>Example 2</strong></p>
 <p>A trigger to generate events at 10.15 AM on every weekdays.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define trigger WorkStartTrigger at '0 15 10 ? * MON-FRI';</code></pre>
+<pre class="codehilite"><code class="language-siddhi">define trigger WorkStartTrigger at '0 15 10 ? * MON-FRI';</code></pre>
 
 <p><strong>Example 3</strong></p>
 <p>A trigger to generate an event at SiddhiApp startup.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define trigger InitTrigger at 'start';</code></pre>
+<pre class="codehilite"><code class="language-siddhi">define trigger InitTrigger at 'start';</code></pre>
 
 <h2 id="script">Script<a class="headerlink" href="#script" title="Permanent link">&para;</a></h2>
 <p>The script provides the ability to write custom functions in other programming languages and execute them within Siddhi queries. The custom functions using scripts can be defined via the <strong>function definitions</strong> and accessed in queries similar to any other inbuilt <a href="#function">functions</a>.</p>
@@ -5300,12 +5300,12 @@ insert into AvgTempStream;</code></pre>
 <p>Scripts help to define custom functions in other programming languages such as javascript. This can eliminate the need for writing extensions to fulfill the functionalities that are not provided in Siddhi core or by its extension.</p>
 <p><strong>Syntax</strong></p>
 <p>The syntax for defining the script is as follows.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define function &lt;function name&gt;[&lt;language name&gt;] return &lt;return type&gt; {
+<pre class="codehilite"><code class="language-siddhi">define function &lt;function name&gt;[&lt;language name&gt;] return &lt;return type&gt; {
     &lt;function logic&gt;
 };</code></pre>
 
 <p>The defined function can be used in the queries similar to inbuilt <a href="#function">functions</a> as follows.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">&lt;function name&gt;( (&lt;function parameter&gt;(, &lt;function parameter&gt;)*)? )</code></pre>
+<pre class="codehilite"><code class="language-siddhi">&lt;function name&gt;( (&lt;function parameter&gt;(, &lt;function parameter&gt;)*)? )</code></pre>
 
 <p>Here, the <code>&lt;function parameter&gt;</code>s are passed into the <code>&lt;function logic&gt;</code> of the definition as an <code>Object[]</code> with the name <code>data</code>.</p>
 <p>The functions defined via the function definitions have higher precedence compared to inbuilt functions and the functions provided via extensions.</p>
@@ -5338,7 +5338,7 @@ insert into AvgTempStream;</code></pre>
 </table>
 <p><strong>Example 1</strong></p>
 <p>A function to concatenate three strings into one using JavaScript.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define function concatFn[javascript] return string {
+<pre class="codehilite"><code class="language-siddhi">define function concatFn[javascript] return string {
     var str1 = data[0];
     var str2 = data[1];
     var str3 = data[2];
@@ -5356,7 +5356,7 @@ insert into DeviceTempStream;</code></pre>
 <h2 id="on-demand-query">On-Demand Query<a class="headerlink" href="#on-demand-query" title="Permanent link">&para;</a></h2>
 <p>On-demand queries provide a way of performing add hock operations on Siddhi <a href="#table">tables</a> (<a href="#store">stores</a>), <a href="#named-window">named-windows</a>, and <a href="#named-aggregation">named-aggregations</a>.</p>
 <p>The On-demand query can be submitted to the SiddhiApp using the <code>query()</code> method of the respective Siddhi application runtime as follows.</p>
-<pre class="codehilite"><code class="language-java linenums">siddhiAppRuntime.query(&lt;on-demand query&gt;);</code></pre>
+<pre class="codehilite"><code class="language-java">siddhiAppRuntime.query(&lt;on-demand query&gt;);</code></pre>
 
 <p>To successfully execute an on-demand query, the SiddhiApp of the respective siddhiAppRuntime should have the corresponding table, named-window, or named-aggregation defined, that is being used in the on-demand query.</p>
 <p><strong>Purpose</strong></p>
@@ -5380,7 +5380,7 @@ insert into DeviceTempStream;</code></pre>
 <p>To retrieve data from Named-Aggregation, refer the <a href="#select-named-aggregation">Named-Aggregation Select</a> section.</p>
 <p><strong>Syntax</strong></p>
 <p>Syntax to retrieve events from table or named-window is as follows;</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from (&lt;table&gt;|&lt;named-window&gt;)
+<pre class="codehilite"><code class="language-siddhi">from (&lt;table&gt;|&lt;named-window&gt;)
 (on &lt;condition&gt;)?
 select &lt;attribute name&gt;, &lt;attribute name&gt;, ...
 &lt;group by&gt;?
@@ -5391,17 +5391,17 @@ select &lt;attribute name&gt;, &lt;attribute name&gt;, ...
 <p>Here, the input can be either <a href="#table">table</a>(/<a href="#store">store</a>) or <a href="#named-window">named-window</a>, and the other parameters are similar to the standard Siddhi <a href="#query">query</a>.</p>
 <p><strong>Examples</strong></p>
 <p>The on-demand queries used in the examples are performed on a SiddhiApp that contains a table definition similar to the following.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define table RoomTypeTable (roomNo int, type string);</code></pre>
+<pre class="codehilite"><code class="language-siddhi">define table RoomTypeTable (roomNo int, type string);</code></pre>
 
 <p><strong>Example 1</strong></p>
 <p>An on-demand query to retrieve room numbers and their types from the <code>RoomTypeTable</code> table, for all room numbers that are greater than or equal to 10.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from RoomTypeTable
+<pre class="codehilite"><code class="language-siddhi">from RoomTypeTable
 on roomNo &gt;= 10;
 select roomNo, type</code></pre>
 
 <p><strong>Example 2</strong></p>
 <p>An on-demand query to calculate the total number of rooms in the <code>RoomTypeTable</code> table.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from RoomTypeTable
+<pre class="codehilite"><code class="language-siddhi">from RoomTypeTable
 select count(roomNo) as totalRooms</code></pre>
 
 <h3 id="select-named-aggregation">Select <em>(Named-Aggregation)</em><a class="headerlink" href="#select-named-aggregation" title="Permanent link">&para;</a></h3>
@@ -5409,7 +5409,7 @@ select count(roomNo) as totalRooms</code></pre>
 <p>To retrieve data from table (store), or named-window, refer the <a href="#select-tablenamed-window">Table/Named-Window Select</a> section.</p>
 <p><strong>Syntax</strong></p>
 <p>Syntax to retrieve events from named-aggregation is as follows;</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from &lt;aggregation&gt;
+<pre class="codehilite"><code class="language-siddhi">from &lt;aggregation&gt;
 (on &lt;condition&gt;)?
 within &lt;time range&gt;
 per &lt;time granularity&gt;
@@ -5422,7 +5422,7 @@ select &lt;attribute name&gt;, &lt;attribute name&gt;, ...
 <p>This is similar to the <a href="#tablenamed-window-select">Table/Named-Window Select</a>, but the input should be a <a href="#named-aggregation">named-aggregation</a>, and the <code>within &lt;time range&gt;</code> and <code>per &lt;time granularity&gt;</code> should be provided as in <a href="#join-aggregation">named-aggregation join</a> specifying the time interval for which the aggregate values need to be retrieved, and the the time granularity by which the aggregate values must be grouped and returned respectively.</p>
 <p><strong>Examples</strong></p>
 <p>The on-demand queries used in the examples are performed on a SiddhiApp that contains an aggregation definition similar to the following.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define stream TradeStream (symbol string, price double, volume long, timestamp long);
+<pre class="codehilite"><code class="language-siddhi">define stream TradeStream (symbol string, price double, volume long, timestamp long);
 
 define aggregation TradeAggregation
   from TradeStream
@@ -5432,14 +5432,14 @@ define aggregation TradeAggregation
 
 <p><strong>Example 1</strong></p>
 <p>An on-demand query to retrieve daily aggregations from the <code>TradeAggregation</code> within the time range of <code>"2014-02-15 00:00:00 +05:30", "2014-03-16 00:00:00 +05:30"</code> (Here, <code>+05:30</code> can be omitted if timezone is in GMT).</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from TradeAggregation
+<pre class="codehilite"><code class="language-siddhi">from TradeAggregation
   within "2014-02-15 00:00:00 +05:30", "2014-03-16 00:00:00 +05:30"
   per "days"
 select symbol, total, avgPrice;</code></pre>
 
 <p><strong>Example 2</strong></p>
 <p>An on-demand query to retrieve the hourly aggregations from the <code>TradeAggregation</code> for <code>"FB"</code> symbol within the day of <code>2014-02-15</code>.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">from TradeAggregation
+<pre class="codehilite"><code class="language-siddhi">from TradeAggregation
   on symbol == "FB"
   within "2014-02-15 **:**:** +05:30"
   per "hours"
@@ -5449,22 +5449,22 @@ select symbol, total, avgPrice;</code></pre>
 <p>On-demand query to insert a new record to a <a href="#table">table</a>(/<a href="#store">store</a>), based on the attribute values defined in the <code>select</code> clause.</p>
 <p><strong>Syntax</strong></p>
 <p>Syntax to insert events into a table (store) is as follows;</p>
-<pre class="codehilite"><code class="language-siddhi linenums">select &lt;attribute name&gt;, &lt;attribute name&gt;, ...
+<pre class="codehilite"><code class="language-siddhi">select &lt;attribute name&gt;, &lt;attribute name&gt;, ...
 insert into &lt;table&gt;;</code></pre>
 
 <p><strong>Example</strong></p>
 <p>An on-demand query to insert a new record into the table <code>RoomOccupancyTable</code> having values for its <code>roomNo</code> and <code>people</code> attributes as <code>10</code> and <code>2</code> respectively.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">select 10 as roomNo, 2 as people
+<pre class="codehilite"><code class="language-siddhi">select 10 as roomNo, 2 as people
 insert into RoomOccupancyTable</code></pre>
 
 <p>Here, the respective SiddhiApp should have a <code>RoomOccupancyTable</code> table something similar to the following.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define table RoomOccupancyTable (roomNo int, people int);</code></pre>
+<pre class="codehilite"><code class="language-siddhi">define table RoomOccupancyTable (roomNo int, people int);</code></pre>
 
 <h3 id="delete_1">Delete<a class="headerlink" href="#delete_1" title="Permanent link">&para;</a></h3>
 <p>On-demand query to delete records from a <a href="#table">table</a>(/<a href="#store">store</a>), based on the specified condition.</p>
 <p><strong>Syntax</strong></p>
 <p>Syntax to delete events from a table (store) is as follows;</p>
-<pre class="codehilite"><code class="language-siddhi linenums">&lt;select&gt;?  
+<pre class="codehilite"><code class="language-siddhi">&lt;select&gt;?  
 delete &lt;table&gt;  
     (on &lt;condition&gt;)?</code></pre>
 
@@ -5476,21 +5476,21 @@ delete &lt;table&gt;
 </div>
 <p><strong>Example</strong></p>
 <p>On-demand queries to delete records in the <code>RoomTypeTable</code> table that have <code>10</code> as the value for their <code>roomNo</code> attribute.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">select 10 as roomNumber
+<pre class="codehilite"><code class="language-siddhi">select 10 as roomNumber
 delete RoomTypeTable
     on RoomTypeTable.roomNo == roomNumber;</code></pre>
 
-<pre class="codehilite"><code class="language-siddhi linenums">delete RoomTypeTable
+<pre class="codehilite"><code class="language-siddhi">delete RoomTypeTable
     on RoomTypeTable.roomNo == 10;</code></pre>
 
 <p>Both the above queries result in the same. For the above queries to be performed, the respective SiddhiApp should have a <code>RoomTypeTable</code> table defined something similar to the following.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define table RoomTypeTable (roomNo int, type string);</code></pre>
+<pre class="codehilite"><code class="language-siddhi">define table RoomTypeTable (roomNo int, type string);</code></pre>
 
 <h3 id="update_1">Update<a class="headerlink" href="#update_1" title="Permanent link">&para;</a></h3>
 <p>On-demand query to update selected attributes of records from a <a href="#table">table</a>(/<a href="#store">store</a>), based on the specified condition.</p>
 <p><strong>Syntax</strong></p>
 <p>Syntax to update events on a table (store) is as follows;</p>
-<pre class="codehilite"><code class="language-siddhi linenums">select &lt;attribute name&gt;, &lt;attribute name&gt;, ...?
+<pre class="codehilite"><code class="language-siddhi">select &lt;attribute name&gt;, &lt;attribute name&gt;, ...?
 update &lt;table&gt;
     (set &lt;table&gt;.&lt;attribute name&gt; = (&lt;attribute name&gt;|&lt;expression&gt;), &lt;table&gt;.&lt;attribute name&gt; = (&lt;attribute name&gt;|&lt;expression&gt;), ...)?
     (on &lt;condition&gt;)?</code></pre>
@@ -5503,17 +5503,17 @@ update &lt;table&gt;
 </div>
 <p><strong>Examples</strong></p>
 <p>The on-demand queries used in the examples are performed on a SiddhiApp that contains a table definition similar to the following.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define table RoomOccupancyTable (roomNo int, people int);</code></pre>
+<pre class="codehilite"><code class="language-siddhi">define table RoomOccupancyTable (roomNo int, people int);</code></pre>
 
 <p><strong>Example 1</strong></p>
 <p>An on-demand query to increment the number of <code>people</code> by <code>1</code> for the <code>roomNo</code> <code>10</code>, in the <code>RoomOccupancyTable</code> table.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">update RoomTypeTable
+<pre class="codehilite"><code class="language-siddhi">update RoomTypeTable
     set RoomTypeTable.people = RoomTypeTable.people + 1
     on RoomTypeTable.roomNo == 10;</code></pre>
 
 <p><strong>Example 2</strong></p>
 <p>An on-demand query to increment the number of <code>people</code> by the <code>arrival</code> amount for the given <code>roomNumber</code>, in the <code>RoomOccupancyTable</code> table.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">select 10 as roomNumber, 1 as arrival
+<pre class="codehilite"><code class="language-siddhi">select 10 as roomNumber, 1 as arrival
 update RoomTypeTable
     set RoomTypeTable.people = RoomTypeTable.people + arrival
     on RoomTypeTable.roomNo == roomNumber;</code></pre>
@@ -5522,7 +5522,7 @@ update RoomTypeTable
 <p>On-demand query to update the events (records) that already exist in the <a href="#table">table</a>(/<a href="#store">store</a>) based on a condition, else inserts the event as a new entry to the table.</p>
 <p><strong>Syntax</strong></p>
 <p>Syntax to update or insert events on a table (store) is as follows;</p>
-<pre class="codehilite"><code class="language-siddhi linenums">select &lt;attribute name&gt;, &lt;attribute name&gt;, ...
+<pre class="codehilite"><code class="language-siddhi">select &lt;attribute name&gt;, &lt;attribute name&gt;, ...
 update or insert into &lt;table&gt;
     (set &lt;table&gt;.&lt;attribute name&gt; = (&lt;attribute name&gt;|&lt;expression&gt;), &lt;table&gt;.&lt;attribute name&gt; = (&lt;attribute name&gt;|&lt;expression&gt;), ...)?
     (on &lt;condition&gt;)?</code></pre>
@@ -5536,13 +5536,13 @@ update or insert into &lt;table&gt;
 </div>
 <p><strong>Example</strong></p>
 <p>An on-demand query to update the record with <code>assignee</code> <code>"John"</code> when there is already and record for <code>roomNo</code> <code>10</code> in the <code>RoomAssigneeTable</code> table, else to insert a new record with values <code>10</code>, <code>"single"</code> and <code>"John"</code> for the attributes <code>roomNo</code>, <code>type</code>, and <code>assignee</code> respectively.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">select 10 as roomNo, "single" as type, "John" as assignee
+<pre class="codehilite"><code class="language-siddhi">select 10 as roomNo, "single" as type, "John" as assignee
 update or insert into RoomAssigneeTable
     set RoomAssigneeTable.assignee = assignee
     on RoomAssigneeTable.roomNo == roomNo;</code></pre>
 
 <p>For the above query to be performed, the respective SiddhiApp should have a <code>RoomAssigneeTable</code> table defined something similar to the following.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">define table RoomAssigneeTable (roomNo int, type string, assignee string);</code></pre>
+<pre class="codehilite"><code class="language-siddhi">define table RoomAssigneeTable (roomNo int, type string, assignee string);</code></pre>
 
 <h2 id="siddhiapp-configuration-and-monitoring">SiddhiApp Configuration and Monitoring<a class="headerlink" href="#siddhiapp-configuration-and-monitoring" title="Permanent link">&para;</a></h2>
 <h3 id="threading-and-synchronization">Threading and Synchronization<a class="headerlink" href="#threading-and-synchronization" title="Permanent link">&para;</a></h3>
@@ -5551,7 +5551,7 @@ update or insert into RoomAssigneeTable
 <p>The <code>@async</code> annotation helps to improve the SiddhiApp performance using parallel processing and event chunking, and it can also help to synchronize the execution across multiple operations.</p>
 <p><strong>Syntax</strong></p>
 <p>The syntax for configuring threading in Siddhi is as follows.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">@async(buffer.size='&lt;buffer size&gt;', workers='&lt;workers&gt;', batch.size.max='max &lt;batch size&gt;')
+<pre class="codehilite"><code class="language-siddhi">@async(buffer.size='&lt;buffer size&gt;', workers='&lt;workers&gt;', batch.size.max='max &lt;batch size&gt;')
 define stream &lt;stream name&gt; (&lt;attribute name&gt; &lt;attribute type&gt;, &lt;attribute name&gt; &lt;attribute type&gt;, ... );</code></pre>
 
 <p>The following parameters are used to configure the <code>@async</code> definition.</p>
@@ -5657,7 +5657,7 @@ define stream &lt;stream name&gt; (&lt;attribute name&gt; &lt;attribute type&gt;
 </table>
 <p><strong>Syntax</strong></p>
 <p>The syntax for defining the statistics for <strong>SiddhiApps running on Java or Python modes</strong> is as follows.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">@app:statistics( reporter='&lt;reporter&gt;', interval='&lt;internal&gt;',
+<pre class="codehilite"><code class="language-siddhi">@app:statistics( reporter='&lt;reporter&gt;', interval='&lt;internal&gt;',
                  include='&lt;included metrics for reporting&gt;')</code></pre>
 
 <p>The following parameters are used to configure statistics in Java and Python modes.</p>
@@ -5688,7 +5688,7 @@ define stream &lt;stream name&gt; (&lt;attribute name&gt; &lt;attribute type&gt;
 </tbody>
 </table>
 <p>The syntax for defining the statistics for <strong>SiddhiApps running on Local, Docker, or Kubernetes modes</strong> is as follows.</p>
-<p><pre class="codehilite"><code class="language-siddhi linenums">@app:statistics(enable = '&lt;is enable&gt;', include = `'&lt;included metrics for reporting&gt;'`)</code></pre>
+<p><pre class="codehilite"><code class="language-siddhi">@app:statistics(enable = '&lt;is enable&gt;', include = `'&lt;included metrics for reporting&gt;'`)</code></pre>
 The following parameters are used to configure statistics in Local, Docker, and Kubernetes modes.</p>
 <table>
 <thead>
@@ -5714,7 +5714,7 @@ The following parameters are used to configure statistics in Local, Docker, and 
 <p>Here, other statistics configurations are applied commonly to all SiddhiApps, as specified in the <a href="../config-guide/#configuring-statistics">Configuration Guide</a>.</p>
 <p><strong>Example</strong></p>
 <p>A SiddhiApp running on Java, to report statistics every minute, by logging its stats on the console.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">@App:name('TestMetrics')
+<pre class="codehilite"><code class="language-siddhi">@App:name('TestMetrics')
 @App:Statistics(reporter = 'console')
 
 define stream TestStream (message string);
@@ -5781,7 +5781,7 @@ insert into TempSream;</code></pre>
 <p>Event playback helps to reprocess previously consumed and stored events in much faster speed, without losing the time-based properties of Siddhi queries, by rapidly replaying the events.</p>
 <p><strong>Syntax</strong></p>
 <p>The syntax for defining event playback is as follows.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">@app:playback(idle.time = '&lt;idle time before incrementing timestamp&gt;', increment = '&lt;incremented time interval&gt;')</code></pre>
+<pre class="codehilite"><code class="language-siddhi">@app:playback(idle.time = '&lt;idle time before incrementing timestamp&gt;', increment = '&lt;incremented time interval&gt;')</code></pre>
 
 <p>The following parameters are used to configure this annotation.</p>
 <table>
@@ -5805,11 +5805,11 @@ insert into TempSream;</code></pre>
 <p>Here, both the parameters are optional, and when omitted, the current SiddhiApp time will not be automatically incremented when events do not arrive.</p>
 <p><strong>Example 1</strong></p>
 <p>SiddhiApp to perform playback while incrementing the current SiddhiApp time by <code>2</code> seconds when no events arrive for every <code>100 milliseconds</code>.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">@app:playback(idle.time = '100 millisecond', increment = '2 sec')</code></pre>
+<pre class="codehilite"><code class="language-siddhi">@app:playback(idle.time = '100 millisecond', increment = '2 sec')</code></pre>
 
 <p><strong>Example 2</strong></p>
 <p>SiddhiApp to perform playback while not incrementing the current SiddhiApp time when no events arrive.</p>
-<pre class="codehilite"><code class="language-siddhi linenums">@app:playback()</code></pre>
+<pre class="codehilite"><code class="language-siddhi">@app:playback()</code></pre>
                 
                   
                 
