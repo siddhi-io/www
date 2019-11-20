@@ -216,15 +216,21 @@ func parseSegs(sourcePath string) ([]*Seg, string) {
 	filecontent := strings.Join(lines, "\n")
 	segs := []*Seg{}
 	lastSeen := ""
+	isLastSeenEmpty := false
 	for _, line := range lines {
 		if line == "" {
-			lastSeen = ""
-			continue
+			if !isLastSeenEmpty {
+				lastSeen = ""
+				isLastSeenEmpty = true
+				continue
+			}
+		} else {
+			isLastSeenEmpty = false
 		}
 		matchDocs := docsPat.MatchString(line)
 		matchCode := !matchDocs
-		newDocs := (lastSeen == "") || (lastSeen != "docs")
-		newCode := (lastSeen == "") || ((lastSeen != "code") && (segs[len(segs)-1].Code != ""))
+		newDocs := (lastSeen == "" && !isLastSeenEmpty) || (lastSeen != "docs")
+		newCode := (lastSeen == "" && !isLastSeenEmpty) || ((lastSeen != "code") && ((segs[len(segs)-1].Code != "") && !isLastSeenEmpty))
 		if newDocs || newCode {
 			debug("NEWSEG")
 		}
@@ -289,7 +295,7 @@ func parseAndRenderSegs(sourcePath string) ([]*Seg, string, string) {
 			seg.DocsRendered = markdown(seg.Docs)
 		}
 
-		if seg.Code != "" && lexer != "console" {
+		if seg.Code != "" && lexer != "console" && lexer != "description" {
 			var matchOpenSpan = regexp.MustCompile("<span(?: [^>]*)?>")
 			var matchCloseSpan = regexp.MustCompile("</span>")
 			var matchOpenPre = regexp.MustCompile("<pre>")
