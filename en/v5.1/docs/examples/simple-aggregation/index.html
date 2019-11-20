@@ -1139,11 +1139,13 @@
 </div>
 <div class="FullCode">
                 <div class="highlight"><pre><span class="nx">define</span> <span class="nx">stream</span> <span class="nx">TradesStream</span><span class="p">(</span><span class="nx">trader</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">quantity</span> <span class="kt">int</span><span class="p">);</span>
+
 <span class="err">@</span><span class="nx">sink</span><span class="p">(</span><span class="nx">type</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">log</span><span class="err">&#39;</span><span class="p">)</span>
 <span class="nx">define</span> <span class="nx">stream</span> <span class="nx">SummarizedTradingInformation</span><span class="p">(</span><span class="nx">trader</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">noOfTrades</span> <span class="nx">long</span><span class="p">,</span>
                 <span class="nx">totalTradingQuantity</span> <span class="nx">long</span><span class="p">,</span>
                 <span class="nx">minTradingQuantity</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">maxTradingQuantity</span> <span class="kt">int</span><span class="p">,</span>
                 <span class="nx">avgTradingQuantity</span> <span class="nx">double</span><span class="p">);</span>
+
 <span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">query1</span><span class="err">&#39;</span><span class="p">)</span>
 <span class="nx">from</span> <span class="nx">TradesStream</span><span class="err">#</span><span class="nx">window</span><span class="p">.</span><span class="nx">time</span><span class="p">(</span><span class="mi">10</span> <span class="nx">sec</span><span class="p">)</span>
 <span class="nx">select</span> <span class="nx">trader</span><span class="p">,</span> <span class="nx">count</span><span class="p">()</span> <span class="k">as</span> <span class="nx">noOfTrades</span><span class="p">,</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">quantity</span><span class="p">)</span> <span class="k">as</span> <span class="nx">totalTradingQuantity</span><span class="p">,</span>

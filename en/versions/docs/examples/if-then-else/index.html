@@ -655,16 +655,20 @@
 </div>
 <div class="FullCode">
                 <div class="highlight"><pre><span class="nx">define</span> <span class="nx">stream</span> <span class="nx">TemperatureStream</span> <span class="p">(</span><span class="nx">sensorId</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">temperature</span> <span class="nx">double</span><span class="p">);</span>
+
 <span class="err">@</span><span class="nx">sink</span><span class="p">(</span><span class="nx">type</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">log</span><span class="err">&#39;</span><span class="p">,</span> <span class="nx">prefix</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">ValidTemperatureStream</span><span class="err">&#39;</span><span class="p">,</span> 
     <span class="err">@</span><span class="kt">map</span><span class="p">(</span><span class="nx">type</span> <span class="p">=</span> <span class="err">&#39;</span><span class="kt">json</span><span class="err">&#39;</span><span class="p">))</span>
 <span class="nx">define</span> <span class="nx">stream</span> <span class="nx">ValidTemperatureStream</span> <span class="p">(</span><span class="nx">isValid</span> <span class="kt">string</span><span class="p">);</span>
 <span class="err">@</span><span class="nx">sink</span><span class="p">(</span><span class="nx">type</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">log</span><span class="err">&#39;</span><span class="p">,</span> <span class="nx">prefix</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">ProcessedTemperatureStream</span><span class="err">&#39;</span><span class="p">,</span> 
     <span class="err">@</span><span class="kt">map</span><span class="p">(</span><span class="nx">type</span> <span class="p">=</span> <span class="err">&#39;</span><span class="kt">json</span><span class="err">&#39;</span><span class="p">))</span>
 <span class="nx">define</span> <span class="nx">stream</span> <span class="nx">ProcessedTemperatureStream</span><span class="p">(</span><span class="nx">tempStatus</span> <span class="kt">string</span><span class="p">);</span>
+
 <span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">SimpleIfElseQuery</span><span class="err">&#39;</span><span class="p">)</span>
 <span class="nx">from</span> <span class="nx">TemperatureStream</span>
 <span class="nx">select</span> <span class="nx">ifThenElse</span><span class="p">(</span><span class="nx">temperature</span> <span class="p">&gt;</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="err">&#39;</span><span class="nx">Valid</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="nx">InValid</span><span class="err">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="nx">isValid</span> 
-<span class="nx">insert</span> <span class="nx">into</span> <span class="nx">ValidTemperatureStream</span><span class="p">;</span><span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">ComplexIfElseQuery</span><span class="err">&#39;</span><span class="p">)</span> 
+<span class="nx">insert</span> <span class="nx">into</span> <span class="nx">ValidTemperatureStream</span><span class="p">;</span>
+
+<span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">ComplexIfElseQuery</span><span class="err">&#39;</span><span class="p">)</span> 
 <span class="nx">from</span> <span class="nx">TemperatureStream</span>
 <span class="nx">select</span> 
     <span class="nx">ifThenElse</span><span class="p">(</span><span class="nx">temperature</span> <span class="p">&gt;</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> 
@@ -736,6 +740,9 @@ define stream ProcessedTemperatureStream(tempStatus string);
 from TemperatureStream
 select ifThenElse(temperature &gt; -2, &#39;Valid&#39;, &#39;InValid&#39;) as isValid 
 insert into ValidTemperatureStream;
+
+@info(name = &#39;ComplexIfElseQuery&#39;) 
+from TemperatureStream
 </code></pre></div>
 
         </td>
@@ -747,19 +754,6 @@ insert into ValidTemperatureStream;
 
                 </div>
             </div>
-
-        </td>
-    </tr>
-
-    <tr class="cTR">
-
-        <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>@info(name = &#39;ComplexIfElseQuery&#39;) 
-from TemperatureStream
-</code></pre></div>
-
-        </td>
-        <td class="docs">
 
         </td>
     </tr>

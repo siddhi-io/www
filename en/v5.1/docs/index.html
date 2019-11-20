@@ -138,7 +138,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#siddhi-51-user-guide" tabindex="1" class="md-skip">
+      <a href="#siddhi-51-documentation" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -549,6 +549,13 @@
   
     <label class="md-nav__title" for="__toc">On this page</label>
     <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-siddhi-works" title="How Siddhi Works" class="md-nav__link">
+    How Siddhi Works
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#siddhi-application" title="Siddhi Application" class="md-nav__link">
@@ -1179,6 +1186,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#how-siddhi-works" title="How Siddhi Works" class="md-nav__link">
+    How Siddhi Works
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#siddhi-application" title="Siddhi Application" class="md-nav__link">
     Siddhi Application
   </a>
@@ -1226,9 +1240,15 @@
                   <a href="https://github.com/siddhi-io/www/edit/v5.1/en/docs/docs/index.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="siddhi-51-user-guide">Siddhi 5.1 User Guide<a class="headerlink" href="#siddhi-51-user-guide" title="Permanent link">&para;</a></h1>
-<p>This section provides information on using and running Siddhi.</p>
+                <h1 id="siddhi-51-documentation">Siddhi 5.1 Documentation<a class="headerlink" href="#siddhi-51-documentation" title="Permanent link">&para;</a></h1>
+<p>This section provides overview and information on using Siddhi. </p>
+<p>"Siddhi" is named after "Event" from the <a href="https://en.wikipedia.org/wiki/Sinhala_language">Sinhalese</a> language. Siddhi 
+is a stream processing and complex event processing platform that can be used to build fully-fledged event-driven 
+applications. It can be embedded in Java and Python applications, run as a microservices on bare-metal, VM, or Docker, 
+and run natively at scale in Kubernetes. </p>
 <p>Checkout the <a href="features">Siddhi features</a> to get an idea on what it can do in brief. </p>
+<h2 id="how-siddhi-works">How Siddhi Works<a class="headerlink" href="#how-siddhi-works" title="Permanent link">&para;</a></h2>
+<p><img alt="" src="/images/how-siddhi-works.png" title="How Siddhi Works"></p>
 <h2 id="siddhi-application">Siddhi Application<a class="headerlink" href="#siddhi-application" title="Permanent link">&para;</a></h2>
 <p>Siddhi Application is the artifact that defines the real-time event processing logic of Siddhi as a SQL like script with <code>.siddhi</code> file extension. It contains consumers(sources), producers(sinks), streams, queries, tables, functions and other necessary contracts depicting how the events should be consumed, processed and published. </p>
 <p>To write Siddhi Applications using Siddhi Streaming SQL refer <a href="query-guide">Siddhi Query Guide</a> for details.</p>
