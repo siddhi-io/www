@@ -1,6 +1,7 @@
 -- Define the input stream which has input event with temperature in Fahrenheit
 define stream TemperatureStream (sensorId string, temperature double);
 
+
 -- Output streams and sinks to log the events to the console
 @sink(type = 'log', prefix = 'ValidTemperatureStream', 
 	@map(type = 'json'))
@@ -9,11 +10,13 @@ define stream ValidTemperatureStream (isValid string);
 	@map(type = 'json'))
 define stream ProcessedTemperatureStream(tempStatus string);
 
+
 -- If the temperature is greater than -2, it is valid event
 @info(name = 'SimpleIfElseQuery')
 from TemperatureStream
 select ifThenElse(temperature > -2, 'Valid', 'InValid') as isValid 
 insert into ValidTemperatureStream;
+
 
 @info(name = 'ComplexIfElseQuery') 
 from TemperatureStream
