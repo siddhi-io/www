@@ -319,6 +319,9 @@ func parseAndRenderSegs(sourcePath string) ([]*Seg, string, string) {
 
 			if !ignoreSegment {
 				if !strings.Contains(seg.Code, "$ ") {
+					if completeCode != "" {
+						completeCode = completeCode + "\n"
+					}
 					completeCode = completeCode + seg.Code
 				} else {
 					ignoreSegment = true
