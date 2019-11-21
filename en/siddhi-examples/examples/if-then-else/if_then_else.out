@@ -1,7 +1,0 @@
-Following logs can be seen for the temperature attribute Values
-
-| Temperature | Logs |
-|--- | --- |
-| -5 | ValidTemperatureStream : {"event":{"isValid":"InValid"}}<br>ProcessedTemperatureStream : {"event":{"tempStatus":"InValid"}} |
-| 38 | ValidTemperatureStream : {"event":{"isValid":"Valid"}}<br>ProcessedTemperatureStream : {"event":{"tempStatus":"Normal"}} |
-| 45 | ValidTemperatureStream : {"event":{"isValid":"Valid"}}<br>ProcessedTemperatureStream : {"event":{"tempStatus":"High"}} |
