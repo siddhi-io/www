@@ -904,6 +904,7 @@
     <span class="err">@</span><span class="kt">map</span><span class="p">(</span><span class="nx">type</span> <span class="p">=</span> <span class="err">&#39;</span><span class="kt">json</span><span class="err">&#39;</span><span class="p">))</span>
 <span class="nx">define</span> <span class="nx">stream</span> <span class="nx">ProcessedTemperatureStream</span><span class="p">(</span><span class="nx">tempStatus</span> <span class="kt">string</span><span class="p">);</span>
 
+
 <span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">SimpleIfElseQuery</span><span class="err">&#39;</span><span class="p">)</span>
 <span class="nx">from</span> <span class="nx">TemperatureStream</span>
 <span class="nx">select</span> <span class="nx">ifThenElse</span><span class="p">(</span><span class="nx">temperature</span> <span class="p">&gt;</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="err">&#39;</span><span class="nx">Valid</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="nx">InValid</span><span class="err">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="nx">isValid</span> 
@@ -911,11 +912,13 @@
 
 <span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">ComplexIfElseQuery</span><span class="err">&#39;</span><span class="p">)</span> 
 <span class="nx">from</span> <span class="nx">TemperatureStream</span>
+
 <span class="nx">select</span> 
     <span class="nx">ifThenElse</span><span class="p">(</span><span class="nx">temperature</span> <span class="p">&gt;</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> 
         <span class="nx">ifThenElse</span><span class="p">(</span><span class="nx">temperature</span> <span class="p">&gt;</span> <span class="mi">40</span><span class="p">,</span> <span class="err">&#39;</span><span class="nx">High</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="nx">Normal</span><span class="err">&#39;</span><span class="p">),</span> 
         <span class="err">&#39;</span><span class="nx">InValid</span><span class="err">&#39;</span><span class="p">)</span> 
-    <span class="k">as</span> <span class="nx">tempStatusinsert</span> <span class="nx">into</span> <span class="nx">ProcessedTemperatureStream</span><span class="p">;</span>
+    <span class="k">as</span> <span class="nx">tempStatus</span>
+<span class="nx">insert</span> <span class="nx">into</span> <span class="nx">ProcessedTemperatureStream</span><span class="p">;</span>
 </pre></div>
 
             </div>
