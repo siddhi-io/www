@@ -1243,8 +1243,7 @@ insert into ValidTemperatureStream;
 
         <td class="code leading">
             <div class="highlight"><pre><code class=siddhi>@info(name = &#39;ComplexIfElseQuery&#39;) 
-from TemperatureStream
-</code></pre></div>
+from TemperatureStream</code></pre></div>
 
         </td>
         <td class="docs">
@@ -1259,8 +1258,7 @@ from TemperatureStream
     ifThenElse(temperature &gt; -2, 
         ifThenElse(temperature &gt; 40, &#39;High&#39;, &#39;Normal&#39;), 
         &#39;InValid&#39;) 
-    as tempStatus
-</code></pre></div>
+    as tempStatus</code></pre></div>
 
         </td>
         <td class="docs">
@@ -1278,8 +1276,7 @@ from TemperatureStream
     <tr class="cTR">
 
         <td class="code">
-            <div class="highlight"><pre><code class=siddhi>insert into ProcessedTemperatureStream;
-</code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>insert into ProcessedTemperatureStream;</code></pre></div>
 
         </td>
         <td class="docs">
