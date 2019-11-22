@@ -280,7 +280,7 @@ func parseSegs(sourcePath string) ([]*Seg, string) {
 
 func parseAndRenderSegs(sourcePath string) ([]*Seg, string, string) {
 	lexer := whichLexer(sourcePath)
-	if lexer == "console" {
+	if lexer == "console" || lexer == "description" {
 		segs := []*Seg{}
 		lines := readLines(sourcePath)
 		filecontent := strings.Join(lines, "\n")
