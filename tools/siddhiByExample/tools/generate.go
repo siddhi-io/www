@@ -302,6 +302,7 @@ func parseAndRenderSegs(sourcePath string) ([]*Seg, string, string) {
 			var matchCloseSpan = regexp.MustCompile("</span>")
 			var matchOpenPre = regexp.MustCompile("<pre>")
 			var matchClosePre = regexp.MustCompile("</pre>")
+			var matchCodeNextLine = regexp.MustCompile("\n</code></pre></div>")
 			var codeCssClass = "siddhi"
 
 			if seg.IsConsoleOutput {
@@ -316,6 +317,10 @@ func parseAndRenderSegs(sourcePath string) ([]*Seg, string, string) {
 			closeSpanCleanedString := matchCloseSpan.ReplaceAllString(openSpanCleanedString, "")
 			openWrapString := matchOpenPre.ReplaceAllString(closeSpanCleanedString, "<pre><code class="+codeCssClass+">")
 			closeWrapString := matchClosePre.ReplaceAllString(openWrapString, "</code></pre>")
+
+			if !strings.HasSuffix(seg.Code, "\n") {
+				closeWrapString = matchCodeNextLine.ReplaceAllString(closeWrapString, "</code></pre></div>")
+			}
 
 			seg.CodeRendered = closeWrapString
 
