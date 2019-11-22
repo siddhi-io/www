@@ -54,7 +54,7 @@ $(document).ready(function () {
                 html: numbers.join("")
             }).prependTo($codeElem);
 
-            $code.attr("style","height:" + (lengthCount * 20) + "px");
+            $code.attr("style","min-height:" + (lengthCount * 20) + "px");
 
             if ($('.cCodeDesription > div > ol', this).length > 0) {
                 var $elem = $('.cCodeDesription > div > ol', this);
