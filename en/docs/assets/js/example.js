@@ -37,9 +37,9 @@ $(document).ready(function () {
 
         $('.cTR', this).each(function (i, n) {
             var lengthCount = 0;
-            var $code = $(n).find('td.code');
+            var $code = $(n).find('pre > code');
             var $codeElem = $(n).find('td.code').get(0);
-            var lines = $(n).find('pre > code').text().split(/\r\n|\r|\n/);
+            var lines = $code.text().split(/\r\n|\r|\n/);
             // console.log(s);
             var numbers = [];
 
