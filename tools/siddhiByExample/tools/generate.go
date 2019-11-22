@@ -259,7 +259,9 @@ func parseSegs(sourcePath string) ([]*Seg, string) {
 				segs[len(segs)-1].Code = segs[len(segs)-1].Code + "\n" + line
 			}
 			debug("CODE: " + line)
-			lastSeen = "code"
+			if line != "" {
+				lastSeen = "code"
+			}
 		}
 	}
 	for i, seg := range segs {
