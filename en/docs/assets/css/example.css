@@ -490,8 +490,8 @@ td.cDescTD {
 }
 
 .bbe-code-line-numbers .line-number {
-    font-size: 0.6rem;
-    line-height: 1rem;
+    font-size: 11px;
+    line-height: 20px;
     width: 100%;
     color: #514e4f;
     display: block;
@@ -499,12 +499,12 @@ td.cDescTD {
 
 .bbe-code-line-numbers {
     position: absolute;
-    font-size: 0.6rem;
-    line-height: .990rem;
+    font-size: 11px;
+    line-height: 20px;
     background: #d4d6d7;
     width: 30px;
     text-align: center;
-    padding: 0;
+    padding: 0.1rem 0 0;
     flex-direction: column;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -534,7 +534,6 @@ td.cDescTD {
     font-weight: normal;
     line-height: 1.42857143;
     text-align: left;
-    text-align: start;
     text-decoration: none;
     text-shadow: none;
     text-transform: none;
@@ -545,7 +544,6 @@ td.cDescTD {
     white-space: normal;
     filter: alpha(opacity=0);
     opacity: 0;
-
     line-break: auto;
 }
 .tooltip.in {

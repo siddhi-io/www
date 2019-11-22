@@ -36,12 +36,16 @@ $(document).ready(function () {
             olCount = 1;
 
         $('.cTR', this).each(function (i, n) {
+            var lengthCount = 0;
+            var $code = $(n).find('td.code');
             var $codeElem = $(n).find('td.code').get(0);
-            var lines = $('> td.code', n).text().replace(/\n$/, "").trim().split(/\r\n|\r|\n/);
+            var lines = $(n).find('pre > code').text().split(/\r\n|\r|\n/);
+            // console.log(s);
             var numbers = [];
 
-            $.each(lines, function (i) {
+            $.each(lines, function (i, line) {
                 lineCount += 1;
+                lengthCount += 1;
                 numbers.push('<span class="line-number">' + lineCount + '</span>');
             });
 
@@ -50,6 +54,7 @@ $(document).ready(function () {
                 html: numbers.join("")
             }).prependTo($codeElem);
 
+            $code.attr("style","height:" + (lengthCount * 20) + "px");
 
             if ($('.cCodeDesription > div > ol', this).length > 0) {
                 var $elem = $('.cCodeDesription > div > ol', this);
