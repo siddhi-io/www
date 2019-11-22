@@ -646,9 +646,9 @@
 
 <div class="cLeftTD">
 <p><p>This application demonstrates how to simulate random events via Feed
- Simulation and calculate running aggregates such as avg, min, max, etc.
- The aggregation is executed on events within a time window.
- A sliding time window of 10 seconds is used in this sample.</p>
+Simulation and calculate running aggregates such as avg, min, max, etc.
+The aggregation is executed on events within a time window.
+A sliding time window of 10 seconds is used in this sample.</p>
 </p>
 </div>
 
@@ -660,7 +660,8 @@
                 <div class="highlight"><pre><span class="nx">define</span> <span class="nx">stream</span> <span class="nx">TradesStream</span><span class="p">(</span><span class="nx">trader</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">quantity</span> <span class="kt">int</span><span class="p">);</span>
 
 <span class="err">@</span><span class="nx">sink</span><span class="p">(</span><span class="nx">type</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">log</span><span class="err">&#39;</span><span class="p">)</span>
-<span class="nx">define</span> <span class="nx">stream</span> <span class="nx">SummarizedTradingInformation</span><span class="p">(</span><span class="nx">trader</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">noOfTrades</span> <span class="nx">long</span><span class="p">,</span>
+<span class="nx">define</span> <span class="nx">stream</span> <span class="nx">SummarizedTradingInformation</span><span class="p">(</span><span class="nx">trader</span> <span class="kt">string</span><span class="p">,</span>
+                <span class="nx">noOfTrades</span> <span class="nx">long</span><span class="p">,</span>
                 <span class="nx">totalTradingQuantity</span> <span class="nx">long</span><span class="p">,</span>
                 <span class="nx">minTradingQuantity</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">maxTradingQuantity</span> <span class="kt">int</span><span class="p">,</span>
                 <span class="nx">avgTradingQuantity</span> <span class="nx">double</span><span class="p">);</span>
@@ -712,7 +713,8 @@
 
         <td class="code leading">
             <div class="highlight"><pre><code class=siddhi>@sink(type=&#39;log&#39;)
-define stream SummarizedTradingInformation(trader string, noOfTrades long,
+define stream SummarizedTradingInformation(trader string,
+                noOfTrades long,
                 totalTradingQuantity long,
                 minTradingQuantity int, maxTradingQuantity int,
                 avgTradingQuantity double);
