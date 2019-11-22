@@ -771,7 +771,7 @@ a.cTryIt:hover {
 
 @media (min-width: 60em) {
     .userLogos img {
-        max-height: 120px;
+        max-height: 110px;
         padding: 10px;
     }
 }
