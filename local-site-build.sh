@@ -16,7 +16,7 @@ build(){
     fi
 
     if [ "$1" == "v5.1" ]; then
-          go run tools/siddhiByExample/tools/generate.go  en/siddhi-examples en/docs/docs/examples
+          go run tools/siddhiByExample/tools/generate.go  en/siddhi-examples en/docs/docs/examples $1
     fi
 
 #obtain particular lang folder
