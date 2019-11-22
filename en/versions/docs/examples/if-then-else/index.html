@@ -743,9 +743,6 @@ define stream ProcessedTemperatureStream(tempStatus string);
 from TemperatureStream
 select ifThenElse(temperature &gt; -2, &#39;Valid&#39;, &#39;InValid&#39;) as isValid 
 insert into ValidTemperatureStream;
-
-@info(name = &#39;ComplexIfElseQuery&#39;) 
-from TemperatureStream
 </code></pre></div>
 
         </td>
@@ -757,6 +754,19 @@ from TemperatureStream
 
                 </div>
             </div>
+
+        </td>
+    </tr>
+
+    <tr class="cTR">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>@info(name = &#39;ComplexIfElseQuery&#39;) 
+from TemperatureStream
+</code></pre></div>
+
+        </td>
+        <td class="docs">
 
         </td>
     </tr>
