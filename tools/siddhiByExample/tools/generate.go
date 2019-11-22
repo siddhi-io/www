@@ -227,6 +227,11 @@ func parseSegs(sourcePath string) ([]*Seg, string) {
 		} else {
 			isLastSeenEmpty = false
 		}
+
+		if len(line) > 72 {
+			fmt.Fprintln(os.Stderr, "Character length is more than 72. Line : "+line)
+		}
+
 		matchDocs := docsPat.MatchString(line)
 		matchCode := !matchDocs
 		newDocs := (lastSeen == "" && !isLastSeenEmpty) || (lastSeen != "docs")
