@@ -1,3 +1,3 @@
-Provides introduction to [sources](../../query-guide#source) and [sink](../../query-guide#sink) which are used to consume and publish events to external systems.
+Provides introduction to [sources](../../query-guide#source) and [sink](../../query-guide#sink) that are used to consume and publish events to external systems.
 
-There are multiple type of sources and sinks, but this example only explains http source, and log sink. For more info refer the Siddhi [query guide](../../query-guide).
+There are multiple source and sink types, but this example only explains `http` source, and `log` sink. For more info refer the Siddhi [query guide](../../query-guide).

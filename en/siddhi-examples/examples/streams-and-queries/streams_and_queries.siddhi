@@ -5,7 +5,7 @@ define stream InputTemperatureStream (
 
 -- Optional `@info` annotation to name the query.
 @info(name = 'Pass-through')
--- Query consumes events from `InputTemperatureStream`, produce new events by selecting all the attributes from the incoming events, and outputs them to `TemperatureStream`.
+-- Query to consume events from `InputTemperatureStream`, produce new events by selecting all the attributes from the incoming events, and outputs them to `TemperatureStream`.
 from InputTemperatureStream
 select *
 insert into TemperatureAndSensorStream;

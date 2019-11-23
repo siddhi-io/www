@@ -1,6 +1,7 @@
 #### Input
 
 When a JSON message in the following default message format is sent to url `http://0.0.0.0:8006/temp` with content type `application/json`.
+It will automatically get mapped to an event in the `TemperatureStream` stream.
 
 ```json
 {
@@ -11,18 +12,22 @@ When a JSON message in the following default message format is sent to url `http
 }
 ```
 
-It will be automatically mapped to the `TemperatureStream` stream.
-
-To process custom input messages refer the examples related to Input Data Mapping.
+To process custom input messages, please refer the examples related to Input Data Mapping.
 
 #### Output
 
-After processing, the event will be logged to the console via the `log` sink of `TemperatureOnlyStream` stream as following;
+After processing, the event arriving at `TemperatureOnlyStream` will be emitted via `log` and `kafka` sinks.
+
+As `log` sink uses `passThrough` mapper by default, it directly logs the Siddhi Events to the console as following;
 
 ```bash
 Event{timestamp=1574515771712, data=[35.4], isExpired=false}
 ```
 
-Here the `log` sink by default uses `passThrough` mapper, and hence directly logs the Siddhi Events.
+The `kafka` sink maps the event to a custom JSON message as below and publishes it to the `temperature` topic.
 
-To output messages on custom message format, pleases refer the examples related to Output Data Mapping.
+```json
+{"temp":"35.4"}
+```
+
+To output messages using other message formats, pleases refer the examples related to Output Data Mapping.

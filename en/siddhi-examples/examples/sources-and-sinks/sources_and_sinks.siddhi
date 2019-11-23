@@ -8,6 +8,11 @@ define stream TemperatureStream (
 
 -- `Log` sink to log Siddhi events arriving via `TemperatureOnlyStream` stream.
 @sink(type='log')
+-- `Kafka` sink to map events arriving via `TemperatureOnlyStream` stream as custom JSON events, and publish to `temperature` topic.
+@sink(type='kafka', topic='temperature',
+      bootstrap.servers='localhost:9092',
+      @map(type='json',
+           @payload("""{"temp":"{{temperature}}"}""")))
 -- Defines `TemperatureOnlyStream` stream having `temperature` attribute of type `double`.
 define stream TemperatureOnlyStream (temperature double);
 
