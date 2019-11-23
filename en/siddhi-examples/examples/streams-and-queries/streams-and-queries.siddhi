@@ -1,0 +1,21 @@
+-- Defines `InputTemperatureStream` stream to pass events having `sensorId` and `temperature` attributes of types `string` and `double`.
+define stream InputTemperatureStream (
+                  sensorId string, temperature double);
+
+
+-- Optional `@info` annotation to name the query.
+@info(name = 'Pass-through')
+-- Query consumes events from `InputTemperatureStream`, produce new events by selecting all the attributes from the incoming events, and outputs them to `TemperatureStream`.
+from InputTemperatureStream
+select *
+insert into TemperatureAndSensorStream;
+
+
+@info(name = 'Simple-selection')
+-- Consumes events from `TemperatureAndSensorStream`. The schema of the stream is inferred from the previous query, hence no need to be defined.
+from TemperatureAndSensorStream
+-- Selects only the `temperature` attribute from events, and outputs to `TemperatureOnlyStream`.
+select temperature
+insert into TemperatureOnlyStream;
+
+

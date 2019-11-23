@@ -1,8 +1,12 @@
 [{
-    "title": "Hello World",
+    "title": "Siddhi Basics",
     "column": 0,
     "category": "Language concepts",
     "samples": [
+        {
+            "name": "Streams and Queries",
+            "url": "streams-and-queries"
+        },
         {
             "name": "Simple Aggregation",
             "url": "simple-aggregation"
