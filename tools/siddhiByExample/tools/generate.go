@@ -228,8 +228,8 @@ func parseSegs(sourcePath string) ([]*Seg, string) {
 			isLastSeenEmpty = false
 		}
 
-		if len(line) > 72 {
-			fmt.Fprintln(os.Stderr, "Character length is more than 72. Line : "+line)
+		if len(line) > 64 {
+			fmt.Fprintln(os.Stderr, "Character length is more than 64. Line : "+line)
 		}
 
 		matchDocs := docsPat.MatchString(line)
