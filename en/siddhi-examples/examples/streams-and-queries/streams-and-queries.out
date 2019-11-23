@@ -1,6 +1,6 @@
 #### Events at each stream
 
-When an event with values [`'aq-14'`, `35.4`] is sent to `InputTemperatureStream` stream it will get converted travel through the streams as below.
+When an event with values [`'aq-14'`, `35.4`] is sent to `InputTemperatureStream` stream it will get converted and travel through the streams as below.
 
 * InputTemperatureStream : [`'aq-14'`, `35.4`]
 * TemperatureAndSensorStream : [`'aq-14'`, `35.4`]
