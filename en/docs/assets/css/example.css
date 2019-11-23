@@ -27,11 +27,11 @@
 }
 
 .md-main .md-sidebar.md-sidebar--secondary {
-    display:none;
+    display: none;
 }
 
 .cLeftTD {
-    width: 65%;
+    width: 60%;
     vertical-align: top;
 }
 
@@ -40,34 +40,34 @@
 }
 
 pre code {
-     padding: 6px;
-     width: 100%;
-     line-height: 20px;
- }
-
-.cBE-body tr:not(.cOutputTr)>td.code>.highlight {
-    padding-left: 30px;
-    background-color: transparent;
-}
-
-.cBE-body tr:not(.cOutputTr)>td.code {
-    background: url("../../images/code-bg.gif") #f5f6f6 repeat-y 0 0;
-    vertical-align: top;
-}
-
-.cBE-body tr:not(.cOutputTr)>td.code code {
-    background-color: transparent;
-    padding: 0 ;
+    padding: 6px;
     width: 100%;
     line-height: 20px;
 }
 
-.cBE-body tr.cOutputTr>td.code .bbe-code-line-numbers,
-.cBE-body tr>td.code .line-numbers-wrap {
+.cBE-body tr:not(.cOutputTr) > td.code > .highlight {
+    padding-left: 30px;
+    background-color: transparent;
+}
+
+.cBE-body tr:not(.cOutputTr) > td.code {
+    background: url("../../images/code-bg.gif") #f5f6f6 repeat-y 0 0;
+    vertical-align: top;
+}
+
+.cBE-body tr:not(.cOutputTr) > td.code code {
+    background-color: transparent;
+    padding: 0;
+    width: 100%;
+    line-height: 20px;
+}
+
+.cBE-body tr.cOutputTr > td.code .bbe-code-line-numbers,
+.cBE-body tr > td.code .line-numbers-wrap {
     display: none;
 }
 
-.cBE-body tr.cOutputTr>td.code code {
+.cBE-body tr.cOutputTr > td.code code {
     background-color: transparent;
     color: #3ad1ca;
 }
@@ -127,7 +127,7 @@ pre {
 
 .code {
     background-color: #f5f6f6;
-    width: 65%;
+    width: 60%;
     padding: 0;
 }
 
@@ -157,13 +157,13 @@ td.code {
     /* Standard syntax */
 }
 
-.cCodeDesription>div {
+.cCodeDesription > div {
     background: #eeeeee;
     font-size: 16px;
     padding: 7px 20px;
 }
 
-tr:hover .cCodeDesription>div {
+tr:hover .cCodeDesription > div {
     background-color: #20b6af;
     color: #ffffff;
 }
@@ -173,8 +173,8 @@ tr:hover .cCodeDesription {
 }
 
 .highlight {
-    min-width: 595px;
-    width: 65%;
+    min-width: 548px;
+    width: 60%;
 }
 
 .cCodeRight {
@@ -189,7 +189,7 @@ tr:hover .cCodeDesription {
     display: none;
 }
 
-.cCodeRight .docs>div {
+.cCodeRight .docs > div {
     padding-right: 30px;
     padding-left: 0;
 }
@@ -204,28 +204,28 @@ tr:hover .cCodeDesription {
 
 tr:hover .cCodeRight .cCodeDesription {
     padding-right: 14px;
-    background-image: url("../../images/green-arrow.svg")!important;
+    background-image: url("../../images/green-arrow.svg") !important;
     background-position: right center;
     background-repeat: no-repeat;
 }
 
-.cCodeRight .docs>div {
+.cCodeRight .docs > div {
     background: #ffffff;
     font-size: 12px;
     padding: 10px 20px;
     background-repeat: no-repeat;
 }
 
-.cCodeLeft .cCodeDesription>div>.ol-number {
+.cCodeLeft .cCodeDesription > div > .ol-number {
     display: inline-block;
     width: 20px;
     vertical-align: top;
 }
 
-.cCodeLeft .cCodeDesription>div>ol,
-.cCodeLeft .cCodeDesription>div>ul,
-.cCodeRight .cCodeDesription>div>ol,
-.cCodeRight .cCodeDesription>div>ul {
+.cCodeLeft .cCodeDesription > div > ol,
+.cCodeLeft .cCodeDesription > div > ul,
+.cCodeRight .cCodeDesription > div > ol,
+.cCodeRight .cCodeDesription > div > ul {
     padding-left: 0;
     list-style: none;
     display: inline-block;
@@ -249,7 +249,7 @@ tr:hover .cCodeLeft .cCodeDesription {
 }
 
 tr .cCodeDesription p {
-     margin: 0;
+    margin: 0;
     font-size: 15px;
 }
 
@@ -268,10 +268,10 @@ table.cTopBorder-table {
 
 table.cTopBorder-table .cCodeTD {
     border-top: 5px solid #eeeeee;
-    border-left: 5px solid  #eeeeee;
-    border-right: 5px solid  #eeeeee;
+    border-left: 5px solid #eeeeee;
+    border-right: 5px solid #eeeeee;
     background: url(../../images/code-bg.gif) #f5f6f6 repeat-y 0 0;
-    width: 65.1%;
+    width: 60.1%;
     height: 15px;
 }
 
@@ -280,11 +280,11 @@ table.cBottomBorder-table {
 }
 
 table.cBottomBorder-table .cCodeTD {
-    border-bottom: 5px solid  #eeeeee;
-    border-left: 5px solid  #eeeeee;
-    border-right: 5px solid  #eeeeee;
+    border-bottom: 5px solid #eeeeee;
+    border-left: 5px solid #eeeeee;
+    border-right: 5px solid #eeeeee;
     background: url(../../images/code-bg.gif) #f5f6f6 repeat-y 0 0;
-    width: 65.1%;
+    width: 60.1%;
     height: 15px;
 }
 
@@ -433,9 +433,10 @@ td.cDescTD {
     .cButtonInfoContainer {
         width: 45%;
     }
+
     table.cTopBorder-table .cCodeTD,
     table.cBottomBorder-table .cCodeTD {
-        width: 65%;
+        width: 60%;
     }
 }
 
@@ -443,49 +444,60 @@ td.cDescTD {
     a.next p {
         text-align: right;
     }
+
     td,
     th {
         display: list-item !important;
         list-style: none;
         width: 100%;
     }
+
     .code,
     .cLeftTD {
         width: 100%;
     }
+
     .cRightTD {
         padding-left: 0;
     }
+
     .cButtonInfoContainer {
         margin-left: 0;
         width: 50%;
     }
+
     .bbe-code-line-numbers {
         display: none;
     }
-    .cBE-body tr:not(.cOutputTr)>td.code>.highlight {
+
+    .cBE-body tr:not(.cOutputTr) > td.code > .highlight {
         padding-left: 0;
     }
-    .cBE-body tr:not(.cOutputTr)>td.code,
+
+    .cBE-body tr:not(.cOutputTr) > td.code,
     .code.leading.cOutput,
     .cTR:last-child td.code {
         background-image: none;
         border: none;
     }
+
     .cTopBorder-table,
     .cBottomBorder-table {
         display: none;
     }
+
     .docs {
         padding-left: 0;
         width: 100%;
     }
+
     .highlight {
         width: 100%;
         min-width: 100%;
     }
+
     table {
-        width:100%;
+        width: 100%;
     }
 }
 
@@ -514,13 +526,12 @@ td.cDescTD {
     user-select: none;
 }
 
-.bbe-code-line-numbers>span {
+.bbe-code-line-numbers > span {
     display: block;
 }
 
-
-.cBE-body tr.cOutputTr>td.code .bbe-code-line-numbers,
-.cBE-body tr>td.code .line-numbers-wrap {
+.cBE-body tr.cOutputTr > td.code .bbe-code-line-numbers,
+.cBE-body tr > td.code .line-numbers-wrap {
     display: none;
 }
 
@@ -546,26 +557,32 @@ td.cDescTD {
     opacity: 0;
     line-break: auto;
 }
+
 .tooltip.in {
     filter: alpha(opacity=90);
     opacity: .9;
 }
+
 .tooltip.top {
     padding: 5px 0;
     margin-top: -3px;
 }
+
 .tooltip.right {
     padding: 0 5px;
     margin-left: 3px;
 }
+
 .tooltip.bottom {
     padding: 5px 0;
     margin-top: 3px;
 }
+
 .tooltip.left {
     padding: 0 5px;
     margin-left: -3px;
 }
+
 .tooltip-inner {
     max-width: 200px;
     padding: 3px 8px;
@@ -574,6 +591,7 @@ td.cDescTD {
     background-color: #000;
     border-radius: 4px;
 }
+
 .tooltip-arrow {
     position: absolute;
     width: 0;
@@ -581,6 +599,7 @@ td.cDescTD {
     border-color: transparent;
     border-style: solid;
 }
+
 .tooltip.top .tooltip-arrow {
     bottom: 0;
     left: 50%;
@@ -588,6 +607,7 @@ td.cDescTD {
     border-width: 5px 5px 0;
     border-top-color: #000;
 }
+
 .tooltip.top-left .tooltip-arrow {
     right: 5px;
     bottom: 0;
@@ -595,6 +615,7 @@ td.cDescTD {
     border-width: 5px 5px 0;
     border-top-color: #000;
 }
+
 .tooltip.top-right .tooltip-arrow {
     bottom: 0;
     left: 5px;
@@ -602,6 +623,7 @@ td.cDescTD {
     border-width: 5px 5px 0;
     border-top-color: #000;
 }
+
 .tooltip.right .tooltip-arrow {
     top: 50%;
     left: 0;
@@ -609,6 +631,7 @@ td.cDescTD {
     border-width: 5px 5px 5px 0;
     border-right-color: #000;
 }
+
 .tooltip.left .tooltip-arrow {
     top: 50%;
     right: 0;
@@ -616,6 +639,7 @@ td.cDescTD {
     border-width: 5px 0 5px 5px;
     border-left-color: #000;
 }
+
 .tooltip.bottom .tooltip-arrow {
     top: 0;
     left: 50%;
@@ -623,6 +647,7 @@ td.cDescTD {
     border-width: 0 5px 5px;
     border-bottom-color: #000;
 }
+
 .tooltip.bottom-left .tooltip-arrow {
     top: 0;
     right: 5px;
@@ -630,6 +655,7 @@ td.cDescTD {
     border-width: 0 5px 5px;
     border-bottom-color: #000;
 }
+
 .tooltip.bottom-right .tooltip-arrow {
     top: 0;
     left: 5px;
