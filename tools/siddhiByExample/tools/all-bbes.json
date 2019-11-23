@@ -8,6 +8,10 @@
             "url": "streams-and-queries"
         },
         {
+            "name": "Sources and Sinks",
+            "url": "sources-and-sinks"
+        },
+        {
             "name": "Simple Aggregation",
             "url": "simple-aggregation"
         }

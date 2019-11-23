@@ -1,0 +1,20 @@
+-- `HTTP` source to consume `JSON` messages with default mapping via url `http://0.0.0.0:8006/temp`.
+@source(type='http', receiver.url='http://0.0.0.0:8006/temp',
+    @map(type='json'))
+-- Defines `TemperatureStream` stream having `sensorId` and `temperature` attributes of types `string` and `double`.
+define stream TemperatureStream (
+                  sensorId string, temperature double);
+
+
+-- `Log` sink to log Siddhi events arriving via `TemperatureOnlyStream` stream.
+@sink(type='log')
+-- Defines `TemperatureOnlyStream` stream having `temperature` attribute of type `double`.
+define stream TemperatureOnlyStream (temperature double);
+
+
+@info(name = 'Simple-selection')
+from TemperatureStream
+select temperature
+insert into TemperatureOnlyStream;
+
+

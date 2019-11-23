@@ -1,3 +1,3 @@
-Provides an introduction to streams, queries, and how queries can be chained to one another.
+Provides introduction to [streams](../../query-guide#stream), [queries](../../query-guide#query), and how queries can be chained to one another.
 
-There are multiple type of queries such as window query, join query, pattern query, etc. But this example only explains how pass-through and selection queries work. For more info on [streams](../../query-guide#stream) and [queries](../../query-guide#query) refer the Siddhi [query guide](../../query-guide).
+There are multiple type of queries such as window query, join query, pattern query, etc. But this example only explains how pass-through and selection queries work. For more info refer the Siddhi [query guide](../../query-guide).
