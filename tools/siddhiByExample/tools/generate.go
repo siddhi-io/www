@@ -228,7 +228,7 @@ func parseSegs(sourcePath string) ([]*Seg, string) {
 			isLastSeenEmpty = false
 		}
 
-		if len(line) > 64 {
+		if (len(line) > 64 && !strings.HasPrefix(line, "--")){
 			fmt.Fprintln(os.Stderr, "Character length is more than 64. Line : "+line)
 		}
 
