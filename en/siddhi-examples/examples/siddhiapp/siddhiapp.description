@@ -1,0 +1,3 @@
+Provides introduction to the concept of [Siddhi Application](../../query-guide##siddhi-application).
+
+Siddhi App provides an isolated execution environment for processing the execution logic. It can be deployed and processed independently of other SiddhiApps in the system. Siddhi Apps can use `inMemory` sources and sinks to communicate between each other.
