@@ -2381,9 +2381,11 @@ By adding the <code>@attributes</code> annotation, users can selectively extract
 <p>Receive <code>JSON</code> messages by exposing an <code>HTTP</code> service, and direct them to <code>InputStream</code> stream for processing.
 Here the <code>HTTP</code> service will be secured with basic authentication, receives events on all network interfaces on port <code>8080</code> and context <code>/foo</code>. The service expects the <code>JSON</code> messages to be on the default data format that's supported by the <code>JSON</code> mapper as follows.</p>
 <pre class="codehilite"><code class="language-json">{
-  "name":"Paul",
-  "age":20,
-  "country":"UK"
+   "event":{
+       "name":"Paul",
+       "age":20,
+       "country":"UK"
+   }
 }</code></pre>
 
 <p>The configuration of the <code>HTTP</code> source and <code>JSON</code> source mapper to achieve the above is as follows.</p>
