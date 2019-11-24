@@ -21,5 +21,3 @@ define stream TemperatureOnlyStream (temperature double);
 from TemperatureStream
 select temperature
 insert into TemperatureOnlyStream;
-
-

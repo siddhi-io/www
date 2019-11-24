@@ -4,12 +4,16 @@
     "category": "Language concepts",
     "samples": [
         {
-            "name": "Streams and Queries",
-            "url": "streams-and-queries"
+            "name": "Stream and Query",
+            "url": "stream-and-query"
         },
         {
-            "name": "Sources and Sinks",
-            "url": "sources-and-sinks"
+            "name": "Source and Sink",
+            "url": "source-and-sink"
+        },
+        {
+            "name": "Table and Store",
+            "url": "table-and-store"
         },
         {
             "name": "Simple Aggregation",
