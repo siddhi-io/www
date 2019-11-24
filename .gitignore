@@ -38,4 +38,4 @@ modules/siddhi-service/dependency-reduced-pom.xml
 
 ## Ignore generated files
 *pyc
-en/docs/docs/*
+en/docs/docs/examples/*
