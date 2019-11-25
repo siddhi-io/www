@@ -1,0 +1,6 @@
+#### Events at each stream
+
+When an event with values [`'sensor1'`, `35.4`] is sent to TemperatureStream stream it will get converted and travel through the streams as below.
+
+* ValidTemperatureStream : [`'sensor1'`, `'Valid'`]
+* ProcessedTemperatureStream : [`'sensor1'`, `'Normal'`]

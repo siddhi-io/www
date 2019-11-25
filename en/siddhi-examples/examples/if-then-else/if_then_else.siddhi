@@ -1,18 +1,21 @@
--- Define the input stream which has input event with temperature in Fahrenheit
-define stream TemperatureStream (sensorId string, temperature double);
+-- Defines `TemperatureStream` stream to pass events having `sensorId` and `temperature`(F).
+define stream TemperatureStream 
+		(sensorId string, temperature double);
 
 
--- If the temperature is greater than -2, it is valid event
 @info(name = 'SimpleIfElseQuery')
 from TemperatureStream
-select ifThenElse(temperature > -2, 'Valid', 'InValid') as isValid 
+select sensorId,
+-- if `temperature` > -2, `isValid` will be `true` else `false` 
+	ifThenElse(temperature > -2, 'Valid', 'InValid') as isValid 
+
 insert into ValidTemperatureStream;
 
 
 @info(name = 'ComplexIfElseQuery') 
 from TemperatureStream
--- If the temperature is more than 40 degree the status is set to High, 0-40 as Normal
-select 
+select sensorId, 
+-- If the `temperature` > 40 the status is set to `High`, between -2 and 40 as `Normal` & less than -2 as `InValid` 
 	ifThenElse(temperature > -2, 
 		ifThenElse(temperature > 40, 'High', 'Normal'), 
 		'InValid') 
