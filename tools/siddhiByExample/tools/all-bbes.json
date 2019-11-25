@@ -42,9 +42,9 @@
     ]
   },
   {
-    "title": "Event Cleansing",
-    "column": 1,
     "category": "Language concepts",
+    "column": 1,
+    "title": "Event Cleansing",
     "samples": [
       {
         "name": "If-Then-Else",
