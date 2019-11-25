@@ -564,9 +564,58 @@ func isFileExist(path string) bool {
 	return true
 }
 
+type Sample struct {
+	Name string `json:"name"`
+	Url  string `json:"url"`
+}
+
+type SampleGroup struct {
+	Title    string   `json:"title"`
+	Type     int      `json:"column"`
+	Category string   `json:"category"`
+	Samples  []Sample `json:"samples"`
+}
+
+func buildExampleIndexPage(jsonPath string, mkdocsYamlPath string) {
+	// Create index for generated samples
+	jsonFile, jsonErr := ioutil.ReadFile(jsonPath)
+	yamlFile, yamlErr := ioutil.ReadFile(mkdocsYamlPath)
+
+	check(jsonErr)
+	check(yamlErr)
+	var sampleGroups []SampleGroup
+	json.Unmarshal(jsonFile, &sampleGroups)
+
+	var sampleGroupPrefix = "        - "
+	var samplePrefix = "            - "
+	var exampleString strings.Builder
+
+	exampleString.WriteString("    - Examples:\n")
+	for i := 0; i < len(sampleGroups); i++ {
+		exampleString.WriteString(sampleGroupPrefix)
+		exampleString.WriteString(sampleGroups[i].Title)
+		exampleString.WriteString(":\n")
+		for j := 0; j < len(sampleGroups[i].Samples); j++ {
+			exampleString.WriteString(samplePrefix)
+			exampleString.WriteString(sampleGroups[i].Samples[j].Name)
+			exampleString.WriteString(": docs/examples/")
+			exampleString.WriteString(sampleGroups[i].Samples[j].Url)
+			exampleString.WriteString("\n")
+		}
+	}
+	newContents := strings.Replace(string(yamlFile), "    #Examples:", exampleString.String(), -1)
+	fmt.Println(exampleString)
+	fmt.Println(newContents)
+	err := ioutil.WriteFile(mkdocsYamlPath, []byte(newContents), 0)
+	if err != nil {
+		panic(err)
+	}
+}
+
 func main() {
 	copyFile("tools/siddhiByExample/tools/all-bbes.json", siteDir+"/all-bbes.json")
 	bbeCategories := getBBECategories()
 	examples := parseExamples(bbeCategories)
 	renderExamples(examples)
+	buildExampleIndexPage("tools/siddhiByExample/tools/all-bbes.json", "en/mkdocs.yml")
 }
