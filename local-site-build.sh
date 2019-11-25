@@ -16,8 +16,9 @@ build(){
     fi
 
     if [ "$1" == "v5.1" ]; then
-          go run tools/siddhiByExample/tools/generate.go  en/siddhi-examples en/docs/docs/examples $1
-	  git commit -m "Update mkdocs yaml with generated samples"
+	go run tools/siddhiByExample/tools/generate.go  en/siddhi-examples en/docs/docs/examples $1
+	git add en/mkdocs.yml
+	git commit -m "Update mkdocs yaml with generated samples"
     fi
 
 #obtain particular lang folder
