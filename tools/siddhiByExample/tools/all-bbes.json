@@ -34,6 +34,10 @@
       {
         "name": "Map",
         "url": "map"
+      },
+      {
+        "name": "List",
+        "url": "list"
       }
     ]
   },

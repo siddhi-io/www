@@ -26,7 +26,9 @@ select map:isMap(itemPriceMap) as isMap,
 -- Check if `itemPriceMap` is empty.
        map:isEmpty(itemPriceMap) as isEmpty,
 -- Get all keys of `itemPriceMap` as a List.
-       map:keys(itemPriceMap) as keys
+       map:keys(itemPriceMap) as keys,
+-- Get size of `itemPriceMap`.
+       map:size(itemPriceMap) as size
 
 insert into MapAnalysisStream;
 

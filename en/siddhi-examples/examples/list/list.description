@@ -1,0 +1,3 @@
+Provides examples on basic list functions provided via [siddhi-execution-list](https://siddhi-io.github.io/siddhi-execution-list/) extension.
+
+For information of performing scatter and gather using `list:tokenize()`, and `list:collect()` refer the examples in Data Pipelining section. For information on [all list functions](../../api/latest/#list), refer the [Siddhi APIs](../../api/).
