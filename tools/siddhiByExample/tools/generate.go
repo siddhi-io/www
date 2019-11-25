@@ -604,7 +604,7 @@ func buildExampleIndexPage(jsonPath string, mkdocsYamlPath string) {
 		}
 	}
 	newContents := strings.Replace(string(yamlFile), "    #Examples:", exampleString.String(), -1)
-	fmt.Println(exampleString)
+	fmt.Println(exampleString.String())
 	fmt.Println(newContents)
 	err := ioutil.WriteFile(mkdocsYamlPath, []byte(newContents), 0)
 	if err != nil {
