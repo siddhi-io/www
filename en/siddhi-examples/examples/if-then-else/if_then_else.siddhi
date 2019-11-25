@@ -1,4 +1,4 @@
--- Defines `TemperatureStream` stream to pass events having `sensorId` and `temperature`(F).
+-- Defines `TemperatureStream` stream to process events having `sensorId` and `temperature`(F).
 define stream TemperatureStream 
 		(sensorId string, temperature double);
 
