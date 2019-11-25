@@ -1,0 +1,7 @@
+#### Input
+
+When an event [`'aq-14'`, `35.4`] is pushed via the `SensorDetail` topic of the `inMemory` transport from another Siddhi App, the event will be consumed and mapped to the `TemperatureStream` stream.
+
+#### Output
+
+After processing, the event [`35.4`] arriving at `TemperatureOnlyStream` will be emitted via `Temperature` topic of the `inMemory` transport to other subscribed Siddhi Apps.

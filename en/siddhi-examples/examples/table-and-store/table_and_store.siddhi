@@ -1,0 +1,29 @@
+-- Defines `TemperatureStream` stream having `sensorId` and `temperature` attributes of types `string` and `double`.
+define stream TemperatureStream (
+        sensorId string, temperature double);
+
+
+-- Defines in-memory `TemperatureLogTable` having `sensorId`, `roomNo`, and `temperature` attributes of types `string`, `string`, and `double`.
+define table TemperatureLogTable (
+        sensorId string, roomNo string, temperature double);
+
+
+-- Store annotation to back `SensorIdInfoTable` by a MySQL RDBMS with `sid` DB and `SensorIdInfoTable` table.
+@store(type="rdbms",
+       jdbc.url="jdbc:mysql://localhost:3306/sid",
+       username="root", password="root",
+       jdbc.driver.name="com.mysql.jdbc.Driver")
+-- Defines `SensorIdInfoTable` table.
+define table SensorIdInfoTable (
+        sensorId string, roomNo string);
+
+
+@info(name = 'Join-query')
+-- `TemperatureStream` joins with `SensorIdInfoTable` based on `sensorId`.
+from TemperatureStream as t join SensorIdInfoTable as s
+     on t.sensorId == s.sensorId
+-- Selects `sensorId`, `roomNo`, and `temperature` attributes from stream and table, and adds events to `TemperatureLogTable`.
+select t.sensorId as sensorId, s.roomNo as roomNo
+       t.temperature as temperature
+insert into TemperatureLogTable;
+

@@ -1,0 +1,3 @@
+Provides introduction to in-memory [tables](../../query-guide#table) and database backed [stores](../../query-guide#store) that can be used to store events.
+
+For information on various types of stores, primary keys, indexes, and caching, refer examples related to Event Store Integration and Siddhi [query guide](../../query-guide).

@@ -46,6 +46,7 @@
 
 .md-header {
     height: 2.6rem;
+    z-index: 3;
 }
 
 .md-header-nav__topic {
@@ -183,10 +184,6 @@ html .md-typeset .superfences-tabs > label:hover {
     color: inherit;
     margin-bottom: 2rem;
     border-radius: .2rem;
-}
-
-.md-tabs {
-    overflow: visible;
 }
 
 .mb-tabs__dropdown {
@@ -498,7 +495,7 @@ html .md-typeset .superfences-tabs > label:hover {
 
 .md-tabs {
     position: fixed !important;
-    z-index: 1;
+    z-index: 2;
 }
 
 .md-tabs__link {
@@ -654,10 +651,13 @@ html .md-typeset .superfences-tabs > label:hover {
     padding: 0;
 }
 
+.md-typeset .codehilite, .md-typeset .highlight {
+    line-height: 19px
+}
 .line-numbers-wrap {
     position: absolute;
-    font-size: 0.6rem;
-    line-height: .990rem;
+    font-size: 11px;
+    line-height: 19px
     background: #d4d6d7;
     width: 1.575rem;
     text-align: center;
@@ -686,4 +686,8 @@ html .md-typeset .superfences-tabs > label:hover {
     .line-numbers-wrap {
         display: none;
     }
+}
+
+.md-typeset pre>code {
+    font-size: 13px;
 }

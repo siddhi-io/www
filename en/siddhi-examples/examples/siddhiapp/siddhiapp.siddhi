@@ -1,0 +1,22 @@
+-- Name of the Siddhi Application
+@app:name('Temperature-Processor')
+-- Optional description for Siddhi Application
+@app:description('App for processing temperature data.')
+
+
+-- `InMemory` source to consume events from other Siddhi Apps.
+@source(type='inMemory', topic='SensorDetail')
+define stream TemperatureStream (
+                  sensorId string, temperature double);
+
+
+-- `InMemory` sink to publish events from other Siddhi Apps.
+@sink(type='inMemory', topic='Temperature')
+define stream TemperatureOnlyStream (temperature double);
+
+
+@info(name = 'Simple-selection')
+from TemperatureStream
+select temperature
+insert into TemperatureOnlyStream;
+

@@ -19,7 +19,7 @@ import (
 
 var cacheDir = filepath.FromSlash("/tmp/gobyexample-cache")
 var pygmentizeBin = filepath.FromSlash("tools/siddhiByExample/vendor/pygments/pygmentize")
-var githubsiddhiByExampleBaseURL = "https://github.com/siddhi-io/www/tree/v5.1/en/siddhi-examples"
+var githubsiddhiByExampleBaseURL = "https://github.com/siddhi-io/www/tree/" + os.Args[3] + "/en/siddhi-examples"
 var examplesDir = os.Args[1]
 var siteDir = os.Args[2]
 var dirPathWordSeparator = "-"
@@ -227,6 +227,11 @@ func parseSegs(sourcePath string) ([]*Seg, string) {
 		} else {
 			isLastSeenEmpty = false
 		}
+
+		if (len(line) > 64 && !strings.HasPrefix(line, "--")){
+			fmt.Fprintln(os.Stderr, "Character length is more than 64. Line : "+line)
+		}
+
 		matchDocs := docsPat.MatchString(line)
 		matchCode := !matchDocs
 		newDocs := (lastSeen == "" && !isLastSeenEmpty) || (lastSeen != "docs")
@@ -259,7 +264,9 @@ func parseSegs(sourcePath string) ([]*Seg, string) {
 				segs[len(segs)-1].Code = segs[len(segs)-1].Code + "\n" + line
 			}
 			debug("CODE: " + line)
-			lastSeen = "code"
+			if line != "" {
+				lastSeen = "code"
+			}
 		}
 	}
 	for i, seg := range segs {
@@ -278,7 +285,7 @@ func parseSegs(sourcePath string) ([]*Seg, string) {
 
 func parseAndRenderSegs(sourcePath string) ([]*Seg, string, string) {
 	lexer := whichLexer(sourcePath)
-	if lexer == "console" {
+	if lexer == "console" || lexer == "description" {
 		segs := []*Seg{}
 		lines := readLines(sourcePath)
 		filecontent := strings.Join(lines, "\n")
@@ -300,6 +307,7 @@ func parseAndRenderSegs(sourcePath string) ([]*Seg, string, string) {
 			var matchCloseSpan = regexp.MustCompile("</span>")
 			var matchOpenPre = regexp.MustCompile("<pre>")
 			var matchClosePre = regexp.MustCompile("</pre>")
+			var matchCodeNextLine = regexp.MustCompile("\n</code></pre></div>")
 			var codeCssClass = "siddhi"
 
 			if seg.IsConsoleOutput {
@@ -315,10 +323,17 @@ func parseAndRenderSegs(sourcePath string) ([]*Seg, string, string) {
 			openWrapString := matchOpenPre.ReplaceAllString(closeSpanCleanedString, "<pre><code class="+codeCssClass+">")
 			closeWrapString := matchClosePre.ReplaceAllString(openWrapString, "</code></pre>")
 
+			if !strings.HasSuffix(seg.Code, "\n") {
+				closeWrapString = matchCodeNextLine.ReplaceAllString(closeWrapString, "</code></pre></div>")
+			}
+
 			seg.CodeRendered = closeWrapString
 
 			if !ignoreSegment {
 				if !strings.Contains(seg.Code, "$ ") {
+					if completeCode != "" {
+						completeCode = completeCode + "\n"
+					}
 					completeCode = completeCode + seg.Code
 				} else {
 					ignoreSegment = true

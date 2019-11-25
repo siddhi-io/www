@@ -5,7 +5,8 @@ define stream TradesStream(trader string, quantity int);
 
 -- Define the sink to print the output events in the log file
 @sink(type='log')
-define stream SummarizedTradingInformation(trader string, noOfTrades long,
+define stream SummarizedTradingInformation(trader string,
+                noOfTrades long,
                 totalTradingQuantity long,
                 minTradingQuantity int, maxTradingQuantity int,
                 avgTradingQuantity double);

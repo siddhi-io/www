@@ -1,22 +1,58 @@
-[{
-    "title": "Hello World",
+[
+  {
+    "title": "Siddhi Basics",
     "column": 0,
     "category": "Language concepts",
     "samples": [
-        {
-            "name": "Simple Aggregation",
-            "url": "simple-aggregation"
-        }
+      {
+        "name": "Stream and Query",
+        "url": "stream-and-query"
+      },
+      {
+        "name": "Source and Sink",
+        "url": "source-and-sink"
+      },
+      {
+        "name": "Table and Store",
+        "url": "table-and-store"
+      },
+      {
+        "name": "Siddhi Application",
+        "url": "siddhiapp"
+      }
     ]
-}, 
-{
+  },
+  {
+    "title": "Values and Types",
+    "column": 0,
+    "category": "Language concepts",
+    "samples": [
+      {
+        "name": "Basic Types",
+        "url": "basic-types"
+      }
+    ]
+  },
+  {
     "title": "Event Cleansing",
     "column": 1,
     "category": "Language concepts",
     "samples": [
-        {
-            "name": "If-Then-Else",
-            "url": "if-then-else"
-        }
+      {
+        "name": "If-Then-Else",
+        "url": "if-then-else"
+      }
     ]
-}]
+  },
+  {
+    "title": "Aggregation",
+    "column": 2,
+    "category": "Language concepts",
+    "samples": [
+      {
+        "name": "Simple Aggregation",
+        "url": "simple-aggregation"
+      }
+    ]
+  }
+]

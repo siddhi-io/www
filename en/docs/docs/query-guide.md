@@ -239,9 +239,11 @@ Here the `HTTP` service will be secured with basic authentication, receives even
 
 ```json
 {
-  "name":"Paul",
-  "age":20,
-  "country":"UK"
+   "event":{
+       "name":"Paul",
+       "age":20,
+       "country":"UK"
+   }
 }
 ```
 

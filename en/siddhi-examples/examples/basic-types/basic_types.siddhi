@@ -1,0 +1,31 @@
+-- Defines `PatientRegistrationInputStream` having information in all primitive types.
+define stream PatientRegistrationInputStream (
+                 seqNo long, name string, age int,
+                 height float, weight double, photo object,
+                 isEmployee bool, wardNo object);
+
+
+-- Defines the resulting `PatientRegistrationStream` after processing.
+define stream PatientRegistrationStream (
+                 seqNo long, name string, age int,
+                 height double, weight double, photo object,
+                 isPhotoString bool, isEmployee bool,
+                 wardNo int);
+
+
+@info(name = 'Simple-selection')
+from PatientRegistrationInputStream
+select seqNo, name, age,
+-- `convert()` used to convert `float` type to `double`.
+       convert(height, 'double') as height,
+
+       weight, photo,
+-- `instanceOfString()` checks if the photo is an instance of `string`.
+       instanceOfString(photo) as isPhotoString,
+
+       isEmployee,
+-- `cast()` cast the value of wardNo to `int`.
+       cast(wardNo, 'int') as wardNo
+
+insert into PatientRegistrationStream;
+
