@@ -1,0 +1,13 @@
+#### Input
+
+Below event is sent to `CoupleDealInfoStream`,
+
+[`'Chocolate'`, `18.0`, `'Ice Cream'`, `24.0`]
+
+#### Output
+
+After processing, the following events will be arriving at each stream:
+
+* NewMapStream: <br/>[`{Ice Cream=24.0, Chocolate =18.0}`]
+* MapAnalysisStream: <br/>[`true`, `false`, `true`, `false`, `[Ice Cream, Chocolate]`]
+* ItemInsertedMapStream: <br/>[`{Ice Cream=24.0, Gift=1.0, Chocolate =18.0}`]

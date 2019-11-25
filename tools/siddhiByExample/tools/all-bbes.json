@@ -30,6 +30,10 @@
       {
         "name": "Basic Types",
         "url": "basic-types"
+      },
+      {
+        "name": "Map",
+        "url": "map"
       }
     ]
   },
