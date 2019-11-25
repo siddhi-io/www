@@ -615,5 +615,5 @@ func main() {
 	bbeCategories := getBBECategories()
 	examples := parseExamples(bbeCategories)
 	renderExamples(examples)
-	buildExampleIndexPage("tools/siddhiByExample/tools/all-bbes.json", "tools/siddhiByExample/tools/mkdocs.yml")
+	buildExampleIndexPage("tools/siddhiByExample/tools/all-bbes.json", "en/mkdocs.yml")
 }
