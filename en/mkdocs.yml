@@ -115,7 +115,11 @@ nav:
     - Introduction: docs/index.md
     - Features: docs/features.md
     - Quick Start: docs/quick-start/index.md
-#    - Examples:
+    - Examples:
+        - Hello World:
+            - docs/examples/if-then-else/index.md
+        - Simple Aggregation:
+            - docs/examples/simple-aggregation/index.md
     - Use case Guides:
         - Overview: docs/guides/overview.md
         - Alerts Based on Thresholds: docs/guides/alerts-for-thresholds/guide.md
