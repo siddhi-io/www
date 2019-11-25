@@ -1,0 +1,14 @@
+#### Input
+
+Below event is sent to `PatientRegistrationInputStream`,
+
+[`1200098`, `'Peter Johnson'`, `34`, `194.3f`, `69.6`, `#Fjoiu59%3hkjnknk$#nFT`, `true`, `34`]
+
+
+Here, assume that the content of the photo (`#Fjoiu59%3hkjnknk$#nFT`) is binary.
+
+#### Output
+
+After processing, the event arriving at `PatientRegistrationStream` will be as follows:
+
+[`1200098`, `'Peter Johnson'`, `34`, `194.3`, `69.6`, `#Fjoiu59%3hkjnknk$#nFT`, `false`, `true`, `34`]

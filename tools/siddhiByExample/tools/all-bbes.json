@@ -23,6 +23,17 @@
     ]
   },
   {
+    "title": "Values and Types",
+    "column": 0,
+    "category": "Language concepts",
+    "samples": [
+      {
+        "name": "Basic Types",
+        "url": "basic-types"
+      }
+    ]
+  },
+  {
     "title": "Event Cleansing",
     "column": 1,
     "category": "Language concepts",
