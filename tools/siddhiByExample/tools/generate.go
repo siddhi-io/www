@@ -590,7 +590,7 @@ func buildExampleIndexPage(jsonPath string, mkdocsYamlPath string) {
 	var samplePrefix = "            - "
 	var exampleString strings.Builder
 
-	exampleString.WriteString("      - Examples:\n")
+	exampleString.WriteString("    - Examples:\n")
 	for i := 0; i < len(sampleGroups); i++ {
 		exampleString.WriteString(sampleGroupPrefix)
 		exampleString.WriteString(sampleGroups[i].Title)
