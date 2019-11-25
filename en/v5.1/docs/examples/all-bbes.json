@@ -23,9 +23,28 @@
     ]
   },
   {
-    "title": "Event Cleansing",
-    "column": 1,
+    "title": "Values and Types",
+    "column": 0,
     "category": "Language concepts",
+    "samples": [
+      {
+        "name": "Basic Types",
+        "url": "basic-types"
+      },
+      {
+        "name": "Map",
+        "url": "map"
+      },
+      {
+        "name": "List",
+        "url": "list"
+      }
+    ]
+  },
+  {
+    "category": "Language concepts",
+    "column": 1,
+    "title": "Event Cleansing",
     "samples": [
       {
         "name": "If-Then-Else",

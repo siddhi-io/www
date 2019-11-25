@@ -895,25 +895,20 @@
  <a class="copy"><img src="../../../images/copy.png" width="20px"/></a>
 </div>
 <div class="FullCode">
-                <div class="highlight"><pre><span class="nx">define</span> <span class="nx">stream</span> <span class="nx">TemperatureStream</span> <span class="p">(</span><span class="nx">sensorId</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">temperature</span> <span class="nx">double</span><span class="p">);</span>
-
-<span class="err">@</span><span class="nx">sink</span><span class="p">(</span><span class="nx">type</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">log</span><span class="err">&#39;</span><span class="p">,</span> <span class="nx">prefix</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">ValidTemperatureStream</span><span class="err">&#39;</span><span class="p">,</span> 
-    <span class="err">@</span><span class="kt">map</span><span class="p">(</span><span class="nx">type</span> <span class="p">=</span> <span class="err">&#39;</span><span class="kt">json</span><span class="err">&#39;</span><span class="p">))</span>
-<span class="nx">define</span> <span class="nx">stream</span> <span class="nx">ValidTemperatureStream</span> <span class="p">(</span><span class="nx">isValid</span> <span class="kt">string</span><span class="p">);</span>
-<span class="err">@</span><span class="nx">sink</span><span class="p">(</span><span class="nx">type</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">log</span><span class="err">&#39;</span><span class="p">,</span> <span class="nx">prefix</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">ProcessedTemperatureStream</span><span class="err">&#39;</span><span class="p">,</span> 
-    <span class="err">@</span><span class="kt">map</span><span class="p">(</span><span class="nx">type</span> <span class="p">=</span> <span class="err">&#39;</span><span class="kt">json</span><span class="err">&#39;</span><span class="p">))</span>
-<span class="nx">define</span> <span class="nx">stream</span> <span class="nx">ProcessedTemperatureStream</span><span class="p">(</span><span class="nx">tempStatus</span> <span class="kt">string</span><span class="p">);</span>
-
+                <div class="highlight"><pre><span class="nx">define</span> <span class="nx">stream</span> <span class="nx">TemperatureStream</span> 
+        <span class="p">(</span><span class="nx">sensorId</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">temperature</span> <span class="nx">double</span><span class="p">);</span>
 
 <span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">SimpleIfElseQuery</span><span class="err">&#39;</span><span class="p">)</span>
 <span class="nx">from</span> <span class="nx">TemperatureStream</span>
-<span class="nx">select</span> <span class="nx">ifThenElse</span><span class="p">(</span><span class="nx">temperature</span> <span class="p">&gt;</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="err">&#39;</span><span class="nx">Valid</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="nx">InValid</span><span class="err">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="nx">isValid</span> 
+<span class="nx">select</span> <span class="nx">sensorId</span><span class="p">,</span>
+
+    <span class="nx">ifThenElse</span><span class="p">(</span><span class="nx">temperature</span> <span class="p">&gt;</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="err">&#39;</span><span class="nx">Valid</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="nx">InValid</span><span class="err">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="nx">isValid</span> 
 <span class="nx">insert</span> <span class="nx">into</span> <span class="nx">ValidTemperatureStream</span><span class="p">;</span>
 
 <span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">ComplexIfElseQuery</span><span class="err">&#39;</span><span class="p">)</span> 
 <span class="nx">from</span> <span class="nx">TemperatureStream</span>
+<span class="nx">select</span> <span class="nx">sensorId</span><span class="p">,</span> 
 
-<span class="nx">select</span> 
     <span class="nx">ifThenElse</span><span class="p">(</span><span class="nx">temperature</span> <span class="p">&gt;</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> 
         <span class="nx">ifThenElse</span><span class="p">(</span><span class="nx">temperature</span> <span class="p">&gt;</span> <span class="mi">40</span><span class="p">,</span> <span class="err">&#39;</span><span class="nx">High</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="nx">Normal</span><span class="err">&#39;</span><span class="p">),</span> 
         <span class="err">&#39;</span><span class="nx">InValid</span><span class="err">&#39;</span><span class="p">)</span> 
@@ -937,7 +932,8 @@
     <tr class="cTR hover-enable">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>define stream TemperatureStream (sensorId string, temperature double);
+            <div class="highlight"><pre><code class=siddhi>define stream TemperatureStream 
+        (sensorId string, temperature double);
 </code></pre></div>
 
         </td>
@@ -945,53 +941,7 @@
 
             <div class="cCodeDesription">
                 <div>
-                    <p>Define the input stream which has input event with temperature in Fahrenheit</p>
-
-                </div>
-            </div>
-
-        </td>
-    </tr>
-
-    <tr class="cTR hover-enable">
-
-        <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>@sink(type = &#39;log&#39;, prefix = &#39;ValidTemperatureStream&#39;, 
-    @map(type = &#39;json&#39;))
-define stream ValidTemperatureStream (isValid string);
-@sink(type = &#39;log&#39;, prefix = &#39;ProcessedTemperatureStream&#39;, 
-    @map(type = &#39;json&#39;))
-define stream ProcessedTemperatureStream(tempStatus string);
-</code></pre></div>
-
-        </td>
-        <td class="docs">
-
-            <div class="cCodeDesription">
-                <div>
-                    <p>Output streams and sinks to log the events to the console</p>
-
-                </div>
-            </div>
-
-        </td>
-    </tr>
-
-    <tr class="cTR hover-enable">
-
-        <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>@info(name = &#39;SimpleIfElseQuery&#39;)
-from TemperatureStream
-select ifThenElse(temperature &gt; -2, &#39;Valid&#39;, &#39;InValid&#39;) as isValid 
-insert into ValidTemperatureStream;
-</code></pre></div>
-
-        </td>
-        <td class="docs">
-
-            <div class="cCodeDesription">
-                <div>
-                    <p>If the temperature is greater than -2, it is valid event</p>
+                    <p>Defines <code>TemperatureStream</code> stream to pass events having <code>sensorId</code> and <code>temperature</code>(F).</p>
 
                 </div>
             </div>
@@ -1002,8 +952,9 @@ insert into ValidTemperatureStream;
     <tr class="cTR">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>@info(name = &#39;ComplexIfElseQuery&#39;) 
-from TemperatureStream</code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>@info(name = &#39;SimpleIfElseQuery&#39;)
+from TemperatureStream
+select sensorId,</code></pre></div>
 
         </td>
         <td class="docs">
@@ -1014,8 +965,50 @@ from TemperatureStream</code></pre></div>
     <tr class="cTR hover-enable">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>select 
-    ifThenElse(temperature &gt; -2, 
+            <div class="highlight"><pre><code class=siddhi> ifThenElse(temperature &gt; -2, &#39;Valid&#39;, &#39;InValid&#39;) as isValid </code></pre></div>
+
+        </td>
+        <td class="docs">
+
+            <div class="cCodeDesription">
+                <div>
+                    <p>if <code>temperature</code> &gt; -2, <code>isValid</code> will be <code>true</code> else <code>false</code></p>
+
+                </div>
+            </div>
+
+        </td>
+    </tr>
+
+    <tr class="cTR">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>insert into ValidTemperatureStream;
+</code></pre></div>
+
+        </td>
+        <td class="docs">
+
+        </td>
+    </tr>
+
+    <tr class="cTR">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>@info(name = &#39;ComplexIfElseQuery&#39;) 
+from TemperatureStream
+select sensorId, </code></pre></div>
+
+        </td>
+        <td class="docs">
+
+        </td>
+    </tr>
+
+    <tr class="cTR hover-enable">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi> ifThenElse(temperature &gt; -2, 
         ifThenElse(temperature &gt; 40, &#39;High&#39;, &#39;Normal&#39;), 
         &#39;InValid&#39;) 
     as tempStatus</code></pre></div>
@@ -1025,7 +1018,7 @@ from TemperatureStream</code></pre></div>
 
             <div class="cCodeDesription">
                 <div>
-                    <p>If the temperature is more than 40 degree the status is set to High, 0-40 as Normal</p>
+                    <p>If the <code>temperature</code> &gt; 40 the status is set to <code>High</code>, between -2 and 40 as <code>Normal</code> &amp; less than -2 as <code>InValid</code></p>
 
                 </div>
             </div>
@@ -1054,33 +1047,14 @@ from TemperatureStream</code></pre></div>
 </table>
 </div>
 <div class="cLeftTD">
-<p>Following logs can be seen for the temperature attribute Values</p>
+<h4>Events at each stream</h4>
 
-<table>
-<thead>
-<tr>
-<th>Temperature</th>
-<th>Logs</th>
-</tr>
-</thead>
+<p>When an event with values [<code>'sensor1'</code>, <code>35.4</code>] is sent to TemperatureStream stream it will get converted and travel through the streams as below.</p>
 
-<tbody>
-<tr>
-<td>-5</td>
-<td>ValidTemperatureStream : {&ldquo;event&rdquo;:{&ldquo;isValid&rdquo;:&ldquo;InValid&rdquo;}}<br>ProcessedTemperatureStream : {&ldquo;event&rdquo;:{&ldquo;tempStatus&rdquo;:&ldquo;InValid&rdquo;}}</td>
-</tr>
-
-<tr>
-<td>38</td>
-<td>ValidTemperatureStream : {&ldquo;event&rdquo;:{&ldquo;isValid&rdquo;:&ldquo;Valid&rdquo;}}<br>ProcessedTemperatureStream : {&ldquo;event&rdquo;:{&ldquo;tempStatus&rdquo;:&ldquo;Normal&rdquo;}}</td>
-</tr>
-
-<tr>
-<td>45</td>
-<td>ValidTemperatureStream : {&ldquo;event&rdquo;:{&ldquo;isValid&rdquo;:&ldquo;Valid&rdquo;}}<br>ProcessedTemperatureStream : {&ldquo;event&rdquo;:{&ldquo;tempStatus&rdquo;:&ldquo;High&rdquo;}}</td>
-</tr>
-</tbody>
-</table>
+<ul>
+<li>ValidTemperatureStream : [<code>'sensor1'</code>, <code>'Valid'</code>]</li>
+<li>ProcessedTemperatureStream : [<code>'sensor1'</code>, <code>'Normal'</code>]</li>
+</ul>
 
 <div>
                 
