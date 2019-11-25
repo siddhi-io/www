@@ -591,6 +591,9 @@ func buildExampleIndexPage(jsonPath string, mkdocsYamlPath string) {
 	var exampleString strings.Builder
 
 	exampleString.WriteString("    - Examples:\n")
+	exampleString.WriteString(sampleGroupPrefix)
+	exampleString.WriteString("Overview: docs/examples/")
+	exampleString.WriteString("\n")
 	for i := 0; i < len(sampleGroups); i++ {
 		exampleString.WriteString(sampleGroupPrefix)
 		exampleString.WriteString(sampleGroups[i].Title)
@@ -604,7 +607,7 @@ func buildExampleIndexPage(jsonPath string, mkdocsYamlPath string) {
 		}
 	}
 	newContents := strings.Replace(string(yamlFile), "    #Examples:", exampleString.String(), -1)
-	fmt.Println(exampleString)
+	fmt.Println(exampleString.String())
 	fmt.Println(newContents)
 	err := ioutil.WriteFile(mkdocsYamlPath, []byte(newContents), 0)
 	if err != nil {
