@@ -19,7 +19,7 @@ define table SensorIdInfoTable (
 
 
 @info(name = 'Join-query')
--- `TemperatureStream` joins with `SensorIdInfoTable` based on `sensorId`.
+-- `TemperatureStream` with alias `t` joins with `SensorIdInfoTable` with alias `s` based on `sensorId`.
 from TemperatureStream as t join SensorIdInfoTable as s
      on t.sensorId == s.sensorId
 -- Selects `sensorId`, `roomNo`, and `temperature` attributes from stream and table, and adds events to `TemperatureLogTable`.

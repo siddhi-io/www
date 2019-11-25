@@ -1,0 +1,14 @@
+#### Input
+
+Below event is sent to `ProductComboStream`,
+
+[`'Ice Cream'`, `'Chocolate'`, `'Cake'`]
+
+#### Output
+
+After processing, the following events will be arriving at each stream:
+
+* NewListStream: <br/>[`[Ice Cream, Chocolate, Cake]`]
+* ListAnalysisStream: <br/>[`true`, `true`, `false`, `Chocolate`, `3`]
+* UpdatedListStream: <br/>[`[Ice Cream, Chocolate, Toffee]`]
+

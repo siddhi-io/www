@@ -1,0 +1,39 @@
+-- Defines `ProductComboStream` having `string` type attributes `product1`, `product2`, and `product3`.
+define stream ProductComboStream (
+            product1 string, product2 string, product3 string);
+
+
+@info(name = 'Create-list')
+from ProductComboStream
+-- Create a list with values of `product1`, `product2`, and `product3`.
+select list:create(product1, product2, product3)
+            as productList
+
+insert into NewListStream;
+
+
+@info(name = 'Check-list')
+from NewListStream
+-- Check if `productList` is a List.
+select list:isList(productList) as isList,
+-- Check if `productList` contains `'Cake'`.
+       list:contains(productList, 'Cake')
+            as isCakePresent,
+-- Check if `productList` is empty.
+       list:isEmpty(productList) as isEmpty,
+-- Get the value at index `1` from `productList` .
+       list:get(productList, 1) as valueAt1,
+-- Get size of `productList`.
+       list:size(productList) as size
+
+insert into ListAnalysisStream;
+
+
+@info(name = 'Clone-and-update')
+from NewListStream
+-- Clone `productList`, add `Toffee` to the end of the list, and remove `Cake` from the list.
+select list:remove(
+            list:add(list:clone(productList), "Toffee"),
+            "Cake") as productList
+
+insert into UpdatedListStream;
