@@ -13,7 +13,7 @@ define stream PatientRegistrationStream (
                  wardNo int);
 
 
-@info(name = 'Simple-selection')
+@info(name = 'Type-processor')
 from PatientRegistrationInputStream
 select seqNo, name, age,
 -- `convert()` used to convert `float` type to `double`.
