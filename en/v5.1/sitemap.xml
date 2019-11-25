@@ -81,6 +81,11 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc></loc>
+     
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>http://siddhi.io/en/v5.1/docs/guides/overview/</loc>
      <lastmod>2019-11-25</lastmod>
      <changefreq>daily</changefreq>
