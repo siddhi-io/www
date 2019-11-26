@@ -1,0 +1,12 @@
+#### Input
+
+Below event is sent to `SweetProductionStream`, 
+
+[`'chocolate cake'`, `34`]
+
+
+#### Output
+
+After processing, the event arriving at `ChocolateProductStream` will be as follows:
+
+[`'chocolate cake'`, `true`, `'cake'`]
