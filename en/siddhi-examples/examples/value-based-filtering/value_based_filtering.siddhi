@@ -1,0 +1,28 @@
+-- Defines `TemperatureStream` stream to process events having `sensorId` and `temperature`(F).
+define stream TemperatureStream (
+ sensorId string, temperature double);
+
+
+@info(name = 'EqualsFilter')
+-- Filter out events with `sensorId` equalling `A1234`
+from TemperatureStream[ sensorId == 'A1234']
+
+select *
+insert into SenorA1234TemperatureStream;
+
+
+@info(name = 'RangeFilter') 
+-- Filter out events where `-2 < temperature < 40`
+from TemperatureStream[ temperature > -2 and temperature < 40]
+
+select *
+insert into NormalTemperatureStream;
+
+
+@info(name = 'NullFilter') 
+-- Filter out events with `SensorId` being `null`
+from TemperatureStream[ sensorId is null ]
+
+select *
+insert into InValidTemperatureStream;
+
