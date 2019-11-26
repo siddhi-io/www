@@ -47,13 +47,13 @@
     "title": "Event Cleansing",
     "samples": [
       {
-        "name": "If-Then-Else",
-        "url": "if-then-else"
-      },
-      {
         "name": "Value based Filtering",
         "url": "value-based-filtering"
-      }
+      },
+      {
+        "name": "If-Then-Else",
+        "url": "if-then-else"
+      }      
     ]
   },
   {
