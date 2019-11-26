@@ -592,7 +592,7 @@ func buildExampleIndexPage(jsonPath string, mkdocsYamlPath string) {
 
 	exampleString.WriteString("    - Examples:\n")
 	exampleString.WriteString(sampleGroupPrefix)
-	exampleString.WriteString("Overview: docs/examples/")
+	exampleString.WriteString("Overview: docs/examples/index.md")
 	exampleString.WriteString("\n")
 	for i := 0; i < len(sampleGroups); i++ {
 		exampleString.WriteString(sampleGroupPrefix)
@@ -603,7 +603,7 @@ func buildExampleIndexPage(jsonPath string, mkdocsYamlPath string) {
 			exampleString.WriteString(sampleGroups[i].Samples[j].Name)
 			exampleString.WriteString(": docs/examples/")
 			exampleString.WriteString(sampleGroups[i].Samples[j].Url)
-			exampleString.WriteString("\n")
+			exampleString.WriteString(".md\n")
 		}
 	}
 	newContents := strings.Replace(string(yamlFile), "    #Examples:", exampleString.String(), -1)
