@@ -1,0 +1,25 @@
+#### Aggregation Behavior
+
+When events are sent to `TemperatureStream` stream, following events will get emitted at `OverallTemperatureStream` stream via `Overall-analysis` query,
+and `SensorIdTemperatureStream` stream via `SensorId-analysis` query.
+
+<style>
+.md-typeset__table th:nth-child(2) {
+    width: 123px;
+}
+</style>
+
+|Time | Input to `TemperatureStream` | Output at `OverallTemperatureStream` | Output at `SensorIdTemperatureStream` |
+|---|---|---|---|
+| 9:00:10 | [`'1001'`, `21.0`] | - | - |
+| 9:00:20 | [`'1002'`, `25.0`] | - | - |
+| 9:00:30 | -                  | - | [`'1001'`, `21.0`, `21.0`],[`'1002'`, `25.0`, `25.0`] |
+| 9:00:35 | [`'1002'`, `26.0`] | - | - |
+| 9:00:40 | [`'1002'`, `27.0`] | - | - |
+| 9:00:55 | [`'1001'`, `19.0`] | - | - |
+| 9:00:00 | -                  | - | [`'1002'`, `26.5`, `26.0`] |
+| 9:01:10 | -                  | [`23.6`, `27.0`, `5`]  | - |
+| 9:01:20 | [`'1001'`, `21.0`] | - | - |
+| 9:01:30 | -                  | - | [`'1001'`, `21.0`, `21.0`] |
+| 9:02:10 | -                  | [`21.0`, `21.0`, `1`]  | - |
+

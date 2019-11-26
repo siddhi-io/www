@@ -1,0 +1,29 @@
+define stream TemperatureStream
+        (sensorId string, temperature double);
+
+
+@info(name = 'Overall-analysis')
+-- Aggregate events every `1 minute`, from the arrival of the first event.
+from TemperatureStream#window.timeBatch(1 min)
+-- Calculate average, maximum, and count for `temperature` attribute.
+select avg(temperature) as avgTemperature,
+       max(temperature) as maxTemperature,
+       count() as numberOfEvents
+
+insert into OverallTemperatureStream;
+
+
+@info(name = 'SensorId-analysis')
+-- Aggregate events every `30 seconds` from epoch timestamp `0`.
+from TemperatureStream#window.timeBatch(30 sec, 0)
+
+select sensorId,
+-- Calculate average, and minimum for `temperature`, by grouping events by `sensorId`.
+       avg(temperature) as avgTemperature,
+       min(temperature) as maxTemperature
+group by sensorId
+-- Output events only when `avgTemperature` is greater than `20.0`.
+having avgTemperature > 20.0
+
+insert into SensorIdTemperatureStream;
+

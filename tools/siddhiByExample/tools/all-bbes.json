@@ -80,6 +80,10 @@
       {
         "name": "Sliding Time",
         "url": "sliding-time"
+      },
+      {
+        "name": "Batch(Tumbling) Time",
+        "url": "batch-time"
       }
     ]
   },

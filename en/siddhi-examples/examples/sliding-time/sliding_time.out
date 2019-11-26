@@ -1,6 +1,6 @@
 #### Aggregation Behavior
 
-When events are sent to `TemperatureStream` stream over time, following events will get emitted at `OverallTemperatureStream` stream via `Overall-analysis` query,
+When events are sent to `TemperatureStream` stream, following events will get emitted at `OverallTemperatureStream` stream via `Overall-analysis` query,
 and `SensorIdTemperatureStream` stream via `SensorId-analysis` query.
 
 <style>
