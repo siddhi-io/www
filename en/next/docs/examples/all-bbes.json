@@ -38,6 +38,10 @@
       {
         "name": "List",
         "url": "list"
+      },
+      {
+        "name": "Null",
+        "url": "null"
       }
     ]
   },
@@ -53,7 +57,19 @@
       {
         "name": "If-Then-Else",
         "url": "if-then-else"
-      }      
+      },
+      {
+        "name": "Regex Matching",
+        "url": "regex-matching"
+      },
+      {
+        "name": "Default",
+        "url": "default"
+      },
+      {
+        "name": "Type based Filtering",
+        "url": "type-based-filtering"
+      }
     ]
   },
   {
