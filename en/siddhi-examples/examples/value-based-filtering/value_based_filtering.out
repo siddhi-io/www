@@ -1,7 +1,15 @@
-#### Events 
+#### Input
 
-Events  will arrive at the following streams only if the input of `TemperatureStream` equals,
+Below events are sent to `TemperatureStream`,
 
-* SenorA1234TemperatureStream: [`'A1234'`, 39]
-* NormalTemperatureStream:  [`'sensor1'`, 35]
-* InValidTemperatureStream: [`null`, 43]
+1. [`'A1234'`, 39]
+2. [`'sensor1'`, 35]
+3. [`null`, 43]
+
+#### Output
+
+After processing, the following events will be arriving at each stream:
+
+* SenorA1234TemperatureStream: [`'A1234'`, 39] only
+* NormalTemperatureStream:  [`'sensor1'`, 35] only
+* InValidTemperatureStream: [`null`, 43] only 
