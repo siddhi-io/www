@@ -31,7 +31,7 @@
         <meta name="description" content="Cloud Native Stream Processor">
       
       
-        <link rel="canonical" href="http://siddhi.io/en/versions/docs/examples/if-then-else/">
+        <link rel="canonical" href="http://siddhi.io/en/versions/docs/examples/value-based-filtering/">
       
       
         <meta name="author" content="WSO2">
@@ -60,7 +60,7 @@
     
     
       
-        <title>If then else - Siddhi</title>
+        <title>Value based filtering - Siddhi</title>
       
     
     
@@ -179,7 +179,7 @@
               Siddhi
             </span>
             <span class="md-header-nav__topic">
-              If then else
+              Value based filtering
             </span>
           
         </div>
@@ -348,7 +348,7 @@
         </ul>
         <div class="quick_links">
             
-            <a href="https://github.com/siddhi-io/www/tree/versions/en/docs/docs/examples/if-then-else.md" target="blank" id="editIcon" title="Edit this page"
+            <a href="https://github.com/siddhi-io/www/tree/versions/en/docs/docs/examples/value-based-filtering.md" target="blank" id="editIcon" title="Edit this page"
                title="Edit this page" class="md-icon md-content__icon nav_link edit_link"></a>
             
         </div>
@@ -623,7 +623,7 @@
               
   
                 
-                  <a href="https://github.com/siddhi-io/www/tree/versions/en/docs/docs/examples/if-then-else.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/siddhi-io/www/tree/versions/en/docs/docs/examples/value-based-filtering.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
                 <!--copy to clipboard lib-->
@@ -641,11 +641,11 @@
 <script src="../../../assets/js/example.js"></script>
 
 <p><link rel=stylesheet href="../../../assets/css/example.css">
-<span class="info" dir="https://github.com/siddhi-io/www/tree/v5.1/en/siddhi-examples/examples/if-then-else/"><span></p>
-<h1>If-Then-Else</h1>
+<span class="info" dir="https://github.com/siddhi-io/www/tree/v5.1/en/siddhi-examples/examples/value-based-filtering/"><span></p>
+<h1>Value based Filtering</h1>
 
 <div class="cLeftTD">
-<p><p>This application demonstrates how to enrich events based on a simple if-then-else conditions.</p>
+<p><p>This application demonstrates filter out events based on simple conditions such as number value, range or null type.</p>
 </p>
 </div>
 
@@ -654,25 +654,26 @@
  <a class="copy"><img src="../../../images/copy.png" width="20px"/></a>
 </div>
 <div class="FullCode">
-                <div class="highlight"><pre><span class="nx">define</span> <span class="nx">stream</span> <span class="nx">TemperatureStream</span> 
-        <span class="p">(</span><span class="nx">sensorId</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">temperature</span> <span class="nx">double</span><span class="p">);</span>
+                <div class="highlight"><pre><span class="nx">define</span> <span class="nx">stream</span> <span class="nx">TemperatureStream</span> <span class="p">(</span>
+ <span class="nx">sensorId</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">temperature</span> <span class="nx">double</span><span class="p">);</span>
 
-<span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">SimpleIfElseQuery</span><span class="err">&#39;</span><span class="p">)</span>
-<span class="nx">from</span> <span class="nx">TemperatureStream</span>
-<span class="nx">select</span> <span class="nx">sensorId</span><span class="p">,</span>
+<span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">EqualsFilter</span><span class="err">&#39;</span><span class="p">)</span>
 
-    <span class="nx">ifThenElse</span><span class="p">(</span><span class="nx">temperature</span> <span class="p">&gt;</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="err">&#39;</span><span class="nx">Valid</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="nx">InValid</span><span class="err">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="nx">isValid</span> 
-<span class="nx">insert</span> <span class="nx">into</span> <span class="nx">ValidTemperatureStream</span><span class="p">;</span>
+<span class="nx">from</span> <span class="nx">TemperatureStream</span><span class="p">[</span> <span class="nx">sensorId</span> <span class="o">==</span> <span class="err">&#39;</span><span class="nx">A1234</span><span class="err">&#39;</span><span class="p">]</span>
+<span class="nx">select</span> <span class="o">*</span>
+<span class="nx">insert</span> <span class="nx">into</span> <span class="nx">SenorA1234TemperatureStream</span><span class="p">;</span>
 
-<span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">ComplexIfElseQuery</span><span class="err">&#39;</span><span class="p">)</span> 
-<span class="nx">from</span> <span class="nx">TemperatureStream</span>
-<span class="nx">select</span> <span class="nx">sensorId</span><span class="p">,</span> 
+<span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">RangeFilter</span><span class="err">&#39;</span><span class="p">)</span> 
 
-    <span class="nx">ifThenElse</span><span class="p">(</span><span class="nx">temperature</span> <span class="p">&gt;</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> 
-        <span class="nx">ifThenElse</span><span class="p">(</span><span class="nx">temperature</span> <span class="p">&gt;</span> <span class="mi">40</span><span class="p">,</span> <span class="err">&#39;</span><span class="nx">High</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="nx">Normal</span><span class="err">&#39;</span><span class="p">),</span> 
-        <span class="err">&#39;</span><span class="nx">InValid</span><span class="err">&#39;</span><span class="p">)</span> 
-    <span class="k">as</span> <span class="nx">tempStatus</span>
-<span class="nx">insert</span> <span class="nx">into</span> <span class="nx">ProcessedTemperatureStream</span><span class="p">;</span>
+<span class="nx">from</span> <span class="nx">TemperatureStream</span><span class="p">[</span> <span class="nx">temperature</span> <span class="p">&gt;</span> <span class="o">-</span><span class="mi">2</span> <span class="nx">and</span> <span class="nx">temperature</span> <span class="p">&lt;</span> <span class="mi">40</span><span class="p">]</span>
+<span class="nx">select</span> <span class="o">*</span>
+<span class="nx">insert</span> <span class="nx">into</span> <span class="nx">NormalTemperatureStream</span><span class="p">;</span>
+
+<span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">NullFilter</span><span class="err">&#39;</span><span class="p">)</span> 
+
+<span class="nx">from</span> <span class="nx">TemperatureStream</span><span class="p">[</span> <span class="nx">sensorId</span> <span class="nx">is</span> <span class="kc">null</span> <span class="p">]</span>
+<span class="nx">select</span> <span class="o">*</span>
+<span class="nx">insert</span> <span class="nx">into</span> <span class="nx">InValidTemperatureStream</span><span class="p">;</span>
 </pre></div>
 
             </div>
@@ -691,8 +692,8 @@
     <tr class="cTR hover-enable">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>define stream TemperatureStream 
-        (sensorId string, temperature double);
+            <div class="highlight"><pre><code class=siddhi>define stream TemperatureStream (
+ sensorId string, temperature double);
 </code></pre></div>
 
         </td>
@@ -711,9 +712,7 @@
     <tr class="cTR">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>@info(name = &#39;SimpleIfElseQuery&#39;)
-from TemperatureStream
-select sensorId,</code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>@info(name = &#39;EqualsFilter&#39;)</code></pre></div>
 
         </td>
         <td class="docs">
@@ -724,14 +723,14 @@ select sensorId,</code></pre></div>
     <tr class="cTR hover-enable">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi> ifThenElse(temperature &gt; -2, &#39;Valid&#39;, &#39;InValid&#39;) as isValid </code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>from TemperatureStream[ sensorId == &#39;A1234&#39;]</code></pre></div>
 
         </td>
         <td class="docs">
 
             <div class="cCodeDesription">
                 <div>
-                    <p>if <code>temperature</code> &gt; -2, <code>isValid</code> will be <code>true</code> else <code>false</code></p>
+                    <p>Filter out events with <code>sensorId</code> equalling <code>A1234</code></p>
 
                 </div>
             </div>
@@ -742,7 +741,8 @@ select sensorId,</code></pre></div>
     <tr class="cTR">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>insert into ValidTemperatureStream;
+            <div class="highlight"><pre><code class=siddhi>select *
+insert into SenorA1234TemperatureStream;
 </code></pre></div>
 
         </td>
@@ -754,9 +754,7 @@ select sensorId,</code></pre></div>
     <tr class="cTR">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>@info(name = &#39;ComplexIfElseQuery&#39;) 
-from TemperatureStream
-select sensorId, </code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>@info(name = &#39;RangeFilter&#39;) </code></pre></div>
 
         </td>
         <td class="docs">
@@ -767,17 +765,56 @@ select sensorId, </code></pre></div>
     <tr class="cTR hover-enable">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi> ifThenElse(temperature &gt; -2, 
-        ifThenElse(temperature &gt; 40, &#39;High&#39;, &#39;Normal&#39;), 
-        &#39;InValid&#39;) 
-    as tempStatus</code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>from TemperatureStream[ temperature &gt; -2 and temperature &lt; 40]</code></pre></div>
 
         </td>
         <td class="docs">
 
             <div class="cCodeDesription">
                 <div>
-                    <p>If the <code>temperature</code> &gt; 40 the status is set to <code>High</code>, between -2 and 40 as <code>Normal</code> &amp; less than -2 as <code>InValid</code></p>
+                    <p>Filter out events where <code>-2 &lt; temperature &lt; 40</code></p>
+
+                </div>
+            </div>
+
+        </td>
+    </tr>
+
+    <tr class="cTR">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>select *
+insert into NormalTemperatureStream;
+</code></pre></div>
+
+        </td>
+        <td class="docs">
+
+        </td>
+    </tr>
+
+    <tr class="cTR">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>@info(name = &#39;NullFilter&#39;) </code></pre></div>
+
+        </td>
+        <td class="docs">
+
+        </td>
+    </tr>
+
+    <tr class="cTR hover-enable">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>from TemperatureStream[ sensorId is null ]</code></pre></div>
+
+        </td>
+        <td class="docs">
+
+            <div class="cCodeDesription">
+                <div>
+                    <p>Filter out events with <code>SensorId</code> being <code>null</code></p>
 
                 </div>
             </div>
@@ -788,7 +825,9 @@ select sensorId, </code></pre></div>
     <tr class="cTR">
 
         <td class="code">
-            <div class="highlight"><pre><code class=siddhi>insert into ProcessedTemperatureStream;</code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>select *
+insert into InValidTemperatureStream;
+</code></pre></div>
 
         </td>
         <td class="docs">
@@ -806,13 +845,24 @@ select sensorId, </code></pre></div>
 </table>
 </div>
 <div class="cLeftTD">
-<h4>Events at each stream</h4>
+<h4>Input</h4>
 
-<p>When an event with values [<code>'sensor1'</code>, <code>35.4</code>] is sent to TemperatureStream stream it will get converted and travel through the streams as below.</p>
+<p>Below events are sent to <code>TemperatureStream</code>,</p>
+
+<ol>
+<li>[<code>'A1234'</code>, 39]</li>
+<li>[<code>'sensor1'</code>, 35]</li>
+<li>[<code>null</code>, 43]</li>
+</ol>
+
+<h4>Output</h4>
+
+<p>After processing, the following events will be arriving at each stream:</p>
 
 <ul>
-<li>ValidTemperatureStream : [<code>'sensor1'</code>, <code>'Valid'</code>]</li>
-<li>ProcessedTemperatureStream : [<code>'sensor1'</code>, <code>'Normal'</code>]</li>
+<li>SenorA1234TemperatureStream: [<code>'A1234'</code>, 39] only</li>
+<li>NormalTemperatureStream:  [<code>'sensor1'</code>, 35] only</li>
+<li>InValidTemperatureStream: [<code>null</code>, 43] only</li>
 </ul>
 
 <div>
