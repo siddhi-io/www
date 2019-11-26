@@ -73,6 +73,17 @@
     ]
   },
   {
+    "title": "Data Summarization",
+    "column": 2,
+    "category": "Language concepts",
+    "samples": [
+      {
+        "name": "Sliding Time",
+        "url": "sliding-time"
+      }
+    ]
+  },
+  {
     "title": "Aggregation",
     "column": 2,
     "category": "Language concepts",
