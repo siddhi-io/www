@@ -1,0 +1,34 @@
+define stream ProductInputStream (item string, price double);
+
+
+-- Empty `ProductInfoTable` with attributes `item` and `discount`.
+define Table ProductInfoTable (item string, discount double);
+
+
+@info(name = 'Check-for-null')
+-- Filter events with `item` not having `null` value.
+from ProductInputStream [not(item is null)]
+
+select item,
+-- Checks if `price` contains `null` value.
+       price is null as isPriceNull
+
+insert into ProductValidationStream;
+
+
+@info(name = 'Outer-join-with-table')
+from ProductInputStream as s
+    left outer join ProductInfoTable as t
+    on s.item == t.item
+select s.item, s.price, t.discount,
+-- Check if `math:power()` returns `null`.
+       math:power(t.discount, 2) is null
+            as isFunctionReturnsNull,
+-- Check if streams `t` and `s` are `null`.
+       t is null as isTNull,
+       s is null as isSNull,
+-- Check if streams attributes `t.discount` and `s.item` are `null`.
+       t.discount is null as isTDiscountNull,
+       s.item is null as isSItemNull
+
+insert into DiscountValidationStream;
