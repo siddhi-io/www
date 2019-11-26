@@ -106,6 +106,16 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>http://siddhi.io/en/v5.1/docs/examples/sliding-time/</loc>
+     <lastmod>2019-11-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>http://siddhi.io/en/v5.1/docs/examples/batch-time/</loc>
+     <lastmod>2019-11-26</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/simple-aggregation/</loc>
      <lastmod>2019-11-26</lastmod>
      <changefreq>daily</changefreq>

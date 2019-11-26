@@ -73,6 +73,21 @@
     ]
   },
   {
+    "title": "Data Summarization",
+    "column": 2,
+    "category": "Language concepts",
+    "samples": [
+      {
+        "name": "Sliding Time",
+        "url": "sliding-time"
+      },
+      {
+        "name": "Batch(Tumbling) Time",
+        "url": "batch-time"
+      }
+    ]
+  },
+  {
     "title": "Aggregation",
     "column": 2,
     "category": "Language concepts",
