@@ -65,6 +65,10 @@
       {
         "name": "Default",
         "url": "default"
+      },
+      {
+        "name": "Type based Filtering",
+        "url": "type-based-filtering"
       }
     ]
   },

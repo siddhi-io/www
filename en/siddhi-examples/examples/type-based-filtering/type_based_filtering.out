@@ -1,0 +1,12 @@
+#### Input
+
+Below event is sent to `SweetProductionStream`, 
+
+[`'chocolate cake'`, `'invalid'`]
+
+
+#### Output
+
+After processing, the event arriving at `ProcessedSweetProductionStream` will be as follows:
+
+[`false`, `'chocolate cake'`, `'invalid'`]

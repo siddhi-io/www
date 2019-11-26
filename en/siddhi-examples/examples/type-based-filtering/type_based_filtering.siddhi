@@ -1,0 +1,14 @@
+-- Defines `SweetProductionStream` having information of `name` and `amount`
+define stream SweetProductionStream (name string, amount int);
+
+
+@info(name='ProcessSweetProductionStream')
+from SweetProductionStream
+select 
+-- `true` if `amount` is of `int` type
+   instanceOfInteger(amount) as isAIntInstance,
+
+    name, 
+    amount
+insert into ProcessedSweetProductionStream;
+
