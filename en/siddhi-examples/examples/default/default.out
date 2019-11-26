@@ -1,0 +1,14 @@
+#### Input
+
+An event of all `null` attributes is sent to `PatientRegistrationInputStream`,
+
+
+#### Output
+
+After processing, the event arriving at `PreprocessedPatientRegistrationInputStream` will be as follows, 
+
+[`'invalid'`, `0` `0.0`, `0`, `0.0`]
+
+with types, 
+
+[`string`, `long`, `double`, `int`, `float`]

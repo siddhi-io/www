@@ -1,0 +1,28 @@
+-- Defines `PatientRegistrationInputStream` having information in all primitive types.
+define stream PatientRegistrationInputStream (
+                 seqNo long, name string, age int,
+                 height float, weight double, photo object,
+                 isEmployee bool, wardNo object);
+
+
+@info(name = 'SimpleIfElseQuery')
+from PatientRegistrationInputStream
+select 
+-- Default value of `invalid` to be used if `name` is `null` 
+	default(name, 'invalid') as name, 
+
+-- Default value of `0l` to be used if `seqNo` is `null` 
+	default(seqNo, 0l) as seqNo, 
+
+-- Default value of `0d` to be used if `weight` is `null` 
+	default(weight, 0d) as weight,
+	
+-- Default value of `0` to be used if `age` is `null` 
+	default(age, 0) as age,	
+
+-- Default value of `0f` to be used if `height` is `null` 
+	default(height, 0f) as height 	
+
+insert into PreprocessedPatientRegistrationInputStream;
+
+
