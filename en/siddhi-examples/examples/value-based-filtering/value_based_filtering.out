@@ -10,6 +10,8 @@ Below events are sent to `TemperatureStream`,
 
 After processing, the following events will be arriving at each stream:
 
-* SenorA1234TemperatureStream: [`'A1234'`, 39] only
-* NormalTemperatureStream:  [`'sensor1'`, 35] only
-* InValidTemperatureStream: [`null`, 43] only 
+* SenorA1234TemperatureStream: <br/>[`'A1234'`, 39] only
+
+* NormalTemperatureStream:  <br/>[`'sensor1'`, 35] only
+
+* InValidTemperatureStream: <br/>[`null`, 43] only 
