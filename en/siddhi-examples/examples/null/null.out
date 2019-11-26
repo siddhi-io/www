@@ -1,0 +1,12 @@
+#### Input
+
+Below event is sent to `ProductInputStream`,
+
+[`'Cake'`, `12.0`]
+
+#### Output
+
+After processing, the following events will be arriving at each stream:
+
+* ProductValidationStream: <br/>[`Cake`, `false`]
+* DiscountValidationStream: <br/>[`Cake`, `12.0`, `null`, `true`, `true`, `false`, `true`, `false`]
