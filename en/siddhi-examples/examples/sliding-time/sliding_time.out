@@ -4,8 +4,8 @@ When events are sent to `TemperatureStream` stream, following events will get em
 and `SensorIdTemperatureStream` stream via `SensorId-analysis` query.
 
 <style>
-.md-typeset__table th:nth-child(2) {
-    width: 123px;
+.md-typeset table:not([class]) th:nth-child(2) {
+    min-width: 123px;
 }
 </style>
 
