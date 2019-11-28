@@ -1,0 +1,20 @@
+#### Aggregation Behavior
+
+When events are sent to `TemperatureStream` stream, following events will get emitted at `OverallTemperatureStream` stream via `Overall-analysis` query,
+and `SensorIdTemperatureStream` stream via `SensorId-analysis` query.
+
+<style>
+.md-typeset table:not([class]) th:nth-child(2) {
+    min-width: 123px;
+}
+</style>
+
+| Input to `TemperatureStream` | Output at `OverallTemperatureStream` | Output at `SensorIdTemperatureStream` |
+|---|---|---|
+| [`'1001'`, `19.0`] | [`19.0`, `19.0`, `1`]  | No events, as having <br/>condition not satisfied <br/>for `'1001'`. |
+| [`'1002'`, `26.0`] | [`22.5`, `26.0`, `2`]  | [`'1002'`, `26.0`, `26.0`] |
+| [`'1002'`, `24.0`] | [`23.0`, `26.0`, `3`]  | [`'1002'`, `25.5`, `24.0`] |
+| [`'1001'`, `20.0`] | [`22.5`, `26.0`, `4`]  | No events, as having <br/>condition not satisfied <br/>for `'1001'`. |
+| [`'1001'`, `21.0`] | [`22.75`, `26.0`, `4`] | [`'1001'`, `20.0`, `19.0`] |
+| [`'1001'`, `22.0`] | [`21.75`, `24.0`, `4`]  | [`'1001'`, `21.0`, `20.0`] |
+

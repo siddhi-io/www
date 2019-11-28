@@ -82,8 +82,12 @@
         "url": "sliding-time"
       },
       {
-        "name": "Batch(Tumbling) Time",
+        "name": "Batch (Tumbling) Time",
         "url": "batch-time"
+      },
+      {
+        "name": "Sliding Event Count",
+        "url": "sliding-length"
       }
     ]
   },
