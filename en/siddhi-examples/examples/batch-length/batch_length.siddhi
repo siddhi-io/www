@@ -3,8 +3,8 @@ define stream TemperatureStream
 
 
 @info(name = 'Overall-analysis')
--- Aggregate last `4` events in a sliding manner.
-from TemperatureStream#window.length(4)
+-- Aggregate every `4` events in a batch (tumbling) manner.
+from TemperatureStream#window.lengthBatch(4)
 -- Calculate average, maximum, and count for `temperature` attribute.
 select avg(temperature) as avgTemperature,
        max(temperature) as maxTemperature,
@@ -13,8 +13,8 @@ insert into OverallTemperatureStream;
 
 
 @info(name = 'SensorId-analysis')
--- Aggregate last `5` events in a sliding manner.
-from TemperatureStream#window.length(5)
+-- Aggregate every `5` events in a batch (tumbling) manner.
+from TemperatureStream#window.lengthBatch(5)
 
 select sensorId,
 -- Calculate average, and minimum for `temperature`, by grouping events by `sensorId`.

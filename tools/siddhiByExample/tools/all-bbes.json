@@ -88,6 +88,10 @@
       {
         "name": "Sliding Event Count",
         "url": "sliding-length"
+      },
+      {
+        "name": "Batch (Tumbling) Event Count",
+        "url": "batch-length"
       }
     ]
   },

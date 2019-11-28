@@ -1,0 +1,3 @@
+Provides examples on aggregating events based on event count in a batch (tumbling) manner.
+
+To aggregate events in a sliding manner, based on time, or by session, refer other the examples in Data Summarization section. For more information on [windows](../../query-guide/#window) refer the Siddhi [query guide](../../query-guide/).
