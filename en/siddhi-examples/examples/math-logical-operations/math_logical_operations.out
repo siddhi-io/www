@@ -1,0 +1,14 @@
+#### Input
+
+Below event is sent to `TemperatureStream`,
+
+[`'SensorId'`, `-17`]
+
+#### Output
+
+After processing, the following events will be arriving at each stream:
+
+* FahrenheitTemperatureStream: <br/>[`'SensorId'`, `1.4`]
+* OverallTemperatureStream: <br/>[`'SensorId'`, `1.0`]
+* NormalTemperatureStream: <br/>[`'SensorId'`, `1.0`]
+

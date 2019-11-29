@@ -1,0 +1,30 @@
+define stream TemperatureStream
+        (sensorId string, temperature double);
+
+
+@infor(name = 'celciusTemperature')
+from TemperatureStream
+select sensorId, 
+-- Converts Celsius value into Fahrenheit.
+                (temperature * 9 / 5) + 32 as temperature
+
+insert into FahrenheitTemperatureStream;
+
+
+@info(name = 'Overall-analysis')
+from FahrenheitTemperatureStream
+select sensorId, 
+
+-- Calculate approximated temperature to the first digit 
+                math:floor(temperature) as approximateTemp 
+
+insert all events into OverallTemperatureStream;
+
+
+@info(name = 'RangeFilter') 
+from OverallTemperatureStream
+ -- Filter out events where `-2 < approximateTemp < 40`
+              [ approximateTemp > -2 and approximateTemp < 40]
+
+select *
+insert into NormalTemperatureStream;
