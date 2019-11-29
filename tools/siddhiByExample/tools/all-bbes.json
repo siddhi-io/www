@@ -48,11 +48,73 @@
   {
     "category": "Language concepts",
     "column": 1,
+    "title": "Event Cleansing",
+    "samples": [
+      {
+        "name": "Value based Filtering",
+        "url": "value-based-filtering"
+      },
+      {
+        "name": "If-Then-Else",
+        "url": "if-then-else"
+      },
+      {
+        "name": "Regex Matching",
+        "url": "regex-matching"
+      },
+      {
+        "name": "Default",
+        "url": "default"
+      },
+      {
+        "name": "Type based Filtering",
+        "url": "type-based-filtering"
+      }
+    ]
+  },
+  {
+    "category": "Language concepts",
+    "column": 1,
     "title": "Data Transformation",
     "samples": [
       {
         "name": "Math & Logical Operation",
         "url": "math-logical-operations"
+      }
+    ]
+
+  },
+  {
+    "title": "Data Summarization",
+    "column": 2,
+    "category": "Language concepts",
+    "samples": [
+      {
+        "name": "Sliding Time",
+        "url": "sliding-time"
+      },
+      {
+        "name": "Batch (Tumbling) Time",
+        "url": "batch-time"
+      },
+      {
+        "name": "Sliding Event Count",
+        "url": "sliding-length"
+      },
+      {
+        "name": "Batch (Tumbling) Event Count",
+        "url": "batch-length"
+      }
+    ]
+  },
+  {
+    "title": "Aggregation",
+    "column": 2,
+    "category": "Language concepts",
+    "samples": [
+      {
+        "name": "Simple Aggregation",
+        "url": "simple-aggregation"
       }
     ]
   }
