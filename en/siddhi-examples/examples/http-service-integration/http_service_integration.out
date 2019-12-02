@@ -1,0 +1,34 @@
+#### Input and Output
+
+Let's assume there is an external HTTP service that performs the loan request validation.
+
+When an event with values [002345, "David Warner", 200000] is sent to `LoanRequestStream` stream then the respective event is sent to the loan validation service.
+
+If the loan request is valid then Siddhi gets a response as shown below from the loan validation service. In this situation, the response code would be `200`.
+
+```
+{
+	"validation-response": {
+		"isValid": true,
+		"rate": 12.5,
+		"years-approved": 5
+	}
+}
+```
+
+If the loan request is rejected then the loan validation service sent a response with response code `400` with below payload.
+
+```
+{
+    "validation-response": {
+		"isValid": false,
+		"reason": "Not a registered user"
+	}
+}
+```
+
+Then Siddhi logs the response message accordingly. If the loan request is accepted then log message would be something similar as below.
+
+
+`LoanRequestProcessor : LoanResponseStream : Event{timestamp=1575293895348, data=[002345, David Warner, Loan Request is accepted for processing], isExpired=false`
+
