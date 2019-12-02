@@ -1,3 +1,5 @@
+#### Input and Output
+
 Let's assume there is an external HTTP service that performs the loan request validation.
 
 When an event with values [002345, "David Warner", 200000] is sent to `LoanRequestStream` stream then the respective event is sent to the loan validation service.
@@ -27,7 +29,6 @@ If the loan request is rejected then the loan validation service sent a response
 
 Then Siddhi logs the response message accordingly. If the loan request is accepted then log message would be something similar as below.
 
-```
-LoanRequestProcessor : LoanResponseStream : Event{timestamp=1575293895348, data=[002345, David Warner, Loan Request is accepted for processing], isExpired=false
 
-```
+`LoanRequestProcessor : LoanResponseStream : Event{timestamp=1575293895348, data=[002345, David Warner, Loan Request is accepted for processing], isExpired=false`
+

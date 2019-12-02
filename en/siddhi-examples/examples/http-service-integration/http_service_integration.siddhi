@@ -52,8 +52,8 @@ define stream LoanRequestStream (clientId long, name string,
 
 -- Defines `LoanResponseStream` which contains the events with the loan request responses.
 @sink(type='log') 
-define stream LoanResponseStream(clientId long, customerName string,
-                message string);
+define stream LoanResponseStream(clientId long,
+                customerName string, message string);
 
 
 -- Project attributes `clientId`, `name` and `amount` to perform the http request to `validate-loan` service.
@@ -71,7 +71,8 @@ insert into LoanResponseStream;
 
 -- Process the rejected loan requests and generate a response message.
 from FailureLoanRequestStream
-select clientId, customerName, str:concat("Loan Request is rejected due to ",
-        failureReason) as message
+select clientId, customerName,
+        str:concat("Loan Request is rejected due to ",
+            failureReason) as message
 insert into LoanResponseStream;
 
