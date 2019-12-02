@@ -823,10 +823,46 @@
       <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4-5" type="checkbox" id="nav-3-4-5">
     
     <label class="md-nav__link" for="nav-3-4-5">
-      Data Summarization
+      Data Transformation
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
       <label class="md-nav__title" for="nav-3-4-5">
+        Data Transformation
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/math-logical-operations/" title="Math & Logical Operation" class="md-nav__link">
+      Math & Logical Operation
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4-6" type="checkbox" id="nav-3-4-6">
+    
+    <label class="md-nav__link" for="nav-3-4-6">
+      Data Summarization
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-4-6">
         Data Summarization
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -850,8 +886,32 @@
 
 
   <li class="md-nav__item">
-    <a href="../examples/batch-time/" title="Batch(Tumbling) Time" class="md-nav__link">
-      Batch(Tumbling) Time
+    <a href="../examples/batch-time/" title="Batch (Tumbling) Time" class="md-nav__link">
+      Batch (Tumbling) Time
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/sliding-length/" title="Sliding Event Count" class="md-nav__link">
+      Sliding Event Count
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/batch-length/" title="Batch (Tumbling) Event Count" class="md-nav__link">
+      Batch (Tumbling) Event Count
     </a>
   </li>
 
@@ -868,13 +928,49 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4-6" type="checkbox" id="nav-3-4-6">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4-7" type="checkbox" id="nav-3-4-7">
     
-    <label class="md-nav__link" for="nav-3-4-6">
+    <label class="md-nav__link" for="nav-3-4-7">
+      Service Integration
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-4-7">
+        Service Integration
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/http-service-integration/" title="HTTP Service Integration" class="md-nav__link">
+      HTTP Service Integration
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4-8" type="checkbox" id="nav-3-4-8">
+    
+    <label class="md-nav__link" for="nav-3-4-8">
       Aggregation
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
-      <label class="md-nav__title" for="nav-3-4-6">
+      <label class="md-nav__title" for="nav-3-4-8">
         Aggregation
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -2247,18 +2343,18 @@
 <td>io.siddhi.distribution.core.persistence.S3PersistenceStore</td>
 </tr>
 <tr>
-<td>config &gt; credentialProvideClass</td>
+<td>config &gt; credentialProviderClass</td>
 <td>CredentialProviderClass name.</td>
 <td>software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider</td>
 </tr>
 <tr>
 <td>config &gt; accessKey</td>
-<td>Access key of the user (only if <code>credentialProvideClass</code> property is not provided.</td>
+<td>Access key of the user (only if <code>credentialProviderClass</code> property is not provided.</td>
 <td>*****access-key*****</td>
 </tr>
 <tr>
 <td>config &gt; secretKey</td>
-<td>Secret key of the user (only if <code>credentialProvideClass</code> property is not provided.</td>
+<td>Secret key of the user (only if <code>credentialProviderClass</code> property is not provided.</td>
 <td>*****secret-key*****</td>
 </tr>
 <tr>
@@ -2275,17 +2371,17 @@
 </table>
 <p>The following are some samples configuration for aws-s3 based state persistence.</br></p>
 <ul>
-<li>Sample with credential provider class
+<li>Sample configuration with credential provider class
 <pre class="codehilite"><code class="language-yaml">statePersistence:
   enabled: true
   intervalInMin: 1
   revisionsToKeep: 2
   persistenceStore: io.siddhi.distribution.core.persistence.S3PersistenceStore
   config:
-    credentialProvideClass: software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider
+    credentialProviderClass: software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider
     region: us-west-2
     bucketName: siddhi-app-persistence</code></pre></li>
-<li>Sample with secret-key and access-key
+<li>Sample configuration with secret-key and access-key
 <pre class="codehilite"><code class="language-yaml">statePersistence:
   enabled: true
   intervalInMin: 1

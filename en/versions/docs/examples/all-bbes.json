@@ -73,6 +73,18 @@
     ]
   },
   {
+    "category": "Language concepts",
+    "column": 1,
+    "title": "Data Transformation",
+    "samples": [
+      {
+        "name": "Math & Logical Operation",
+        "url": "math-logical-operations"
+      }
+    ]
+
+  },
+  {
     "title": "Data Summarization",
     "column": 2,
     "category": "Language concepts",
@@ -82,8 +94,27 @@
         "url": "sliding-time"
       },
       {
-        "name": "Batch(Tumbling) Time",
+        "name": "Batch (Tumbling) Time",
         "url": "batch-time"
+      },
+      {
+        "name": "Sliding Event Count",
+        "url": "sliding-length"
+      },
+      {
+        "name": "Batch (Tumbling) Event Count",
+        "url": "batch-length"
+      }
+    ]
+  },
+  {
+    "title": "Service Integration",
+    "column": 3,
+    "category": "Language concepts",
+    "samples": [
+      {
+        "name": "HTTP Service Integration",
+        "url": "http-service-integration"
       }
     ]
   },
