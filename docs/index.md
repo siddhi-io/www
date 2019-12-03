@@ -230,6 +230,7 @@ Event processing logic can be written using Streaming SQL queries via Siddhi gra
 <a href="https://www.letgo.com/" target="_blank"><img src="images/users/letgo-logo.png" /></a>
 <a href="https://punchplatform.com/" target="_blank"><img src="images/users/punchplatform-logo.png"/></a>
 <a href="https://redborder.com/" target="_blank"><img src="images/users/red-border-logo.png"/></a>
+<a href="https://se2.com/" target="_blank"><img src="images/users/se2-logo.png"/></a>
 <a href="https://sqooba.io/" target="_blank"><img src="images/users/sqooba-logo.png"/></a>
 <a href="https://www.youtube.com/watch?v=nncxYGD6m7E" target="_blank"><img src="images/users/uber-logo.png"/></a>
 <a href="https://wso2.com/" target="_blank"><img src="images/users/wso2-logo.png"/></a>
