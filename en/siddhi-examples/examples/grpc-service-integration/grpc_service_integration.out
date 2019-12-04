@@ -11,7 +11,7 @@ Then, gRPC server responds with the ticket price as shown below.
 }
 ```
 
-There is a `grpc-call-response` source configured to consume the response from the gRPC server and those responses will be mapped to the stream called `TicketRateResponseStream`.
+There is a `grpc-call-response` source configured to consume the response from the gRPC server and those responses will be mapped to the stream called `TicketPriceResponseStream`.
 Then Siddhi calculates the total ticket payment amount accordingly and pushes it to a stream called `TotalTicketPaymentStream`. In this example, those events are logged to the console.
 Sample console log is give below,
 
