@@ -115,6 +115,10 @@
       {
         "name": "HTTP Service Integration",
         "url": "http-service-integration"
+      },
+      {
+        "name": "gRPC Service Integration",
+        "url": "grpc-service-integration"
       }
     ]
   },
