@@ -1,0 +1,3 @@
+This application demonstrates how to achieve gRPC service integration (request-response) while processing events in the realtime.
+There could be use cases which need to integrate with an external gRPC service to make some decision when processing events.
+The below example demonstrates such a requirement.
