@@ -33,8 +33,8 @@ define stream TicketPriceFinderStream (name string,
         qty='trp:qty', bookingTime='trp:bookingTime',
         ticketPrice='price')))
 
--- Defines `TicketRateResponseStream` which contains the response events for the ticket price requests.
-define stream TicketRateResponseStream (customerName string,
+-- Defines `TicketPriceResponseStream` which contains the response events for the ticket price requests.
+define stream TicketPriceResponseStream (customerName string,
         phoneNo string, movie string, qty int,
         ticketPrice double, bookingTime long);
 
@@ -57,7 +57,7 @@ select *
 insert into TicketPriceFinderStream;
 
 
-from TicketRateResponseStream
+from TicketPriceResponseStream
 -- Calculate the total ticket payment amount based on the `price` amount received from the gRPC service.
 select customerName, phoneNo, movie,
     (qty * ticketPrice) as totalAmount, bookingTime
