@@ -108,6 +108,10 @@
       {
         "name": "Session",
         "url": "session"
+      },
+      {
+        "name": "Named Window",
+        "url": "named-window"
       }
     ]
   },
