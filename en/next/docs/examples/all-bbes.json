@@ -69,6 +69,10 @@
       {
         "name": "Type based Filtering",
         "url": "type-based-filtering"
+      },
+      {
+        "name": "Remove Duplicate Events",
+        "url": "deduplicate"
       }
     ]
   },
