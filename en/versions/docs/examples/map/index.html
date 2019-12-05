@@ -662,32 +662,24 @@
 
 <span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">Create</span><span class="o">-</span><span class="kt">map</span><span class="err">&#39;</span><span class="p">)</span>
 <span class="nx">from</span> <span class="nx">CoupleDealInfoStream</span>
-
 <span class="nx">select</span> <span class="kt">map</span><span class="p">:</span><span class="nx">create</span><span class="p">(</span><span class="nx">item1</span><span class="p">,</span> <span class="nx">price1</span><span class="p">,</span> <span class="nx">item2</span><span class="p">,</span> <span class="nx">price2</span><span class="p">)</span>
             <span class="k">as</span> <span class="nx">itemPriceMap</span>
 <span class="nx">insert</span> <span class="nx">into</span> <span class="nx">NewMapStream</span><span class="p">;</span>
 
 <span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">Check</span><span class="o">-</span><span class="kt">map</span><span class="err">&#39;</span><span class="p">)</span>
 <span class="nx">from</span> <span class="nx">NewMapStream</span>
-
 <span class="nx">select</span> <span class="kt">map</span><span class="p">:</span><span class="nx">isMap</span><span class="p">(</span><span class="nx">itemPriceMap</span><span class="p">)</span> <span class="k">as</span> <span class="nx">isMap</span><span class="p">,</span>
-
        <span class="kt">map</span><span class="p">:</span><span class="nx">containsKey</span><span class="p">(</span><span class="nx">itemPriceMap</span><span class="p">,</span> <span class="err">&#39;</span><span class="nx">Cookie</span><span class="err">&#39;</span><span class="p">)</span>
             <span class="k">as</span> <span class="nx">isCookiePresent</span><span class="p">,</span>
-
        <span class="kt">map</span><span class="p">:</span><span class="nx">containsValue</span><span class="p">(</span><span class="nx">itemPriceMap</span><span class="p">,</span> <span class="mf">24.0</span><span class="p">)</span>
             <span class="k">as</span> <span class="nx">isThereItemWithPrice24</span><span class="p">,</span>
-
        <span class="kt">map</span><span class="p">:</span><span class="nx">isEmpty</span><span class="p">(</span><span class="nx">itemPriceMap</span><span class="p">)</span> <span class="k">as</span> <span class="nx">isEmpty</span><span class="p">,</span>
-
        <span class="kt">map</span><span class="p">:</span><span class="nx">keys</span><span class="p">(</span><span class="nx">itemPriceMap</span><span class="p">)</span> <span class="k">as</span> <span class="nx">keys</span><span class="p">,</span>
-
        <span class="kt">map</span><span class="p">:</span><span class="nx">size</span><span class="p">(</span><span class="nx">itemPriceMap</span><span class="p">)</span> <span class="k">as</span> <span class="nx">size</span>
 <span class="nx">insert</span> <span class="nx">into</span> <span class="nx">MapAnalysisStream</span><span class="p">;</span>
 
 <span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">Clone</span><span class="o">-</span><span class="nx">and</span><span class="o">-</span><span class="nx">update</span><span class="err">&#39;</span><span class="p">)</span>
 <span class="nx">from</span> <span class="nx">NewMapStream</span>
-
 <span class="nx">select</span> <span class="kt">map</span><span class="p">:</span><span class="nx">replace</span><span class="p">(</span>
                    <span class="kt">map</span><span class="p">:</span><span class="nx">put</span><span class="p">(</span><span class="kt">map</span><span class="p">:</span><span class="nx">clone</span><span class="p">(</span><span class="nx">itemPriceMap</span><span class="p">),</span>
                            <span class="s">&quot;Gift&quot;</span><span class="p">,</span>

@@ -913,13 +913,10 @@
 <span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">Type</span><span class="o">-</span><span class="nx">processor</span><span class="err">&#39;</span><span class="p">)</span>
 <span class="nx">from</span> <span class="nx">PatientRegistrationInputStream</span>
 <span class="nx">select</span> <span class="nx">seqNo</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">age</span><span class="p">,</span>
-
        <span class="nx">convert</span><span class="p">(</span><span class="nx">height</span><span class="p">,</span> <span class="err">&#39;</span><span class="nx">double</span><span class="err">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="nx">height</span><span class="p">,</span>
        <span class="nx">weight</span><span class="p">,</span> <span class="nx">photo</span><span class="p">,</span>
-
        <span class="nx">instanceOfString</span><span class="p">(</span><span class="nx">photo</span><span class="p">)</span> <span class="k">as</span> <span class="nx">isPhotoString</span><span class="p">,</span>
        <span class="nx">isEmployee</span><span class="p">,</span>
-
        <span class="nx">cast</span><span class="p">(</span><span class="nx">wardNo</span><span class="p">,</span> <span class="err">&#39;</span><span class="kt">int</span><span class="err">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="nx">wardNo</span>
 <span class="nx">insert</span> <span class="nx">into</span> <span class="nx">PatientRegistrationStream</span><span class="p">;</span>
 </pre></div>

@@ -662,20 +662,17 @@
 <span class="err">@</span><span class="nx">infor</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">celciusTemperature</span><span class="err">&#39;</span><span class="p">)</span>
 <span class="nx">from</span> <span class="nx">TemperatureStream</span>
 <span class="nx">select</span> <span class="nx">sensorId</span><span class="p">,</span> 
-
                 <span class="p">(</span><span class="nx">temperature</span> <span class="o">*</span> <span class="mi">9</span> <span class="o">/</span> <span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="mi">32</span> <span class="k">as</span> <span class="nx">temperature</span>
 <span class="nx">insert</span> <span class="nx">into</span> <span class="nx">FahrenheitTemperatureStream</span><span class="p">;</span>
 
 <span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">Overall</span><span class="o">-</span><span class="nx">analysis</span><span class="err">&#39;</span><span class="p">)</span>
 <span class="nx">from</span> <span class="nx">FahrenheitTemperatureStream</span>
 <span class="nx">select</span> <span class="nx">sensorId</span><span class="p">,</span> 
-
                 <span class="nx">math</span><span class="p">:</span><span class="nx">floor</span><span class="p">(</span><span class="nx">temperature</span><span class="p">)</span> <span class="k">as</span> <span class="nx">approximateTemp</span> 
 <span class="nx">insert</span> <span class="nx">all</span> <span class="nx">events</span> <span class="nx">into</span> <span class="nx">OverallTemperatureStream</span><span class="p">;</span>
 
 <span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">RangeFilter</span><span class="err">&#39;</span><span class="p">)</span> 
 <span class="nx">from</span> <span class="nx">OverallTemperatureStream</span>
-
               <span class="p">[</span> <span class="nx">approximateTemp</span> <span class="p">&gt;</span> <span class="o">-</span><span class="mi">2</span> <span class="nx">and</span> <span class="nx">approximateTemp</span> <span class="p">&lt;</span> <span class="mi">40</span><span class="p">]</span>
 <span class="nx">select</span> <span class="o">*</span>
 <span class="nx">insert</span> <span class="nx">into</span> <span class="nx">NormalTemperatureStream</span><span class="p">;</span>

@@ -903,20 +903,16 @@
 <span class="nx">define</span> <span class="nx">table</span> <span class="nx">TemperatureLogTable</span> <span class="p">(</span>
         <span class="nx">sensorId</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">roomNo</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">temperature</span> <span class="nx">double</span><span class="p">);</span>
 
-
 <span class="err">@</span><span class="nx">store</span><span class="p">(</span><span class="nx">type</span><span class="p">=</span><span class="s">&quot;rdbms&quot;</span><span class="p">,</span>
        <span class="nx">jdbc</span><span class="p">.</span><span class="nx">url</span><span class="p">=</span><span class="s">&quot;jdbc:mysql://localhost:3306/sid&quot;</span><span class="p">,</span>
        <span class="nx">username</span><span class="p">=</span><span class="s">&quot;root&quot;</span><span class="p">,</span> <span class="nx">password</span><span class="p">=</span><span class="s">&quot;root&quot;</span><span class="p">,</span>
        <span class="nx">jdbc</span><span class="p">.</span><span class="nx">driver</span><span class="p">.</span><span class="nx">name</span><span class="p">=</span><span class="s">&quot;com.mysql.jdbc.Driver&quot;</span><span class="p">)</span>
-
 <span class="nx">define</span> <span class="nx">table</span> <span class="nx">SensorIdInfoTable</span> <span class="p">(</span>
         <span class="nx">sensorId</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">roomNo</span> <span class="kt">string</span><span class="p">);</span>
 
 <span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">Join</span><span class="o">-</span><span class="nx">query</span><span class="err">&#39;</span><span class="p">)</span>
-
 <span class="nx">from</span> <span class="nx">TemperatureStream</span> <span class="k">as</span> <span class="nx">t</span> <span class="k">join</span> <span class="nx">SensorIdInfoTable</span> <span class="k">as</span> <span class="nx">s</span>
      <span class="nx">on</span> <span class="nx">t</span><span class="p">.</span><span class="nx">sensorId</span> <span class="o">==</span> <span class="nx">s</span><span class="p">.</span><span class="nx">sensorId</span>
-
 <span class="nx">select</span> <span class="nx">t</span><span class="p">.</span><span class="nx">sensorId</span> <span class="k">as</span> <span class="nx">sensorId</span><span class="p">,</span> <span class="nx">s</span><span class="p">.</span><span class="nx">roomNo</span> <span class="k">as</span> <span class="nx">roomNo</span>
        <span class="nx">t</span><span class="p">.</span><span class="nx">temperature</span> <span class="k">as</span> <span class="nx">temperature</span>
 <span class="nx">insert</span> <span class="nx">into</span> <span class="nx">TemperatureLogTable</span><span class="p">;</span>

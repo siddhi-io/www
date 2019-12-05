@@ -923,6 +923,30 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../session/" title="Session" class="md-nav__link">
+      Session
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../named-window/" title="Named Window" class="md-nav__link">
+      Named Window
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -1613,10 +1637,8 @@
 <span class="nx">define</span> <span class="nx">Table</span> <span class="nx">ProductInfoTable</span> <span class="p">(</span><span class="nx">item</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">discount</span> <span class="nx">double</span><span class="p">);</span>
 
 <span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">Check</span><span class="o">-</span><span class="k">for</span><span class="o">-</span><span class="kc">null</span><span class="err">&#39;</span><span class="p">)</span>
-
 <span class="nx">from</span> <span class="nx">ProductInputStream</span> <span class="p">[</span><span class="nx">not</span><span class="p">(</span><span class="nx">item</span> <span class="nx">is</span> <span class="kc">null</span><span class="p">)]</span>
 <span class="nx">select</span> <span class="nx">item</span><span class="p">,</span>
-
        <span class="nx">price</span> <span class="nx">is</span> <span class="kc">null</span> <span class="k">as</span> <span class="nx">isPriceNull</span>
 <span class="nx">insert</span> <span class="nx">into</span> <span class="nx">ProductValidationStream</span><span class="p">;</span>
 
@@ -1625,13 +1647,10 @@
     <span class="nx">left</span> <span class="nx">outer</span> <span class="k">join</span> <span class="nx">ProductInfoTable</span> <span class="k">as</span> <span class="nx">t</span>
     <span class="nx">on</span> <span class="nx">s</span><span class="p">.</span><span class="nx">item</span> <span class="o">==</span> <span class="nx">t</span><span class="p">.</span><span class="nx">item</span>
 <span class="nx">select</span> <span class="nx">s</span><span class="p">.</span><span class="nx">item</span><span class="p">,</span> <span class="nx">s</span><span class="p">.</span><span class="nx">price</span><span class="p">,</span> <span class="nx">t</span><span class="p">.</span><span class="nx">discount</span><span class="p">,</span>
-
        <span class="nx">math</span><span class="p">:</span><span class="nx">power</span><span class="p">(</span><span class="nx">t</span><span class="p">.</span><span class="nx">discount</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="nx">is</span> <span class="kc">null</span>
             <span class="k">as</span> <span class="nx">isFunctionReturnsNull</span><span class="p">,</span>
-
        <span class="nx">t</span> <span class="nx">is</span> <span class="kc">null</span> <span class="k">as</span> <span class="nx">isTNull</span><span class="p">,</span>
        <span class="nx">s</span> <span class="nx">is</span> <span class="kc">null</span> <span class="k">as</span> <span class="nx">isSNull</span><span class="p">,</span>
-
        <span class="nx">t</span><span class="p">.</span><span class="nx">discount</span> <span class="nx">is</span> <span class="kc">null</span> <span class="k">as</span> <span class="nx">isTDiscountNull</span><span class="p">,</span>
        <span class="nx">s</span><span class="p">.</span><span class="nx">item</span> <span class="nx">is</span> <span class="kc">null</span> <span class="k">as</span> <span class="nx">isSItemNull</span>
 <span class="nx">insert</span> <span class="nx">into</span> <span class="nx">DiscountValidationStream</span><span class="p">;</span>

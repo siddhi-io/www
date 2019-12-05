@@ -899,18 +899,14 @@
 <div class="FullCode">
                 <div class="highlight"><pre><span class="err">@</span><span class="nx">source</span><span class="p">(</span><span class="nx">type</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">http</span><span class="err">&#39;</span><span class="p">,</span> <span class="nx">receiver</span><span class="p">.</span><span class="nx">url</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">http</span><span class="p">:</span><span class="c1">//0.0.0.0:8006/temp&#39;,</span>
     <span class="err">@</span><span class="kt">map</span><span class="p">(</span><span class="nx">type</span><span class="p">=</span><span class="err">&#39;</span><span class="kt">json</span><span class="err">&#39;</span><span class="p">))</span>
-
 <span class="nx">define</span> <span class="nx">stream</span> <span class="nx">TemperatureStream</span> <span class="p">(</span>
                   <span class="nx">sensorId</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">temperature</span> <span class="nx">double</span><span class="p">);</span>
 
-
 <span class="err">@</span><span class="nx">sink</span><span class="p">(</span><span class="nx">type</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">log</span><span class="err">&#39;</span><span class="p">)</span>
-
 <span class="err">@</span><span class="nx">sink</span><span class="p">(</span><span class="nx">type</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">kafka</span><span class="err">&#39;</span><span class="p">,</span> <span class="nx">topic</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">temperature</span><span class="err">&#39;</span><span class="p">,</span>
       <span class="nx">bootstrap</span><span class="p">.</span><span class="nx">servers</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">localhost</span><span class="p">:</span><span class="mi">9092</span><span class="err">&#39;</span><span class="p">,</span>
       <span class="err">@</span><span class="kt">map</span><span class="p">(</span><span class="nx">type</span><span class="p">=</span><span class="err">&#39;</span><span class="kt">json</span><span class="err">&#39;</span><span class="p">,</span>
            <span class="nd">@payload(&quot;&quot;&quot;{&quot;temp&quot;:&quot;{{</span><span class="nx">temperature</span><span class="p">}}</span><span class="s">&quot;}&quot;&quot;&quot;</span><span class="p">)))</span>
-
 <span class="nx">define</span> <span class="nx">stream</span> <span class="nx">TemperatureOnlyStream</span> <span class="p">(</span><span class="nx">temperature</span> <span class="nx">double</span><span class="p">);</span>
 
 <span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">Simple</span><span class="o">-</span><span class="nx">selection</span><span class="err">&#39;</span><span class="p">)</span>

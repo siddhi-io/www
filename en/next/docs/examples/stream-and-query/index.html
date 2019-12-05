@@ -901,15 +901,12 @@
                   <span class="nx">sensorId</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">temperature</span> <span class="nx">double</span><span class="p">);</span>
 
 <span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">Pass</span><span class="o">-</span><span class="nx">through</span><span class="err">&#39;</span><span class="p">)</span>
-
 <span class="nx">from</span> <span class="nx">InputTemperatureStream</span>
 <span class="nx">select</span> <span class="o">*</span>
 <span class="nx">insert</span> <span class="nx">into</span> <span class="nx">TemperatureAndSensorStream</span><span class="p">;</span>
 
 <span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">Simple</span><span class="o">-</span><span class="nx">selection</span><span class="err">&#39;</span><span class="p">)</span>
-
 <span class="nx">from</span> <span class="nx">TemperatureAndSensorStream</span>
-
 <span class="nx">select</span> <span class="nx">temperature</span>
 <span class="nx">insert</span> <span class="nx">into</span> <span class="nx">TemperatureOnlyStream</span><span class="p">;</span>
 </pre></div>

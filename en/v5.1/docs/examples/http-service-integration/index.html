@@ -914,6 +914,30 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../session/" title="Session" class="md-nav__link">
+      Session
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../named-window/" title="Named Window" class="md-nav__link">
+      Named Window
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -1612,54 +1636,42 @@ The below example demonstrates such a requirement.</p>
     <span class="nx">publisher</span><span class="p">.</span><span class="nx">url</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">http</span><span class="p">:</span><span class="c1">//localhost:8005/validate-loan&#39;,</span>
     <span class="nx">method</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">POST</span><span class="err">&#39;</span><span class="p">,</span> <span class="nx">sink</span><span class="p">.</span><span class="nx">id</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">loan</span><span class="o">-</span><span class="nx">validation</span><span class="err">&#39;</span><span class="p">,</span>
     <span class="err">@</span><span class="kt">map</span><span class="p">(</span><span class="nx">type</span><span class="p">=</span><span class="err">&#39;</span><span class="kt">json</span><span class="err">&#39;</span><span class="p">))</span>
-
 <span class="nx">define</span> <span class="nx">stream</span> <span class="nx">LoanValidationStream</span> <span class="p">(</span><span class="nx">clientId</span> <span class="nx">long</span><span class="p">,</span>
                     <span class="nx">name</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">amount</span> <span class="nx">double</span><span class="p">);</span>
 
-
 <span class="err">@</span><span class="nx">source</span><span class="p">(</span><span class="nx">type</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">http</span><span class="o">-</span><span class="nx">call</span><span class="o">-</span><span class="nx">response</span><span class="err">&#39;</span><span class="p">,</span> <span class="nx">sink</span><span class="p">.</span><span class="nx">id</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">loan</span><span class="o">-</span><span class="nx">validation</span><span class="err">&#39;</span><span class="p">,</span>
-
     <span class="nx">http</span><span class="p">.</span><span class="nx">status</span><span class="p">.</span><span class="nx">code</span><span class="p">=</span><span class="err">&#39;</span><span class="mi">2</span><span class="err">\</span><span class="nx">d</span><span class="o">+</span><span class="err">&#39;</span><span class="p">,</span>
-
     <span class="err">@</span><span class="kt">map</span><span class="p">(</span><span class="nx">type</span><span class="p">=</span><span class="err">&#39;</span><span class="kt">json</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">@</span><span class="nx">attributes</span><span class="p">(</span><span class="nx">customerName</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">trp</span><span class="p">:</span><span class="nx">name</span><span class="err">&#39;</span><span class="p">,</span>
         <span class="nx">clientId</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">trp</span><span class="p">:</span><span class="nx">clientId</span><span class="err">&#39;</span><span class="p">,</span> <span class="nx">loanAmount</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">trp</span><span class="p">:</span><span class="nx">amount</span><span class="err">&#39;</span><span class="p">,</span>
         <span class="nx">interestRate</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">validation</span><span class="o">-</span><span class="nx">response</span><span class="p">.</span><span class="nx">rate</span><span class="err">&#39;</span><span class="p">,</span>
         <span class="nx">totalYears</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">validation</span><span class="o">-</span><span class="nx">response</span><span class="p">.</span><span class="nx">years</span><span class="o">-</span><span class="nx">approved</span><span class="err">&#39;</span><span class="p">)))</span>
-
 <span class="nx">define</span> <span class="nx">stream</span> <span class="nx">SuccessLoanRequestStream</span><span class="p">(</span><span class="nx">clientId</span> <span class="nx">long</span><span class="p">,</span>
            <span class="nx">customerName</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">loanAmount</span> <span class="nx">double</span><span class="p">,</span>
            <span class="nx">interestRate</span> <span class="nx">double</span><span class="p">,</span> <span class="nx">totalYears</span> <span class="kt">int</span><span class="p">);</span>
-
 
 <span class="err">@</span><span class="nx">source</span><span class="p">(</span><span class="nx">type</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">http</span><span class="o">-</span><span class="nx">call</span><span class="o">-</span><span class="nx">response</span><span class="err">&#39;</span><span class="p">,</span> <span class="nx">sink</span><span class="p">.</span><span class="nx">id</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">loan</span><span class="o">-</span><span class="nx">validation</span><span class="err">&#39;</span><span class="p">,</span>
     <span class="nx">http</span><span class="p">.</span><span class="nx">status</span><span class="p">.</span><span class="nx">code</span><span class="p">=</span><span class="err">&#39;</span><span class="mi">400</span><span class="err">&#39;</span><span class="p">,</span>
     <span class="err">@</span><span class="kt">map</span><span class="p">(</span><span class="nx">type</span><span class="p">=</span><span class="err">&#39;</span><span class="kt">json</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">@</span><span class="nx">attributes</span><span class="p">(</span><span class="nx">customerName</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">trp</span><span class="p">:</span><span class="nx">name</span><span class="err">&#39;</span><span class="p">,</span>
         <span class="nx">clientId</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">trp</span><span class="p">:</span><span class="nx">clientId</span><span class="err">&#39;</span><span class="p">,</span>
         <span class="nx">failureReason</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">validation</span><span class="o">-</span><span class="nx">response</span><span class="p">.</span><span class="nx">reason</span><span class="err">&#39;</span><span class="p">)))</span>
-
 <span class="nx">define</span> <span class="nx">stream</span> <span class="nx">FailureLoanRequestStream</span><span class="p">(</span><span class="nx">clientId</span> <span class="nx">long</span><span class="p">,</span>
                 <span class="nx">customerName</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">failureReason</span> <span class="kt">string</span><span class="p">);</span>
 
-
 <span class="nx">define</span> <span class="nx">stream</span> <span class="nx">LoanRequestStream</span> <span class="p">(</span><span class="nx">clientId</span> <span class="nx">long</span><span class="p">,</span> <span class="nx">name</span> <span class="kt">string</span><span class="p">,</span>
                 <span class="nx">amount</span> <span class="nx">double</span><span class="p">);</span>
-
 
 <span class="err">@</span><span class="nx">sink</span><span class="p">(</span><span class="nx">type</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">log</span><span class="err">&#39;</span><span class="p">)</span> 
 <span class="nx">define</span> <span class="nx">stream</span> <span class="nx">LoanResponseStream</span><span class="p">(</span><span class="nx">clientId</span> <span class="nx">long</span><span class="p">,</span>
                 <span class="nx">customerName</span> <span class="kt">string</span><span class="p">,</span> <span class="kt">message</span> <span class="kt">string</span><span class="p">);</span>
 
-
 <span class="nx">from</span> <span class="nx">LoanRequestStream</span>
 <span class="nx">select</span> <span class="nx">clientId</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">amount</span>
 <span class="nx">insert</span> <span class="nx">into</span> <span class="nx">LoanValidationStream</span><span class="p">;</span>
-
 
 <span class="nx">from</span> <span class="nx">SuccessLoanRequestStream</span>
 <span class="nx">select</span> <span class="nx">clientId</span><span class="p">,</span> <span class="nx">customerName</span><span class="p">,</span>
     <span class="s">&quot;Loan Request is accepted for processing&quot;</span> <span class="k">as</span> <span class="kt">message</span>
 <span class="nx">insert</span> <span class="nx">into</span> <span class="nx">LoanResponseStream</span><span class="p">;</span>
-
 
 <span class="nx">from</span> <span class="nx">FailureLoanRequestStream</span>
 <span class="nx">select</span> <span class="nx">clientId</span><span class="p">,</span> <span class="nx">customerName</span><span class="p">,</span>
@@ -2018,7 +2030,7 @@ insert into LoanResponseStream;
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../batch-length/" title="Batch (Tumbling) Event Count" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../named-window/" title="Named Window" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -2027,7 +2039,7 @@ insert into LoanResponseStream;
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Batch (Tumbling) Event Count
+                Named Window
               </span>
             </div>
           </a>

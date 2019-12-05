@@ -664,8 +664,6 @@ The below example demonstrates such a requirement.</p>
     <span class="nx">publisher</span><span class="p">.</span><span class="nx">url</span> <span class="p">=</span>
     <span class="err">&#39;</span><span class="nx">grpc</span><span class="p">:</span><span class="c1">//localhost:5003/org.wso2.grpc.EventService/process&#39;,</span>
     <span class="nx">sink</span><span class="p">.</span><span class="nx">id</span><span class="p">=</span> <span class="err">&#39;</span><span class="nx">ticket</span><span class="o">-</span><span class="nx">price</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">@</span><span class="kt">map</span><span class="p">(</span><span class="nx">type</span><span class="p">=</span><span class="err">&#39;</span><span class="kt">json</span><span class="err">&#39;</span><span class="p">))</span>
-
-
 <span class="nx">define</span> <span class="nx">stream</span> <span class="nx">TicketPriceFinderStream</span> <span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">,</span>
         <span class="nx">phoneNo</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">movie</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">ticketClass</span> <span class="kt">string</span><span class="p">,</span>
         <span class="nx">qty</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">bookingTime</span> <span class="nx">long</span><span class="p">);</span>
@@ -674,14 +672,12 @@ The below example demonstrates such a requirement.</p>
     <span class="nx">receiver</span><span class="p">.</span><span class="nx">url</span> <span class="p">=</span>
     <span class="err">&#39;</span><span class="nx">grpc</span><span class="p">:</span><span class="c1">//localhost:9763/org.wso2.grpc.EventService/process&#39;,</span>
     <span class="nx">sink</span><span class="p">.</span><span class="nx">id</span><span class="p">=</span> <span class="err">&#39;</span><span class="nx">ticket</span><span class="o">-</span><span class="nx">price</span><span class="err">&#39;</span><span class="p">,</span>
-
-
     <span class="err">@</span><span class="kt">map</span><span class="p">(</span><span class="nx">type</span><span class="p">=</span><span class="err">&#39;</span><span class="kt">json</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">@</span><span class="nx">attributes</span><span class="p">(</span><span class="nx">customerName</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">trp</span><span class="p">:</span><span class="nx">name</span><span class="err">&#39;</span><span class="p">,</span>
         <span class="nx">phoneNo</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">trp</span><span class="p">:</span><span class="nx">phoneNo</span><span class="err">&#39;</span><span class="p">,</span> <span class="nx">movie</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">trp</span><span class="p">:</span><span class="nx">movie</span><span class="err">&#39;</span><span class="p">,</span>
         <span class="nx">qty</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">trp</span><span class="p">:</span><span class="nx">qty</span><span class="err">&#39;</span><span class="p">,</span> <span class="nx">bookingTime</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">trp</span><span class="p">:</span><span class="nx">bookingTime</span><span class="err">&#39;</span><span class="p">,</span>
         <span class="nx">ticketPrice</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">price</span><span class="err">&#39;</span><span class="p">)))</span>
 
-<span class="nx">define</span> <span class="nx">stream</span> <span class="nx">TicketRateResponseStream</span> <span class="p">(</span><span class="nx">customerName</span> <span class="kt">string</span><span class="p">,</span>
+<span class="nx">define</span> <span class="nx">stream</span> <span class="nx">TicketPriceResponseStream</span> <span class="p">(</span><span class="nx">customerName</span> <span class="kt">string</span><span class="p">,</span>
         <span class="nx">phoneNo</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">movie</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">qty</span> <span class="kt">int</span><span class="p">,</span>
         <span class="nx">ticketPrice</span> <span class="nx">double</span><span class="p">,</span> <span class="nx">bookingTime</span> <span class="nx">long</span><span class="p">);</span>
 
@@ -695,13 +691,11 @@ The below example demonstrates such a requirement.</p>
     <span class="nx">qty</span> <span class="o">*</span> <span class="mf">20.0</span> <span class="k">as</span> <span class="nx">totalAmount</span><span class="p">,</span> <span class="nx">bookingTime</span>
 <span class="nx">insert</span> <span class="nx">into</span> <span class="nx">TotalTicketPaymentStream</span><span class="p">;</span>
 
-
 <span class="nx">from</span> <span class="nx">TicketBookingStream</span><span class="p">[</span><span class="nx">ticketClass</span> <span class="o">!=</span> <span class="s">&quot;BASIC&quot;</span><span class="p">]</span>
 <span class="nx">select</span> <span class="o">*</span>
 <span class="nx">insert</span> <span class="nx">into</span> <span class="nx">TicketPriceFinderStream</span><span class="p">;</span>
 
-<span class="nx">from</span> <span class="nx">TicketRateResponseStream</span>
-
+<span class="nx">from</span> <span class="nx">TicketPriceResponseStream</span>
 <span class="nx">select</span> <span class="nx">customerName</span><span class="p">,</span> <span class="nx">phoneNo</span><span class="p">,</span> <span class="nx">movie</span><span class="p">,</span>
     <span class="p">(</span><span class="nx">qty</span> <span class="o">*</span> <span class="nx">ticketPrice</span><span class="p">)</span> <span class="k">as</span> <span class="nx">totalAmount</span><span class="p">,</span> <span class="nx">bookingTime</span>
 <span class="nx">insert</span> <span class="nx">into</span> <span class="nx">TotalTicketPaymentStream</span><span class="p">;</span>
@@ -725,7 +719,8 @@ The below example demonstrates such a requirement.</p>
         <td class="code leading">
             <div class="highlight"><pre><code class=siddhi>define stream TicketBookingStream (name string, phoneNo string,
         movie string, ticketClass string, qty int,
-        bookingTime long);</code></pre></div>
+        bookingTime long);
+</code></pre></div>
 
         </td>
         <td class="docs">
@@ -746,8 +741,7 @@ The below example demonstrates such a requirement.</p>
             <div class="highlight"><pre><code class=siddhi>@sink(type=&#39;grpc-call&#39;,
     publisher.url =
     &#39;grpc://localhost:5003/org.wso2.grpc.EventService/process&#39;,
-    sink.id= &#39;ticket-price&#39;, @map(type=&#39;json&#39;))
-</code></pre></div>
+    sink.id= &#39;ticket-price&#39;, @map(type=&#39;json&#39;))</code></pre></div>
 
         </td>
         <td class="docs">
@@ -769,7 +763,8 @@ The below example demonstrates such a requirement.</p>
         <td class="code leading">
             <div class="highlight"><pre><code class=siddhi>define stream TicketPriceFinderStream (name string,
         phoneNo string, movie string, ticketClass string,
-        qty int, bookingTime long);</code></pre></div>
+        qty int, bookingTime long);
+</code></pre></div>
 
         </td>
         <td class="docs">
@@ -790,8 +785,7 @@ The below example demonstrates such a requirement.</p>
             <div class="highlight"><pre><code class=siddhi>@source(type=&#39;grpc-call-response&#39;,
     receiver.url =
     &#39;grpc://localhost:9763/org.wso2.grpc.EventService/process&#39;,
-    sink.id= &#39;ticket-price&#39;,
-</code></pre></div>
+    sink.id= &#39;ticket-price&#39;,</code></pre></div>
 
         </td>
         <td class="docs">
@@ -813,7 +807,8 @@ The below example demonstrates such a requirement.</p>
             <div class="highlight"><pre><code class=siddhi>    @map(type=&#39;json&#39;, @attributes(customerName=&#39;trp:name&#39;,
         phoneNo=&#39;trp:phoneNo&#39;, movie=&#39;trp:movie&#39;,
         qty=&#39;trp:qty&#39;, bookingTime=&#39;trp:bookingTime&#39;,
-        ticketPrice=&#39;price&#39;)))</code></pre></div>
+        ticketPrice=&#39;price&#39;)))
+</code></pre></div>
 
         </td>
         <td class="docs">
@@ -832,16 +827,17 @@ The below example demonstrates such a requirement.</p>
     <tr class="cTR hover-enable">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>define stream TicketRateResponseStream (customerName string,
+            <div class="highlight"><pre><code class=siddhi>define stream TicketPriceResponseStream (customerName string,
         phoneNo string, movie string, qty int,
-        ticketPrice double, bookingTime long);</code></pre></div>
+        ticketPrice double, bookingTime long);
+</code></pre></div>
 
         </td>
         <td class="docs">
 
             <div class="cCodeDesription">
                 <div>
-                    <p>Defines <code>TicketRateResponseStream</code> which contains the response events for the ticket price requests.</p>
+                    <p>Defines <code>TicketPriceResponseStream</code> which contains the response events for the ticket price requests.</p>
 
                 </div>
             </div>
@@ -855,7 +851,8 @@ The below example demonstrates such a requirement.</p>
             <div class="highlight"><pre><code class=siddhi>@sink(type=&#39;log&#39;)
 define stream TotalTicketPaymentStream (customerName string,
         phoneNo string, movie string, totalAmount double,
-        bookingTime long);</code></pre></div>
+        bookingTime long);
+</code></pre></div>
 
         </td>
         <td class="docs">
@@ -916,7 +913,7 @@ insert into TicketPriceFinderStream;
     <tr class="cTR">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>from TicketRateResponseStream</code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>from TicketPriceResponseStream</code></pre></div>
 
         </td>
         <td class="docs">
@@ -946,8 +943,7 @@ insert into TicketPriceFinderStream;
     <tr class="cTR">
 
         <td class="code">
-            <div class="highlight"><pre><code class=siddhi>insert into TotalTicketPaymentStream;
-</code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>insert into TotalTicketPaymentStream;</code></pre></div>
 
         </td>
         <td class="docs">
@@ -977,7 +973,7 @@ Then, gRPC server responds with the ticket price as shown below.</p>
 }
 </code></pre>
 
-<p>There is a <code>grpc-call-response</code> source configured to consume the response from the gRPC server and those responses will be mapped to the stream called <code>TicketRateResponseStream</code>.
+<p>There is a <code>grpc-call-response</code> source configured to consume the response from the gRPC server and those responses will be mapped to the stream called <code>TicketPriceResponseStream</code>.
 Then Siddhi calculates the total ticket payment amount accordingly and pushes it to a stream called <code>TotalTicketPaymentStream</code>. In this example, those events are logged to the console.
 Sample console log is give below,</p>
 

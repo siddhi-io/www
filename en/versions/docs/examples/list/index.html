@@ -661,29 +661,22 @@
 
 <span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">Create</span><span class="o">-</span><span class="nx">list</span><span class="err">&#39;</span><span class="p">)</span>
 <span class="nx">from</span> <span class="nx">ProductComboStream</span>
-
 <span class="nx">select</span> <span class="nx">list</span><span class="p">:</span><span class="nx">create</span><span class="p">(</span><span class="nx">product1</span><span class="p">,</span> <span class="nx">product2</span><span class="p">,</span> <span class="nx">product3</span><span class="p">)</span>
             <span class="k">as</span> <span class="nx">productList</span>
 <span class="nx">insert</span> <span class="nx">into</span> <span class="nx">NewListStream</span><span class="p">;</span>
 
 <span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">Check</span><span class="o">-</span><span class="nx">list</span><span class="err">&#39;</span><span class="p">)</span>
 <span class="nx">from</span> <span class="nx">NewListStream</span>
-
 <span class="nx">select</span> <span class="nx">list</span><span class="p">:</span><span class="nx">isList</span><span class="p">(</span><span class="nx">productList</span><span class="p">)</span> <span class="k">as</span> <span class="nx">isList</span><span class="p">,</span>
-
        <span class="nx">list</span><span class="p">:</span><span class="nx">contains</span><span class="p">(</span><span class="nx">productList</span><span class="p">,</span> <span class="err">&#39;</span><span class="nx">Cake</span><span class="err">&#39;</span><span class="p">)</span>
             <span class="k">as</span> <span class="nx">isCakePresent</span><span class="p">,</span>
-
        <span class="nx">list</span><span class="p">:</span><span class="nx">isEmpty</span><span class="p">(</span><span class="nx">productList</span><span class="p">)</span> <span class="k">as</span> <span class="nx">isEmpty</span><span class="p">,</span>
-
        <span class="nx">list</span><span class="p">:</span><span class="nx">get</span><span class="p">(</span><span class="nx">productList</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">as</span> <span class="nx">valueAt1</span><span class="p">,</span>
-
        <span class="nx">list</span><span class="p">:</span><span class="nx">size</span><span class="p">(</span><span class="nx">productList</span><span class="p">)</span> <span class="k">as</span> <span class="nx">size</span>
 <span class="nx">insert</span> <span class="nx">into</span> <span class="nx">ListAnalysisStream</span><span class="p">;</span>
 
 <span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">Clone</span><span class="o">-</span><span class="nx">and</span><span class="o">-</span><span class="nx">update</span><span class="err">&#39;</span><span class="p">)</span>
 <span class="nx">from</span> <span class="nx">NewListStream</span>
-
 <span class="nx">select</span> <span class="nx">list</span><span class="p">:</span><span class="nx">remove</span><span class="p">(</span>
             <span class="nx">list</span><span class="p">:</span><span class="nx">add</span><span class="p">(</span><span class="nx">list</span><span class="p">:</span><span class="nx">clone</span><span class="p">(</span><span class="nx">productList</span><span class="p">),</span> <span class="s">&quot;Toffee&quot;</span><span class="p">),</span>
             <span class="s">&quot;Cake&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="nx">productList</span>

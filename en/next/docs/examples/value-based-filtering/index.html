@@ -899,19 +899,16 @@
  <span class="nx">sensorId</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">temperature</span> <span class="nx">double</span><span class="p">);</span>
 
 <span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">EqualsFilter</span><span class="err">&#39;</span><span class="p">)</span>
-
 <span class="nx">from</span> <span class="nx">TemperatureStream</span><span class="p">[</span> <span class="nx">sensorId</span> <span class="o">==</span> <span class="err">&#39;</span><span class="nx">A1234</span><span class="err">&#39;</span><span class="p">]</span>
 <span class="nx">select</span> <span class="o">*</span>
 <span class="nx">insert</span> <span class="nx">into</span> <span class="nx">SenorA1234TemperatureStream</span><span class="p">;</span>
 
 <span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">RangeFilter</span><span class="err">&#39;</span><span class="p">)</span> 
-
 <span class="nx">from</span> <span class="nx">TemperatureStream</span><span class="p">[</span> <span class="nx">temperature</span> <span class="p">&gt;</span> <span class="o">-</span><span class="mi">2</span> <span class="nx">and</span> <span class="nx">temperature</span> <span class="p">&lt;</span> <span class="mi">40</span><span class="p">]</span>
 <span class="nx">select</span> <span class="o">*</span>
 <span class="nx">insert</span> <span class="nx">into</span> <span class="nx">NormalTemperatureStream</span><span class="p">;</span>
 
 <span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">NullFilter</span><span class="err">&#39;</span><span class="p">)</span> 
-
 <span class="nx">from</span> <span class="nx">TemperatureStream</span><span class="p">[</span> <span class="nx">sensorId</span> <span class="nx">is</span> <span class="kc">null</span> <span class="p">]</span>
 <span class="nx">select</span> <span class="o">*</span>
 <span class="nx">insert</span> <span class="nx">into</span> <span class="nx">InValidTemperatureStream</span><span class="p">;</span>

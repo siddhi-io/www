@@ -657,14 +657,11 @@
 </div>
 <div class="FullCode">
                 <div class="highlight"><pre><span class="p">@app:name(</span><span class="err">&#39;</span><span class="nx">Temperature</span><span class="o">-</span><span class="nx">Processor</span><span class="err">&#39;</span><span class="p">)</span>
-
 <span class="p">@app:description(</span><span class="err">&#39;</span><span class="nx">App</span> <span class="k">for</span> <span class="nx">processing</span> <span class="nx">temperature</span> <span class="nx">data</span><span class="p">.</span><span class="err">&#39;</span><span class="p">)</span>
-
 
 <span class="err">@</span><span class="nx">source</span><span class="p">(</span><span class="nx">type</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">inMemory</span><span class="err">&#39;</span><span class="p">,</span> <span class="nx">topic</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">SensorDetail</span><span class="err">&#39;</span><span class="p">)</span>
 <span class="nx">define</span> <span class="nx">stream</span> <span class="nx">TemperatureStream</span> <span class="p">(</span>
                   <span class="nx">sensorId</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">temperature</span> <span class="nx">double</span><span class="p">);</span>
-
 
 <span class="err">@</span><span class="nx">sink</span><span class="p">(</span><span class="nx">type</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">inMemory</span><span class="err">&#39;</span><span class="p">,</span> <span class="nx">topic</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">Temperature</span><span class="err">&#39;</span><span class="p">)</span>
 <span class="nx">define</span> <span class="nx">stream</span> <span class="nx">TemperatureOnlyStream</span> <span class="p">(</span><span class="nx">temperature</span> <span class="nx">double</span><span class="p">);</span>

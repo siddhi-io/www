@@ -660,26 +660,19 @@
         <span class="p">(</span><span class="nx">sensorId</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">temperature</span> <span class="nx">double</span><span class="p">);</span>
 
 <span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">Overall</span><span class="o">-</span><span class="nx">analysis</span><span class="err">&#39;</span><span class="p">)</span>
-
 <span class="nx">from</span> <span class="nx">TemperatureStream</span><span class="err">#</span><span class="nx">window</span><span class="p">.</span><span class="nx">time</span><span class="p">(</span><span class="mi">1</span> <span class="nx">min</span><span class="p">)</span>
-
 <span class="nx">select</span> <span class="nx">avg</span><span class="p">(</span><span class="nx">temperature</span><span class="p">)</span> <span class="k">as</span> <span class="nx">avgTemperature</span><span class="p">,</span>
        <span class="nx">max</span><span class="p">(</span><span class="nx">temperature</span><span class="p">)</span> <span class="k">as</span> <span class="nx">maxTemperature</span><span class="p">,</span>
        <span class="nx">count</span><span class="p">()</span> <span class="k">as</span> <span class="nx">numberOfEvents</span>
-
 <span class="nx">insert</span> <span class="nx">all</span> <span class="nx">events</span> <span class="nx">into</span> <span class="nx">OverallTemperatureStream</span><span class="p">;</span>
 
 <span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">SensorId</span><span class="o">-</span><span class="nx">analysis</span><span class="err">&#39;</span><span class="p">)</span>
-
 <span class="nx">from</span> <span class="nx">TemperatureStream</span><span class="err">#</span><span class="nx">window</span><span class="p">.</span><span class="nx">time</span><span class="p">(</span><span class="mi">30</span> <span class="nx">sec</span><span class="p">)</span>
 <span class="nx">select</span> <span class="nx">sensorId</span><span class="p">,</span>
-
        <span class="nx">avg</span><span class="p">(</span><span class="nx">temperature</span><span class="p">)</span> <span class="k">as</span> <span class="nx">avgTemperature</span><span class="p">,</span>
        <span class="nx">min</span><span class="p">(</span><span class="nx">temperature</span><span class="p">)</span> <span class="k">as</span> <span class="nx">maxTemperature</span>
 <span class="nx">group</span> <span class="nx">by</span> <span class="nx">sensorId</span>
-
 <span class="nx">having</span> <span class="nx">avgTemperature</span> <span class="p">&gt;</span> <span class="mf">20.0</span>
-
 <span class="nx">insert</span> <span class="nx">into</span> <span class="nx">SensorIdTemperatureStream</span><span class="p">;</span>
 </pre></div>
 
