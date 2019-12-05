@@ -104,6 +104,10 @@
       {
         "name": "Batch (Tumbling) Event Count",
         "url": "batch-length"
+      },
+      {
+        "name": "Session",
+        "url": "session"
       }
     ]
   },
