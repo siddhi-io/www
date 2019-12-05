@@ -11,7 +11,7 @@ You can get help on Siddhi in the following ways.
 * For more detail discussions on Siddhi usage and get help on implementing use cases, initiate a discussion on the [Siddhi-User Google Group](https://groups.google.com/forum/#!forum/siddhi-user). 
 
 * [Siddhi Slack chanel](https://siddhi-io.slack.com/) is used to collaborate with the project users, committers and contributors.<br/> 
-  If you are not already a member please feel free to request an invitation. 
+  If you are not already a member please feel free to request an invitation by giving your email in the below dialog box.
 
 <div class="slackInvite">                            
 <div id="CommunityInviter"></div>
