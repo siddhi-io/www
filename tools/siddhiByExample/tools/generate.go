@@ -228,7 +228,7 @@ func parseSegs(sourcePath string) ([]*Seg, string) {
 			isLastSeenEmpty = false
 		}
 
-		if (len(line) > 64 && !strings.HasPrefix(line, "--")){
+		if len(line) > 64 && !strings.HasPrefix(line, "--") {
 			fmt.Fprintln(os.Stderr, "Character length is more than 64. Line : "+line)
 		}
 
@@ -334,7 +334,12 @@ func parseAndRenderSegs(sourcePath string) ([]*Seg, string, string) {
 					if completeCode != "" {
 						completeCode = completeCode + "\n"
 					}
-					completeCode = completeCode + seg.Code
+
+					if seg.Docs != "" && strings.HasPrefix(seg.Code, "\n") {
+						completeCode = completeCode + strings.TrimPrefix(seg.Code, "\n")
+					} else {
+						completeCode = completeCode + seg.Code
+					}
 				} else {
 					ignoreSegment = true
 				}
