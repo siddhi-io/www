@@ -108,6 +108,21 @@
     ]
   },
   {
+    "title": "Service Integration",
+    "column": 3,
+    "category": "Language concepts",
+    "samples": [
+      {
+        "name": "HTTP Service Integration",
+        "url": "http-service-integration"
+      },
+      {
+        "name": "gRPC Service Integration",
+        "url": "grpc-service-integration"
+      }
+    ]
+  },
+  {
     "title": "Aggregation",
     "column": 3,
     "category": "Language concepts",

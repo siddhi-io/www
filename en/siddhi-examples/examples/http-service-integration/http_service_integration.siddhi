@@ -1,0 +1,78 @@
+
+-- http-call sink publishes messages to endpoints via HTTP or HTTPS protocols.
+-- and consume responses through its corresponding http-call-response source
+@sink(type='http-call',
+    publisher.url='http://localhost:8005/validate-loan',
+    method='POST', sink.id='loan-validation',
+    @map(type='json'))
+
+-- Defines `LoanValidationStream` to forward events to the loan validation purposes.
+define stream LoanValidationStream (clientId long,
+                    name string, amount double);
+
+
+-- The `http-call-response` source receives the responses for the calls made by its corresponding `http-call` sink.
+-- `sink.id` used to map the corresponding `http-call` sink.
+@source(type='http-call-response', sink.id='loan-validation',
+
+-- To handle messages with different HTTP status codes having different formats,
+-- multiple http-call-response sources are allowed to associate with a single http-call sink.
+-- In this case, it only handles HTTP responses which come with `2xx` response codes.
+    http.status.code='2\d+',
+
+-- Attributes of the event that initiated the call, and the response headers and properties via transport properties in
+-- the format `trp:<attribute name>` and `trp:<header/property> ` respectively.
+    @map(type='json', @attributes(customerName='trp:name',
+        clientId='trp:clientId', loanAmount='trp:amount',
+        interestRate='validation-response.rate',
+        totalYears='validation-response.years-approved')))
+
+-- Defines `SuccessLoanRequestStream` to process loan requests which are validated successfully.
+define stream SuccessLoanRequestStream(clientId long,
+           customerName string, loanAmount double,
+           interestRate double, totalYears int);
+
+
+-- The `http-call-response` source which handles the responses which come with `400` HTTP response code.
+@source(type='http-call-response', sink.id='loan-validation',
+    http.status.code='400',
+    @map(type='json', @attributes(customerName='trp:name',
+        clientId='trp:clientId',
+        failureReason='validation-response.reason')))
+
+-- Defines `FailureLoanRequestStream` to process loan requests which are rejected.
+define stream FailureLoanRequestStream(clientId long,
+                customerName string, failureReason string);
+
+
+-- Defines `LoanRequestStream` which is the input stream that contains the initial loan request events.
+define stream LoanRequestStream (clientId long, name string,
+                amount double);
+
+
+-- Defines `LoanResponseStream` which contains the events with the loan request responses.
+@sink(type='log') 
+define stream LoanResponseStream(clientId long,
+                customerName string, message string);
+
+
+-- Project attributes `clientId`, `name` and `amount` to perform the http request to `validate-loan` service.
+from LoanRequestStream
+select clientId, name, amount
+insert into LoanValidationStream;
+
+
+-- Process the successful loan requests and generate a response message.
+from SuccessLoanRequestStream
+select clientId, customerName,
+    "Loan Request is accepted for processing" as message
+insert into LoanResponseStream;
+
+
+-- Process the rejected loan requests and generate a response message.
+from FailureLoanRequestStream
+select clientId, customerName,
+        str:concat("Loan Request is rejected due to ",
+            failureReason) as message
+insert into LoanResponseStream;
+

@@ -1,0 +1,66 @@
+
+-- Defines `TicketBookingStream` which is the input stream that contains the ticket booking events.
+define stream TicketBookingStream (name string, phoneNo string,
+        movie string, ticketClass string, qty int,
+        bookingTime long);
+
+-- The `grpc-call` sink is used for scenarios where we send a request out and expect a response back.
+-- In default mode this will use EventService process method. `grpc-call-response` source is used to receive the responses.
+-- A unique `sink.id` is used to correlate between the sink and its corresponding source.
+@sink(type='grpc-call',
+    publisher.url =
+    'grpc://localhost:5003/org.wso2.grpc.EventService/process',
+    sink.id= 'ticket-price', @map(type='json'))
+
+
+-- Defines `TicketPriceFinderStream` to forward events to the gRPC endpoint.
+define stream TicketPriceFinderStream (name string,
+        phoneNo string, movie string, ticketClass string,
+        qty int, bookingTime long);
+
+-- This `grpc-call-response` source receives responses received from gRPC server for requests sent from a `grpc-call` sink.
+-- The source will receive responses for sink with the same `sink.id`.
+@source(type='grpc-call-response',
+    receiver.url =
+    'grpc://localhost:9763/org.wso2.grpc.EventService/process',
+    sink.id= 'ticket-price',
+
+
+-- Attributes of the event that initiated the call, and the response headers and properties via transport properties in
+-- the format `trp:<attribute name>` and `trp:<header/property> ` respectively.
+    @map(type='json', @attributes(customerName='trp:name',
+        phoneNo='trp:phoneNo', movie='trp:movie',
+        qty='trp:qty', bookingTime='trp:bookingTime',
+        ticketPrice='price')))
+
+-- Defines `TicketPriceResponseStream` which contains the response events for the ticket price requests.
+define stream TicketPriceResponseStream (customerName string,
+        phoneNo string, movie string, qty int,
+        ticketPrice double, bookingTime long);
+
+-- Defines `TotalTicketPaymentStream` which contains the events with the total payment amount for tickets.
+@sink(type='log')
+define stream TotalTicketPaymentStream (customerName string,
+        phoneNo string, movie string, totalAmount double,
+        bookingTime long);
+
+-- Filter the ticket bookings of class `Basic` and apply the default ticket price as `20` USD.
+from TicketBookingStream[ticketClass == "BASIC"]
+select name as customerName, phoneNo, movie,
+    qty * 20.0 as totalAmount, bookingTime
+insert into TotalTicketPaymentStream;
+
+
+-- Filter the ticket bookings other than the class `Basic` and route them to stream called `TicketPriceFinderStream`.
+from TicketBookingStream[ticketClass != "BASIC"]
+select *
+insert into TicketPriceFinderStream;
+
+
+from TicketPriceResponseStream
+-- Calculate the total ticket payment amount based on the `price` amount received from the gRPC service.
+select customerName, phoneNo, movie,
+    (qty * ticketPrice) as totalAmount, bookingTime
+
+insert into TotalTicketPaymentStream;
+

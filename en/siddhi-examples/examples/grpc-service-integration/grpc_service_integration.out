@@ -1,0 +1,19 @@
+#### Input and Output
+
+Let's assume there is an external gRPC service that responds with the ticket price based on the gRPC request.
+
+When an event with values ["Mohan", "+181234579212", "Iron Man", "Gold", 4, 0130] is sent to `TicketBookingStream` stream then a gRPC request is sent to the loan gRPC service to find the ticket price if ticket class is not `basic`.
+Then, gRPC server responds with the ticket price as shown below.
+
+```
+{
+	"price": 25
+}
+```
+
+There is a `grpc-call-response` source configured to consume the response from the gRPC server and those responses will be mapped to the stream called `TicketPriceResponseStream`.
+Then Siddhi calculates the total ticket payment amount accordingly and pushes it to a stream called `TotalTicketPaymentStream`. In this example, those events are logged to the console.
+Sample console log is give below,
+
+`TotalPurchaseCalculator : TotalTicketPaymentStream : Event{timestamp=1575449841536, data=[Mohan, +181234579212, Iron Man, 100.0, 0130], isExpired=false}`
+
