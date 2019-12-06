@@ -1,0 +1,28 @@
+define stream TemperatureStream
+        (roomNo string, temperature double);
+
+
+define stream HumidityStream
+        (roomNo string, humidity double);
+
+
+@info(name = 'Equi-join')
+-- Join latest `temperature` and `humidity` events arriving within 1 minute for each `roomNo`.
+from TemperatureStream#window.unique:time(roomNo, 1 min) as t
+    join HumidityStream#window.unique:time(roomNo, 1 min) as h
+    on t.roomNo == h.roomNo
+
+select t.roomNo, t.temperature, h.humidity
+insert into TemperatureHumidityStream;
+
+
+@info(name = 'Join-on-temperature')
+-- Join when events arrive in `TemperatureStream`.
+from TemperatureStream as t
+-- When events get matched in `time()` window, all matched events are emitted, else `null` is emitted.
+    left outer join HumidityStream#window.time(1 min) as h
+    on t.roomNo == h.roomNo
+
+select t.roomNo, t.temperature, h.humidity
+insert into EnrichedTemperatureStream;
+

@@ -1,0 +1,31 @@
+#### Join Behavior
+
+When events are sent to `TemperatureStream` stream and `HumidityStream` stream, following events will get emitted at `TemperatureHumidityStream` stream via `Equi-join` query,
+and `EnrichedTemperatureStream` stream via `Join-on-temperature` query.
+
+
+<style>
+.md-typeset table:not([class]) th:nth-child(3) {
+    min-width: 123px;
+}
+
+.md-typeset table:not([class]) th:nth-child(2) {
+    min-width: 123px;
+}
+
+.md-typeset table:not([class]) th {
+    min-width: 0;
+}
+</style>
+
+|Time | Input to `TemperatureStream` |  Input to `HumidityStream` | Output at `TemperatureHumidityStream` | Output at `EnrichedTemperatureStream` |
+|---|---|---|---|---|
+| 9:00:00 | [`'1001'`, `18.0`] | -                  | -                      | [`'1001'`, `18.0`, `null`] |
+| 9:00:10 | -                  | [`'1002'`, `72.0`] | -                      | - |
+| 9:00:15 | -                  | [`'1002'`, `73.0`] | -                      | - |
+| 9:00:30 | [`'1002'`, `22.0`] | -                  | [`'1002'`, `22.0`, `73.0`] | [`'1002'`, `22.0`, `72.0`], <br/>[`'1002'`, `22.0`, `73.0`] |
+| 9:00:50 | -                  | [`'1001'`, `60.0`] | [`'1001'`, `18.0`, `60.0`] | - |
+| 9:01:10 | -                  | [`'1001'`, `62.0`] | - | - |
+| 9:01:20 | [`'1001'`, `17.0`] | -                  | [`'1001'`, `17.0`, `62.0`] | [`'1001'`, `17.0`, `60.0`], <br/>[`'1001'`, `17.0`, `62.0`] |
+| 9:02:10 | [`'1002'`, `23.5`] | - | - | [`'1002'`, `23.5`, `null`] |
+

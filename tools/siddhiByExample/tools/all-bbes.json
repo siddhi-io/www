@@ -139,13 +139,13 @@
     ]
   },
   {
-    "title": "Aggregation",
-    "column": 3,
+    "title": "Data Pipelining",
+    "column": 2,
     "category": "Language concepts",
     "samples": [
       {
-        "name": "Simple Aggregation",
-        "url": "simple-aggregation"
+        "name": "Stream Join",
+        "url": "stream-join"
       }
     ]
   }

@@ -1,0 +1,3 @@
+Provides examples on joining two stream based on a condition.
+
+For more information on other [join operations](../../query-guide/#join-stream) refer the Siddhi [query guide](../../query-guide/).
