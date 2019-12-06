@@ -1627,8 +1627,8 @@ When there is no window associated with the joining steam, and empty window with
 The syntax to join two streams is as follows:
 
 ```siddhi
-from <input stream>(<non window handler>)*(#window.<window name>(<parameter>, ... ))? (unidirectional)? (as <reference>)?
-         <join type> <input stream>(<non window handler>)*(#window.<window name>(<parameter>,  ... ))? (unidirectional)? (as <reference>)?
+from <input stream>(<non window handler>)*(#window.<window name>(<parameter>, ... ))? (as <reference>)? (unidirectional)?
+         <join type> <input stream>(<non window handler>)*(#window.<window name>(<parameter>,  ... ))? (as <reference>)? (unidirectional)? 
     (on <join condition>)?
 select <reference>.<attribute name>, <reference>.<attribute name>, ...
 insert into <output stream>
@@ -1771,7 +1771,7 @@ A query to generate output only when events arrive on `StockStream` stream find 
 define stream StockStream (symbol string, price float, volume long);
 define stream TwitterStream (companyID string, tweet string);
 
-from StockStream#window.time(10 min) unidirectional as S
+from StockStream#window.time(10 min) as S unidirectional
     join TwitterStream#window.time(20 min) as T
     on S.symbol== T.companyID
 select S.symbol as symbol, T.tweet, S.price
