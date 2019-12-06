@@ -113,7 +113,51 @@ Please find the complete changes [here](https://github.com/siddhi-io/distributio
 
 !!! info "Please find the details of the corresponding docker release [here](https://github.com/siddhi-io/docker-siddhi/releases/tag/v5.1.0)"
 
+
+### Siddhi Distribution 5.1.2-rc1 (Pre Release)
+
+#### Highlights
+- Add Prometheus Reporter to support metrics collection. [(#706)](https://github.com/siddhi-io/distribution/pull/706)
+- Improve Siddhi Editor load time by uglifying and optimizing RequireJS.[(#739)](https://github.com/siddhi-io/distribution/pull/739)
+
+#### Features & Improvements
+- Enhance the usability problems of the Docker/K8s process. [(#740)](https://github.com/siddhi-io/distribution/pull/740)
+- Improve Siddhi Test Framework to mount to jars/bundles directories to Siddhi Runner container. [(#745)](https://github.com/siddhi-io/distribution/pull/745)
+- Change on-demand caching only when the user click the execute. [(#750)](https://github.com/siddhi-io/distribution/pull/750)
+- Add syntax and example generation function for editor extension platte. [(#716)](https://github.com/siddhi-io/distribution/pull/716) [(#731)](https://github.com/siddhi-io/distribution/pull/731) [(#732)](https://github.com/siddhi-io/distribution/pull/732)
+
+#### Bug Fixes
+- Fix deploy to server UI. [(#707)](https://github.com/siddhi-io/distribution/pull/707)
+- Add "credentialProvderClass" property for AWS-S3 persistence configurations. [(#718)](https://github.com/siddhi-io/distribution/pull/718)
+- Fix issue in the elasticsearch sample. [(#714)](https://github.com/siddhi-io/distribution/pull/714)
+- Remove backend calls on keypress, and disable export when there are no files. [(#728)](https://github.com/siddhi-io/distribution/pull/728)
+- Fix the issue in Prometheus Reporter. [(#730)](https://github.com/siddhi-io/distribution/pull/730)
+
+#### Complete Changes
+Please find the complete changes [here](https://github.com/siddhi-io/distribution/compare/v5.1.1...v5.1.2-rc1)
+
+
+!!! info "Please find more details about the release [here](https://github.com/siddhi-io/distribution/releases/tag/v5.1.2-rc1)"
+
+!!! info "Please find the details of the corresponding docker release [here](https://github.com/siddhi-io/docker-siddhi/releases/tag/v5.1.2-rc1)"
+
+
 ## Siddhi Core Libraries Releases
+
+### Siddhi Core 5.1.10
+
+#### Features & Improvements
+* Improve session window documentation. [(#1580)](https://github.com/siddhi-io/siddhi/pull/1580)
+
+#### Bug Fixes
+* Filter does not work when joining with table. [(#1570)](https://github.com/siddhi-io/siddhi/pull/1570)
+* Fix possible NPE for invalid call sink and call-response configuration. [(#1577)](https://github.com/siddhi-io/siddhi/pull/1577)
+* Code reformatting fixes. [(#1579)](https://github.com/siddhi-io/siddhi/pull/1579)
+
+#### Complete Changes 
+Please find the complete changes [here](https://github.com/siddhi-io/siddhi/compare/v5.1.8...v5.1.10)
+
+!!! info "Please find more details about the release [here](https://github.com/siddhi-io/siddhi/releases/tag/v5.1.10)"
 
 ### Siddhi Core 5.1.8
 
@@ -377,3 +421,10 @@ There are specification changes in Siddhi Process Custom Resource Definition. Yo
 
 !!! info "Please find more details about the release [here](https://github.com/siddhi-io/siddhi-operator/releases/tag/v0.2.0)"
 
+### Siddhi Operator 0.2.2-rc1 (Pre Release)
+
+#### Bug Fixes
+
+1. Change state.persistence to statePersistence. [(#120)](https://github.com/siddhi-io/siddhi-operator/pull/120)
+
+!!! info "Please find more details about the release [here](https://github.com/siddhi-io/siddhi-operator/releases/tag/v0.2.2-rc1)"
