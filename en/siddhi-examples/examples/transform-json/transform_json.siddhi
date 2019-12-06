@@ -1,5 +1,6 @@
 define stream PersonalDetails(data object);
 
+
 @info(name='GetFromJson')
 from PersonalDetails
 select data, 
