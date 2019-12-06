@@ -31,7 +31,7 @@
         <meta name="description" content="Cloud Native Stream Processor">
       
       
-        <link rel="canonical" href="http://siddhi.io/en/next/docs/examples/simple-aggregation/">
+        <link rel="canonical" href="http://siddhi.io/en/next/docs/examples/scatter-and-gather-string/">
       
       
         <meta name="author" content="WSO2">
@@ -60,7 +60,7 @@
     
     
       
-        <title>Simple aggregation - Siddhi</title>
+        <title>Scatter and gather string - Siddhi</title>
       
     
     
@@ -179,7 +179,7 @@
               Siddhi
             </span>
             <span class="md-header-nav__topic">
-              Simple aggregation
+              Scatter and gather string
             </span>
           
         </div>
@@ -348,7 +348,7 @@
     </ul>
     <div class="quick_links">
         
-        <a href="https://github.com/siddhi-io/www/edit/master/en/docs/docs/examples/simple-aggregation.md" target="blank" id="editIcon" title="Edit this page"
+        <a href="https://github.com/siddhi-io/www/edit/master/en/docs/docs/examples/scatter-and-gather-string.md" target="blank" id="editIcon" title="Edit this page"
            title="Edit this page" class="md-icon md-content__icon nav_link edit_link"></a>
         
     </div>
@@ -864,7 +864,7 @@
               
   
                 
-                  <a href="https://github.com/siddhi-io/www/edit/master/en/docs/docs/examples/simple-aggregation.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/siddhi-io/www/edit/master/en/docs/docs/examples/scatter-and-gather-string.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
                 <!--copy to clipboard lib-->
@@ -882,14 +882,13 @@
 <script src="../../../assets/js/example.js"></script>
 
 <p><link rel=stylesheet href="../../../assets/css/example.css">
-<span class="info" dir="https://github.com/siddhi-io/www/tree/v5.1/en/siddhi-examples/examples/simple-aggregation/"><span></p>
-<h1>Simple Aggregation</h1>
+<span class="info" dir="https://github.com/siddhi-io/www/tree/v5.1/en/siddhi-examples/examples/scatter-and-gather-string/"><span></p>
+<h1>Scatter and Gather (String)</h1>
 
 <div class="cLeftTD">
-<p><p>This application demonstrates how to simulate random events via Feed
-Simulation and calculate running aggregates such as avg, min, max, etc.
-The aggregation is executed on events within a time window.
-A sliding time window of 10 seconds is used in this sample.</p>
+<p><p>Provides example on performing scatter and gather on string values.</p>
+
+<p>For more information on  performing scatter and gather on json, refer other examples under data pipelining section.</p>
 </p>
 </div>
 
@@ -898,23 +897,23 @@ A sliding time window of 10 seconds is used in this sample.</p>
  <a class="copy"><img src="../../../images/copy.png" width="20px"/></a>
 </div>
 <div class="FullCode">
-                <div class="highlight"><pre><span class="nx">define</span> <span class="nx">stream</span> <span class="nx">TradesStream</span><span class="p">(</span><span class="nx">trader</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">quantity</span> <span class="kt">int</span><span class="p">);</span>
+                <div class="highlight"><pre><span class="nx">define</span> <span class="nx">stream</span> <span class="nx">PurchaseStream</span>
+                <span class="p">(</span><span class="nx">userId</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">items</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">store</span> <span class="kt">string</span><span class="p">);</span>
 
-<span class="err">@</span><span class="nx">sink</span><span class="p">(</span><span class="nx">type</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">log</span><span class="err">&#39;</span><span class="p">)</span>
-<span class="nx">define</span> <span class="nx">stream</span> <span class="nx">SummarizedTradingInformation</span><span class="p">(</span><span class="nx">trader</span> <span class="kt">string</span><span class="p">,</span>
-                <span class="nx">noOfTrades</span> <span class="nx">long</span><span class="p">,</span>
-                <span class="nx">totalTradingQuantity</span> <span class="nx">long</span><span class="p">,</span>
-                <span class="nx">minTradingQuantity</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">maxTradingQuantity</span> <span class="kt">int</span><span class="p">,</span>
-                <span class="nx">avgTradingQuantity</span> <span class="nx">double</span><span class="p">);</span>
+<span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">Scatter</span><span class="o">-</span><span class="nx">query</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="nx">from</span> <span class="nx">PurchaseStream</span><span class="p">#str:tokenize(</span><span class="nx">items</span><span class="p">,</span> <span class="sc">&#39;,&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+<span class="nx">select</span> <span class="nx">userId</span><span class="p">,</span> <span class="nx">token</span> <span class="k">as</span> <span class="nx">item</span><span class="p">,</span> <span class="nx">store</span>
+<span class="nx">insert</span> <span class="nx">into</span> <span class="nx">TokenizedItemStream</span><span class="p">;</span>
 
-<span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">query1</span><span class="err">&#39;</span><span class="p">)</span>
-<span class="nx">from</span> <span class="nx">TradesStream</span><span class="err">#</span><span class="nx">window</span><span class="p">.</span><span class="nx">time</span><span class="p">(</span><span class="mi">10</span> <span class="nx">sec</span><span class="p">)</span>
-<span class="nx">select</span> <span class="nx">trader</span><span class="p">,</span> <span class="nx">count</span><span class="p">()</span> <span class="k">as</span> <span class="nx">noOfTrades</span><span class="p">,</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">quantity</span><span class="p">)</span> <span class="k">as</span> <span class="nx">totalTradingQuantity</span><span class="p">,</span>
-            <span class="nx">min</span><span class="p">(</span><span class="nx">quantity</span><span class="p">)</span> <span class="k">as</span> <span class="nx">minTradingQuantity</span><span class="p">,</span>
-            <span class="nx">max</span><span class="p">(</span><span class="nx">quantity</span><span class="p">)</span> <span class="k">as</span> <span class="nx">maxTradingQuantity</span><span class="p">,</span>
-            <span class="nx">avg</span><span class="p">(</span><span class="nx">quantity</span><span class="p">)</span> <span class="k">as</span> <span class="nx">avgTradingQuantity</span>
-<span class="nx">group</span> <span class="nx">by</span> <span class="nx">trader</span>
-<span class="nx">insert</span> <span class="nx">into</span> <span class="nx">SummarizedTradingInformation</span><span class="p">;</span>
+<span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">Transform</span><span class="o">-</span><span class="nx">query</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="nx">from</span> <span class="nx">TokenizedItemStream</span>
+<span class="nx">select</span> <span class="nx">userId</span><span class="p">,</span> <span class="nx">str</span><span class="p">:</span><span class="nx">concat</span><span class="p">(</span><span class="nx">store</span><span class="p">,</span> <span class="s">&quot;-&quot;</span><span class="p">,</span> <span class="nx">item</span><span class="p">)</span> <span class="k">as</span> <span class="nx">itemKey</span>
+<span class="nx">insert</span> <span class="nx">into</span> <span class="nx">TransformedItemStream</span><span class="p">;</span>
+
+<span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">Gather</span><span class="o">-</span><span class="nx">query</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="nx">from</span> <span class="nx">TransformedItemStream</span><span class="err">#</span><span class="nx">window</span><span class="p">.</span><span class="nx">batch</span><span class="p">()</span>
+<span class="nx">select</span> <span class="nx">userId</span><span class="p">,</span> <span class="nx">str</span><span class="p">:</span><span class="nx">groupConcat</span><span class="p">(</span><span class="nx">itemKey</span><span class="p">,</span> <span class="s">&quot;,&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="nx">itemKeys</span>
+<span class="nx">insert</span> <span class="nx">into</span> <span class="nx">GroupedPurchaseItemStram</span><span class="p">;</span>
 </pre></div>
 
             </div>
@@ -930,18 +929,125 @@ A sliding time window of 10 seconds is used in this sample.</p>
 <table class="cBE-body">
 
 
+    <tr class="cTR">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>define stream PurchaseStream
+                (userId string, items string, store string);
+</code></pre></div>
+
+        </td>
+        <td class="docs">
+
+        </td>
+    </tr>
+
+    <tr class="cTR">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>@info(name = &#39;Scatter-query&#39;)</code></pre></div>
+
+        </td>
+        <td class="docs">
+
+        </td>
+    </tr>
+
     <tr class="cTR hover-enable">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>define stream TradesStream(trader string, quantity int);
-</code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>from PurchaseStream#str:tokenize(items, &#39;,&#39;, true)
+select userId, token as item, store</code></pre></div>
 
         </td>
         <td class="docs">
 
             <div class="cCodeDesription">
                 <div>
-                    <p>Define the input stream definition called <code>TradesStream</code></p>
+                    <p>Scatter value of <code>items</code> in to separate events by <code>,</code>.</p>
+
+                </div>
+            </div>
+
+        </td>
+    </tr>
+
+    <tr class="cTR">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>insert into TokenizedItemStream;
+</code></pre></div>
+
+        </td>
+        <td class="docs">
+
+        </td>
+    </tr>
+
+    <tr class="cTR">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>@info(name = &#39;Transform-query&#39;)
+from TokenizedItemStream</code></pre></div>
+
+        </td>
+        <td class="docs">
+
+        </td>
+    </tr>
+
+    <tr class="cTR hover-enable">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>select userId, str:concat(store, &quot;-&quot;, item) as itemKey</code></pre></div>
+
+        </td>
+        <td class="docs">
+
+            <div class="cCodeDesription">
+                <div>
+                    <p>Concat tokenized <code>item</code> with <code>store</code>.</p>
+
+                </div>
+            </div>
+
+        </td>
+    </tr>
+
+    <tr class="cTR">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>insert into TransformedItemStream;
+</code></pre></div>
+
+        </td>
+        <td class="docs">
+
+        </td>
+    </tr>
+
+    <tr class="cTR">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>@info(name = &#39;Gather-query&#39;)</code></pre></div>
+
+        </td>
+        <td class="docs">
+
+        </td>
+    </tr>
+
+    <tr class="cTR hover-enable">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>from TransformedItemStream#window.batch()</code></pre></div>
+
+        </td>
+        <td class="docs">
+
+            <div class="cCodeDesription">
+                <div>
+                    <p>Collect events traveling as a batch via <code>batch()</code> window.</p>
 
                 </div>
             </div>
@@ -952,20 +1058,14 @@ A sliding time window of 10 seconds is used in this sample.</p>
     <tr class="cTR hover-enable">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>@sink(type=&#39;log&#39;)
-define stream SummarizedTradingInformation(trader string,
-                noOfTrades long,
-                totalTradingQuantity long,
-                minTradingQuantity int, maxTradingQuantity int,
-                avgTradingQuantity double);
-</code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>select userId, str:groupConcat(itemKey, &quot;,&quot;) as itemKeys</code></pre></div>
 
         </td>
         <td class="docs">
 
             <div class="cCodeDesription">
                 <div>
-                    <p>Define the sink to print the output events in the log file</p>
+                    <p>Concat all events in a batch separating them by <code>,</code>.</p>
 
                 </div>
             </div>
@@ -973,28 +1073,14 @@ define stream SummarizedTradingInformation(trader string,
         </td>
     </tr>
 
-    <tr class="cTR hover-enable">
+    <tr class="cTR">
 
         <td class="code">
-            <div class="highlight"><pre><code class=siddhi>@info(name=&#39;query1&#39;)
-from TradesStream#window.time(10 sec)
-select trader, count() as noOfTrades, sum(quantity) as totalTradingQuantity,
-            min(quantity) as minTradingQuantity,
-            max(quantity) as maxTradingQuantity,
-            avg(quantity) as avgTradingQuantity
-group by trader
-insert into SummarizedTradingInformation;</code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>insert into GroupedPurchaseItemStram;
+</code></pre></div>
 
         </td>
         <td class="docs">
-
-            <div class="cCodeDesription">
-                <div>
-                    <p>Find count, sum, min, max and avg of quantity per trader, during the
- last 10 seconds</p>
-
-                </div>
-            </div>
 
         </td>
     </tr>
@@ -1011,13 +1097,23 @@ insert into SummarizedTradingInformation;</code></pre></div>
 <div class="cLeftTD">
 <h4>Input</h4>
 
-<p>Find count, sum, min, max and avg of quantity per trader, during the
- last 10 seconds</p>
+<p>Below event is sent to <code>TemperatureStream</code>,</p>
+
+<p>[<code>'501'</code>, <code>'cake,cookie,bun,cookie'</code>, <code>'CA'</code>]</p>
 
 <h4>Output</h4>
 
-<p>Find count, sum, min, max and avg of quantity per trader, during the
- last 10 seconds</p>
+<p>After processing, the events arriving at <code>TokenizedItemStream</code> will be as follows:</p>
+
+<p>[<code>'501'</code>, <code>'cake'</code>, <code>'CA'</code>], [<code>'501'</code>, <code>'cookie'</code>, <code>'CA'</code>], [<code>'501'</code>, <code>'bun'</code>, <code>'CA'</code>]</p>
+
+<p>The events arriving at <code>TransformedItemStream</code> will be as follows:</p>
+
+<p>[<code>'501'</code>, <code>'CA-cake'</code>], [<code>'501'</code>, <code>'CA-cookie'</code>], [<code>'501'</code>, <code>'CA-bun'</code>]</p>
+
+<p>The event arriving at <code>GroupedPurchaseItemStram</code> will be as follows:</p>
+
+<p>[<code>'501'</code>, <code>'CA-cake,CA-cookie,CA-bun'</code>]</p>
 
 <div>
                 

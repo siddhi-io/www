@@ -84,6 +84,10 @@
       {
         "name": "Math & Logical Operation",
         "url": "math-logical-operations"
+      },
+      {
+        "name": "Transform JSON",
+        "url": "transform-json"
       }
     ]
 
@@ -135,13 +139,17 @@
     ]
   },
   {
-    "title": "Aggregation",
+    "title": "Data Pipelining",
     "column": 2,
     "category": "Language concepts",
     "samples": [
       {
-        "name": "Simple Aggregation",
-        "url": "simple-aggregation"
+        "name": "Stream Join",
+        "url": "stream-join"
+      },
+      {
+        "name": "Scatter and Gather (String)",
+        "url": "scatter-and-gather-string"
       }
     ]
   }

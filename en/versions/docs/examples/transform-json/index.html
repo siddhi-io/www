@@ -31,7 +31,7 @@
         <meta name="description" content="Cloud Native Stream Processor">
       
       
-        <link rel="canonical" href="http://siddhi.io/en/versions/docs/examples/simple-aggregation/">
+        <link rel="canonical" href="http://siddhi.io/en/versions/docs/examples/transform-json/">
       
       
         <meta name="author" content="WSO2">
@@ -60,7 +60,7 @@
     
     
       
-        <title>Simple aggregation - Siddhi</title>
+        <title>Transform json - Siddhi</title>
       
     
     
@@ -179,7 +179,7 @@
               Siddhi
             </span>
             <span class="md-header-nav__topic">
-              Simple aggregation
+              Transform json
             </span>
           
         </div>
@@ -348,7 +348,7 @@
         </ul>
         <div class="quick_links">
             
-            <a href="https://github.com/siddhi-io/www/tree/versions/en/docs/docs/examples/simple-aggregation.md" target="blank" id="editIcon" title="Edit this page"
+            <a href="https://github.com/siddhi-io/www/tree/versions/en/docs/docs/examples/transform-json.md" target="blank" id="editIcon" title="Edit this page"
                title="Edit this page" class="md-icon md-content__icon nav_link edit_link"></a>
             
         </div>
@@ -623,7 +623,7 @@
               
   
                 
-                  <a href="https://github.com/siddhi-io/www/tree/versions/en/docs/docs/examples/simple-aggregation.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/siddhi-io/www/tree/versions/en/docs/docs/examples/transform-json.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
                 <!--copy to clipboard lib-->
@@ -641,14 +641,13 @@
 <script src="../../../assets/js/example.js"></script>
 
 <p><link rel=stylesheet href="../../../assets/css/example.css">
-<span class="info" dir="https://github.com/siddhi-io/www/tree/v5.1/en/siddhi-examples/examples/simple-aggregation/"><span></p>
-<h1>Simple Aggregation</h1>
+<span class="info" dir="https://github.com/siddhi-io/www/tree/v5.1/en/siddhi-examples/examples/transform-json/"><span></p>
+<h1>Transform JSON</h1>
 
 <div class="cLeftTD">
-<p><p>This application demonstrates how to simulate random events via Feed
-Simulation and calculate running aggregates such as avg, min, max, etc.
-The aggregation is executed on events within a time window.
-A sliding time window of 10 seconds is used in this sample.</p>
+<p><p>Provides examples on transforming JSON object within Siddhi.</p>
+
+<p>For all functions available to transform JSON see <a href="https://siddhi-io.github.io/siddhi-execution-json/" target="_blank">Siddhi Execution JSON</a>.</p>
 </p>
 </div>
 
@@ -657,23 +656,21 @@ A sliding time window of 10 seconds is used in this sample.</p>
  <a class="copy"><img src="../../../images/copy.png" width="20px"/></a>
 </div>
 <div class="FullCode">
-                <div class="highlight"><pre><span class="nx">define</span> <span class="nx">stream</span> <span class="nx">TradesStream</span><span class="p">(</span><span class="nx">trader</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">quantity</span> <span class="kt">int</span><span class="p">);</span>
+                <div class="highlight"><pre><span class="nx">define</span> <span class="nx">stream</span> <span class="nx">PersonalDetails</span><span class="p">(</span><span class="nx">data</span> <span class="nx">object</span><span class="p">);</span>
 
-<span class="err">@</span><span class="nx">sink</span><span class="p">(</span><span class="nx">type</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">log</span><span class="err">&#39;</span><span class="p">)</span>
-<span class="nx">define</span> <span class="nx">stream</span> <span class="nx">SummarizedTradingInformation</span><span class="p">(</span><span class="nx">trader</span> <span class="kt">string</span><span class="p">,</span>
-                <span class="nx">noOfTrades</span> <span class="nx">long</span><span class="p">,</span>
-                <span class="nx">totalTradingQuantity</span> <span class="nx">long</span><span class="p">,</span>
-                <span class="nx">minTradingQuantity</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">maxTradingQuantity</span> <span class="kt">int</span><span class="p">,</span>
-                <span class="nx">avgTradingQuantity</span> <span class="nx">double</span><span class="p">);</span>
+<span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">GetFromJson</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="nx">from</span> <span class="nx">PersonalDetails</span>
+<span class="nx">select</span> <span class="nx">data</span><span class="p">,</span> 
+    <span class="kt">json</span><span class="p">:</span><span class="nx">getString</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span><span class="err">&#39;$</span><span class="p">.</span><span class="nx">name</span><span class="err">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="nx">name</span><span class="p">,</span>
+    <span class="kt">json</span><span class="p">:</span><span class="nx">isExists</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="err">&#39;$</span><span class="p">.</span><span class="nx">salary</span><span class="err">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="nx">isSalaryAvailable</span><span class="p">,</span>
+    <span class="kt">json</span><span class="p">:</span><span class="nx">toString</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="k">as</span> <span class="nx">jsonString</span> 
+<span class="nx">insert</span> <span class="nx">into</span> <span class="nx">OutputStream</span><span class="p">;</span>
 
-<span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">query1</span><span class="err">&#39;</span><span class="p">)</span>
-<span class="nx">from</span> <span class="nx">TradesStream</span><span class="err">#</span><span class="nx">window</span><span class="p">.</span><span class="nx">time</span><span class="p">(</span><span class="mi">10</span> <span class="nx">sec</span><span class="p">)</span>
-<span class="nx">select</span> <span class="nx">trader</span><span class="p">,</span> <span class="nx">count</span><span class="p">()</span> <span class="k">as</span> <span class="nx">noOfTrades</span><span class="p">,</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">quantity</span><span class="p">)</span> <span class="k">as</span> <span class="nx">totalTradingQuantity</span><span class="p">,</span>
-            <span class="nx">min</span><span class="p">(</span><span class="nx">quantity</span><span class="p">)</span> <span class="k">as</span> <span class="nx">minTradingQuantity</span><span class="p">,</span>
-            <span class="nx">max</span><span class="p">(</span><span class="nx">quantity</span><span class="p">)</span> <span class="k">as</span> <span class="nx">maxTradingQuantity</span><span class="p">,</span>
-            <span class="nx">avg</span><span class="p">(</span><span class="nx">quantity</span><span class="p">)</span> <span class="k">as</span> <span class="nx">avgTradingQuantity</span>
-<span class="nx">group</span> <span class="nx">by</span> <span class="nx">trader</span>
-<span class="nx">insert</span> <span class="nx">into</span> <span class="nx">SummarizedTradingInformation</span><span class="p">;</span>
+<span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">SetInJson</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="nx">from</span> <span class="nx">OutputStream</span><span class="p">[</span><span class="nx">isSalaryAvailable</span> <span class="o">==</span> <span class="kc">false</span><span class="p">]</span>
+<span class="nx">select</span> 
+    <span class="kt">json</span><span class="p">:</span><span class="nx">setElement</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="sc">&#39;$&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="nx">f</span><span class="p">,</span> <span class="err">&#39;</span><span class="nx">salary</span><span class="err">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="nx">data</span>
+<span class="nx">insert</span> <span class="nx">into</span> <span class="nx">PreprocessedStream</span><span class="p">;</span>
 </pre></div>
 
             </div>
@@ -689,18 +686,42 @@ A sliding time window of 10 seconds is used in this sample.</p>
 <table class="cBE-body">
 
 
+    <tr class="cTR">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>define stream PersonalDetails(data object);
+</code></pre></div>
+
+        </td>
+        <td class="docs">
+
+        </td>
+    </tr>
+
+    <tr class="cTR">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>@info(name=&#39;GetFromJson&#39;)
+from PersonalDetails
+select data, </code></pre></div>
+
+        </td>
+        <td class="docs">
+
+        </td>
+    </tr>
+
     <tr class="cTR hover-enable">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>define stream TradesStream(trader string, quantity int);
-</code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>    json:getString(data,&#39;$.name&#39;) as name,</code></pre></div>
 
         </td>
         <td class="docs">
 
             <div class="cCodeDesription">
                 <div>
-                    <p>Define the input stream definition called <code>TradesStream</code></p>
+                    <p>Get the <code>name</code> element(string) form the JSON</p>
 
                 </div>
             </div>
@@ -711,20 +732,14 @@ A sliding time window of 10 seconds is used in this sample.</p>
     <tr class="cTR hover-enable">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>@sink(type=&#39;log&#39;)
-define stream SummarizedTradingInformation(trader string,
-                noOfTrades long,
-                totalTradingQuantity long,
-                minTradingQuantity int, maxTradingQuantity int,
-                avgTradingQuantity double);
-</code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>    json:isExists(data, &#39;$.salary&#39;) as isSalaryAvailable,</code></pre></div>
 
         </td>
         <td class="docs">
 
             <div class="cCodeDesription">
                 <div>
-                    <p>Define the sink to print the output events in the log file</p>
+                    <p>Validate if <code>salary</code> element is available</p>
 
                 </div>
             </div>
@@ -733,27 +748,91 @@ define stream SummarizedTradingInformation(trader string,
     </tr>
 
     <tr class="cTR hover-enable">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>    json:toString(data) as jsonString </code></pre></div>
+
+        </td>
+        <td class="docs">
+
+            <div class="cCodeDesription">
+                <div>
+                    <p>Stringify the JSON object</p>
+
+                </div>
+            </div>
+
+        </td>
+    </tr>
+
+    <tr class="cTR">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>insert into OutputStream;
+</code></pre></div>
+
+        </td>
+        <td class="docs">
+
+        </td>
+    </tr>
+
+    <tr class="cTR hover-enable">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>@info(name=&#39;SetInJson&#39;)
+from OutputStream[isSalaryAvailable == false]</code></pre></div>
+
+        </td>
+        <td class="docs">
+
+            <div class="cCodeDesription">
+                <div>
+                    <p>Select if <code>salary</code> key is not available in the data</p>
+
+                </div>
+            </div>
+
+        </td>
+    </tr>
+
+    <tr class="cTR">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>select </code></pre></div>
+
+        </td>
+        <td class="docs">
+
+        </td>
+    </tr>
+
+    <tr class="cTR hover-enable">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>    json:setElement(data, &#39;$&#39;, 0f, &#39;salary&#39;) as data</code></pre></div>
+
+        </td>
+        <td class="docs">
+
+            <div class="cCodeDesription">
+                <div>
+                    <p>Set <code>salary</code> element to <code>0.0</code> in the root path.</p>
+
+                </div>
+            </div>
+
+        </td>
+    </tr>
+
+    <tr class="cTR">
 
         <td class="code">
-            <div class="highlight"><pre><code class=siddhi>@info(name=&#39;query1&#39;)
-from TradesStream#window.time(10 sec)
-select trader, count() as noOfTrades, sum(quantity) as totalTradingQuantity,
-            min(quantity) as minTradingQuantity,
-            max(quantity) as maxTradingQuantity,
-            avg(quantity) as avgTradingQuantity
-group by trader
-insert into SummarizedTradingInformation;</code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>insert into PreprocessedStream;
+</code></pre></div>
 
         </td>
         <td class="docs">
-
-            <div class="cCodeDesription">
-                <div>
-                    <p>Find count, sum, min, max and avg of quantity per trader, during the
- last 10 seconds</p>
-
-                </div>
-            </div>
 
         </td>
     </tr>
@@ -770,13 +849,43 @@ insert into SummarizedTradingInformation;</code></pre></div>
 <div class="cLeftTD">
 <h4>Input</h4>
 
-<p>Find count, sum, min, max and avg of quantity per trader, during the
- last 10 seconds</p>
+<p>Below event is sent to <code>PersonalDetails</code>,</p>
+
+<p>[</p>
+
+<pre><code class="language-json">{
+    &quot;name&quot; : &quot;siddhi.user&quot;,
+    &quot;address&quot; : {
+        &quot;country&quot;: &quot;Sri Lanka&quot;,
+    },
+    &quot;contact&quot;: &quot;+9xxxxxxxx&quot;
+}
+</code></pre>
+
+<p>]</p>
 
 <h4>Output</h4>
 
-<p>Find count, sum, min, max and avg of quantity per trader, during the
- last 10 seconds</p>
+<p>After processing, the following events will be arriving:</p>
+
+<ul>
+<li>OutputStream: <br/>[<code>siddhi.user</code>, <code>false</code>, <br/><code>&quot;{\&quot;name\&quot; : \&quot;siddhi.user\&quot;, \&quot;address\&quot; : { \&quot;country\&quot;: \&quot;Sri Lanka\&quot;, }, \&quot;contact\&quot;: \&quot;+9xxxxxxxx\&quot;}&quot;</code>]</li>
+
+<li><p>PreprocessedStream: <br/>
+[</p>
+
+<pre><code class="language-json">{
+    &quot;name&quot; : &quot;siddhi.user&quot;,
+    &quot;salary&quot;: 0.0
+    &quot;address&quot; : {
+        &quot;country&quot;: &quot;Sri Lanka&quot;,
+    },
+    &quot;contact&quot;: &quot;+9xxxxxxxx&quot;
+}
+</code></pre>
+
+<p>]</p></li>
+</ul>
 
 <div>
                 
