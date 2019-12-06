@@ -146,6 +146,10 @@
       {
         "name": "Stream Join",
         "url": "stream-join"
+      },
+      {
+        "name": "Scatter and Gather (String)",
+        "url": "scatter-and-gather-string"
       }
     ]
   }

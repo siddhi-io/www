@@ -1,0 +1,28 @@
+define stream PurchaseStream
+                (userId string, items string, store string);
+
+
+@info(name = 'Scatter-query')
+-- Scatter value of `items` in to separate events by `,`.
+from PurchaseStream#str:tokenize(items, ',', true)
+select userId, token as item, store
+
+insert into TokenizedItemStream;
+
+
+@info(name = 'Transform-query')
+from TokenizedItemStream
+-- Concat tokenized `item` with `store`.
+select userId, str:concat(store, "-", item) as itemKey
+
+insert into TransformedItemStream;
+
+
+@info(name = 'Gather-query')
+-- Collect events traveling as a batch via `batch()` window.
+from TransformedItemStream#window.batch()
+-- Concat all events in a batch separating them by `,`.
+select userId, str:groupConcat(itemKey, ",") as itemKeys
+
+insert into GroupedPurchaseItemStram;
+

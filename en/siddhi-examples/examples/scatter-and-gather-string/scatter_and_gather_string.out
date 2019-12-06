@@ -1,0 +1,19 @@
+#### Input
+
+Below event is sent to `TemperatureStream`,
+
+[`'501'`, `'cake,cookie,bun,cookie'`, `'CA'`]
+
+#### Output
+
+After processing, the events arriving at `TokenizedItemStream` will be as follows:
+
+[`'501'`, `'cake'`, `'CA'`], [`'501'`, `'cookie'`, `'CA'`], [`'501'`, `'bun'`, `'CA'`]
+
+The events arriving at `TransformedItemStream` will be as follows:
+
+[`'501'`, `'CA-cake'`], [`'501'`, `'CA-cookie'`], [`'501'`, `'CA-bun'`]
+
+The event arriving at `GroupedPurchaseItemStram` will be as follows:
+
+[`'501'`, `'CA-cake,CA-cookie,CA-bun'`]
