@@ -1,0 +1,34 @@
+#### Input
+
+Below event is sent to `PersonalDetails`,
+
+[
+```json
+{
+    "name" : "siddhi.user",
+    "address" : {
+        "country": "Sri Lanka",
+    },
+    "contact": "+9xxxxxxxx"
+}
+```
+]
+
+#### Output
+
+After processing, the following events will be arriving:
+
+* OutputStream: <br/>[`siddhi.user`, `false`, <br/>`"{\"name\" : \"siddhi.user\", \"address\" : { \"country\": \"Sri Lanka\", }, \"contact\": \"+9xxxxxxxx\"}"`]
+* PreprocessedStream: <br/>
+    [
+    ```json
+    {
+        "name" : "siddhi.user",
+        "salary": 0.0
+        "address" : {
+            "country": "Sri Lanka",
+        },
+        "contact": "+9xxxxxxxx"
+    }
+    ```
+    ]

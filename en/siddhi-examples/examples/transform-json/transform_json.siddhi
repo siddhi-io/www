@@ -1,0 +1,28 @@
+define stream PersonalDetails(data object);
+
+@info(name='GetFromJson')
+from PersonalDetails
+select data, 
+-- Get the `name` element(string) form the JSON
+    json:getString(data,'$.name') as name,
+
+-- Validate if `salary` element is available
+    json:isExists(data, '$.salary') as isSalaryAvailable,
+
+-- Stringify the JSON object
+    json:toString(data) as jsonString 
+
+insert into OutputStream;
+
+
+-- Select if `salary` key is not available in the data
+@info(name='SetInJson')
+from OutputStream[isSalaryAvailable == false]
+
+select 
+-- Set `salary` element to `0.0` in the root path. 
+    json:setElement(data, '$', 0f, 'salary') as data
+
+insert into PreprocessedStream;
+
+
