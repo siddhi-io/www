@@ -1,0 +1,28 @@
+define stream PurchaseStream
+        (userId string, item string, price double);
+
+
+@info(name = 'Session-analysis')
+-- Aggregate events over a `userId` based session window with `1 minute` session gap.
+from PurchaseStream#window.session(1 min, userId)
+-- Calculate count and sum of `price` per `userId` during the session.
+select userId,
+       count() as totalItems,
+       sum(price) as totalPrice
+group by userId
+-- Output when events are added to the session.
+insert into UserIdPurchaseStream;
+
+
+@info(name = 'Session-analysis-with-late-event-arrivals')
+-- Aggregate events over a `userId` based session window with `1 minute` session gap,
+-- and `20 seconds` of allowed latency to capture late event arrivals.
+from PurchaseStream#window.session(1 min, userId, 20 sec)
+-- Calculate count and sum of `price` per `userId` during the session.
+select userId,
+       count() as totalItems,
+       sum(price) as totalPrice
+group by userId
+-- Output when events are added to the session.
+insert into OutOfOrderUserIdPurchaseStream;
+

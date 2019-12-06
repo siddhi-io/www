@@ -1,0 +1,4 @@
+Provides examples on defining a named window, and summarizing data based on that.
+This example uses `time` window as the named window, but any window can be defined and used as a name window.
+
+For more information on [named windows](../../query-guide/#named-window) refer the Siddhi [query guide](../../query-guide/).

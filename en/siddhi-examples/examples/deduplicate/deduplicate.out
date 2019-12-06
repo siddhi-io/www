@@ -1,0 +1,23 @@
+#### Behavior
+
+When events are sent to `TemperatureStream` stream, following events will get emitted after deduplication on `UniqueSensorStream` stream via `Deduplicate-sensorId` query,
+and `UniqueSensorSeqNoStream` stream via `Deduplicate-sensorId-and-seqNo` query.
+
+<style>
+.md-typeset table:not([class]) th:nth-child(2) {
+    min-width: 155px;
+}
+</style>
+
+|Time | Input to `TemperatureStream` | Output at `UniqueSensorStream` | Output at `UniqueSensorSeqNoStream` |
+|---|---|---|---|
+| 9:00:00 | [`'AD11'`, `'200'`, `18.0`] | [`'AD11'`, `'200'`, `18.0`]  | [`'AD11'`, `'200'`, `18.0`] |
+| 9:00:10 | [`'AD11'`, `'201'`, `23.0`] | -                            | [`'AD11'`, `'201'`, `23.0`] |
+| 9:00:20 | [`'FR45'`, `'500'`, `22.0`] | [`'FR45'`, `'500'`, `22.0`]  | [`'FR45'`, `'500'`, `22.0`] |
+| 9:00:40 | [`'AD11'`, `'200'`, `18.0`] | -                            | - |
+| 9:00:50 | [`'AD11'`, `'202'`, `28.0`] | -                            | [`'AD11'`, `'202'`, `28.0`] |
+| 9:01:05 | [`'FR45'`, `'501'`, `22.0`] | -                            | [`'FR45'`, `'501'`, `22.0`] |
+| 9:01:10 | [`'AD11'`, `'203'`, `30.0`] | [`'AD11'`, `'203'`, `30.0`]  | [`'AD11'`, `'203'`, `30.0`] |
+| 9:02:20 | [`'AD11'`, `'202'`, `28.0`] | [`'AD11'`, `'202'`, `28.0`]  | [`'AD11'`, `'202'`, `28.0`] |
+| 9:03:10 | [`'AD11'`, `'204'`, `30.0`] | -                            | [`'AD11'`, `'204'`, `30.0`] |
+

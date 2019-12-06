@@ -69,6 +69,10 @@
       {
         "name": "Type based Filtering",
         "url": "type-based-filtering"
+      },
+      {
+        "name": "Remove Duplicate Events",
+        "url": "deduplicate"
       }
     ]
   },
@@ -104,6 +108,14 @@
       {
         "name": "Batch (Tumbling) Event Count",
         "url": "batch-length"
+      },
+      {
+        "name": "Session",
+        "url": "session"
+      },
+      {
+        "name": "Named Window",
+        "url": "named-window"
       }
     ]
   },

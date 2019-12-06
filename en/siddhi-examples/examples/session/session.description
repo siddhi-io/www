@@ -1,0 +1,3 @@
+Provides examples on aggregating events over continuous activity sessions in a sliding manner.
+
+To aggregate events in batches, or based on events, refer other the examples in Data Summarization section. For more information on [windows](../../query-guide/#window) refer the Siddhi [query guide](../../query-guide/).

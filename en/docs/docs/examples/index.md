@@ -14,6 +14,7 @@
 <p>
 Siddhi by Example enables you to have complete coverage over the Siddhi query language and some of it's key extenstions, while emphasizing incremental learning. This is a series of commented example programs.
 </p>
+<p><b>Note:</b> This section is under construction.</p>
 <div id="example"></div>
 
 <script>

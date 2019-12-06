@@ -1,0 +1,32 @@
+define stream TemperatureStream
+        (sensorId string, temperature double);
+
+
+-- Define a named window with name `OneMinTimeWindow` to retain events over `1 minute` in a sliding manner.
+define window OneMinTimeWindow
+        (sensorId string, temperature double) time(1 min) ;
+
+
+@info(name = 'Insert-to-window')
+-- Insert events in to the named time window.
+from TemperatureStream
+insert into OneMinTimeWindow;
+
+
+@info(name = 'Min-max-analysis')
+-- Calculate minimum and maximum of `temperature` on events in `OneMinTimeWindow` window.
+from OneMinTimeWindow
+select min(temperature) as minTemperature,
+       max(temperature) as maxTemperature
+
+insert into MinMaxTemperatureOver1MinStream;
+
+
+@info(name = 'Per-sensor-analysis')
+-- Calculate average of `temperature`, by grouping events by `sensorId`, on the `OneMinTimeWindow` window.
+from OneMinTimeWindow
+select sensorId,
+       avg(temperature) as avgTemperature
+group by sensorId
+
+insert into AvgTemperaturePerSensorStream;

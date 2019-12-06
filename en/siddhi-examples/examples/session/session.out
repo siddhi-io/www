@@ -1,0 +1,26 @@
+#### Aggregation Behavior
+
+When events are sent to `PurchaseStream` stream, following events will get emitted at `UserIdPurchaseStream` stream via `Session-analysis` query,
+and `OutOfOrderUserIdPurchaseStream` stream via `Session-analysis-with-late-event-arrivals` query.
+
+<style>
+.md-typeset table:not([class]) th:nth-child(3) {
+    min-width: 120px;
+}
+
+.md-typeset table:not([class]) th {
+    min-width: 0;
+}
+</style>
+
+| Time |Event Timestamp | Input to `PurchaseStream` | Output at `UserIdPurchaseStream` | Output at `OutOfOrderUserIdPurchaseStream` |
+|---|---|---|---|---|
+| 9:00:00 | 9:00:00 | [`'1001'`, `'cake'`, `18.0`]        | [`'1001'`, `1`, `18.0`]  | [`'1001'`, `1`, `18.0`]|
+| 9:00:20 | 9:00:20 | [`'1002'`, `'croissant'`, `23.0`]   | [`'1002'`, `1`, `23.0`]  | [`'1002'`, `1`, `23.0`] |
+| 9:00:40 | 9:00:40 | [`'1002'`, `'cake'`, `22.0`]        | [`'1002'`, `2`, `45.0`]  | [`'1002'`, `2`, `45.0`]  |
+| 9:01:05 | **9:00:50** | [`'1001'`, `'pie'`, `22.0`]         |  No events, as event arrived late, and did not fall into a session.|[`'1001'`, `2`, `40.0`] |
+| 9:01:10 | 9:01:10 | [`'1001'`, `'cake'`, `10.0`]        | [`'1001'`, `1`, `10.0`]  | [`'1001'`, `3`, `50.0`]|
+| 9:01:50 | 9:01:50 | [`'1002'`, `'cake'`, `20.0`]        | [`'1002'`, `1`, `20.0`]  | [`'1002'`, `1`, `23.0`] |
+| 9:02:40 | 9:02:40 | [`'1001'`, `'croissant'`, `23.0`]   | [`'1001'`, `1`, `23.0`]  | [`'1001'`, `1`, `23.0`] |
+
+
