@@ -114,7 +114,7 @@ Please find the complete changes [here](https://github.com/siddhi-io/distributio
 !!! info "Please find the details of the corresponding docker release [here](https://github.com/siddhi-io/docker-siddhi/releases/tag/v5.1.0)"
 
 
-### Siddhi Distribution 5.1.2-rc1 (Pre Release)
+### Siddhi Distribution 5.1.2-rc2 (Pre Release)
 
 #### Highlights
 - Add Prometheus Reporter to support metrics collection. [(#706)](https://github.com/siddhi-io/distribution/pull/706)
@@ -132,14 +132,18 @@ Please find the complete changes [here](https://github.com/siddhi-io/distributio
 - Fix issue in the elasticsearch sample. [(#714)](https://github.com/siddhi-io/distribution/pull/714)
 - Remove backend calls on keypress, and disable export when there are no files. [(#728)](https://github.com/siddhi-io/distribution/pull/728)
 - Fix the issue in Prometheus Reporter. [(#730)](https://github.com/siddhi-io/distribution/pull/730)
+- Fix editor validation running for idle/incorrect tabs. [(#783)](https://github.com/siddhi-io/distribution/pull/783)
+- Fix source validation for active tab when variable values are updated. [(#788)](https://github.com/siddhi-io/distribution/pull/788)
+- Exception thrown when Siddhi app is stopped while simulation is running. [(#779)](https://github.com/siddhi-io/distribution/pull/779)
+- Configuring app annotations fails in design view. [(#778)](https://github.com/siddhi-io/distribution/pull/778)
 
 #### Complete Changes
-Please find the complete changes [here](https://github.com/siddhi-io/distribution/compare/v5.1.1...v5.1.2-rc1)
+Please find the complete changes [here](https://github.com/siddhi-io/distribution/compare/v5.1.1...v5.1.2-rc2)
 
 
-!!! info "Please find more details about the release [here](https://github.com/siddhi-io/distribution/releases/tag/v5.1.2-rc1)"
+!!! info "Please find more details about the release [here](https://github.com/siddhi-io/distribution/releases/tag/v5.1.2-rc2)"
 
-!!! info "Please find the details of the corresponding docker release [here](https://github.com/siddhi-io/docker-siddhi/releases/tag/v5.1.2-rc1)"
+!!! info "Please find the details of the corresponding docker release [here](https://github.com/siddhi-io/docker-siddhi/releases/tag/v5.1.2-rc2)"
 
 
 ## Siddhi Core Libraries Releases
