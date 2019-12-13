@@ -26,7 +26,7 @@ Based on Siddhi Core 5.1.7 | &nbsp;      | &nbsp;  | &nbsp; |  &nbsp; |
 
 
 ### **5.1.2-rc2 (Pre Release)**
-Based on Siddhi Core 5.1.10 | &nbsp;      | &nbsp;  | &nbsp; |  &nbsp; |
+Based on Siddhi Core 5.1.11 | &nbsp;      | &nbsp;  | &nbsp; |  &nbsp; |
 ------     | -----    | ----- | ----- | ----- |
 [Siddhi Tooling](https://github.com/siddhi-io/distribution/releases/download/v5.1.2-rc2/siddhi-tooling-5.1.2-rc2.zip) | [md5](https://github.com/siddhi-io/distribution/releases/download/v5.1.2-rc2/siddhi-tooling-5.1.2-rc2.zip.md5) | [SHA-1](https://github.com/siddhi-io/distribution/releases/download/v5.1.2-rc2/siddhi-tooling-5.1.2-rc2.zip.sha1) | [asc](https://github.com/siddhi-io/distribution/releases/download/v5.1.2-rc2/siddhi-tooling-5.1.2-rc2.zip.asc) | [source code](https://github.com/siddhi-io/distribution/releases/tag/v5.1.2-rc2) 
 [Siddhi Runner](https://github.com/siddhi-io/distribution/releases/download/v5.1.2-rc2/siddhi-runner-5.1.2-rc2.zip) | [md5](https://github.com/siddhi-io/distribution/releases/download/v5.1.2-rc2/siddhi-runner-5.1.2-rc2.zip.md5) | [SHA-1](https://github.com/siddhi-io/distribution/releases/download/v5.1.2-rc2/siddhi-runner-5.1.2-rc2.zip.sha1) | [asc](https://github.com/siddhi-io/distribution/releases/download/v5.1.2-rc2/siddhi-runner-5.1.2-rc2.zip.asc) | [source code](https://github.com/siddhi-io/distribution/releases/tag/v5.1.2-rc2)
@@ -116,7 +116,7 @@ Refer the user guide to use [Siddhi as a Local Microservice](../docs/siddhi-as-a
 <table>
 <thead>
 <tr>
-<th colspan=2>Based on Siddhi distribution 5.1.2-rc2 and Siddhi Core 5.1.10</th>
+<th colspan=2>Based on Siddhi distribution 5.1.2-rc2 and Siddhi Core 5.1.11</th>
 </tr>
 </thead>
 <tbody>
@@ -162,7 +162,7 @@ Based on Siddhi distribution `5.1.0` and Siddhi Core `5.1.7`.
 * [<img src="../images/download.png" width="10px"/> Siddhi Operator](https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/01-siddhi-operator.yaml)
 
 ### **0.2.2-rc1 (Pre Release)**
-Based on Siddhi distribution `5.1.2-rc2` and Siddhi Core `5.1.10`.
+Based on Siddhi distribution `5.1.2-rc2` and Siddhi Core `5.1.11`.
 * [Siddhi CRD](https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.2-rc1/00-prereqs.yaml)
 * [Siddhi Operator](https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.2-rc1/01-siddhi-operator.yaml)
 

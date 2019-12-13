@@ -148,6 +148,17 @@ Please find the complete changes [here](https://github.com/siddhi-io/distributio
 
 ## Siddhi Core Libraries Releases
 
+### Siddhi Core 5.1.11
+
+#### Bug Fixes
+* Fix Siddhi sending events to wrong stream when stopped and started in Siddhi editor. [(#1585)](https://github.com/siddhi-io/siddhi/pull/1585)
+* Fix `log()` not to print events repeatedly and obey chunking. [(#1585)](https://github.com/siddhi-io/siddhi/pull/1585)
+
+#### Complete Changes 
+Please find the complete changes [here](https://github.com/siddhi-io/siddhi/compare/v5.1.10...v5.1.11)
+
+!!! info "Please find more details about the release [here](https://github.com/siddhi-io/siddhi/releases/tag/v5.1.11)"
+
 ### Siddhi Core 5.1.10
 
 #### Features & Improvements
