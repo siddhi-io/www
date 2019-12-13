@@ -436,7 +436,7 @@ There are specification changes in Siddhi Process Custom Resource Definition. Yo
 
 !!! info "Please find more details about the release [here](https://github.com/siddhi-io/siddhi-operator/releases/tag/v0.2.0)"
 
-### Siddhi Operator 0.2.2-rc1 (Pre Release)
+### Siddhi Operator 0.2.2-rc2 (Pre Release)
 
 #### Bug Fixes
 

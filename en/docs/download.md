@@ -161,7 +161,7 @@ Based on Siddhi distribution `5.1.0` and Siddhi Core `5.1.7`.
 * [<img src="../images/download.png" width="10px"/> Siddhi Operator Prerequisites](https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/00-prereqs.yaml)
 * [<img src="../images/download.png" width="10px"/> Siddhi Operator](https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/01-siddhi-operator.yaml)
 
-### **0.2.2-rc1 (Pre Release)**
+### **0.2.2-rc2 (Pre Release)**
 Based on Siddhi distribution `5.1.2-rc2` and Siddhi Core `5.1.11`.
 * [Siddhi CRD](https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.2-rc1/00-prereqs.yaml)
 * [Siddhi Operator](https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.2-rc1/01-siddhi-operator.yaml)
