@@ -30,8 +30,8 @@ Here, the Siddhi applications containing stream processing logic can be written 
     </pre>  
     
 !!! Note "Docker for Mac"
-    Siddhi operator automatically creates NGINX ingress. Therefore it to work we can either enable ingress on Docker for mac following the official [documentation](https://kubernetes.github.io/ingress-nginx/deploy/#docker-for-mac)
-    or disable Siddhi operator's [automatically ingress creation](#deploy-siddhi-apps-without-ingress-creation).
+    Siddhi operator automatically creates NGINX ingress. Therefore to enable ingress creation on Docker for Mac apply the [prerequisites](https://kubernetes.github.io/ingress-nginx/deploy/#prerequisite-generic-deployment-command) and [Docker for Mac specific commands](https://kubernetes.github.io/ingress-nginx/deploy/#docker-for-mac) following the official documentation.  
+    Users can also disable Siddhi Operator automatically creating ingress by following the [documentation](#deploy-siddhi-apps-without-ingress-creation).
     
 !!! Note "Port Forwarding for Testing & Debugging Purposes"
     Instead of creating ingress you can enable port forwarding (`kubectl port-forward`) to access the application in the Kubernetes cluster. This will help a lot for TCP connections as well.
