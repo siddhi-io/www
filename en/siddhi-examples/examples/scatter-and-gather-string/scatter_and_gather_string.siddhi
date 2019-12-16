@@ -24,5 +24,5 @@ from TransformedItemStream#window.batch()
 -- Concat all events in a batch separating them by `,`.
 select userId, str:groupConcat(itemKey, ",") as itemKeys
 
-insert into GroupedPurchaseItemStram;
+insert into GroupedPurchaseItemStream;
 

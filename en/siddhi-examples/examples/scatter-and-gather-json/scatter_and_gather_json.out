@@ -1,0 +1,43 @@
+#### Input
+
+Below event is sent to `PurchaseStream`,
+
+```
+[{
+   "order":{
+      "id":"501",
+      "items":[{"name":"cake", "price":25.0},
+               {"name":"cookie", "price":15.0},
+               {"name":"bun", "price":20.0}
+      ]
+   }
+}, 'CA']
+```
+
+#### Output
+
+After processing, following events will be arriving at `TokenizedItemStream`:
+
+[`'501'`, `'{"name":"cake","price":25.0}'`, `'CA'`],<br/>
+[`'501'`, `'{"name":"cookie","price":15.0}'`, `'CA'`],<br/>
+[`'501'`, `'{"name":"bun","price":20.0}'`, `'CA'`]
+
+The events arriving at `DiscountedItemStream` will be as follows:
+
+[`'501'`, `'{"name":"cake","price":20.0}'`, `'CA'`],<br/>
+[`'501'`, `'{"name":"cookie","price":15.0}'`, `'CA'`],<br/>
+[`'501'`, `'{"name":"bun","price":20.0}'`, `'CA'`]
+
+The event arriving at `GroupedItemStream` will be as follows:
+
+[`'501'`, `'[{"price":20.0,"name":"cake"},{"price":15.0,"name":"cookie"},{"price":20.0,"name":"bun"}]'`, `'CA'`]
+
+The event arriving at `DiscountedOrderStream` will be as follows:
+
+[```'{"discountedOrder":
+    {"id":"501",
+     "store":"CA",
+     "items":[{"price":20.0,"name":"cake"},
+              {"price":15.0,"name":"cookie"},
+              {"price":20.0,"name":"bun"}] }
+}'```]

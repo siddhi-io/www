@@ -1,6 +1,6 @@
 #### Input
 
-Below event is sent to `TemperatureStream`,
+Below event containing a JSON string is sent to `PurchaseStream`,
 
 [`'501'`, `'cake,cookie,bun,cookie'`, `'CA'`]
 
@@ -14,6 +14,6 @@ The events arriving at `TransformedItemStream` will be as follows:
 
 [`'501'`, `'CA-cake'`], [`'501'`, `'CA-cookie'`], [`'501'`, `'CA-bun'`]
 
-The event arriving at `GroupedPurchaseItemStram` will be as follows:
+The event arriving at `GroupedPurchaseItemStream` will be as follows:
 
 [`'501'`, `'CA-cake,CA-cookie,CA-bun'`]

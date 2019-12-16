@@ -1,0 +1,3 @@
+Provides example on performing scatter and gather on JSON values.
+
+For more information on performing scatter and gather on string, refer other examples under data pipelining section.

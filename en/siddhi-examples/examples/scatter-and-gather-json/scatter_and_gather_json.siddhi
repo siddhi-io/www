@@ -1,0 +1,48 @@
+define stream PurchaseStream
+                (order string, store string);
+
+
+@info(name = 'Scatter-query')
+-- Scatter elements under `$.order.items` in to separate events.
+from PurchaseStream#json:tokenize(order, '$.order.items')
+select json:getString(order, '$.order.id') as orderId,
+       jsonElement as item,
+       store
+
+insert into TokenizedItemStream;
+
+
+@info(name = 'Transform-query')
+from TokenizedItemStream
+-- Provide `$5` discount to cakes.
+select orderId,
+       ifThenElse(json:getString(item, 'name') == "cake",
+                  json:toString(
+                    json:setElement(item, 'price',
+                      json:getDouble(item, 'price') - 5
+                    )
+                  ),
+                  item) as item,
+       store
+
+insert into DiscountedItemStream;
+
+
+@info(name = 'Gather-query')
+-- Collect events traveling as a batch via `batch()` window.
+from DiscountedItemStream#window.batch()
+-- Combine `item` from all events in a batch as a single JSON Array.
+select orderId, json:group(item) as items, store
+
+insert into GroupedItemStream;
+
+
+@info(name = 'Format-query')
+from GroupedItemStream
+-- Format the final JSON by combining `orderId`, `items`, and `store`.
+select str:fillTemplate("""
+    {"discountedOrder":
+        {"id":"{{1}}", "store":"{{3}}", "items":{{2}} }
+    }""", orderId, items, store) as discountedOrder
+
+insert into DiscountedOrderStream;
