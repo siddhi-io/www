@@ -1,0 +1,21 @@
+#### Partition Behavior
+
+When events are sent to `LoginStream` stream, following events will be generated at `#LoginAttempts` inner stream via `Aggregation-query` query,
+and `UserSuspensionStream` stream via `Alert-query` query.
+
+<style>
+.md-typeset table:not([class]) th:nth-child(2) {
+    min-width: 150px;
+}
+</style>
+
+| Input to `TemperatureStream` | At `#LoginAttempts` | Output at `UserSuspensionStream` |
+|---|---|---|
+| [`'1001'`, `false`] | [`'1001'`, `false`, `1`]  | - |
+| [`'1002'`, `true`]  | [`'1002'`, `true`, `1`]   | - |
+| [`'1002'`, `false`] | [`'1002'`, `false`, `1`]  | - |
+| [`'1002'`, `false`] | [`'1002'`, `false`, `2`]  | - |
+| [`'1001'`, `false`] | [`'1001'`, `false`, `2`]  | - |
+| [`'1001'`, `true`]  | [`'1001'`, `true`, `1`]   | - |
+| [`'1001'`, `false`] | [`'1001'`, `false`, `2`]  | - |
+| [`'1002'`, `false`] | [`'1002'`, `false`, `2`]  | [`'1002'`, `'3 consecutive login failures!'`] |

@@ -2371,11 +2371,11 @@ partition with ( deviceID of TempStream )
 begin
     from TempStream#window.lengthBatch(10)
     select roomNo, deviceID, avg(temp) as avgTemp
-    insert into #AvgTempStream
+    insert into #AvgTempStream;
 
     from every e1=#AvgTempStream, e2=#AvgTempStream[e1.avgTemp + 5 < avgTemp]
     select e1.deviceID, e1.avgTemp as initialAvgTemp, e2.avgTemp as finalAvgTemp
-    insert into DeviceTempIncreasingStream
+    insert into DeviceTempIncreasingStream;
 end;
 ```
 
