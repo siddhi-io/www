@@ -42,7 +42,7 @@
 
 ### Date transformation
 
-- Support [data extraction](../api/latest/#getbool-function) and [reconstruction of massages](../api/latest/#group-aggregate-function).
+- Support [data extraction](../api/latest/#getbool-function) and [reconstruction of messages](../api/latest/#group-aggregate-function).
 - Inline [mathematical and logical operations](../query-guide/#select).
 - Inbuilt functions and [60+ extensions](../extensions/#available-extensions) for processing `JSON`, `string`, `time`, `math`, `regex`, and others.
 - Ability to write custom functions in [`JavaScript`](../query-guide/#script), and [`Java`](../extensions/#writing-custom-extensions).
