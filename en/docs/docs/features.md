@@ -87,7 +87,7 @@
 ### Scatter-gather and data pipeline
 
 - Process complex messages by dividing them into simple messages using [`tokenize`](../api/latest/#tokenize-stream-processor) function, process or transform them in isolation, and group them back using the [`batch`](../api/latest/#batch-window) window and [`group`](../api/latest/#group-aggregate-function) aggregation.
-- Ability to modularize the execution logic of each usecase into a single `.siddhi` file (Siddhi Application), and connect them using [`in-memory` source](../api/latest/#inmemory-source) and [`in-memory` sink](../api/latest/#inmemory-sink) to build a composite event-driven application.     
+- Ability to modularize the execution logic of each use case into a single `.siddhi` file (Siddhi Application), and connect them using [`in-memory` source](../api/latest/#inmemory-source) and [`in-memory` sink](../api/latest/#inmemory-sink) to build a composite event-driven application.     
 - Provide execution isolation and parallel processing by [partitioning](../query-guide/#partition) the events using keys or value ranges.
 - Periodically trigger data pipelines based on time intervals, and cron expression, or at App startup using [`triggers`](../query-guide/#trigger). 
 - Synchronize and parallelize event processing using [`@sync` annotations](../query-guide/#threading-and-synchronization). 
