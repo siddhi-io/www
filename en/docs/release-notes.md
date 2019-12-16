@@ -2,6 +2,37 @@
 
 ## Siddhi Distribution Releases
 
+### Siddhi Distribution 5.1.2
+
+#### Highlights
+- Add Prometheus Reporter to support metrics collection. [(#706)](https://github.com/siddhi-io/distribution/pull/706)
+- Improve Siddhi Editor load time by uglifying and optimizing RequireJS.[(#739)](https://github.com/siddhi-io/distribution/pull/739)
+
+#### Features & Improvements
+- Enhance the usability problems of the Docker/K8s process. [(#740)](https://github.com/siddhi-io/distribution/pull/740)
+- Improve Siddhi Test Framework to mount to jars/bundles directories to Siddhi Runner container. [(#745)](https://github.com/siddhi-io/distribution/pull/745)
+- Change on-demand caching only when the user click the execute. [(#750)](https://github.com/siddhi-io/distribution/pull/750)
+- Add syntax and example generation function for editor extension platte. [(#716)](https://github.com/siddhi-io/distribution/pull/716) [(#731)](https://github.com/siddhi-io/distribution/pull/731) [(#732)](https://github.com/siddhi-io/distribution/pull/732)
+
+#### Bug Fixes
+- Fix deploy to server UI. [(#707)](https://github.com/siddhi-io/distribution/pull/707)
+- Add "credentialProvderClass" property for AWS-S3 persistence configurations. [(#718)](https://github.com/siddhi-io/distribution/pull/718)
+- Fix issue in the elasticsearch sample. [(#714)](https://github.com/siddhi-io/distribution/pull/714)
+- Remove backend calls on keypress, and disable export when there are no files. [(#728)](https://github.com/siddhi-io/distribution/pull/728)
+- Fix the issue in Prometheus Reporter. [(#730)](https://github.com/siddhi-io/distribution/pull/730)
+- Fix editor validation running for idle/incorrect tabs. [(#783)](https://github.com/siddhi-io/distribution/pull/783)
+- Fix source validation for active tab when variable values are updated. [(#788)](https://github.com/siddhi-io/distribution/pull/788)
+- Exception thrown when Siddhi app is stopped while simulation is running. [(#779)](https://github.com/siddhi-io/distribution/pull/779)
+- Configuring app annotations fails in design view. [(#778)](https://github.com/siddhi-io/distribution/pull/778)
+
+#### Complete Changes
+Please find the complete changes [here](https://github.com/siddhi-io/distribution/compare/v5.1.1...v5.1.2)
+
+
+!!! info "Please find more details about the release [here](https://github.com/siddhi-io/distribution/releases/tag/v5.1.2)"
+
+!!! info "Please find the details of the corresponding docker release [here](https://github.com/siddhi-io/docker-siddhi/releases/tag/v5.1.2)"
+
 ### Siddhi Distribution 5.1.1
 
 #### Features & Improvements
@@ -112,39 +143,6 @@ Please find the complete changes [here](https://github.com/siddhi-io/distributio
 !!! info "Please find more details about the release [here](https://github.com/siddhi-io/distribution/releases/tag/v5.1.0)"
 
 !!! info "Please find the details of the corresponding docker release [here](https://github.com/siddhi-io/docker-siddhi/releases/tag/v5.1.0)"
-
-
-### Siddhi Distribution 5.1.2-rc2 (Pre Release)
-
-#### Highlights
-- Add Prometheus Reporter to support metrics collection. [(#706)](https://github.com/siddhi-io/distribution/pull/706)
-- Improve Siddhi Editor load time by uglifying and optimizing RequireJS.[(#739)](https://github.com/siddhi-io/distribution/pull/739)
-
-#### Features & Improvements
-- Enhance the usability problems of the Docker/K8s process. [(#740)](https://github.com/siddhi-io/distribution/pull/740)
-- Improve Siddhi Test Framework to mount to jars/bundles directories to Siddhi Runner container. [(#745)](https://github.com/siddhi-io/distribution/pull/745)
-- Change on-demand caching only when the user click the execute. [(#750)](https://github.com/siddhi-io/distribution/pull/750)
-- Add syntax and example generation function for editor extension platte. [(#716)](https://github.com/siddhi-io/distribution/pull/716) [(#731)](https://github.com/siddhi-io/distribution/pull/731) [(#732)](https://github.com/siddhi-io/distribution/pull/732)
-
-#### Bug Fixes
-- Fix deploy to server UI. [(#707)](https://github.com/siddhi-io/distribution/pull/707)
-- Add "credentialProvderClass" property for AWS-S3 persistence configurations. [(#718)](https://github.com/siddhi-io/distribution/pull/718)
-- Fix issue in the elasticsearch sample. [(#714)](https://github.com/siddhi-io/distribution/pull/714)
-- Remove backend calls on keypress, and disable export when there are no files. [(#728)](https://github.com/siddhi-io/distribution/pull/728)
-- Fix the issue in Prometheus Reporter. [(#730)](https://github.com/siddhi-io/distribution/pull/730)
-- Fix editor validation running for idle/incorrect tabs. [(#783)](https://github.com/siddhi-io/distribution/pull/783)
-- Fix source validation for active tab when variable values are updated. [(#788)](https://github.com/siddhi-io/distribution/pull/788)
-- Exception thrown when Siddhi app is stopped while simulation is running. [(#779)](https://github.com/siddhi-io/distribution/pull/779)
-- Configuring app annotations fails in design view. [(#778)](https://github.com/siddhi-io/distribution/pull/778)
-
-#### Complete Changes
-Please find the complete changes [here](https://github.com/siddhi-io/distribution/compare/v5.1.1...v5.1.2-rc2)
-
-
-!!! info "Please find more details about the release [here](https://github.com/siddhi-io/distribution/releases/tag/v5.1.2-rc2)"
-
-!!! info "Please find the details of the corresponding docker release [here](https://github.com/siddhi-io/docker-siddhi/releases/tag/v5.1.2-rc2)"
-
 
 ## Siddhi Core Libraries Releases
 
@@ -329,6 +327,15 @@ Please find the complete changes [here](https://github.com/siddhi-io/siddhi/comp
 
 ## Siddhi K8s Operator Releases
 
+### Siddhi Operator 0.2.2
+
+#### Bug Fixes
+
+1. Change state.persistence to statePersistence. [(#120)](https://github.com/siddhi-io/siddhi-operator/pull/120)
+
+!!! info "Please find more details about the release [here](https://github.com/siddhi-io/siddhi-operator/releases/tag/v0.2.2)"
+
+
 ### Siddhi Operator 0.2.1
 
 #### Bug Fixes
@@ -436,10 +443,3 @@ There are specification changes in Siddhi Process Custom Resource Definition. Yo
 
 !!! info "Please find more details about the release [here](https://github.com/siddhi-io/siddhi-operator/releases/tag/v0.2.0)"
 
-### Siddhi Operator 0.2.2-rc2 (Pre Release)
-
-#### Bug Fixes
-
-1. Change state.persistence to statePersistence. [(#120)](https://github.com/siddhi-io/siddhi-operator/pull/120)
-
-!!! info "Please find more details about the release [here](https://github.com/siddhi-io/siddhi-operator/releases/tag/v0.2.2-rc1)"
