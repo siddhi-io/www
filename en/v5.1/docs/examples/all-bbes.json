@@ -150,6 +150,10 @@
       {
         "name": "Scatter and Gather (String)",
         "url": "scatter-and-gather-string"
+      },
+      {
+        "name": "Scatter and Gather (JSON)",
+        "url": "scatter-and-gather-json"
       }
     ]
   }

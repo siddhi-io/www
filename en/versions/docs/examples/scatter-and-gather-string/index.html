@@ -647,7 +647,7 @@
 <div class="cLeftTD">
 <p><p>Provides example on performing scatter and gather on string values.</p>
 
-<p>For more information on  performing scatter and gather on json, refer other examples under data pipelining section.</p>
+<p>For more information on performing scatter and gather on json, refer other examples under data pipelining section.</p>
 </p>
 </div>
 
@@ -672,7 +672,7 @@
 <span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">Gather</span><span class="o">-</span><span class="nx">query</span><span class="err">&#39;</span><span class="p">)</span>
 <span class="nx">from</span> <span class="nx">TransformedItemStream</span><span class="err">#</span><span class="nx">window</span><span class="p">.</span><span class="nx">batch</span><span class="p">()</span>
 <span class="nx">select</span> <span class="nx">userId</span><span class="p">,</span> <span class="nx">str</span><span class="p">:</span><span class="nx">groupConcat</span><span class="p">(</span><span class="nx">itemKey</span><span class="p">,</span> <span class="s">&quot;,&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="nx">itemKeys</span>
-<span class="nx">insert</span> <span class="nx">into</span> <span class="nx">GroupedPurchaseItemStram</span><span class="p">;</span>
+<span class="nx">insert</span> <span class="nx">into</span> <span class="nx">GroupedPurchaseItemStream</span><span class="p">;</span>
 </pre></div>
 
             </div>
@@ -835,7 +835,7 @@ from TokenizedItemStream</code></pre></div>
     <tr class="cTR">
 
         <td class="code">
-            <div class="highlight"><pre><code class=siddhi>insert into GroupedPurchaseItemStram;
+            <div class="highlight"><pre><code class=siddhi>insert into GroupedPurchaseItemStream;
 </code></pre></div>
 
         </td>
@@ -856,7 +856,7 @@ from TokenizedItemStream</code></pre></div>
 <div class="cLeftTD">
 <h4>Input</h4>
 
-<p>Below event is sent to <code>TemperatureStream</code>,</p>
+<p>Below event containing a JSON string is sent to <code>PurchaseStream</code>,</p>
 
 <p>[<code>'501'</code>, <code>'cake,cookie,bun,cookie'</code>, <code>'CA'</code>]</p>
 
@@ -870,7 +870,7 @@ from TokenizedItemStream</code></pre></div>
 
 <p>[<code>'501'</code>, <code>'CA-cake'</code>], [<code>'501'</code>, <code>'CA-cookie'</code>], [<code>'501'</code>, <code>'CA-bun'</code>]</p>
 
-<p>The event arriving at <code>GroupedPurchaseItemStram</code> will be as follows:</p>
+<p>The event arriving at <code>GroupedPurchaseItemStream</code> will be as follows:</p>
 
 <p>[<code>'501'</code>, <code>'CA-cake,CA-cookie,CA-bun'</code>]</p>
 
