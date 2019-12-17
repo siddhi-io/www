@@ -179,7 +179,7 @@ type BBECategory struct {
 }
 
 func getBBECategories() []BBECategory {
-	allBBEsFile := "tools/siddhiByExample/tools/all-bbes.json"
+	allBBEsFile := examplesDir + "/all-sbes.json"
 	rawCategories, err := ioutil.ReadFile(allBBEsFile)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "[ERROR] An error occured while processing : "+allBBEsFile, err)
@@ -539,7 +539,7 @@ func renderExamples(examples []*Example) {
 
 func generateJSON(renderedBBEs []string) {
 	urlsJson, _ := json.Marshal(renderedBBEs)
-	builtBBEsFile := siteDir + "/built-bbes.json"
+	builtBBEsFile := siteDir + "/built-sbes.json"
 	fmt.Println("Creating a json file of successful BBEs in : " + builtBBEsFile)
 	err := ioutil.WriteFile(builtBBEsFile, urlsJson, 0644)
 	check(err)
@@ -621,9 +621,9 @@ func buildExampleIndexPage(jsonPath string, mkdocsYamlPath string) {
 }
 
 func main() {
-	copyFile("tools/siddhiByExample/tools/all-bbes.json", siteDir+"/all-bbes.json")
+	copyFile( examplesDir + "/all-sbes.json", siteDir+"/all-sbes.json")
 	bbeCategories := getBBECategories()
 	examples := parseExamples(bbeCategories)
 	renderExamples(examples)
-	buildExampleIndexPage("tools/siddhiByExample/tools/all-bbes.json", "en/mkdocs.yml")
+	buildExampleIndexPage(examplesDir + "/all-sbes.json", "en/mkdocs.yml")
 }
