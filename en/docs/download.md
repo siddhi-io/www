@@ -181,6 +181,7 @@ PySiddhi 5.1.0 release can be integrated with below Siddhi SDK releases. You can
 
 - [<img src="../images/download.png" width="10px"/> Siddhi SDK `5.1.0`](https://github.com/siddhi-io/siddhi-sdk/releases/download/v5.1.0/siddhi-sdk-5.1.0.zip) which is based on Siddhi 5.1.0 release (Siddhi Core `5.1.7`).
 - [<img src="../images/download.png" width="10px"/> Siddhi SDK `5.1.1`](https://github.com/siddhi-io/siddhi-sdk/releases/download/v5.1.1/siddhi-sdk-5.1.1.zip) which is based on Siddhi 5.1.1 release (Siddhi Core `5.1.8`).
+- [<img src="../images/download.png" width="10px"/> Siddhi SDK `5.1.2`](https://github.com/siddhi-io/siddhi-sdk/releases/download/v5.1.2/siddhi-sdk-5.1.2.zip) which is based on Siddhi 5.1.2 release (Siddhi Core `5.1.11`).
  
 ## Siddhi Libs 
 
