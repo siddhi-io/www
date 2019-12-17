@@ -246,21 +246,22 @@ Event processing logic can be written using Streaming SQL queries via Siddhi gra
 <div class="col-md-6 col-sm-12">
 <h2>Try Siddhi</h2>
 <ul>
-    <li><h3><a href="en/_latest_version_/download/">Download</a></h3></li>
-    <li><h3><a href="en/_latest_version_/docs/quick-start/">Getting started</a></h3></li>
-    <li><h3><a href="en/_latest_version_/docs/query-guide/">Siddhi query guide</a></h3></li>
-    <li><h3><a href="en/_latest_version_/development/architecture/">Architecture</a></h3></li>
-    <li><h3 class="cLinks__last"><a href="en/_latest_version_/docs/siddhi-as-a-kubernetes-microservice/">How Siddhi works in Kubernetes</a></h3></li>
+    <li><h3><a href="en/_latest_version_/download/"><i class="fas fa-download iconsForList"></i> Download</a></h3></li>
+    <li><h3><a href="en/_latest_version_/docs/quick-start/"><i class="far fa-play-circle iconsForList"></i> Getting started</a></h3></li>
+    <li><h3><a href="en/_latest_version_/docs/query-guide/"><i class="fas fa-info-circle iconsForList"></i> Siddhi query guide</a></h3></li>
+    <li><h3><a href="en/_latest_version_/development/architecture/"><i class="fas fa-project-diagram iconsForList"></i> Architecture</a></h3></li>
+    <li><h3 class="cLinks__last"><a href="en/_latest_version_/docs/siddhi-as-a-kubernetes-microservice/"><i class="fas fa-question-circle iconsForList"></i> How Siddhi works in Kubernetes</a></h3></li>
 </ul>
 </div>
 
 <div class="col-md-6 col-sm-12">
 <h2>Join the Community</h2>
 <ul>
-    <li><h3><a href="https://github.com/siddhi-io/siddhi/">Siddhi Core on GitHub</a></h3></li>
-    <li><h3><a href="community/#asking-questions">Siddhi mailing list</a></h3></li>
-    <li><h3><a href="community/contribution/">How to contribute</a></h3></li>
-    <li><h3 class="cLinks__last"><a href="en/_latest_version_/development/source/">Siddhi GitHub repos</a></h3></li>
+    <li><h3><a href="https://github.com/siddhi-io/siddhi/"><i class="fab fa-github iconsForList"></i> Siddhi Core on GitHub</a></h3></li>
+    <li><h3><a href="community/#asking-questions"><i class="far fa-envelope iconsForList"></i> Siddhi mailing list</a></h3></li>
+    <li><h3><a href="community/contribution/"><i class="fas fa-users iconsForList"></i> How to contribute</a></h3></li>
+    <li><h3><a href="en/_latest_version_/development/source/"><i class="fab fa-github iconsForList"></i> Siddhi GitHub repos</a></h3></li>
+    <li><h3 class="cLinks__last"><a href="community/#weekly-community-call"><i class="fas fa-phone-alt iconsForList"></i> Weekly community call</a></h3></li>
 </ul>
 </div>
 

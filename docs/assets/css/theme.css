@@ -112,7 +112,7 @@
     }
 }
 
-.fa-external-link-alt{
+.fa-external-link-alt {
     font-size: x-small;
 }
 
@@ -658,6 +658,11 @@ html .md-typeset .superfences-tabs > label:hover {
     margin: .55rem .5rem .5rem .5rem;
     min-width: 350px;
     border: 1px solid #20b6b0;
+    padding: 12px;
+}
+
+.iconsForList {
+    width: 30px;
 }
 
 .cInfo a {

@@ -12,6 +12,7 @@ Full Name                       | Git Username                                  
 --------------------------------|-------------------------------------------------------|---------------------------|-------------------|
 Anjana Fernando                 |[lafernando](https://github.com/lafernando)            |WSO2                       |[/in/anjana-fernando-32517b8](https://www.linkedin.com/in/anjana-fernando-32517b8/)
 Anusha Jayasundara	            |[AnuGayan](https://github.com/AnuGayan)                |WSO2	                    |[/in/anushajayasundara](https://www.linkedin.com/in/anushajayasundara/)
+Buddhi Kothalawala              |[BuddhiWathsala](https://github.com/BuddhiWathsala)    |WSO2	                    |[/in/buddhi-kothalawala-6782b5115](https://www.linkedin.com/in/buddhi-kothalawala-6782b5115/)
 Chiran Fernando	                |[pcnfernando](https://github.com/pcnfernando)          |WSO2	                    |[/in/chiranfernando](https://www.linkedin.com/in/chiranfernando/)
 Damith Wickramasinghe	        |[dnwick](https://github.com/dnwick)	                |WSO2	                    |[/in/damith-wickramasinghe-16797645](https://www.linkedin.com/in/damith-wickramasinghe-16797645/)
 Dilini Muthumala                |[dilini-muthumala](https://github.com/dilini-muthumala)|WSO2	                    |[/in/dilinimuthumala](https://www.linkedin.com/in/dilinimuthumala/)
