@@ -1,4 +1,4 @@
-# Siddhi 5.1.0 Download Siddhi
+# Siddhi 5.1 Downloads
 
 Select the appropriate Siddhi distribution for your use case. 
 
