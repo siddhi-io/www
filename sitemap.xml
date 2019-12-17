@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
      <loc>http://siddhi.io/</loc>
-     <lastmod>2019-12-16</lastmod>
+     <lastmod>2019-12-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
@@ -22,32 +22,32 @@
     </url>
     <url>
      <loc>http://siddhi.io/community/</loc>
-     <lastmod>2019-12-16</lastmod>
+     <lastmod>2019-12-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/community/contribution/</loc>
-     <lastmod>2019-12-16</lastmod>
+     <lastmod>2019-12-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/community/security/</loc>
-     <lastmod>2019-12-16</lastmod>
+     <lastmod>2019-12-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/community/committers/</loc>
-     <lastmod>2019-12-16</lastmod>
+     <lastmod>2019-12-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/community/events/</loc>
-     <lastmod>2019-12-16</lastmod>
+     <lastmod>2019-12-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/community/siddhi-logos/</loc>
-     <lastmod>2019-12-16</lastmod>
+     <lastmod>2019-12-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
@@ -57,7 +57,7 @@
     </url>
     <url>
      <loc>http://siddhi.io/license/</loc>
-     <lastmod>2019-12-16</lastmod>
+     <lastmod>2019-12-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>

@@ -1059,6 +1059,18 @@
 
 
   <li class="md-nav__item">
+    <a href="partition-by-value/" title="Partition Events by Value" class="md-nav__link">
+      Partition Events by Value
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="scatter-and-gather-string/" title="Scatter and Gather (String)" class="md-nav__link">
       Scatter and Gather (String)
     </a>
@@ -1684,13 +1696,13 @@ Siddhi by Example enables you to have complete coverage over the Siddhi query la
 <div id="example"></div>
 
 <script>
-    $.getJSON("all-bbes.json", function (all_stuff) {
+    $.getJSON("all-sbes.json", function (all_stuff) {
         console.log("all stuff : ", all_stuff);
 
         var i = 0;
         var div_content;
 
-        $.getJSON("built-bbes.json", function (important_stuff) {
+        $.getJSON("built-sbes.json", function (important_stuff) {
             console.log("important stuff : ", important_stuff);
 
             $.each(all_stuff, function (key, value) {
@@ -1730,7 +1742,7 @@ Siddhi by Example enables you to have complete coverage over the Siddhi query la
                 $.each(value['samples'], function (exkey, example) {
                     var link = example['url'];
 
-                    //Filtering out the failed BBEs
+                    //Filtering out the failed SBEs
                     var is_exist = $.inArray(link, important_stuff);
                     if (is_exist == -1) {
                         return true;

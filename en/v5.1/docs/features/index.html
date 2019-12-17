@@ -1216,6 +1216,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../examples/partition-by-value/" title="Partition Events by Value" class="md-nav__link">
+      Partition Events by Value
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../examples/scatter-and-gather-string/" title="Scatter and Gather (String)" class="md-nav__link">
       Scatter and Gather (String)
     </a>
@@ -2061,7 +2073,7 @@
 <h3 id="scatter-gather-and-data-pipeline">Scatter-gather and data pipeline<a class="headerlink" href="#scatter-gather-and-data-pipeline" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Process complex messages by dividing them into simple messages using <a href="../api/latest/#tokenize-stream-processor"><code>tokenize</code></a> function, process or transform them in isolation, and group them back using the <a href="../api/latest/#batch-window"><code>batch</code></a> window and <a href="../api/latest/#group-aggregate-function"><code>group</code></a> aggregation.</li>
-<li>Ability to modularize the execution logic of each usecase into a single <code>.siddhi</code> file (Siddhi Application), and connect them using <a href="../api/latest/#inmemory-source"><code>in-memory</code> source</a> and <a href="../api/latest/#inmemory-sink"><code>in-memory</code> sink</a> to build a composite event-driven application.     </li>
+<li>Ability to modularize the execution logic of each use case into a single <code>.siddhi</code> file (Siddhi Application), and connect them using <a href="../api/latest/#inmemory-source"><code>in-memory</code> source</a> and <a href="../api/latest/#inmemory-sink"><code>in-memory</code> sink</a> to build a composite event-driven application.     </li>
 <li>Provide execution isolation and parallel processing by <a href="../query-guide/#partition">partitioning</a> the events using keys or value ranges.</li>
 <li>Periodically trigger data pipelines based on time intervals, and cron expression, or at App startup using <a href="../query-guide/#trigger"><code>triggers</code></a>. </li>
 <li>Synchronize and parallelize event processing using <a href="../query-guide/#threading-and-synchronization"><code>@sync</code> annotations</a>. </li>

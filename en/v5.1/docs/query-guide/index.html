@@ -1054,6 +1054,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../examples/partition-by-value/" title="Partition Events by Value" class="md-nav__link">
+      Partition Events by Value
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../examples/scatter-and-gather-string/" title="Scatter and Gather (String)" class="md-nav__link">
       Scatter and Gather (String)
     </a>
@@ -4933,11 +4945,11 @@ end;</code></pre>
 begin
     from TempStream#window.lengthBatch(10)
     select roomNo, deviceID, avg(temp) as avgTemp
-    insert into #AvgTempStream
+    insert into #AvgTempStream;
 
     from every e1=#AvgTempStream, e2=#AvgTempStream[e1.avgTemp + 5 &lt; avgTemp]
     select e1.deviceID, e1.avgTemp as initialAvgTemp, e2.avgTemp as finalAvgTemp
-    insert into DeviceTempIncreasingStream
+    insert into DeviceTempIncreasingStream;
 end;</code></pre>
 
 <p>Here, the first query calculates the <code>avgTemp</code> for every 10 events for each unique <code>deviceID</code> and passes the output via the inner stream <code>#AvgTempStream</code> to the second query that is also in the same partition instance. The second query then identifies a pair of consecutive events from <code>#AvgTempStream</code>, where the latter event having 5 degrees more on <code>avgTemp</code> value than its previous event.</p>

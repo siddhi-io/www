@@ -1,0 +1,164 @@
+[
+  {
+    "title": "Siddhi Basics",
+    "column": 0,
+    "category": "Language concepts",
+    "samples": [
+      {
+        "name": "Stream and Query",
+        "url": "stream-and-query"
+      },
+      {
+        "name": "Source and Sink",
+        "url": "source-and-sink"
+      },
+      {
+        "name": "Table and Store",
+        "url": "table-and-store"
+      },
+      {
+        "name": "Siddhi Application",
+        "url": "siddhiapp"
+      }
+    ]
+  },
+  {
+    "title": "Values and Types",
+    "column": 0,
+    "category": "Language concepts",
+    "samples": [
+      {
+        "name": "Basic Types",
+        "url": "basic-types"
+      },
+      {
+        "name": "Map",
+        "url": "map"
+      },
+      {
+        "name": "List",
+        "url": "list"
+      },
+      {
+        "name": "Null",
+        "url": "null"
+      }
+    ]
+  },
+  {
+    "category": "Language concepts",
+    "column": 1,
+    "title": "Event Cleansing",
+    "samples": [
+      {
+        "name": "Value based Filtering",
+        "url": "value-based-filtering"
+      },
+      {
+        "name": "If-Then-Else",
+        "url": "if-then-else"
+      },
+      {
+        "name": "Regex Matching",
+        "url": "regex-matching"
+      },
+      {
+        "name": "Default",
+        "url": "default"
+      },
+      {
+        "name": "Type based Filtering",
+        "url": "type-based-filtering"
+      },
+      {
+        "name": "Remove Duplicate Events",
+        "url": "deduplicate"
+      }
+    ]
+  },
+  {
+    "category": "Language concepts",
+    "column": 1,
+    "title": "Data Transformation",
+    "samples": [
+      {
+        "name": "Math & Logical Operation",
+        "url": "math-logical-operations"
+      },
+      {
+        "name": "Transform JSON",
+        "url": "transform-json"
+      }
+    ]
+
+  },
+  {
+    "title": "Data Summarization",
+    "column": 2,
+    "category": "Language concepts",
+    "samples": [
+      {
+        "name": "Sliding Time",
+        "url": "sliding-time"
+      },
+      {
+        "name": "Batch (Tumbling) Time",
+        "url": "batch-time"
+      },
+      {
+        "name": "Sliding Event Count",
+        "url": "sliding-length"
+      },
+      {
+        "name": "Batch (Tumbling) Event Count",
+        "url": "batch-length"
+      },
+      {
+        "name": "Session",
+        "url": "session"
+      },
+      {
+        "name": "Named Window",
+        "url": "named-window"
+      }
+    ]
+  },
+  {
+    "title": "Service Integration",
+    "column": 3,
+    "category": "Language concepts",
+    "samples": [
+      {
+        "name": "HTTP Service Integration",
+        "url": "http-service-integration"
+      },
+      {
+        "name": "gRPC Service Integration",
+        "url": "grpc-service-integration"
+      }
+    ]
+  },
+  {
+    "title": "Data Pipelining",
+    "column": 2,
+    "category": "Language concepts",
+    "samples": [
+      {
+        "name": "Stream Join",
+        "url": "stream-join"
+      },
+      {
+        "name": "Partition Events by Value",
+        "url": "partition-by-value"
+      },
+      {
+        "name": "Scatter and Gather (String)",
+        "url": "scatter-and-gather-string"
+      },
+      {
+        "name": "Scatter and Gather (JSON)",
+        "url": "scatter-and-gather-json"
+      }
+    ]
+  }
+]
