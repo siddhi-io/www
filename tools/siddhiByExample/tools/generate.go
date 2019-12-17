@@ -374,11 +374,11 @@ func parseExamples(categories []BBECategory) []*Example {
 			example := Example{Name: exampleName}
 			example.Id = exampleId
 			example.Segs = make([][]*Seg, 0)
-			sourcePaths := mustGlob(examplesDir + "/" + "examples/" + exampleId + "/*")
+			sourcePaths := mustGlob(examplesDir + "/" + exampleId + "/*")
 
 			// Re-arranging the order of files
 			rearrangedPaths := make([]string, 0)
-			fileDirPath := examplesDir + "/examples/" + exampleId + "/"
+			fileDirPath := examplesDir + "/" + exampleId + "/"
 
 			if !isFileExist(fileDirPath) {
 				fmt.Fprintln(os.Stderr, "\t[WARN] Skipping sbe : "+exampleName+". "+fileDirPath+" is not found")
