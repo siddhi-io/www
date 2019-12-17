@@ -79,9 +79,10 @@ Event processing logic can be written using Streaming SQL queries via Siddhi gra
 </div>
 </div>
 <div class="cTryItContainer">
-<div class="cTryItList"><ui>
-<li><a class="cTryIt cKatacoda" target="_blank" href="https://www.katacoda.com/siddhi">Try in Katacoda</a></li>
-</ui></div>
+<div class="cTryItList">
+<a class="cTryIt cExample" target="_blank" href="en/_latest_version_/docs/examples/">Learn Siddhi by Examples</a>
+<a class="cTryIt cKatacoda" target="_blank" href="https://www.katacoda.com/siddhi">Try in Katacoda</a>
+</div>
 </div>
 </div>
 </div>
