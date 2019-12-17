@@ -102,14 +102,28 @@
         opacity: 0.7;
     }
 
-    .terminalOutput{
+    .terminalOutput {
         height: 298px;
     }
 
-    .terminalOutput > img{
+    .terminalOutput > img {
         margin-top: 5%;
         margin-bottom: 5%;
     }
+}
+
+.fa-external-link-alt{
+    font-size: x-small;
+}
+
+.terminalLink {
+    color: #e5eaea !important;
+    font-size: 12px;
+    font-family: Nunito, sans-serif;
+    font-feature-settings: 'kern', 'liga';
+    font-weight: bolder;
+    float: right;
+    padding-right: 15px;
 }
 
 html .md-typeset .superfences-tabs > label:hover {
@@ -641,7 +655,9 @@ html .md-typeset .superfences-tabs > label:hover {
 .cInfo {
     float: right;
     font-size: .8rem;
-    margin: 0 .5rem .5rem .5rem;
+    margin: .55rem .5rem .5rem .5rem;
+    min-width: 350px;
+    border: 1px solid #20b6b0;
 }
 
 .cInfo a {
@@ -657,7 +673,7 @@ html .md-typeset .superfences-tabs > label:hover {
     margin-bottom: 1rem;
 }
 
-.tagLine h2{
+.tagLine h2 {
     font-weight: 200;
     margin: 0;
 }

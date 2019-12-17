@@ -58,6 +58,7 @@ Event processing logic can be written using Streaming SQL queries via Siddhi gra
 <div class="tab-pane active" id="1a">
 <div class="terminalOutput">
 <img data-enlargable style="cursor: zoom-in"  src="images/editor/siddhi-editor.gif" />
+<a class="terminalLink" href="https://www.katacoda.com/siddhi/scenarios/siddhi-editor" target="_blank">Try in playground  <i class="fas fa-external-link-alt"></i></a>
 </div>
 </div>
 <div class="tab-pane" id="2a">
@@ -79,7 +80,7 @@ Event processing logic can be written using Streaming SQL queries via Siddhi gra
 </div>
 <div class="cTryItContainer">
 <div class="cTryItList"><ui>
-<li><a class="cTryIt cKatacoda" target="_blank" href="https://www.katacoda.com/siddhi">Try it at  Katacoda</a></li>
+<li><a class="cTryIt cKatacoda" target="_blank" href="https://www.katacoda.com/siddhi">Try in Katacoda</a></li>
 </ui></div>
 </div>
 </div>
@@ -164,10 +165,10 @@ Event processing logic can be written using Streaming SQL queries via Siddhi gra
 <div class="cUseCasesContainer">
 <h3>Streaming Data Integration</h3>
 <ul>
-    <li><a href="en/_latest_version_/docs/guides/integrate-various-enterprise-systems/guide/" target="_blank">Retrieve and publish data from various enterprise systems. <img src="images/external-link-symbol.svg"/></a></li>
+    <li><a href="en/_latest_version_/docs/guides/integrate-various-enterprise-systems/guide/" target="_blank">Retrieve and publish data from various enterprise systems. <i class="fas fa-external-link-alt"></i></a></li>
     <li>Perform data transformation on JSON, XML, Text, Avro, and CSV.</li>
     <li>Integrate with databases, services, and realtime event streams.</li>
-    <li><a href="en/_latest_version_/docs/guides/fault-tolerance/guide/" target="_blank">Data preprocessing, fault tolerance, and error handling. <img src="images/external-link-symbol.svg"/></a></li>
+    <li><a href="en/_latest_version_/docs/guides/fault-tolerance/guide/" target="_blank">Data preprocessing, fault tolerance, and error handling. <i class="fas fa-external-link-alt"></i></a></li>
 </ul>
 </div>
 </div>
@@ -177,9 +178,9 @@ Event processing logic can be written using Streaming SQL queries via Siddhi gra
 <h3>Streaming Data Analytics</h3>
 <ul>
     <li>Calculate aggregations over time, length, and session windows.</li>
-    <li><a href="en/_latest_version_/docs/guides/long-term-aggregation/guide/" target="_blank">Long-running time-series aggregations from seconds to years. <img src="images/external-link-symbol.svg"/></a></li>
-    <li><a href="en/_latest_version_/docs/guides/patterns-and-trends/guide/" target="_blank">Analyze event occurrence patterns and trends over time. <img src="images/external-link-symbol.svg"/></a></li>
-    <li><a href="en/_latest_version_/docs/guides/realtime-movie-recommendation/guide/" target="_blank">Realtime predictions with online and pre-trained ML models. <img src="images/external-link-symbol.svg"/></a></li>
+    <li><a href="en/_latest_version_/docs/guides/long-term-aggregation/guide/" target="_blank">Long-running time-series aggregations from seconds to years. <i class="fas fa-external-link-alt"></i></a></li>
+    <li><a href="en/_latest_version_/docs/guides/patterns-and-trends/guide/" target="_blank">Analyze event occurrence patterns and trends over time. <i class="fas fa-external-link-alt"></i></a></li>
+    <li><a href="en/_latest_version_/docs/guides/realtime-movie-recommendation/guide/" target="_blank">Realtime predictions with online and pre-trained ML models. <i class="fas fa-external-link-alt"></i></a></li>
 </ul>
 </div>
 </div>
@@ -190,7 +191,7 @@ Event processing logic can be written using Streaming SQL queries via Siddhi gra
 <div class="cUseCasesContainer">
 <h3>Alerts & Notifications</h3>
 <ul>
-    <li><a href="en/_latest_version_/docs/guides/alerts-for-thresholds/guide/" target="_blank">Generate alerts based on static and dynamic thresholds. <img src="images/external-link-symbol.svg"/></a></li>
+    <li><a href="en/_latest_version_/docs/guides/alerts-for-thresholds/guide/" target="_blank">Generate alerts based on static and dynamic thresholds. <i class="fas fa-external-link-alt"></i></a></li>
     <li>Correlate data to detect event anomalies and missing events.</li>
     <li>Support scheduling, digest, and auto-retry of notifications.</li>
     <li>Publish alerts via various event sinks such as email, and MQs.</li>
@@ -203,7 +204,7 @@ Event processing logic can be written using Streaming SQL queries via Siddhi gra
 <div class="cUseCasesContainer">
 <h3>Adaptive Decision Making</h3>
 <ul>
-    <li><a href="en/_latest_version_/docs/guides/database-static-rule-processing/guide/" target="_blank">Static rule processing via predefined and database based rules. <img src="images/external-link-symbol.svg"/></a></li>
+    <li><a href="en/_latest_version_/docs/guides/database-static-rule-processing/guide/" target="_blank">Static rule processing via predefined and database based rules. <i class="fas fa-external-link-alt"></i></a></li>
     <li>Dynamic rule processing through stateful queries and system state.</li>
     <li>Decision making through synchronous RPC (HTTP, gRPC).</li>
     <li>Incremental learning and decision making online ML models.</li>
