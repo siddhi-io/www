@@ -125,6 +125,13 @@ label.md-icon.md-icon--menu.md-header-nav__button {
     margin: 0;
 }
 
+@media only screen and (min-width: 620px) {
+    .cPageLogo {
+        min-width: 280px;
+        float: left;
+    }
+}
+
 .cPageLogo img {
     height: 60px;
 }
@@ -765,7 +772,7 @@ a.cTryIt:hover {
     color: black;
 }
 
-[data-md-color-primary=teal] .cUseCasesContainer a img{
+[data-md-color-primary=teal] .cUseCasesContainer a img {
     width: 10px;
 }
 
@@ -775,6 +782,7 @@ a.cTryIt:hover {
         padding: 10px;
     }
 }
+
 @media (max-width: 60em) {
     .userLogos img {
         max-height: 80px;
