@@ -18,13 +18,13 @@ Siddhi by Example enables you to have complete coverage over the Siddhi query la
 <div id="example"></div>
 
 <script>
-    $.getJSON("all-bbes.json", function (all_stuff) {
+    $.getJSON("all-sbes.json", function (all_stuff) {
         console.log("all stuff : ", all_stuff);
 
         var i = 0;
         var div_content;
 
-        $.getJSON("built-bbes.json", function (important_stuff) {
+        $.getJSON("built-sbes.json", function (important_stuff) {
             console.log("important stuff : ", important_stuff);
 
             $.each(all_stuff, function (key, value) {
@@ -64,7 +64,7 @@ Siddhi by Example enables you to have complete coverage over the Siddhi query la
                 $.each(value['samples'], function (exkey, example) {
                     var link = example['url'];
 
-                    //Filtering out the failed BBEs
+                    //Filtering out the failed SBEs
                     var is_exist = $.inArray(link, important_stuff);
                     if (is_exist == -1) {
                         return true;
