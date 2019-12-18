@@ -336,7 +336,7 @@ This request will response back the following JSON.
 ### Deploy on VM/ Bare Metal
 
 1. First you have to setup MySQL as described earlier. Refer [this](https://www.mysql.com/) link to setup MySQL.
-1. Download the [Siddhi runner distribution pack from here](https://siddhi.io/en/v5.1/download/) and unzip it.
+1. Download the latest Siddhi Runner [distribution](https://github.com/siddhi-io/distribution/releases/download/v5.1.0/siddhi-runner-5.1.2.zip) and unzip it.
 1. Add following YAML block to the `<RUNNER_HOME>/conf/runner/deployment.yaml`.
 
     ```yaml

@@ -219,7 +219,7 @@ Then, as given in the [Setup MySQL](#setup-mysql) section. Download the MySQL da
     Note: In the above provided Siddhi app, there are some environmental variables (MYSQL_DB_URL, MYSQL_USERNAME, and  MYSQL_PASSWORD)  are used. These values are required to be set to try out the scenario end to end. MYSQL related environmental variables are required to store the events of stream `NeedMoreRidersStream` . Environmental variables EMAIL_PASSWORD, EMAIL_USERNAME, SENDER_EMAIL_ADDRESS and MANAGER_EMAIL_ADDRESS  are used to send an email alert when there is an increasing trend of cancellation on specific area. 
     Hence, make sure to set the environmental variables with the proper values in the system (make sure to follow necessary steps based on the underneath operating system).  
     
-2. Download the latest Siddhi Runner [distribution](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-alpha/siddhi-runner-5.1.0-alpha.zip).
+2. Download the latest Siddhi Runner [distribution](https://github.com/siddhi-io/distribution/releases/download/v5.1.0/siddhi-runner-5.1.2.zip).
 3. Unzip the `siddhi-runner-x.x.x.zip`.
 4. You have to copy necessary Mysql client jar to Siddhi runner distribution to connect with MySQL database. Copy the MySQL client connector jar to `jars` (if it is non OSGI) or `bundles` (if it is OSGI bundle) directory of Siddhi runner.
     Please refer [this](https://siddhi.io/en/v5.1/docs/config-guide/#adding-to-siddhi-local-microservice) for information.
@@ -289,7 +289,7 @@ MySQL is an external dependency for this use case. Hence, you could use the corr
 1. Since, MySQL client jar is required for the Siddhi runner; you have to create the docker image accordingly. Below is the sample Docker file created
 
     ```docker
-    FROM siddhiio/siddhi-runner-base-alpine:5.1.0-alpha
+    FROM siddhiio/siddhi-runner-base-alpine:5.1.2
     MAINTAINER Siddhi IO Docker Maintainers "siddhi-dev@googlegroups.com"
     
     ARG HOST_BUNDLES_DIR=./files/bundles

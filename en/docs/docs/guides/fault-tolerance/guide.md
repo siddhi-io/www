@@ -299,7 +299,7 @@ Then, as given in [Setup Kafka](#setup-kafka) and [Setup MySQL](#setup-mysql) se
     Note: In the above provided Siddhi app, there are some environmental variables (MYSQL_DB_URL, MYSQL_USERNAME, and  MYSQL_PASSWORD)  are used. These values are required to be set to try out the scenario end to end. MYSQL related environmental variables are required to store the events which are failed to publish to the HTTP endpoint. Environmental variable KAFKA_BOOTSTRAP_SERVER_URL is the Kafka endpoint URL where Siddhi listens and consume events from.
     Hence, make sure to set the environmental variables with the proper values in the system (make sure to follow necessary steps based on the underneath operating system).  
     
-2. Download the latest Siddhi Runner [distribution](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-alpha/siddhi-runner-5.1.0-alpha.zip).
+2. Download the latest Siddhi Runner [distribution](https://github.com/siddhi-io/distribution/releases/download/v5.1.0/siddhi-runner-5.1.2.zip).
 3. Unzip the `siddhi-runner-x.x.x.zip`.
 4. You have to copy necessary Kafka and Mysql client jars to Siddhi runner distribution to connect with Kafka and MySQL database.
     
@@ -394,7 +394,7 @@ Apache Kafka and MySQL are the external dependencies for this use case. Hence, y
 1. Since, there are some external client jars (Kafka & MySQL) are required for the Siddhi runner. You have to create the docker image accordingly. Below is the sample Docker file created
 
     ```docker
-    FROM siddhiio/siddhi-runner-base-alpine:5.1.0-alpha
+    FROM siddhiio/siddhi-runner-base-alpine:5.1.2
     MAINTAINER Siddhi IO Docker Maintainers "siddhi-dev@googlegroups.com"
     
     ARG HOST_BUNDLES_DIR=./files/bundles

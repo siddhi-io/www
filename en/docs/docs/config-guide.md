@@ -427,7 +427,7 @@ To add or update Siddhi extensions and/or third-party dependencies, a new docker
 Sample docker file using `siddhi-runner-base-alpine` is as follows.
 ```docker
 # use siddhi-runner-base
-FROM siddhiio/siddhi-runner-base-alpine:5.1.0-alpha
+FROM siddhiio/siddhi-runner-base-alpine:5.1.2
 MAINTAINER Siddhi IO Docker Maintainers "siddhi-dev@googlegroups.com"
 
 ARG HOST_BUNDLES_DIR=./files/bundles

@@ -202,7 +202,7 @@ You can deploy the Siddhi app using any of the methods listed below.
 
 ### Deploy on VM/ Bare Metal
 
-1. Download the latest Siddhi Runner [distribution](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-alpha/siddhi-runner-5.1.0-alpha.zip).
+1. Download the latest Siddhi Runner [distribution](https://github.com/siddhi-io/distribution/releases/download/v5.1.0/siddhi-runner-5.1.2.zip).
 2. Unzip the `siddhi-runner-x.x.x.zip`.
 3. Configure the necessary environmental variables
 
@@ -242,13 +242,13 @@ You can deploy the Siddhi app using any of the methods listed below.
 2. Pull the latest Siddhi Runner image from [Siddhiio Docker Hub] (https://hub.docker.com/u/siddhiio).
     
     ```bash
-    docker pull siddhiio/siddhi-runner-alpine:5.1.0-alpha
+    docker pull siddhiio/siddhi-runner-alpine:5.1.2
     ```
 
 3. Start SiddhiApp by executing the following docker command.
 
     ```bash
-    docker run -it -p 8006:8006 -v /home/siddhi-apps:/apps -e EMAIL_PASSWORD=siddhi123 -e EMAIL_USERNAME=siddhi.gke.user -e SENDER_EMAIL_ADDRESS=siddhi.gke.user@gmail.com -e LOGGER_SERVICE_HOST=10.100.0.99 siddhiio/siddhi-runner-alpine:5.1.0-alpha -Dapps=/apps/API-Request-Throttler.siddhi
+    docker run -it -p 8006:8006 -v /home/siddhi-apps:/apps -e EMAIL_PASSWORD=siddhi123 -e EMAIL_USERNAME=siddhi.gke.user -e SENDER_EMAIL_ADDRESS=siddhi.gke.user@gmail.com -e LOGGER_SERVICE_HOST=10.100.0.99 siddhiio/siddhi-runner-alpine:5.1.2 -Dapps=/apps/API-Request-Throttler.siddhi
     ```
 
     NOTE: In the above provided Siddhi app, there are some environmental variables (EMAIL_PASSWORD, EMAIL_USERNAME, and SENDER_EMAIL_ADDRESS) which are required to be set to send email alerts based on the Siddhi queries defined. Again, there is a mock service configured to receive the throttle decisions (instructions given below), and its host is configured via LOGGER_SERVICE_HOST environment property. 
@@ -385,7 +385,7 @@ which is used to demonstrate the capability of Siddhi HTTP sink. Execute the bel
                 name: LOGGER_SERVICE_HOST
                 value: "10.100.0.99"
         
-            image: "siddhiio/siddhi-runner-ubuntu:5.1.0-alpha"
+            image: "siddhiio/siddhi-runner-ubuntu:5.1.2"
         ```
         
         NOTE: In the above provided Siddhi app, there are some environmental variables (EMAIL_PASSWORD, EMAIL_USERNAME, and SENDER_EMAIL_ADDRESS) which are required to be set to send email alerts based on the Siddhi queries defined. Again, there is a mock service configured to receive the throttle decisions (instructions given below), and its host is configured via LOGGER_SERVICE_HOST environment property. 

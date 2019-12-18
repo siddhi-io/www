@@ -292,8 +292,7 @@ Then, as given in [Setup MySQL](#setup-mysql) section. Download the MySQL databa
 Environmental variables related to Email and MySQL needs to be exported.
 
 #### Siddhi Runner Configuration
-
-1. Download the latest Siddhi Runner [distribution](https://github.com/siddhi-io/distribution/releases/download/v5.1.0/siddhi-runner-5.1.0.zip).
+1. Download the latest Siddhi Runner [distribution](https://github.com/siddhi-io/distribution/releases/download/v5.1.0/siddhi-runner-5.1.2.zip).
 2. Unzip the `siddhi-runner-x.x.x.zip`.
 3. Configure the necessary environmental variables. Refer [Testing](#Testing)
 4. Start Siddhi app with the runner config by executing the following commands from the distribution directory.

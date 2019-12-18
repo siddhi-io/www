@@ -204,7 +204,7 @@ NOTE: In the above provided Siddhi app, there are some environmental variables (
 
 ### Deploy on VM/ Bare Metal
 
-1. Download the latest Siddhi Runner [distribution](https://github.com/siddhi-io/distribution/releases/download/v5.1.0-beta/siddhi-runner-5.1.0-beta.zip).
+1. Download the latest Siddhi Runner [distribution](https://github.com/siddhi-io/distribution/releases/download/v5.1.0/siddhi-runner-5.1.2.zip).
 2. Unzip the `siddhi-runner-x.x.x.zip`.
 3. Copy the downloaded [siddhi-gpl-execution-pmml](https://maven.wso2.org/nexus/service/local/repositories/releases/content/io/siddhi/extension/gpl/execution/pmml/siddhi-gpl-execution-pmml/5.0.1/siddhi-gpl-execution-pmml-5.0.1.jar) and [siddhi-execution-tensorflow](https://mvnrepository.com/artifact/io.siddhi.extension.execution.tensorflow/siddhi-execution-tensorflow/2.0.2) to SIDDHI_RUNNER_HOME/bundles directory.
 4. Start Siddhi app with the runner config by executing the following commands from the distribution directory.
@@ -247,7 +247,7 @@ NOTE: In the above provided Siddhi app, there are some environmental variables (
 4. Pull the latest Siddhi Runner image from [Siddhiio Docker Hub] (https://hub.docker.com/u/siddhiio).
     
     ```bash
-    docker pull siddhiio/siddhi-runner-alpine:5.1.0-beta
+    docker pull siddhiio/siddhi-runner-alpine:5.1.2
     ```
 
 5. Start SiddhiApp by executing the following docker command.
@@ -311,7 +311,7 @@ which is used to demonstrate the capability of Siddhi HTTP sink. Execute the bel
     - We need a custom docker image bundling the pretrained models to the container.
       ```yaml
       # use siddhi-runner-base
-      FROM siddhiio/siddhi-runner-base-alpine:5.1.0-beta
+      FROM siddhiio/siddhi-runner-base-alpine:5.1.2
       MAINTAINER Siddhi IO Docker Maintainers "siddhi-dev@googlegroups.com"
       
       ARG HOST_BUNDLES_DIR=./bundles

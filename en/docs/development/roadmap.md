@@ -1,44 +1,32 @@
 # Siddhi Roadmap
 
-The Siddhi road map shows the key features and improvements that are in the pipeline for future releases. We have only listed the high level features and issues in below; we will certainly work on other minor improvements, bug fixes and etc… as well in future releases.
+The Siddhi road map shows the key features and improvements that are in the pipeline for future releases. We have only listed the high level features and below, and we will certainly work on other minor improvements and bug fixes in future releases.
 
-## Latest (Siddhi 5.1.0)
-
-- Siddhi Core 5.1.7
-    - Introduce RESET processing mode to preserve memory optimization.
-    - Support to create a Sandbox SiddhiAppRuntime for testing purposes
-    - Support error handling (log/wait/fault-stream) when event sinks publish data asynchronously.
-- Siddhi Extension
-    - gRPC IO connector
-    - S3 IO connector
-    - GCS IO connector 
-    - Execution List Connector 
-    - Deduplicate support in Unique Extension
-- Siddhi Tooling
-    - Support K8s/Docker artifacts export in Siddhi editor
-    - Overload parameter support in Siddhi source & design editor
-- CRDs to support Kubernetes deployments natively
-- Support High-Available, Fault Tolerant  Siddhi deployment with NATS
-- Siddhi Test Framework: Provides the capability to write integration tests using Docker containers
-- CI/CD deployment story for Siddhi 
-- Siddhi use case guides - https://siddhi.io/en/v5.1/docs/
+Find the current status of the project via [Github project boards](https://github.com/orgs/siddhi-io/projects).
 
 ## 2019-Q4
 
-- Prometheus for metrics collection
-- Support distributed Siddhi deployment with NATS
-- Siddhi plugin for VSCode 
-- JDBC driver for Siddhi Query APIs
-- Support templating Siddhi apps and configurations in Tooling
+- Prometheus for metrics collection.
+- Support templating Siddhi apps and configurations in Tooling.
+- Docker and Kubernetes export feature in Tooling. 
+- Support High-Available, Fault Tolerant  Siddhi deployment with NATS.
+- Siddhi by Examples - https://siddhi.io/en/v5.1/docs/examples/.
 
-## 2020 +
+## 2020-Q1
+
+- Support distributed Siddhi deployment with NATS.
+- Native support CloudEvents specification.
+- Siddhi plugin for VSCode.
+- Siddhi monitoring dashboard in Grafana.
+
+## 2020-Q2 +
 
 - Kafka support for Siddhi K8s deployment
 - Siddhi support in Golang
 - Enhance management of secrets with vault services
 - Evaluate Istio integration 
-- Allow to specify dependencies in the Siddhi Custom resource 
 - Cloud Foundry installation support
+- Extension installation support for tooling
 
-If you have any queries or comments on the roadmap, please let us know via GitHub [here](https://github.com/siddhi-io/siddhi/issues). You can also always communicate through Google Group or Slack with us on our [community page](https://siddhi.io/community/). You feedback and contribution is always welcome.
+If you have any queries or comments on the roadmap, please let us know via GitHub [here](https://github.com/siddhi-io/siddhi/issues). You can also feel free to communicate through [Slack or Google Groups](https://siddhi.io/community/). You feedback and contribution is always welcome.
 
