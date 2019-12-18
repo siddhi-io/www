@@ -99,7 +99,7 @@ Event processing logic can be written using Streaming SQL queries via graphical 
 <img src="images/dev.svg"/>
 <h3>Faster Development</h3>
 </div>
-<p>Agile development experience with SQL like query language and graphical drag-and-drop editor supporting auto completion and event simulation.</p>
+<p>Agile development experience with SQL like query language and graphical drag-and-drop editor supporting event simulation.</p>
 </div>
 </div>
 <div class="col-md-4 col-sm-12">
