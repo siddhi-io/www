@@ -227,6 +227,7 @@ Event processing logic can be written using Streaming SQL queries via graphical 
 <a href="http://cellery.io/" target="_blank"><img src="images/users/cellery-logo.png" /></a>
 <a href="http://www.csipiemonte.it/" target="_blank"><img src="images/users/csi-logo.png" /></a>
 <a href="https://eagle.apache.org/" target="_blank"><img src="images/users/eagle-logo.png" /></a>
+<a href="https://www.ebay.com/" target="_blank"><img src="images/users/ebay-logo.png" /></a>
 <a href="https://www.hnb.lk/" target="_blank"><img src="images/users/hnb-logo.png" /></a>
 <a href="https://www.intellectdesign.com/" target="_blank"><img src="images/users/intellect-logo.png" /></a>
 <a href="https://www.letgo.com/" target="_blank"><img src="images/users/letgo-logo.png" /></a>
