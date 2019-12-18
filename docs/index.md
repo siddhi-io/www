@@ -25,10 +25,10 @@ template: templates/mkt-webpage.html
 <div class="col-md-6 col-sm-6">
 <h1>Siddhi</h1>
 <p>
-Fully open source, cloud native, scalable, <b>micro streaming</b>, and complex event processing system capable of building event-driven applications for real-time analytics, data integration, notification, and adaptive decision-making use cases.
+Fully open source, cloud native, scalable, <b>micro streaming</b>, and complex event processing system capable of building event-driven applications for use cases such as real-time analytics, data integration, notification management, and adaptive decision-making.
 </p>
 <p>
-Event processing logic can be written using Streaming SQL queries via Siddhi graphical and source editor, to capture events from diverse data sources, process and analyze events, integrate with multiple services and data stores, and publish output to various endpoints in real-time. 
+Event processing logic can be written using Streaming SQL queries via graphical and source editor, to capture events from diverse data sources, process and analyze them, integrate with multiple services and data stores, and publish output to various endpoints in real-time. 
 </p>
 
 <!-- <a href="#" class="cDownloadButton">Download</a> -->
@@ -99,7 +99,7 @@ Event processing logic can be written using Streaming SQL queries via Siddhi gra
 <img src="images/dev.svg"/>
 <h3>Faster Development</h3>
 </div>
-<p>Agile development experience with SQL like query language and graphical drag-and-drop editor supporting event simulation.</p>
+<p>Agile development experience with SQL like query language and graphical drag-and-drop editor supporting auto completion and event simulation.</p>
 </div>
 </div>
 <div class="col-md-4 col-sm-12">
@@ -108,7 +108,7 @@ Event processing logic can be written using Streaming SQL queries via Siddhi gra
 <img src="images/cloud.svg"/>
 <h3>Cloud Native</h3>
 </div>
-<p>Lightweight runtime that natively runs in Kubernetes via Kubernetes CRD, and works with systems such as NATS, gRPC, and Prometheus.</div>
+<p>Lightweight runtime that can natively run on Kubernetes, Docker, VM, or bare metal, and embedded in any Java or Python application.</div>
 </div>
 <div class="col-md-4 col-sm-12">
 <div class="cBenefits">
@@ -116,7 +116,7 @@ Event processing logic can be written using Streaming SQL queries via Siddhi gra
 <img src="images/micro-service.svg"/>
 <h3>Scalable Deployment</h3>
 </div>
-<p>Embedded event processing within Java, Python applications to running on bare metal, Docker and massively scaling on Kubernetes.</p></div>
+<p>Scalable, and highly available distributed event processing on Kubernetes, with NATS Streaming and Siddhi Kubernetes Operator.</p></div>
 </div>
 <div class="col-md-4 col-sm-12">
 <div class="cBenefits">
@@ -140,7 +140,7 @@ Event processing logic can be written using Streaming SQL queries via Siddhi gra
 <img src="images/tested.svg"/>
 <h3>Reliability</h3>
 </div>
-<p>Battle-tested with billions of events at UBER, eBay, PayPal, HCA, TFL, WSO2 and in many Fortune 500 companies enabling exactly once event processing.</p></div>
+<p>Zero event loss and exactly once event processing, battle-tested by UBER, eBay, PayPal, HCA, TFL, WSO2 and in many Fortune 500 companies.</p></div>
 </div>
 
 </div>
