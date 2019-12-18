@@ -2337,7 +2337,7 @@ insert into FailedAbnormalReadingTable;</code></pre>
     Hence, make sure to set the environmental variables with the proper values in the system (make sure to follow necessary steps based on the underneath operating system).  </p>
 </li>
 <li>
-<p>Download the latest Siddhi Runner <a href="https://github.com/siddhi-io/distribution/releases/download/v5.1.0-alpha/siddhi-runner-5.1.0-alpha.zip">distribution</a>.</p>
+<p>Download the latest Siddhi Runner <a href="https://github.com/siddhi-io/distribution/releases/download/v5.1.0/siddhi-runner-5.1.2.zip">distribution</a>.</p>
 </li>
 <li>Unzip the <code>siddhi-runner-x.x.x.zip</code>.</li>
 <li>
@@ -2430,7 +2430,7 @@ Windows : bin\runner.bat -Dapps=&lt;siddhi-file-path&gt; -Dconfig=&lt;config-yam
 <ol>
 <li>
 <p>Since, there are some external client jars (Kafka &amp; MySQL) are required for the Siddhi runner. You have to create the docker image accordingly. Below is the sample Docker file created</p>
-<pre class="codehilite"><code class="language-docker">FROM siddhiio/siddhi-runner-base-alpine:5.1.0-alpha
+<pre class="codehilite"><code class="language-docker">FROM siddhiio/siddhi-runner-base-alpine:5.1.2
 MAINTAINER Siddhi IO Docker Maintainers "siddhi-dev@googlegroups.com"
 
 ARG HOST_BUNDLES_DIR=./files/bundles

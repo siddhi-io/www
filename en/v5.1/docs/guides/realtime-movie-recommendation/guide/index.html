@@ -2178,7 +2178,7 @@ insert into RecommendedMovieStream;
 </ul>
 <h3 id="deploy-on-vm-bare-metal">Deploy on VM/ Bare Metal<a class="headerlink" href="#deploy-on-vm-bare-metal" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Download the latest Siddhi Runner <a href="https://github.com/siddhi-io/distribution/releases/download/v5.1.0-beta/siddhi-runner-5.1.0-beta.zip">distribution</a>.</li>
+<li>Download the latest Siddhi Runner <a href="https://github.com/siddhi-io/distribution/releases/download/v5.1.0/siddhi-runner-5.1.2.zip">distribution</a>.</li>
 <li>Unzip the <code>siddhi-runner-x.x.x.zip</code>.</li>
 <li>Copy the downloaded <a href="https://maven.wso2.org/nexus/service/local/repositories/releases/content/io/siddhi/extension/gpl/execution/pmml/siddhi-gpl-execution-pmml/5.0.1/siddhi-gpl-execution-pmml-5.0.1.jar">siddhi-gpl-execution-pmml</a> and <a href="https://mvnrepository.com/artifact/io.siddhi.extension.execution.tensorflow/siddhi-execution-tensorflow/2.0.2">siddhi-execution-tensorflow</a> to SIDDHI_RUNNER_HOME/bundles directory.</li>
 <li>
@@ -2227,7 +2227,7 @@ Eg: If exported siddhi app in Siddhi home directory,
 </li>
 <li>
 <p>Pull the latest Siddhi Runner image from [Siddhiio Docker Hub] (https://hub.docker.com/u/siddhiio).</p>
-<pre class="codehilite"><code class="language-bash">docker pull siddhiio/siddhi-runner-alpine:5.1.0-beta</code></pre>
+<pre class="codehilite"><code class="language-bash">docker pull siddhiio/siddhi-runner-alpine:5.1.2</code></pre>
 
 </li>
 <li>
@@ -2293,7 +2293,7 @@ which is used to demonstrate the capability of Siddhi HTTP sink. Execute the bel
 <li>
 <p>We need a custom docker image bundling the pretrained models to the container.
   <pre class="codehilite"><code class="language-yaml"># use siddhi-runner-base
-FROM siddhiio/siddhi-runner-base-alpine:5.1.0-beta
+FROM siddhiio/siddhi-runner-base-alpine:5.1.2
 MAINTAINER Siddhi IO Docker Maintainers "siddhi-dev@googlegroups.com"
 
 ARG HOST_BUNDLES_DIR=./bundles

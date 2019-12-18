@@ -409,8 +409,6 @@ ul.cDemoControls li.active a {
     margin-right: 10px;
     margin-bottom: 15px;
     background-repeat: no-repeat;
-    padding-left: 80px;
-    background-position: 30px center;
     background-size: 30px;
     line-height: 30px;
     color: #02aaad !important;
@@ -455,6 +453,12 @@ a.cDistribution:hover {
     padding: 0;
     margin: 0;
     white-space: nowrap;
+}
+
+@media (max-width: 991px) {
+    .cDistributions ui li {
+        width: 100% !important;
+    }
 }
 
 .cDistributions ui li {
@@ -736,6 +740,10 @@ a.md-flex.md-footer-nav__link:hover {
 }
 
 @media (min-width: 992px) {
+    .cDistribution {
+        background-position: 20% center;
+        padding-left: 35%;
+    }
     .cTryIt {
         width: 49%;
         background-position: 20% center;
@@ -747,6 +755,10 @@ a.md-flex.md-footer-nav__link:hover {
 }
 
 @media (min-width: 768px) and (max-width: 991px){
+    .cDistribution {
+        background-position: 28% center;
+        padding-left: 37%;
+    }
     .cTryIt {
         background-position: 28% center;
     }
@@ -756,6 +768,10 @@ a.md-flex.md-footer-nav__link:hover {
 }
 
 @media (min-width: 376px) and (max-width: 766px){
+    .cDistribution {
+        background-position: 38% center;
+        padding-left: 45%;
+    }
     .cTryIt {
         background-position: 38% center;
     }
@@ -765,6 +781,10 @@ a.md-flex.md-footer-nav__link:hover {
 }
 
 @media (max-width: 375px) {
+    .cDistribution {
+        background-position:  22% center;
+        padding-left: 38%;
+    }
     .cTryIt {
         background-position: 22% center;
     }

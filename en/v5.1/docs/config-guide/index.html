@@ -2661,7 +2661,7 @@ These Jars will be converted as OSGI bundles and copied to Siddhi Runner distrib
 <p>To add or update Siddhi extensions and/or third-party dependencies, a new docker image has to be built from either <a href="https://hub.docker.com/r/siddhiio/siddhi-runner-base-ubuntu">siddhi-runner-base-ubuntu</a> or <a href="https://hub.docker.com/r/siddhiio/siddhi-runner-base-alpine">siddhi-runner-base-alpine</a> images. These images contain Linux OS, JDK and the Siddhi distribution.</p>
 <p>Sample docker file using <code>siddhi-runner-base-alpine</code> is as follows.
 <pre class="codehilite"><code class="language-docker"># use siddhi-runner-base
-FROM siddhiio/siddhi-runner-base-alpine:5.1.0-alpha
+FROM siddhiio/siddhi-runner-base-alpine:5.1.2
 MAINTAINER Siddhi IO Docker Maintainers "siddhi-dev@googlegroups.com"
 
 ARG HOST_BUNDLES_DIR=./files/bundles

@@ -2134,7 +2134,7 @@ mohan, silver, true], isExpired=false}</code></pre>
 <p>You can deploy the Siddhi app using any of the methods listed below. </p>
 <h3 id="deploy-on-vm-bare-metal">Deploy on VM/ Bare Metal<a class="headerlink" href="#deploy-on-vm-bare-metal" title="Permanent link">&para;</a></h3>
 <ol>
-<li>Download the latest Siddhi Runner <a href="https://github.com/siddhi-io/distribution/releases/download/v5.1.0-alpha/siddhi-runner-5.1.0-alpha.zip">distribution</a>.</li>
+<li>Download the latest Siddhi Runner <a href="https://github.com/siddhi-io/distribution/releases/download/v5.1.0/siddhi-runner-5.1.2.zip">distribution</a>.</li>
 <li>Unzip the <code>siddhi-runner-x.x.x.zip</code>.</li>
 <li>Configure the necessary environmental variables</li>
 </ol>
@@ -2178,12 +2178,12 @@ Windows : bin\runner.bat -Dapps=&lt;siddhi-file-path&gt;
 </li>
 <li>
 <p>Pull the latest Siddhi Runner image from [Siddhiio Docker Hub] (https://hub.docker.com/u/siddhiio).</p>
-<pre class="codehilite"><code class="language-bash">docker pull siddhiio/siddhi-runner-alpine:5.1.0-alpha</code></pre>
+<pre class="codehilite"><code class="language-bash">docker pull siddhiio/siddhi-runner-alpine:5.1.2</code></pre>
 
 </li>
 <li>
 <p>Start SiddhiApp by executing the following docker command.</p>
-<pre class="codehilite"><code class="language-bash">docker run -it -p 8006:8006 -v /home/siddhi-apps:/apps -e EMAIL_PASSWORD=siddhi123 -e EMAIL_USERNAME=siddhi.gke.user -e SENDER_EMAIL_ADDRESS=siddhi.gke.user@gmail.com -e LOGGER_SERVICE_HOST=10.100.0.99 siddhiio/siddhi-runner-alpine:5.1.0-alpha -Dapps=/apps/API-Request-Throttler.siddhi</code></pre>
+<pre class="codehilite"><code class="language-bash">docker run -it -p 8006:8006 -v /home/siddhi-apps:/apps -e EMAIL_PASSWORD=siddhi123 -e EMAIL_USERNAME=siddhi.gke.user -e SENDER_EMAIL_ADDRESS=siddhi.gke.user@gmail.com -e LOGGER_SERVICE_HOST=10.100.0.99 siddhiio/siddhi-runner-alpine:5.1.2 -Dapps=/apps/API-Request-Throttler.siddhi</code></pre>
 
 <p>NOTE: In the above provided Siddhi app, there are some environmental variables (EMAIL_PASSWORD, EMAIL_USERNAME, and SENDER_EMAIL_ADDRESS) which are required to be set to send email alerts based on the Siddhi queries defined. Again, there is a mock service configured to receive the throttle decisions (instructions given below), and its host is configured via LOGGER_SERVICE_HOST environment property. 
 Hence, make sure to add proper values for the environmental variables in the above command.</p>
@@ -2322,7 +2322,7 @@ spec:
         name: LOGGER_SERVICE_HOST
         value: "10.100.0.99"
 
-    image: "siddhiio/siddhi-runner-ubuntu:5.1.0-alpha"</code></pre>
+    image: "siddhiio/siddhi-runner-ubuntu:5.1.2"</code></pre>
 
 <p>NOTE: In the above provided Siddhi app, there are some environmental variables (EMAIL_PASSWORD, EMAIL_USERNAME, and SENDER_EMAIL_ADDRESS) which are required to be set to send email alerts based on the Siddhi queries defined. Again, there is a mock service configured to receive the throttle decisions (instructions given below), and its host is configured via LOGGER_SERVICE_HOST environment property. 
 Hence, make sure to add proper values for the environmental variables in the above YAML file (check the <code>env</code> section of the YAML file).</p>
