@@ -1,0 +1,22 @@
+API throttling use case is considered in this example to explain the time-based rate limiting.
+API request events arrive through `APIRequestStream` stream. If there are more than 3 API requests sent by a user within 1 minute then the subsequence requests are getting throttled.
+And, if a user gets throttled more than 2 times within 1 hour then there is a notification event generated to notify the user to consider upgrading the subscription tier.
+In this case, the notification events are get rate limited based on time. For example, within 15 minutes there will be only one notification for an API, tier and user combination.
+
+#### Input
+
+Sent below three events to `APIRequestStream` stream for three minutes (three events for every minute),
+
+[`'Get-Weather'`, `'1.0.0'`, `'Gold'`, `'George'`, `'george@gmail.com'`]
+
+[`'Get-Weather'`, `'1.0.0'`, `'Gold'`, `'George'`, `'george@gmail.com'`]
+
+[`'Get-Weather'`, `'1.0.0'`, `'Gold'`, `'George'`, `'george@gmail.com'`]
+
+
+#### Output
+
+After processing, the event arriving at `UserNotificationStream` will be as follows:
+
+[`'Get-Weather'`, `'1.0.0'`, `'Gold'`, `'george@gmail.com'`, `3`]
+

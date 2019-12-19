@@ -2179,6 +2179,7 @@ Snapshot based | `snapshot every <time interval>`| Outputs all events currently 
 The `<output event selection>` specifies the event(s) that are selected to be outputted from the query, here when no `<output event selection>` is defined, `all` is used by default.
 
 The possible values for the `<output event selection>` and their behaviors are as follows:
+
 * `first`: The first query output is published as soon as it is generated and the subsequent events are dropped until the specified time interval or the number of events are reached before sending the next event as output.
 * `last`: Emits only the last output event generated during the specified time or event interval.
 * `all`: Emits all the output events together which are generated during the specified time or event interval.

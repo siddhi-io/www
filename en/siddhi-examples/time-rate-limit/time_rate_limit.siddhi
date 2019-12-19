@@ -1,0 +1,45 @@
+-- Defines `APIRequestStream` stream which contains the events regarding the API request.
+define stream APIRequestStream (apiName string, version string,
+    tier string, user string, userEmail string);
+
+-- Defines `UserNotificationStream` stream which contains the notification events.
+define stream UserNotificationStream (user string,
+    apiName string, version string, tier string,
+    userEmail string, throttledCount long);
+
+@info(name='api-throttler')
+-- This query generates events when API is throttled and released from throttling.
+-- It generates a throttling event if an API is called more than 3 times in a minute.
+from APIRequestStream#window.timeBatch(1 min, 0, true) 
+select apiName, version, user, tier, userEmail,
+    count() as totalRequestCount
+group by apiName, version, user
+having totalRequestCount == 3 or totalRequestCount == 0
+insert all events into ThrottledStream;
+
+
+@info(name='throttle-flag-generator') 
+from ThrottledStream 
+select apiName, version, user, tier, userEmail,
+
+-- Create `isThrottled` flag based on the API request count
+    ifThenElse(totalRequestCount == 0, false, true)
+        as isThrottled
+
+insert into ThrottleOutputStream;
+
+
+@info(name='notification-generator') 
+-- This query helps to generate notifications to the user based on the API usage.
+-- User is notified to upgrade the subscription tier if he is frequently throttled.
+from ThrottleOutputStream[isThrottled]#window.time(1 hour) 
+select user, apiName, version, tier, userEmail,
+    count() as throttledCount
+group by user, apiName, version, tier
+-- Find the  users who are throttled more than 2 times in an hour
+having throttledCount > 2
+
+-- Notify the first occurrence when `throttledCount > 2` for every 15 minutes.
+output first every 15 min 
+
+insert into UserNotificationStream;

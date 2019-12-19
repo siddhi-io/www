@@ -160,5 +160,16 @@
         "url": "scatter-and-gather-json"
       }
     ]
+  },
+  {
+    "title": "Rate Limiting",
+    "column": 3,
+    "category": "Language concepts",
+    "samples": [
+      {
+        "name": "Rate Limit Based on Time",
+        "url": "time-rate-limit"
+      }
+    ]
   }
 ]

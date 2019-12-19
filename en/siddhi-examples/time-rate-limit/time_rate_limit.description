@@ -1,0 +1,4 @@
+Output rate-limiting limits the number of events emitted by the queries based on a specified criterion such as time, and the number of events.
+This example provides some basic understanding of how rate limiting can be done based on time.
+
+Refer the [Siddhi query guide](https://siddhi.io/en/v5.1/docs/query-guide/#output-rate-limiting) for more information.

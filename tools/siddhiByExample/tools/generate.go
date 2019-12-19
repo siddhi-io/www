@@ -515,7 +515,7 @@ func prepareExample(sourcePaths []string, example Example, currentExamplesList [
 	if example.GoCodeHash != newCodeHash {
 		example.UrlHash = resetUrlHashFile(newCodeHash, example.GoCode, "examples/"+example.Id+"/"+example.Id+".hash")
 	}
-	example.GithubLink = githubsiddhiByExampleBaseURL + "/examples/" + example.Id + "/"
+	example.GithubLink = githubsiddhiByExampleBaseURL + "/" + example.Id + "/"
 	currentExamplesList = append(currentExamplesList, &example)
 	return currentExamplesList, nil
 }
@@ -621,9 +621,9 @@ func buildExampleIndexPage(jsonPath string, mkdocsYamlPath string) {
 }
 
 func main() {
-	copyFile( examplesDir + "/all-sbes.json", siteDir+"/all-sbes.json")
+	copyFile(examplesDir+"/all-sbes.json", siteDir+"/all-sbes.json")
 	bbeCategories := getBBECategories()
 	examples := parseExamples(bbeCategories)
 	renderExamples(examples)
-	buildExampleIndexPage(examplesDir + "/all-sbes.json", "en/mkdocs.yml")
+	buildExampleIndexPage(examplesDir+"/all-sbes.json", "en/mkdocs.yml")
 }
