@@ -8,7 +8,9 @@ In this case, the notification events are get rate limited based on time. For ex
 Sent below three events to `APIRequestStream` stream for three minutes (three events for every minute),
 
 [`'Get-Weather'`, `'1.0.0'`, `'Gold'`, `'George'`, `'george@gmail.com'`]
+
 [`'Get-Weather'`, `'1.0.0'`, `'Gold'`, `'George'`, `'george@gmail.com'`]
+
 [`'Get-Weather'`, `'1.0.0'`, `'Gold'`, `'George'`, `'george@gmail.com'`]
 
 

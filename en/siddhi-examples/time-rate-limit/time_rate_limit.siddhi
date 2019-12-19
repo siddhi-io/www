@@ -17,14 +17,17 @@ group by apiName, version, user
 having totalRequestCount == 3 or totalRequestCount == 0
 insert all events into ThrottledStream;
 
+
 @info(name='throttle-flag-generator') 
 from ThrottledStream 
 select apiName, version, user, tier, userEmail,
+
 -- Create `isThrottled` flag based on the API request count
     ifThenElse(totalRequestCount == 0, false, true)
         as isThrottled
-    
+
 insert into ThrottleOutputStream;
+
 
 @info(name='notification-generator') 
 -- This query helps to generate notifications to the user based on the API usage.
