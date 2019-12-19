@@ -13,7 +13,7 @@ Here, the Siddhi applications containing stream processing logic can be written 
     2. [Google Kubernetes Engine(GKE) Cluster](https://console.cloud.google.com/)
     3. [Docker for Mac](https://docs.docker.com/docker-for-mac/install/)
     4. Or any other Kubernetes cluster
-* Distributed deployment of Siddhi apps need [NATS operator](https://github.com/nats-io/nats-operator/tree/v0.6.0#namespace-scoped-installation) and [NATS streaming operator](https://github.com/nats-io/nats-streaming-operator/tree/v0.2.2#getting-started).
+* Distributed deployment of Siddhi apps need [NATS operator v0.5.0+](https://github.com/nats-io/nats-operator/tree/v0.6.0#namespace-scoped-installation) and [NATS streaming operator v0.2.2](https://github.com/nats-io/nats-streaming-operator/tree/v0.2.2#getting-started).
 * Admin privileges to install Siddhi operator  
 
 !!! Note "Minikube"
@@ -44,8 +44,8 @@ Here, the Siddhi applications containing stream processing logic can be written 
 To install the Siddhi Kubernetes operator run the following commands.
 
 ```sh
-kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/00-prereqs.yaml
-kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/01-siddhi-operator.yaml
+kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.2/00-prereqs.yaml
+kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.2/01-siddhi-operator.yaml
 ```
 
 You can verify the installation by making sure the following deployments are running in your Kubernetes cluster.
@@ -323,7 +323,7 @@ Siddhi runner use `<SIDDHI_RUNNER_HOME>/conf/runner/deployment.yaml` file as the
 
 ```yaml
   runner: |
-    state.persistence:
+    statePersistence:
       enabled: true
       intervalInMin: 1
       revisionsToKeep: 2
@@ -702,7 +702,7 @@ spec:
     volumeMode: Filesystem
   
   runner: |
-    state.persistence:
+    statePersistence:
       enabled: true
       intervalInMin: 1
       revisionsToKeep: 2
@@ -899,7 +899,7 @@ spec:
     volumeMode: Filesystem
   
   runner: |
-    state.persistence:
+    statePersistence:
       enabled: true
       intervalInMin: 1
       revisionsToKeep: 2
