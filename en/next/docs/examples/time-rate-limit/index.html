@@ -31,7 +31,7 @@
         <meta name="description" content="Cloud Native Stream Processor">
       
       
-        <link rel="canonical" href="http://siddhi.io/en/next/docs/examples/source-and-sink/">
+        <link rel="canonical" href="http://siddhi.io/en/next/docs/examples/time-rate-limit/">
       
       
         <meta name="author" content="WSO2">
@@ -60,7 +60,7 @@
     
     
       
-        <title>Source and sink - Siddhi</title>
+        <title>Time rate limit - Siddhi</title>
       
     
     
@@ -179,7 +179,7 @@
               Siddhi
             </span>
             <span class="md-header-nav__topic">
-              Source and sink
+              Time rate limit
             </span>
           
         </div>
@@ -348,7 +348,7 @@
     </ul>
     <div class="quick_links">
         
-        <a href="https://github.com/siddhi-io/www/edit/master/en/docs/docs/examples/source-and-sink.md" target="blank" id="editIcon" title="Edit this page"
+        <a href="https://github.com/siddhi-io/www/edit/master/en/docs/docs/examples/time-rate-limit.md" target="blank" id="editIcon" title="Edit this page"
            title="Edit this page" class="md-icon md-content__icon nav_link edit_link"></a>
         
     </div>
@@ -864,7 +864,7 @@
               
   
                 
-                  <a href="https://github.com/siddhi-io/www/edit/master/en/docs/docs/examples/source-and-sink.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/siddhi-io/www/edit/master/en/docs/docs/examples/time-rate-limit.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
                 <!--copy to clipboard lib-->
@@ -882,13 +882,14 @@
 <script src="../../../assets/js/example.js"></script>
 
 <p><link rel=stylesheet href="../../../assets/css/example.css">
-<span class="info" dir="https://github.com/siddhi-io/www/tree/v5.1/en/siddhi-examples/source-and-sink/"><span></p>
-<h1>Source and Sink</h1>
+<span class="info" dir="https://github.com/siddhi-io/www/tree/v5.1/en/siddhi-examples/time-rate-limit/"><span></p>
+<h1>Rate Limit Based on Time</h1>
 
 <div class="cLeftTD">
-<p><p>Provides introduction to <a href="../../query-guide#source">sources</a> and <a href="../../query-guide#sink">sink</a> that are used to consume and publish events to external systems.</p>
+<p><p>Output rate-limiting limits the number of events emitted by the queries based on a specified criterion such as time, and the number of events.
+This example provides some basic understanding of how rate limiting can be done based on time.</p>
 
-<p>There are multiple source and sink types, but this example only explains <code>http</code> source, <code>log</code> sink, and <code>kafka</code> sink. For more info refer the Siddhi <a href="../../query-guide">query guide</a>.</p>
+<p>Refer the <a href="https://siddhi.io/en/v5.1/docs/query-guide/#output-rate-limiting">Siddhi query guide</a> for more information.</p>
 </p>
 </div>
 
@@ -897,22 +898,34 @@
  <a class="copy"><img src="../../../images/copy.png" width="20px"/></a>
 </div>
 <div class="FullCode">
-                <div class="highlight"><pre><span class="err">@</span><span class="nx">source</span><span class="p">(</span><span class="nx">type</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">http</span><span class="err">&#39;</span><span class="p">,</span> <span class="nx">receiver</span><span class="p">.</span><span class="nx">url</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">http</span><span class="p">:</span><span class="c1">//0.0.0.0:8006/temp&#39;,</span>
-    <span class="err">@</span><span class="kt">map</span><span class="p">(</span><span class="nx">type</span><span class="p">=</span><span class="err">&#39;</span><span class="kt">json</span><span class="err">&#39;</span><span class="p">))</span>
-<span class="nx">define</span> <span class="nx">stream</span> <span class="nx">TemperatureStream</span> <span class="p">(</span>
-                  <span class="nx">sensorId</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">temperature</span> <span class="nx">double</span><span class="p">);</span>
+                <div class="highlight"><pre><span class="nx">define</span> <span class="nx">stream</span> <span class="nx">APIRequestStream</span> <span class="p">(</span><span class="nx">apiName</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">version</span> <span class="kt">string</span><span class="p">,</span>
+    <span class="nx">tier</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">user</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">userEmail</span> <span class="kt">string</span><span class="p">);</span>
+<span class="nx">define</span> <span class="nx">stream</span> <span class="nx">UserNotificationStream</span> <span class="p">(</span><span class="nx">user</span> <span class="kt">string</span><span class="p">,</span>
+    <span class="nx">apiName</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">version</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">tier</span> <span class="kt">string</span><span class="p">,</span>
+    <span class="nx">userEmail</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">throttledCount</span> <span class="nx">long</span><span class="p">);</span>
+<span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">api</span><span class="o">-</span><span class="nx">throttler</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="nx">from</span> <span class="nx">APIRequestStream</span><span class="err">#</span><span class="nx">window</span><span class="p">.</span><span class="nx">timeBatch</span><span class="p">(</span><span class="mi">1</span> <span class="nx">min</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span> 
+<span class="nx">select</span> <span class="nx">apiName</span><span class="p">,</span> <span class="nx">version</span><span class="p">,</span> <span class="nx">user</span><span class="p">,</span> <span class="nx">tier</span><span class="p">,</span> <span class="nx">userEmail</span><span class="p">,</span>
+    <span class="nx">count</span><span class="p">()</span> <span class="k">as</span> <span class="nx">totalRequestCount</span>
+<span class="nx">group</span> <span class="nx">by</span> <span class="nx">apiName</span><span class="p">,</span> <span class="nx">version</span><span class="p">,</span> <span class="nx">user</span>
+<span class="nx">having</span> <span class="nx">totalRequestCount</span> <span class="o">==</span> <span class="mi">3</span> <span class="nx">or</span> <span class="nx">totalRequestCount</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="nx">insert</span> <span class="nx">all</span> <span class="nx">events</span> <span class="nx">into</span> <span class="nx">ThrottledStream</span><span class="p">;</span>
 
-<span class="err">@</span><span class="nx">sink</span><span class="p">(</span><span class="nx">type</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">log</span><span class="err">&#39;</span><span class="p">)</span>
-<span class="err">@</span><span class="nx">sink</span><span class="p">(</span><span class="nx">type</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">kafka</span><span class="err">&#39;</span><span class="p">,</span> <span class="nx">topic</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">temperature</span><span class="err">&#39;</span><span class="p">,</span>
-      <span class="nx">bootstrap</span><span class="p">.</span><span class="nx">servers</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">localhost</span><span class="p">:</span><span class="mi">9092</span><span class="err">&#39;</span><span class="p">,</span>
-      <span class="err">@</span><span class="kt">map</span><span class="p">(</span><span class="nx">type</span><span class="p">=</span><span class="err">&#39;</span><span class="kt">json</span><span class="err">&#39;</span><span class="p">,</span>
-           <span class="nd">@payload(&quot;&quot;&quot;{&quot;temp&quot;:&quot;{{</span><span class="nx">temperature</span><span class="p">}}</span><span class="s">&quot;}&quot;&quot;&quot;</span><span class="p">)))</span>
-<span class="nx">define</span> <span class="nx">stream</span> <span class="nx">TemperatureOnlyStream</span> <span class="p">(</span><span class="nx">temperature</span> <span class="nx">double</span><span class="p">);</span>
+<span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">throttle</span><span class="o">-</span><span class="nx">flag</span><span class="o">-</span><span class="nx">generator</span><span class="err">&#39;</span><span class="p">)</span> 
+<span class="nx">from</span> <span class="nx">ThrottledStream</span> 
+<span class="nx">select</span> <span class="nx">apiName</span><span class="p">,</span> <span class="nx">version</span><span class="p">,</span> <span class="nx">user</span><span class="p">,</span> <span class="nx">tier</span><span class="p">,</span> <span class="nx">userEmail</span><span class="p">,</span>
+    <span class="nx">ifThenElse</span><span class="p">(</span><span class="nx">totalRequestCount</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+        <span class="k">as</span> <span class="nx">isThrottled</span>
+<span class="nx">insert</span> <span class="nx">into</span> <span class="nx">ThrottleOutputStream</span><span class="p">;</span>
 
-<span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">Simple</span><span class="o">-</span><span class="nx">selection</span><span class="err">&#39;</span><span class="p">)</span>
-<span class="nx">from</span> <span class="nx">TemperatureStream</span>
-<span class="nx">select</span> <span class="nx">temperature</span>
-<span class="nx">insert</span> <span class="nx">into</span> <span class="nx">TemperatureOnlyStream</span><span class="p">;</span>
+<span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">notification</span><span class="o">-</span><span class="nx">generator</span><span class="err">&#39;</span><span class="p">)</span> 
+<span class="nx">from</span> <span class="nx">ThrottleOutputStream</span><span class="p">[</span><span class="nx">isThrottled</span><span class="p">]</span><span class="err">#</span><span class="nx">window</span><span class="p">.</span><span class="nx">time</span><span class="p">(</span><span class="mi">1</span> <span class="nx">hour</span><span class="p">)</span> 
+<span class="nx">select</span> <span class="nx">user</span><span class="p">,</span> <span class="nx">apiName</span><span class="p">,</span> <span class="nx">version</span><span class="p">,</span> <span class="nx">tier</span><span class="p">,</span> <span class="nx">userEmail</span><span class="p">,</span>
+    <span class="nx">count</span><span class="p">()</span> <span class="k">as</span> <span class="nx">throttledCount</span>
+<span class="nx">group</span> <span class="nx">by</span> <span class="nx">user</span><span class="p">,</span> <span class="nx">apiName</span><span class="p">,</span> <span class="nx">version</span><span class="p">,</span> <span class="nx">tier</span>
+<span class="nx">having</span> <span class="nx">throttledCount</span> <span class="p">&gt;</span> <span class="mi">2</span>
+<span class="nx">output</span> <span class="nx">first</span> <span class="nx">every</span> <span class="mi">15</span> <span class="nx">min</span> 
+<span class="nx">insert</span> <span class="nx">into</span> <span class="nx">UserNotificationStream</span><span class="p">;</span>
 </pre></div>
 
             </div>
@@ -931,15 +944,15 @@
     <tr class="cTR hover-enable">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>@source(type=&#39;http&#39;, receiver.url=&#39;http://0.0.0.0:8006/temp&#39;,
-    @map(type=&#39;json&#39;))</code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>define stream APIRequestStream (apiName string, version string,
+    tier string, user string, userEmail string);</code></pre></div>
 
         </td>
         <td class="docs">
 
             <div class="cCodeDesription">
                 <div>
-                    <p><code>HTTP</code> source to consume <code>JSON</code> messages with default mapping via url <code>http://0.0.0.0:8006/temp</code>.</p>
+                    <p>Defines <code>APIRequestStream</code> stream which contains the events regarding the API request.</p>
 
                 </div>
             </div>
@@ -950,8 +963,43 @@
     <tr class="cTR hover-enable">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>define stream TemperatureStream (
-                  sensorId string, temperature double);
+            <div class="highlight"><pre><code class=siddhi>define stream UserNotificationStream (user string,
+    apiName string, version string, tier string,
+    userEmail string, throttledCount long);</code></pre></div>
+
+        </td>
+        <td class="docs">
+
+            <div class="cCodeDesription">
+                <div>
+                    <p>Defines <code>UserNotificationStream</code> stream which contains the notification events.</p>
+
+                </div>
+            </div>
+
+        </td>
+    </tr>
+
+    <tr class="cTR">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>@info(name=&#39;api-throttler&#39;)</code></pre></div>
+
+        </td>
+        <td class="docs">
+
+        </td>
+    </tr>
+
+    <tr class="cTR hover-enable">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>from APIRequestStream#window.timeBatch(1 min, 0, true) 
+select apiName, version, user, tier, userEmail,
+    count() as totalRequestCount
+group by apiName, version, user
+having totalRequestCount == 3 or totalRequestCount == 0
+insert all events into ThrottledStream;
 </code></pre></div>
 
         </td>
@@ -959,7 +1007,8 @@
 
             <div class="cCodeDesription">
                 <div>
-                    <p>Defines <code>TemperatureStream</code> stream having <code>sensorId</code> and <code>temperature</code> attributes of types <code>string</code> and <code>double</code>.</p>
+                    <p>This query generates events when API is throttled and released from throttling.
+ It generates a throttling event if an API is called more than 3 times in a minute.</p>
 
                 </div>
             </div>
@@ -967,17 +1016,31 @@
         </td>
     </tr>
 
+    <tr class="cTR">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>@info(name=&#39;throttle-flag-generator&#39;) 
+from ThrottledStream 
+select apiName, version, user, tier, userEmail,</code></pre></div>
+
+        </td>
+        <td class="docs">
+
+        </td>
+    </tr>
+
     <tr class="cTR hover-enable">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>@sink(type=&#39;log&#39;)</code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>    ifThenElse(totalRequestCount == 0, false, true)
+        as isThrottled</code></pre></div>
 
         </td>
         <td class="docs">
 
             <div class="cCodeDesription">
                 <div>
-                    <p><code>Log</code> sink to log Siddhi events arriving via <code>TemperatureOnlyStream</code> stream.</p>
+                    <p>Create <code>isThrottled</code> flag based on the API request count</p>
 
                 </div>
             </div>
@@ -985,39 +1048,80 @@
         </td>
     </tr>
 
-    <tr class="cTR hover-enable">
+    <tr class="cTR">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>@sink(type=&#39;kafka&#39;, topic=&#39;temperature&#39;,
-      bootstrap.servers=&#39;localhost:9092&#39;,
-      @map(type=&#39;json&#39;,
-           @payload(&quot;&quot;&quot;{&quot;temp&quot;:&quot;{{temperature}}&quot;}&quot;&quot;&quot;)))</code></pre></div>
-
-        </td>
-        <td class="docs">
-
-            <div class="cCodeDesription">
-                <div>
-                    <p><code>Kafka</code> sink to map events arriving via <code>TemperatureOnlyStream</code> stream as custom JSON events, and publish to <code>temperature</code> topic.</p>
-
-                </div>
-            </div>
-
-        </td>
-    </tr>
-
-    <tr class="cTR hover-enable">
-
-        <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>define stream TemperatureOnlyStream (temperature double);
+            <div class="highlight"><pre><code class=siddhi>insert into ThrottleOutputStream;
 </code></pre></div>
 
         </td>
         <td class="docs">
 
+        </td>
+    </tr>
+
+    <tr class="cTR">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>@info(name=&#39;notification-generator&#39;) </code></pre></div>
+
+        </td>
+        <td class="docs">
+
+        </td>
+    </tr>
+
+    <tr class="cTR hover-enable">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>from ThrottleOutputStream[isThrottled]#window.time(1 hour) 
+select user, apiName, version, tier, userEmail,
+    count() as throttledCount
+group by user, apiName, version, tier</code></pre></div>
+
+        </td>
+        <td class="docs">
+
             <div class="cCodeDesription">
                 <div>
-                    <p>Defines <code>TemperatureOnlyStream</code> stream having <code>temperature</code> attribute of type <code>double</code>.</p>
+                    <p>This query helps to generate notifications to the user based on the API usage.
+ User is notified to upgrade the subscription tier if he is frequently throttled.</p>
+
+                </div>
+            </div>
+
+        </td>
+    </tr>
+
+    <tr class="cTR hover-enable">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>having throttledCount &gt; 2</code></pre></div>
+
+        </td>
+        <td class="docs">
+
+            <div class="cCodeDesription">
+                <div>
+                    <p>Find the  users who are throttled more than 2 times in an hour</p>
+
+                </div>
+            </div>
+
+        </td>
+    </tr>
+
+    <tr class="cTR hover-enable">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>output first every 15 min </code></pre></div>
+
+        </td>
+        <td class="docs">
+
+            <div class="cCodeDesription">
+                <div>
+                    <p>Notify the first occurrence when <code>throttledCount &gt; 2</code> for every 15 minutes.</p>
 
                 </div>
             </div>
@@ -1028,11 +1132,7 @@
     <tr class="cTR">
 
         <td class="code">
-            <div class="highlight"><pre><code class=siddhi>@info(name = &#39;Simple-selection&#39;)
-from TemperatureStream
-select temperature
-insert into TemperatureOnlyStream;
-</code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>insert into UserNotificationStream;</code></pre></div>
 
         </td>
         <td class="docs">
@@ -1050,36 +1150,26 @@ insert into TemperatureOnlyStream;
 </table>
 </div>
 <div class="cLeftTD">
+<p>API throttling use case is considered in this example to explain the time-based rate limiting.
+API request events arrive through <code>APIRequestStream</code> stream. If there are more than 3 API requests sent by a user within 1 minute then the subsequence requests are getting throttled.
+And, if a user gets throttled more than 2 times within 1 hour then there is a notification event generated to notify the user to consider upgrading the subscription tier.
+In this case, the notification events are get rate limited based on time. For example, within 15 minutes there will be only one notification for an API, tier and user combination.</p>
+
 <h4>Input</h4>
 
-<p>When a JSON message in the following default message format is sent to url <code>http://0.0.0.0:8006/temp</code> with content type <code>application/json</code>.
-It will automatically get mapped to an event in the <code>TemperatureStream</code> stream.</p>
+<p>Sent below three events to <code>APIRequestStream</code> stream for three minutes (three events for every minute),</p>
 
-<pre><code class="language-json">{
-   &quot;event&quot;:{
-      &quot;sensorId&quot;:&quot;aq-14&quot;,
-      &quot;temperature&quot;:35.4
-   }
-}
-</code></pre>
+<p>[<code>'Get-Weather'</code>, <code>'1.0.0'</code>, <code>'Gold'</code>, <code>'George'</code>, <code>'george@gmail.com'</code>]</p>
 
-<p>To process custom input messages, please refer the examples related to Input Data Mapping.</p>
+<p>[<code>'Get-Weather'</code>, <code>'1.0.0'</code>, <code>'Gold'</code>, <code>'George'</code>, <code>'george@gmail.com'</code>]</p>
+
+<p>[<code>'Get-Weather'</code>, <code>'1.0.0'</code>, <code>'Gold'</code>, <code>'George'</code>, <code>'george@gmail.com'</code>]</p>
 
 <h4>Output</h4>
 
-<p>After processing, the event arriving at <code>TemperatureOnlyStream</code> will be emitted via <code>log</code> and <code>kafka</code> sinks.</p>
+<p>After processing, the event arriving at <code>UserNotificationStream</code> will be as follows:</p>
 
-<p>As <code>log</code> sink uses <code>passThrough</code> mapper by default, it directly logs the Siddhi Events to the console as following;</p>
-
-<pre><code class="language-bash">Event{timestamp=1574515771712, data=[35.4], isExpired=false}
-</code></pre>
-
-<p>The <code>kafka</code> sink maps the event to a custom JSON message as below and publishes it to the <code>temperature</code> topic.</p>
-
-<pre><code class="language-json">{&quot;temp&quot;:&quot;35.4&quot;}
-</code></pre>
-
-<p>To output messages using other message formats, pleases refer the examples related to Output Data Mapping.</p>
+<p>[<code>'Get-Weather'</code>, <code>'1.0.0'</code>, <code>'Gold'</code>, <code>'george@gmail.com'</code>, <code>3</code>]</p>
 
 <div>
                 

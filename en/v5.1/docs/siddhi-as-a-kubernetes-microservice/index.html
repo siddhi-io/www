@@ -1089,6 +1089,42 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4-9" type="checkbox" id="nav-3-4-9">
+    
+    <label class="md-nav__link" for="nav-3-4-9">
+      Rate Limiting
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-4-9">
+        Rate Limiting
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/time-rate-limit/" title="Rate Limit Based on Time" class="md-nav__link">
+      Rate Limit Based on Time
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -1943,7 +1979,7 @@ Here, the Siddhi applications containing stream processing logic can be written 
 <li><a href="https://console.cloud.google.com/">Google Kubernetes Engine(GKE) Cluster</a></li>
 <li><a href="https://docs.docker.com/docker-for-mac/install/">Docker for Mac</a></li>
 <li>Or any other Kubernetes cluster</li>
-<li>Distributed deployment of Siddhi apps need <a href="https://github.com/nats-io/nats-operator/tree/v0.6.0#namespace-scoped-installation">NATS operator</a> and <a href="https://github.com/nats-io/nats-streaming-operator/tree/v0.2.2#getting-started">NATS streaming operator</a>.</li>
+<li>Distributed deployment of Siddhi apps need <a href="https://github.com/nats-io/nats-operator/tree/v0.6.0#namespace-scoped-installation">NATS operator v0.5.0+</a> and <a href="https://github.com/nats-io/nats-streaming-operator/tree/v0.2.2#getting-started">NATS streaming operator v0.2.2</a>.</li>
 <li>Admin privileges to install Siddhi operator  </li>
 </ol>
 </li>
@@ -1977,8 +2013,8 @@ For more details please refer this Kubernetes official <a href="https://kubernet
 </div>
 <h2 id="install-siddhi-operator">Install Siddhi Operator<a class="headerlink" href="#install-siddhi-operator" title="Permanent link">&para;</a></h2>
 <p>To install the Siddhi Kubernetes operator run the following commands.</p>
-<pre class="codehilite"><code class="language-sh">kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/00-prereqs.yaml
-kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.0/01-siddhi-operator.yaml</code></pre>
+<pre class="codehilite"><code class="language-sh">kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.2/00-prereqs.yaml
+kubectl apply -f https://github.com/siddhi-io/siddhi-operator/releases/download/v0.2.2/01-siddhi-operator.yaml</code></pre>
 
 <p>You can verify the installation by making sure the following deployments are running in your Kubernetes cluster.</p>
 <pre class="codehilite"><code class="language-sh">$ kubectl get deployment
@@ -2211,7 +2247,7 @@ A sample output logs are of this command is as follows.</p>
 <h2 id="change-the-default-configurations-of-siddhi-runner">Change the Default Configurations of Siddhi Runner<a class="headerlink" href="#change-the-default-configurations-of-siddhi-runner" title="Permanent link">&para;</a></h2>
 <p>Siddhi runner use <code>&lt;SIDDHI_RUNNER_HOME&gt;/conf/runner/deployment.yaml</code> file as the default configuration file. In the <code>deployment.yaml</code> the file you can configure data sources that you planned to use, add refs, and enable state persistence, etc. To change the configurations of the <code>deployment.yaml</code>, you can add <code>runner</code> YAML spec like below to your SiddhiProcess YAML file. For example, the following config change will enable file system state persistence.</p>
 <pre class="codehilite"><code class="language-yaml">  runner: |
-    state.persistence:
+    statePersistence:
       enabled: true
       intervalInMin: 1
       revisionsToKeep: 2
@@ -2499,7 +2535,7 @@ spec:
     volumeMode: Filesystem
 
   runner: |
-    state.persistence:
+    statePersistence:
       enabled: true
       intervalInMin: 1
       revisionsToKeep: 2
@@ -2673,7 +2709,7 @@ spec:
     volumeMode: Filesystem
 
   runner: |
-    state.persistence:
+    statePersistence:
       enabled: true
       intervalInMin: 1
       revisionsToKeep: 2

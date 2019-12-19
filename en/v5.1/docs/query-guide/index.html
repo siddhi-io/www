@@ -1089,6 +1089,42 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4-9" type="checkbox" id="nav-3-4-9">
+    
+    <label class="md-nav__link" for="nav-3-4-9">
+      Rate Limiting
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="3">
+      <label class="md-nav__title" for="nav-3-4-9">
+        Rate Limiting
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../examples/time-rate-limit/" title="Rate Limit Based on Time" class="md-nav__link">
+      Rate Limit Based on Time
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -4780,10 +4816,12 @@ insert into &lt;output stream&gt;</code></pre>
 </tbody>
 </table>
 <p>The <code>&lt;output event selection&gt;</code> specifies the event(s) that are selected to be outputted from the query, here when no <code>&lt;output event selection&gt;</code> is defined, <code>all</code> is used by default.</p>
-<p>The possible values for the <code>&lt;output event selection&gt;</code> and their behaviors are as follows:
-* <code>first</code>: The first query output is published as soon as it is generated and the subsequent events are dropped until the specified time interval or the number of events are reached before sending the next event as output.
-* <code>last</code>: Emits only the last output event generated during the specified time or event interval.
-* <code>all</code>: Emits all the output events together which are generated during the specified time or event interval.</p>
+<p>The possible values for the <code>&lt;output event selection&gt;</code> and their behaviors are as follows:</p>
+<ul>
+<li><code>first</code>: The first query output is published as soon as it is generated and the subsequent events are dropped until the specified time interval or the number of events are reached before sending the next event as output.</li>
+<li><code>last</code>: Emits only the last output event generated during the specified time or event interval.</li>
+<li><code>all</code>: Emits all the output events together which are generated during the specified time or event interval.</li>
+</ul>
 <p><strong>Example 1 (Time based first event)</strong></p>
 <p>Query to calculate the average <code>temp</code> per <code>roomNo</code> for the events arrived on the last 10 minutes, and send alerts <strong>once every 15 minutes</strong> of the events having <code>avgTemp</code> more than 30 degrees.</p>
 <pre class="codehilite"><code class="language-siddhi">define stream TempStream(deviceID long, roomNo int, temp double);

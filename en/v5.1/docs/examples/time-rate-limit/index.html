@@ -31,7 +31,7 @@
         <meta name="description" content="Cloud Native Stream Processor">
       
       
-        <link rel="canonical" href="http://siddhi.io/en/v5.1/docs/examples/value-based-filtering/">
+        <link rel="canonical" href="http://siddhi.io/en/v5.1/docs/examples/time-rate-limit/">
       
       
         <meta name="author" content="WSO2">
@@ -60,7 +60,7 @@
     
     
       
-        <title>Value based Filtering - Siddhi</title>
+        <title>Rate Limit Based on Time - Siddhi</title>
       
     
     
@@ -179,7 +179,7 @@
               Siddhi
             </span>
             <span class="md-header-nav__topic">
-              Value based Filtering
+              Rate Limit Based on Time
             </span>
           
         </div>
@@ -350,7 +350,7 @@
     </ul>
     <div class="quick_links">
         
-        <a href="https://github.com/siddhi-io/www/edit/v5.1/en/docs/docs/examples/value-based-filtering.md" target="blank" id="editIcon" title="Edit this page"
+        <a href="https://github.com/siddhi-io/www/edit/v5.1/en/docs/docs/examples/time-rate-limit.md" target="blank" id="editIcon" title="Edit this page"
            title="Edit this page" class="md-icon md-content__icon nav_link edit_link"></a>
         
     </div>
@@ -731,12 +731,10 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4-4" type="checkbox" id="nav-3-4-4" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4-4" type="checkbox" id="nav-3-4-4">
     
     <label class="md-nav__link" for="nav-3-4-4">
       Event Cleansing
@@ -752,18 +750,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-    
-    <a href="./" title="Value based Filtering" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../value-based-filtering/" title="Value based Filtering" class="md-nav__link">
       Value based Filtering
     </a>
-    
   </li>
 
         
@@ -1100,10 +1091,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4-9" type="checkbox" id="nav-3-4-9">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4-9" type="checkbox" id="nav-3-4-9" checked>
     
     <label class="md-nav__link" for="nav-3-4-9">
       Rate Limiting
@@ -1119,11 +1112,18 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../time-rate-limit/" title="Rate Limit Based on Time" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+    <a href="./" title="Rate Limit Based on Time" class="md-nav__link md-nav__link--active">
       Rate Limit Based on Time
     </a>
+    
   </li>
 
         
@@ -1707,7 +1707,7 @@
               
   
                 
-                  <a href="https://github.com/siddhi-io/www/edit/v5.1/en/docs/docs/examples/value-based-filtering.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/siddhi-io/www/edit/v5.1/en/docs/docs/examples/time-rate-limit.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
                 <!--copy to clipboard lib-->
@@ -1725,11 +1725,14 @@
 <script src="../../../assets/js/example.js"></script>
 
 <p><link rel=stylesheet href="../../../assets/css/example.css">
-<span class="info" dir="https://github.com/siddhi-io/www/tree/v5.1/en/siddhi-examples/value-based-filtering/"><span></p>
-<h1>Value based Filtering</h1>
+<span class="info" dir="https://github.com/siddhi-io/www/tree/v5.1/en/siddhi-examples/time-rate-limit/"><span></p>
+<h1>Rate Limit Based on Time</h1>
 
 <div class="cLeftTD">
-<p><p>This application demonstrates filter out events based on simple conditions such as number value, range or null type.</p>
+<p><p>Output rate-limiting limits the number of events emitted by the queries based on a specified criterion such as time, and the number of events.
+This example provides some basic understanding of how rate limiting can be done based on time.</p>
+
+<p>Refer the <a href="https://siddhi.io/en/v5.1/docs/query-guide/#output-rate-limiting">Siddhi query guide</a> for more information.</p>
 </p>
 </div>
 
@@ -1738,23 +1741,34 @@
  <a class="copy"><img src="../../../images/copy.png" width="20px"/></a>
 </div>
 <div class="FullCode">
-                <div class="highlight"><pre><span class="nx">define</span> <span class="nx">stream</span> <span class="nx">TemperatureStream</span> <span class="p">(</span>
- <span class="nx">sensorId</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">temperature</span> <span class="nx">double</span><span class="p">);</span>
+                <div class="highlight"><pre><span class="nx">define</span> <span class="nx">stream</span> <span class="nx">APIRequestStream</span> <span class="p">(</span><span class="nx">apiName</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">version</span> <span class="kt">string</span><span class="p">,</span>
+    <span class="nx">tier</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">user</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">userEmail</span> <span class="kt">string</span><span class="p">);</span>
+<span class="nx">define</span> <span class="nx">stream</span> <span class="nx">UserNotificationStream</span> <span class="p">(</span><span class="nx">user</span> <span class="kt">string</span><span class="p">,</span>
+    <span class="nx">apiName</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">version</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">tier</span> <span class="kt">string</span><span class="p">,</span>
+    <span class="nx">userEmail</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">throttledCount</span> <span class="nx">long</span><span class="p">);</span>
+<span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">api</span><span class="o">-</span><span class="nx">throttler</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="nx">from</span> <span class="nx">APIRequestStream</span><span class="err">#</span><span class="nx">window</span><span class="p">.</span><span class="nx">timeBatch</span><span class="p">(</span><span class="mi">1</span> <span class="nx">min</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span> 
+<span class="nx">select</span> <span class="nx">apiName</span><span class="p">,</span> <span class="nx">version</span><span class="p">,</span> <span class="nx">user</span><span class="p">,</span> <span class="nx">tier</span><span class="p">,</span> <span class="nx">userEmail</span><span class="p">,</span>
+    <span class="nx">count</span><span class="p">()</span> <span class="k">as</span> <span class="nx">totalRequestCount</span>
+<span class="nx">group</span> <span class="nx">by</span> <span class="nx">apiName</span><span class="p">,</span> <span class="nx">version</span><span class="p">,</span> <span class="nx">user</span>
+<span class="nx">having</span> <span class="nx">totalRequestCount</span> <span class="o">==</span> <span class="mi">3</span> <span class="nx">or</span> <span class="nx">totalRequestCount</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="nx">insert</span> <span class="nx">all</span> <span class="nx">events</span> <span class="nx">into</span> <span class="nx">ThrottledStream</span><span class="p">;</span>
 
-<span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">EqualsFilter</span><span class="err">&#39;</span><span class="p">)</span>
-<span class="nx">from</span> <span class="nx">TemperatureStream</span><span class="p">[</span> <span class="nx">sensorId</span> <span class="o">==</span> <span class="err">&#39;</span><span class="nx">A1234</span><span class="err">&#39;</span><span class="p">]</span>
-<span class="nx">select</span> <span class="o">*</span>
-<span class="nx">insert</span> <span class="nx">into</span> <span class="nx">SenorA1234TemperatureStream</span><span class="p">;</span>
+<span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">throttle</span><span class="o">-</span><span class="nx">flag</span><span class="o">-</span><span class="nx">generator</span><span class="err">&#39;</span><span class="p">)</span> 
+<span class="nx">from</span> <span class="nx">ThrottledStream</span> 
+<span class="nx">select</span> <span class="nx">apiName</span><span class="p">,</span> <span class="nx">version</span><span class="p">,</span> <span class="nx">user</span><span class="p">,</span> <span class="nx">tier</span><span class="p">,</span> <span class="nx">userEmail</span><span class="p">,</span>
+    <span class="nx">ifThenElse</span><span class="p">(</span><span class="nx">totalRequestCount</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+        <span class="k">as</span> <span class="nx">isThrottled</span>
+<span class="nx">insert</span> <span class="nx">into</span> <span class="nx">ThrottleOutputStream</span><span class="p">;</span>
 
-<span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">RangeFilter</span><span class="err">&#39;</span><span class="p">)</span> 
-<span class="nx">from</span> <span class="nx">TemperatureStream</span><span class="p">[</span> <span class="nx">temperature</span> <span class="p">&gt;</span> <span class="o">-</span><span class="mi">2</span> <span class="nx">and</span> <span class="nx">temperature</span> <span class="p">&lt;</span> <span class="mi">40</span><span class="p">]</span>
-<span class="nx">select</span> <span class="o">*</span>
-<span class="nx">insert</span> <span class="nx">into</span> <span class="nx">NormalTemperatureStream</span><span class="p">;</span>
-
-<span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">NullFilter</span><span class="err">&#39;</span><span class="p">)</span> 
-<span class="nx">from</span> <span class="nx">TemperatureStream</span><span class="p">[</span> <span class="nx">sensorId</span> <span class="nx">is</span> <span class="kc">null</span> <span class="p">]</span>
-<span class="nx">select</span> <span class="o">*</span>
-<span class="nx">insert</span> <span class="nx">into</span> <span class="nx">InValidTemperatureStream</span><span class="p">;</span>
+<span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">notification</span><span class="o">-</span><span class="nx">generator</span><span class="err">&#39;</span><span class="p">)</span> 
+<span class="nx">from</span> <span class="nx">ThrottleOutputStream</span><span class="p">[</span><span class="nx">isThrottled</span><span class="p">]</span><span class="err">#</span><span class="nx">window</span><span class="p">.</span><span class="nx">time</span><span class="p">(</span><span class="mi">1</span> <span class="nx">hour</span><span class="p">)</span> 
+<span class="nx">select</span> <span class="nx">user</span><span class="p">,</span> <span class="nx">apiName</span><span class="p">,</span> <span class="nx">version</span><span class="p">,</span> <span class="nx">tier</span><span class="p">,</span> <span class="nx">userEmail</span><span class="p">,</span>
+    <span class="nx">count</span><span class="p">()</span> <span class="k">as</span> <span class="nx">throttledCount</span>
+<span class="nx">group</span> <span class="nx">by</span> <span class="nx">user</span><span class="p">,</span> <span class="nx">apiName</span><span class="p">,</span> <span class="nx">version</span><span class="p">,</span> <span class="nx">tier</span>
+<span class="nx">having</span> <span class="nx">throttledCount</span> <span class="p">&gt;</span> <span class="mi">2</span>
+<span class="nx">output</span> <span class="nx">first</span> <span class="nx">every</span> <span class="mi">15</span> <span class="nx">min</span> 
+<span class="nx">insert</span> <span class="nx">into</span> <span class="nx">UserNotificationStream</span><span class="p">;</span>
 </pre></div>
 
             </div>
@@ -1773,16 +1787,35 @@
     <tr class="cTR hover-enable">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>define stream TemperatureStream (
- sensorId string, temperature double);
-</code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>define stream APIRequestStream (apiName string, version string,
+    tier string, user string, userEmail string);</code></pre></div>
 
         </td>
         <td class="docs">
 
             <div class="cCodeDesription">
                 <div>
-                    <p>Defines <code>TemperatureStream</code> stream to process events having <code>sensorId</code> and <code>temperature</code>(F).</p>
+                    <p>Defines <code>APIRequestStream</code> stream which contains the events regarding the API request.</p>
+
+                </div>
+            </div>
+
+        </td>
+    </tr>
+
+    <tr class="cTR hover-enable">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>define stream UserNotificationStream (user string,
+    apiName string, version string, tier string,
+    userEmail string, throttledCount long);</code></pre></div>
+
+        </td>
+        <td class="docs">
+
+            <div class="cCodeDesription">
+                <div>
+                    <p>Defines <code>UserNotificationStream</code> stream which contains the notification events.</p>
 
                 </div>
             </div>
@@ -1793,7 +1826,7 @@
     <tr class="cTR">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>@info(name = &#39;EqualsFilter&#39;)</code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>@info(name=&#39;api-throttler&#39;)</code></pre></div>
 
         </td>
         <td class="docs">
@@ -1804,14 +1837,21 @@
     <tr class="cTR hover-enable">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>from TemperatureStream[ sensorId == &#39;A1234&#39;]</code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>from APIRequestStream#window.timeBatch(1 min, 0, true) 
+select apiName, version, user, tier, userEmail,
+    count() as totalRequestCount
+group by apiName, version, user
+having totalRequestCount == 3 or totalRequestCount == 0
+insert all events into ThrottledStream;
+</code></pre></div>
 
         </td>
         <td class="docs">
 
             <div class="cCodeDesription">
                 <div>
-                    <p>Filter out events with <code>sensorId</code> equalling <code>A1234</code></p>
+                    <p>This query generates events when API is throttled and released from throttling.
+ It generates a throttling event if an API is called more than 3 times in a minute.</p>
 
                 </div>
             </div>
@@ -1822,8 +1862,39 @@
     <tr class="cTR">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>select *
-insert into SenorA1234TemperatureStream;
+            <div class="highlight"><pre><code class=siddhi>@info(name=&#39;throttle-flag-generator&#39;) 
+from ThrottledStream 
+select apiName, version, user, tier, userEmail,</code></pre></div>
+
+        </td>
+        <td class="docs">
+
+        </td>
+    </tr>
+
+    <tr class="cTR hover-enable">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>    ifThenElse(totalRequestCount == 0, false, true)
+        as isThrottled</code></pre></div>
+
+        </td>
+        <td class="docs">
+
+            <div class="cCodeDesription">
+                <div>
+                    <p>Create <code>isThrottled</code> flag based on the API request count</p>
+
+                </div>
+            </div>
+
+        </td>
+    </tr>
+
+    <tr class="cTR">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>insert into ThrottleOutputStream;
 </code></pre></div>
 
         </td>
@@ -1835,7 +1906,7 @@ insert into SenorA1234TemperatureStream;
     <tr class="cTR">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>@info(name = &#39;RangeFilter&#39;) </code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>@info(name=&#39;notification-generator&#39;) </code></pre></div>
 
         </td>
         <td class="docs">
@@ -1846,14 +1917,18 @@ insert into SenorA1234TemperatureStream;
     <tr class="cTR hover-enable">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>from TemperatureStream[ temperature &gt; -2 and temperature &lt; 40]</code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>from ThrottleOutputStream[isThrottled]#window.time(1 hour) 
+select user, apiName, version, tier, userEmail,
+    count() as throttledCount
+group by user, apiName, version, tier</code></pre></div>
 
         </td>
         <td class="docs">
 
             <div class="cCodeDesription">
                 <div>
-                    <p>Filter out events where <code>-2 &lt; temperature &lt; 40</code></p>
+                    <p>This query helps to generate notifications to the user based on the API usage.
+ User is notified to upgrade the subscription tier if he is frequently throttled.</p>
 
                 </div>
             </div>
@@ -1861,26 +1936,20 @@ insert into SenorA1234TemperatureStream;
         </td>
     </tr>
 
-    <tr class="cTR">
+    <tr class="cTR hover-enable">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>select *
-insert into NormalTemperatureStream;
-</code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>having throttledCount &gt; 2</code></pre></div>
 
         </td>
         <td class="docs">
 
-        </td>
-    </tr>
+            <div class="cCodeDesription">
+                <div>
+                    <p>Find the  users who are throttled more than 2 times in an hour</p>
 
-    <tr class="cTR">
-
-        <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>@info(name = &#39;NullFilter&#39;) </code></pre></div>
-
-        </td>
-        <td class="docs">
+                </div>
+            </div>
 
         </td>
     </tr>
@@ -1888,14 +1957,14 @@ insert into NormalTemperatureStream;
     <tr class="cTR hover-enable">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>from TemperatureStream[ sensorId is null ]</code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>output first every 15 min </code></pre></div>
 
         </td>
         <td class="docs">
 
             <div class="cCodeDesription">
                 <div>
-                    <p>Filter out events with <code>SensorId</code> being <code>null</code></p>
+                    <p>Notify the first occurrence when <code>throttledCount &gt; 2</code> for every 15 minutes.</p>
 
                 </div>
             </div>
@@ -1906,9 +1975,7 @@ insert into NormalTemperatureStream;
     <tr class="cTR">
 
         <td class="code">
-            <div class="highlight"><pre><code class=siddhi>select *
-insert into InValidTemperatureStream;
-</code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>insert into UserNotificationStream;</code></pre></div>
 
         </td>
         <td class="docs">
@@ -1926,27 +1993,26 @@ insert into InValidTemperatureStream;
 </table>
 </div>
 <div class="cLeftTD">
+<p>API throttling use case is considered in this example to explain the time-based rate limiting.
+API request events arrive through <code>APIRequestStream</code> stream. If there are more than 3 API requests sent by a user within 1 minute then the subsequence requests are getting throttled.
+And, if a user gets throttled more than 2 times within 1 hour then there is a notification event generated to notify the user to consider upgrading the subscription tier.
+In this case, the notification events are get rate limited based on time. For example, within 15 minutes there will be only one notification for an API, tier and user combination.</p>
+
 <h4>Input</h4>
 
-<p>Below events are sent to <code>TemperatureStream</code>,</p>
+<p>Sent below three events to <code>APIRequestStream</code> stream for three minutes (three events for every minute),</p>
 
-<ol>
-<li>[<code>'A1234'</code>, 39]</li>
-<li>[<code>'sensor1'</code>, 35]</li>
-<li>[<code>null</code>, 43]</li>
-</ol>
+<p>[<code>'Get-Weather'</code>, <code>'1.0.0'</code>, <code>'Gold'</code>, <code>'George'</code>, <code>'george@gmail.com'</code>]</p>
+
+<p>[<code>'Get-Weather'</code>, <code>'1.0.0'</code>, <code>'Gold'</code>, <code>'George'</code>, <code>'george@gmail.com'</code>]</p>
+
+<p>[<code>'Get-Weather'</code>, <code>'1.0.0'</code>, <code>'Gold'</code>, <code>'George'</code>, <code>'george@gmail.com'</code>]</p>
 
 <h4>Output</h4>
 
-<p>After processing, the following events will be arriving at each stream:</p>
+<p>After processing, the event arriving at <code>UserNotificationStream</code> will be as follows:</p>
 
-<ul>
-<li><p>SenorA1234TemperatureStream: <br/>[<code>'A1234'</code>, 39] only</p></li>
-
-<li><p>NormalTemperatureStream:  <br/>[<code>'sensor1'</code>, 35] only</p></li>
-
-<li><p>InValidTemperatureStream: <br/>[<code>null</code>, 43] only</p></li>
-</ul>
+<p>[<code>'Get-Weather'</code>, <code>'1.0.0'</code>, <code>'Gold'</code>, <code>'george@gmail.com'</code>, <code>3</code>]</p>
 
 <div>
                 
@@ -1971,7 +2037,7 @@ insert into InValidTemperatureStream;
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../null/" title="Null" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../scatter-and-gather-json/" title="Scatter and Gather (JSON)" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1980,19 +2046,19 @@ insert into InValidTemperatureStream;
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Null
+                Scatter and Gather (JSON)
               </span>
             </div>
           </a>
         
         
-          <a href="../if-then-else/" title="If-Then-Else" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../guides/overview/" title="Overview" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                If-Then-Else
+                Overview
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
