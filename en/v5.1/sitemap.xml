@@ -191,6 +191,11 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>http://siddhi.io/en/v5.1/docs/examples/simple-pattern/</loc>
+     <lastmod>2019-12-20</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>http://siddhi.io/en/v5.1/docs/guides/overview/</loc>
      <lastmod>2019-12-20</lastmod>
      <changefreq>daily</changefreq>

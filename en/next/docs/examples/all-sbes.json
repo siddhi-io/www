@@ -182,5 +182,16 @@
         "url": "error-handling-with-logs"
       }
     ]
+  },
+  {
+    "title": "Patterns & Trends",
+    "column": 3,
+    "category": "Language concepts",
+    "samples": [
+      {
+        "name": "Simple Pattern",
+        "url": "simple-pattern"
+      }
+    ]
   }
 ]
