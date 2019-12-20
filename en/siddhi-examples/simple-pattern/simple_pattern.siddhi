@@ -1,0 +1,19 @@
+-- Defines `TemperatureStream` having information of room temperature such as `roomNo` and `double`.
+define stream TemperatureStream(roomNo int, temp double);
+
+
+@sink(type = 'log')
+
+-- Defines `HighTempAlertStream` which contains the alerts for high temperature.
+define Stream HighTempAlertStream(roomNo int,
+    initialTemp double, finalTemp double);
+
+
+-- Identify if the temperature of a room increases by 5 degrees within 10 min.
+from every( e1 = TemperatureStream ) ->
+    e2 = TemperatureStream[ e1.roomNo == roomNo
+        and (e1.temp + 5) <= temp ]
+    within 10 min
+
+select e1.roomNo, e1.temp as initialTemp, e2.temp as finalTemp
+insert into HighTempAlertStream;
