@@ -1,0 +1,7 @@
+Errors in Siddhi can be handled at the Streams and in the Sinks. This example explains how errors are handled at Sink level.
+
+There can be cases where external systems becoming unavailable or coursing errors when the events are published to them.
+By default sinks log and drop the events causing event losses, and this can be handled gracefully by configuring
+`on.error` parameter of the `@sink` annotation.
+
+Refer the [Siddhi query guide](https://siddhi.io/en/v5.1/docs/query-guide/#error-handling) for more information.

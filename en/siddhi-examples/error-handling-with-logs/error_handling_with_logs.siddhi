@@ -1,0 +1,31 @@
+-- Defines `GlucoseReadingStream` stream which contains events related to Glucose readings.
+define stream GlucoseReadingStream (locationRoom string,
+    locationBed string, timeStamp string, sensorID long,
+    patientFirstName string, patientLastName string,
+    sensorValue double);
+
+
+-- If `HTTP` endpoint which defined in `sink` annotation is unavailable then it logs the event with the error and drops the event.
+-- Errors can be gracefully handled by configuring `on.error` parameter.
+@sink(type = 'http', on.error='log', blocking.io='true',
+    publisher.url = "http://localhost:8080/logger",
+    method = "POST",
+    @map(type = 'json'))
+
+define stream AbnormalGlucoseReadingStream
+    (timeStampInLong long, locationRoom string,
+    locationBed string, sensorID long,
+    patientFullName string, sensorReadingValue double);
+
+
+-- Identifies the abnomarl Glucose reading if `sensorValue > 220`
+from GlucoseReadingStream[sensorValue > 220]
+select math:parseLong(timeStamp) as timeStampInLong,
+    locationRoom, locationBed, sensorID,
+
+-- Concatenate string attributes `patientFirstName` and `patientLastName`
+    str:concat(patientFirstName, " ", patientLastName)
+        as patientFullName,
+
+        sensorValue as sensorReadingValue
+insert into AbnormalGlucoseReadingStream;
