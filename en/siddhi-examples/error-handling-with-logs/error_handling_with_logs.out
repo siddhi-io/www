@@ -1,0 +1,15 @@
+Above is a simple example to publish abnormal Glucose reading events to an unavailable HTTP endpoint and error is handled by logging the events to the logs.
+
+#### Input
+
+Below event is sent to `GlucoseReadingStream` stream,
+
+[`'Get-1024'`, `'Level2'`, `'1576829362'`, `10348`, `'Alex'`, `'John'`, `250`]
+
+
+#### Output
+
+After processing, the following log gets printed in the console:
+
+`ERROR {io.siddhi.core.stream.output.sink.Sink} - Error on 'ErrorHandling'. Dropping event at Sink 'http' at 'AbnormalGlucoseReadingStream' as its still trying to reconnect!, events dropped '{"event":{"timeStampInLong":1576829362,"locationRoom":"1024","locationBed":"Level2","sensorID":10348,"patientFullName":"Alex John","sensorReadingValue":250.0}}'`
+
