@@ -1,0 +1,18 @@
+This application sends an alert if the temperature of a room increases by 5 degrees within 10 min.
+
+#### Input
+
+Below events are sent to `TemperatureStream` within 10 minutes,
+
+[`2`, `35`]
+
+[`2`, `37`]
+
+[`2`, `40`]
+
+
+#### Output
+
+After processing the above input events, the event arriving at `HighTempAlertStream` will be as follows:
+
+[`2`, `35.0`, `40.0`]

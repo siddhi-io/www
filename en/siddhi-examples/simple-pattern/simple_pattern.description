@@ -1,0 +1,3 @@
+The pattern is a state machine implementation that detects event occurrences from events arrived via one or more event streams over time.
+
+This application demonstrates a simple pattern use case of detecting high-temperature event occurrence of a continuous event stream.
