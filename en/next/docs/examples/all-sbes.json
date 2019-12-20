@@ -171,5 +171,16 @@
         "url": "time-rate-limit"
       }
     ]
+  },
+  {
+    "title": "Error Handling",
+    "column": 3,
+    "category": "Language concepts",
+    "samples": [
+      {
+        "name": "Logging",
+        "url": "error-handling-with-logs"
+      }
+    ]
   }
 ]
