@@ -1,6 +1,6 @@
 #### Input
 
-Below event is sent to `PersonalDetails`,
+Below event is sent to `InputStream`,
 
 [
 ```json
@@ -18,7 +18,7 @@ Below event is sent to `PersonalDetails`,
 
 After processing, the following events will be arriving:
 
-* OutputStream: <br/>[`siddhi.user`, `false`, <br/>`"{\"name\" : \"siddhi.user\", \"address\" : { \"country\": \"Sri Lanka\", }, \"contact\": \"+9xxxxxxxx\"}"`]
+* OutputStream: <br/>[ `{"address":{"country":"Sri Lanka"},"contact":"+9xxxxxxxx","name":"siddhi.user"}`, `siddhi.user`, `false`, <br/>`"{\"name\" : \"siddhi.user\", \"address\" : { \"country\": \"Sri Lanka\", }, \"contact\": \"+9xxxxxxxx\"}"`]
 * PreprocessedStream: <br/>
     [
     ```json
