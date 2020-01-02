@@ -656,20 +656,22 @@
  <a class="copy"><img src="../../../images/copy.png" width="20px"/></a>
 </div>
 <div class="FullCode">
-                <div class="highlight"><pre><span class="nx">define</span> <span class="nx">stream</span> <span class="nx">PersonalDetails</span><span class="p">(</span><span class="nx">data</span> <span class="nx">object</span><span class="p">);</span>
+                <div class="highlight"><pre><span class="nx">define</span> <span class="nx">stream</span> <span class="nx">InputStream</span><span class="p">(</span><span class="nx">jsonString</span> <span class="kt">string</span><span class="p">);</span>
 
-<span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">GetFromJson</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="nx">from</span> <span class="nx">InputStream</span> 
+<span class="nx">select</span> <span class="kt">json</span><span class="p">:</span><span class="nx">toObject</span><span class="p">(</span><span class="nx">jsonString</span><span class="p">)</span> <span class="k">as</span> <span class="nx">jsonObj</span> 
+<span class="nx">insert</span> <span class="nx">into</span> <span class="nx">PersonalDetails</span><span class="p">;</span>
+
 <span class="nx">from</span> <span class="nx">PersonalDetails</span>
-<span class="nx">select</span> <span class="nx">data</span><span class="p">,</span> 
-    <span class="kt">json</span><span class="p">:</span><span class="nx">getString</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span><span class="err">&#39;$</span><span class="p">.</span><span class="nx">name</span><span class="err">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="nx">name</span><span class="p">,</span>
-    <span class="kt">json</span><span class="p">:</span><span class="nx">isExists</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="err">&#39;$</span><span class="p">.</span><span class="nx">salary</span><span class="err">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="nx">isSalaryAvailable</span><span class="p">,</span>
-    <span class="kt">json</span><span class="p">:</span><span class="nx">toString</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="k">as</span> <span class="nx">jsonString</span> 
+<span class="nx">select</span> <span class="nx">jsonObj</span><span class="p">,</span> 
+    <span class="kt">json</span><span class="p">:</span><span class="nx">getString</span><span class="p">(</span><span class="nx">jsonObj</span><span class="p">,</span><span class="err">&#39;$</span><span class="p">.</span><span class="nx">name</span><span class="err">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="nx">name</span><span class="p">,</span>
+    <span class="kt">json</span><span class="p">:</span><span class="nx">isExists</span><span class="p">(</span><span class="nx">jsonObj</span><span class="p">,</span> <span class="err">&#39;$</span><span class="p">.</span><span class="nx">salary</span><span class="err">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="nx">isSalaryAvailable</span><span class="p">,</span>
+    <span class="kt">json</span><span class="p">:</span><span class="nx">toString</span><span class="p">(</span><span class="nx">jsonObj</span><span class="p">)</span> <span class="k">as</span> <span class="nx">jsonString</span> 
 <span class="nx">insert</span> <span class="nx">into</span> <span class="nx">OutputStream</span><span class="p">;</span>
 
-<span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">SetInJson</span><span class="err">&#39;</span><span class="p">)</span>
 <span class="nx">from</span> <span class="nx">OutputStream</span><span class="p">[</span><span class="nx">isSalaryAvailable</span> <span class="o">==</span> <span class="kc">false</span><span class="p">]</span>
 <span class="nx">select</span> 
-    <span class="kt">json</span><span class="p">:</span><span class="nx">setElement</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="sc">&#39;$&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="nx">f</span><span class="p">,</span> <span class="err">&#39;</span><span class="nx">salary</span><span class="err">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="nx">data</span>
+    <span class="kt">json</span><span class="p">:</span><span class="nx">setElement</span><span class="p">(</span><span class="nx">jsonObj</span><span class="p">,</span> <span class="sc">&#39;$&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="nx">f</span><span class="p">,</span> <span class="err">&#39;</span><span class="nx">salary</span><span class="err">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="nx">jsonObj</span>
 <span class="nx">insert</span> <span class="nx">into</span> <span class="nx">PreprocessedStream</span><span class="p">;</span>
 </pre></div>
 
@@ -689,7 +691,7 @@
     <tr class="cTR">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>define stream PersonalDetails(data object);
+            <div class="highlight"><pre><code class=siddhi>define stream InputStream(jsonString string);
 </code></pre></div>
 
         </td>
@@ -701,9 +703,7 @@
     <tr class="cTR">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>@info(name=&#39;GetFromJson&#39;)
-from PersonalDetails
-select data, </code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>from InputStream </code></pre></div>
 
         </td>
         <td class="docs">
@@ -714,7 +714,49 @@ select data, </code></pre></div>
     <tr class="cTR hover-enable">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>    json:getString(data,&#39;$.name&#39;) as name,</code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>select json:toObject(jsonString) as jsonObj </code></pre></div>
+
+        </td>
+        <td class="docs">
+
+            <div class="cCodeDesription">
+                <div>
+                    <p>Transforms JSON string to JSON object which can then be manipulated</p>
+
+                </div>
+            </div>
+
+        </td>
+    </tr>
+
+    <tr class="cTR">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>insert into PersonalDetails;
+</code></pre></div>
+
+        </td>
+        <td class="docs">
+
+        </td>
+    </tr>
+
+    <tr class="cTR">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>from PersonalDetails
+select jsonObj, </code></pre></div>
+
+        </td>
+        <td class="docs">
+
+        </td>
+    </tr>
+
+    <tr class="cTR hover-enable">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>    json:getString(jsonObj,&#39;$.name&#39;) as name,</code></pre></div>
 
         </td>
         <td class="docs">
@@ -732,7 +774,7 @@ select data, </code></pre></div>
     <tr class="cTR hover-enable">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>    json:isExists(data, &#39;$.salary&#39;) as isSalaryAvailable,</code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>    json:isExists(jsonObj, &#39;$.salary&#39;) as isSalaryAvailable,</code></pre></div>
 
         </td>
         <td class="docs">
@@ -750,7 +792,7 @@ select data, </code></pre></div>
     <tr class="cTR hover-enable">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>    json:toString(data) as jsonString </code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>    json:toString(jsonObj) as jsonString </code></pre></div>
 
         </td>
         <td class="docs">
@@ -777,29 +819,11 @@ select data, </code></pre></div>
         </td>
     </tr>
 
-    <tr class="cTR hover-enable">
-
-        <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>@info(name=&#39;SetInJson&#39;)
-from OutputStream[isSalaryAvailable == false]</code></pre></div>
-
-        </td>
-        <td class="docs">
-
-            <div class="cCodeDesription">
-                <div>
-                    <p>Select if <code>salary</code> key is not available in the data</p>
-
-                </div>
-            </div>
-
-        </td>
-    </tr>
-
     <tr class="cTR">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>select </code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>from OutputStream[isSalaryAvailable == false]
+select </code></pre></div>
 
         </td>
         <td class="docs">
@@ -810,14 +834,14 @@ from OutputStream[isSalaryAvailable == false]</code></pre></div>
     <tr class="cTR hover-enable">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>    json:setElement(data, &#39;$&#39;, 0f, &#39;salary&#39;) as data</code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>    json:setElement(jsonObj, &#39;$&#39;, 0f, &#39;salary&#39;) as jsonObj</code></pre></div>
 
         </td>
         <td class="docs">
 
             <div class="cCodeDesription">
                 <div>
-                    <p>Set <code>salary</code> element to <code>0.0</code> in the root path.</p>
+                    <p>Set <code>salary</code> element to <code>0</code> is not available</p>
 
                 </div>
             </div>
@@ -849,7 +873,7 @@ from OutputStream[isSalaryAvailable == false]</code></pre></div>
 <div class="cLeftTD">
 <h4>Input</h4>
 
-<p>Below event is sent to <code>PersonalDetails</code>,</p>
+<p>Below event is sent to <code>InputStream</code>,</p>
 
 <p>[</p>
 
@@ -869,7 +893,7 @@ from OutputStream[isSalaryAvailable == false]</code></pre></div>
 <p>After processing, the following events will be arriving:</p>
 
 <ul>
-<li>OutputStream: <br/>[<code>siddhi.user</code>, <code>false</code>, <br/><code>&quot;{\&quot;name\&quot; : \&quot;siddhi.user\&quot;, \&quot;address\&quot; : { \&quot;country\&quot;: \&quot;Sri Lanka\&quot;, }, \&quot;contact\&quot;: \&quot;+9xxxxxxxx\&quot;}&quot;</code>]</li>
+<li>OutputStream: <br/>[ <code>{&quot;address&quot;:{&quot;country&quot;:&quot;Sri Lanka&quot;},&quot;contact&quot;:&quot;+9xxxxxxxx&quot;,&quot;name&quot;:&quot;siddhi.user&quot;}</code>, <code>siddhi.user</code>, <code>false</code>, <br/><code>&quot;{\&quot;name\&quot; : \&quot;siddhi.user\&quot;, \&quot;address\&quot; : { \&quot;country\&quot;: \&quot;Sri Lanka\&quot;, }, \&quot;contact\&quot;: \&quot;+9xxxxxxxx\&quot;}&quot;</code>]</li>
 
 <li><p>PreprocessedStream: <br/>
 [</p>
