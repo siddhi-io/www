@@ -3,7 +3,7 @@
 This section provides information on running [Siddhi Apps](../#siddhi-application) natively in Kubernetes via Siddhi Kubernetes Operator.
 
 Siddhi can be configured using `SiddhiProcess` kind and passed to the Siddhi operator for deployment.
-Here, the Siddhi applications containing stream processing logic can be written inline in `SiddhiProcess` yaml or passed as `.siddhi` files via contig maps. `SiddhiProcess` yaml can also be configured with the necessary system configurations.
+Here, the Siddhi applications containing stream processing logic can be written inline in `SiddhiProcess` yaml or passed as `.siddhi` files via contig maps. `SiddhiProcess` yaml can also be configured with the necessary system configurations. For more details about how to configure `SiddhiProcess` YAML, refer to [this configuration guide](https://github.com/siddhi-io/siddhi-operator/blob/master/docs/spec-guide-v1alpha2.md) which describe the usage of all the YAML specifications.
 
 ## Prerequisites
 
@@ -13,7 +13,8 @@ Here, the Siddhi applications containing stream processing logic can be written 
     2. [Google Kubernetes Engine(GKE) Cluster](https://console.cloud.google.com/)
     3. [Docker for Mac](https://docs.docker.com/docker-for-mac/install/)
     4. Or any other Kubernetes cluster
-* Distributed deployment of Siddhi apps need [NATS operator v0.5.0+](https://github.com/nats-io/nats-operator/tree/v0.6.0#namespace-scoped-installation) and [NATS streaming operator v0.2.2](https://github.com/nats-io/nats-streaming-operator/tree/v0.2.2#getting-started).
+* Distributed deployment of Siddhi apps need [NATS operator v0.5.0+](https://github.com/nats-io/nats-operator/releases/tag/v0.6.0) and [NATS streaming operator v0.2.2+](https://github.com/nats-io/nats-streaming-operator/releases/tag/v0.3.0).
+    * Note that if your Kubernetes version is v1.16 or higher, then use the [NATS streaming operator v0.3.0+ versions](https://github.com/nats-io/nats-streaming-operator/releases/tag/v0.3.0). If your Kubernetes version is less than v1.16, then you have to use [NATS streaming operator v0.2.2 version](https://github.com/nats-io/nats-streaming-operator/releases/tag/v0.2.2). The reason for this version incompatibility is Kubernetes v1.16 was [removed the apps/v1beta2 API group](https://kubernetes.io/blog/2019/07/18/api-deprecations-in-1-16/).
 * Admin privileges to install Siddhi operator  
 
 !!! Note "Minikube"
@@ -805,7 +806,31 @@ The Siddhi operator currently supports NATS as the messaging system. Therefore i
 
 1. Refer [this documentation](https://github.com/nats-io/nats-streaming-operator/tree/v0.2.2#getting-started) to install NATS operator and NATS streaming operator.
 1. Install the [Siddhi operator](#install-siddhi-operator).
-1. Create a [persistence volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) in your cluster.
+1. Create a [persistence volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) in your cluster. Sample persistence volume can be created as follows.
+    ```sh
+    echo '
+    ---
+    kind: PersistentVolume
+    apiVersion: v1
+    metadata:
+      name: siddhi-pv
+      labels:
+        type: local
+    spec:
+      storageClassName: standard
+      persistentVolumeReclaimPolicy: Recycle
+      capacity:
+        storage: 1Gi
+      accessModes:
+        - ReadWriteOnce
+      hostPath:
+        path: "/home/siddhi_user/"
+      # For NFS in GKE use the following block
+      # nfs:
+      #   server: <SERVER_IP>
+      #   path: <PATH>
+    ' | kubectl apply -f -
+    ```
 
 Now we need a NATS cluster and NATS streaming cluster to run the Siddhi app deployment. For this, there are two cases handled by the operator.
 
