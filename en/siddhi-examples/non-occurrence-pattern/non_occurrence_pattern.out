@@ -1,0 +1,13 @@
+This application sends a notification alert if the room temperature is not reduced to the expected level after the regulator is started.
+
+#### Input
+
+- First, below event is sent to `RegulatorStateChangeStream`,
+
+    [`10`, `5`, `30`, `on`]
+
+#### Output
+
+After processing the above input event, there will be an alert event arriving at `RoomTemperatureAlertStream` after the 30 seconds (from the first event):
+
+[`5`]

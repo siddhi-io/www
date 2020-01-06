@@ -1,0 +1,22 @@
+-- Defines `RegulatorStateChangeStream` having information of regulator state change such as `deviceID`, `roomNo`, `tempSet` and `action`.
+define stream RegulatorStateChangeStream(deviceID long,
+    roomNo int, tempSet double, action string);
+
+
+-- Defines `TemperatureStream` having information of room temperature such as `roomNo` and `temp`.
+define stream TemperatureStream (roomNo int, temp double);
+
+
+@sink(type='log')
+
+-- Defines `RoomTemperatureAlertStream` which contains the temperature alerts.
+define stream RoomTemperatureAlertStream(roomNo int);
+
+
+-- Alerts if no temperature event having a temperature less than what is set in regulator arrives within 5 minutes after switching on the regulator.
+from e1=RegulatorStateChangeStream[action == 'on']
+     -> not TemperatureStream[e1.roomNo == roomNo and
+        temp <= e1.tempSet] for 30 sec
+
+select e1.roomNo as roomNo
+insert into RoomTemperatureAlertStream;
