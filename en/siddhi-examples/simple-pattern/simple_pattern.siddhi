@@ -1,4 +1,4 @@
--- Defines `TemperatureStream` having information of room temperature such as `roomNo` and `double`.
+-- Defines `TemperatureStream` having information of room temperature such as `roomNo` and `temp`.
 define stream TemperatureStream(roomNo int, temp double);
 
 

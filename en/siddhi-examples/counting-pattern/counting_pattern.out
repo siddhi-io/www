@@ -1,0 +1,23 @@
+This application calculates the temperature difference between two regulator events. Here, when at least one TemperatureStream event occurs between two RegulatorStream events the pattern is valid and logs can be seen.
+
+#### Input
+
+- First, Below event is sent to `RegulatorStream`,
+
+[`21`, `2`, `25`, `true`]
+
+- Below events are sent to `TemperatureStream`,
+
+[`21`, `2`, `29`]
+
+[`21`, `2`, `26`]
+
+- Finally, Below event is sent again to `RegulatorStream`,
+
+[`21`, `2`, `30`, `true`]
+
+#### Output
+
+After processing the above input events, the event arriving at `TemperatureDiffStream` will be as follows:
+
+[`2`, `3.0`]
