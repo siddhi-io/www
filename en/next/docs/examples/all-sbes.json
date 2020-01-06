@@ -199,6 +199,10 @@
       {
         "name": "Logical Pattern",
         "url": "logical-pattern"
+      },
+      {
+        "name": "Non Occurrence Pattern",
+        "url": "non-occurrence-pattern"
       }
     ]
   }

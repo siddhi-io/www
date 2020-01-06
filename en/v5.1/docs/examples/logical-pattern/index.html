@@ -1223,6 +1223,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../non-occurrence-pattern/" title="Non Occurrence Pattern" class="md-nav__link">
+      Non Occurrence Pattern
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -1836,29 +1848,24 @@
  <a class="copy"><img src="../../../images/copy.png" width="20px"/></a>
 </div>
 <div class="FullCode">
-                <div class="highlight"><pre><span class="nx">define</span> <span class="nx">stream</span> <span class="nx">RegulatorStateChangeStream</span><span class="p">(</span><span class="nx">deviceID</span> <span class="nx">long</span><span class="p">,</span> <span class="nx">roomNo</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">tempSet</span> <span class="nx">double</span><span class="p">,</span> <span class="kd">action</span> <span class="kt">string</span><span class="p">);</span>
+                <div class="highlight"><pre><span class="nx">define</span> <span class="nx">stream</span> <span class="nx">RegulatorStateChangeStream</span><span class="p">(</span><span class="nx">deviceID</span> <span class="nx">long</span><span class="p">,</span>
+    <span class="nx">roomNo</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">tempSet</span> <span class="nx">double</span><span class="p">,</span> <span class="kd">action</span> <span class="kt">string</span><span class="p">);</span>
 
-<span class="nx">define</span> <span class="nx">stream</span> <span class="nx">RoomKeyStream</span><span class="p">(</span><span class="nx">deviceID</span> <span class="nx">long</span><span class="p">,</span> <span class="nx">roomNo</span> <span class="kt">int</span><span class="p">,</span> <span class="kd">action</span> <span class="kt">string</span><span class="p">);</span>
-
-<span class="nx">define</span> <span class="nx">stream</span> <span class="nx">TemperatureStream</span> <span class="p">(</span><span class="nx">roomNo</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">temp</span> <span class="nx">double</span><span class="p">);</span>
+<span class="nx">define</span> <span class="nx">stream</span> <span class="nx">RoomKeyStream</span><span class="p">(</span><span class="nx">deviceID</span> <span class="nx">long</span><span class="p">,</span> <span class="nx">roomNo</span> <span class="kt">int</span><span class="p">,</span>
+    <span class="kd">action</span> <span class="kt">string</span><span class="p">);</span>
 
 <span class="err">@</span><span class="nx">sink</span><span class="p">(</span><span class="nx">type</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">log</span><span class="err">&#39;</span><span class="p">)</span>
 <span class="nx">define</span> <span class="nx">stream</span> <span class="nx">RegulatorActionStream</span><span class="p">(</span><span class="nx">roomNo</span> <span class="kt">int</span><span class="p">,</span> <span class="kd">action</span> <span class="kt">string</span><span class="p">);</span>
 
-<span class="err">@</span><span class="nx">sink</span><span class="p">(</span><span class="nx">type</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">log</span><span class="err">&#39;</span><span class="p">)</span>
-<span class="nx">define</span> <span class="nx">stream</span> <span class="nx">RoomTemperatureAlertStream</span><span class="p">(</span><span class="nx">roomNo</span> <span class="kt">int</span><span class="p">);</span>
 <span class="nx">from</span> <span class="nx">every</span> <span class="nx">e1</span><span class="p">=</span><span class="nx">RegulatorStateChangeStream</span><span class="p">[</span> <span class="kd">action</span> <span class="o">==</span> <span class="err">&#39;</span><span class="nx">on</span><span class="err">&#39;</span> <span class="p">]</span>
-     <span class="o">-&gt;</span> <span class="nx">e2</span><span class="p">=</span><span class="nx">RoomKeyStream</span><span class="p">[</span> <span class="nx">e1</span><span class="p">.</span><span class="nx">roomNo</span> <span class="o">==</span> <span class="nx">roomNo</span> <span class="nx">and</span> <span class="kd">action</span> <span class="o">==</span> <span class="err">&#39;</span><span class="nx">removed</span><span class="err">&#39;</span> <span class="p">]</span>
-        <span class="nx">or</span> <span class="nx">e3</span><span class="p">=</span><span class="nx">RegulatorStateChangeStream</span><span class="p">[</span> <span class="nx">e1</span><span class="p">.</span><span class="nx">roomNo</span> <span class="o">==</span> <span class="nx">roomNo</span> <span class="nx">and</span> <span class="kd">action</span> <span class="o">==</span> <span class="err">&#39;</span><span class="nx">off</span><span class="err">&#39;</span><span class="p">]</span>
+     <span class="o">-&gt;</span> <span class="nx">e2</span><span class="p">=</span><span class="nx">RoomKeyStream</span>
+            <span class="p">[</span> <span class="nx">e1</span><span class="p">.</span><span class="nx">roomNo</span> <span class="o">==</span> <span class="nx">roomNo</span> <span class="nx">and</span> <span class="kd">action</span> <span class="o">==</span> <span class="err">&#39;</span><span class="nx">removed</span><span class="err">&#39;</span> <span class="p">]</span>
+        <span class="nx">or</span> <span class="nx">e3</span><span class="p">=</span><span class="nx">RegulatorStateChangeStream</span>
+            <span class="p">[</span> <span class="nx">e1</span><span class="p">.</span><span class="nx">roomNo</span> <span class="o">==</span> <span class="nx">roomNo</span> <span class="nx">and</span> <span class="kd">action</span> <span class="o">==</span> <span class="err">&#39;</span><span class="nx">off</span><span class="err">&#39;</span><span class="p">]</span>
 <span class="nx">select</span> <span class="nx">e1</span><span class="p">.</span><span class="nx">roomNo</span><span class="p">,</span>
     <span class="nx">ifThenElse</span><span class="p">(</span> <span class="nx">e2</span> <span class="nx">is</span> <span class="kc">null</span><span class="p">,</span> <span class="err">&#39;</span><span class="nx">none</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="nx">stop</span><span class="err">&#39;</span> <span class="p">)</span> <span class="k">as</span> <span class="kd">action</span>
 <span class="nx">having</span> <span class="kd">action</span> <span class="o">!=</span> <span class="err">&#39;</span><span class="nx">none</span><span class="err">&#39;</span>
 <span class="nx">insert</span> <span class="nx">into</span> <span class="nx">RegulatorActionStream</span><span class="p">;</span>
-
-<span class="nx">from</span> <span class="nx">e1</span><span class="p">=</span><span class="nx">RegulatorStateChangeStream</span><span class="p">[</span><span class="kd">action</span> <span class="o">==</span> <span class="err">&#39;</span><span class="nx">on</span><span class="err">&#39;</span><span class="p">]</span>
-     <span class="o">-&gt;</span> <span class="nx">not</span> <span class="nx">TemperatureStream</span><span class="p">[</span><span class="nx">e1</span><span class="p">.</span><span class="nx">roomNo</span> <span class="o">==</span> <span class="nx">roomNo</span> <span class="nx">and</span> <span class="nx">temp</span> <span class="o">&lt;=</span> <span class="nx">e1</span><span class="p">.</span><span class="nx">tempSet</span><span class="p">]</span> <span class="k">for</span> <span class="mi">30</span> <span class="nx">sec</span>
-<span class="nx">select</span> <span class="nx">e1</span><span class="p">.</span><span class="nx">roomNo</span> <span class="k">as</span> <span class="nx">roomNo</span>
-<span class="nx">insert</span> <span class="nx">into</span> <span class="nx">RoomTemperatureAlertStream</span><span class="p">;</span>
 </pre></div>
 
             </div>
@@ -1877,7 +1884,8 @@
     <tr class="cTR hover-enable">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>define stream RegulatorStateChangeStream(deviceID long, roomNo int, tempSet double, action string);
+            <div class="highlight"><pre><code class=siddhi>define stream RegulatorStateChangeStream(deviceID long,
+    roomNo int, tempSet double, action string);
 </code></pre></div>
 
         </td>
@@ -1896,7 +1904,8 @@
     <tr class="cTR hover-enable">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>define stream RoomKeyStream(deviceID long, roomNo int, action string);
+            <div class="highlight"><pre><code class=siddhi>define stream RoomKeyStream(deviceID long, roomNo int,
+    action string);
 </code></pre></div>
 
         </td>
@@ -1905,25 +1914,6 @@
             <div class="cCodeDesription">
                 <div>
                     <p>Defines <code>RoomKeyStream</code> which contains the events related to room key usage.</p>
-
-                </div>
-            </div>
-
-        </td>
-    </tr>
-
-    <tr class="cTR hover-enable">
-
-        <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>define stream TemperatureStream (roomNo int, temp double);
-</code></pre></div>
-
-        </td>
-        <td class="docs">
-
-            <div class="cCodeDesription">
-                <div>
-                    <p>Defines <code>TemperatureStream</code> having information of room temperature such as <code>roomNo</code> and <code>temp</code>.</p>
 
                 </div>
             </div>
@@ -1961,41 +1951,14 @@
         </td>
     </tr>
 
-    <tr class="cTR">
-
-        <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>@sink(type=&#39;log&#39;)</code></pre></div>
-
-        </td>
-        <td class="docs">
-
-        </td>
-    </tr>
-
-    <tr class="cTR hover-enable">
-
-        <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>define stream RoomTemperatureAlertStream(roomNo int);</code></pre></div>
-
-        </td>
-        <td class="docs">
-
-            <div class="cCodeDesription">
-                <div>
-                    <p>Defines <code>RoomTemperatureAlertStream</code> which contains the temperature alerts.</p>
-
-                </div>
-            </div>
-
-        </td>
-    </tr>
-
     <tr class="cTR hover-enable">
 
         <td class="code leading">
             <div class="highlight"><pre><code class=siddhi>from every e1=RegulatorStateChangeStream[ action == &#39;on&#39; ]
-     -&gt; e2=RoomKeyStream[ e1.roomNo == roomNo and action == &#39;removed&#39; ]
-        or e3=RegulatorStateChangeStream[ e1.roomNo == roomNo and action == &#39;off&#39;]</code></pre></div>
+     -&gt; e2=RoomKeyStream
+            [ e1.roomNo == roomNo and action == &#39;removed&#39; ]
+        or e3=RegulatorStateChangeStream
+            [ e1.roomNo == roomNo and action == &#39;off&#39;]</code></pre></div>
 
         </td>
         <td class="docs">
@@ -2042,40 +2005,9 @@ having action != &#39;none&#39;</code></pre></div>
 
     <tr class="cTR">
 
-        <td class="code leading">
+        <td class="code">
             <div class="highlight"><pre><code class=siddhi>insert into RegulatorActionStream;
 </code></pre></div>
-
-        </td>
-        <td class="docs">
-
-        </td>
-    </tr>
-
-    <tr class="cTR hover-enable">
-
-        <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>from e1=RegulatorStateChangeStream[action == &#39;on&#39;]
-     -&gt; not TemperatureStream[e1.roomNo == roomNo and temp &lt;= e1.tempSet] for 30 sec</code></pre></div>
-
-        </td>
-        <td class="docs">
-
-            <div class="cCodeDesription">
-                <div>
-                    <p>Alerts if the room temperature does not reduce to the set value within 5 minutes after switching on the regulator.</p>
-
-                </div>
-            </div>
-
-        </td>
-    </tr>
-
-    <tr class="cTR">
-
-        <td class="code">
-            <div class="highlight"><pre><code class=siddhi>select e1.roomNo as roomNo
-insert into RoomTemperatureAlertStream;</code></pre></div>
 
         </td>
         <td class="docs">
@@ -2093,7 +2025,7 @@ insert into RoomTemperatureAlertStream;</code></pre></div>
 </table>
 </div>
 <div class="cLeftTD">
-<p>This application sends a <code>stop</code> action on the regulator if a <code>removed</code> action is triggered in the RoomKeyStream stream. Also, it sends a notification alert if the room temperature is not reduced to the expected level after the regulator is started.</p>
+<p>This application sends a <code>stop</code> action on the regulator if a <code>removed</code> action is triggered in the RoomKeyStream stream.</p>
 
 <h4>Input</h4>
 
@@ -2111,13 +2043,7 @@ insert into RoomTemperatureAlertStream;</code></pre></div>
 
 <p>After processing the above input events, the event arriving at <code>RegulatorActionStream</code> will be as follows:</p>
 
-<pre><code>[`5`, `stop`]
-</code></pre>
-
-<p>At the same time, there will be an alert event arriving at <code>RoomTemperatureAlertStream</code> after the 30 seconds (from the first event):</p>
-
-<pre><code>[`5`]
-</code></pre>
+<p>[<code>5</code>, <code>stop</code>]</p>
 
 <div>
                 
@@ -2157,13 +2083,13 @@ insert into RoomTemperatureAlertStream;</code></pre></div>
           </a>
         
         
-          <a href="../../guides/overview/" title="Overview" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../non-occurrence-pattern/" title="Non Occurrence Pattern" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Overview
+                Non Occurrence Pattern
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">

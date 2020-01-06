@@ -31,7 +31,7 @@
         <meta name="description" content="Cloud Native Stream Processor">
       
       
-        <link rel="canonical" href="http://siddhi.io/en/v5.1/docs/examples/grpc-service-integration/">
+        <link rel="canonical" href="http://siddhi.io/en/v5.1/docs/examples/non-occurrence-pattern/">
       
       
         <meta name="author" content="WSO2">
@@ -60,7 +60,7 @@
     
     
       
-        <title>gRPC Service Integration - Siddhi</title>
+        <title>Non Occurrence Pattern - Siddhi</title>
       
     
     
@@ -179,7 +179,7 @@
               Siddhi
             </span>
             <span class="md-header-nav__topic">
-              gRPC Service Integration
+              Non Occurrence Pattern
             </span>
           
         </div>
@@ -350,7 +350,7 @@
     </ul>
     <div class="quick_links">
         
-        <a href="https://github.com/siddhi-io/www/edit/v5.1/en/docs/docs/examples/grpc-service-integration.md" target="blank" id="editIcon" title="Edit this page"
+        <a href="https://github.com/siddhi-io/www/edit/v5.1/en/docs/docs/examples/non-occurrence-pattern.md" target="blank" id="editIcon" title="Edit this page"
            title="Edit this page" class="md-icon md-content__icon nav_link edit_link"></a>
         
     </div>
@@ -971,12 +971,10 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4-7" type="checkbox" id="nav-3-4-7" checked>
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4-7" type="checkbox" id="nav-3-4-7">
     
     <label class="md-nav__link" for="nav-3-4-7">
       Service Integration
@@ -1004,18 +1002,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-    
-    <a href="./" title="gRPC Service Integration" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../grpc-service-integration/" title="gRPC Service Integration" class="md-nav__link">
       gRPC Service Integration
     </a>
-    
   </li>
 
         
@@ -1172,10 +1163,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4-11" type="checkbox" id="nav-3-4-11">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3-4-11" type="checkbox" id="nav-3-4-11" checked>
     
     <label class="md-nav__link" for="nav-3-4-11">
       Patterns & Trends
@@ -1227,11 +1220,18 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../non-occurrence-pattern/" title="Non Occurrence Pattern" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+    <a href="./" title="Non Occurrence Pattern" class="md-nav__link md-nav__link--active">
       Non Occurrence Pattern
     </a>
+    
   </li>
 
         
@@ -1815,7 +1815,7 @@
               
   
                 
-                  <a href="https://github.com/siddhi-io/www/edit/v5.1/en/docs/docs/examples/grpc-service-integration.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/siddhi-io/www/edit/v5.1/en/docs/docs/examples/non-occurrence-pattern.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
                 <!--copy to clipboard lib-->
@@ -1833,13 +1833,15 @@
 <script src="../../../assets/js/example.js"></script>
 
 <p><link rel=stylesheet href="../../../assets/css/example.css">
-<span class="info" dir="https://github.com/siddhi-io/www/tree/v5.1/en/siddhi-examples/grpc-service-integration/"><span></p>
-<h1>gRPC Service Integration</h1>
+<span class="info" dir="https://github.com/siddhi-io/www/tree/v5.1/en/siddhi-examples/non-occurrence-pattern/"><span></p>
+<h1>Non Occurrence Pattern</h1>
 
 <div class="cLeftTD">
-<p><p>This application demonstrates how to achieve gRPC service integration (request-response) while processing events in the realtime.
-There could be use cases which need to integrate with an external gRPC service to make some decision when processing events.
-The below example demonstrates such a requirement.</p>
+<p><p>Non occurrence patterns identifies the absence of events when detecting a pattern.</p>
+
+<p>Siddhi detects non-occurrence of events using the <code>not</code> keyword, and its effective non-occurrence checking period is bounded either by fulfillment of a condition associated by and or via an expiry time using <code>&lt;time period&gt;</code>.</p>
+
+<p>Refer the <a href="https://siddhi.io/en/v5.1/docs/query-guide/#pattern" target="_blank">Siddhi query guide</a> for more information.</p>
 </p>
 </div>
 
@@ -1848,49 +1850,19 @@ The below example demonstrates such a requirement.</p>
  <a class="copy"><img src="../../../images/copy.png" width="20px"/></a>
 </div>
 <div class="FullCode">
-                <div class="highlight"><pre><span class="nx">define</span> <span class="nx">stream</span> <span class="nx">TicketBookingStream</span> <span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">phoneNo</span> <span class="kt">string</span><span class="p">,</span>
-        <span class="nx">movie</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">ticketClass</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">qty</span> <span class="kt">int</span><span class="p">,</span>
-        <span class="nx">bookingTime</span> <span class="nx">long</span><span class="p">);</span>
+                <div class="highlight"><pre><span class="nx">define</span> <span class="nx">stream</span> <span class="nx">RegulatorStateChangeStream</span><span class="p">(</span><span class="nx">deviceID</span> <span class="nx">long</span><span class="p">,</span>
+    <span class="nx">roomNo</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">tempSet</span> <span class="nx">double</span><span class="p">,</span> <span class="kd">action</span> <span class="kt">string</span><span class="p">);</span>
 
-<span class="err">@</span><span class="nx">sink</span><span class="p">(</span><span class="nx">type</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">grpc</span><span class="o">-</span><span class="nx">call</span><span class="err">&#39;</span><span class="p">,</span>
-    <span class="nx">publisher</span><span class="p">.</span><span class="nx">url</span> <span class="p">=</span>
-    <span class="err">&#39;</span><span class="nx">grpc</span><span class="p">:</span><span class="c1">//localhost:5003/org.wso2.grpc.EventService/process&#39;,</span>
-    <span class="nx">sink</span><span class="p">.</span><span class="nx">id</span><span class="p">=</span> <span class="err">&#39;</span><span class="nx">ticket</span><span class="o">-</span><span class="nx">price</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">@</span><span class="kt">map</span><span class="p">(</span><span class="nx">type</span><span class="p">=</span><span class="err">&#39;</span><span class="kt">json</span><span class="err">&#39;</span><span class="p">))</span>
-<span class="nx">define</span> <span class="nx">stream</span> <span class="nx">TicketPriceFinderStream</span> <span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">,</span>
-        <span class="nx">phoneNo</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">movie</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">ticketClass</span> <span class="kt">string</span><span class="p">,</span>
-        <span class="nx">qty</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">bookingTime</span> <span class="nx">long</span><span class="p">);</span>
-
-<span class="err">@</span><span class="nx">source</span><span class="p">(</span><span class="nx">type</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">grpc</span><span class="o">-</span><span class="nx">call</span><span class="o">-</span><span class="nx">response</span><span class="err">&#39;</span><span class="p">,</span>
-    <span class="nx">receiver</span><span class="p">.</span><span class="nx">url</span> <span class="p">=</span>
-    <span class="err">&#39;</span><span class="nx">grpc</span><span class="p">:</span><span class="c1">//localhost:9763/org.wso2.grpc.EventService/process&#39;,</span>
-    <span class="nx">sink</span><span class="p">.</span><span class="nx">id</span><span class="p">=</span> <span class="err">&#39;</span><span class="nx">ticket</span><span class="o">-</span><span class="nx">price</span><span class="err">&#39;</span><span class="p">,</span>
-    <span class="err">@</span><span class="kt">map</span><span class="p">(</span><span class="nx">type</span><span class="p">=</span><span class="err">&#39;</span><span class="kt">json</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">@</span><span class="nx">attributes</span><span class="p">(</span><span class="nx">customerName</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">trp</span><span class="p">:</span><span class="nx">name</span><span class="err">&#39;</span><span class="p">,</span>
-        <span class="nx">phoneNo</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">trp</span><span class="p">:</span><span class="nx">phoneNo</span><span class="err">&#39;</span><span class="p">,</span> <span class="nx">movie</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">trp</span><span class="p">:</span><span class="nx">movie</span><span class="err">&#39;</span><span class="p">,</span>
-        <span class="nx">qty</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">trp</span><span class="p">:</span><span class="nx">qty</span><span class="err">&#39;</span><span class="p">,</span> <span class="nx">bookingTime</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">trp</span><span class="p">:</span><span class="nx">bookingTime</span><span class="err">&#39;</span><span class="p">,</span>
-        <span class="nx">ticketPrice</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">price</span><span class="err">&#39;</span><span class="p">)))</span>
-
-<span class="nx">define</span> <span class="nx">stream</span> <span class="nx">TicketPriceResponseStream</span> <span class="p">(</span><span class="nx">customerName</span> <span class="kt">string</span><span class="p">,</span>
-        <span class="nx">phoneNo</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">movie</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">qty</span> <span class="kt">int</span><span class="p">,</span>
-        <span class="nx">ticketPrice</span> <span class="nx">double</span><span class="p">,</span> <span class="nx">bookingTime</span> <span class="nx">long</span><span class="p">);</span>
+<span class="nx">define</span> <span class="nx">stream</span> <span class="nx">TemperatureStream</span> <span class="p">(</span><span class="nx">roomNo</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">temp</span> <span class="nx">double</span><span class="p">);</span>
 
 <span class="err">@</span><span class="nx">sink</span><span class="p">(</span><span class="nx">type</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">log</span><span class="err">&#39;</span><span class="p">)</span>
-<span class="nx">define</span> <span class="nx">stream</span> <span class="nx">TotalTicketPaymentStream</span> <span class="p">(</span><span class="nx">customerName</span> <span class="kt">string</span><span class="p">,</span>
-        <span class="nx">phoneNo</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">movie</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">totalAmount</span> <span class="nx">double</span><span class="p">,</span>
-        <span class="nx">bookingTime</span> <span class="nx">long</span><span class="p">);</span>
+<span class="nx">define</span> <span class="nx">stream</span> <span class="nx">RoomTemperatureAlertStream</span><span class="p">(</span><span class="nx">roomNo</span> <span class="kt">int</span><span class="p">);</span>
 
-<span class="nx">from</span> <span class="nx">TicketBookingStream</span><span class="p">[</span><span class="nx">ticketClass</span> <span class="o">==</span> <span class="s">&quot;BASIC&quot;</span><span class="p">]</span>
-<span class="nx">select</span> <span class="nx">name</span> <span class="k">as</span> <span class="nx">customerName</span><span class="p">,</span> <span class="nx">phoneNo</span><span class="p">,</span> <span class="nx">movie</span><span class="p">,</span>
-    <span class="nx">qty</span> <span class="o">*</span> <span class="mf">20.0</span> <span class="k">as</span> <span class="nx">totalAmount</span><span class="p">,</span> <span class="nx">bookingTime</span>
-<span class="nx">insert</span> <span class="nx">into</span> <span class="nx">TotalTicketPaymentStream</span><span class="p">;</span>
-
-<span class="nx">from</span> <span class="nx">TicketBookingStream</span><span class="p">[</span><span class="nx">ticketClass</span> <span class="o">!=</span> <span class="s">&quot;BASIC&quot;</span><span class="p">]</span>
-<span class="nx">select</span> <span class="o">*</span>
-<span class="nx">insert</span> <span class="nx">into</span> <span class="nx">TicketPriceFinderStream</span><span class="p">;</span>
-
-<span class="nx">from</span> <span class="nx">TicketPriceResponseStream</span>
-<span class="nx">select</span> <span class="nx">customerName</span><span class="p">,</span> <span class="nx">phoneNo</span><span class="p">,</span> <span class="nx">movie</span><span class="p">,</span>
-    <span class="p">(</span><span class="nx">qty</span> <span class="o">*</span> <span class="nx">ticketPrice</span><span class="p">)</span> <span class="k">as</span> <span class="nx">totalAmount</span><span class="p">,</span> <span class="nx">bookingTime</span>
-<span class="nx">insert</span> <span class="nx">into</span> <span class="nx">TotalTicketPaymentStream</span><span class="p">;</span>
+<span class="nx">from</span> <span class="nx">e1</span><span class="p">=</span><span class="nx">RegulatorStateChangeStream</span><span class="p">[</span><span class="kd">action</span> <span class="o">==</span> <span class="err">&#39;</span><span class="nx">on</span><span class="err">&#39;</span><span class="p">]</span>
+     <span class="o">-&gt;</span> <span class="nx">not</span> <span class="nx">TemperatureStream</span><span class="p">[</span><span class="nx">e1</span><span class="p">.</span><span class="nx">roomNo</span> <span class="o">==</span> <span class="nx">roomNo</span> <span class="nx">and</span>
+        <span class="nx">temp</span> <span class="o">&lt;=</span> <span class="nx">e1</span><span class="p">.</span><span class="nx">tempSet</span><span class="p">]</span> <span class="k">for</span> <span class="mi">30</span> <span class="nx">sec</span>
+<span class="nx">select</span> <span class="nx">e1</span><span class="p">.</span><span class="nx">roomNo</span> <span class="k">as</span> <span class="nx">roomNo</span>
+<span class="nx">insert</span> <span class="nx">into</span> <span class="nx">RoomTemperatureAlertStream</span><span class="p">;</span>
 </pre></div>
 
             </div>
@@ -1909,9 +1881,8 @@ The below example demonstrates such a requirement.</p>
     <tr class="cTR hover-enable">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>define stream TicketBookingStream (name string, phoneNo string,
-        movie string, ticketClass string, qty int,
-        bookingTime long);
+            <div class="highlight"><pre><code class=siddhi>define stream RegulatorStateChangeStream(deviceID long,
+    roomNo int, tempSet double, action string);
 </code></pre></div>
 
         </td>
@@ -1919,7 +1890,7 @@ The below example demonstrates such a requirement.</p>
 
             <div class="cCodeDesription">
                 <div>
-                    <p>Defines <code>TicketBookingStream</code> which is the input stream that contains the ticket booking events.</p>
+                    <p>Defines <code>RegulatorStateChangeStream</code> having information of regulator state change such as <code>deviceID</code>, <code>roomNo</code>, <code>tempSet</code> and <code>action</code>.</p>
 
                 </div>
             </div>
@@ -1930,32 +1901,7 @@ The below example demonstrates such a requirement.</p>
     <tr class="cTR hover-enable">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>@sink(type=&#39;grpc-call&#39;,
-    publisher.url =
-    &#39;grpc://localhost:5003/org.wso2.grpc.EventService/process&#39;,
-    sink.id= &#39;ticket-price&#39;, @map(type=&#39;json&#39;))</code></pre></div>
-
-        </td>
-        <td class="docs">
-
-            <div class="cCodeDesription">
-                <div>
-                    <p>The <code>grpc-call</code> sink is used for scenarios where we send a request out and expect a response back.
- In default mode this will use EventService process method. <code>grpc-call-response</code> source is used to receive the responses.
- A unique <code>sink.id</code> is used to correlate between the sink and its corresponding source.</p>
-
-                </div>
-            </div>
-
-        </td>
-    </tr>
-
-    <tr class="cTR hover-enable">
-
-        <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>define stream TicketPriceFinderStream (name string,
-        phoneNo string, movie string, ticketClass string,
-        qty int, bookingTime long);
+            <div class="highlight"><pre><code class=siddhi>define stream TemperatureStream (roomNo int, temp double);
 </code></pre></div>
 
         </td>
@@ -1963,138 +1909,7 @@ The below example demonstrates such a requirement.</p>
 
             <div class="cCodeDesription">
                 <div>
-                    <p>Defines <code>TicketPriceFinderStream</code> to forward events to the gRPC endpoint.</p>
-
-                </div>
-            </div>
-
-        </td>
-    </tr>
-
-    <tr class="cTR hover-enable">
-
-        <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>@source(type=&#39;grpc-call-response&#39;,
-    receiver.url =
-    &#39;grpc://localhost:9763/org.wso2.grpc.EventService/process&#39;,
-    sink.id= &#39;ticket-price&#39;,</code></pre></div>
-
-        </td>
-        <td class="docs">
-
-            <div class="cCodeDesription">
-                <div>
-                    <p>This <code>grpc-call-response</code> source receives responses received from gRPC server for requests sent from a <code>grpc-call</code> sink.
- The source will receive responses for sink with the same <code>sink.id</code>.</p>
-
-                </div>
-            </div>
-
-        </td>
-    </tr>
-
-    <tr class="cTR hover-enable">
-
-        <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>    @map(type=&#39;json&#39;, @attributes(customerName=&#39;trp:name&#39;,
-        phoneNo=&#39;trp:phoneNo&#39;, movie=&#39;trp:movie&#39;,
-        qty=&#39;trp:qty&#39;, bookingTime=&#39;trp:bookingTime&#39;,
-        ticketPrice=&#39;price&#39;)))
-</code></pre></div>
-
-        </td>
-        <td class="docs">
-
-            <div class="cCodeDesription">
-                <div>
-                    <p>Attributes of the event that initiated the call, and the response headers and properties via transport properties in
- the format <code>trp:&lt;attribute name&gt;</code> and <code>trp:&lt;header/property&gt;</code> respectively.</p>
-
-                </div>
-            </div>
-
-        </td>
-    </tr>
-
-    <tr class="cTR hover-enable">
-
-        <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>define stream TicketPriceResponseStream (customerName string,
-        phoneNo string, movie string, qty int,
-        ticketPrice double, bookingTime long);
-</code></pre></div>
-
-        </td>
-        <td class="docs">
-
-            <div class="cCodeDesription">
-                <div>
-                    <p>Defines <code>TicketPriceResponseStream</code> which contains the response events for the ticket price requests.</p>
-
-                </div>
-            </div>
-
-        </td>
-    </tr>
-
-    <tr class="cTR hover-enable">
-
-        <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>@sink(type=&#39;log&#39;)
-define stream TotalTicketPaymentStream (customerName string,
-        phoneNo string, movie string, totalAmount double,
-        bookingTime long);
-</code></pre></div>
-
-        </td>
-        <td class="docs">
-
-            <div class="cCodeDesription">
-                <div>
-                    <p>Defines <code>TotalTicketPaymentStream</code> which contains the events with the total payment amount for tickets.</p>
-
-                </div>
-            </div>
-
-        </td>
-    </tr>
-
-    <tr class="cTR hover-enable">
-
-        <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>from TicketBookingStream[ticketClass == &quot;BASIC&quot;]
-select name as customerName, phoneNo, movie,
-    qty * 20.0 as totalAmount, bookingTime
-insert into TotalTicketPaymentStream;
-</code></pre></div>
-
-        </td>
-        <td class="docs">
-
-            <div class="cCodeDesription">
-                <div>
-                    <p>Filter the ticket bookings of class <code>Basic</code> and apply the default ticket price as <code>20</code> USD.</p>
-
-                </div>
-            </div>
-
-        </td>
-    </tr>
-
-    <tr class="cTR hover-enable">
-
-        <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>from TicketBookingStream[ticketClass != &quot;BASIC&quot;]
-select *
-insert into TicketPriceFinderStream;
-</code></pre></div>
-
-        </td>
-        <td class="docs">
-
-            <div class="cCodeDesription">
-                <div>
-                    <p>Filter the ticket bookings other than the class <code>Basic</code> and route them to stream called <code>TicketPriceFinderStream</code>.</p>
+                    <p>Defines <code>TemperatureStream</code> having information of room temperature such as <code>roomNo</code> and <code>temp</code>.</p>
 
                 </div>
             </div>
@@ -2105,7 +1920,7 @@ insert into TicketPriceFinderStream;
     <tr class="cTR">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>from TicketPriceResponseStream</code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>@sink(type=&#39;log&#39;)</code></pre></div>
 
         </td>
         <td class="docs">
@@ -2116,15 +1931,35 @@ insert into TicketPriceFinderStream;
     <tr class="cTR hover-enable">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>select customerName, phoneNo, movie,
-    (qty * ticketPrice) as totalAmount, bookingTime</code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>define stream RoomTemperatureAlertStream(roomNo int);
+</code></pre></div>
 
         </td>
         <td class="docs">
 
             <div class="cCodeDesription">
                 <div>
-                    <p>Calculate the total ticket payment amount based on the <code>price</code> amount received from the gRPC service.</p>
+                    <p>Defines <code>RoomTemperatureAlertStream</code> which contains the temperature alerts.</p>
+
+                </div>
+            </div>
+
+        </td>
+    </tr>
+
+    <tr class="cTR hover-enable">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>from e1=RegulatorStateChangeStream[action == &#39;on&#39;]
+     -&gt; not TemperatureStream[e1.roomNo == roomNo and
+        temp &lt;= e1.tempSet] for 30 sec</code></pre></div>
+
+        </td>
+        <td class="docs">
+
+            <div class="cCodeDesription">
+                <div>
+                    <p>Alerts if no temperature event having a temperature less than what is set in regulator arrives within 5 minutes after switching on the regulator.</p>
 
                 </div>
             </div>
@@ -2135,7 +1970,8 @@ insert into TicketPriceFinderStream;
     <tr class="cTR">
 
         <td class="code">
-            <div class="highlight"><pre><code class=siddhi>insert into TotalTicketPaymentStream;</code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>select e1.roomNo as roomNo
+insert into RoomTemperatureAlertStream;</code></pre></div>
 
         </td>
         <td class="docs">
@@ -2153,23 +1989,21 @@ insert into TicketPriceFinderStream;
 </table>
 </div>
 <div class="cLeftTD">
-<h4>Input and Output</h4>
+<p>This application sends a notification alert if the room temperature is not reduced to the expected level after the regulator is started.</p>
 
-<p>Let&rsquo;s assume there is an external gRPC service that responds with the ticket price based on the gRPC request.</p>
+<h4>Input</h4>
 
-<p>When an event with values [&ldquo;Mohan&rdquo;, &ldquo;+181234579212&rdquo;, &ldquo;Iron Man&rdquo;, &ldquo;Gold&rdquo;, 4, 0130] is sent to <code>TicketBookingStream</code> stream then a gRPC request is sent to the loan gRPC service to find the ticket price if ticket class is not <code>basic</code>.
-Then, gRPC server responds with the ticket price as shown below.</p>
+<ul>
+<li><p>First, below event is sent to <code>RegulatorStateChangeStream</code>,</p>
 
-<pre><code>{
-    &quot;price&quot;: 25
-}
-</code></pre>
+<p>[<code>10</code>, <code>5</code>, <code>30</code>, <code>on</code>]</p></li>
+</ul>
 
-<p>There is a <code>grpc-call-response</code> source configured to consume the response from the gRPC server and those responses will be mapped to the stream called <code>TicketPriceResponseStream</code>.
-Then Siddhi calculates the total ticket payment amount accordingly and pushes it to a stream called <code>TotalTicketPaymentStream</code>. In this example, those events are logged to the console.
-Sample console log is give below,</p>
+<h4>Output</h4>
 
-<p><code>TotalPurchaseCalculator : TotalTicketPaymentStream : Event{timestamp=1575449841536, data=[Mohan, +181234579212, Iron Man, 100.0, 0130], isExpired=false}</code></p>
+<p>After processing the above input event, there will be an alert event arriving at <code>RoomTemperatureAlertStream</code> after the 30 seconds (from the first event):</p>
+
+<p>[<code>5</code>]</p>
 
 <div>
                 
@@ -2194,7 +2028,7 @@ Sample console log is give below,</p>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../http-service-integration/" title="HTTP Service Integration" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../logical-pattern/" title="Logical Pattern" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -2203,19 +2037,19 @@ Sample console log is give below,</p>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                HTTP Service Integration
+                Logical Pattern
               </span>
             </div>
           </a>
         
         
-          <a href="../stream-join/" title="Stream Join" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../guides/overview/" title="Overview" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Stream Join
+                Overview
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
