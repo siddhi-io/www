@@ -195,6 +195,10 @@
       {
         "name": "Counting Pattern",
         "url": "counting-pattern"
+      },
+      {
+        "name": "Logical Pattern",
+        "url": "logical-pattern"
       }
     ]
   }

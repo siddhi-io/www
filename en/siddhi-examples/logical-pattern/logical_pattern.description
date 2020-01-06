@@ -1,0 +1,3 @@
+Logical patterns match events that arrive in temporal order and correlate them with logical relationships such as `and`, `or` and `not`.
+
+Refer the <a href="https://siddhi.io/en/v5.1/docs/query-guide/#pattern" target="_blank">Siddhi query guide</a> for more information.
