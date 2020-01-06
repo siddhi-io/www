@@ -1,0 +1,3 @@
+Sequence is a state machine implementation that detects consecutive event occurrences from events arrived via one or more event streams over time. Here all matching events need to arrive consecutively, and there should not be any non-matching events in between the matching sequence of events.
+
+Refer the <a href="https://siddhi.io/en/v5.1/docs/query-guide/#sequence" target="_blank">Siddhi query guide</a> for more information.

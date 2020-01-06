@@ -1,0 +1,18 @@
+This application can be used to detect trends from a stock trades stream; in the above example, peak stock rate identified.
+
+#### Input
+
+Below events are sent to `StockRateStream` within 10 minutes,
+
+[`mint-leaves`, `35`, `20`]
+
+[`mint-leaves`, `40`, `15`]
+
+[`mint-leaves`, `38`, `20`]
+
+
+#### Output
+
+After processing the above input events, the event arriving at `PeakStockRateStream` will be as follows:
+
+[`mint-leaves`, `40`]

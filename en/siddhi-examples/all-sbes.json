@@ -203,6 +203,10 @@
       {
         "name": "Non Occurrence Pattern",
         "url": "non-occurrence-pattern"
+      },
+      {
+        "name": "Simple Sequence",
+        "url": "simple-sequence"
       }
     ]
   }
