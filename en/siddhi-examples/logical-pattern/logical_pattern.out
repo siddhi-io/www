@@ -15,8 +15,8 @@ This application sends a `stop` action on the regulator if a `removed` action is
 
 After processing the above input events, the event arriving at `RegulatorActionStream` will be as follows:
 
-    [`5`, `stop`]
+[`5`, `stop`]
 
 At the same time, there will be an alert event arriving at `RoomTemperatureAlertStream` after the 30 seconds (from the first event):
 
-    [`5`]
+[`5`]

@@ -20,4 +20,4 @@ This application calculates the temperature difference between two regulator eve
 
 After processing the above input events, the event arriving at `TemperatureDiffStream` will be as follows:
 
-    [`2`, `3.0`]
+[`2`, `3.0`]
