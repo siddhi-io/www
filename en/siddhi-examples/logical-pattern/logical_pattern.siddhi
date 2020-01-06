@@ -1,0 +1,43 @@
+-- Defines `RegulatorStateChangeStream` having information of regulator state change such as `deviceID`, `roomNo`, `tempSet` and `action`.
+define stream RegulatorStateChangeStream(deviceID long, roomNo int, tempSet double, action string);
+
+
+-- Defines `RoomKeyStream` which contains the events related to room key usage.
+define stream RoomKeyStream(deviceID long, roomNo int, action string);
+
+
+-- Defines `TemperatureStream` having information of room temperature such as `roomNo` and `temp`.
+define stream TemperatureStream (roomNo int, temp double);
+
+
+@sink(type='log')
+
+-- Defines `RegulatorActionStream` which contains the events related to regulator state changes.
+define stream RegulatorActionStream(roomNo int, action string);
+
+
+@sink(type='log')
+
+-- Defines `RoomTemperatureAlertStream` which contains the temperature alerts.
+define stream RoomTemperatureAlertStream(roomNo int);
+
+-- Sends a stop action on RegulatorActionStream stream, if a removed action is triggered in the RoomKeyStream stream before the regulator state changing to off which is notified RegulatorStateChangeStream stream
+from every e1=RegulatorStateChangeStream[ action == 'on' ]
+     -> e2=RoomKeyStream[ e1.roomNo == roomNo and action == 'removed' ]
+        or e3=RegulatorStateChangeStream[ e1.roomNo == roomNo and action == 'off']
+
+select e1.roomNo,
+
+-- Checks whether pattern triggered due to removal of room key.
+    ifThenElse( e2 is null, 'none', 'stop' ) as action
+having action != 'none'
+
+insert into RegulatorActionStream;
+
+
+-- Alerts if the room temperature does not reduce to the set value within 5 minutes after switching on the regulator.
+from e1=RegulatorStateChangeStream[action == 'on']
+     -> not TemperatureStream[e1.roomNo == roomNo and temp <= e1.tempSet] for 30 sec
+
+select e1.roomNo as roomNo
+insert into RoomTemperatureAlertStream;

@@ -2,7 +2,7 @@ This application calculates the temperature difference between two regulator eve
 
 #### Input
 
-- First, Below event is sent to `RegulatorStream`,
+- First, below event is sent to `RegulatorStream`,
 
     [`21`, `2`, `25`, `true`]
 
@@ -12,7 +12,7 @@ This application calculates the temperature difference between two regulator eve
 
     [`21`, `2`, `26`]
 
-- Finally, Below event is sent again to `RegulatorStream`,
+- Finally, below event is sent again to `RegulatorStream`,
 
     [`21`, `2`, `30`, `true`]
 

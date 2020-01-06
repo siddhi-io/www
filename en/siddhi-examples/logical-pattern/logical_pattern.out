@@ -1,0 +1,22 @@
+This application sends a `stop` action on the regulator if a `removed` action is triggered in the RoomKeyStream stream. Also, it sends a notification alert if the room temperature is not reduced to the expected level after the regulator is started.
+
+#### Input
+
+- First, below event is sent to `RegulatorStateChangeStream`,
+
+    [`10`, `5`, `30`, `on`]
+
+- Then, send below events are sent to `RoomKeyStream`,
+
+    [`10`, `5`, `removed`]
+
+
+#### Output
+
+After processing the above input events, the event arriving at `RegulatorActionStream` will be as follows:
+
+    [`5`, `stop`]
+
+At the same time, there will be an alert event arriving at `RoomTemperatureAlertStream` after the 30 seconds (from the first event):
+
+    [`5`]
