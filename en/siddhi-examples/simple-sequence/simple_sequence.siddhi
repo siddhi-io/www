@@ -1,0 +1,24 @@
+-- Defines `StockRateStream` having information of stock rate such as `symbol`, `price` and `volume`.
+define stream StockRateStream (symbol string, price float, volume int);
+
+
+@sink(type='log')
+
+-- Defines `PeakStockRateStream` which contains the peak stock rate.
+define stream PeakStockRateStream (symbol string, rateAtPeak float);
+
+
+-- Partition the `StockRateStream` events by `symbol`
+partition with (symbol of StockRateStream)
+begin
+
+
+-- Identifies the peak stock price (top rate of the stock price trend)
+    from every e1=StockRateStream,
+    	e2=StockRateStream[e1.price < price],
+    	e3=StockRateStream[e2.price > price]
+
+        within 10 min
+    select e1.symbol, e2.price as rateAtPeak
+    insert into PeakStockRateStream ;
+end;
