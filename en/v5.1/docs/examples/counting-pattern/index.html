@@ -31,7 +31,7 @@
         <meta name="description" content="Cloud Native Stream Processor">
       
       
-        <link rel="canonical" href="http://siddhi.io/en/v5.1/docs/examples/simple-pattern/">
+        <link rel="canonical" href="http://siddhi.io/en/v5.1/docs/examples/counting-pattern/">
       
       
         <meta name="author" content="WSO2">
@@ -60,7 +60,7 @@
     
     
       
-        <title>Simple Pattern - Siddhi</title>
+        <title>Counting Pattern - Siddhi</title>
       
     
     
@@ -179,7 +179,7 @@
               Siddhi
             </span>
             <span class="md-header-nav__topic">
-              Simple Pattern
+              Counting Pattern
             </span>
           
         </div>
@@ -350,7 +350,7 @@
     </ul>
     <div class="quick_links">
         
-        <a href="https://github.com/siddhi-io/www/edit/v5.1/en/docs/docs/examples/simple-pattern.md" target="blank" id="editIcon" title="Edit this page"
+        <a href="https://github.com/siddhi-io/www/edit/v5.1/en/docs/docs/examples/counting-pattern.md" target="blank" id="editIcon" title="Edit this page"
            title="Edit this page" class="md-icon md-content__icon nav_link edit_link"></a>
         
     </div>
@@ -1184,6 +1184,18 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../simple-pattern/" title="Simple Pattern" class="md-nav__link">
+      Simple Pattern
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -1192,22 +1204,10 @@
     <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
     
-    <a href="./" title="Simple Pattern" class="md-nav__link md-nav__link--active">
-      Simple Pattern
-    </a>
-    
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../counting-pattern/" title="Counting Pattern" class="md-nav__link">
+    <a href="./" title="Counting Pattern" class="md-nav__link md-nav__link--active">
       Counting Pattern
     </a>
+    
   </li>
 
         
@@ -1791,7 +1791,7 @@
               
   
                 
-                  <a href="https://github.com/siddhi-io/www/edit/v5.1/en/docs/docs/examples/simple-pattern.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/siddhi-io/www/edit/v5.1/en/docs/docs/examples/counting-pattern.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
                 <!--copy to clipboard lib-->
@@ -1809,13 +1809,13 @@
 <script src="../../../assets/js/example.js"></script>
 
 <p><link rel=stylesheet href="../../../assets/css/example.css">
-<span class="info" dir="https://github.com/siddhi-io/www/tree/v5.1/en/siddhi-examples/simple-pattern/"><span></p>
-<h1>Simple Pattern</h1>
+<span class="info" dir="https://github.com/siddhi-io/www/tree/v5.1/en/siddhi-examples/counting-pattern/"><span></p>
+<h1>Counting Pattern</h1>
 
 <div class="cLeftTD">
-<p><p>The pattern is a state machine implementation that detects event occurrences from events arrived via one or more event streams over time.</p>
+<p><p>Counting patterns allow to match multiple events that may have been received for the same matching condition. The number of events matched per condition can be limited via condition postfixes.</p>
 
-<p>This application demonstrates a simple pattern use case of detecting high-temperature event occurrence of a continuous event stream.</p>
+<p>Refer the <a href="https://siddhi.io/en/v5.1/docs/query-guide/#pattern" target="_blank">Siddhi query guide</a> for more information.</p>
 </p>
 </div>
 
@@ -1824,18 +1824,21 @@
  <a class="copy"><img src="../../../images/copy.png" width="20px"/></a>
 </div>
 <div class="FullCode">
-                <div class="highlight"><pre><span class="nx">define</span> <span class="nx">stream</span> <span class="nx">TemperatureStream</span><span class="p">(</span><span class="nx">roomNo</span> <span class="kt">int</span><span class="p">,</span> <span class="nx">temp</span> <span class="nx">double</span><span class="p">);</span>
+                <div class="highlight"><pre><span class="nx">define</span> <span class="nx">stream</span> <span class="nx">TemperatureStream</span> <span class="p">(</span><span class="nx">sensorID</span> <span class="nx">long</span><span class="p">,</span> <span class="nx">roomNo</span> <span class="kt">int</span><span class="p">,</span>
+    <span class="nx">temp</span> <span class="nx">double</span><span class="p">);</span>
+
+<span class="nx">define</span> <span class="nx">stream</span> <span class="nx">RegulatorStream</span> <span class="p">(</span><span class="nx">deviceID</span> <span class="nx">long</span><span class="p">,</span> <span class="nx">roomNo</span> <span class="kt">int</span><span class="p">,</span>
+    <span class="nx">tempSet</span> <span class="nx">double</span><span class="p">,</span> <span class="nx">isOn</span> <span class="nx">bool</span><span class="p">);</span>
 
 <span class="err">@</span><span class="nx">sink</span><span class="p">(</span><span class="nx">type</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">log</span><span class="err">&#39;</span><span class="p">)</span>
-<span class="nx">define</span> <span class="nx">Stream</span> <span class="nx">HighTempAlertStream</span><span class="p">(</span><span class="nx">roomNo</span> <span class="kt">int</span><span class="p">,</span>
-    <span class="nx">initialTemp</span> <span class="nx">double</span><span class="p">,</span> <span class="nx">finalTemp</span> <span class="nx">double</span><span class="p">);</span>
+<span class="nx">define</span> <span class="nx">stream</span> <span class="nx">TemperatureDiffStream</span><span class="p">(</span><span class="nx">roomNo</span> <span class="kt">int</span><span class="p">,</span>
+    <span class="nx">tempDiff</span> <span class="nx">double</span><span class="p">);</span>
 
-<span class="nx">from</span> <span class="nx">every</span><span class="p">(</span> <span class="nx">e1</span> <span class="p">=</span> <span class="nx">TemperatureStream</span> <span class="p">)</span> <span class="o">-&gt;</span>
-    <span class="nx">e2</span> <span class="p">=</span> <span class="nx">TemperatureStream</span><span class="p">[</span> <span class="nx">e1</span><span class="p">.</span><span class="nx">roomNo</span> <span class="o">==</span> <span class="nx">roomNo</span>
-        <span class="nx">and</span> <span class="p">(</span><span class="nx">e1</span><span class="p">.</span><span class="nx">temp</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="nx">temp</span> <span class="p">]</span>
-    <span class="nx">within</span> <span class="mi">10</span> <span class="nx">min</span>
-<span class="nx">select</span> <span class="nx">e1</span><span class="p">.</span><span class="nx">roomNo</span><span class="p">,</span> <span class="nx">e1</span><span class="p">.</span><span class="nx">temp</span> <span class="k">as</span> <span class="nx">initialTemp</span><span class="p">,</span> <span class="nx">e2</span><span class="p">.</span><span class="nx">temp</span> <span class="k">as</span> <span class="nx">finalTemp</span>
-<span class="nx">insert</span> <span class="nx">into</span> <span class="nx">HighTempAlertStream</span><span class="p">;</span>
+<span class="nx">from</span> <span class="nx">every</span><span class="p">(</span> <span class="nx">e1</span> <span class="p">=</span> <span class="nx">RegulatorStream</span><span class="p">)</span>
+    <span class="o">-&gt;</span> <span class="nx">e2</span> <span class="p">=</span> <span class="nx">TemperatureStream</span><span class="p">[</span><span class="nx">e1</span><span class="p">.</span><span class="nx">roomNo</span> <span class="o">==</span> <span class="nx">roomNo</span><span class="p">]</span> <span class="p">&lt;</span> <span class="mi">1</span><span class="p">:</span> <span class="p">&gt;</span>
+    <span class="o">-&gt;</span> <span class="nx">e3</span> <span class="p">=</span> <span class="nx">RegulatorStream</span><span class="p">[</span><span class="nx">e1</span><span class="p">.</span><span class="nx">roomNo</span> <span class="o">==</span> <span class="nx">roomNo</span><span class="p">]</span>
+<span class="nx">select</span> <span class="nx">e1</span><span class="p">.</span><span class="nx">roomNo</span><span class="p">,</span> <span class="nx">e2</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">temp</span> <span class="o">-</span> <span class="nx">e2</span><span class="p">[</span><span class="nx">last</span><span class="p">].</span><span class="nx">temp</span> <span class="k">as</span> <span class="nx">tempDiff</span>
+<span class="nx">insert</span> <span class="nx">into</span> <span class="nx">TemperatureDiffStream</span><span class="p">;</span>
 </pre></div>
 
             </div>
@@ -1854,7 +1857,8 @@
     <tr class="cTR hover-enable">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>define stream TemperatureStream(roomNo int, temp double);
+            <div class="highlight"><pre><code class=siddhi>define stream TemperatureStream (sensorID long, roomNo int,
+    temp double);
 </code></pre></div>
 
         </td>
@@ -1862,7 +1866,27 @@
 
             <div class="cCodeDesription">
                 <div>
-                    <p>Defines <code>TemperatureStream</code> having information of room temperature such as <code>roomNo</code> and <code>temp</code>.</p>
+                    <p>Defines <code>TemperatureStream</code> having information of room temperature such as <code>sensorID</code>, <code>roomNo</code> and <code>temp</code>.</p>
+
+                </div>
+            </div>
+
+        </td>
+    </tr>
+
+    <tr class="cTR hover-enable">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>define stream RegulatorStream (deviceID long, roomNo int,
+    tempSet double, isOn bool);
+</code></pre></div>
+
+        </td>
+        <td class="docs">
+
+            <div class="cCodeDesription">
+                <div>
+                    <p>Defines <code>RegulatorStream</code> which contains the events from regulator with attributes <code>deviceID</code>, <code>roomNo</code>, <code>tempSet</code>, and <code>isOn</code>.</p>
 
                 </div>
             </div>
@@ -1884,8 +1908,8 @@
     <tr class="cTR hover-enable">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>define Stream HighTempAlertStream(roomNo int,
-    initialTemp double, finalTemp double);
+            <div class="highlight"><pre><code class=siddhi>define stream TemperatureDiffStream(roomNo int,
+    tempDiff double);
 </code></pre></div>
 
         </td>
@@ -1893,7 +1917,7 @@
 
             <div class="cCodeDesription">
                 <div>
-                    <p>Defines <code>HighTempAlertStream</code> which contains the alerts for high temperature.</p>
+                    <p>Defines <code>TemperatureDiffStream</code> which contains the events related to temperature difference.</p>
 
                 </div>
             </div>
@@ -1904,17 +1928,16 @@
     <tr class="cTR hover-enable">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>from every( e1 = TemperatureStream ) -&gt;
-    e2 = TemperatureStream[ e1.roomNo == roomNo
-        and (e1.temp + 5) &lt;= temp ]
-    within 10 min</code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>from every( e1 = RegulatorStream)
+    -&gt; e2 = TemperatureStream[e1.roomNo == roomNo] &lt; 1: &gt;
+    -&gt; e3 = RegulatorStream[e1.roomNo == roomNo]</code></pre></div>
 
         </td>
         <td class="docs">
 
             <div class="cCodeDesription">
                 <div>
-                    <p>Identify if the temperature of a room increases by 5 degrees within 10 min.</p>
+                    <p>Calculates the temperature difference between two regulator events. Here, when at least one TemperatureStream event needs to arrive between two RegulatorStream events.</p>
 
                 </div>
             </div>
@@ -1922,14 +1945,21 @@
         </td>
     </tr>
 
-    <tr class="cTR">
+    <tr class="cTR hover-enable">
 
         <td class="code">
-            <div class="highlight"><pre><code class=siddhi>select e1.roomNo, e1.temp as initialTemp, e2.temp as finalTemp
-insert into HighTempAlertStream;</code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>select e1.roomNo, e2[0].temp - e2[last].temp as tempDiff
+insert into TemperatureDiffStream;</code></pre></div>
 
         </td>
         <td class="docs">
+
+            <div class="cCodeDesription">
+                <div>
+                    <p>Finds the temperature difference between the first and last temperature event.</p>
+
+                </div>
+            </div>
 
         </td>
     </tr>
@@ -1944,23 +1974,35 @@ insert into HighTempAlertStream;</code></pre></div>
 </table>
 </div>
 <div class="cLeftTD">
-<p>This application sends an alert if the temperature of a room increases by 5 degrees within 10 min.</p>
+<p>This application calculates the temperature difference between two regulator events. Here, when at least one TemperatureStream event occurs between two RegulatorStream events the pattern is valid and logs can be seen.</p>
 
 <h4>Input</h4>
 
-<p>Below events are sent to <code>TemperatureStream</code> within 10 minutes,</p>
+<ul>
+<li>First, Below event is sent to <code>RegulatorStream</code>,</li>
+</ul>
 
-<p>[<code>2</code>, <code>35</code>]</p>
+<p>[<code>21</code>, <code>2</code>, <code>25</code>, <code>true</code>]</p>
 
-<p>[<code>2</code>, <code>37</code>]</p>
+<ul>
+<li>Below events are sent to <code>TemperatureStream</code>,</li>
+</ul>
 
-<p>[<code>2</code>, <code>40</code>]</p>
+<p>[<code>21</code>, <code>2</code>, <code>29</code>]</p>
+
+<p>[<code>21</code>, <code>2</code>, <code>26</code>]</p>
+
+<ul>
+<li>Finally, Below event is sent again to <code>RegulatorStream</code>,</li>
+</ul>
+
+<p>[<code>21</code>, <code>2</code>, <code>30</code>, <code>true</code>]</p>
 
 <h4>Output</h4>
 
-<p>After processing the above input events, the event arriving at <code>HighTempAlertStream</code> will be as follows:</p>
+<p>After processing the above input events, the event arriving at <code>TemperatureDiffStream</code> will be as follows:</p>
 
-<p>[<code>2</code>, <code>35.0</code>, <code>40.0</code>]</p>
+<p>[<code>2</code>, <code>3.0</code>]</p>
 
 <div>
                 
@@ -1985,7 +2027,7 @@ insert into HighTempAlertStream;</code></pre></div>
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../error-handling-with-logs/" title="Logging" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../simple-pattern/" title="Simple Pattern" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -1994,19 +2036,19 @@ insert into HighTempAlertStream;</code></pre></div>
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Logging
+                Simple Pattern
               </span>
             </div>
           </a>
         
         
-          <a href="../counting-pattern/" title="Counting Pattern" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../../guides/overview/" title="Overview" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Counting Pattern
+                Overview
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
