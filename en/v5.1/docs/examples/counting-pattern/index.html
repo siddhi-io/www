@@ -1211,6 +1211,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../logical-pattern/" title="Logical Pattern" class="md-nav__link">
+      Logical Pattern
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -1947,9 +1959,8 @@
 
     <tr class="cTR hover-enable">
 
-        <td class="code">
-            <div class="highlight"><pre><code class=siddhi>select e1.roomNo, e2[0].temp - e2[last].temp as tempDiff
-insert into TemperatureDiffStream;</code></pre></div>
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>select e1.roomNo, e2[0].temp - e2[last].temp as tempDiff</code></pre></div>
 
         </td>
         <td class="docs">
@@ -1960,6 +1971,17 @@ insert into TemperatureDiffStream;</code></pre></div>
 
                 </div>
             </div>
+
+        </td>
+    </tr>
+
+    <tr class="cTR">
+
+        <td class="code">
+            <div class="highlight"><pre><code class=siddhi>insert into TemperatureDiffStream;</code></pre></div>
+
+        </td>
+        <td class="docs">
 
         </td>
     </tr>
@@ -1979,30 +2001,27 @@ insert into TemperatureDiffStream;</code></pre></div>
 <h4>Input</h4>
 
 <ul>
-<li>First, Below event is sent to <code>RegulatorStream</code>,</li>
-</ul>
+<li><p>First, below event is sent to <code>RegulatorStream</code>,</p>
 
-<p>[<code>21</code>, <code>2</code>, <code>25</code>, <code>true</code>]</p>
+<p>[<code>21</code>, <code>2</code>, <code>25</code>, <code>true</code>]</p></li>
 
-<ul>
-<li>Below events are sent to <code>TemperatureStream</code>,</li>
-</ul>
+<li><p>Below events are sent to <code>TemperatureStream</code>,</p>
 
 <p>[<code>21</code>, <code>2</code>, <code>29</code>]</p>
 
-<p>[<code>21</code>, <code>2</code>, <code>26</code>]</p>
+<p>[<code>21</code>, <code>2</code>, <code>26</code>]</p></li>
 
-<ul>
-<li>Finally, Below event is sent again to <code>RegulatorStream</code>,</li>
+<li><p>Finally, below event is sent again to <code>RegulatorStream</code>,</p>
+
+<p>[<code>21</code>, <code>2</code>, <code>30</code>, <code>true</code>]</p></li>
 </ul>
-
-<p>[<code>21</code>, <code>2</code>, <code>30</code>, <code>true</code>]</p>
 
 <h4>Output</h4>
 
 <p>After processing the above input events, the event arriving at <code>TemperatureDiffStream</code> will be as follows:</p>
 
-<p>[<code>2</code>, <code>3.0</code>]</p>
+<pre><code>[`2`, `3.0`]
+</code></pre>
 
 <div>
                 
@@ -2042,13 +2061,13 @@ insert into TemperatureDiffStream;</code></pre></div>
           </a>
         
         
-          <a href="../../guides/overview/" title="Overview" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../logical-pattern/" title="Logical Pattern" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Overview
+                Logical Pattern
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
