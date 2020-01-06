@@ -22,4 +22,5 @@ from every( e1 = RegulatorStream)
 
 -- Finds the temperature difference between the first and last temperature event.
 select e1.roomNo, e2[0].temp - e2[last].temp as tempDiff
+
 insert into TemperatureDiffStream;
