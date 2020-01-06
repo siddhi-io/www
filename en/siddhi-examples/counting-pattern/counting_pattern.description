@@ -1,0 +1,3 @@
+Counting patterns allow to match multiple events that may have been received for the same matching condition. The number of events matched per condition can be limited via condition postfixes.
+
+Refer the <a href="https://siddhi.io/en/v5.1/docs/query-guide/#pattern" target="_blank">Siddhi query guide</a> for more information.

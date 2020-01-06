@@ -191,6 +191,10 @@
       {
         "name": "Simple Pattern",
         "url": "simple-pattern"
+      },
+      {
+        "name": "Counting Pattern",
+        "url": "counting-pattern"
       }
     ]
   }
