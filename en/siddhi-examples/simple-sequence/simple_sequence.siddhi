@@ -1,11 +1,13 @@
 -- Defines `StockRateStream` having information of stock rate such as `symbol`, `price` and `volume`.
-define stream StockRateStream (symbol string, price float, volume int);
+define stream StockRateStream (symbol string, price float,
+    volume int);
 
 
 @sink(type='log')
 
 -- Defines `PeakStockRateStream` which contains the peak stock rate.
-define stream PeakStockRateStream (symbol string, rateAtPeak float);
+define stream PeakStockRateStream (symbol string,
+    rateAtPeak float);
 
 
 -- Partition the `StockRateStream` events by `symbol`
