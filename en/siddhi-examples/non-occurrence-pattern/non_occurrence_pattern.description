@@ -1,0 +1,5 @@
+Non occurrence patterns identifies the absence of events when detecting a pattern.
+
+Siddhi detects non-occurrence of events using the `not` keyword, and its effective non-occurrence checking period is bounded either by fulfillment of a condition associated by and or via an expiry time using `<time period>`.
+
+Refer the <a href="https://siddhi.io/en/v5.1/docs/query-guide/#pattern" target="_blank">Siddhi query guide</a> for more information.
