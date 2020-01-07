@@ -9,6 +9,7 @@ define Stream HighTempAlertStream(roomNo int,
     initialTemp double, finalTemp double);
 
 
+@info(name='temperature-increase-identifier')
 -- Identify if the temperature of a room increases by 5 degrees within 10 min.
 from every( e1 = TemperatureStream ) ->
     e2 = TemperatureStream[ e1.roomNo == roomNo

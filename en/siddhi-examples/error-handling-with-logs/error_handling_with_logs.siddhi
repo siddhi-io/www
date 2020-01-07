@@ -18,6 +18,7 @@ define stream AbnormalGlucoseReadingStream
     patientFullName string, sensorReadingValue double);
 
 
+@info(name='abnormal-reading-identifier')
 -- Identifies the abnomarl Glucose reading if `sensorValue > 220`
 from GlucoseReadingStream[sensorValue > 220]
 select math:parseLong(timeStamp) as timeStampInLong,

@@ -1,0 +1,28 @@
+-- Defines `TemperatureStream` having information on room temperatures such as `roomNo` and `temp`.
+define stream TemperatureStream(roomNo int, temp double);
+
+
+@sink(type='log') 
+-- Defines `PeekTemperatureStream` which contains events related to peak temperature trends.
+define stream PeekTemperatureStream(roomNo int,
+    initialTemp double, peekTemp double, firstDropTemp double);
+
+
+-- Partition the `TemperatureStream` events by `roomNo`
+partition with (roomNo of TemperatureStream)
+begin
+
+    @info(name = 'temperature-trend-analyzer')
+-- Identifies the trend of the temperature in a room
+    from every e1=TemperatureStream,
+         e2=TemperatureStream[ifThenElse(e2[last].temp is null,
+                e1.temp <= temp, e2[last].temp <= temp)]+,
+         e3=TemperatureStream[e2[last].temp > temp]
+
+-- Projects the lowest, highest and the first drop in the temperature trend          
+    select e1.roomNo, e1.temp as initialTemp,
+        e2[last].temp as peekTemp, e3.temp as firstDropTemp
+    
+    insert into PeekTemperatureStream ;
+
+end;

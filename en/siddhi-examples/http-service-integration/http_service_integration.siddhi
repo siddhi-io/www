@@ -56,12 +56,14 @@ define stream LoanResponseStream(clientId long,
                 customerName string, message string);
 
 
+@info(name = 'attribute-projection')
 -- Project attributes `clientId`, `name` and `amount` to perform the http request to `validate-loan` service.
 from LoanRequestStream
 select clientId, name, amount
 insert into LoanValidationStream;
 
 
+@info(name = 'successful-message-generator')
 -- Process the successful loan requests and generate a response message.
 from SuccessLoanRequestStream
 select clientId, customerName,
@@ -69,6 +71,7 @@ select clientId, customerName,
 insert into LoanResponseStream;
 
 
+@info(name = 'failure-message-generator')
 -- Process the rejected loan requests and generate a response message.
 from FailureLoanRequestStream
 select clientId, customerName,
