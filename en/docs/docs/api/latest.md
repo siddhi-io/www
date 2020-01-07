@@ -1,4 +1,4 @@
-# API Docs - v5.1.2
+# API Docs - v5.1.3-SNAPSHOT
 
 ## Core
 
@@ -6,7 +6,7 @@
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Returns the results of AND operation for all the events.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -47,7 +47,7 @@ insert into alertStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Calculates the average for all the events.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -88,7 +88,7 @@ from fooStream#window.timeBatch
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Returns the count of all the events.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -130,7 +130,7 @@ insert into barStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This returns the count of distinct occurrences for a given arg.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -171,7 +171,7 @@ insert into barStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Returns the maximum value for all the events.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -212,7 +212,7 @@ insert into barStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This is the attribute aggregator to store the maximum value for a given attribute throughout the lifetime of the query regardless of any windows in-front.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -253,7 +253,7 @@ insert into outputStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Returns the minimum value for all the events.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -294,7 +294,7 @@ insert into outputStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This is the attribute aggregator to store the minimum value for a given attribute throughout the lifetime of the query regardless of any windows in-front.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -335,7 +335,7 @@ insert into outputStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Returns the results of OR operation for all the events.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -376,7 +376,7 @@ insert into alertStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Returns the calculated standard deviation for all the events.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -417,7 +417,7 @@ insert into outputStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Returns the sum for all the events.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -458,7 +458,7 @@ insert into outputStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Union multiple sets. <br>&nbsp;This attribute aggregator maintains a union of sets. The given input set is put into the union set and the union set is returned.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -503,7 +503,7 @@ insert into distinctStockStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Generates a UUID (Universally Unique Identifier).</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -524,7 +524,7 @@ insert into RoomTempStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Converts the first parameter according to the cast.to parameter. Incompatible arguments cause Class Cast exceptions if further processed. This function is used with map extension that returns attributes of the object type. You can use this function to cast the object to an accurate and concrete type.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -573,7 +573,7 @@ insert into barStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Returns the value of the first input parameter that is not null, and all input parameters have to be on the same type.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -632,7 +632,7 @@ insert into barStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Converts the first input parameter according to the convertedTo parameter.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -690,7 +690,7 @@ insert into barStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Includes the given input parameter in a java.util.HashSet and returns the set. </p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -731,7 +731,7 @@ insert into initStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Returns the current timestamp of siddhi application in milliseconds.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -752,7 +752,7 @@ insert into barStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Checks if the 'attribute' parameter is null and if so returns the value of the 'default' parameter</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -799,30 +799,60 @@ insert into StandardTempStream;
 <p></p>
 ### eventTimestamp *<a target="_blank" href="http://siddhi.io/en/v5.1/docs/query-guide/#function">(Function)</a>*
 <p></p>
-<p style="word-wrap: break-word;margin: 0;">Returns the timestamp of the processed event.</p>
+<p style="word-wrap: break-word;margin: 0;">Returns the timestamp of the processed/passed event.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
 <LONG> eventTimestamp()
+<LONG> eventTimestamp(<OBJECT> event)
 ```
+
+<span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">event</td>
+        <td style="vertical-align: top; word-wrap: break-word"><p style="word-wrap: break-word;margin: 0;">Event reference.</p></td>
+        <td style="vertical-align: top">Current Event</td>
+        <td style="vertical-align: top">OBJECT</td>
+        <td style="vertical-align: top">Yes</td>
+        <td style="vertical-align: top">Yes</td>
+    </tr>
+</table>
 
 <span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span>
 ```
-from fooStream
+from FooStream
 select symbol as name, eventTimestamp() as eventTimestamp 
-insert into barStream;
+insert into BarStream;
 ```
 <p></p>
-<p style="word-wrap: break-word;margin: 0;">This will extract current events timestamp.</p>
+<p style="word-wrap: break-word;margin: 0;">Extracts current event's timestamp.</p>
+<p></p>
+<span id="example-2" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 2</span>
+```
+from FooStream as f join FooBarTable as fb
+select fb.symbol as name, eventTimestamp(f) as eventTimestamp 
+insert into BarStream;
+```
+<p></p>
+<p style="word-wrap: break-word;margin: 0;">Extracts FooStream event's timestamp.</p>
 <p></p>
 ### ifThenElse *<a target="_blank" href="http://siddhi.io/en/v5.1/docs/query-guide/#function">(Function)</a>*
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Evaluates the 'condition' parameter and returns value of the 'if.expression' parameter if the condition is true, or returns value of the 'else.expression' parameter if the condition is false. Here both 'if.expression' and 'else.expression' should be of the same type.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -900,7 +930,7 @@ insert into outputStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Checks whether the parameter is an instance of Boolean or not.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -950,7 +980,7 @@ insert into barStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Checks whether the parameter is an instance of Double or not.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -1000,7 +1030,7 @@ insert into barStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Checks whether the parameter is an instance of Float or not.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -1050,7 +1080,7 @@ insert into barStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Checks whether the parameter is an instance of Integer or not.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -1100,7 +1130,7 @@ insert into barStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Checks whether the parameter is an instance of Long or not.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -1150,7 +1180,7 @@ insert into barStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Checks whether the parameter is an instance of String or not.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -1200,7 +1230,7 @@ insert into barStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Returns the maximum value of the input parameters.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -1241,7 +1271,7 @@ insert into outputStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Returns the minimum value of the input parameters.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -1282,7 +1312,7 @@ insert into outputStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Returns the size of an object of type java.util.Set.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -1331,7 +1361,7 @@ insert into sizeStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">The pol2Cart function calculating the cartesian coordinates x & y for the given theta, rho coordinates and adding them as new attributes to the existing events.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -1398,7 +1428,7 @@ insert into outputStream ;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Logs the message on the given priority with or without the processed event.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -1505,7 +1535,7 @@ insert into BarStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">A window that holds an incoming events batch. When a new set of events arrives, the previously arrived old events will be expired. Batch window can be used to aggregate events that comes in batches. If it has the parameter length specified, then batch window process the batch as several chunks.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -1550,7 +1580,7 @@ insert into outputStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This window outputs the arriving events as and when they arrive, and resets (expires) the window periodically based on the given cron expression.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -1611,7 +1641,7 @@ insert into OutputStream ;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">A delay window holds events for a specific time period that is regarded as a delay period before processing them.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -1660,11 +1690,168 @@ insert into OutputStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">In this example, purchase events that arrive in the 'PurchaseStream' stream are directed to a delay window. At any given time, this delay window holds purchase events that have arrived within the last hour. These purchase events in the window are matched by the 'symbol' attribute, with delivery events that arrive in the 'DeliveryStream' stream. This monitors whether the delivery of products is done with a minimum delay of one hour after the purchase.</p>
 <p></p>
+### expression *<a target="_blank" href="http://siddhi.io/en/v5.1/docs/query-guide/#window">(Window)</a>*
+<p></p>
+<p style="word-wrap: break-word;margin: 0;">A sliding window that dynamically shrink and grow based on the <code>expression</code>, it holds events that satisfies the given <code>expression</code>, when they aren't, they are evaluated from the <code>first</code> (oldest) to the <code>last</code> (latest/current) and expired from the oldest until the <code>expression</code> is satisfied.<br>**Note**: All the events in window are reevaluated only when the given <code>expression</code> is changed.</p>
+<p></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
+<span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
+
+```
+expression(<STRING> expression)
+```
+
+<span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">expression</td>
+        <td style="vertical-align: top; word-wrap: break-word"><p style="word-wrap: break-word;margin: 0;">The expression to retain events.</p></td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">STRING</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">Yes</td>
+    </tr>
+</table>
+
+<span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span>
+```
+@info(name = 'query1')
+from StockEventWindow#window.expression('count()<=20')
+select symbol, sum(price) as price
+insert into OutputStream ;
+```
+<p></p>
+<p style="word-wrap: break-word;margin: 0;">This will retain last 20 events in a sliding manner.</p>
+<p></p>
+<span id="example-2" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 2</span>
+```
+@info(name = 'query1')
+from StockEventWindow#window.expression(
+       'sum(price) < 100 and eventTimestamp(last) - eventTimestamp(first) < 3000')
+select symbol, sum(price) as price
+insert into OutputStream ;
+```
+<p></p>
+<p style="word-wrap: break-word;margin: 0;">This will retain the latest events having their sum(price) &lt; 100, and the <code>last</code> and <code>first</code> events are within 3 second difference.</p>
+<p></p>
+### expressionBatch *<a target="_blank" href="http://siddhi.io/en/v5.1/docs/query-guide/#window">(Window)</a>*
+<p></p>
+<p style="word-wrap: break-word;margin: 0;">A batch window that dynamically shrink and grow based on the <code>expression</code>, it holds events until the <code>expression</code> is satisfied, and expires all when the <code>expression</code> is not satisfied.When a string is passed as the <code>expression</code> it is evaluated from the <code>first</code> (oldest) to the <code>last</code> (latest/current).<br>**Note**: All the events in window are reevaluated only when the given <code>expression</code> is changed.</p>
+<p></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
+<span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
+
+```
+expressionBatch(<STRING|BOOL> expression)
+expressionBatch(<STRING|BOOL> expression, <BOOL> include.triggering.event)
+expressionBatch(<STRING|BOOL> expression, <BOOL> include.triggering.event, <BOOL> stream.current.event)
+```
+
+<span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">expression</td>
+        <td style="vertical-align: top; word-wrap: break-word"><p style="word-wrap: break-word;margin: 0;">The expression to retain events.</p></td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">STRING<br>BOOL</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">Yes</td>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">include.triggering.event</td>
+        <td style="vertical-align: top; word-wrap: break-word"><p style="word-wrap: break-word;margin: 0;">Include the event triggered the expiry in to the current event batch.</p></td>
+        <td style="vertical-align: top">false</td>
+        <td style="vertical-align: top">BOOL</td>
+        <td style="vertical-align: top">Yes</td>
+        <td style="vertical-align: top">Yes</td>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">stream.current.event</td>
+        <td style="vertical-align: top; word-wrap: break-word"><p style="word-wrap: break-word;margin: 0;">Let the window stream the current events out as and when they arrive to the window while expiring them in batches.</p></td>
+        <td style="vertical-align: top">false</td>
+        <td style="vertical-align: top">BOOL</td>
+        <td style="vertical-align: top">Yes</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table>
+
+<span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span>
+```
+@info(name = 'query1')
+from StockEventWindow#window.expressionBatch('count()<=20')
+select symbol, sum(price) as price
+insert into OutputStream ;
+```
+<p></p>
+<p style="word-wrap: break-word;margin: 0;">Retain and output 20 events at a time as batch.</p>
+<p></p>
+<span id="example-2" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 2</span>
+```
+@info(name = 'query1')
+from StockEventWindow#window.expressionBatch(
+       'sum(price) < 100 and eventTimestamp(last) - eventTimestamp(first) < 3000')
+select symbol, sum(price) as price
+insert into OutputStream ;
+```
+<p></p>
+<p style="word-wrap: break-word;margin: 0;">Retain and output events having their sum(price) &lt; 100, and the <code>last</code> and <code>first</code> events are within 3 second difference as a batch.</p>
+<p></p>
+<span id="example-3" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 3</span>
+```
+@info(name = 'query1')
+from StockEventWindow#window.expressionBatch(
+       'last.symbol==first.symbol')
+select symbol, sum(price) as price
+insert into OutputStream ;
+```
+<p></p>
+<p style="word-wrap: break-word;margin: 0;">Output events as a batch when a new symbol type arrives.</p>
+<p></p>
+<span id="example-4" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 4</span>
+```
+@info(name = 'query1')
+from StockEventWindow#window.expressionBatch(
+       'flush', true)
+select symbol, sum(price) as price
+insert into OutputStream ;
+```
+<p></p>
+<p style="word-wrap: break-word;margin: 0;">Output events as a batch when a flush attribute becomes <code>true</code>, the output batch will also contain the triggering event.</p>
+<p></p>
+<span id="example-5" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 5</span>
+```
+@info(name = 'query1')
+from StockEventWindow#window.expressionBatch(
+       'flush', false, true)
+select symbol, sum(price) as price
+insert into OutputStream ;
+```
+<p></p>
+<p style="word-wrap: break-word;margin: 0;">Arriving events are emitted as soon as they are arrived, and the retained events are expired when flush attribute becomes <code>true</code>, and the output batch will not contain the triggering event.</p>
+<p></p>
 ### externalTime *<a target="_blank" href="http://siddhi.io/en/v5.1/docs/query-guide/#window">(Window)</a>*
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">A sliding time window based on external time. It holds events that arrived during the last windowTime period from the external timestamp, and gets updated on every monotonically increasing timestamp.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -1720,7 +1907,7 @@ insert expired events into outputStream ;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">A batch (tumbling) time window based on external time, that holds events arrived during windowTime periods, and gets updated for every windowTime.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -1816,7 +2003,7 @@ define window cseEventWindow (symbol string, price float, volume int) externalTi
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This window returns the latest events with the most frequently occurred value for a given attribute(s). Frequency calculation for this window processor is based on Misra-Gries counting algorithm.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -1877,7 +2064,7 @@ insert all events into PotentialFraud;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">A sliding length window that holds the last 'window.length' events at a given time, and gets updated for each arrival and expiry.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -1925,7 +2112,7 @@ insert all events into outputStream ;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">A batch (tumbling) length window that holds and process a number of events as specified in the window.length.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -2008,7 +2195,7 @@ insert all events into OutputStream ;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This window identifies and returns all the events of which the current frequency exceeds the value specified for the supportThreshold parameter.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -2088,7 +2275,7 @@ insert all events into PotentialFraud;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Holds events that belong to a session. Events belong to a specific session are identified by a session key, and a session gap is determines the time period after which the session is considered to be expired. To have meaningful aggregation on session windows, the events need to be aggregated based on session key via a <code>group by</code> clause.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -2164,7 +2351,7 @@ insert into OutputStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This window holds a batch of events that equal the number specified as the windowLength and sorts them in the given order.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -2229,7 +2416,7 @@ insert all events into outputStream ;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">A sliding time window that holds events that arrived during the last windowTime period at a given time, and gets updated for each event arrival and expiry.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -2275,7 +2462,7 @@ insert all events into outputStream ;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">A batch (tumbling) time window that holds and process events that arrive during 'window.time' period as a batch.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -2367,7 +2554,7 @@ insert all events into OutputStream ;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">A sliding time window that, at a given time holds the last window.length events that arrived during last window.time period, and gets updated for every event arrival and expiry.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -2423,7 +2610,7 @@ insert all events into outputStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function checks for a given file path points to a directory</p>
 <p></p>
-<p><i>Origin: siddhi-io-file:2.0.5</i></p>
+<p><i>Origin: siddhi-io-file:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -2462,7 +2649,7 @@ file:isDirectory(filePath) as isDirectory
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function checks whether a file or a folder exists in a given path</p>
 <p></p>
-<p><i>Origin: siddhi-io-file:2.0.5</i></p>
+<p><i>Origin: siddhi-io-file:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -2508,7 +2695,7 @@ file:isExist('/User/wso2/source/') as exists
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function checks for a given file path points to a file</p>
 <p></p>
-<p><i>Origin: siddhi-io-file:2.0.5</i></p>
+<p><i>Origin: siddhi-io-file:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -2547,7 +2734,7 @@ file:isFile(filePath) as isFile
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Checks for the last modified time for a given file path</p>
 <p></p>
-<p><i>Origin: siddhi-io-file:2.0.5</i></p>
+<p><i>Origin: siddhi-io-file:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -2602,7 +2789,7 @@ file:lastModifiedTime(filePath, dd/MM/yyyy HH:mm:ss) as lastModifiedTime
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function checks for a given file's size</p>
 <p></p>
-<p><i>Origin: siddhi-io-file:2.0.5</i></p>
+<p><i>Origin: siddhi-io-file:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -2641,7 +2828,7 @@ file:size('/User/wso2/source/test.txt') as fileSize
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Archives files and folders as a zip or in tar format that are available in the given file uri.<br></p>
 <p></p>
-<p><i>Origin: siddhi-io-file:2.0.5</i></p>
+<p><i>Origin: siddhi-io-file:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -2736,7 +2923,7 @@ InputStream#file:archive('/User/wso2/to_be_archived', '/User/wso2/archive_destin
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function performs copying file from one directory to another.<br></p>
 <p></p>
-<p><i>Origin: siddhi-io-file:2.0.5</i></p>
+<p><i>Origin: siddhi-io-file:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -2835,7 +3022,7 @@ InputStream#file:copy('/User/wso2/source/', 'User/wso2/destination/', '', true)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Create a file or a folder in the given location</p>
 <p></p>
-<p><i>Origin: siddhi-io-file:2.0.5</i></p>
+<p><i>Origin: siddhi-io-file:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -2889,7 +3076,7 @@ from CreateFileStream#file:create('/User/wso2/source/', true)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Deletes file/files in a particular path</p>
 <p></p>
-<p><i>Origin: siddhi-io-file:2.0.5</i></p>
+<p><i>Origin: siddhi-io-file:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -2935,7 +3122,7 @@ from DeleteFileStream#file:delete('/User/wso2/source/')
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function performs copying file from one directory to another.<br></p>
 <p></p>
-<p><i>Origin: siddhi-io-file:2.0.5</i></p>
+<p><i>Origin: siddhi-io-file:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -3034,7 +3221,7 @@ InputStream#file:move('/User/wso2/source/', 'User/wso2/destination/', '', true)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Searches files in a given folder and lists.</p>
 <p></p>
-<p><i>Origin: siddhi-io-file:2.0.5</i></p>
+<p><i>Origin: siddhi-io-file:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -3118,7 +3305,7 @@ ListFileStream#file:search(filePath, '.*test3.txt$', true)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This.</p>
 <p></p>
-<p><i>Origin: siddhi-io-file:2.0.5</i></p>
+<p><i>Origin: siddhi-io-file:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -3186,7 +3373,7 @@ ListArchivedFileStream#file:listFilesInArchive(filePath, '.*test3.txt$')
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function decompresses a given file</p>
 <p></p>
-<p><i>Origin: siddhi-io-file:2.0.5</i></p>
+<p><i>Origin: siddhi-io-file:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -3258,7 +3445,7 @@ file:unarchive('/User/wso2/source/test.tar', '/User/wso2/destination', true)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This extension evaluates a given string and return the output according to the user specified data type.</p>
 <p></p>
-<p><i>Origin: siddhi-script-js:5.0.3</i></p>
+<p><i>Origin: siddhi-script-js:5.0.4.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -3307,7 +3494,7 @@ js:eval("700 > 800", 'bool')
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function aggregates the JSON elements and returns a JSON object by adding enclosing.element if it is provided. If enclosing.element is not provided it aggregate the JSON elements returns a JSON array.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-json:2.0.5</i></p>
+<p><i>Origin: siddhi-execution-json:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -3394,7 +3581,7 @@ input OutputStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function aggregates the JSON elements and returns a JSON object by adding enclosing.element if it is provided. If enclosing.element is not provided it aggregate the JSON elements returns a JSON array.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-json:2.0.5</i></p>
+<p><i>Origin: siddhi-execution-json:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -3481,7 +3668,7 @@ input OutputStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function retrieves the 'boolean' value specified in the given path of the JSON element.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-json:2.0.5</i></p>
+<p><i>Origin: siddhi-execution-json:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -3542,7 +3729,7 @@ json:getBool(json,'$.foo')
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function retrieves the 'double' value specified in the given path of the JSON element.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-json:2.0.5</i></p>
+<p><i>Origin: siddhi-execution-json:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -3603,7 +3790,7 @@ json:getDouble(json,'$.name')
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function retrieves the 'float' value specified in the given path of the JSON element.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-json:2.0.5</i></p>
+<p><i>Origin: siddhi-execution-json:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -3664,7 +3851,7 @@ json:getFloat(json,'$.name')
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function retrieves the 'int' value specified in the given path of the JSON element.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-json:2.0.5</i></p>
+<p><i>Origin: siddhi-execution-json:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -3725,7 +3912,7 @@ json:getInt(json,'$.name')
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function retrieves the 'long' value specified in the given path of the JSON element.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-json:2.0.5</i></p>
+<p><i>Origin: siddhi-execution-json:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -3786,7 +3973,7 @@ json:getLong(json,'$.name')
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function retrieves the object specified in the given path of the JSON element.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-json:2.0.5</i></p>
+<p><i>Origin: siddhi-execution-json:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -3847,7 +4034,7 @@ json:getObject(json,'$.salary')
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function retrieves value specified in the given path of the JSON element as a string.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-json:2.0.5</i></p>
+<p><i>Origin: siddhi-execution-json:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -3915,7 +4102,7 @@ json:getString(json,'$.address')
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function checks whether there is a JSON element present in the given path or not.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-json:2.0.5</i></p>
+<p><i>Origin: siddhi-execution-json:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -3969,7 +4156,7 @@ json:isExists(json, '$.salary')
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function sets JSON element into a given JSON at the specific path.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-json:2.0.5</i></p>
+<p><i>Origin: siddhi-execution-json:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -4068,7 +4255,7 @@ json:setElement(json, '$.address', 'city', 'SF')
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function generate JSON object from the given JSON string.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-json:2.0.5</i></p>
+<p><i>Origin: siddhi-execution-json:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -4107,7 +4294,7 @@ json:toJson(json)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function generates a JSON string corresponding to a given JSON object.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-json:2.0.5</i></p>
+<p><i>Origin: siddhi-execution-json:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -4146,7 +4333,7 @@ json:toString(json)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Stream processor tokenizes the given JSON into to multiple JSON string elements and sends them as separate events.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-json:2.0.5</i></p>
+<p><i>Origin: siddhi-execution-json:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -4232,7 +4419,7 @@ insert into OutputStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Stream processor tokenizes the given JSON into to multiple JSON object elements and sends them as separate events.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-json:2.0.5</i></p>
+<p><i>Origin: siddhi-execution-json:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -4320,7 +4507,7 @@ insert into OutputStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Collects multiple values to construct a list.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-list:1.0.0</i></p>
+<p><i>Origin: siddhi-execution-list:1.0.1.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -4370,7 +4557,7 @@ insert into OutputStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Collects multiple lists to merge as a single list.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-list:1.0.0</i></p>
+<p><i>Origin: siddhi-execution-list:1.0.1.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -4420,7 +4607,7 @@ insert into OutputStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function returns the updated list after adding the given value.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-list:1.0.0</i></p>
+<p><i>Origin: siddhi-execution-list:1.0.1.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -4483,7 +4670,7 @@ list:add(stockSymbols, 'IBM', 0)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function returns the updated list after adding all the values from the given list.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-list:1.0.0</i></p>
+<p><i>Origin: siddhi-execution-list:1.0.1.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -4546,7 +4733,7 @@ list:putAll(toList, fromList, true)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function returns the cleared list. </p>
 <p></p>
-<p><i>Origin: siddhi-execution-list:1.0.0</i></p>
+<p><i>Origin: siddhi-execution-list:1.0.1.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -4585,7 +4772,7 @@ list:clear(stockDetails)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function returns the cloned list.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-list:1.0.0</i></p>
+<p><i>Origin: siddhi-execution-list:1.0.1.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -4624,7 +4811,7 @@ list:clone(stockSymbols)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function checks whether the list contains the specific value.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-list:1.0.0</i></p>
+<p><i>Origin: siddhi-execution-list:1.0.1.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -4671,7 +4858,7 @@ list:contains(stockSymbols, 'IBM')
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function checks whether the list contains all the values in the given list.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-list:1.0.0</i></p>
+<p><i>Origin: siddhi-execution-list:1.0.1.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -4718,7 +4905,7 @@ list:containsAll(stockSymbols, latestStockSymbols)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function creates a list containing all values provided.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-list:1.0.0</i></p>
+<p><i>Origin: siddhi-execution-list:1.0.1.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -4766,7 +4953,7 @@ list:create()
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function returns the value at the specific index, null if index is out of range.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-list:1.0.0</i></p>
+<p><i>Origin: siddhi-execution-list:1.0.1.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -4813,7 +5000,7 @@ list:get(stockSymbols, 1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function returns the last index of the given element.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-list:1.0.0</i></p>
+<p><i>Origin: siddhi-execution-list:1.0.1.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -4860,7 +5047,7 @@ list:indexOf(stockSymbols. `IBM`)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function checks if the list is empty.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-list:1.0.0</i></p>
+<p><i>Origin: siddhi-execution-list:1.0.1.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -4899,7 +5086,7 @@ list:isEmpty(stockSymbols)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function checks if the object is type of a list.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-list:1.0.0</i></p>
+<p><i>Origin: siddhi-execution-list:1.0.1.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -4938,7 +5125,7 @@ list:isList(stockSymbols)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function returns the index of the given value.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-list:1.0.0</i></p>
+<p><i>Origin: siddhi-execution-list:1.0.1.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -4985,7 +5172,7 @@ list:lastIndexOf(stockSymbols. `IBM`)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function returns the updated list after removing the element with the specified value.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-list:1.0.0</i></p>
+<p><i>Origin: siddhi-execution-list:1.0.1.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -5032,7 +5219,7 @@ list:remove(stockSymbols, 'IBM')
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function returns the updated list after removing all the element with the specified list.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-list:1.0.0</i></p>
+<p><i>Origin: siddhi-execution-list:1.0.1.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -5079,7 +5266,7 @@ list:removeAll(stockSymbols, latestStockSymbols)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function returns the updated list after removing the element with the specified index.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-list:1.0.0</i></p>
+<p><i>Origin: siddhi-execution-list:1.0.1.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -5126,7 +5313,7 @@ list:removeByIndex(stockSymbols, 0)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function returns the updated list after retaining all the elements in the specified list.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-list:1.0.0</i></p>
+<p><i>Origin: siddhi-execution-list:1.0.1.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -5173,7 +5360,7 @@ list:retainAll(stockSymbols, latestStockSymbols)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function returns the updated list after replacing the element in the given index by the given value.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-list:1.0.0</i></p>
+<p><i>Origin: siddhi-execution-list:1.0.1.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -5228,7 +5415,7 @@ list:set(stockSymbols, 0, 'IBM')
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function to return the size of the list.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-list:1.0.0</i></p>
+<p><i>Origin: siddhi-execution-list:1.0.1.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -5267,7 +5454,7 @@ list:size(stockSymbols)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function returns lists sorted in ascending or descending order.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-list:1.0.0</i></p>
+<p><i>Origin: siddhi-execution-list:1.0.1.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -5322,7 +5509,7 @@ list:sort(stockSymbols, 'DESC')
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Tokenize the list and return each key, value as new attributes in events</p>
 <p></p>
-<p><i>Origin: siddhi-execution-list:1.0.0</i></p>
+<p><i>Origin: siddhi-execution-list:1.0.1.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -5382,7 +5569,7 @@ list:tokenize(customList)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Collect multiple key-value pairs to construct a map. Only distinct keys are collected, if a duplicate key arrives, it overrides the old value</p>
 <p></p>
-<p><i>Origin: siddhi-execution-map:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-map:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -5431,7 +5618,7 @@ insert into OutputStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Collect multiple maps to merge as a single map. Only distinct keys are collected, if a duplicate key arrives, it overrides the old value.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-map:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-map:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -5472,7 +5659,7 @@ insert into OutputStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function returns the cleared map. </p>
 <p></p>
-<p><i>Origin: siddhi-execution-map:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-map:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -5511,7 +5698,7 @@ map:clear(stockDetails)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function returns the cloned map.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-map:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-map:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -5550,7 +5737,7 @@ map:clone(stockDetails)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function returns the map after combining all the maps given as parameters, such that the keys, of all the maps will be matched with an Array list of values from each map respectively.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-map:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-map:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -5590,7 +5777,7 @@ map:combineByKey(map1, map2)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function checks if the map contains the key.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-map:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-map:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -5637,7 +5824,7 @@ map:containsKey(stockDetails, '1234')
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function checks if the map contains the value.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-map:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-map:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -5684,7 +5871,7 @@ map:containsValue(stockDetails, 'IBM')
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function creates a map pairing the keys and their corresponding values.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-map:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-map:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -5740,7 +5927,7 @@ map:create()
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function returns the map created by pairing the keys with their corresponding values given in the JSON string.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-map:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-map:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -5779,7 +5966,7 @@ map:createFromJSON("{‘symbol' : 'IBM', 'price' : 200, 'volume' : 100}")
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function returns the map created by pairing the keys with their corresponding values,given as an XML string.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-map:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-map:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -5823,7 +6010,7 @@ map:createFromXML("<stock>
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function returns the value corresponding to the given key from the map.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-map:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-map:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -5893,7 +6080,7 @@ map:get(companyMap, 2, 'two')
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function checks if the map is empty.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-map:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-map:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -5932,7 +6119,7 @@ map:isEmpty(stockDetails)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function checks if the object is type of a map.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-map:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-map:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -5971,7 +6158,7 @@ map:isMap(stockDetails)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function to return the keys of the map as a list.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-map:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-map:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -6010,7 +6197,7 @@ map:keys(stockDetails)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function returns the updated map after adding the given key-value pair. If the key already exist in the map the key is updated with the new value.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-map:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-map:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -6065,7 +6252,7 @@ map:put(stockDetails , 'IBM' , '200')
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function returns the updated map after adding all the key-value pairs from another map. If there are duplicate keys, the key will be assigned new values from the map that's being copied.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-map:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-map:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -6112,7 +6299,7 @@ map:putAll(toMap, fromMap)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function returns the updated map after adding the given key-value pair if key is absent. </p>
 <p></p>
-<p><i>Origin: siddhi-execution-map:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-map:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -6167,7 +6354,7 @@ map:putIfAbsent(stockDetails , 1234 , 'IBM')
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function returns the updated map after removing the element with the specified key.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-map:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-map:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -6214,7 +6401,7 @@ map:remove(stockDetails, 1234)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function returns the updated map after replacing the given key-value pair only if key is present.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-map:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-map:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -6269,7 +6456,7 @@ map:replace(stockDetails , 1234 , 'IBM')
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function returns the updated map after replacing all the key-value pairs from another map, if keys are present.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-map:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-map:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -6316,7 +6503,7 @@ map:replaceAll(toMap, fromMap)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function to return the size of the map.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-map:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-map:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -6355,7 +6542,7 @@ map:size(stockDetails)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function converts a map into a JSON object and returns the JSON as a string.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-map:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-map:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -6394,7 +6581,7 @@ map:toJSON(company)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function returns the map as an XML string.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-map:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-map:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -6449,7 +6636,7 @@ toXML(company)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function to return the values of the map.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-map:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-map:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -6488,7 +6675,7 @@ map:values(stockDetails)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Tokenize the map and return each key, value as new attributes in events</p>
 <p></p>
-<p><i>Origin: siddhi-execution-map:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-map:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -6556,7 +6743,7 @@ insert into SymbolStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This functions returns the pth percentile value of a given argument.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -6606,7 +6793,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function returns the absolute value of the given parameter. It wraps the <code>java.lang.Math.abs()</code> function.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -6648,7 +6835,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">If -1 &lt;= p1 &lt;= 1, this function returns the arc-cosine (inverse cosine) value of p1.If the domain is invalid, it returns NULL. The value returned is in radian scale. This function wraps the java.lang.Math.acos() function.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -6690,7 +6877,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">If -1 &lt;= p1 &lt;= 1, this function returns the arc-sin (inverse sine) value of p1. If the domain is invalid, it returns NULL. The value returned is in radian scale. This function wraps the java.lang.Math.asin() function.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -6732,7 +6919,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">1. If a single <code>p1</code> is received, this function returns the arc-tangent (inverse tangent) value of <code>p1</code>. <br>2. If <code>p1</code> is received along with an optional <code>p1</code>, it considers them as x and y coordinates and returns the arc-tangent (inverse tangent) value. <br>The returned value is in radian scale. This function wraps the <code>java.lang.Math.atan()</code> function.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -6783,7 +6970,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function returns a string representation of the p1 argument, that is of either 'integer' or 'long' data type, as an unsigned integer in base 2. It wraps the <code>java.lang.Integer.toBinaryString</code> and java.lang.Long.toBinaryString` methods.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -6825,7 +7012,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function returns the cube-root of 'p1' which is in radians. It wraps the <code>java.lang.Math.cbrt()</code> function.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -6867,7 +7054,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function returns the smallest double value, i.e., the closest to the negative infinity, that is greater than or equal to the <code>p1</code> argument, and is equal to a mathematical integer. It wraps the <code>java.lang.Math.ceil()</code> method.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -6909,7 +7096,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function converts <code>a</code> from the <code>fromBase</code> base to the <code>toBase</code> base.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -6967,7 +7154,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function returns a value of an input with the received <code>magnitude</code> and <code>sign</code> of another input. It wraps the <code>java.lang.Math.copySign()</code> function.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -7017,7 +7204,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function returns the cosine of <code>p1</code> which is in radians. It wraps the <code>java.lang.Math.cos()</code> function.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -7059,7 +7246,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function returns the hyperbolic cosine of <code>p1</code> which is in radians. It wraps the <code>java.lang.Math.cosh()</code> function.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -7101,7 +7288,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function returns the <code>java.lang.Math.E</code> constant, which is the closest double value to e, where e is the base of the natural logarithms. </p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -7123,7 +7310,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function returns the Euler's number <code>e</code> raised to the power of <code>p1</code>. It wraps the <code>java.lang.Math.exp()</code> function.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -7165,7 +7352,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function wraps the <code>java.lang.Math.floor()</code> function and returns the largest value, i.e., closest to the positive infinity, that is less than or equal to <code>p1</code>, and is equal to a mathematical integer.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -7207,7 +7394,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function returns the unbiased exponent that is used in the representation of <code>p1</code>. This function wraps the <code>java.lang.Math.getExponent()</code> function.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -7249,7 +7436,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function wraps the <code>java.lang.Double.toHexString() function. It returns a hexadecimal string representation of the input, </code>p1`.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -7291,7 +7478,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function wraps the <code>java.lang.Float.isInfinite()</code> and <code>java.lang.Double.isInfinite()</code> and returns <code>true</code> if <code>p1</code> is infinitely large in magnitude and <code>false</code> if otherwise.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -7333,7 +7520,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function wraps the <code>java.lang.Float.isNaN()</code> and <code>java.lang.Double.isNaN()</code> functions and returns <code>true</code> if <code>p1</code> is NaN (Not-a-Number), and returns <code>false</code> if otherwise.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -7375,7 +7562,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function returns the natural logarithm (base e) of <code>p1</code>.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -7417,7 +7604,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function returns the logarithm of the received <code>number</code> as per the given <code>base</code>.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -7467,7 +7654,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function returns the base 10 logarithm of <code>p1</code>.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -7509,7 +7696,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function returns the base 2 logarithm of <code>p1</code>.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -7551,7 +7738,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function returns the greater value of <code>p1</code> and <code>p2</code>.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -7601,7 +7788,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function returns the smaller value of <code>p1</code> and <code>p2</code>.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -7651,7 +7838,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function converts the input parameter <code>p1</code> to octal.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -7693,7 +7880,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function returns the double value of the string received.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -7735,7 +7922,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function returns the float value of the received string.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -7777,7 +7964,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function returns the integer value of the received string.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -7819,7 +8006,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function returns the long value of the string received.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -7861,7 +8048,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function returns the <code>java.lang.Math.PI</code> constant, which is the closest value to pi, i.e., the ratio of the circumference of a circle to its diameter. </p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -7883,7 +8070,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function raises the given value to a given power.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -7933,7 +8120,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This returns a stream of pseudo-random numbers when a sequence of calls are sent to the <code>rand()</code>. Optionally, it is possible to define a seed, i.e., <code>rand(seed)</code> using which the pseudo-random numbers are generated. These functions internally use the <code>java.util.Random</code> class.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -7976,7 +8163,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function returns the value of the input argument rounded off to the closest integer/long value.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -8018,7 +8205,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This returns +1, 0, or -1 for the given positive, zero and negative values respectively. This function wraps the <code>java.lang.Math.signum()</code> function.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -8060,7 +8247,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This returns the sine of the value given in radians. This function wraps the <code>java.lang.Math.sin()</code> function.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -8102,7 +8289,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This returns the hyperbolic sine of the value given in radians. This function wraps the <code>java.lang.Math.sinh()</code> function. </p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -8144,7 +8331,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function returns the square-root of the given value. It wraps the <code>java.lang.Math.sqrt()</code>s function.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -8186,7 +8373,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function returns the tan of the given value in radians. It wraps the <code>java.lang.Math.tan()</code> function.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -8228,7 +8415,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function returns the hyperbolic tangent of the value given in radians. It wraps the <code>java.lang.Math.tanh()</code> function.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -8270,7 +8457,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function converts the value given in radians to degrees. It wraps the <code>java.lang.Math.toDegrees()</code> function.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -8312,7 +8499,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function converts the value given in degrees to radians. It wraps the <code>java.lang.Math.toRadians()</code> function.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-math:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-math:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -8356,7 +8543,7 @@ insert into OutMediationStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function performs SQL CUD (INSERT, UPDATE, DELETE) queries on data sources. <br>Note: This function to work data sources should be set at the Siddhi Manager level.<br></p>
 <p></p>
-<p><i>Origin: siddhi-store-rdbms:7.0.5</i></p>
+<p><i>Origin: siddhi-store-rdbms:7.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -8453,7 +8640,7 @@ insert into  RecordStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function performs SQL retrieval queries on data sources. <br>Note: This function to work data sources should be set at the Siddhi Manager level.</p>
 <p></p>
-<p><i>Origin: siddhi-store-rdbms:7.0.5</i></p>
+<p><i>Origin: siddhi-store-rdbms:7.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -8543,7 +8730,7 @@ insert into recordStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Finds the subsequence that matches the given regex pattern.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-regex:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-regex:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -8606,7 +8793,7 @@ regex:find('\d\d(.*)WSO2', '21 products are produced by WSO2.', 4)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Returns the subsequence captured by the given group during the regex match operation.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-regex:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-regex:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -8661,7 +8848,7 @@ regex:group('\d\d(.*)(WSO2.*)(WSO2.*)', '21 products are produced within 10 year
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Matches the input.sequence from the beginning against the regex pattern, and unlike <code>regex:matches() it does not require that the entire input.sequence be matched.</code></p>
 <p></p>
-<p><i>Origin: siddhi-execution-regex:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-regex:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -8715,7 +8902,7 @@ regex:lookingAt('WSO2(.*)middleware(.*)', 'sample test string and WSO2 is situat
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Matches the entire input.sequence against the regex pattern.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-regex:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-regex:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -8771,7 +8958,7 @@ regex:matches('WSO2(.*)middleware', 'WSO2 is situated in trace and its a middlew
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Stream processor performs reordering of out-of-order events optimized for a givenparameter using [AQ-K-Slack algorithm](http://dl.acm.org/citation.cfm?doid=2675743.2771828). This is best for reordering events on attributes those are used for aggregations.data .</p>
 <p></p>
-<p><i>Origin: siddhi-execution-reorder:5.0.3</i></p>
+<p><i>Origin: siddhi-execution-reorder:5.0.4.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -8876,7 +9063,7 @@ insert into OutputStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Stream processor performs reordering of out-of-order events using [K-Slack algorithm](https://www2.informatik.uni-erlangen.de/publication/download/IPDPS2013.pdf).</p>
 <p></p>
-<p><i>Origin: siddhi-execution-reorder:5.0.3</i></p>
+<p><i>Origin: siddhi-execution-reorder:5.0.4.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -8938,7 +9125,7 @@ reorder:kslack(<LONG> timestamp, <LONG> timeout, <LONG> max.k, <BOOL> discard.la
 define stream StockStream (eventTime long, symbol string, volume long);
 
 @info(name = 'query1')
-from StockStream#reorder:kslack(eventTime, 5000)
+from StockStream#reorder:kslack(eventTime, 5000L)
 select eventTime, symbol, volume
 insert into OutputStream;
 ```
@@ -8951,7 +9138,7 @@ insert into OutputStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This extension allows you to include JavaScript functions within the Siddhi Query Language.</p>
 <p></p>
-<p><i>Origin: siddhi-script-js:5.0.3</i></p>
+<p><i>Origin: siddhi-script-js:5.0.4.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -8979,7 +9166,7 @@ define function concatJ[JavaScript] return string {"  var str1 = data[0];
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">The email sink uses the 'smtp' server to publish events via emails. The events can be published in 'text', 'xml' or 'json' formats. The user can define email sink parameters in either the '&lt;SP_HOME&gt;/conf/&lt;PROFILE&gt;/deployment yaml' file or in the stream definition. The email sink first checks the stream definition for parameters, and if they are no configured there, it checks the 'deployment.yaml' file. If the parameters are not configured in either place, default values are considered for optional parameters. If you need to configure server system parameters that are not provided as options in the stream definition, then those parameters need to be defined them in the 'deployment.yaml' file under 'email sink properties'.<br><br>For more information about the SMTP server parameters, see  https://javaee.github.io/javamail/SMTP-Transport.<br><br>Further, some email accounts are required to enable the 'access to less secure apps' option. For gmail accounts, you can enable this option via https://myaccount.google.com/lesssecureapps.</p>
 <p></p>
-<p><i>Origin: siddhi-io-email:2.0.5</i></p>
+<p><i>Origin: siddhi-io-email:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -9351,7 +9538,7 @@ define function concatJ[JavaScript] return string {"  var str1 = data[0];
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">File Sink can be used to publish (write) event data which is processed within siddhi to files. <br>Siddhi-io-file sink provides support to write both textual and binary data into files<br></p>
 <p></p>
-<p><i>Origin: siddhi-io-file:2.0.5</i></p>
+<p><i>Origin: siddhi-io-file:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -9404,9 +9591,9 @@ define function concatJ[JavaScript] return string {"  var str1 = data[0];
 <p></p>
 ### grpc *<a target="_blank" href="http://siddhi.io/en/v5.1/docs/query-guide/#sink">(Sink)</a>*
 <p></p>
-<p style="word-wrap: break-word;margin: 0;">This extension publishes event data encoded into GRPC Classes as defined in the user input jar. This extension has a default gRPC service classes added. The default service is called "EventService". Please find the protobuf definition [here](https://github.com/siddhi-io/siddhi-io-grpc/tree/master/component/src/main/resources/EventService.proto). If we want to use our custom gRPC services, we have to  pack auto-generated gRPC service classes and  protobuf classes into a jar file and add it into the project classpath (or to the <code>jars</code> folder in the <code>siddhi-tooling</code> folder if we use it with <code>siddhi-tooling</code>). Please find the custom protobuf definition that uses in examples [here](https://github.com/siddhi-io/siddhi-io-grpc/tree/master/component/src/main/resources/sample.proto). This grpc sink is used for scenarios where we send a request and don't expect a response back. I.e getting a google.protobuf.Empty response back.</p>
+<p style="word-wrap: break-word;margin: 0;">gRPC sink publishes event data encoded into GRPC Classes as defined in the user input jar. This extension has a default gRPC service classes added. The default service is called <code>EventService</code>. This grpc sink is used for scenarios where we send a request and don't expect a response back(getting a <code>google.protobuf.Empty</code> response back). Please find the default protobuf definition [here](https://github.com/siddhi-io/siddhi-io-grpc/tree/master/component/src/main/resources/EventService.proto). Please find the custom protobuf definition that uses in examples [here](https://github.com/siddhi-io/siddhi-io-grpc/tree/master/component/src/main/resources/sample.proto). </p>
 <p></p>
-<p><i>Origin: siddhi-io-grpc:1.0.8</i></p>
+<p><i>Origin: siddhi-io-grpc:1.0.9.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -9651,9 +9838,9 @@ define stream FooStream (stringValue string, intValue int,longValue long,boolean
 <p></p>
 ### grpc-call *<a target="_blank" href="http://siddhi.io/en/v5.1/docs/query-guide/#sink">(Sink)</a>*
 <p></p>
-<p style="word-wrap: break-word;margin: 0;">This extension publishes event data encoded into GRPC Classes as defined in the user input jar. This extension has a default gRPC service classes jar added. The default service is called "EventService". Please find the protobuf definition [here](https://github.com/siddhi-io/siddhi-io-grpc/tree/master/component/src/main/resources/EventService.proto). If we want to use our custom gRPC services, we have to  pack auto-generated gRPC service classes and  protobuf classes into a jar file and add it into the project classpath (or to the <code>jars</code> folder in the <code>siddhi-tooling</code> folder if we use it with <code>siddhi-tooling</code>). Please find the custom protobuf definition that uses in examples [here](https://github.com/siddhi-io/siddhi-io-grpc/tree/master/component/src/main/resources/sample.proto). This grpc-call sink is used for scenarios where we send a request out and expect a response back. In default mode this will use EventService process method. grpc-call-response source is used to receive the responses. A unique sink.id is used to correlate between the sink and its corresponding source.</p>
+<p style="word-wrap: break-word;margin: 0;">grpc-call sink publishes event data encoded into GRPC Classes as defined in the user input jar. This extension has a default gRPC service classes jar added. The default service is called <code>EventService</code>.  This grpc-call sink is used for scenarios where we send a request out and expect a response back. In default mode this will use EventService <code>process</code> method. grpc-call-response source is used to receive the responses. A unique sink.id is used to correlate between the sink and its corresponding source.Please find the default protobuf definition [here](https://github.com/siddhi-io/siddhi-io-grpc/tree/master/component/src/main/resources/EventService.proto).Please find the custom protobuf definition that uses in examples [here](https://github.com/siddhi-io/siddhi-io-grpc/tree/master/component/src/main/resources/sample.proto).</p>
 <p></p>
-<p><i>Origin: siddhi-io-grpc:1.0.8</i></p>
+<p><i>Origin: siddhi-io-grpc:1.0.9.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -9912,7 +10099,7 @@ define stream FooStream (stringValue string, intValue int,longValue long,boolean
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This extension is used to send responses back to a gRPC client after receiving requests through grpc-service source. This correlates with the particular source using a unique source.id</p>
 <p></p>
-<p><i>Origin: siddhi-io-grpc:1.0.8</i></p>
+<p><i>Origin: siddhi-io-grpc:1.0.9.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -9965,7 +10152,7 @@ insert into BarStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">HTTP sink publishes messages via HTTP or HTTPS protocols using methods such as POST, GET, PUT, and DELETE on formats <code>text</code>, <code>XML</code> and <code>JSON</code>. It can also publish to endpoints protected by basic authentication or OAuth 2.0.</p>
 <p></p>
-<p><i>Origin: siddhi-io-http:2.2.0</i></p>
+<p><i>Origin: siddhi-io-http:2.2.1.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -10335,7 +10522,7 @@ define stream FooStream (payloadBody String, headers string);
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">The http-call sink publishes messages to endpoints via HTTP or HTTPS protocols using methods such as POST, GET, PUT, and DELETE on formats <code>text</code>, <code>XML</code> or <code>JSON</code> and consume responses through its corresponding http-call-response source. It also supports calling endpoints protected with basic authentication or OAuth 2.0.</p>
 <p></p>
-<p><i>Origin: siddhi-io-http:2.2.0</i></p>
+<p><i>Origin: siddhi-io-http:2.2.1.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -10736,7 +10923,7 @@ define stream ResponseStream4xx(errorMsg string);
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">_(Use http-call sink instead)._<br>The http-request sink publishes messages to endpoints via HTTP or HTTPS protocols using methods such as POST, GET, PUT, and DELETE on formats <code>text</code>, <code>XML</code> or <code>JSON</code> and consume responses through its corresponding http-response source. It also supports calling endpoints protected with basic authentication or OAuth 2.0.</p>
 <p></p>
-<p><i>Origin: siddhi-io-http:2.2.0</i></p>
+<p><i>Origin: siddhi-io-http:2.2.1.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -11137,7 +11324,7 @@ define stream ResponseStream4xx(errorMsg string);
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">_(Use http-service-response sink instead)._<br>The http-response sink send responses of the requests consumed by its corresponding http-request source, by mapping the response messages to formats such as <code>text</code>, <code>XML</code> and <code>JSON</code>.</p>
 <p></p>
-<p><i>Origin: siddhi-io-http:2.2.0</i></p>
+<p><i>Origin: siddhi-io-http:2.2.1.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -11215,7 +11402,7 @@ insert into ResultStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">The http-service-response sink send responses of the requests consumed by its corresponding http-service source, by mapping the response messages to formats such as <code>text</code>, <code>XML</code> and <code>JSON</code>.</p>
 <p></p>
-<p><i>Origin: siddhi-io-http:2.2.0</i></p>
+<p><i>Origin: siddhi-io-http:2.2.1.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -11293,7 +11480,7 @@ insert into ResultStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">In-memory sink publishes events to In-memory sources that are subscribe to the same topic to which the sink publishes. This provides a way to connect multiple Siddhi Apps deployed under the same Siddhi Manager (JVM). Here both the publisher and subscriber should have the same event schema (stream definition) for successful data transfer.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -11333,7 +11520,7 @@ define stream StocksStream (symbol string, price float, volume long);
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">JMS Sink allows users to subscribe to a JMS broker and publish JMS messages.</p>
 <p></p>
-<p><i>Origin: siddhi-io-jms:2.0.3</i></p>
+<p><i>Origin: siddhi-io-jms:2.0.4.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -11437,7 +11624,7 @@ define stream inputStream (name string, age int, country string);
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">A Kafka sink publishes events processed by WSO2 SP to a topic with a partition for a Kafka cluster. The events can be published in the <code>TEXT</code> <code>XML</code> <code>JSON</code> or <code>Binary</code> format.<br>If the topic is not already created in the Kafka cluster, the Kafka sink creates the default partition for the given topic. The publishing topic and partition can be a dynamic value taken from the Siddhi event.<br>To configure a sink to use the Kafka transport, the <code>type</code> parameter should have <code>kafka</code> as its value.</p>
 <p></p>
-<p><i>Origin: siddhi-io-kafka:5.0.7</i></p>
+<p><i>Origin: siddhi-io-kafka:5.0.8.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -11552,7 +11739,7 @@ from FooStream select symbol, price, volume insert into BarStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">A Kafka sink publishes events processed by WSO2 SP to a topic with a partition for a Kafka cluster. The events can be published in the <code>TEXT</code> <code>XML</code> <code>JSON</code> or <code>Binary</code> format.<br>If the topic is not already created in the Kafka cluster, the Kafka sink creates the default partition for the given topic. The publishing topic and partition can be a dynamic value taken from the Siddhi event.<br>To configure a sink to publish events via the Kafka transport, and using two Kafka brokers to publish events to the same topic, the <code>type</code> parameter must have <code>kafkaMultiDC</code> as its value.</p>
 <p></p>
-<p><i>Origin: siddhi-io-kafka:5.0.7</i></p>
+<p><i>Origin: siddhi-io-kafka:5.0.8.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -11644,7 +11831,7 @@ from FooStream select symbol, price, volume insert into BarStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This is a sink that can be used as a logger. This will log the output events in the output stream with user specified priority and a prefix</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -11716,7 +11903,7 @@ define stream BarStream (symbol string, price float, volume long)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">NATS Sink allows users to subscribe to a NATS broker and publish messages.</p>
 <p></p>
-<p><i>Origin: siddhi-io-nats:2.0.10</i></p>
+<p><i>Origin: siddhi-io-nats:2.0.11.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -11788,7 +11975,7 @@ define stream outputStream (name string, age int, country string);
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This sink publishes events processed by Siddhi into Prometheus metrics and exposes them to the Prometheus server at the specified URL. The created metrics can be published to Prometheus via 'server' or 'pushGateway', depending on your preference.<br>&nbsp;The metric types that are supported by the Prometheus sink are 'counter', 'gauge', 'histogram', and 'summary'. The values and labels of the Prometheus metrics can be updated through the events. </p>
 <p></p>
-<p><i>Origin: siddhi-io-prometheus:2.1.1</i></p>
+<p><i>Origin: siddhi-io-prometheus:2.1.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -11974,7 +12161,7 @@ define stream InventoryLevelStream (Name String, value int);
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">The rabbitmq sink pushes the events into a rabbitmq broker using the AMQP protocol</p>
 <p></p>
-<p><i>Origin: siddhi-io-rabbitmq:3.0.4</i></p>
+<p><i>Origin: siddhi-io-rabbitmq:3.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -12215,7 +12402,7 @@ from FooStream select symbol, price, volume insert into BarStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">S3 sink publishes events as Amazon AWS S3 buckets.</p>
 <p></p>
-<p><i>Origin: siddhi-io-s3:1.0.2</i></p>
+<p><i>Origin: siddhi-io-s3:1.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -12337,7 +12524,7 @@ define stream UserStream(name string, age int);
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">A Siddhi application can be configured to publish events via the TCP transport by adding the @Sink(type = 'tcp') annotation at the top of an event stream definition.</p>
 <p></p>
-<p><i>Origin: siddhi-io-tcp:3.0.4</i></p>
+<p><i>Origin: siddhi-io-tcp:3.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -12412,7 +12599,7 @@ define stream Foo (attribute1 string, attribute2 int);
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This extension is a Siddhi Event to Avro Message output mapper.Transports that publish  messages to Avro sink can utilize this extension to convert Siddhi events to Avro messages.<br>&nbsp;You can either specify the Avro schema or provide the schema registry URL and the schema reference ID as parameters in the stream definition.<br>If no Avro schema is specified, a flat Avro schema of the 'record' type is generated with the stream attributes as schema fields.</p>
 <p></p>
-<p><i>Origin: siddhi-map-avro:2.0.6</i></p>
+<p><i>Origin: siddhi-map-avro:2.0.7.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -12477,7 +12664,7 @@ define stream StockStream (symbol string, price float, volume long);
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This section explains how to map events processed via Siddhi in order to publish them in the <code>binary</code> format.</p>
 <p></p>
-<p><i>Origin: siddhi-map-binary:2.0.4</i></p>
+<p><i>Origin: siddhi-map-binary:2.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -12496,7 +12683,7 @@ define stream StockStream (symbol string, price float, volume long);
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This output mapper extension allows you to convert Siddhi events processed by the WSO2 SP to CSV message before publishing them. You can either use custom placeholder to map a custom CSV message or use pre-defined CSV format where event conversion takes place without extra configurations.</p>
 <p></p>
-<p><i>Origin: siddhi-map-csv:2.0.3</i></p>
+<p><i>Origin: siddhi-map-csv:2.0.4.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -12553,15 +12740,13 @@ define stream BarStream (symbol string, price float, volume long);
 @sink(type='inMemory', topic='{{symbol}}', @map(type='csv',header='true',delimiter='-',@payload(symbol='0',price='2',volume='1')))define stream BarStream (symbol string, price float,volume long); 
 ```
 <p></p>
-<p style="word-wrap: break-word;margin: 0;">Above configuration will perform a custom CSV mapping. Here, user can add custom place order in the @payload. The place order indicates that where the attribute name's value will be appear in the output message, The output will be produced output as follows:<br>WSO2,100,55.6
-<br>If header is true and delimiter is "-", then the output will be as follows:<br>symbol-price-volume
-<br>WSO2-55.6-100&lt;OS supported line separator&gt;If event grouping is enabled, then the output is as follows:<br>WSO2-55.6-100&lt;OS supported line separator&gt;<br>WSO2-55.6-100&lt;OS supported line separator&gt;<br>WSO2-55.6-100&lt;OS supported line separator&gt;<br></p>
+<p style="word-wrap: break-word;margin: 0;">Above configuration will perform a custom CSV mapping. Here, user can add custom place order in the @payload. The place order indicates that where the attribute name's value will be appear in the output message, The output will be produced output as follows:<br>WSO2,100,55.6<br>If header is true and delimiter is "-", then the output will be as follows:<br>symbol-price-volume<br>WSO2-55.6-100&lt;OS supported line separator&gt;If event grouping is enabled, then the output is as follows:<br>WSO2-55.6-100&lt;OS supported line separator&gt;<br>WSO2-55.6-100&lt;OS supported line separator&gt;<br>WSO2-55.6-100&lt;OS supported line separator&gt;<br></p>
 <p></p>
 ### json *<a target="_blank" href="http://siddhi.io/en/v5.1/docs/query-guide/#sink-mapper">(Sink Mapper)</a>*
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This extension is an Event to JSON output mapper. <br>Transports that publish  messages can utilize this extension to convert Siddhi events to JSON messages. <br>You can either send a pre-defined JSON format or a custom JSON message.<br></p>
 <p></p>
-<p><i>Origin: siddhi-map-json:5.0.6</i></p>
+<p><i>Origin: siddhi-map-json:5.0.7.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -12618,7 +12803,7 @@ define stream BarStream (symbol string, price float, volume long);
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">The <code>Event to Key-Value Map</code> output mapper extension allows you to convert Siddhi events processed by WSO2 SP to key-value map events before publishing them. You can either use pre-defined keys where conversion takes place without extra configurations, or use custom keys with which the messages can be published.</p>
 <p></p>
-<p><i>Origin: siddhi-map-keyvalue:2.0.5</i></p>
+<p><i>Origin: siddhi-map-keyvalue:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -12657,7 +12842,7 @@ define stream FooStream (symbol string, price float, volume long);
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Pass-through mapper passed events (Event[]) through without any mapping or modifications.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -12677,7 +12862,7 @@ define stream BarStream (symbol string, price float, volume long);
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This output mapper allows you to convert Events to protobuf messages before publishing them. To work with this mapper you have to add auto-generated protobuf classes to the project classpath. When you use this output mapper, you can either define stream attributes as the same names as the protobuf message attributes or you can use custom mapping to map stream definition attributes with the protobuf attributes. Please find the sample proto definition [here](https://github.com/siddhi-io/siddhi-map-protobuf/tree/master/component/src/main/resources/sample.proto). When you use this mapper with <code>siddhi-io-grpc</code> you don't have to provide the protobuf message class in the <code>class</code> parameter. </p>
 <p></p>
-<p><i>Origin: siddhi-map-protobuf:1.0.4</i></p>
+<p><i>Origin: siddhi-map-protobuf:1.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -12746,7 +12931,7 @@ define stream BarStream (a string, b long, c int,d bool,e float,f double);
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This extension is a Event to Text output mapper. Transports that publish text messages can utilize this extension to convert the Siddhi events to text messages. Users can use a pre-defined text format where event conversion is carried out without any additional configurations, or use custom placeholder(using <code>{{</code> and <code>}}</code>) to map custom text messages. Again, you can also enable mustache based custom mapping. In mustache based custom mapping you can use custom placeholder (using <code>{{</code> and <code>}}</code> or <code>{{{</code> and <code>}}}</code>) to map custom text. In mustache based custom mapping, all variables are HTML escaped by default.<br>For example:<br><code>&</code> is replaced with <code>&amp;amp;</code><br><code>"</code> is replaced with <code>&amp;quot;</code><br><code>=</code> is replaced with <code>&amp;#61;</code><br>If you want to return unescaped HTML, use the triple mustache <code>{{{</code> instead of double <code>{{</code>.</p>
 <p></p>
-<p><i>Origin: siddhi-map-text:2.0.4</i></p>
+<p><i>Origin: siddhi-map-text:2.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -12842,7 +13027,7 @@ define stream FooStream (symbol string, price float, volume long);
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This mapper converts Siddhi output events to XML before they are published via transports that publish in XML format. Users can either send a pre-defined XML format or a custom XML message containing event data.</p>
 <p></p>
-<p><i>Origin: siddhi-map-xml:5.0.3</i></p>
+<p><i>Origin: siddhi-map-xml:5.0.4.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -12905,7 +13090,7 @@ define stream BarStream (symbol string, price float, volume long);
     ./jni-provider.sh &lt;input-jar&gt; &lt;destination&gt; &lt;comma seperated native library names&gt;
   </pre><p style="word-wrap: break-word;margin: 0;"><br>&nbsp;&nbsp;once ojdbc and xstreams jars are converted to OSGi copy the generated jars to the <code>&lt;distribution&gt;/lib</code>. Currently siddhi-io-cdc only supports the oracle database distributions 12 and above<br><br>See parameter: mode for supported databases and change events.</p>
 <p></p>
-<p><i>Origin: siddhi-io-cdc:2.0.5</i></p>
+<p><i>Origin: siddhi-io-cdc:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -13143,7 +13328,7 @@ define stream insertSweetProductionStream (ID int, NAME string, WEIGHT int);
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">The 'Email' source allows you to receive events via emails. An 'Email' source can be configured using the 'imap' or 'pop3' server to receive events. This allows you to filter the messages that satisfy the criteria specified under the 'search term' option. The email source parameters can be defined in either the '&lt;SP_HOME&gt;/conf/&lt;PROFILE&gt;/deployment yaml' file or the stream definition. If the parameter configurations are not available in either place, the default values are considered (i.e., if default values are available). If you need to configure server system parameters that are not provided as options in the stream definition, they need to be defined in the 'deployment yaml' file under 'email source properties'. For more information about 'imap' and 'pop3' server system parameters, see the following.<br>[JavaMail Reference Implementation - IMAP Store](https://javaee.github.io/javamail/IMAP-Store)<br>[JavaMail Reference Implementation - POP3 Store Store](https://javaee.github.io/javamail/POP3-Store)</p>
 <p></p>
-<p><i>Origin: siddhi-io-email:2.0.5</i></p>
+<p><i>Origin: siddhi-io-email:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -13695,7 +13880,7 @@ define stream insertSweetProductionStream (ID int, NAME string, WEIGHT int);
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">File Source provides the functionality for user to feed data to siddhi from files. Both text and binary files are supported by file source.</p>
 <p></p>
-<p><i>Origin: siddhi-io-file:2.0.5</i></p>
+<p><i>Origin: siddhi-io-file:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -13854,11 +14039,25 @@ define stream FooStream (symbol string, price float, volume long);
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Under above configuration, the first file in directory '/abc/xyz'  will be picked and read line by line.<br>In this case, it is assumed that the file contains lines json strings.<br>For each line, line content will be converted to an event using siddhi-map-json extension and then, that event will be received to the FooStream.<br>Once file content is completely read, it will keep checking whether a new entry is added to the file or not.<br>If such entry is added, it will be immediately picked up and processed.<br></p>
 <p></p>
+<span id="example-3" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 3</span>
+```
+@source(type='file',
+mode='text.full',
+tailing='false'
+ dir.uri='file://abc/xyz',
+action.after.process='delete',
+@map(type='csv' @attributes(eof = 'trp:eof', fp = 'trp:file.path'))) 
+define stream FooStream (symbol string, price float, volume long); 
+
+```
+<p></p>
+<p style="word-wrap: break-word;margin: 0;">Under above configuration, all the files in directory will be picked and read one by one.<br>In this case, it's assumed that all the files contains valid json strings with keys 'symbol' and 'price'.<br>Once a file is read, its content will be converted to an event using siddhi-map-json with additional eof attribute and then, that event will be received to the FooStream.<br>Finally, after reading is finished, the file will be deleted.<br></p>
+<p></p>
 ### grpc *<a target="_blank" href="http://siddhi.io/en/v5.1/docs/query-guide/#source">(Source)</a>*
 <p></p>
-<p style="word-wrap: break-word;margin: 0;">This extension starts a grpc server during initialization time. The server listens to requests from grpc stubs. This source has a default mode of operation and custom user defined grpc service mode. By default this uses EventService. Please find the proto definition [here](https://github.com/siddhi-io/siddhi-io-grpc/tree/master/component/src/main/resources/EventService.proto). In the default mode this source will use EventService consume method. If we want to use our custom gRPC services, we have to  pack auto-generated gRPC service classes and  protobuf classes into a jar file and add it into the project classpath (or to the <code>jars</code> folder in the <code>siddhi-tooling</code> folder if we use it with <code>siddhi-tooling</code>). Please find the custom protobuf definition that uses in examples [here](https://github.com/siddhi-io/siddhi-io-grpc/tree/master/component/src/main/resources/sample.proto). This method will receive requests and injects them into stream through a mapper.</p>
+<p style="word-wrap: break-word;margin: 0;">This extension starts a grpc server during initialization time. The server listens to requests from grpc stubs. This source has a default mode of operation and custom user defined grpc service mode. By default this uses <code>EventService</code>. Please find the proto definition [here](https://github.com/siddhi-io/siddhi-io-grpc/tree/master/component/src/main/resources/EventService.proto). In the default mode this source will use EventService <code>consume</code> method. Please find the custom protobuf definition that uses in examples [here](https://github.com/siddhi-io/siddhi-io-grpc/tree/master/component/src/main/resources/sample.proto). This method will receive requests and injects them into stream through a mapper.</p>
 <p></p>
-<p><i>Origin: siddhi-io-grpc:1.0.8</i></p>
+<p><i>Origin: siddhi-io-grpc:1.0.9.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -14099,7 +14298,7 @@ define stream BarStream (stringValue string, intValue int,longValue long,boolean
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This grpc source receives responses received from gRPC server for requests sent from a grpc-call sink. The source will receive responses for sink with the same sink.id. For example if you have a gRPC sink with sink.id 15 then we need to set the sink.id as 15 in the source to receives responses. Sinks and sources have 1:1 mapping</p>
 <p></p>
-<p><i>Origin: siddhi-io-grpc:1.0.8</i></p>
+<p><i>Origin: siddhi-io-grpc:1.0.9.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -14141,9 +14340,9 @@ define stream FooStream (message String);
 <p></p>
 ### grpc-service *<a target="_blank" href="http://siddhi.io/en/v5.1/docs/query-guide/#source">(Source)</a>*
 <p></p>
-<p style="word-wrap: break-word;margin: 0;">This extension implements a grpc server for receiving and responding to requests. During initialization time a grpc server is started on the user specified port exposing the required service as given in the url. This source also has a default mode and a user defined grpc service mode. By default this uses EventService. Please find the proto definition [here](https://github.com/siddhi-io/siddhi-io-grpc/tree/master/component/src/main/resources/EventService.proto) In the default mode this will use the EventService process method. If we want to use our custom gRPC services, we have to  pack auto-generated gRPC service classes and  protobuf classes into a jar file and add it into the project classpath (or to the <code>jars</code> folder in the <code>siddhi-tooling</code> folder if we use it with <code>siddhi-tooling</code>). Please find the custom protobuf definition that uses in examples [here](https://github.com/siddhi-io/siddhi-io-grpc/tree/master/component/src/main/resources/sample.proto). This accepts grpc message class Event as defined in the EventService proto. This uses GrpcServiceResponse sink to send reponses back in the same Event message format.</p>
+<p style="word-wrap: break-word;margin: 0;">This extension implements a grpc server for receiving and responding to requests. During initialization time a grpc server is started on the user specified port exposing the required service as given in the url. This source also has a default mode and a user defined grpc service mode. By default this uses <code>EventService</code>. Please find the proto definition [here](https://github.com/siddhi-io/siddhi-io-grpc/tree/master/component/src/main/resources/EventService.proto) In the default mode this will use the EventService <code>process</code> method. Please find the custom protobuf definition that uses in examples [here](https://github.com/siddhi-io/siddhi-io-grpc/tree/master/component/src/main/resources/sample.proto). This accepts grpc message class Event as defined in the EventService proto. This uses <code>grpc-service-response</code> sink to send reponses back in the same Event message format.</p>
 <p></p>
-<p><i>Origin: siddhi-io-grpc:1.0.8</i></p>
+<p><i>Origin: siddhi-io-grpc:1.0.9.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -14352,6 +14551,7 @@ define stream FooStream (messageId String, message String);
 ```
 @sink(type='grpc-service-response',
       source.id='1',
+      message.id='{{messageId}}',
       @map(type='json'))
 define stream BarStream (messageId String, message String);
 
@@ -14403,7 +14603,7 @@ insert into BarStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">HTTP source receives POST requests via HTTP and HTTPS protocols in format such as <code>text</code>, <code>XML</code> and <code>JSON</code>. It also supports basic authentication to ensure events are received from authorized users/systems.<br>The request headers and properties can be accessed via transport properties in the format <code>trp:&lt;header&gt;</code>.</p>
 <p></p>
-<p><i>Origin: siddhi-io-http:2.2.0</i></p>
+<p><i>Origin: siddhi-io-http:2.2.1.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -14620,7 +14820,7 @@ define stream StockStream (symbol string, price float, volume long);
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">The http-call-response source receives the responses for the calls made by its corresponding http-call sink, and maps them from formats such as <code>text</code>, <code>XML</code> and <code>JSON</code>.<br>To handle messages with different http status codes having different formats, multiple http-call-response sources are allowed to associate with a single http-call sink.<br>It allows accessing the attributes of the event that initiated the call, and the response headers and properties via transport properties in the format <code>trp:&lt;attribute name&gt;</code> and <code>trp:&lt;header/property&gt;</code> respectively.</p>
 <p></p>
-<p><i>Origin: siddhi-io-http:2.2.0</i></p>
+<p><i>Origin: siddhi-io-http:2.2.1.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -14701,7 +14901,7 @@ define stream EmployeeErrorStream(error string);
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">_(Use http-service source instead)._<br>The http-request source receives POST requests via HTTP and HTTPS protocols in format such as <code>text</code>, <code>XML</code> and <code>JSON</code> and sends responses via its corresponding http-response sink correlated through a unique <code>source.id</code>.<br>For request and response correlation, it generates a <code>messageId</code> upon each incoming request and expose it via transport properties in the format <code>trp:messageId</code> to correlate them with the responses at the http-response sink.<br>The request headers and properties can be accessed via transport properties in the format <code>trp:&lt;header&gt;</code>.<br>It also supports basic authentication to ensure events are received from authorized users/systems.</p>
 <p></p>
-<p><i>Origin: siddhi-io-http:2.2.0</i></p>
+<p><i>Origin: siddhi-io-http:2.2.1.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -14932,7 +15132,7 @@ insert into ResultStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">_(Use http-call-response source instead)._<br>The http-response source receives the responses for the calls made by its corresponding http-request sink, and maps them from formats such as <code>text</code>, <code>XML</code> and <code>JSON</code>.<br>To handle messages with different http status codes having different formats, multiple http-response sources are allowed to associate with a single http-request sink. It allows accessing the attributes of the event that initiated the call, and the response headers and properties via transport properties in the format <code>trp:&lt;attribute name&gt;</code> and <code>trp:&lt;header/property&gt;</code> respectively.</p>
 <p></p>
-<p><i>Origin: siddhi-io-http:2.2.0</i></p>
+<p><i>Origin: siddhi-io-http:2.2.1.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -15012,7 +15212,7 @@ define stream EmployeeErrorStream(error string);
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">The http-service source receives POST requests via HTTP and HTTPS protocols in format such as <code>text</code>, <code>XML</code> and <code>JSON</code> and sends responses via its corresponding http-service-response sink correlated through a unique <code>source.id</code>.<br>For request and response correlation, it generates a <code>messageId</code> upon each incoming request and expose it via transport properties in the format <code>trp:messageId</code> to correlate them with the responses at the http-service-response sink.<br>The request headers and properties can be accessed via transport properties in the format <code>trp:&lt;header&gt;</code>.<br>It also supports basic authentication to ensure events are received from authorized users/systems.</p>
 <p></p>
-<p><i>Origin: siddhi-io-http:2.2.0</i></p>
+<p><i>Origin: siddhi-io-http:2.2.1.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -15242,7 +15442,7 @@ insert into ResultStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">In-memory source subscribes to a topic to consume events which are published on the same topic by In-memory sinks. This provides a way to connect multiple Siddhi Apps deployed under the same Siddhi Manager (JVM). Here both the publisher and subscriber should have the same event schema (stream definition) for successful data transfer.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -15282,7 +15482,7 @@ define stream StocksStream (symbol string, price float, volume long);
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">JMS Source allows users to subscribe to a JMS broker and receive JMS messages. It has the ability to receive Map messages and Text messages.</p>
 <p></p>
-<p><i>Origin: siddhi-io-jms:2.0.3</i></p>
+<p><i>Origin: siddhi-io-jms:2.0.4.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -15426,11 +15626,11 @@ define stream inputStream (name string, age int, country string);
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">A Kafka source receives events to be processed by WSO2 SP from a topic with a partition for a Kafka cluster. The events received can be in the <code>TEXT</code> <code>XML</code> <code>JSON</code> or <code>Binary</code> format.<br>If the topic is not already created in the Kafka cluster, the Kafka sink creates the default partition for the given topic.</p>
 <p></p>
-<p><i>Origin: siddhi-io-kafka:5.0.7</i></p>
+<p><i>Origin: siddhi-io-kafka:5.0.8.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
-@source(type="kafka", bootstrap.servers="<STRING>", topic.list="<STRING>", group.id="<STRING>", threading.option="<STRING>", partition.no.list="<STRING>", seq.enabled="<BOOL>", is.binary.message="<BOOL>", topic.offsets.map="<STRING>", enable.offsets.commit="<BOOL>", optional.configuration="<STRING>", @map(...)))
+@source(type="kafka", bootstrap.servers="<STRING>", topic.list="<STRING>", group.id="<STRING>", threading.option="<STRING>", partition.no.list="<STRING>", seq.enabled="<BOOL>", is.binary.message="<BOOL>", topic.offsets.map="<STRING>", enable.offsets.commit="<BOOL>", enable.async.commit="<BOOL>", optional.configuration="<STRING>", @map(...)))
 ```
 
 <span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
@@ -15516,6 +15716,14 @@ define stream inputStream (name string, age int, country string);
         <td style="vertical-align: top">No</td>
     </tr>
     <tr>
+        <td style="vertical-align: top">enable.async.commit</td>
+        <td style="vertical-align: top; word-wrap: break-word"><p style="word-wrap: break-word;margin: 0;">This parameter will changes the type of the committing offsets returned on the last poll for the subscribed list of topics and partitions.<br>When <code>enable.async.commit</code> is set to true, committing will be an asynchronous call.</p></td>
+        <td style="vertical-align: top">true</td>
+        <td style="vertical-align: top">BOOL</td>
+        <td style="vertical-align: top">Yes</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+    <tr>
         <td style="vertical-align: top">optional.configuration</td>
         <td style="vertical-align: top; word-wrap: break-word"><p style="word-wrap: break-word;margin: 0;">This parameter contains all the other possible configurations that the consumer is created with. <br>e.g., <code>ssl.keystore.type:JKS,batch.size:200</code>.</p></td>
         <td style="vertical-align: top">null</td>
@@ -15569,7 +15777,7 @@ from FooStream select symbol, price, volume insert into BarStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">The Kafka Multi-Datacenter(DC) source receives records from the same topic in brokers deployed in two different kafka clusters. It filters out all the duplicate messages and ensuresthat the events are received in the correct order using sequential numbering. It receives events in formats such as <code>TEXT</code>, <code>XML</code> JSON<code> and </code>Binary`.The Kafka Source creates the default partition '0' for a given topic, if the topic has not yet been created in the Kafka cluster.</p>
 <p></p>
-<p><i>Origin: siddhi-io-kafka:5.0.7</i></p>
+<p><i>Origin: siddhi-io-kafka:5.0.8.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -15646,7 +15854,7 @@ from FooStream select symbol, price, volume insert into BarStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">NATS Source allows users to subscribe to a NATS broker and receive messages. It has the ability to receive all the message types supported by NATS.</p>
 <p></p>
-<p><i>Origin: siddhi-io-nats:2.0.10</i></p>
+<p><i>Origin: siddhi-io-nats:2.0.11.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -15750,7 +15958,7 @@ define stream inputStream (name string, age int, country string, sequenceNum str
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This source consumes Prometheus metrics that are exported from a specified URL as Siddhi events by sending HTTP requests to the URL. Based on the source configuration, it analyzes metrics from the text response and sends them as Siddhi events through key-value mapping.The user can retrieve metrics of the 'including', 'counter', 'gauge', 'histogram', and 'summary' types. The source retrieves the metrics from a text response of the target. Therefore, it is you need to use 'string' as the attribute type for the attributes that correspond with the Prometheus metric labels. Further, the Prometheus metric value is passed through the event as 'value'. This requires you to include an attribute named 'value' in the stream definition. <br>The supported types for the 'value' attribute are 'INT', 'LONG', 'FLOAT', and 'DOUBLE'.</p>
 <p></p>
-<p><i>Origin: siddhi-io-prometheus:2.1.1</i></p>
+<p><i>Origin: siddhi-io-prometheus:2.1.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -15989,11 +16197,11 @@ define stream FooStream3(metric_name string, metric_type string, help string, su
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">The rabbitmq source receives the events from the rabbitmq broker via the AMQP protocol. </p>
 <p></p>
-<p><i>Origin: siddhi-io-rabbitmq:3.0.4</i></p>
+<p><i>Origin: siddhi-io-rabbitmq:3.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
-@source(type="rabbitmq", uri="<STRING>", heartbeat="<INT>", exchange.name="<STRING>", exchange.type="<STRING>", exchange.durable.enabled="<BOOL>", exchange.autodelete.enabled="<BOOL>", routing.key="<STRING>", headers="<STRING>", queue.name="<STRING>", queue.durable.enabled="<BOOL>", queue.exclusive.enabled="<BOOL>", queue.autodelete.enabled="<BOOL>", tls.enabled="<BOOL>", tls.truststore.path="<STRING>", tls.truststore.password="<STRING>", tls.truststore.type="<STRING>", tls.version="<STRING>", auto.ack="<BOOL>", @map(...)))
+@source(type="rabbitmq", uri="<STRING>", heartbeat="<INT>", exchange.name="<STRING>", exchange.type="<STRING>", exchange.durable.enabled="<BOOL>", exchange.autodelete.enabled="<BOOL>", routing.key="<STRING>", headers="<STRING>", queue.name="<STRING>", queue.durable.enabled="<BOOL>", queue.exclusive.enabled="<BOOL>", queue.autodelete.enabled="<BOOL>", tls.enabled="<BOOL>", tls.truststore.path="<STRING>", tls.truststore.password="<STRING>", tls.truststore.type="<STRING>", tls.version="<STRING>", auto.ack="<BOOL>", consumer.threadpool.size="<INT>", @map(...)))
 ```
 
 <span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
@@ -16150,6 +16358,14 @@ define stream FooStream3(metric_name string, metric_type string, help string, su
         <td style="vertical-align: top">Yes</td>
         <td style="vertical-align: top">No</td>
     </tr>
+    <tr>
+        <td style="vertical-align: top">consumer.threadpool.size</td>
+        <td style="vertical-align: top; word-wrap: break-word"><p style="word-wrap: break-word;margin: 0;">The number of consumer threads to be registered</p></td>
+        <td style="vertical-align: top">1</td>
+        <td style="vertical-align: top">INT</td>
+        <td style="vertical-align: top">Yes</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
 </table>
 
 <span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
@@ -16174,7 +16390,7 @@ from FooStream select symbol, price, volume insert into BarStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">A Siddhi application can be configured to receive events via the TCP transport by adding the @Source(type = 'tcp') annotation at the top of an event stream definition.<br><br>When this is defined the associated stream will receive events from the TCP transport on the host and port defined in the system.</p>
 <p></p>
-<p><i>Origin: siddhi-io-tcp:3.0.4</i></p>
+<p><i>Origin: siddhi-io-tcp:3.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -16262,7 +16478,7 @@ define stream Foo (attribute1 string, attribute2 int );
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This extension is an Avro to Event input mapper. Transports that accept Avro messages can utilize this extension to convert the incoming Avro messages to Siddhi events.<br>&nbsp;The Avro schema to be used for creating Avro messages can be specified as a parameter in the stream definition.<br>&nbsp;If no Avro schema is specified, a flat avro schema of the 'record' type is generated with the stream attributes as schema fields.<br>The generated/specified Avro schema is used to convert Avro messages to Siddhi events.</p>
 <p></p>
-<p><i>Origin: siddhi-map-avro:2.0.6</i></p>
+<p><i>Origin: siddhi-map-avro:2.0.7.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -16345,7 +16561,7 @@ define stream UserStream (name string, age int );
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This extension is a binary input mapper that converts events received in <code>binary</code> format to Siddhi events before they are processed.</p>
 <p></p>
-<p><i>Origin: siddhi-map-binary:2.0.4</i></p>
+<p><i>Origin: siddhi-map-binary:2.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -16364,7 +16580,7 @@ define stream UserStream (name string, age int );
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This extension is used to convert CSV message to Siddhi event input mapper. You can either receive pre-defined CSV message where event conversion takes place without extra configurations,or receive custom CSV message where a custom place order to map from custom CSV message.</p>
 <p></p>
-<p><i>Origin: siddhi-map-csv:2.0.3</i></p>
+<p><i>Origin: siddhi-map-csv:2.0.4.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -16430,18 +16646,13 @@ define stream UserStream (name string, age int );
 define stream FooStream (symbol string, price float, volume long); 
 ```
 <p></p>
-<p style="word-wrap: break-word;margin: 0;">Above configuration will perform a custom CSV mapping. Here, user can add place order of each attribute in the @attribute. The place order indicates where the attribute name's value has appeared in the input.Expected input will look like below:<br>55.6,100,WSO2
-<br>OR55.6,100,"WSO2,No10,Palm Groove Rd,Col-03"
-<br>If header is true and delimiter is "-", then the output is as follows:<br>price-volume-symbol
-<br>55.6-100-WSO2
-<br>If group events is enabled then input should be as follows:<br>price-volume-symbol
-<br>55.6-100-WSO2System.lineSeparator()<br>55.6-100-IBMSystem.lineSeparator()<br>55.6-100-IFSSystem.lineSeparator()<br></p>
+<p style="word-wrap: break-word;margin: 0;">Above configuration will perform a custom CSV mapping. Here, user can add place order of each attribute in the @attribute. The place order indicates where the attribute name's value has appeared in the input.Expected input will look like below:<br>55.6,100,WSO2<br>OR55.6,100,"WSO2,No10,Palm Groove Rd,Col-03"<br>If header is true and delimiter is "-", then the output is as follows:<br>price-volume-symbol<br>55.6-100-WSO2<br>If group events is enabled then input should be as follows:<br>price-volume-symbol<br>55.6-100-WSO2System.lineSeparator()<br>55.6-100-IBMSystem.lineSeparator()<br>55.6-100-IFSSystem.lineSeparator()<br></p>
 <p></p>
 ### json *<a target="_blank" href="http://siddhi.io/en/v5.1/docs/query-guide/#source-mapper">(Source Mapper)</a>*
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This extension is a JSON-to-Event input mapper. Transports that accept JSON messages can utilize this extension to convert an incoming JSON message into a Siddhi event. Users can either send a pre-defined JSON format, where event conversion happens without any configurations, or use the JSON path to map from a custom JSON message.<br>In default mapping, the JSON string of the event can be enclosed by the element "event", though optional.</p>
 <p></p>
-<p><i>Origin: siddhi-map-json:5.0.6</i></p>
+<p><i>Origin: siddhi-map-json:5.0.7.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -16515,7 +16726,7 @@ define stream FooStream (symbol string, price float, volume long);
 <p></p>
 <p style="word-wrap: break-word;margin: 0;"><code>Key-Value Map to Event</code> input mapper extension allows transports that accept events as key value maps to convert those events to Siddhi events. You can either receive pre-defined keys where conversion takes place without extra configurations, or use custom keys to map from the message.</p>
 <p></p>
-<p><i>Origin: siddhi-map-keyvalue:2.0.5</i></p>
+<p><i>Origin: siddhi-map-keyvalue:2.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -16563,7 +16774,7 @@ define stream FooStream (symbol string, price float, volume long);
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Pass-through mapper passed events (Event[]) through without any mapping or modifications.</p>
 <p></p>
-<p><i>Origin: siddhi-core:5.1.11</i></p>
+<p><i>Origin: siddhi-core:5.1.12.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -16583,7 +16794,7 @@ define stream BarStream (symbol string, price float, volume long);
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This input mapper allows you to convert protobuf messages into Events. To work with this input mapper you have to add auto-generated protobuf classes to the project classpath. When you use this input mapper, you can either define stream attributes as the same names as the protobuf message attributes or you can use custom mapping to map stream definition attributes with the protobuf attributes.Please find the sample proto definition [here](https://github.com/siddhi-io/siddhi-map-protobuf/tree/master/component/src/main/resources/sample.proto). When you use this mapper with <code>siddhi-io-grpc</code> you don't have to provide the protobuf message class in the <code>class</code> parameter.  </p>
 <p></p>
-<p><i>Origin: siddhi-map-protobuf:1.0.4</i></p>
+<p><i>Origin: siddhi-map-protobuf:1.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -16651,7 +16862,7 @@ define stream FooStream (stringValue string ,intValue int,stringList object, int
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This extension is a text to Siddhi event input mapper. Transports that accept text messages can utilize this extension to convert the incoming text message to Siddhi event. Users can either use a pre-defined text format where event conversion happens without any additional configurations, or specify a regex to map a text message using custom configurations.</p>
 <p></p>
-<p><i>Origin: siddhi-map-text:2.0.4</i></p>
+<p><i>Origin: siddhi-map-text:2.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -16731,7 +16942,7 @@ define stream FooStream (symbol string, price float, volume long);
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This mapper converts XML input to Siddhi event. Transports which accepts XML messages can utilize this extension to convert the incoming XML message to Siddhi event. Users can either send a pre-defined XML format where event conversion will happen without any configs or can use xpath to map from a custom XML message.</p>
 <p></p>
-<p><i>Origin: siddhi-map-xml:5.0.3</i></p>
+<p><i>Origin: siddhi-map-xml:5.0.4.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -16798,7 +17009,7 @@ define stream FooStream (symbol string, price float, volume long);
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Using this extension a MongoDB Event Table can be configured to persist events in a MongoDB of user's choice.</p>
 <p></p>
-<p><i>Origin: siddhi-store-mongodb:2.1.0</i></p>
+<p><i>Origin: siddhi-store-mongodb:2.1.1.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -17056,7 +17267,7 @@ define table FooTable (symbol string, price float, volume long);
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This extension assigns data sources and connection instructions to event tables. It also implements read-write operations on connected data sources.</p>
 <p></p>
-<p><i>Origin: siddhi-store-rdbms:7.0.5</i></p>
+<p><i>Origin: siddhi-store-rdbms:7.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -17356,7 +17567,7 @@ insert into FooStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This extension assigns data source and connection instructions to event tables. It also implements read write operations on connected datasource. This extension only can be used to read the data which persisted using the same extension since unique implementation has been used to map the relational data in to redis's key and value representation</p>
 <p></p>
-<p><i>Origin: siddhi-store-redis:3.1.1</i></p>
+<p><i>Origin: siddhi-store-redis:3.1.2.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -17428,7 +17639,7 @@ insert into FooStream;
 <span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
 <span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span>
 ```
-@store(type='redis',nodes='localhost:6379@root',table.name='fooTable',cluster.mode=false)define table fooTable(time long, date String)
+@store(type='redis',nodes='localhost:6379@root',table.name='fooTable',cluster.mode='false')define table fooTable(time long, date String)
 ```
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Above example will create a redis table with the name fooTable and work on asingle redis node.</p>
@@ -17456,7 +17667,7 @@ define table SweetProductionTable (symbol string, price float, volume long);
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function aggregates the received events by concatenating the keys in those events using a separator, e.g.,a comma (,) or a hyphen (-), and returns the concatenated key string.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-string:5.0.9</i></p>
+<p><i>Origin: siddhi-execution-string:5.0.10.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -17533,7 +17744,7 @@ input OutputStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function returns the 'char' value that is present at the given index position. of the input string.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-string:5.0.9</i></p>
+<p><i>Origin: siddhi-execution-string:5.0.10.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -17580,7 +17791,7 @@ charAt("WSO2", 1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Gives the frequency of a char in <code>input string</code>.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-string:5.0.9</i></p>
+<p><i>Origin: siddhi-execution-string:5.0.10.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -17627,7 +17838,7 @@ str:charFrequency("WSO2,ABM,NSFT", ",")
 <p></p>
 <p style="word-wrap: break-word;margin: 0;"> This returns the first input parameter value of the given argument, that is not null.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-string:5.0.9</i></p>
+<p><i>Origin: siddhi-execution-string:5.0.10.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -17666,7 +17877,7 @@ coalesce(null, "BBB", "CCC")
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function returns a string value that is obtained as a result of concatenating two or more input string values.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-string:5.0.9</i></p>
+<p><i>Origin: siddhi-execution-string:5.0.10.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -17705,7 +17916,7 @@ concat("D533", "8JU^", "XYZ")
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function returns <code>true</code> if the<code>input.string</code> contains the specified sequence of char values in the <code>search.string</code>. </p>
 <p></p>
-<p><i>Origin: siddhi-execution-string:5.0.9</i></p>
+<p><i>Origin: siddhi-execution-string:5.0.10.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -17752,7 +17963,7 @@ contains("21 products are produced by WSO2 currently", "WSO2")
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This returns a boolean value by comparing two strings lexicographically without considering the letter case.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-string:5.0.9</i></p>
+<p><i>Origin: siddhi-execution-string:5.0.10.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -17799,7 +18010,7 @@ equalsIgnoreCase("WSO2", "wso2")
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">fillTemplate(string, map) will replace all the keys in the string using values in the map. fillTemplate(string, r1, r2 ..) replace all the entries {{1}}, {{2}}, {{3}} with r1 , r2, r3.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-string:5.0.9</i></p>
+<p><i>Origin: siddhi-execution-string:5.0.10.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -17862,7 +18073,7 @@ str:fillTemplate("{{1}} > 100 && {{2}} < 10000", 200, 300)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function returns a hexadecimal string by converting each byte of each character in the input string to two hexadecimal digits.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-string:5.0.9</i></p>
+<p><i>Origin: siddhi-execution-string:5.0.10.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -17901,7 +18112,7 @@ hex("MySQL")
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Returns the length of the input string.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-string:5.0.9</i></p>
+<p><i>Origin: siddhi-execution-string:5.0.10.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -17940,7 +18151,7 @@ length("Hello World")
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Converts the capital letters in the input string to the equivalent simple letters.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-string:5.0.9</i></p>
+<p><i>Origin: siddhi-execution-string:5.0.10.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -17979,7 +18190,7 @@ lower("WSO2 cep ")
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Returns a boolean value based on the matchability of the input string and the given regular expression.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-string:5.0.9</i></p>
+<p><i>Origin: siddhi-execution-string:5.0.10.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -18026,7 +18237,7 @@ regexp("WSO2 abcdh", "WSO(.*h)")
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Repeats the input string for a specified number of times.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-string:5.0.9</i></p>
+<p><i>Origin: siddhi-execution-string:5.0.10.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -18073,7 +18284,7 @@ repeat("StRing 1", 3)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Finds all the substrings of the input string that matches with the given expression, and replaces them with the given replacement string.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-string:5.0.9</i></p>
+<p><i>Origin: siddhi-execution-string:5.0.10.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -18128,7 +18339,7 @@ replaceAll("hello hi hello",  'hello', 'test')
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Finds the first substring of the input string that matches with the given regular expression, and replaces itwith the given replacement string.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-string:5.0.9</i></p>
+<p><i>Origin: siddhi-execution-string:5.0.10.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -18183,7 +18394,7 @@ replaceFirst("hello WSO2 A hello",  'WSO2(.*)A', 'XXXX')
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Returns the input string in the reverse order character-wise and string-wise.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-string:5.0.9</i></p>
+<p><i>Origin: siddhi-execution-string:5.0.10.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -18222,7 +18433,7 @@ reverse("Hello World")
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Splits the  <code>input.string</code> into substrings using the value parsed in the <code>split.string</code> and returns the substring at the position specified in the <code>group.number</code>.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-string:5.0.9</i></p>
+<p><i>Origin: siddhi-execution-string:5.0.10.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -18277,7 +18488,7 @@ split("WSO2,ABM,NSFT", ",", 0)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Compares two strings lexicographically and returns an integer value. If both strings are equal, 0 is returned. If  the first string is lexicographically greater than the second string, a positive value is returned. If the first string is lexicographically greater than the second string, a negative value is returned.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-string:5.0.9</i></p>
+<p><i>Origin: siddhi-execution-string:5.0.10.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -18324,7 +18535,7 @@ strcmp("AbCDefghiJ KLMN", 'Hello')
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Returns a substring of the input string by considering a subset or all of the following factors: starting index, length, regular expression, and regex group number.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-string:5.0.9</i></p>
+<p><i>Origin: siddhi-execution-string:5.0.10.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -18419,7 +18630,7 @@ substr("WSO2 cep WSO2 XX E hi hA WSO2 heAllo",  'WSO2(.*)A(.*)',  2)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Returns a copy of the input string without the leading and trailing whitespace (if any).</p>
 <p></p>
-<p><i>Origin: siddhi-execution-string:5.0.9</i></p>
+<p><i>Origin: siddhi-execution-string:5.0.10.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -18458,7 +18669,7 @@ trim("  AbCDefghiJ KLMN  ")
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Returns a string by converting the hexadecimal characters in the input string.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-string:5.0.9</i></p>
+<p><i>Origin: siddhi-execution-string:5.0.10.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -18497,7 +18708,7 @@ unhex("4d7953514c")
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Converts the simple letters in the input string to the equivalent capital/block letters.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-string:5.0.9</i></p>
+<p><i>Origin: siddhi-execution-string:5.0.10.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -18536,7 +18747,7 @@ upper("Hello World")
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This function splits the input string into tokens using a given regular expression and returns the split tokens.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-string:5.0.9</i></p>
+<p><i>Origin: siddhi-execution-string:5.0.10.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -18611,7 +18822,7 @@ insert into outputStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function returns the system time in <code>yyyy-MM-dd</code> format.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-time:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-time:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -18630,7 +18841,7 @@ time:currentDate()
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function returns system time in the <code>HH:mm:ss</code> format.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-time:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-time:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -18649,7 +18860,7 @@ time:currentTime()
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">When no argument is provided, function returns the system current timestamp in <code>yyyy-MM-dd HH:mm:ss</code> format, and when a timezone is provided as an argument, it converts and return the current system time to the given timezone format.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-time:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-time:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -18703,7 +18914,7 @@ time:currentTimestamp('CST')
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Extracts the date part of a date or date-time and return it in <code>yyyy-MM-dd</code> format.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-time:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-time:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -18765,7 +18976,7 @@ time:date('13:23:44', 'HH:mm:ss')
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Adds the specified time interval to a date.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-time:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-time:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -18852,7 +19063,7 @@ time:dateAdd( 1415712224000L, 1, 'HOUR')
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Returns difference between two dates in days.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-time:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-time:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -18947,7 +19158,7 @@ time:dateDiff(1415692424000L, 1412841224000L)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Formats the data in string or milliseconds format to the given date format.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-time:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-time:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -19026,7 +19237,7 @@ time:dateFormat(1415692424000L, 'yyyy-MM-dd')
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Subtracts the specified time interval from the given date.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-time:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-time:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -19113,7 +19324,7 @@ time:dateSub( 1415715824000L, 1, 'HOUR')
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Extracts the day on which a given date falls.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-time:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-time:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -19168,7 +19379,7 @@ time:date('2014-11-11 13:23:44.345')
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function extracts a date unit from the date.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-time:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-time:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -19257,7 +19468,7 @@ time:extract(1394556804000L, 'HOUR')
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Returns the system time or the given time in milliseconds.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-time:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-time:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -19320,7 +19531,7 @@ time:timestampInMilliseconds('2007-11-30 10:30:19.000')
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Function returns the system current time in UTC timezone with <code>yyyy-MM-dd HH:mm:ss</code> format.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-time:5.0.4</i></p>
+<p><i>Origin: siddhi-execution-time:5.0.5.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -19341,7 +19552,7 @@ time:utcTimestamp()
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Removes duplicate events based on the <code>unique.key</code> parameter that arrive within the <code>time.interval</code> gap from one another.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unique:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-unique:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -19392,7 +19603,7 @@ insert into UniqueTemperatureStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">Window that retains the latest events based on a given unique keys. When a new event arrives with the same key it replaces the one that exist in the window.&lt;b&gt;This function is not recommended to be used when the maximum number of unique attributes are undefined, as there is a risk of system going out to memory&lt;/b&gt;.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unique:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-unique:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -19460,7 +19671,7 @@ insert events into PriceResponseStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This is a batch (tumbling) time window that is determined based on an external time, i.e., time stamps that are specified via an attribute in the events. It holds the latest unique events that arrived during the last window time period. The unique events are determined based on the value for a specified unique key parameter. When a new event arrives within the time window with a value for the unique key parameter that is the same as that of an existing event in the window, the existing event expires and it is replaced by the new event.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unique:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-unique:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -19546,7 +19757,7 @@ insert into UniqueIps ;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This is a window that holds only the first set of unique events according to the unique key parameter. When a new event arrives with a key that is already in the window, that event is not processed by the window.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unique:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-unique:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -19589,7 +19800,7 @@ insert into UniqueIps ;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This is a batch (tumbling) window that holds a specific number of unique events (depending on which events arrive first). The unique events are selected based on a specific parameter that is considered as the unique key. When a new event arrives with a value for the unique key parameter that matches the same of an existing event in the window, that event is not processed by the window.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unique:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-unique:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -19640,7 +19851,7 @@ insert all events into OutputStream ;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">A batch-time or tumbling window that holds the unique events according to the unique key parameters that have arrived within the time period of that window and gets updated for each such time window. When a new event arrives with a key which is already in the window, that event is not processed by the window.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unique:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-unique:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -19700,7 +19911,7 @@ insert all events into OutputStream ;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This is a sliding length window that holds the events of the latest window length with the unique key and gets updated for the expiry and arrival of each event. When a new event arrives with the key that is already there in the window, then the previous event expires and new event is kept within the window.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unique:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-unique:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -19751,7 +19962,7 @@ insert all events into OutputStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This is a batch (tumbling) window that holds a specified number of latest unique events. The unique events are determined based on the value for a specified unique key parameter. The window is updated for every window length, i.e., for the last set of events of the specified number in a tumbling manner. When a new event arrives within the window length having the same value for the unique key parameter as an existing event in the window, the previous event is replaced by the new event.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unique:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-unique:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -19802,7 +20013,7 @@ insert expired events into OutputStream ;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This is a sliding time window that holds the latest unique events that arrived during the previous time window. The unique events are determined based on the value for a specified unique key parameter. The window is updated with the arrival and expiry of each event. When a new event that arrives within a window time period has the same value for the unique key parameter as an existing event in the window, the previous event is replaced by the new event.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unique:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-unique:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -19853,7 +20064,7 @@ insert expired events into OutputStream ;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This is a batch (tumbling) time window that is updated with the latest events based on a unique key parameter. If a new event that arrives within the time period of a windowhas a value for the key parameter which matches that of an existing event, the existing event expires and it is replaced by the latest event. </p>
 <p></p>
-<p><i>Origin: siddhi-execution-unique:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-unique:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -19913,7 +20124,7 @@ insert all events into OutputStream ;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This is a batch or tumbling time length window that is updated with the latest events based on a unique key parameter. The window tumbles upon the elapse of the time window, or when a number of unique events have arrived. If a new event that arrives within the period of the window has a value for the key parameter which matches the value of an existing event, the existing event expires and it is replaced by the new event. </p>
 <p></p>
-<p><i>Origin: siddhi-execution-unique:5.0.5</i></p>
+<p><i>Origin: siddhi-execution-unique:5.0.6.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -19983,7 +20194,7 @@ insert all events into OutputStream;
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in megameters into kilometers.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -20023,7 +20234,7 @@ unitconversion:MmTokm(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in centimeters into feet.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -20063,7 +20274,7 @@ unitconversion:cmToft(100)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in centimeters into inches.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -20103,7 +20314,7 @@ unitconversion:cmToin(100)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input value given in centimeters into kilometers.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -20143,7 +20354,7 @@ unitconversion:cmTokm(100)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in centimeters into meters.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -20183,7 +20394,7 @@ unitconversion:cmTom(100)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in centimeters into miles.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -20223,7 +20434,7 @@ unitconversion:cmTomi(10000)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in centimeters into millimeters.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -20263,7 +20474,7 @@ unitconversion:cmTomm(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in centimeters into nanometers.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -20303,7 +20514,7 @@ unitconversion:cmTonm(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input in centimeters into micrometers.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -20343,7 +20554,7 @@ unitconversion:cmToum(100)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in centimeters into yards.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -20383,7 +20594,7 @@ unitconversion:cmToyd(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in days into hours.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -20423,7 +20634,7 @@ unitconversion:dToh(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in grams into kilograms.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -20463,7 +20674,7 @@ unitconversion:gTokg(1000)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in grams into milligrams.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -20503,7 +20714,7 @@ unitconversion:gTomg(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in grams into micrograms.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -20543,7 +20754,7 @@ unitconversion:gToug(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in hours into minutes.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -20583,7 +20794,7 @@ unitconversion:hTom(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in hours into seconds.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -20623,7 +20834,7 @@ unitconversion:hTos(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in kilograms into imperial tons.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -20663,7 +20874,7 @@ unitconversion:kgToLT(1000)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in kilograms into US tons.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -20703,7 +20914,7 @@ unitconversion:kgToST(1000)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in kilograms into grams.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -20743,7 +20954,7 @@ unitconversion:kgTog(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in kilograms into pounds.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -20783,7 +20994,7 @@ unitconversion:kgTolb(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in kilograms into ounces.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -20823,7 +21034,7 @@ unitconversion:kgTooz(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in kilograms into imperial stones.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -20863,7 +21074,7 @@ unitconversion:kgTost(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in kilograms into tonnes.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -20903,7 +21114,7 @@ unitconversion:kgTot(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in kilometers into centimeters.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -20943,7 +21154,7 @@ unitconversion:kmTocm(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in kilometers into feet.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -20983,7 +21194,7 @@ unitconversion:kmToft(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in kilometers into inches.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -21023,7 +21234,7 @@ unitconversion:kmToin(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in kilometers into meters.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -21063,7 +21274,7 @@ unitconversion:kmTom(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in kilometers into miles.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -21103,7 +21314,7 @@ unitconversion:kmTomi(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in kilometers into millimeters.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -21143,7 +21354,7 @@ unitconversion:kmTomm(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in kilometers into nanometers.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -21183,7 +21394,7 @@ unitconversion:kmTonm(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in kilometers into micrometers.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -21223,7 +21434,7 @@ unitconversion:kmToum(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in kilometers into yards.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -21263,7 +21474,7 @@ unitconversion:kmToyd(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in liters into cubic meters.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -21303,7 +21514,7 @@ unitconversion:lTom3(1000)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in liters into milliliters.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -21343,7 +21554,7 @@ unitconversion:lToml(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in cubic meters into liters.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -21383,7 +21594,7 @@ unitconversion:m3Tol(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in meters into centimeters.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -21423,7 +21634,7 @@ unitconversion:mTocm(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in meters into feet.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -21463,7 +21674,7 @@ unitconversion:mToft(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in meters into millimeters.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -21503,7 +21714,7 @@ unitconversion:mTomm(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in minutes into seconds.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -21543,7 +21754,7 @@ unitconversion:mTos(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in meters into yards.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -21583,7 +21794,7 @@ unitconversion:mToyd(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in miles into kilometers.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -21623,7 +21834,7 @@ unitconversion:miTokm(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in milliliters into liters.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -21663,7 +21874,7 @@ unitconversion:mlTol(1000)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in seconds into milliseconds.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -21703,7 +21914,7 @@ unitconversion:sToms(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in seconds into nanoseconds.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -21743,7 +21954,7 @@ unitconversion:sTons(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in seconds into microseconds.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -21783,7 +21994,7 @@ unitconversion:sTous(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in tonnes into grams.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -21823,7 +22034,7 @@ unitconversion:tTog(1)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the input given in tonnes into kilograms.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
@@ -21863,7 +22074,7 @@ unitconversion:tTokg(inValue)
 <p></p>
 <p style="word-wrap: break-word;margin: 0;">This converts the given input in years into days.</p>
 <p></p>
-<p><i>Origin: siddhi-execution-unitconversion:2.0.2</i></p>
+<p><i>Origin: siddhi-execution-unitconversion:2.0.3.SNAPSHOT</i></p>
 <span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span>
 
 ```
