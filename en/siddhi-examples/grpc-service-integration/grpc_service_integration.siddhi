@@ -47,6 +47,7 @@ define stream TotalTicketPaymentStream (customerName string,
         bookingTime long);
 
 
+@info(name = 'filter-basic-ticket-bookings')
 -- Filter the ticket bookings of class `Basic` and apply the default ticket price as `20` USD.
 from TicketBookingStream[ticketClass == "BASIC"]
 select name as customerName, phoneNo, movie,
@@ -54,12 +55,14 @@ select name as customerName, phoneNo, movie,
 insert into TotalTicketPaymentStream;
 
 
+@info(name = 'filter-non-basic-tickets')
 -- Filter the ticket bookings other than the class `Basic` and route them to stream called `TicketPriceFinderStream`.
 from TicketBookingStream[ticketClass != "BASIC"]
 select *
 insert into TicketPriceFinderStream;
 
 
+@info(name = 'total-price-calculator')
 from TicketPriceResponseStream
 -- Calculate the total ticket payment amount based on the `price` amount received from the gRPC service.
 select customerName, phoneNo, movie,

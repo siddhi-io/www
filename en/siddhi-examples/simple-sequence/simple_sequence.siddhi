@@ -1,4 +1,4 @@
--- Defines `StockRateStream` having information of stock rate such as `symbol`, `price` and `volume`.
+-- Defines `StockRateStream` having information on stock rate such as `symbol`, `price` and `volume`.
 define stream StockRateStream (symbol string, price float,
     volume int);
 
