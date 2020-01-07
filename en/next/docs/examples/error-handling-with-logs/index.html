@@ -915,6 +915,7 @@ By default sinks log and drop the events causing event losses, and this can be h
     <span class="nx">locationBed</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">sensorID</span> <span class="nx">long</span><span class="p">,</span>
     <span class="nx">patientFullName</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">sensorReadingValue</span> <span class="nx">double</span><span class="p">);</span>
 
+<span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">abnormal</span><span class="o">-</span><span class="nx">reading</span><span class="o">-</span><span class="nx">identifier</span><span class="err">&#39;</span><span class="p">)</span>
 <span class="nx">from</span> <span class="nx">GlucoseReadingStream</span><span class="p">[</span><span class="nx">sensorValue</span> <span class="p">&gt;</span> <span class="mi">220</span><span class="p">]</span>
 <span class="nx">select</span> <span class="nx">math</span><span class="p">:</span><span class="nx">parseLong</span><span class="p">(</span><span class="nx">timeStamp</span><span class="p">)</span> <span class="k">as</span> <span class="nx">timeStampInLong</span><span class="p">,</span>
     <span class="nx">locationRoom</span><span class="p">,</span> <span class="nx">locationBed</span><span class="p">,</span> <span class="nx">sensorID</span><span class="p">,</span>
@@ -989,6 +990,17 @@ By default sinks log and drop the events causing event losses, and this can be h
     locationBed string, sensorID long,
     patientFullName string, sensorReadingValue double);
 </code></pre></div>
+
+        </td>
+        <td class="docs">
+
+        </td>
+    </tr>
+
+    <tr class="cTR">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>@info(name=&#39;abnormal-reading-identifier&#39;)</code></pre></div>
 
         </td>
         <td class="docs">

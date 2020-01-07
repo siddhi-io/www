@@ -688,15 +688,18 @@ The below example demonstrates such a requirement.</p>
 <span class="nx">define</span> <span class="nx">stream</span> <span class="nx">LoanResponseStream</span><span class="p">(</span><span class="nx">clientId</span> <span class="nx">long</span><span class="p">,</span>
                 <span class="nx">customerName</span> <span class="kt">string</span><span class="p">,</span> <span class="kt">message</span> <span class="kt">string</span><span class="p">);</span>
 
+<span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">attribute</span><span class="o">-</span><span class="nx">projection</span><span class="err">&#39;</span><span class="p">)</span>
 <span class="nx">from</span> <span class="nx">LoanRequestStream</span>
 <span class="nx">select</span> <span class="nx">clientId</span><span class="p">,</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">amount</span>
 <span class="nx">insert</span> <span class="nx">into</span> <span class="nx">LoanValidationStream</span><span class="p">;</span>
 
+<span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">successful</span><span class="o">-</span><span class="kt">message</span><span class="o">-</span><span class="nx">generator</span><span class="err">&#39;</span><span class="p">)</span>
 <span class="nx">from</span> <span class="nx">SuccessLoanRequestStream</span>
 <span class="nx">select</span> <span class="nx">clientId</span><span class="p">,</span> <span class="nx">customerName</span><span class="p">,</span>
     <span class="s">&quot;Loan Request is accepted for processing&quot;</span> <span class="k">as</span> <span class="kt">message</span>
 <span class="nx">insert</span> <span class="nx">into</span> <span class="nx">LoanResponseStream</span><span class="p">;</span>
 
+<span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">failure</span><span class="o">-</span><span class="kt">message</span><span class="o">-</span><span class="nx">generator</span><span class="err">&#39;</span><span class="p">)</span>
 <span class="nx">from</span> <span class="nx">FailureLoanRequestStream</span>
 <span class="nx">select</span> <span class="nx">clientId</span><span class="p">,</span> <span class="nx">customerName</span><span class="p">,</span>
         <span class="nx">str</span><span class="p">:</span><span class="nx">concat</span><span class="p">(</span><span class="s">&quot;Loan Request is rejected due to &quot;</span><span class="p">,</span>
@@ -924,6 +927,17 @@ define stream LoanResponseStream(clientId long,
         </td>
     </tr>
 
+    <tr class="cTR">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>@info(name = &#39;attribute-projection&#39;)</code></pre></div>
+
+        </td>
+        <td class="docs">
+
+        </td>
+    </tr>
+
     <tr class="cTR hover-enable">
 
         <td class="code leading">
@@ -941,6 +955,17 @@ insert into LoanValidationStream;
 
                 </div>
             </div>
+
+        </td>
+    </tr>
+
+    <tr class="cTR">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>@info(name = &#39;successful-message-generator&#39;)</code></pre></div>
+
+        </td>
+        <td class="docs">
 
         </td>
     </tr>
@@ -963,6 +988,17 @@ insert into LoanResponseStream;
 
                 </div>
             </div>
+
+        </td>
+    </tr>
+
+    <tr class="cTR">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>@info(name = &#39;failure-message-generator&#39;)</code></pre></div>
+
+        </td>
+        <td class="docs">
 
         </td>
     </tr>

@@ -207,6 +207,10 @@
       {
         "name": "Simple Sequence",
         "url": "simple-sequence"
+      },
+      {
+        "name": "Sequence with Collection",
+        "url": "sequence-with-collection"
       }
     ]
   }

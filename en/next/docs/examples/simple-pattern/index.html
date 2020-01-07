@@ -903,6 +903,7 @@
 <span class="nx">define</span> <span class="nx">Stream</span> <span class="nx">HighTempAlertStream</span><span class="p">(</span><span class="nx">roomNo</span> <span class="kt">int</span><span class="p">,</span>
     <span class="nx">initialTemp</span> <span class="nx">double</span><span class="p">,</span> <span class="nx">finalTemp</span> <span class="nx">double</span><span class="p">);</span>
 
+<span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">temperature</span><span class="o">-</span><span class="nx">increase</span><span class="o">-</span><span class="nx">identifier</span><span class="err">&#39;</span><span class="p">)</span>
 <span class="nx">from</span> <span class="nx">every</span><span class="p">(</span> <span class="nx">e1</span> <span class="p">=</span> <span class="nx">TemperatureStream</span> <span class="p">)</span> <span class="o">-&gt;</span>
     <span class="nx">e2</span> <span class="p">=</span> <span class="nx">TemperatureStream</span><span class="p">[</span> <span class="nx">e1</span><span class="p">.</span><span class="nx">roomNo</span> <span class="o">==</span> <span class="nx">roomNo</span>
         <span class="nx">and</span> <span class="p">(</span><span class="nx">e1</span><span class="p">.</span><span class="nx">temp</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="nx">temp</span> <span class="p">]</span>
@@ -970,6 +971,17 @@
 
                 </div>
             </div>
+
+        </td>
+    </tr>
+
+    <tr class="cTR">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>@info(name=&#39;temperature-increase-identifier&#39;)</code></pre></div>
+
+        </td>
+        <td class="docs">
 
         </td>
     </tr>

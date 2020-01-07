@@ -1247,6 +1247,18 @@
   </li>
 
         
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../sequence-with-collection/" title="Sequence with Collection" class="md-nav__link">
+      Sequence with Collection
+    </a>
+  </li>
+
+        
       </ul>
     </nav>
   </li>
@@ -1890,15 +1902,18 @@ The below example demonstrates such a requirement.</p>
         <span class="nx">phoneNo</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">movie</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">totalAmount</span> <span class="nx">double</span><span class="p">,</span>
         <span class="nx">bookingTime</span> <span class="nx">long</span><span class="p">);</span>
 
+<span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">filter</span><span class="o">-</span><span class="nx">basic</span><span class="o">-</span><span class="nx">ticket</span><span class="o">-</span><span class="nx">bookings</span><span class="err">&#39;</span><span class="p">)</span>
 <span class="nx">from</span> <span class="nx">TicketBookingStream</span><span class="p">[</span><span class="nx">ticketClass</span> <span class="o">==</span> <span class="s">&quot;BASIC&quot;</span><span class="p">]</span>
 <span class="nx">select</span> <span class="nx">name</span> <span class="k">as</span> <span class="nx">customerName</span><span class="p">,</span> <span class="nx">phoneNo</span><span class="p">,</span> <span class="nx">movie</span><span class="p">,</span>
     <span class="nx">qty</span> <span class="o">*</span> <span class="mf">20.0</span> <span class="k">as</span> <span class="nx">totalAmount</span><span class="p">,</span> <span class="nx">bookingTime</span>
 <span class="nx">insert</span> <span class="nx">into</span> <span class="nx">TotalTicketPaymentStream</span><span class="p">;</span>
 
+<span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">filter</span><span class="o">-</span><span class="nx">non</span><span class="o">-</span><span class="nx">basic</span><span class="o">-</span><span class="nx">tickets</span><span class="err">&#39;</span><span class="p">)</span>
 <span class="nx">from</span> <span class="nx">TicketBookingStream</span><span class="p">[</span><span class="nx">ticketClass</span> <span class="o">!=</span> <span class="s">&quot;BASIC&quot;</span><span class="p">]</span>
 <span class="nx">select</span> <span class="o">*</span>
 <span class="nx">insert</span> <span class="nx">into</span> <span class="nx">TicketPriceFinderStream</span><span class="p">;</span>
 
+<span class="err">@</span><span class="nx">info</span><span class="p">(</span><span class="nx">name</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">total</span><span class="o">-</span><span class="nx">price</span><span class="o">-</span><span class="nx">calculator</span><span class="err">&#39;</span><span class="p">)</span>
 <span class="nx">from</span> <span class="nx">TicketPriceResponseStream</span>
 <span class="nx">select</span> <span class="nx">customerName</span><span class="p">,</span> <span class="nx">phoneNo</span><span class="p">,</span> <span class="nx">movie</span><span class="p">,</span>
     <span class="p">(</span><span class="nx">qty</span> <span class="o">*</span> <span class="nx">ticketPrice</span><span class="p">)</span> <span class="k">as</span> <span class="nx">totalAmount</span><span class="p">,</span> <span class="nx">bookingTime</span>
@@ -2071,6 +2086,17 @@ define stream TotalTicketPaymentStream (customerName string,
         </td>
     </tr>
 
+    <tr class="cTR">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>@info(name = &#39;filter-basic-ticket-bookings&#39;)</code></pre></div>
+
+        </td>
+        <td class="docs">
+
+        </td>
+    </tr>
+
     <tr class="cTR hover-enable">
 
         <td class="code leading">
@@ -2089,6 +2115,17 @@ insert into TotalTicketPaymentStream;
 
                 </div>
             </div>
+
+        </td>
+    </tr>
+
+    <tr class="cTR">
+
+        <td class="code leading">
+            <div class="highlight"><pre><code class=siddhi>@info(name = &#39;filter-non-basic-tickets&#39;)</code></pre></div>
+
+        </td>
+        <td class="docs">
 
         </td>
     </tr>
@@ -2117,7 +2154,8 @@ insert into TicketPriceFinderStream;
     <tr class="cTR">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>from TicketPriceResponseStream</code></pre></div>
+            <div class="highlight"><pre><code class=siddhi>@info(name = &#39;total-price-calculator&#39;)
+from TicketPriceResponseStream</code></pre></div>
 
         </td>
         <td class="docs">
