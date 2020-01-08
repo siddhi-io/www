@@ -2147,7 +2147,7 @@ from every e1=RegulatorStream[isOn == true], e2=TempStream and e3=HumidStream
 select e2.isActive as tempSensorActive, e3.isActive as humidSensorActive
 insert into StateNotificationStream;
 ```
-Here, the matching process begins for each event in the `RegulatorStream` stream having the `isOn` attribute `true`. It generates an output via the `AlertStream` stream when an event from both `TempStream` stream and `HumidStream` stream arrives immediately after the first event in either order.
+Here, the matching process begins for each event in the `RegulatorStream` stream having the `isOn` attribute `true`. It generates an output via the `StateNotificationStream` stream when an event from both `TempStream` stream and `HumidStream` stream arrives immediately after the first event in either order.
 
 ### Output Rate Limiting
 

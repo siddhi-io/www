@@ -1,0 +1,26 @@
+-- Defines `TempSensorStream` having information of temperature sensor device.
+define stream TempSensorStream(deviceID long,
+    isActive bool);
+
+
+-- Defines `HumidSensorStream` having information of humidity sensor device.
+define stream HumidSensorStream(deviceID long,
+    isActive bool);
+
+
+-- Defines `RegulatorStream` which contains the events from regulator with attributes `deviceID` and `isOn`.
+define stream RegulatorStream(deviceID long, isOn bool);
+
+
+@sink(type='log')
+-- Defines `StateNotificationStream` which tells the state of temperature and humidity sensors.
+define stream StateNotificationStream (deviceID long,
+    tempSensorActive bool, humidSensorActive bool);
+
+
+-- Identifies a regulator activation event immediately followed by both temperature sensor and humidity sensor activation events in either order.
+from every e1=RegulatorStream[isOn == true],
+    e2=TempSensorStream and e3=HumidSensorStream
+select e1.deviceID, e2.isActive as tempSensorActive,
+    e3.isActive as humidSensorActive
+insert into StateNotificationStream;

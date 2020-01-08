@@ -1,0 +1,3 @@
+The sequence can repetitively match event sequences and use logical event ordering (using and, or, and not).
+
+Refer the <a href="https://siddhi.io/en/v5.1/docs/query-guide/#sequence" target="_blank">Siddhi query guide</a> for more information.
