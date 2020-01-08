@@ -1981,7 +1981,7 @@ define stream RegulatorStateChangeStream(deviceID long, roomNo int, tempSet doub
 define stream TempStream (deviceID long, roomNo int, temp double);
 
 from e1=RegulatorStateChangeStream[action == 'start']
-     -> not TempStream[e1.roomNo == roomNo and temp <= e1.tempSet] for '5 min'
+     -> not TempStream[e1.roomNo == roomNo and temp <= e1.tempSet] for 5 min
 select e1.roomNo as roomNo
 insert into AlertStream;
 ```
@@ -2128,7 +2128,7 @@ define stream TempStream(deviceID long, roomNo int, temp double);
 from every e1=TempStream,
      e2=TempStream[ifThenElse(e2[last].temp is null, e1.temp <= temp, e2[last].temp <= temp)]+,
      e3=TempStream[e2[last].temp > temp]
-select e1.temp as initialTemp, e2[last].temp as peekTemp, e3.price as firstDropTemp
+select e1.temp as initialTemp, e2[last].temp as peekTemp, e3.temp as firstDropTemp
 insert into PeekTempStream ;
 ```
 

@@ -17,7 +17,6 @@ Find the current status of the project via [Github project boards](https://githu
 ## 2020-Q2
 
 - Siddhi plugin for VSCode
-- Native support CloudEvents specification
 - Grafana as an analytics dashboard for Siddhi
 
 
