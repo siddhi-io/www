@@ -209,8 +209,12 @@
         "url": "simple-sequence"
       },
       {
-        "name": "Sequence with Collection",
-        "url": "sequence-with-collection"
+        "name": "Sequence with Count",
+        "url": "sequence-with-count"
+      },
+      {
+        "name": "Logical Sequence",
+        "url": "logical-sequence"
       }
     ]
   }

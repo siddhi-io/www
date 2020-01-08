@@ -2,357 +2,362 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
      <loc>http://siddhi.io/en/v5.1/download/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/extensions/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/release-notes/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/quick-start/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/features/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/quick-start/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/stream-and-query/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/source-and-sink/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/table-and-store/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/siddhiapp/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/basic-types/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/map/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/list/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/null/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/value-based-filtering/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/if-then-else/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/regex-matching/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/default/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/type-based-filtering/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/deduplicate/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/math-logical-operations/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/transform-json/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/sliding-time/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/batch-time/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/sliding-length/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/batch-length/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/session/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/named-window/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/http-service-integration/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/grpc-service-integration/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/stream-join/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/partition-by-value/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/scatter-and-gather-string/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/scatter-and-gather-json/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/time-rate-limit/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/error-handling-with-logs/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/simple-pattern/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/counting-pattern/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/logical-pattern/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/non-occurrence-pattern/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/examples/simple-sequence/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>http://siddhi.io/en/v5.1/docs/examples/sequence-with-collection/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <loc>http://siddhi.io/en/v5.1/docs/examples/sequence-with-count/</loc>
+     <lastmod>2020-01-08</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>http://siddhi.io/en/v5.1/docs/examples/logical-sequence/</loc>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/guides/overview/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/guides/alerts-for-thresholds/guide/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/guides/fault-tolerance/guide/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/guides/patterns-and-trends/guide/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/guides/database-static-rule-processing/guide/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/guides/integrate-various-enterprise-systems/guide/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/guides/realtime-movie-recommendation/guide/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/guides/long-term-aggregation/guide/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/tooling/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/query-guide/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/api/latest/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/api/5.1.2/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/api/5.1.1/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/api/5.1.0/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/rest-guides/siddhi-app-api/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/rest-guides/on-demand-query-api/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/rest-guides/health-check-api/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/rest-guides/store-api/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/rest-guides/default-ports/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/rest-guides/http-status-code/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/extensions/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/siddhi-as-a-java-library/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/siddhi-as-a-local-microservice/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/siddhi-as-a-docker-microservice/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/siddhi-as-a-kubernetes-microservice/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/siddhi-as-a-python-library/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/docs/config-guide/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
@@ -362,27 +367,27 @@
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/development/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/development/source/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/development/build/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/development/architecture/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>http://siddhi.io/en/v5.1/development/roadmap/</loc>
-     <lastmod>2020-01-07</lastmod>
+     <lastmod>2020-01-08</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
