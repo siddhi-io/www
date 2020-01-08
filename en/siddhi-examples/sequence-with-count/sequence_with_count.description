@@ -1,0 +1,3 @@
+Sequence query does expect the matching events to occur immediately after each other, and it can successfully correlate the events who do not have other events in between. Here, sequence can count event occurrences.
+
+Refer the <a href="https://siddhi.io/en/v5.1/docs/query-guide/#pattern" target="_blank">Siddhi query guide</a> for more information.

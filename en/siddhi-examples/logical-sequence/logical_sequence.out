@@ -1,0 +1,22 @@
+This application can be used identify a regulator activation event immediately followed by both temperature sensor and humidity sensor activation events in either order.
+
+#### Input
+
+- First, below event is sent to `RegulatorStream`,
+
+    [`2134`, `true`]
+
+- Then, below event is sent to `HumidSensorStream`,
+
+    [`124`, `true`]
+
+- Then, below event is sent to `TempSensorStream`,
+
+    [`242`, `false`]
+
+
+#### Output
+
+After processing the above input events, the event arriving at `StateNotificationStream` will be as follows:
+
+[`2134`, `false`, `true`]
