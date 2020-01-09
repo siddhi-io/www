@@ -180,6 +180,10 @@
       {
         "name": "Logging",
         "url": "error-handling-with-logs"
+      },
+      {
+        "name": "Wait & Retry",
+        "url": "error-handling-with-wait-retry"
       }
     ]
   },

@@ -906,7 +906,7 @@ By default sinks log and drop the events causing event losses, and this can be h
     <span class="nx">patientFirstName</span> <span class="kt">string</span><span class="p">,</span> <span class="nx">patientLastName</span> <span class="kt">string</span><span class="p">,</span>
     <span class="nx">sensorValue</span> <span class="nx">double</span><span class="p">);</span>
 
-<span class="err">@</span><span class="nx">sink</span><span class="p">(</span><span class="nx">type</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">http</span><span class="err">&#39;</span><span class="p">,</span> <span class="nx">on</span><span class="p">.</span><span class="nx">error</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">log</span><span class="err">&#39;</span><span class="p">,</span> <span class="nx">blocking</span><span class="p">.</span><span class="nx">io</span><span class="p">=</span><span class="err">&#39;</span><span class="kc">true</span><span class="err">&#39;</span><span class="p">,</span>
+<span class="err">@</span><span class="nx">sink</span><span class="p">(</span><span class="nx">type</span> <span class="p">=</span> <span class="err">&#39;</span><span class="nx">http</span><span class="err">&#39;</span><span class="p">,</span> <span class="nx">on</span><span class="p">.</span><span class="nx">error</span><span class="p">=</span><span class="err">&#39;</span><span class="nx">log</span><span class="err">&#39;</span><span class="p">,</span>
     <span class="nx">publisher</span><span class="p">.</span><span class="nx">url</span> <span class="p">=</span> <span class="s">&quot;http://localhost:8080/logger&quot;</span><span class="p">,</span>
     <span class="nx">method</span> <span class="p">=</span> <span class="s">&quot;POST&quot;</span><span class="p">,</span>
     <span class="err">@</span><span class="kt">map</span><span class="p">(</span><span class="nx">type</span> <span class="p">=</span> <span class="err">&#39;</span><span class="kt">json</span><span class="err">&#39;</span><span class="p">))</span>
@@ -963,7 +963,7 @@ By default sinks log and drop the events causing event losses, and this can be h
     <tr class="cTR hover-enable">
 
         <td class="code leading">
-            <div class="highlight"><pre><code class=siddhi>@sink(type = &#39;http&#39;, on.error=&#39;log&#39;, blocking.io=&#39;true&#39;,
+            <div class="highlight"><pre><code class=siddhi>@sink(type = &#39;http&#39;, on.error=&#39;log&#39;,
     publisher.url = &quot;http://localhost:8080/logger&quot;,
     method = &quot;POST&quot;,
     @map(type = &#39;json&#39;))</code></pre></div>
@@ -1020,7 +1020,7 @@ select math:parseLong(timeStamp) as timeStampInLong,
 
             <div class="cCodeDesription">
                 <div>
-                    <p>Identifies the abnomarl Glucose reading if <code>sensorValue &gt; 220</code></p>
+                    <p>Identifies the abnormal Glucose reading if <code>sensorValue &gt; 220</code></p>
 
                 </div>
             </div>
