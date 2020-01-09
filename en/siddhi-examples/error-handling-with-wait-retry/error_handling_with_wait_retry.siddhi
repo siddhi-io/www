@@ -5,9 +5,9 @@ define stream GlucoseReadingStream (locationRoom string,
     sensorValue double);
 
 
--- If `HTTP` endpoint which defined in `sink` annotation is unavailable then it logs the event with the error and drops the event.
+-- If `HTTP` endpoint is unavailable then threads who bring events via `AbnormalGlucoseReadingStream` wait in `back-off and re-trying` mode.
 -- Errors can be gracefully handled by configuring `on.error` parameter.
-@sink(type = 'http', on.error='log',
+@sink(type = 'http', on.error='wait',
     publisher.url = "http://localhost:8080/logger",
     method = "POST",
     @map(type = 'json'))
@@ -30,3 +30,4 @@ select math:parseLong(timeStamp) as timeStampInLong,
 
         sensorValue as sensorReadingValue
 insert into AbnormalGlucoseReadingStream;
+
