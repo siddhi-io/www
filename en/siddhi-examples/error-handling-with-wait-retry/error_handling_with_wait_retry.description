@@ -1,0 +1,5 @@
+This example explains how errors are handled at Sink level by `wait and retry` mode.
+
+In this mode, publishing threads wait in back-off and re-trying mode, and only send the events when the connection is re-established. During this time the threads will not consume any new messages causing the systems to introduce back pressure on the systems that publish to it.
+
+Refer the [Siddhi query guide](https://siddhi.io/en/v5.1/docs/query-guide/#error-handling) for more information.
