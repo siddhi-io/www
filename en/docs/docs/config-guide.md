@@ -235,6 +235,45 @@ statePersistence:
     bucketName: siddhi-app-persistence
 ```
 
+### Persistence on GCS
+
+To configure GCS based periodic data persistence, add <code>statePersistence</code> section with the following
+ properties on the Siddhi configuration yaml, and pass that during startup.
+
+| Parameter | Purpose | Required Value |
+| ------------- |-------------|-------------|
+| enabled | This enables data persistence. | true |
+| intervalInMin | The time interval in minutes that defines the interval in which state of Siddhi applications should be persisted | 1 |
+| revisionsToKeep | The number of revisions to keep in the system. Here when a new persistence takes place, the older revisions are removed. | 2 |
+| persistenceStore | The persistence store | `io.siddhi.distribution.core.persistence.GCSPersistenceStore` |
+| config > credentialPath | Path to the file than contains the <a href="https://cloud.google.com/iam/docs/creating-managing-service-account-keys" target="_blank">secret key</a> |`${carbon.home}/resources/key.json` |
+| config > bucketName | Name of the bucket where revision files should be persisted.  | siddhi-app-persistence |
+
+The following are some samples configuration for aws-s3 based state persistence.</br>
+
+* Sample configuration with secret key file
+```yaml
+statePersistence:
+  enabled: true
+  intervalInMin: 1
+  revisionsToKeep: 2
+  persistenceStore: io.siddhi.distribution.core.persistence.GCSPersistenceStore
+  config:
+    credentialPath:  "${carbon.home}/resources/key.json"
+    bucketName: siddhi-persistence
+```
+
+* Sample configuration when path to the key file is set as a <a href="https://cloud.google.com/docs/authentication/getting-started" target="_blank">environment variable</a>
+```yaml
+statePersistence:
+  enabled: true
+  intervalInMin: 1
+  revisionsToKeep: 2
+  persistenceStore: io.siddhi.distribution.core.persistence.GCSPersistenceStore
+  config:
+    bucketName: siddhi-persistence
+```
+
 ## Configuring Siddhi Elements
 
 !!! info "Applicable only for Local, Docker, and Kubernetes modes."
@@ -427,7 +466,7 @@ To add or update Siddhi extensions and/or third-party dependencies, a new docker
 Sample docker file using `siddhi-runner-base-alpine` is as follows.
 ```docker
 # use siddhi-runner-base
-FROM siddhiio/siddhi-runner-base-alpine:5.1.2
+FROM siddhiio/siddhi-runner-base-alpine:5.1.0-alpha
 MAINTAINER Siddhi IO Docker Maintainers "siddhi-dev@googlegroups.com"
 
 ARG HOST_BUNDLES_DIR=./files/bundles
