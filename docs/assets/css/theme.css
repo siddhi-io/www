@@ -658,10 +658,21 @@ html .md-typeset .superfences-tabs > label:hover {
     margin: .55rem .5rem .5rem 0rem;
     border: 1px solid #20b6b0;
     padding: 12px;
+    background-color: lightgrey;
+}
+
+.cLatestInfo {
+    float: right;
+    font-size: .8rem;
+    margin: .55rem .5rem .5rem 0rem;
+    padding: 12px;
 }
 
 @media only screen and (min-width: 780px) {
     .cInfo {
+        min-width: 350px;
+    }
+    .cLatestInfo {
         min-width: 350px;
     }
 }
@@ -671,6 +682,10 @@ html .md-typeset .superfences-tabs > label:hover {
 }
 
 .cInfo a {
+    color: #009688;
+}
+
+.cLatestInfo a {
     color: #009688;
 }
 
