@@ -49,8 +49,8 @@
       <meta name="lang:{{ key }}" content="{{ lang.t(key) }}">
       {%- endfor -%}
       <link rel="shortcut icon" href="{{ config.theme.favicon | url }}">
-      <meta name="generator" content="mkdocs-{{ mkdocs_version }}, mkdocs-material-4.3.1">
       <meta property="og:image" content="https://siddhi.io/images/siddhi-overview.png"/>
+      <meta name="generator" content="mkdocs-{{ mkdocs_version }}, mkdocs-material-4.3.1">
       {%- endblock -%}
       {%- block htmltitle -%} {%- if page and page.meta and page.meta.title -%}
       <title>{{ page.meta.title }}</title>
