@@ -1383,7 +1383,7 @@ Following are some inbuilt aggregation functions.
 | <a target="_blank" href="../api/latest/#distinctcount-aggregate-function">distinctCount</a> | Calculates the distinct count based on a parameter from a set of values. |
 | <a target="_blank" href="../api/latest/#avg-aggregate-function">avg</a> | Calculates the average from a set of values.|
 | <a target="_blank" href="../api/latest/#max-aggregate-function">max</a> | Finds the maximum value from a set of values. |
-| <a target="_blank" href="../api/latest/#min-aggregate-function">max</a> | Finds the minimum value from a set of values. |
+| <a target="_blank" href="../api/latest/#min-aggregate-function">min</a> | Finds the minimum value from a set of values. |
 | <a target="_blank" href="../api/latest/#maxforever-aggregate-function">maxForever</a> | Finds the maximum value from all events throughout its lifetime irrespective of the windows. |
 | <a target="_blank" href="../api/latest/#minforever-aggregate-function">minForever</a> | Finds the minimum value from all events throughout its lifetime irrespective of the windows. |
 | <a target="_blank" href="../api/latest/#stddev-aggregate-function">stdDev</a> | Calculates the standard deviation from a set of values. |
