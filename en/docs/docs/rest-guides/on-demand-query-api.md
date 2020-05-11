@@ -6,7 +6,7 @@
 
 ### Overview
 
-On-demand queries provide a way of performing add hock operations on Siddhi tables (stores), named-windows, and named-aggregations.
+On-demand queries provide a way of performing ad-hoc operations on Siddhi tables (stores), named-windows, and named-aggregations.
 
 |                         |                                                                                                    |
 |-------------------------|----------------------------------------------------------------------------------------------------|
