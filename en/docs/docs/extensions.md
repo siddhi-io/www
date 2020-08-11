@@ -105,9 +105,9 @@ Custom extensions can be written in order to cater use case specific logics that
 
 The following Maven Archetypes can be used to generate the necessary Maven project to create the relevant extensions.
 
-**Writing Execution Executions**
+**Writing Execution Extensions**
 
-Maven archetype for execution execution that is used to generate the extension types such as:
+Maven archetype for execution extension that is used to generate the extension types such as:
 
 * [Function](../query-guide/#function) extension, by extending `io.siddhi.core.executor.function.FunctionExecutor`.
 * [Aggregate Function](../query-guide/#aggregate-function) extension, by extending `io.siddhi.core.query.selector.attribute.aggregator.AttributeAggregatorExecutor`.
