@@ -1,6 +1,6 @@
-# Siddhi website and documentation 
+# Siddhi website and documentation - A cloud native stream processor
 
-This repo contains the source for siddhi.io website and documentation.
+This repository contains the source for siddhi.io website and documentation.
 
 The running Siddhi website can be accessed from [https://siddhi.io/](https://siddhi.io/).
 
