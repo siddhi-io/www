@@ -1738,6 +1738,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#persistence-on-gcs" title="Persistence on GCS" class="md-nav__link">
+    Persistence on GCS
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2158,6 +2165,13 @@
           <li class="md-nav__item">
   <a href="#persistence-on-aws-s3" title="Persistence on AWS-S3" class="md-nav__link">
     Persistence on AWS-S3
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#persistence-on-gcs" title="Persistence on GCS" class="md-nav__link">
+    Persistence on GCS
   </a>
   
 </li>
@@ -2692,6 +2706,74 @@
     secretKey: secret-key
     region: us-west-2
     bucketName: siddhi-app-persistence</code></pre></li>
+</ul>
+<h3 id="persistence-on-gcs">Persistence on GCS<a class="headerlink" href="#persistence-on-gcs" title="Permanent link">&para;</a></h3>
+<p>To configure GCS based periodic data persistence, add <code>statePersistence</code> section with the following
+ properties on the Siddhi configuration yaml, and pass that during startup.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Purpose</th>
+<th>Required Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>enabled</td>
+<td>This enables data persistence.</td>
+<td>true</td>
+</tr>
+<tr>
+<td>intervalInMin</td>
+<td>The time interval in minutes that defines the interval in which state of Siddhi applications should be persisted</td>
+<td>1</td>
+</tr>
+<tr>
+<td>revisionsToKeep</td>
+<td>The number of revisions to keep in the system. Here when a new persistence takes place, the older revisions are removed.</td>
+<td>2</td>
+</tr>
+<tr>
+<td>persistenceStore</td>
+<td>The persistence store</td>
+<td><code>io.siddhi.distribution.core.persistence.GCSPersistenceStore</code></td>
+</tr>
+<tr>
+<td>config &gt; credentialPath</td>
+<td>Path to the file than contains the <a href="https://cloud.google.com/iam/docs/creating-managing-service-account-keys" target="_blank">secret key</a></td>
+<td><code>${carbon.home}/resources/key.json</code></td>
+</tr>
+<tr>
+<td>config &gt; bucketName</td>
+<td>Name of the bucket where revision files should be persisted.</td>
+<td>siddhi-app-persistence</td>
+</tr>
+</tbody>
+</table>
+<p>The following are some samples configuration for aws-s3 based state persistence.</br></p>
+<ul>
+<li>
+<p>Sample configuration with secret key file
+<pre class="codehilite"><code class="language-yaml">statePersistence:
+  enabled: true
+  intervalInMin: 1
+  revisionsToKeep: 2
+  persistenceStore: io.siddhi.distribution.core.persistence.GCSPersistenceStore
+  config:
+    credentialPath:  "${carbon.home}/resources/key.json"
+    bucketName: siddhi-persistence</code></pre></p>
+</li>
+<li>
+<p>Sample configuration when path to the key file is set as a <a href="https://cloud.google.com/docs/authentication/getting-started" target="_blank">environment variable</a>
+<pre class="codehilite"><code class="language-yaml">statePersistence:
+  enabled: true
+  intervalInMin: 1
+  revisionsToKeep: 2
+  persistenceStore: io.siddhi.distribution.core.persistence.GCSPersistenceStore
+  config:
+    bucketName: siddhi-persistence</code></pre></p>
+</li>
 </ul>
 <h2 id="configuring-siddhi-elements">Configuring Siddhi Elements<a class="headerlink" href="#configuring-siddhi-elements" title="Permanent link">&para;</a></h2>
 <div class="admonition info">
