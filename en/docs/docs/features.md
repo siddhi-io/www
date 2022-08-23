@@ -50,7 +50,7 @@
 ### Data store integration with caching
 
 - Query, modify, and join the data stored [`in-memory` tables](../query-guide/#table) which support primary key constraints and indexing.
-- Query, modify, and join the data stored in [stores backed by systems](../query-guide/#store) such as RDBMS (`MySQL`, `Oracle`, `MSSQL`, `DB2`, `Postgre`, `H2`), `Redis`, `Hazelcast`, `MongoDB`, `HBase`, `Cassandra`, `Solr`, and `Elasticsearch`. 
+- Query, modify, and join the data stored in [stores backed by systems](../query-guide/#store) such as RDBMS (`MySQL`, `Oracle`, `MSSQL`, `DB2`, `Postgre`, `H2`), `Redis`, `MongoDB`, `HBase`, `Cassandra`, `Solr`, and `Elasticsearch`. 
 - Support low latency processing by preloading and caching data using caching modes such as `FIFO`, `LRU`, and `RFU`.
 
 ### Service integration and error handling
