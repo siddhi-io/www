@@ -2478,7 +2478,7 @@ Furthermore, this ensures that the aggregations are not lost due to unexpected s
 
 ```sql
 @store(type="<store type>", ...)
-@purge(enable="<true or false>",interval=<purging interval>,@retentionPeriod(<granularity> = <retention period>, ...) )
+@purge(enable="<true or false>",interval=<purging interval>,purgeByShardIdEnabled="<true or false>",@retentionPeriod(<granularity> = <retention period>, ...) )
 define aggregation <aggregator name>
 from <input stream>
 select <attribute name>, <aggregate function>(<attribute name>) as <attribute name>, ...
@@ -2558,10 +2558,11 @@ Item | Description
 
 Further, following system properties are also available,
 
-System Property| Description| Possible Values | Optional | Default Value
----------|---------|---------|---------|------
-shardId| The id of the shard one of the distributed aggregation is running in. This should be unique to a single shard | Any string | No | <Empty_String>
-partitionById| This allows user to enable/disable distributed aggregation for all aggregations running in one siddhi manager .(Available from v4.3.3) | true/false | Yesio | false
+System Property| Description                                                                                                                                                             | Possible Values | Optional | Default Value
+---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|--------|------
+shardId| The id of the shard one of the distributed aggregation is running in. This should be unique to a single shard                                                           | Any string | No     | <Empty_String>
+partitionById| This allows user to enable/disable distributed aggregation for all aggregations running in one siddhi manager .(Available from v4.3.3)                                  | true/false | Yes    | false
+purgeByShardIdEnabled| This allows user to enable/disable distributed aggregation purging considering the shardID for all aggregations running in one siddhi manager .(Available from v5.1.28) | true/false | Yes    | false
 
 !!! Note
     ShardIds should not be changed after the first configuration in order to keep data consistency.
