@@ -4446,7 +4446,7 @@ of stream attributes for durations such as <code>sec</code>, <code>min</code>, <
 Furthermore, this ensures that the aggregations are not lost due to unexpected system failures because aggregates can be stored in different persistence <code>stores</code>.</p>
 <p><strong>Syntax</strong></p>
 <p><pre class="codehilite"><code class="language-sql linenums">@store(type="&lt;store type&gt;", ...)
-@purge(enable="&lt;true or false&gt;",interval=&lt;purging interval&gt;,@retentionPeriod(&lt;granularity&gt; = &lt;retention period&gt;, ...) )
+@purge(enable="&lt;true or false&gt;",interval=&lt;purging interval&gt;,purgeByShardIdEnabled="&lt;true or false&gt;",@retentionPeriod(&lt;granularity&gt; = &lt;retention period&gt;, ...) )
 define aggregation &lt;aggregator name&gt;
 from &lt;input stream&gt;
 select &lt;attribute name&gt;, &lt;aggregate function&gt;(&lt;attribute name&gt;) as &lt;attribute name&gt;, ...
@@ -4607,7 +4607,14 @@ select &lt;attribute name&gt;, &lt;aggregate function&gt;(&lt;attribute name&gt;
 <td>partitionById</td>
 <td>This allows user to enable/disable distributed aggregation for all aggregations running in one siddhi manager .(Available from v4.3.3)</td>
 <td>true/false</td>
-<td>Yesio</td>
+<td>Yes</td>
+<td>false</td>
+</tr>
+<tr>
+<td>purgeByShardIdEnabled</td>
+<td>This allows user to enable/disable distributed aggregation purging considering the shardID for all aggregations running in one siddhi manager .(Available from v5.1.28)</td>
+<td>true/false</td>
+<td>Yes</td>
 <td>false</td>
 </tr>
 </tbody>
