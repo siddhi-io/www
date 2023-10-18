@@ -584,7 +584,7 @@ To enable statistics by periodically printing the metrics on console add the fol
 # This is the main configuration for metrics
 metrics:
   # Enable Metrics
-  enabled: false
+  enabled: true
   reporting:
     console:
       - # The name for the Console Reporter
