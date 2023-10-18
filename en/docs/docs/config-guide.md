@@ -590,7 +590,7 @@ metrics:
       - # The name for the Console Reporter
         name: Console
         # Enable Console Reporter
-        enabled: false
+        enabled: true
         # Polling Period in seconds.
         # This is the period for polling metrics from the metric registry and printing in the console
         pollingPeriod: 5
@@ -617,7 +617,7 @@ metrics:
       - &JDBC01
         dataSourceName: java:comp/env/jdbc/SiddhiMetricsDB
         scheduledCleanup:
-          enabled: false
+          enabled: true
           daysToKeep: 7
           scheduledCleanupPeriod: 86400
   reporting:
