@@ -2385,7 +2385,7 @@ select GetPromoCardTypeStream.messageId, GetPromoCardTypeStream.promoCardId, Get
 insert into GetPromoCardTypeDetailsStream;
 
 @info(name='get-promocard-rules')
-from GetPromoCardTypeDetailsStream#window.length(1) right outer join PromoRule on GetPromoCardTypeDetailsStream.promoCardTypeId==PromoRule.promoCardTypeId
+from GetPromoCardTypeDetailsStream#window.length(1) left outer join PromoRule on GetPromoCardTypeDetailsStream.promoCardTypeId==PromoRule.promoCardTypeId
 select GetPromoCardTypeDetailsStream.messageId, GetPromoCardTypeDetailsStream.promoCardId, GetPromoCardTypeDetailsStream.promoCardTypeId, GetPromoCardTypeDetailsStream.amount, GetPromoCardTypeDetailsStream.promoCardTypeDiscount, PromoRule.promoRuleId, PromoRule.promoRule, GetPromoCardTypeDetailsStream.promoCardIssueDate
 insert into RuleStream;
 
